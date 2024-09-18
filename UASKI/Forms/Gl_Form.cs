@@ -25,7 +25,7 @@ namespace UASKI
             // Отключаем отображение страниц
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.SizeMode = TabSizeMode.Fixed; 
         }
 
         private void Menu_Step1_SelectedIndexChanged(object sender, EventArgs e)
