@@ -5,6 +5,9 @@ using UASKI.Models;
 
 namespace UASKI.StaticModels
 {
+    /// <summary>
+    /// Класс для хранения ститических общих данных
+    /// </summary>
     public static class SystemData
     {
         /// <summary>
@@ -123,5 +126,12 @@ namespace UASKI.StaticModels
                }
            },
         };
+
+
+        /// <summary>
+        /// Объект главной формы
+        /// </summary>
+        public static Gl_Form Form { get; set; }
+
     }
 }

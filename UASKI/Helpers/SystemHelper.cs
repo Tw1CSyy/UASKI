@@ -2,6 +2,9 @@
 
 namespace UASKI.Helpers
 {
+    /// <summary>
+    /// Общий системный хелпер
+    /// </summary>
     public static class SystemHelper
     {
         /// <summary>

@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
+using UASKI.Data.Context;
+
 
 namespace UASKI
 {
@@ -25,9 +26,12 @@ namespace UASKI
             // Отключаем отображение страниц
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed; 
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+
+            SystemData.Form = this;
         }
 
+        // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
         private void Menu_Step1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(Menu_Step1.SelectedIndex != -1)
@@ -38,34 +42,17 @@ namespace UASKI
             }
         }
 
+        #region Нажатия клавиш
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
-            {
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-            }
-
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
-            {
-                Menu_Step2.Focus();
-                Menu_Step2.SelectedIndex = 0;
-            }
+            KeyDownHelper.Menu_Step1_KeyDown(e);
         }
 
         private void Menu_Step2_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
-            {
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-            }
-
-            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
-            {
-                Menu_Step1.Focus();
-                Menu_Step2.ClearSelected();
-            }
+            KeyDownHelper.Menu_Step2_KeyDown(e);
         }
+        #endregion
+
     }
 }
