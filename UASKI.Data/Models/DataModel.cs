@@ -39,5 +39,16 @@ namespace UASKI.Models
         {
             return Connection;
         }
+
+        /// <summary>
+        /// Выполняет команду Sql
+        /// </summary>
+        /// <param name="query">Строка запроса Sql</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public static bool Complite(string query)
+        {
+            var command = new NpgsqlCommand(query, Get());
+            return command.ExecuteNonQuery() == 1;
+        }
     }
 }

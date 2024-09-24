@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UASKI.Data.Entyties
+namespace UASKI.Data.Entityes
 {
     /// <summary>
     /// Модель задач

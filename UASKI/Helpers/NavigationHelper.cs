@@ -3,6 +3,7 @@ using System.Linq;
 using UASKI.Models;
 using UASKI.StaticModels;
 using UASKI.Services;
+using System.Windows.Forms.VisualStyles;
 
 namespace UASKI.Helpers
 {
@@ -22,6 +23,7 @@ namespace UASKI.Helpers
 
             int index = form.tabControl1.SelectedIndex;
             form.tabControl1.SelectedIndex = el.NumberTabPage;
+            SystemData.Index = index;
 
             if(index != el.NumberTabPage)
             {
@@ -54,12 +56,17 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Отчищает форму по индексу
+        /// Отчищает форму по индексу или по текущей странице
         /// </summary>
         /// <param name="index">Индекс формы</param>
-        private static void ClearForm(int index)
+        public static void ClearForm(int index = -1)
         {
             var form = SystemData.Form;
+
+            if(index == -1)
+            {
+                index = SystemData.Index;
+            }
 
             switch (index)
             {
@@ -74,6 +81,7 @@ namespace UASKI.Helpers
                     form.textBox5.Clear();
                     form.textBox6.Clear();
                     form.textBox7.Clear();
+                    form.dateTimePicker1.Value = System.DateTime.Today;
                     break;
             }
         }

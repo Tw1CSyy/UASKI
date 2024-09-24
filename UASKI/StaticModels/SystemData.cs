@@ -132,5 +132,10 @@ namespace UASKI.StaticModels
         /// </summary>
         public static Gl_Form Form { get; set; }
 
+        /// <summary>
+        /// Текущая страница
+        /// </summary>
+        public static int Index { get; set; }
+
     }
 }

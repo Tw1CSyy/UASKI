@@ -93,15 +93,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\ContextService.cs" />
-    <Compile Include="Context\UAContext.cs" />
+    <Compile Include="Models\UAContext.cs" />
     <Compile Include="Entyties\HolidayEntity.cs" />
     <Compile Include="Entyties\IspEntity.cs" />
     <Compile Include="Entyties\TaskEntity.cs" />
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\AddRequest.cs" />
-    <Compile Include="Requests\SelectRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

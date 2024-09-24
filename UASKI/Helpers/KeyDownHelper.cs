@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using UASKI.Forms;
+using UASKI.Services;
 using UASKI.StaticModels;
 
 namespace UASKI.Helpers
@@ -268,7 +269,13 @@ namespace UASKI.Helpers
         {
             if (e.KeyCode == Keys.Enter)
             {
-                
+                if(TasksService.AddCheck(form.textBox7, form.textBox3, form.textBox6, form.dateTimePicker1)
+                    && TasksService.Add(form.textBox7.Text , form.textBox3.Text , form.textBox6.Text , form.dateTimePicker1.Value))
+                {
+                    MessageHelper.Info("Новое задание добавлено");
+                    NavigationHelper.ClearForm();
+                    NavigationHelper.GetView();
+                }
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {

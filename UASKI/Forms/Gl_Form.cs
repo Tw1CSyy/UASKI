@@ -32,8 +32,11 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
+            
             SystemData.Form = this;
+            SystemData.Index = 0;
             DataModel.Open();
+
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню

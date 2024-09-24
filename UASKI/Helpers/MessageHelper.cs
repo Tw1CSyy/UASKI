@@ -8,5 +8,10 @@ namespace UASKI.Helpers
         {
             MessageBox.Show(mes, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static void Info(string mes)
+        {
+            MessageBox.Show(mes, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
