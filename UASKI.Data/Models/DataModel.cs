@@ -4,7 +4,7 @@ namespace UASKI.Models
     /// <summary>
     /// Класс для подключения к БД
     /// </summary>
-    public class DataModel
+    public static class DataModel
     {
         /// <summary>
         /// Строка подключения
@@ -15,11 +15,11 @@ namespace UASKI.Models
         /// Объект подключения
         /// </summary>
         private readonly static NpgsqlConnection Connection = new NpgsqlConnection(ConnectionString);
-
+        
         /// <summary>
         /// Открывает подключение
         /// </summary>
-        public void Open()
+        public static void Open()
         {
             Connection.Open();
         }
@@ -27,7 +27,7 @@ namespace UASKI.Models
         /// <summary>
         /// Закрывает подключение
         /// </summary>
-        public void Close()
+        public static void Close()
         {
             Connection.Close();
         }
@@ -35,7 +35,7 @@ namespace UASKI.Models
         /// <summary>
         /// Возвращает подключение
         /// </summary>
-        public NpgsqlConnection Get()
+        public static NpgsqlConnection Get()
         {
             return Connection;
         }

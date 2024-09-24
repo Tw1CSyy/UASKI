@@ -28,18 +28,45 @@ namespace UASKI.Data.Context
         }
 
         /// <summary>
+        /// Формирует Add строчку запроса
+        /// </summary>
+        /// <param name="request">Модель запроса</param>
+        /// <returns>Строку запроса Add</returns>
+        public static string GetQuery(AddRequest request)
+        {
+            string query = $"INSERT INTO \"{request.TableName}\" ( ";
+
+            foreach (var col in request.Columns)
+            {
+                query += $"{col.Name}, ";
+            }
+
+            query = query.Remove(query.Length - 2, 2);
+            query += ") VALUES ( ";
+
+            foreach (var col in request.Columns)
+            {
+                query += $"{col.Value}, ";
+            }
+
+            query = query.Remove(query.Length - 2, 2);
+            query += ")";
+            return query;
+        }
+
+
+
+        /// <summary>
         /// Возращает значения Select запроса
         /// </summary>
         /// <param name="request">Модель запроса</param>
         /// <returns>Колекцию наборов данных</returns>
-        public static List<List<string>> SelectValues(SelectRequest request)
+        public static List<List<string>> GetData(SelectRequest request)
         {
-            var data = new DataModel();
             var query = GetQuery(request);
             var model = new List<List<string>>();
 
-            data.Open();
-            var command = new NpgsqlCommand(query, data.Get());
+            var command = new NpgsqlCommand(query, DataModel.Get());
             NpgsqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -54,8 +81,26 @@ namespace UASKI.Data.Context
             }
 
             reader.Close();
-            data.Close();
             return model;
         }
+
+        /// <summary>
+        /// Выполняет SQL запрос
+        /// </summary>
+        /// <param name="query">Строка запроса</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public static bool Complite(string query)
+        {
+            var command = new NpgsqlCommand(query , DataModel.Get());
+
+            if(command.ExecuteNonQuery() == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        
     }
 }

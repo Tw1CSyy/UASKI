@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>d9d2afcc-5598-48c6-9c0c-5c2685ffeca5-_2_.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -93,21 +96,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\DateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DateForm.Designer.cs">
+      <DependentUpon>DateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Gl_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Gl_Form.Designer.cs">
       <DependentUpon>Gl_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\IspForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IspForm.Designer.cs">
+      <DependentUpon>IspForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\KeyDownHelper.cs" />
+    <Compile Include="Helpers\MessageHelper.cs" />
+    <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
+    <Compile Include="Models\DataGridRowModel.cs" />
     <Compile Include="Models\ItemMenuLevel1.cs" />
     <Compile Include="Models\ItemMenuLevel2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IspService.cs" />
     <Compile Include="StaticModels\SystemData.cs" />
+    <EmbeddedResource Include="Forms\DateForm.resx">
+      <DependentUpon>DateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Gl_Form.resx">
       <DependentUpon>Gl_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IspForm.resx">
+      <DependentUpon>IspForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,7 +157,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Content Include="d9d2afcc-5598-48c6-9c0c-5c2685ffeca5-_2_.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UASKI.Data\UASKI.Data.csproj">

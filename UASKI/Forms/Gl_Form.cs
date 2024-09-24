@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Data.Context;
+using UASKI.Models;
 
 
 namespace UASKI
@@ -16,6 +17,9 @@ namespace UASKI
             Start();
         }
 
+        /// <summary>
+        /// Старотовый метод
+        /// </summary>
         private void Start()
         {
             // Рисуем меню
@@ -29,6 +33,7 @@ namespace UASKI
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             SystemData.Form = this;
+            DataModel.Open();
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -41,8 +46,8 @@ namespace UASKI
                 SystemHelper.WriteListBox(Menu_Step2, item.Items.Select(c => c.Text).ToArray());
             }
         }
-
         #region Нажатия клавиш
+
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.Menu_Step1_KeyDown(e);
@@ -52,7 +57,49 @@ namespace UASKI
         {
             KeyDownHelper.Menu_Step2_KeyDown(e);
         }
+
+        private void IspDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.IspDataGridView_KeyDown(e);
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox1_KeyDown(e);
+        }
+
+        private void textBox4_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox4_KeyDown(e);
+        }
+
+        private void textBox7_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox7_KeyDown(e);
+        }
+
+        private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            KeyDownHelper.button1_KeyDown(e);
+        }
+
+        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.dateTimePicker1_KeyDown(e);
+        }
+
         #endregion
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var r = new KeyEventArgs(KeyDownHelper.ActionKey);
+            KeyDownHelper.textBox1_KeyDown(r);
+        }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var r = new KeyEventArgs(KeyDownHelper.ActionKey);
+            KeyDownHelper.textBox4_KeyDown(r);
+        }
     }
 }

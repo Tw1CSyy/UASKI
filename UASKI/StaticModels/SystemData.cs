@@ -127,7 +127,6 @@ namespace UASKI.StaticModels
            },
         };
 
-
         /// <summary>
         /// Объект главной формы
         /// </summary>
