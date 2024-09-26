@@ -4,6 +4,7 @@ using UASKI.Models;
 using UASKI.StaticModels;
 using UASKI.Services;
 using System.Windows.Forms.VisualStyles;
+using System.Reflection;
 
 namespace UASKI.Helpers
 {
@@ -23,13 +24,13 @@ namespace UASKI.Helpers
 
             int index = form.tabControl1.SelectedIndex;
             form.tabControl1.SelectedIndex = el.NumberTabPage;
-            SystemData.Index = index;
-
+            
             if(index != el.NumberTabPage)
             {
                 ClearForm(index);
             }
-            
+            SystemData.Index = form.tabControl1.SelectedIndex;
+
             NavigationHelper.GetView();
         }
 
@@ -39,8 +40,8 @@ namespace UASKI.Helpers
         public static void GetView()
         {
             var form = SystemData.Form;
-           
-            switch (form.tabControl1.SelectedIndex)
+
+            switch (SystemData.Index)
             {
                 case 1:
                     SystemHelper.PullListInDataGridView(form.IspDataGridView
@@ -50,6 +51,14 @@ namespace UASKI.Helpers
                     break;
                 case 4:
                     form.textBox1.Focus();
+                    break;
+                case 5:
+                    SystemHelper.PullListInDataGridView(form.dataGridView1
+                        , IspService.GetListByDataGrid()
+                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
+                    form.IspDataGridView.Focus();
+                    form.textBox8.Focus();
+                    form.dataGridView1.ClearSelection();
                     break;
             }
             form.Menu_Step2.Enabled = false;
@@ -81,7 +90,9 @@ namespace UASKI.Helpers
                     form.textBox5.Clear();
                     form.textBox6.Clear();
                     form.textBox7.Clear();
+                    SystemHelper.SelectButton(false, form.button1);
                     form.dateTimePicker1.Value = System.DateTime.Today;
+                    form.textBox1.Focus();
                     break;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Models;
@@ -17,6 +18,10 @@ namespace UASKI.Services
             return context.Isps;
         }
 
+        /// <summary>
+        /// Преобразовывает список в модели для вывода в DataGridView
+        /// </summary>
+        /// <returns></returns>
         public static List<DataGridRowModel> GetListByDataGrid()
         {
             var model = GetList();
@@ -31,5 +36,21 @@ namespace UASKI.Services
 
             return result;
         }
+
+        /// <summary>
+        /// Возвращает объект исполнителя по фамилии
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <returns></returns>
+        public static IspEntity GetByFirstName(string FirstName)
+        {
+            var list = GetList();
+            var result = list.FirstOrDefault(c => c.FirstName.ToLower().Equals(FirstName.ToLower()));
+            return result;
+        }
+
+
+
+
     }
 }

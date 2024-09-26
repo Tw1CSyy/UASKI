@@ -205,7 +205,22 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox4.Focus();
+                if(form.textBox1.Text.Length != 0 && form.textBox3.Text.Length == 0)
+                {
+                    var isp = IspService.GetByFirstName(form.textBox1.Text);
+
+                    if(isp != null)
+                    {
+                        form.textBox2.Text = isp.CodePodr.ToString();
+                        form.textBox3.Text = isp.Code.ToString();
+                    }
+
+                    form.textBox4.Focus();
+                }
+                else
+                {
+                    form.textBox4.Focus();
+                }    
             }
             else if(e.KeyCode == ActionKey)
             {
@@ -227,16 +242,36 @@ namespace UASKI.Helpers
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox7.Focus();
+                if (form.textBox4.Text.Length != 0 && form.textBox6.Text.Length == 0)
+                {
+                    var isp = IspService.GetByFirstName(form.textBox4.Text);
+
+                    if (isp != null)
+                    {
+                        form.textBox5.Text = isp.CodePodr.ToString();
+                        form.textBox6.Text = isp.Code.ToString();
+                    }
+
+                    form.textBox7.Focus();
+                }
+                else
+                {
+                    form.textBox7.Focus();
+                }
             }
             else if (e.KeyCode == ActionKey)
             {
                 var form1 = new IspForm(form.textBox4 , form.textBox5 , form.textBox6);
                 form1.Show();
             }
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Up)
             {
                 form.textBox1.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
             }
         }
 
@@ -250,7 +285,7 @@ namespace UASKI.Helpers
             {
                 form.dateTimePicker1.Focus();
             }
-            else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            else if(e.KeyCode == Keys.Up)
             {
                 form.textBox4.Focus();
             }
@@ -258,6 +293,11 @@ namespace UASKI.Helpers
             {
                 SystemHelper.SelectButton(true, form.button1);
                 form.button1.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
             }
         }
 
@@ -274,10 +314,9 @@ namespace UASKI.Helpers
                 {
                     MessageHelper.Info("Новое задание добавлено");
                     NavigationHelper.ClearForm();
-                    NavigationHelper.GetView();
                 }
             }
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Up)
             {
                 form.textBox4.Focus();
                 SystemHelper.SelectButton(false, form.button1);
@@ -286,6 +325,12 @@ namespace UASKI.Helpers
             {
                 SystemHelper.SelectButton(false, form.button1);
                 form.dateTimePicker1.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                SystemHelper.SelectButton(false, form.button1);
             }
         }
 
@@ -299,14 +344,14 @@ namespace UASKI.Helpers
                 SystemHelper.SelectButton(true, form.button1);
                 form.button1.Focus();
             }
-            else if(e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
+            else if(e.KeyCode == Keys.Left)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
 
                 form.textBox7.Focus();
             }
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Up)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
@@ -318,8 +363,146 @@ namespace UASKI.Helpers
                 var f = new DateForm(form.dateTimePicker1);
                 f.Show();
             }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
         }
 
         #endregion
-    }  
+
+        #region 6 страница
+
+        /// <summary>
+        /// При нажатии на ТекстБох с фамилией
+        /// </summary>
+        /// <param name="e">Объект с событием</param>
+        public static void textBox8_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.textBox9.Focus();
+            }
+            else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        /// <summary>
+        /// При нажатии на ТекстБох с именем
+        /// </summary>
+        /// <param name="e">Объект с событием</param>
+        public static void textBox9_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.textBox10.Focus();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                form.textBox8.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        /// <summary>
+        /// При нажатии на ТекстБох с отчеством
+        /// </summary>
+        /// <param name="e">Объект с событием</param>
+        public static void textBox10_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.textBox11.Focus();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                form.textBox9.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        /// <summary>
+        /// При нажатии на ТекстБох с кодом
+        /// </summary>
+        /// <param name="e">Объект с событием</param>
+        public static void textBox11_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                form.textBox12.Focus();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                form.textBox10.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                form.button4.Focus();
+                SystemHelper.SelectButton(true, form.button4);
+            }
+        }
+
+        /// <summary>
+        /// При нажатии на ТекстБох с кодом подразделения
+        /// </summary>
+        /// <param name="e">Объект с событием</param>
+        public static void textBox12_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.button4.Focus();
+                SystemHelper.SelectButton(true, form.button4);
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                form.textBox11.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        /// <summary>
+        /// При нажатии на кнопку действия
+        /// </summary>
+        /// <param name="e">Объект с событием</param>
+        public static void button4_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                SystemHelper.SelectButton(false, form.button4);
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                form.textBox12.Focus();
+                SystemHelper.SelectButton(false, form.button4);
+            }
+        }
+        #endregion
+    }
 }

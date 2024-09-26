@@ -36,7 +36,6 @@ namespace UASKI
             SystemData.Form = this;
             SystemData.Index = 0;
             DataModel.Open();
-
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -49,48 +48,88 @@ namespace UASKI
                 SystemHelper.WriteListBox(Menu_Step2, item.Items.Select(c => c.Text).ToArray());
             }
         }
+
         #region Нажатия клавиш
 
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.Menu_Step1_KeyDown(e);
         }
-
         private void Menu_Step2_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.Menu_Step2_KeyDown(e);
         }
-
+        private void Menu_Step2_Click(object sender, EventArgs e)
+        {
+            if(Menu_Step2.SelectedIndex != -1)
+            {
+                var r = new KeyEventArgs(Keys.Enter);
+                KeyDownHelper.Menu_Step2_KeyDown(r);
+            }
+        }
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            Menu_Step2.Enabled = true;
+            Menu_Step1.Enabled = false;
+        }
+        private void panel4_Click(object sender, EventArgs e)
+        {
+            Menu_Step1.Enabled = true;
+            Menu_Step2.Enabled = false;
+        }
         private void IspDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.IspDataGridView_KeyDown(e);
         }
-
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.textBox1_KeyDown(e);
         }
-
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.textBox4_KeyDown(e);
         }
-
         private void textBox7_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.textBox7_KeyDown(e);
         }
-
         private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             KeyDownHelper.button1_KeyDown(e);
         }
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var r = new PreviewKeyDownEventArgs(Keys.Enter);
+            KeyDownHelper.button1_KeyDown(r);
+        }
         private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.dateTimePicker1_KeyDown(e);
         }
-
+        private void textBox8_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox8_KeyDown(e);
+        }
+        private void textBox9_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox9_KeyDown(e);
+        }
+        private void textBox10_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox10_KeyDown(e);
+        }
+        private void textBox11_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox11_KeyDown(e);
+        }
+        private void textBox12_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox12_KeyDown(e);
+        }
+        private void button4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            KeyDownHelper.button4_PreviewKeyDown(e);
+        }
         #endregion
 
         private void button2_Click(object sender, EventArgs e)
@@ -104,5 +143,6 @@ namespace UASKI
             var r = new KeyEventArgs(KeyDownHelper.ActionKey);
             KeyDownHelper.textBox4_KeyDown(r);
         }
+
     }
 }

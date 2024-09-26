@@ -78,14 +78,14 @@ namespace UASKI.Services
         {
             var context = new UAContext();
 
-            var model = new TaskEntity()
-            {
-                Code = code,
-                Date = date,
-                IdIsp = Convert.ToInt32(IdIsp),
-                IdCon = Convert.ToInt32(IdCon),
-                IsClose = false
-            };
+            var model = new TaskEntity
+            (
+               code,
+               Convert.ToInt32(IdIsp),
+               Convert.ToInt32(IdCon),
+               date,
+               false
+            );
 
             return context.Add(model);
         }

@@ -29,13 +29,13 @@ namespace UASKI.Data.Context
             while (reader.Read())
             {
                 var item = new IspEntity
-                {
-                    Code = Convert.ToInt32(reader.GetValue(0)),
-                    FirstName = reader.GetValue(1).ToString(),
-                    Name = reader.GetValue(2).ToString(),
-                    LastName = reader.GetValue(3).ToString(),
-                    CodePodr = Convert.ToInt32(reader.GetValue(4))
-                };
+                (
+                    Convert.ToInt32(reader.GetValue(0)),
+                    reader.GetValue(1).ToString(),
+                    reader.GetValue(2).ToString(),
+                    reader.GetValue(3).ToString(),
+                    Convert.ToInt32(reader.GetValue(4))
+                );
 
                 result.Add(item);
             }
@@ -59,16 +59,16 @@ namespace UASKI.Data.Context
             while (reader.Read())
             {
                 var item = new TaskEntity
-                {
-                    Code = reader.GetValue(0).ToString(),
-                    IdIsp = Convert.ToInt32(reader.GetValue(1)),
-                    IdCon = Convert.ToInt32(reader.GetValue(2)),
-                    Date = Convert.ToDateTime(reader.GetValue(3)),
-                    IsClose = Convert.ToBoolean(reader.GetValue(4)),
-                    DateClose = Convert.ToDateTime(reader.GetValue(5)),
-                    Otm = Convert.ToInt32(reader.GetValue(6)),
-                    Num = reader.GetValue(7).ToString()
-                };
+                (
+                    reader.GetValue(0).ToString(),
+                    Convert.ToInt32(reader.GetValue(1)),
+                    Convert.ToInt32(reader.GetValue(2)),
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToBoolean(reader.GetValue(4)),
+                    Convert.ToDateTime(reader.GetValue(5)),
+                    Convert.ToInt32(reader.GetValue(6)),
+                    reader.GetValue(7).ToString()
+                );
 
                 result.Add(item);
 
@@ -93,10 +93,10 @@ namespace UASKI.Data.Context
             while (reader.Read())
             {
                 var item = new HolidayEntity
-                {
-                    Date = Convert.ToDateTime(reader.GetValue(0)),
-                    Id = Convert.ToInt32(reader.GetValue(1))
-                };
+                (
+                    Convert.ToInt32(reader.GetValue(1)),
+                    Convert.ToDateTime(reader.GetValue(0))
+                );
 
                 result.Add(item);
             }
@@ -108,7 +108,7 @@ namespace UASKI.Data.Context
         /// <summary>
         /// Добавляет запись в таблицу Isp
         /// </summary>
-        /// <param name="entity">Обхект класса</param>
+        /// <param name="entity">Объект класса</param>
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(IspEntity entity)
         {
@@ -125,27 +125,17 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
-            if (!entity.IsClose)
-            {
-                var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"IsClose\") " +
-                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date}' , '{entity.IsClose}')";
+            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"IsClose\" , \"DateClose\" , \"Otm\" , \"Number\") " +
+                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.IsClose}' , '{entity.DateClose.Date}' , '{entity.Otm}' , '{entity.Num}')";
 
-                return DataModel.Complite(query);
-            }
-            else
-            {
-                var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"IsClose\" , \"DateClose\" , \"Otm\" , \"Num\") " +
-                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date}' , '{entity.IsClose}' , '{entity.DateClose}' , '{entity.Otm}' , '{entity.Num}')";
-
-                return DataModel.Complite(query);
-            }
+            return DataModel.Complite(query);
 
         }
 
         /// <summary>
         /// Добавляет запись в таблицу Holidays
         /// </summary>
-        /// <param name="entity">Обхект класса</param>
+        /// <param name="entity">Объект класса</param>
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(HolidayEntity entity)
         {
