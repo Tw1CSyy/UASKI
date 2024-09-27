@@ -29,8 +29,8 @@ namespace UASKI.Helpers
             {
                 ClearForm(index);
             }
-            SystemData.Index = form.tabControl1.SelectedIndex;
 
+            SystemData.Index = form.tabControl1.SelectedIndex;
             NavigationHelper.GetView();
         }
 
@@ -49,9 +49,11 @@ namespace UASKI.Helpers
                         , new DataGridRowModel("Табельный номер" , "Фамилия" , "Имя" , "Отчество" , "Код подразделения"));
                     form.IspDataGridView.Focus();
                     break;
+
                 case 4:
                     form.textBox1.Focus();
                     break;
+
                 case 5:
                     SystemHelper.PullListInDataGridView(form.dataGridView1
                         , IspService.GetListByDataGrid()
@@ -61,6 +63,7 @@ namespace UASKI.Helpers
                     form.dataGridView1.ClearSelection();
                     break;
             }
+
             form.Menu_Step2.Enabled = false;
         }
 
@@ -82,6 +85,7 @@ namespace UASKI.Helpers
                 case 1:
                     form.IspDataGridView.DataSource = null;
                     break;
+
                 case 4:
                     form.textBox1.Clear();
                     form.textBox2.Clear();
