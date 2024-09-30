@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
+using UASKI.Helpers;
 using UASKI.Models;
 
 namespace UASKI.Services
@@ -49,8 +51,41 @@ namespace UASKI.Services
             return result;
         }
 
+        /// <summary>
+        /// Проверяет поля ввода для добавления
+        /// </summary>
+        /// <param name="FirstName">ТекстБох Фамилия</param>
+        /// <param name="Name">ТекстБох Имя</param>
+        /// <param name="LastName">ТекстБох Отчество</param>
+        /// <param name="Code">ТекстБох кода сторудника</param>
+        /// <param name="Podr">ТекстБох кода подразделения</param>
+        /// <returns>Положительный или отрицательный результат</returns>
+        public static bool CheckAdd(TextBox FirstName , TextBox Name , TextBox LastName , TextBox Code , TextBox Podr)
+        {
+            if(string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(LastName.Name) || string.IsNullOrEmpty(Code.Text) || string.IsNullOrEmpty(Podr.Text))
+            {
+                MessageHelper.Error("Все полня должны быть заполнены");
+                return false;
+            }
 
+            if(!int.TryParse(Code.Text , out int i))
+            {
+                MessageHelper.Error("Код сотрудника имеет не числовой тип");
+                return false;
+            }
 
+            if (!int.TryParse(Code.Text, out int ii))
+            {
+                MessageHelper.Error("Код подразделения имеет не числовой тип");
+                return false;
+            }
 
+            return true;
+        }
+
+        //public static bool Add(string FirstName , string Name , string LastName , string Code , string Podr)
+        //{
+
+        //}
     }
 }

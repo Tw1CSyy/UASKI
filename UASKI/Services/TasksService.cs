@@ -18,29 +18,29 @@ namespace UASKI.Services
         /// <param name="IdCon">ТекстБокс с номером контролера</param>
         /// <param name="date">ДатаПикер с сроком исполнения</param>
         /// <returns>true - успешная проверка</returns>
-        public static bool AddCheck(TextBox code, TextBox IdIsp, TextBox IdCon, DateTimePicker date)
+        private static bool AddCheck(string code, string IdIsp, string IdCon, DateTime date)
         {
             var context = new UAContext();
             
-            if(string.IsNullOrEmpty(IdIsp.Text))
+            if(string.IsNullOrEmpty(IdIsp))
             {
                 MessageHelper.Error("Укажите исполнителя");
                 return false;
             }
 
-            if(string.IsNullOrEmpty(IdCon.Text))
+            if(string.IsNullOrEmpty(IdCon))
             {
                 MessageHelper.Error("Укажите контролера");
                 return false;
             }
 
-            if(string.IsNullOrEmpty(code.Text))
+            if(string.IsNullOrEmpty(code))
             {
                 MessageHelper.Error("Укажите код задания");
                 return false;
             }
 
-            var task = context.Tasks.FirstOrDefault(c => c.Code.Equals(code.Text));
+            var task = context.Tasks.FirstOrDefault(c => c.Code.Equals(code));
 
             if (task != null)
             {
@@ -48,13 +48,13 @@ namespace UASKI.Services
                 return false;
             }
 
-            if(date.Value < DateTime.Today)
+            if(date < DateTime.Today)
             {
                 MessageHelper.Error("Дата не может быть раньше текущей");
                 return false;
             }    
 
-            var dat = context.Holidays.FirstOrDefault(c => c.Date == date.Value);
+            var dat = context.Holidays.FirstOrDefault(c => c.Date == date);
 
             if(dat != null)
             {
@@ -76,18 +76,23 @@ namespace UASKI.Services
         /// <returns>true - успешное выполнение</returns>
         public static bool Add(string code , string IdIsp , string IdCon , DateTime date)
         {
-            var context = new UAContext();
+            if(AddCheck(code , IdIsp , IdCon , date))
+            {
+                var context = new UAContext();
 
-            var model = new TaskEntity
-            (
-               code,
-               Convert.ToInt32(IdIsp),
-               Convert.ToInt32(IdCon),
-               date,
-               false
-            );
+                var model = new TaskEntity
+                (
+                   code,
+                   Convert.ToInt32(IdIsp),
+                   Convert.ToInt32(IdCon),
+                   date,
+                   false
+                );
 
-            return context.Add(model);
+                return context.Add(model);
+            }
+
+            return false;
         }
     }
 }
