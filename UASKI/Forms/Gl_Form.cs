@@ -11,6 +11,7 @@ namespace UASKI
 {
     public partial class Gl_Form : Form
     {
+        private static int timerTick = 0;
         public Gl_Form()
         {
             InitializeComponent();
@@ -32,10 +33,10 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
-            
             SystemData.Form = this;
             SystemData.Index = 0;
             DataModel.Open();
+
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -130,6 +131,14 @@ namespace UASKI
         {
             KeyDownHelper.button4_PreviewKeyDown(e);
         }
+        private void monthCalendar1_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.monthCalendar1_KeyDown(e);
+        }
+        private void button5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            KeyDownHelper.button5_PreviewKeyDown(e);
+        }
         #endregion
 
         private void button2_Click(object sender, EventArgs e)
@@ -144,5 +153,31 @@ namespace UASKI
             KeyDownHelper.textBox4_KeyDown(r);
         }
 
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            if(monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
+            {
+                label17.Text = monthCalendar1.SelectionRange.Start.Date.ToString("dd.MM.yyyy");
+            }
+            else
+            {
+                label17.Text = monthCalendar1.SelectionRange.Start.Date.ToString("dd.MM.yyyy") + " - " +
+                    monthCalendar1.SelectionRange.End.Date.ToString("dd.MM.yyyy");
+            }
+        }
+
+        private void TimerStatus_Tick(object sender, EventArgs e)
+        {
+            if(timerTick == 5)
+            {
+                TimerStatus.Stop();
+                LabelStatus.Visible = false;
+                timerTick = 0;
+            }
+            else
+            {
+                timerTick++;
+            }
+        }
     }
 }

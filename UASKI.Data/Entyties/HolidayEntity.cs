@@ -27,5 +27,14 @@ namespace UASKI.Data.Entityes
             Id = id;
             Date = date;
         }
+
+        /// <summary>
+        /// Создает объект класса
+        /// </summary>
+        /// <param name="date">Дата</param>
+        public HolidayEntity(DateTime date)
+        {
+            Date = date;
+        }
     }
 }

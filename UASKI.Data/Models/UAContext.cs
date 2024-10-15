@@ -12,8 +12,6 @@ namespace UASKI.Data.Context
         public List<TaskEntity> Tasks { get => SelectTasks(); }
         public List<HolidayEntity> Holidays { get => SelectHolidays(); }
 
-
-
         /// <summary>
         /// Выборка из таблицы Isp
         /// </summary>
@@ -112,7 +110,7 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(IspEntity entity)
         {
-            var query = $"INSERT INTO \"Isp\" (Code , FirstName , Name , LastName , CodePodr) " +
+            var query = $"INSERT INTO \"Isp\" (\"Code\" , \"FirstName\" , \"Name\" , \"LastName\" , \"CodePodr\") " +
                 $"VALUES ('{entity.Code}' , '{entity.FirstName}' , '{entity.Name}' , '{entity.LastName}' , '{entity.CodePodr}')";
 
             return DataModel.Complite(query);
@@ -121,7 +119,7 @@ namespace UASKI.Data.Context
         /// <summary>
         /// Добавляет запись в таблицу Tasks
         /// </summary>
-        /// <param name="entity">Обхект класса</param>
+        /// <param name="entity">Объект класса</param>
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
@@ -139,8 +137,8 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(HolidayEntity entity)
         {
-            var query = $"INSERT INTO \"Holidays\" (Id , Date) " +
-                $"VALUES ('{entity.Id}' , '{entity.Date}')";
+            var query = $"INSERT INTO \"Holidays\" (Date) " +
+                $"VALUES ('{entity.Date}')";
 
             return DataModel.Complite(query);
         }

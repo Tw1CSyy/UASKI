@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Models.Elements;
 
 namespace UASKI.Helpers
 {
@@ -128,7 +129,7 @@ namespace UASKI.Helpers
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
-                f.textBox1.Focus();
+                f.numericUpDown2.Focus();
             }
             else if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Right)
             {
@@ -153,14 +154,14 @@ namespace UASKI.Helpers
             {
                 try
                 {
-                    var dat = new DateTime((int)f.numericUpDown1.Value, f.listBox1.SelectedIndex + 1, Convert.ToInt32(f.textBox1.Text));
+                    var dat = new DateTime((int)f.numericUpDown1.Value, f.listBox1.SelectedIndex + 1, (int)f.numericUpDown2.Value);
 
                     d.Value = dat;
                     f.Dispose();
                 }
                 catch (Exception)
                 {
-                    MessageHelper.Error("Ошибка при заполнении данных");
+                   
                 }
             }
             else if(e.KeyCode == Keys.Escape)
@@ -175,7 +176,7 @@ namespace UASKI.Helpers
 
         #endregion
 
-        #region 1 страница
+        #region Просмотр исполнителей
         /// <summary>
         /// При нажатии на таблице в просмотре
         /// </summary>
@@ -195,7 +196,7 @@ namespace UASKI.Helpers
         }
         #endregion
 
-        #region 5 страница
+        #region Добавление задачи
 
         /// <summary>
         /// При нажитии клавиши для выбора из списка исполнителей
@@ -311,12 +312,11 @@ namespace UASKI.Helpers
             {
                 if(TasksService.Add(form.textBox7.Text , form.textBox3.Text , form.textBox6.Text , form.dateTimePicker1.Value))
                 {
-                    MessageHelper.Info("Новое задание добавлено");
                     NavigationHelper.ClearForm();
                 }
                 else
                 {
-                    MessageHelper.Error("Ошибка при добавлении");
+                    
                 }
             }
             else if (e.KeyCode == Keys.Up)
@@ -375,7 +375,7 @@ namespace UASKI.Helpers
 
         #endregion
 
-        #region 6 страница
+        #region Добавления исполнителей
 
         /// <summary>
         /// При нажатии на ТекстБох с фамилией
@@ -492,7 +492,18 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Enter)
             {
+                var result = IspService.Add(
+                    new TextBoxElement(form.textBox8, form.label18),
+                    new TextBoxElement(form.textBox9, form.label19),
+                    new TextBoxElement(form.textBox10, form.label20),
+                    new TextBoxElement(form.textBox11, form.label21),
+                    new TextBoxElement(form.textBox12, form.label22)
+                    );
 
+                if (result)
+                {
+                    NavigationHelper.ClearForm();
+                }
             }
             else if(e.KeyCode == Keys.Escape)
             {
@@ -504,6 +515,49 @@ namespace UASKI.Helpers
             {
                 form.textBox12.Focus();
                 SystemHelper.SelectButton(false, form.button4);
+            }
+        }
+
+        #endregion
+
+        #region Добавления праздников
+        public static void monthCalendar1_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectButton(true, form.button5);
+                form.button5.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        public static void button5_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectButton(false, form.button5);
+                form.monthCalendar1.Focus();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                if(form.monthCalendar1.SelectionRange.Start.Date == form.monthCalendar1.SelectionRange.End.Date)
+                {
+                    HolidaysService.Add(form.monthCalendar1.SelectionRange.Start.Date);
+                }
+                else
+                {
+                    HolidaysService.Add(form.monthCalendar1.SelectionRange.Start.Date , form.monthCalendar1.SelectionRange.End.Date);
+                }
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                SystemHelper.SelectButton(false, form.button5);
             }
         }
         #endregion

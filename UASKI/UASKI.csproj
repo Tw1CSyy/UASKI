@@ -114,11 +114,15 @@
     <Compile Include="Forms\IspForm.Designer.cs">
       <DependentUpon>IspForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\KeyDownHelper.cs" />
-    <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
+    <Compile Include="Models\BaseElement.cs" />
     <Compile Include="Models\DataGridRowModel.cs" />
+    <Compile Include="Models\Elements\DateTimeElement.cs" />
+    <Compile Include="Models\Elements\NumericElement.cs" />
+    <Compile Include="Models\Elements\TextBoxElement.cs" />
     <Compile Include="Models\ItemMenuLevel1.cs" />
     <Compile Include="Models\ItemMenuLevel2.cs" />
     <Compile Include="Program.cs" />
@@ -167,5 +171,6 @@
       <Name>UASKI.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,7 +19,7 @@ namespace UASKI.Forms
             InitializeComponent();
             pic = p;
             numericUpDown1.Value = DateTime.Today.Year;
-            textBox1.Focus();        
+            numericUpDown2.Focus();        
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)

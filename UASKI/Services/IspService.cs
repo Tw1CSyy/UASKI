@@ -6,17 +6,19 @@ using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Helpers;
 using UASKI.Models;
+using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
     public static class IspService
     {
+        private static UAContext context = new UAContext();
+
         /// <summary>
         /// Возвращает список пользователей
         /// </summary>
-        public static List<IspEntity> GetList()
+        private static List<IspEntity> GetList()
         {
-            var context = new UAContext();
             return context.Isps;
         }
 
@@ -52,40 +54,75 @@ namespace UASKI.Services
         }
 
         /// <summary>
-        /// Проверяет поля ввода для добавления
+        /// Добавляет в базу исполнительно, предварительно валидируя
         /// </summary>
-        /// <param name="FirstName">ТекстБох Фамилия</param>
-        /// <param name="Name">ТекстБох Имя</param>
-        /// <param name="LastName">ТекстБох Отчество</param>
-        /// <param name="Code">ТекстБох кода сторудника</param>
-        /// <param name="Podr">ТекстБох кода подразделения</param>
-        /// <returns>Положительный или отрицательный результат</returns>
-        public static bool CheckAdd(TextBox FirstName , TextBox Name , TextBox LastName , TextBox Code , TextBox Podr)
+        /// <param name="FirstName">Фамилия</param>
+        /// <param name="Name">Имя</param>
+        /// <param name="LastName">Отчество</param>
+        /// <param name="Code">Код сотрудника</param>
+        /// <param name="Podr">Код подразделения</param>
+        /// <returns>true - успешная операция</returns>
+        public static bool Add(TextBoxElement FirstName , TextBoxElement Name , TextBoxElement LastName , TextBoxElement Code , TextBoxElement Podr)
         {
-            if(string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(LastName.Name) || string.IsNullOrEmpty(Code.Text) || string.IsNullOrEmpty(Podr.Text))
+            var result = true;
+
+            FirstName.Dispose();
+            Name.Dispose();
+            LastName.Dispose();
+            Code.Dispose();
+            Podr.Dispose();
+
+            if (string.IsNullOrEmpty(FirstName.Value))
             {
-                MessageHelper.Error("Все полня должны быть заполнены");
-                return false;
+                ErrorHelper.Error("Поле не заполнено" , FirstName);
+                result = false;
             }
 
-            if(!int.TryParse(Code.Text , out int i))
+            if (string.IsNullOrEmpty(Name.Value))
             {
-                MessageHelper.Error("Код сотрудника имеет не числовой тип");
-                return false;
+                ErrorHelper.Error("Поле не заполнено", Name);
+                result = false;
             }
 
-            if (!int.TryParse(Code.Text, out int ii))
+            if (string.IsNullOrEmpty(LastName.Value))
             {
-                MessageHelper.Error("Код подразделения имеет не числовой тип");
-                return false;
+                ErrorHelper.Error("Поле не заполнено", LastName);
+                result = false;
             }
 
-            return true;
+            if (string.IsNullOrEmpty(Code.Value))
+            {
+                ErrorHelper.Error("Поле не заполнено", Code);
+                result = false;
+            }
+
+            if (string.IsNullOrEmpty(Podr.Value))
+            {
+                ErrorHelper.Error("Поле не заполнено", Podr);
+                result = false;
+            }
+
+            if (!Code.IsNumber)
+            {
+                ErrorHelper.Error("Поле имеет не числовой тип", Code);
+                result = false;
+            }
+
+            if (!Podr.IsNumber)
+            {
+                ErrorHelper.Error("Поле имеет не числовой тип", Podr);
+                result = false;
+            }
+
+            if(result)
+            {
+                var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value));
+
+                var context = new UAContext();
+                result = context.Add(item);
+            }
+
+            return result;
         }
-
-        //public static bool Add(string FirstName , string Name , string LastName , string Code , string Podr)
-        //{
-
-        //}
     }
 }

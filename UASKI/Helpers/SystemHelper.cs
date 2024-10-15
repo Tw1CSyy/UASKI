@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using UASKI.Models;
+using UASKI.StaticModels;
 
 namespace UASKI.Helpers
 {
@@ -17,7 +18,6 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="listBox">Объект listBox</param>
         /// <param name="items">Массив элементов</param>
-        /// <param name="IsUppend">Элементы капсом</param>
         public static void WriteListBox(ListBox listBox , string[] items)
         {
             listBox.Items.Clear();
@@ -33,7 +33,7 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="d">DataGridView</param>
         /// <param name="values">Колекция строк с данными</param>
-        /// <param name="names">Набор названий колонок</param>
+        /// <param name="columns">Набор названий колонок</param>
         public static void PullListInDataGridView(DataGridView d , List<DataGridRowModel> values , DataGridRowModel columns)
         {
             d.DataSource = null;

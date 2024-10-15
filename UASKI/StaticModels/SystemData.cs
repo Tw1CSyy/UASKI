@@ -51,6 +51,11 @@ namespace UASKI.StaticModels
                    {
                        Text = "Добавление исполнителей-контролеров",
                        NumberTabPage = 5
+                   },
+                   new ItemMenuLevel2
+                   {
+                       Text = "Добавление празднечных дней",
+                       NumberTabPage = 6
                    }
                }
            },
@@ -62,17 +67,17 @@ namespace UASKI.StaticModels
                    new ItemMenuLevel2
                    {
                        Text = "Корректировка исполнителей-контролеров",
-                       NumberTabPage = 6
-                   },
-                   new ItemMenuLevel2
-                   {
-                       Text = "Корректировка карточек",
                        NumberTabPage = 7
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Корректировка архива",
+                       Text = "Корректировка карточек",
                        NumberTabPage = 8
+                   },
+                   new ItemMenuLevel2
+                   {
+                       Text = "Корректировка архива",
+                       NumberTabPage = 9
                    }
                }
            },
@@ -84,12 +89,12 @@ namespace UASKI.StaticModels
                    new ItemMenuLevel2
                    {
                        Text = "Закрытие карточек",
-                       NumberTabPage = 9
+                       NumberTabPage = 10
                    },
                    new ItemMenuLevel2
                    {
                        Text = "Расчет коэффицента качества",
-                       NumberTabPage = 10
+                       NumberTabPage = 11
                    }
                }
            },
@@ -101,27 +106,27 @@ namespace UASKI.StaticModels
                    new ItemMenuLevel2
                    {
                        Text = "Перечень заданий на месяц",
-                       NumberTabPage = 11
-                   },
-                   new ItemMenuLevel2
-                   {
-                       Text = "Невыполненные задания",
                        NumberTabPage = 12
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Состояние выполнения мероприятия",
+                       Text = "Невыполненные задания",
                        NumberTabPage = 13
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Текущие значения показателей работы",
+                       Text = "Состояние выполнения мероприятия",
                        NumberTabPage = 14
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Состовление коэффициента качества",
+                       Text = "Текущие значения показателей работы",
                        NumberTabPage = 15
+                   },
+                   new ItemMenuLevel2
+                   {
+                       Text = "Состовление коэффициента качества",
+                       NumberTabPage = 16
                    }
                }
            },

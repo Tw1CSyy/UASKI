@@ -5,6 +5,7 @@ using UASKI.StaticModels;
 using UASKI.Services;
 using System.Windows.Forms.VisualStyles;
 using System.Reflection;
+using System;
 
 namespace UASKI.Helpers
 {
@@ -62,6 +63,14 @@ namespace UASKI.Helpers
                     form.textBox8.Focus();
                     form.dataGridView1.ClearSelection();
                     break;
+                case 6:
+                    form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
+                    SystemHelper.PullListInDataGridView(form.dataGridView2,
+                        HolidaysService.GetListByDataGrid(),
+                        new DataGridRowModel("Дата"));
+
+                    form.monthCalendar1.Focus();
+                    break;
             }
 
             form.Menu_Step2.Enabled = false;
@@ -94,9 +103,24 @@ namespace UASKI.Helpers
                     form.textBox5.Clear();
                     form.textBox6.Clear();
                     form.textBox7.Clear();
+
                     SystemHelper.SelectButton(false, form.button1);
                     form.dateTimePicker1.Value = System.DateTime.Today;
                     form.textBox1.Focus();
+                    break;
+                case 5:
+                    form.textBox8.Clear();
+                    form.textBox9.Clear();
+                    form.textBox10.Clear();
+                    form.textBox11.Clear();
+                    form.textBox12.Clear();
+
+                    form.textBox8.Focus();
+                    SystemHelper.SelectButton(false, form.button4);
+                    break;
+                case 6:
+                    form.dataGridView2.DataSource = null;
+                    form.monthCalendar1.SelectionRange.Start = form.monthCalendar1.SelectionRange.End = DateTime.Today.Date;
                     break;
             }
         }
