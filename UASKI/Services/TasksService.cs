@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Helpers;
-using UASKI.StaticModels;
+using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
@@ -20,53 +20,70 @@ namespace UASKI.Services
         /// <param name="IdCon">Номер контролера</param>
         /// <param name="date">Срок исполнения</param>
         /// <returns>true - успешное выполнение</returns>
-        public static bool Add(string code , string IdIsp , string IdCon , DateTime date)
+        public static bool Add(TextBoxElement Code , TextBoxElement IdIsp , TextBoxElement IdCon , DateTimeElement date)
         {
-            if (string.IsNullOrEmpty(IdIsp))
+            var result = true;
+
+            Code.Dispose();
+            IdIsp.Dispose();
+            IdCon.Dispose();
+            date.Dispose();
+
+            if (string.IsNullOrEmpty(IdIsp.Value))
             {
-                return false;
+                ErrorHelper.Error("Поле не заполнено",IdIsp);
+                result = false;
             }
 
-            if (string.IsNullOrEmpty(IdCon))
+            if (string.IsNullOrEmpty(IdCon.Value))
             {
-                return false;
+                ErrorHelper.Error("Поле не заполнено", IdCon);
+                result = false;
             }
 
-            if (string.IsNullOrEmpty(code))
+            if (string.IsNullOrEmpty(Code.Value))
             {
-                return false;
+                ErrorHelper.Error("Поле не заполнено", Code);
+                result = false;
             }
 
-            var task = context.Tasks.FirstOrDefault(c => c.Code.Equals(code));
+            var task = context.Tasks.FirstOrDefault(c => c.Code.Equals(Code.Value));
 
-            if (task != null)
+            if (task != null && result)
             {
-                return false;
+                ErrorHelper.Error("Код задачи должен быть уникальным", Code);
+                result = false;
             }
 
-            if (date < DateTime.Today)
+            if (date.Value < DateTime.Today)
             {
-                return false;
+                ErrorHelper.Error("Срок исполнения не может быть раньше текущей даты", date);
+                result = false;
             }
 
-            var dat = context.Holidays.FirstOrDefault(c => c.Date == date);
+            var dat = context.Holidays.FirstOrDefault(c => c.Date == date.Value);
 
             if (dat != null)
             {
-                return false;
+                ErrorHelper.Error("Срок исполнения не может быть празднечным днем", date);
+                result = false;
             }
 
-            var model = new TaskEntity
-               (
-                  code,
-                  Convert.ToInt32(IdIsp),
-                  Convert.ToInt32(IdCon),
-                  date,
-                  false
-               );
+            if(result)
+            {
+                var model = new TaskEntity
+                (
+                 Code.Value,
+                 Convert.ToInt32(IdIsp.Value),
+                 Convert.ToInt32(IdCon.Value),
+                 date.Value,
+                 false
+                );
+                return context.Add(model);
+            }
 
-            return context.Add(model);
-
+            return false;
+           
         }
     }
 }

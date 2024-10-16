@@ -310,13 +310,16 @@ namespace UASKI.Helpers
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if(TasksService.Add(form.textBox7.Text , form.textBox3.Text , form.textBox6.Text , form.dateTimePicker1.Value))
+                var result = TasksService.Add(
+                    new TextBoxElement(form.textBox7, form.label25),
+                    new TextBoxElement(form.textBox3, form.label23),
+                    new TextBoxElement(form.textBox6, form.label24),
+                    new DateTimeElement(form.dateTimePicker1, form.label26)
+                    );
+
+                if (result)
                 {
                     NavigationHelper.ClearForm();
-                }
-                else
-                {
-                    
                 }
             }
             else if (e.KeyCode == Keys.Up)

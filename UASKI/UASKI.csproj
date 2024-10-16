@@ -121,6 +121,7 @@
     <Compile Include="Models\BaseElement.cs" />
     <Compile Include="Models\DataGridRowModel.cs" />
     <Compile Include="Models\Elements\DateTimeElement.cs" />
+    <Compile Include="Models\Elements\MonthElement.cs" />
     <Compile Include="Models\Elements\NumericElement.cs" />
     <Compile Include="Models\Elements\TextBoxElement.cs" />
     <Compile Include="Models\ItemMenuLevel1.cs" />

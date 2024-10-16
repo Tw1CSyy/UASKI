@@ -53,7 +53,7 @@ namespace UASKI.Helpers
 
                 case 4:
                     form.textBox1.Focus();
-                    break;
+             break;
 
                 case 5:
                     SystemHelper.PullListInDataGridView(form.dataGridView1
