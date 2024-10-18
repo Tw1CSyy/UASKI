@@ -15,11 +15,11 @@ namespace UASKI.Services
         private static UAContext context = new UAContext();
 
         /// <summary>
-        /// Возвращает список пользователей
+        /// Возвращает список активных пользователей
         /// </summary>
         private static List<IspEntity> GetList()
         {
-            return context.Isps;
+            return context.Isps.Where(c => c.IsActive).ToList();
         }
 
         /// <summary>
@@ -72,6 +72,16 @@ namespace UASKI.Services
             var list = GetList();
             var result = list.FirstOrDefault(c => c.FirstName.ToLower().Equals(FirstName.ToLower()));
             return result;
+        }
+
+        /// <summary>
+        /// Возвращает объект исполнителя по коду
+        /// </summary>
+        /// <param name="code">Код</param>
+        /// <returns>Объект класса</returns>
+        public static IspEntity GetByCode(int code)
+        {
+            return GetList().FirstOrDefault(c => c.Code == code);
         }
 
         /// <summary>
@@ -137,7 +147,7 @@ namespace UASKI.Services
 
             if(result)
             {
-                var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value));
+                var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value) , true);
 
                 var context = new UAContext();
                 result = context.Add(item);

@@ -6,6 +6,7 @@ using UASKI.Services;
 using System.Windows.Forms.VisualStyles;
 using System.Reflection;
 using System;
+using UASKI.Data.Entityes;
 
 namespace UASKI.Helpers
 {
@@ -15,7 +16,7 @@ namespace UASKI.Helpers
     public static class NavigationHelper
     {
         /// <summary>
-        /// Расчитывает и переносит на соотвествующий таб
+        /// Расчитывает индекс страницы для перехода
         /// </summary>
         public static void Start()
         {
@@ -23,26 +24,27 @@ namespace UASKI.Helpers
             var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(form.Menu_Step1.SelectedItem.ToString()));
             var el = elem.Items.FirstOrDefault(c => c.Text.Equals(form.Menu_Step2.SelectedItem.ToString()));
 
-            int index = form.tabControl1.SelectedIndex;
-            form.tabControl1.SelectedIndex = el.NumberTabPage;
-            
-            if(index != el.NumberTabPage)
-            {
-                ClearForm(index);
-            }
-
-            SystemData.Index = form.tabControl1.SelectedIndex;
-            NavigationHelper.GetView();
+            GetView(el.NumberTabPage);
         }
 
         /// <summary>
-        /// Загружает контент на выбраной форме
+        /// Загружает контент на форму
         /// </summary>
-        public static void GetView()
+        /// <param name="index">Индекс страницы</param>
+        /// <param name="id">Id когда необходим</param>
+        private static void GetView(int index , int id = 0)
         {
             var form = SystemData.Form;
 
-            switch (SystemData.Index)
+            if (SystemData.Index != index)
+            {
+                ClearForm(SystemData.Index);
+            }
+
+            form.tabControl1.SelectedIndex = index;
+            SystemData.Index = index;
+
+            switch (index)
             {
                 case 1:
                     SystemHelper.PullListInDataGridView(form.IspDataGridView
@@ -53,7 +55,7 @@ namespace UASKI.Helpers
 
                 case 4:
                     form.textBox1.Focus();
-             break;
+                break;
 
                 case 5:
                     SystemHelper.PullListInDataGridView(form.dataGridView1
@@ -70,6 +72,19 @@ namespace UASKI.Helpers
                         new DataGridRowModel("Дата"));
 
                     form.monthCalendar1.Focus();
+                    break;
+                case 7:
+                    var isp = IspService.GetByCode(id);
+
+                    form.textBox18.Text = isp.FirstName;
+                    form.textBox17.Text = isp.Name;
+                    form.textBox16.Text = isp.LastName;
+                    form.textBox15.Text = isp.Code.ToString();
+                    form.textBox14.Text = isp.CodePodr.ToString();
+                    form.label38.Text = isp.Code.ToString();
+
+                    form.textBox18.Focus();
+                    form.textBox18.SelectionStart = form.textBox18.Text.Length;
                     break;
             }
 
@@ -132,7 +147,21 @@ namespace UASKI.Helpers
                     form.monthCalendar1.Focus();
                     SystemHelper.SelectButton(false , form.button5);
                     break;
+                case 7:
+                    form.textBox18.Clear();
+                    form.textBox17.Clear();
+                    form.textBox16.Clear();
+                    form.textBox15.Clear();
+                    form.textBox14.Clear();
+                    SystemHelper.SelectButton(false, form.button6);
+                    SystemHelper.SelectButton(false, form.button7);
+                    break;
             }
+        }
+
+        public static void GetIspView(int code)
+        {
+            GetView(7 , code);
         }
     }
 }

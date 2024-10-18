@@ -33,7 +33,8 @@ namespace UASKI.Data.Context
                     reader.GetValue(1).ToString(),
                     reader.GetValue(2).ToString(),
                     reader.GetValue(3).ToString(),
-                    Convert.ToInt32(reader.GetValue(4))
+                    Convert.ToInt32(reader.GetValue(4)),
+                    Convert.ToBoolean(reader.GetValue(5))
                 );
 
                 result.Add(item);
@@ -111,8 +112,8 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(IspEntity entity)
         {
-            var query = $"INSERT INTO \"Isp\" (\"Code\" , \"FirstName\" , \"Name\" , \"LastName\" , \"CodePodr\") " +
-                $"VALUES ('{entity.Code}' , '{entity.FirstName}' , '{entity.Name}' , '{entity.LastName}' , '{entity.CodePodr}')";
+            var query = $"INSERT INTO \"Isp\" (\"Code\" , \"FirstName\" , \"Name\" , \"LastName\" , \"CodePodr\" , \"IsActive\") " +
+                $"VALUES ('{entity.Code}' , '{entity.FirstName}' , '{entity.Name}' , '{entity.LastName}' , '{entity.CodePodr}' , '{entity.IsActive}')";
 
             return DataModel.Complite(query);
         }

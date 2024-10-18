@@ -34,7 +34,7 @@ namespace UASKI.Services
 
             var model = GetList();
 
-            foreach (var item in model.OrderBy(c => c.Date))
+            foreach (var item in model.OrderByDescending(c => c.Date))
             {
                 var d = new DataGridRowModel(item.Date.ToString("dd.MM.yyyy"));
                 result.Add(d);

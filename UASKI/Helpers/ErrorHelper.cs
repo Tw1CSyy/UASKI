@@ -81,7 +81,7 @@ namespace UASKI.Helpers
         /// <summary>
         /// Изменяет статус на ошибку
         /// </summary>
-        public static void StatusError()
+        private static void StatusError()
         {
             var form = SystemData.Form;
 

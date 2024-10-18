@@ -29,9 +29,10 @@ namespace UASKI.Forms
             Start();
         }
 
-        private void Start()
+        private void Start(string search = "")
         {
-            var model = IspService.GetListByDataGrid();
+            var model = IspService.GetListByDataGrid(search);
+
             SystemHelper.PullListInDataGridView(dataGridView1,
                 model,
                 new Models.DataGridRowModel("Код", "Фамилия", "Имя", "Отчество", "Подразделение"));
@@ -42,6 +43,11 @@ namespace UASKI.Forms
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             KeyDownHelper.dataGridView_KeyDown(e , this , t1 , t2 , t3 , dataGridView1);
+        }
+
+        private void textBox1_TextChanged(object sender, System.EventArgs e)
+        {
+            Start(textBox1.Text);
         }
     }
 }

@@ -18,23 +18,19 @@ namespace UASKI.Forms
         {
             InitializeComponent();
             pic = p;
-            numericUpDown1.Value = DateTime.Today.Year;
-            numericUpDown2.Focus();        
+            monthCalendar1.SelectionStart = p.Value.Date;
+
+            monthCalendar1.Focus();
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void monthCalendar1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox1_KeyDown(e, this);
+            KeyDownHelper.monthCalendar1_KeyDownDate(e, this , pic);
         }
 
-        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            KeyDownHelper.listBox1_KeyDown(e, this);
-        }
-
-        private void numericUpDown1_KeyDown(object sender, KeyEventArgs e)
-        {
-            KeyDownHelper.numericUpDown1_KeyDown(e, this , pic);
+            KeyDownHelper.textBox1_TextChanged(e, textBox1, monthCalendar1);
         }
     }
 }

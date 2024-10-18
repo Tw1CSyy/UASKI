@@ -7,7 +7,6 @@ using UASKI.Data.Context;
 using UASKI.Models;
 using UASKI.Services;
 
-
 namespace UASKI
 {
     public partial class Gl_Form : Form
@@ -24,6 +23,9 @@ namespace UASKI
         /// </summary>
         private void Start()
         {
+            DateTimeLabel.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+            TimeTimer.Start();
+
             // Рисуем меню
             SystemHelper.WriteListBox(Menu_Step1, SystemData.MenuItems.Select(c => c.Text).ToArray());
             Menu_Step1.SelectedIndex = 0;
@@ -66,6 +68,11 @@ namespace UASKI
             }
         }
 
+        // Таймер времени
+        private void TimeTimer_Tick(object sender, EventArgs e)
+        {
+            DateTimeLabel.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+        }
 
         #region Нажатия клавиш
 
@@ -156,6 +163,35 @@ namespace UASKI
         {
             KeyDownHelper.button5_PreviewKeyDown(e);
         }
+        private void textBox18_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox18_KeyDown(e);
+        }
+        private void textBox17_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox17_KeyDown(e);
+        }
+        private void textBox16_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox16_KeyDown(e);
+        }
+        private void textBox15_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox15_KeyDown(e);
+        }
+        private void textBox14_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.textBox14_KeyDown(e);
+        }
+        private void button6_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            KeyDownHelper.button6_KeyDown(e);
+        }
+        private void button7_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            KeyDownHelper.button7_KeyDown(e);
+        }
+
         #endregion
 
         private void button2_Click(object sender, EventArgs e)
@@ -196,5 +232,6 @@ namespace UASKI
                        , IspService.GetListByDataGrid(textBox13.Text)
                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
         }
+
     }
 }

@@ -216,5 +216,49 @@ namespace UASKI.Helpers
 
             return true;
         }
+
+        /// <summary>
+        /// Преобразует строку в дату
+        /// </summary>
+        /// <param name="text">Строка</param>
+        /// <param name="dateFrom">Изначальная дата</param>
+        /// <returns>DateTime</returns>
+        public static DateTime GetDate(string text , DateTime dateFrom)
+        {
+            DateTime date;
+
+            if (text.Length == 2)
+            {
+                var day = Convert.ToInt32(text);
+                date = new DateTime(dateFrom.Year , dateFrom.Month , day);
+                return date;
+            }
+
+            if (text.Length == 4)
+            {
+                string value = string.Empty;
+                value += text[2];
+                value += text[3];
+
+                var month = Convert.ToInt32(value);
+                date = new DateTime(dateFrom.Year , month , dateFrom.Day);
+                return date;
+            }
+
+            if (text.Length == 8)
+            {
+                string value = string.Empty;
+                value += text[4];
+                value += text[5];
+                value += text[6];
+                value += text[7];
+
+                var year = Convert.ToInt32(value);
+                date = new DateTime(year, dateFrom.Month , dateFrom.Day);
+                return date;
+            }
+
+            return DateTime.MinValue;
+        }
     }
 }

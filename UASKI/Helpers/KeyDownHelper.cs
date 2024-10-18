@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Services;
@@ -96,81 +95,88 @@ namespace UASKI.Helpers
                     form.Dispose();
                 }
             }
+            else
+            {
+                SystemHelper.CharInTextBox(form.textBox1, e.KeyCode);
+            }
         }
 
         #endregion
 
         #region Доп.Форма Дата
-        /// <summary>
-        /// День
-        /// </summary>
-        /// <param name="e">Объект события</param>
-        /// <param name="f">Форма</param>
-        public static void textBox1_KeyDown(KeyEventArgs e, DateForm f)
+        public static bool monthCalendar1_KeyDownDate(KeyEventArgs e , DateForm form , DateTimePicker pic)
         {
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Escape)
             {
-                f.listBox1.Focus();
+                form.Dispose();
+                return true;
             }
-            else if (e.KeyCode == Keys.Escape)
+            else if(e.KeyCode == Keys.Enter)
             {
-                f.Dispose();
+                pic.Value = form.monthCalendar1.SelectionStart.Date;
+                form.Dispose();
+
+                return true;
             }
+
+            string symbol = "";
+
+            switch (e.KeyCode)
+            {
+                case Keys.D0:
+                    symbol = "0"; break;
+                case Keys.D1:
+                    symbol = "1"; break;
+                case Keys.D2:
+                    symbol = "2"; break;
+                case Keys.D3:
+                    symbol = "3"; break;
+                case Keys.D4:
+                    symbol = "4"; break;
+                case Keys.D5:
+                    symbol = "5"; break;
+                case Keys.D6:
+                    symbol = "6"; break;
+                case Keys.D7:
+                    symbol = "7"; break;
+                case Keys.D8:
+                    symbol = "8"; break;
+                case Keys.D9:
+                    symbol = "9"; break;
+                case Keys.Back:
+                   if(form.textBox1.Text.Length != 0)
+                        form.textBox1.Text = form.textBox1.Text.Remove(form.textBox1.Text.Length - 1, 1);
+                    return true;
+            }
+
+            if(string.IsNullOrEmpty(symbol))
+            {
+                return false;
+            }
+
+            var textBox = form.textBox1;
+
+            textBox.Text += symbol;
+
+            return false;
+
         }
 
-        /// <summary>
-        /// Месяц
-        /// </summary>
-        /// <param name="e">Объект события</param>
-        /// <param name="f">Форма</param>
-        public static void listBox1_KeyDown(KeyEventArgs e, DateForm f)
+        public static void textBox1_TextChanged(EventArgs e , TextBox textBox , MonthCalendar calendar)
         {
-            if (e.KeyCode == Keys.Left)
+            if (!long.TryParse(textBox.Text, out long n))
             {
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-                f.numericUpDown2.Focus();
+                if(textBox.Text.Length != 0)
+                    textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1, 1);
             }
-            else if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Right)
+            else
             {
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-                f.numericUpDown1.Focus();
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                f.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Год
-        /// </summary>
-        /// <param name="e">Объект события</param>
-        /// <param name="f">Форма</param>
-        public static void numericUpDown1_KeyDown(KeyEventArgs e, DateForm f, DateTimePicker d)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                try
+                var date = SystemHelper.GetDate(textBox.Text, calendar.SelectionStart);
+                
+                if(date != DateTime.MinValue)
                 {
-                    var dat = new DateTime((int)f.numericUpDown1.Value, f.listBox1.SelectedIndex + 1, (int)f.numericUpDown2.Value);
-
-                    d.Value = dat;
-                    f.Dispose();
+                    calendar.SelectionStart = date.Date;
                 }
-                catch (Exception)
-                {
-
-                }
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                f.Dispose();
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                f.listBox1.Focus();
             }
         }
 
@@ -192,6 +198,14 @@ namespace UASKI.Helpers
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
                 form.IspDataGridView.ClearSelection();
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if(form.IspDataGridView.SelectedRows.Count > 0)
+                {
+                    var code = Convert.ToInt32(form.IspDataGridView.SelectedRows[0].Cells[0].Value);
+                    NavigationHelper.GetIspView(code);
+                }
             }
             else
             {
@@ -352,7 +366,6 @@ namespace UASKI.Helpers
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
-
                 SystemHelper.SelectButton(true, form.button1);
                 form.button1.Focus();
             }
@@ -573,6 +586,170 @@ namespace UASKI.Helpers
                 SystemHelper.SelectButton(false, form.button5);
             }
         }
+        #endregion
+
+        #region Управление Исполнителями
+
+        public static void textBox18_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                form.button6.Focus();
+                SystemHelper.SelectButton(true, form.button6);
+            }
+            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.textBox17.Focus();
+                form.textBox17.SelectionStart = form.textBox17.Text.Length;
+            }
+        }
+
+        public static void textBox17_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Up)
+            {
+                form.textBox18.Focus();
+                form.textBox18.SelectionStart = form.textBox18.Text.Length;
+            }
+            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.textBox16.Focus();
+                form.textBox16.SelectionStart = form.textBox16.Text.Length;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                form.button6.Focus();
+                SystemHelper.SelectButton(true, form.button6);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        public static void textBox16_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Up)
+            {
+                form.textBox17.Focus();
+                form.textBox17.SelectionStart = form.textBox17.Text.Length;
+            }
+            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.textBox15.Focus();
+                form.textBox15.SelectionStart = form.textBox15.Text.Length;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                form.button6.Focus();
+                SystemHelper.SelectButton(true, form.button6);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        public static void textBox15_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Up)
+            {
+                form.textBox16.Focus();
+                form.textBox16.SelectionStart = form.textBox16.Text.Length;
+            }
+            else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                form.textBox14.Focus();
+                form.textBox14.SelectionStart = form.textBox14.Text.Length;
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        public static void textBox14_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                form.textBox15.Focus();
+                form.textBox15.SelectionStart = form.textBox15.Text.Length;
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                form.textBox16.Focus();
+                form.textBox16.SelectionStart = form.textBox16.Text.Length;
+            }
+            else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                form.button6.Focus();
+                SystemHelper.SelectButton(true, form.button6);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        public static void button6_KeyDown(PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                form.textBox18.Focus();
+                form.textBox18.SelectionStart = form.textBox18.Text.Length;
+                SystemHelper.SelectButton(false, form.button6);
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SystemHelper.SelectButton(false, form.button6);
+                SystemHelper.SelectButton(true, form.button7);
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+
+            }
+            else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectButton(false, form.button6);
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
+        public static void button7_KeyDown(PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectButton(false, form.button7);
+            }
+            else if(e.KeyCode == Keys.Left)
+            {
+                form.textBox18.Focus();
+                form.textBox18.SelectionStart = form.textBox18.Text.Length;
+                SystemHelper.SelectButton(false, form.button7);
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectButton(false, form.button7);
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+        }
+
         #endregion
     }
 }
