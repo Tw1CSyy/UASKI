@@ -46,7 +46,7 @@ namespace UASKI.Helpers
             {
                 case 1:
                     SystemHelper.PullListInDataGridView(form.IspDataGridView
-                        , IspService.GetListByDataGrid()
+                        , IspService.GetListByDataGrid(form.textBox13.Text)
                         , new DataGridRowModel("Табельный номер" , "Фамилия" , "Имя" , "Отчество" , "Код подразделения"));
                     form.IspDataGridView.Focus();
                     break;
@@ -92,6 +92,7 @@ namespace UASKI.Helpers
             switch (index)
             {
                 case 1:
+                    form.textBox13.Clear();
                     form.IspDataGridView.DataSource = null;
                     break;
 
@@ -109,6 +110,10 @@ namespace UASKI.Helpers
                     form.textBox1.Focus();
                     break;
                 case 5:
+                    SystemHelper.PullListInDataGridView(form.dataGridView1
+                        , IspService.GetListByDataGrid()
+                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
+
                     form.textBox8.Clear();
                     form.textBox9.Clear();
                     form.textBox10.Clear();
@@ -119,8 +124,13 @@ namespace UASKI.Helpers
                     SystemHelper.SelectButton(false, form.button4);
                     break;
                 case 6:
-                    form.dataGridView2.DataSource = null;
-                    form.monthCalendar1.SelectionRange.Start = form.monthCalendar1.SelectionRange.End = DateTime.Today.Date;
+                    SystemHelper.PullListInDataGridView(form.dataGridView2,
+                        HolidaysService.GetListByDataGrid(),
+                        new DataGridRowModel("Дата"));
+
+                    form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
+                    form.monthCalendar1.Focus();
+                    SystemHelper.SelectButton(false , form.button5);
                     break;
             }
         }

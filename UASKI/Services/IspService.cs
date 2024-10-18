@@ -23,12 +23,33 @@ namespace UASKI.Services
         }
 
         /// <summary>
+        /// Возвращает список пользователей по результату поиска
+        /// </summary>
+        /// <param name="search">Строка поиска</param>
+        /// <returns></returns>
+        private static List<IspEntity> Search(string search)
+        {
+            var model = GetList();
+
+            if(!string.IsNullOrEmpty(search))
+            {
+                model = model.Where(c => c.Code.ToString().Contains(search) ||
+                c.CodePodr.ToString().Contains(search) ||
+                c.FirstName.ToLower().Contains(search.ToLower()) ||
+                c.Name.ToLower().Contains(search.ToLower()))
+                    .ToList();
+            }
+
+            return model;
+        }
+
+        /// <summary>
         /// Преобразовывает список в модели для вывода в DataGridView
         /// </summary>
         /// <returns></returns>
-        public static List<DataGridRowModel> GetListByDataGrid()
+        public static List<DataGridRowModel> GetListByDataGrid(string search = "")
         {
-            var model = GetList();
+            var model = Search(search);
 
             var result = new List<DataGridRowModel>();
 

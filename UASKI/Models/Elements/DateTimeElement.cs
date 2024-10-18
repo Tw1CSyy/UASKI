@@ -11,7 +11,7 @@ namespace UASKI.Models.Elements
         /// <summary>
         /// DateTimePicker
         /// </summary>
-        public DateTimePicker DateTimePicker { get; set; }
+        public DateTimePicker DateTimePicker { get; private set; }
 
         /// <summary>
         /// Значение элемента

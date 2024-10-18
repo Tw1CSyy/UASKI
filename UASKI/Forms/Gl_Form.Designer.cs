@@ -44,6 +44,8 @@ namespace UASKI
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -52,6 +54,8 @@ namespace UASKI
             this.label1 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -106,10 +110,8 @@ namespace UASKI
             this.panel4 = new System.Windows.Forms.Panel();
             this.LabelStatus = new System.Windows.Forms.Label();
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -202,15 +204,16 @@ namespace UASKI
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.Gray;
+            this.tabPage2.Controls.Add(this.textBox13);
             this.tabPage2.Controls.Add(this.IspDataGridView);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(881, 541);
+            this.tabPage2.Size = new System.Drawing.Size(881, 543);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Просмотр Исп-Кон";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // IspDataGridView
             // 
@@ -218,12 +221,12 @@ namespace UASKI
             this.IspDataGridView.AllowUserToDeleteRows = false;
             this.IspDataGridView.BackgroundColor = System.Drawing.Color.Silver;
             this.IspDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.IspDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.IspDataGridView.Location = new System.Drawing.Point(0, 38);
             this.IspDataGridView.Name = "IspDataGridView";
             this.IspDataGridView.ReadOnly = true;
             this.IspDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.IspDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.IspDataGridView.Size = new System.Drawing.Size(881, 541);
+            this.IspDataGridView.Size = new System.Drawing.Size(881, 503);
             this.IspDataGridView.TabIndex = 0;
             this.IspDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IspDataGridView_KeyDown);
             // 
@@ -231,16 +234,16 @@ namespace UASKI
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(881, 541);
+            this.tabPage3.Size = new System.Drawing.Size(881, 543);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Просмотр опзд";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(881, 541);
+            this.tabPage4.Size = new System.Drawing.Size(881, 543);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -262,6 +265,28 @@ namespace UASKI
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Добавление задачи";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(336, 447);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(238, 57);
+            this.label26.TabIndex = 23;
+            this.label26.Text = "Ошибка";
+            this.label26.Visible = false;
+            // 
+            // label25
+            // 
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(27, 447);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(282, 57);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "Ошибка";
+            this.label25.Visible = false;
             // 
             // dateTimePicker1
             // 
@@ -358,6 +383,28 @@ namespace UASKI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(631, 292);
             this.panel1.TabIndex = 0;
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label24.ForeColor = System.Drawing.Color.Red;
+            this.label24.Location = new System.Drawing.Point(17, 247);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(185, 45);
+            this.label24.TabIndex = 18;
+            this.label24.Text = "Ошибка";
+            this.label24.Visible = false;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label23.ForeColor = System.Drawing.Color.Red;
+            this.label23.Location = new System.Drawing.Point(17, 115);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(185, 45);
+            this.label23.TabIndex = 17;
+            this.label23.Text = "Ошибка";
+            this.label23.Visible = false;
             // 
             // button3
             // 
@@ -560,6 +607,7 @@ namespace UASKI
             this.button4.TabIndex = 0;
             this.button4.Text = "Добавить контроллера/исполнителя";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             this.button4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button4_PreviewKeyDown);
             // 
             // panel5
@@ -749,6 +797,7 @@ namespace UASKI
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.label27);
             this.tabPage7.Controls.Add(this.label17);
             this.tabPage7.Controls.Add(this.monthCalendar1);
             this.tabPage7.Controls.Add(this.button5);
@@ -790,6 +839,7 @@ namespace UASKI
             this.button5.TabIndex = 2;
             this.button5.Text = "Добавить";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             this.button5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button5_PreviewKeyDown);
             // 
             // dataGridView2
@@ -844,7 +894,7 @@ namespace UASKI
             // 
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(881, 541);
+            this.tabPage12.Size = new System.Drawing.Size(881, 543);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "tabPage12";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -853,7 +903,7 @@ namespace UASKI
             // 
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(881, 541);
+            this.tabPage13.Size = new System.Drawing.Size(881, 543);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "tabPage13";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -862,7 +912,7 @@ namespace UASKI
             // 
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(881, 541);
+            this.tabPage14.Size = new System.Drawing.Size(881, 543);
             this.tabPage14.TabIndex = 13;
             this.tabPage14.Text = "tabPage14";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -871,7 +921,7 @@ namespace UASKI
             // 
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(881, 541);
+            this.tabPage15.Size = new System.Drawing.Size(881, 543);
             this.tabPage15.TabIndex = 14;
             this.tabPage15.Text = "tabPage15";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -897,7 +947,7 @@ namespace UASKI
             this.LabelStatus.AutoSize = true;
             this.LabelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelStatus.ForeColor = System.Drawing.Color.LimeGreen;
-            this.LabelStatus.Location = new System.Drawing.Point(750, 725);
+            this.LabelStatus.Location = new System.Drawing.Point(-3, 725);
             this.LabelStatus.Name = "LabelStatus";
             this.LabelStatus.Size = new System.Drawing.Size(134, 31);
             this.LabelStatus.TabIndex = 5;
@@ -909,49 +959,24 @@ namespace UASKI
             this.TimerStatus.Interval = 1000;
             this.TimerStatus.Tick += new System.EventHandler(this.TimerStatus_Tick);
             // 
-            // label23
+            // label27
             // 
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(17, 115);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(185, 45);
-            this.label23.TabIndex = 17;
-            this.label23.Text = "Ошибка";
-            this.label23.Visible = false;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(361, 172);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(164, 49);
+            this.label27.TabIndex = 15;
+            this.label27.Text = "Ошибка";
+            this.label27.Visible = false;
             // 
-            // label24
+            // textBox13
             // 
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(17, 247);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(185, 45);
-            this.label24.TabIndex = 18;
-            this.label24.Text = "Ошибка";
-            this.label24.Visible = false;
-            // 
-            // label25
-            // 
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.ForeColor = System.Drawing.Color.Red;
-            this.label25.Location = new System.Drawing.Point(27, 447);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(282, 57);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "Ошибка";
-            this.label25.Visible = false;
-            // 
-            // label26
-            // 
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label26.ForeColor = System.Drawing.Color.Red;
-            this.label26.Location = new System.Drawing.Point(336, 447);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(238, 57);
-            this.label26.TabIndex = 23;
-            this.label26.Text = "Ошибка";
-            this.label26.Visible = false;
+            this.textBox13.Location = new System.Drawing.Point(3, 6);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(295, 26);
+            this.textBox13.TabIndex = 1;
+            this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
             // 
             // Gl_Form
             // 
@@ -969,11 +994,12 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ё";
+            this.Text = "УАСКИ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -1071,6 +1097,8 @@ namespace UASKI
         public System.Windows.Forms.Label label25;
         public System.Windows.Forms.Label label24;
         public System.Windows.Forms.Label label23;
+        public System.Windows.Forms.Label label27;
+        public System.Windows.Forms.TextBox textBox13;
     }
 }
 

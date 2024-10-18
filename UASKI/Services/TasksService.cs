@@ -49,7 +49,7 @@ namespace UASKI.Services
 
             var task = context.Tasks.FirstOrDefault(c => c.Code.Equals(Code.Value));
 
-            if (task != null && result)
+            if (task != null)
             {
                 ErrorHelper.Error("Код задачи должен быть уникальным", Code);
                 result = false;

@@ -57,7 +57,7 @@ namespace UASKI.Helpers
                 form.Menu_Step2.ClearSelected();
                 form.Menu_Step2.Enabled = false;
             }
-            else if(e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter)
             {
                 NavigationHelper.Start();
             }
@@ -77,17 +77,17 @@ namespace UASKI.Helpers
         /// <param name="t3">Табельный номер</param>
         /// <param name="tt">Следующий фокус</param>
         /// <param name="d">DataGridView из формы</param>
-        public static void dataGridView_KeyDown(KeyEventArgs e , IspForm form , TextBox t1 , TextBox t2 , TextBox t3 , DataGridView d)
+        public static void dataGridView_KeyDown(KeyEventArgs e, IspForm form, TextBox t1, TextBox t2, TextBox t3, DataGridView d)
         {
-            if(e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 form.Dispose();
             }
-            else if(e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter)
             {
                 var row = d.SelectedRows;
-                
-                if(row != null && row.Count > 0)
+
+                if (row != null && row.Count > 0)
                 {
                     t1.Text = row[0].Cells[1].Value.ToString() + " " + row[0].Cells[2].Value.ToString()[0] + ". " + row[0].Cells[3].Value.ToString()[0] + ".";
                     t2.Text = row[0].Cells[4].Value.ToString();
@@ -106,13 +106,13 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="e">Объект события</param>
         /// <param name="f">Форма</param>
-        public static void textBox1_KeyDown(KeyEventArgs e , DateForm f)
+        public static void textBox1_KeyDown(KeyEventArgs e, DateForm f)
         {
-            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 f.listBox1.Focus();
             }
-            else if(e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 f.Dispose();
             }
@@ -123,15 +123,15 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="e">Объект события</param>
         /// <param name="f">Форма</param>
-        public static void listBox1_KeyDown(KeyEventArgs e , DateForm f)
+        public static void listBox1_KeyDown(KeyEventArgs e, DateForm f)
         {
-            if(e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
                 f.numericUpDown2.Focus();
             }
-            else if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Right)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
@@ -148,9 +148,9 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="e">Объект события</param>
         /// <param name="f">Форма</param>
-        public static void numericUpDown1_KeyDown(KeyEventArgs e , DateForm f , DateTimePicker d)
+        public static void numericUpDown1_KeyDown(KeyEventArgs e, DateForm f, DateTimePicker d)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
@@ -161,14 +161,14 @@ namespace UASKI.Helpers
                 }
                 catch (Exception)
                 {
-                   
+
                 }
             }
-            else if(e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 f.Dispose();
-            }   
-            else if(e.KeyCode == Keys.Left)
+            }
+            else if (e.KeyCode == Keys.Left)
             {
                 f.listBox1.Focus();
             }
@@ -184,8 +184,8 @@ namespace UASKI.Helpers
         public static void IspDataGridView_KeyDown(KeyEventArgs e)
         {
             // Если нажали Enter и находимся на верхней строчке или Escape
-            if((e.KeyCode == Keys.Up 
-                && form.IspDataGridView.SelectedRows.Count != 0 
+            if ((e.KeyCode == Keys.Up
+                && form.IspDataGridView.SelectedRows.Count != 0
                 && form.IspDataGridView.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
@@ -193,7 +193,12 @@ namespace UASKI.Helpers
                 form.Menu_Step2.Focus();
                 form.IspDataGridView.ClearSelection();
             }
+            else
+            {
+                SystemHelper.CharInTextBox(form.textBox13, e.KeyCode);
+            }
         }
+
         #endregion
 
         #region Добавление задачи
@@ -320,6 +325,7 @@ namespace UASKI.Helpers
                 if (result)
                 {
                     NavigationHelper.ClearForm();
+                    ErrorHelper.StatusComlite();
                 }
             }
             else if (e.KeyCode == Keys.Up)
@@ -506,6 +512,7 @@ namespace UASKI.Helpers
                 if (result)
                 {
                     NavigationHelper.ClearForm();
+                    ErrorHelper.StatusComlite();
                 }
             }
             else if(e.KeyCode == Keys.Escape)
@@ -542,18 +549,21 @@ namespace UASKI.Helpers
         {
             if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectButton(false, form.button5);
                 form.monthCalendar1.Focus();
+                SystemHelper.SelectButton(false, form.button5);
+               
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(form.monthCalendar1.SelectionRange.Start.Date == form.monthCalendar1.SelectionRange.End.Date)
+               var result = HolidaysService.Add
+                    (
+                        new MonthElement(form.monthCalendar1, form.label27)
+                    );
+
+                if(result)
                 {
-                    HolidaysService.Add(form.monthCalendar1.SelectionRange.Start.Date);
-                }
-                else
-                {
-                    HolidaysService.Add(form.monthCalendar1.SelectionRange.Start.Date , form.monthCalendar1.SelectionRange.End.Date);
+                    NavigationHelper.ClearForm();
+                    ErrorHelper.StatusComlite();
                 }
             }
             else if (e.KeyCode == Keys.Escape)

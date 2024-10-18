@@ -10,7 +10,7 @@ namespace UASKI.Models.Elements
         /// <summary>
         /// NumericUpDown
         /// </summary>
-        public NumericUpDown NumericUpDown { get; set; }
+        public NumericUpDown NumericUpDown { get; private set; }
 
         /// <summary>
         /// Значение элемента

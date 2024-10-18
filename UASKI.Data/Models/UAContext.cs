@@ -12,6 +12,7 @@ namespace UASKI.Data.Context
         public List<TaskEntity> Tasks { get => SelectTasks(); }
         public List<HolidayEntity> Holidays { get => SelectHolidays(); }
 
+
         /// <summary>
         /// Выборка из таблицы Isp
         /// </summary>
@@ -137,8 +138,8 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(HolidayEntity entity)
         {
-            var query = $"INSERT INTO \"Holidays\" (Date) " +
-                $"VALUES ('{entity.Date}')";
+            var query = $"INSERT INTO \"Holidays\" (\"Date\") " +
+                $"VALUES ('{entity.Date.Date}')";
 
             return DataModel.Complite(query);
         }

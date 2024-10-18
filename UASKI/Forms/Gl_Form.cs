@@ -5,6 +5,7 @@ using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Data.Context;
 using UASKI.Models;
+using UASKI.Services;
 
 
 namespace UASKI
@@ -49,6 +50,22 @@ namespace UASKI
                 SystemHelper.WriteListBox(Menu_Step2, item.Items.Select(c => c.Text).ToArray());
             }
         }
+
+        // Таймер статуса
+        private void TimerStatus_Tick(object sender, EventArgs e)
+        {
+            if (timerTick == 5)
+            {
+                TimerStatus.Stop();
+                LabelStatus.Visible = false;
+                timerTick = 0;
+            }
+            else
+            {
+                timerTick++;
+            }
+        }
+
 
         #region Нажатия клавиш
 
@@ -146,13 +163,11 @@ namespace UASKI
             var r = new KeyEventArgs(KeyDownHelper.ActionKey);
             KeyDownHelper.textBox1_KeyDown(r);
         }
-        
         private void button3_Click(object sender, EventArgs e)
         {
             var r = new KeyEventArgs(KeyDownHelper.ActionKey);
             KeyDownHelper.textBox4_KeyDown(r);
         }
-
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             if(monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
@@ -165,19 +180,21 @@ namespace UASKI
                     monthCalendar1.SelectionRange.End.Date.ToString("dd.MM.yyyy");
             }
         }
-
-        private void TimerStatus_Tick(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            if(timerTick == 5)
-            {
-                TimerStatus.Stop();
-                LabelStatus.Visible = false;
-                timerTick = 0;
-            }
-            else
-            {
-                timerTick++;
-            }
+            var r = new PreviewKeyDownEventArgs(Keys.Enter);
+            KeyDownHelper.button4_PreviewKeyDown(r);
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var r = new PreviewKeyDownEventArgs(Keys.Enter);
+            KeyDownHelper.button5_PreviewKeyDown(r);
+        }
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+            SystemHelper.PullListInDataGridView(IspDataGridView
+                       , IspService.GetListByDataGrid(textBox13.Text)
+                       , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
         }
     }
 }

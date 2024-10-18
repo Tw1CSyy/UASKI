@@ -12,7 +12,7 @@ namespace UASKI.Models.Elements
         /// <summary>
         /// ТекстБокс
         /// </summary>
-        public TextBox TextBox { get; set; }
+        public TextBox TextBox { get; private set; }
 
         /// <summary>
         /// Значение элемента
@@ -36,15 +36,6 @@ namespace UASKI.Models.Elements
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Отчищает элемент и Label ошибки
-        /// </summary>
-        public new void Dispose()
-        {
-            ErrorLabel.Visible = false;
-            TextBox.BackColor = Color.White;
         }
 
         /// <summary>

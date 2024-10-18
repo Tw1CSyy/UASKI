@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UASKI.Models.Elements;
+using UASKI.StaticModels;
 
 namespace UASKI.Helpers
 {
@@ -20,14 +21,12 @@ namespace UASKI.Helpers
         /// <param name="error">Модель ошибки</param>
         public static void Error(string text , TextBoxElement error)
         {
-            error.TextBox.BackColor = error.ErrorColor;
-            error.ErrorLabel.ForeColor = Color.Red;
-            error.ErrorLabel.Visible = true;
-            error.ErrorLabel.Text = text;
-
-            if(error.IsSelected)
+            if(error.ErrorLabel.Visible != true)
             {
-                error.TextBox.Focus();
+                error.ErrorLabel.ForeColor = Color.Red;
+                error.ErrorLabel.Visible = true;
+                error.ErrorLabel.Text = text;
+                StatusError();
             }
         }
 
@@ -38,13 +37,12 @@ namespace UASKI.Helpers
         /// <param name="error">Модель ошибки</param>
         public static void Error(string text, NumericElement error)
         {
-            error.ErrorLabel.ForeColor = Color.Red;
-            error.ErrorLabel.Visible = true;
-            error.ErrorLabel.Text = text;
-
-            if (error.IsSelected)
+            if (error.ErrorLabel.Visible != true)
             {
-                error.NumericUpDown.Focus();
+                error.ErrorLabel.ForeColor = Color.Red;
+                error.ErrorLabel.Visible = true;
+                error.ErrorLabel.Text = text;
+                StatusError();
             }
         }
 
@@ -55,14 +53,55 @@ namespace UASKI.Helpers
         /// <param name="error">Модель ошибки</param>
         public static void Error(string text, DateTimeElement error)
         {
-            error.ErrorLabel.ForeColor = Color.Red;
-            error.ErrorLabel.Visible = true;
-            error.ErrorLabel.Text = text;
-
-            if (error.IsSelected)
+            if (error.ErrorLabel.Visible != true)
             {
-                error.DateTimePicker.Focus();
+                error.ErrorLabel.ForeColor = Color.Red;
+                error.ErrorLabel.Visible = true;
+                error.ErrorLabel.Text = text;
+                StatusError();
             }
+        }
+
+        /// <summary>
+        /// Обработка Даты
+        /// </summary>
+        /// <param name="text">Текст ошибки</param>
+        /// <param name="error">Модель ошибки</param>
+        public static void Error(string text, MonthElement error)
+        {
+            if (error.ErrorLabel.Visible != true)
+            {
+                error.ErrorLabel.ForeColor = Color.Red;
+                error.ErrorLabel.Visible = true;
+                error.ErrorLabel.Text = text;
+                StatusError();
+            }
+        }
+
+        /// <summary>
+        /// Изменяет статус на ошибку
+        /// </summary>
+        public static void StatusError()
+        {
+            var form = SystemData.Form;
+
+            form.LabelStatus.Text = "Ошибка";
+            form.LabelStatus.ForeColor = Color.Red;
+            form.LabelStatus.Visible = true;
+            form.TimerStatus.Start();
+        }
+
+        /// <summary>
+        /// Изменяет статус на успех
+        /// </summary>
+        public static void StatusComlite()
+        {
+            var form = SystemData.Form;
+
+            form.LabelStatus.Text = "Успешно";
+            form.LabelStatus.ForeColor = Color.Green;
+            form.LabelStatus.Visible = true;
+            form.TimerStatus.Start();
         }
     }
 }

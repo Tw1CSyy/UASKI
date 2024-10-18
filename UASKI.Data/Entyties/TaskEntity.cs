@@ -7,9 +7,9 @@ namespace UASKI.Data.Entityes
     /// </summary>
     public class TaskEntity
     {
-        private static readonly DateTime DateDefult = new DateTime(2000, 01, 01);
-        private static readonly int OtmDefult = 0;
-        private static readonly string NumDefult = " ";
+        public static readonly DateTime DateDefult = new DateTime(2000, 01, 01);
+        public static readonly int OtmDefult = 0;
+        public static readonly string NumDefult = " ";
 
 
         /// <summary>

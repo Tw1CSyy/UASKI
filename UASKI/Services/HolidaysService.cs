@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
+using UASKI.Helpers;
 using UASKI.Models;
+using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
@@ -31,7 +34,7 @@ namespace UASKI.Services
 
             var model = GetList();
 
-            foreach (var item in model)
+            foreach (var item in model.OrderBy(c => c.Date))
             {
                 var d = new DataGridRowModel(item.Date.ToString("dd.MM.yyyy"));
                 result.Add(d);
@@ -41,33 +44,46 @@ namespace UASKI.Services
         }
 
         /// <summary>
-        /// Доавбляет празднечный день
+        /// Добавляет празднечный день
         /// </summary>
         /// <param name="date">Дата</param>
         /// <returns>true - успешная операция</returns>
-        public static bool Add(DateTime date)
+        public static bool Add(MonthElement date)
         {
-            var dat = new HolidayEntity(date);
-            return context.Add(dat);
-        }
+            var result = true;
 
-        /// <summary>
-        /// Добавляет праздечные дни
-        /// </summary>
-        /// <param name="dateFrom">Дата начала</param>
-        /// <param name="dateTo">Дата окончания</param>
-        /// <returns>true - успешная операция</returns>
-        public static bool Add(DateTime dateFrom , DateTime dateTo)
-        {
-            for (DateTime date = dateFrom; date.Date < dateTo.Date; date = date.AddDays(1))
+            date.Dispose();
+
+            if(date.Date < DateTime.Today.Date)
             {
-                if(!Add(date))
-                {
-                    return false;
-                };
+                ErrorHelper.Error("Дата не может быть раньше текущей даты", date);
+                result = false;
             }
 
-            return true;
+            foreach (var item in date.DateRange)
+            {
+                var holy = context.Holidays.FirstOrDefault(c => c.Date.Date == item);
+
+                if(holy != null)
+                {
+                    ErrorHelper.Error("Дата из диапазона уже существует" , date);
+                    result = false;
+                    continue;
+                }
+            }
+
+            if (result)
+            {
+                foreach (var item in date.DateRange)
+                {
+                    var holy = new HolidayEntity(item);
+                    result = context.Add(holy);
+                }
+
+                return result;
+            }
+            else
+                return false;
         }
     }
 }
