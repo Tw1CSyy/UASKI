@@ -11,7 +11,7 @@ namespace UASKI
 {
     public partial class Gl_Form : Form
     {
-        private static int timerTick = 0;
+        public int timerTick = 0;
         public Gl_Form()
         {
             InitializeComponent();
@@ -38,8 +38,8 @@ namespace UASKI
 
             SystemData.Form = this;
             SystemData.Index = 0;
+            SystemData.IsQuery = false;
             DataModel.Open();
-
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -56,11 +56,12 @@ namespace UASKI
         // Таймер статуса
         private void TimerStatus_Tick(object sender, EventArgs e)
         {
-            if (timerTick == 5)
+            if (timerTick == 2)
             {
                 TimerStatus.Stop();
                 LabelStatus.Visible = false;
                 timerTick = 0;
+                SystemData.IsQuery = false;
             }
             else
             {
@@ -194,16 +195,6 @@ namespace UASKI
 
         #endregion
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var r = new KeyEventArgs(KeyDownHelper.ActionKey);
-            KeyDownHelper.textBox1_KeyDown(r);
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var r = new KeyEventArgs(KeyDownHelper.ActionKey);
-            KeyDownHelper.textBox4_KeyDown(r);
-        }
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             if(monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
@@ -216,16 +207,7 @@ namespace UASKI
                     monthCalendar1.SelectionRange.End.Date.ToString("dd.MM.yyyy");
             }
         }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var r = new PreviewKeyDownEventArgs(Keys.Enter);
-            KeyDownHelper.button4_PreviewKeyDown(r);
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var r = new PreviewKeyDownEventArgs(Keys.Enter);
-            KeyDownHelper.button5_PreviewKeyDown(r);
-        }
+        
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
             SystemHelper.PullListInDataGridView(IspDataGridView

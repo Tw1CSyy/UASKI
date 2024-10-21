@@ -329,17 +329,28 @@ namespace UASKI.Helpers
         {
             if (e.KeyCode == Keys.Enter)
             {
-                var result = TasksService.Add(
+                if(SystemData.IsQuery)
+                {
+                    var result = TasksService.Add(
                     new TextBoxElement(form.textBox7, form.label25),
                     new TextBoxElement(form.textBox3, form.label23),
                     new TextBoxElement(form.textBox6, form.label24),
                     new DateTimeElement(form.dateTimePicker1, form.label26)
                     );
 
-                if (result)
+                    if (result)
+                    {
+                        NavigationHelper.ClearForm();
+                        ErrorHelper.StatusComlite();
+                    }
+                    else
+                    {
+                        ErrorHelper.StatusError();
+                    }
+                }
+                else
                 {
-                    NavigationHelper.ClearForm();
-                    ErrorHelper.StatusComlite();
+                    ErrorHelper.StatusQuery();
                 }
             }
             else if (e.KeyCode == Keys.Up)
@@ -514,7 +525,9 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Enter)
             {
-                var result = IspService.Add(
+                if(SystemData.IsQuery)
+                {
+                    var result = IspService.Add(
                     new TextBoxElement(form.textBox8, form.label18),
                     new TextBoxElement(form.textBox9, form.label19),
                     new TextBoxElement(form.textBox10, form.label20),
@@ -522,10 +535,19 @@ namespace UASKI.Helpers
                     new TextBoxElement(form.textBox12, form.label22)
                     );
 
-                if (result)
+                    if (result)
+                    {
+                        NavigationHelper.ClearForm();
+                        ErrorHelper.StatusComlite();
+                    }
+                    else
+                    {
+                        ErrorHelper.StatusError();
+                    }
+                }
+                else
                 {
-                    NavigationHelper.ClearForm();
-                    ErrorHelper.StatusComlite();
+                    ErrorHelper.StatusQuery();
                 }
             }
             else if(e.KeyCode == Keys.Escape)
@@ -568,15 +590,26 @@ namespace UASKI.Helpers
             }
             else if (e.KeyCode == Keys.Enter)
             {
-               var result = HolidaysService.Add
+                if (SystemData.IsQuery)
+                {
+                    var result = HolidaysService.Add
                     (
                         new MonthElement(form.monthCalendar1, form.label27)
                     );
 
-                if(result)
+                    if (result)
+                    {
+                        NavigationHelper.ClearForm();
+                        ErrorHelper.StatusComlite();
+                    }
+                    else
+                    {
+                        ErrorHelper.StatusError();
+                    }
+                }
+                else
                 {
-                    NavigationHelper.ClearForm();
-                    ErrorHelper.StatusComlite();
+                    ErrorHelper.StatusQuery();
                 }
             }
             else if (e.KeyCode == Keys.Escape)
@@ -715,7 +748,33 @@ namespace UASKI.Helpers
             }
             else if (e.KeyCode == Keys.Enter)
             {
+                if (SystemData.IsQuery)
+                {
+                    var result = IspService.Update
+                   (
+                   Convert.ToInt32(form.label38.Text),
+                   new TextBoxElement(form.textBox18, form.label32),
+                   new TextBoxElement(form.textBox17, form.label31),
+                   new TextBoxElement(form.textBox16, form.label30),
+                   new TextBoxElement(form.textBox15, form.label29),
+                   new TextBoxElement(form.textBox14, form.label28)
+                   );
 
+                    if (result)
+                    {
+                        NavigationHelper.ClearForm();
+                        NavigationHelper.GetIspSelectView();
+                        ErrorHelper.StatusComlite();
+                    }
+                    else
+                    {
+                        ErrorHelper.StatusError();
+                    }
+                }
+                else
+                {
+                    ErrorHelper.StatusQuery();
+                }
             }
             else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
@@ -740,7 +799,25 @@ namespace UASKI.Helpers
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                
+                if(SystemData.IsQuery)
+                {
+                    var code = Convert.ToInt32(form.label38.Text);
+
+                    if (IspService.Disactive(code))
+                    {
+                        NavigationHelper.ClearForm();
+                        NavigationHelper.GetIspSelectView();
+                        ErrorHelper.StatusComlite();
+                    }
+                    else
+                    {
+                        ErrorHelper.StatusError();
+                    }
+                }
+                else
+                {
+                    ErrorHelper.StatusQuery();
+                }
             }
             else if(e.KeyCode == Keys.Escape)
             {
@@ -749,6 +826,11 @@ namespace UASKI.Helpers
                 form.Menu_Step2.Focus();
             }
         }
+
+        #endregion
+
+        #region Просмотр задач
+
 
         #endregion
     }

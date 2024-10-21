@@ -142,5 +142,10 @@ namespace UASKI.StaticModels
         /// </summary>
         public static int Index { get; set; }
 
+        /// <summary>
+        /// Требуется ли подтверждение операции
+        /// </summary>
+        public static bool IsQuery { get; set; }
+
     }
 }

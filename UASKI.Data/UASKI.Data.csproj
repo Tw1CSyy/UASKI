@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entyties\ArhivEntity.cs" />
     <Compile Include="Models\UAContext.cs" />
     <Compile Include="Entyties\HolidayEntity.cs" />
     <Compile Include="Entyties\IspEntity.cs" />

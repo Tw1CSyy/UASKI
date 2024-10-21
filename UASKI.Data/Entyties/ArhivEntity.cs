@@ -1,11 +1,8 @@
 ﻿using System;
 
-namespace UASKI.Data.Entityes
+namespace UASKI.Data.Entyties
 {
-    /// <summary>
-    /// Модель задач
-    /// </summary>
-    public class TaskEntity
+    public class ArhivEntity
     {
         /// <summary>
         /// Код задания
@@ -28,18 +25,36 @@ namespace UASKI.Data.Entityes
         public DateTime Date { get; private set; }
 
         /// <summary>
+        /// Дата закрытия
+        /// </summary>
+        public DateTime DateClose { get; private set; }
+
+        /// <summary>
+        /// Оценка задания
+        /// </summary>
+        public int Otm { get; private set; }
+
+        /// <summary>
+        /// Номер при закрытии задания
+        /// </summary>
+        public int Num { get; private set; }
+
+        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="code">Код</param>
         /// <param name="idIsp">Идентификатор исполнителя</param>
         /// <param name="idCon">Идентификатор котроллера</param>
         /// <param name="date">Дата срока</param>
-        public TaskEntity(string code, int idIsp, int idCon, DateTime date)
+        public ArhivEntity(string code, int idIsp, int idCon, DateTime date , DateTime dateClose , int otm , int num)
         {
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
+            DateClose = dateClose;
+            Num = num;
+            Otm = otm;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UASKI.Data.Entityes;
+using UASKI.Data.Entyties;
 using UASKI.Models;
 
 namespace UASKI.Data.Context
@@ -11,12 +12,13 @@ namespace UASKI.Data.Context
         public List<IspEntity> Isps { get => SelectIsp(); }
         public List<TaskEntity> Tasks { get => SelectTasks(); }
         public List<HolidayEntity> Holidays { get => SelectHolidays(); }
+        public List<ArhivEntity> Arhiv { get => SelectArhiv(); }
 
 
         /// <summary>
         /// Выборка из таблицы Isp
         /// </summary>
-        /// <returns>Колекцию объектов</returns>
+        /// <returns>Коллекцию объектов</returns>
         private List<IspEntity> SelectIsp()
         {
             var result = new List<IspEntity>();
@@ -47,7 +49,7 @@ namespace UASKI.Data.Context
         /// <summary>
         /// Выборка из таблицы Tasks
         /// </summary>
-        /// <returns>Колекцию объектов</returns>
+        /// <returns>Коллекцию объектов</returns>
         private List<TaskEntity> SelectTasks()
         {
             var result = new List<TaskEntity>();
@@ -63,11 +65,7 @@ namespace UASKI.Data.Context
                     reader.GetValue(0).ToString(),
                     Convert.ToInt32(reader.GetValue(1)),
                     Convert.ToInt32(reader.GetValue(2)),
-                    Convert.ToDateTime(reader.GetValue(3)),
-                    Convert.ToBoolean(reader.GetValue(4)),
-                    Convert.ToDateTime(reader.GetValue(5)),
-                    Convert.ToInt32(reader.GetValue(6)),
-                    reader.GetValue(7).ToString()
+                    Convert.ToDateTime(reader.GetValue(3))
                 );
 
                 result.Add(item);
@@ -81,7 +79,7 @@ namespace UASKI.Data.Context
         /// <summary>
         /// Выборка из таблицы Holidays
         /// </summary>
-        /// <returns>Колекцию объектов</returns>
+        /// <returns>Коллекцию объектов</returns>
         private List<HolidayEntity> SelectHolidays()
         {
             var result = new List<HolidayEntity>();
@@ -99,6 +97,39 @@ namespace UASKI.Data.Context
                 );
 
                 result.Add(item);
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Выборка из таблицы Arhiv
+        /// </summary>
+        /// <returns>Коллекцию объектов</returns>
+        private List<ArhivEntity> SelectArhiv()
+        {
+            var result = new List<ArhivEntity>();
+            var query = "SELECT * FROM \"Arhiv\"";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new ArhivEntity
+                (
+                    reader.GetValue(0).ToString(),
+                    Convert.ToInt32(reader.GetValue(1)),
+                    Convert.ToInt32(reader.GetValue(2)),
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToDateTime(reader.GetValue(4)),
+                    Convert.ToInt32(reader.GetValue(5)),
+                    Convert.ToInt32(reader.GetValue(6))
+                );
+
+                result.Add(item);
+
             }
 
             reader.Close();
@@ -125,8 +156,8 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
-            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"IsClose\" , \"DateClose\" , \"Otm\" , \"Number\") " +
-                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.IsClose}' , '{entity.DateClose.Date}' , '{entity.Otm}' , '{entity.Num}')";
+            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\") " +
+                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}')";
 
             return DataModel.Complite(query);
 
@@ -141,6 +172,153 @@ namespace UASKI.Data.Context
         {
             var query = $"INSERT INTO \"Holidays\" (\"Date\") " +
                 $"VALUES ('{entity.Date.Date}')";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Добавляет запись в таблицу Arhiv
+        /// </summary>
+        /// <param name="entity">Объкт класса</param>
+        /// <returns></returns>
+        public bool Add(ArhivEntity entity)
+        {
+            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\" , \"Num\") " +
+               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}' , '{entity.Num}')";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Обновляет исполнителя
+        /// </summary>
+        /// <param name="isp">Модель исполнителя</param>
+        /// <param name="code">Код исполнителя</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Update(IspEntity isp , int code = 0)
+        {
+            if(code == 0)
+            {
+                code = isp.Code;
+            }
+
+            var query = $"UPDATE \"Isp\" SET " +
+                $"\"Code\" = '{isp.Code}', " +
+                $"\"FirstName\" = '{isp.FirstName}' ," +
+                $"\"Name\" = '{isp.Name}' ," +
+                $"\"LastName\" = '{isp.LastName}' ," +
+                $"\"CodePodr\" = '{isp.CodePodr}' ," +
+                $"\"IsActive\" = '{isp.IsActive}' " +
+                $"WHERE \"Code\" = '{code}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Обновляет задачу
+        /// </summary>
+        /// <param name="task">Модель задачи</param>
+        /// <param name="code">Код задачи</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Update(TaskEntity task , string code = "")
+        {
+            if(code.Length == 0)
+            {
+                code = task.Code;
+            }
+
+            var query = $"UPDATE \"Tasks\" SET " +
+                $"\"Cod\" = '{task.Code}' ," +
+                $"\"IdIsp\" = '{task.IdIsp}' ," +
+                $"\"IdKon\" = '{task.IdCon}' ," +
+                $"\"Date\" = '{task.Date}' " +
+                $"WHERE \"Cod\" = '{code}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Обновляет празднечный день
+        /// </summary>
+        /// <param name="holiday">Модель празднечного дня</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Update(HolidayEntity holiday)
+        {
+            var query = $"UPDATE \"Holidays\" SET \"Date\" = '{holiday.Date}' WHERE \"Id\" = '{holiday.Id}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Обновляет задачу в архиве
+        /// </summary>
+        /// <param name="task">Модель задачи</param>
+        /// <param name="code">Код задачи</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Update(ArhivEntity task, string code = "")
+        {
+            if (code.Length == 0)
+            {
+                code = task.Code;
+            }
+
+            var query = $"UPDATE \"Arhiv\" SET " +
+                $"\"Cod\" = '{task.Code}' ," +
+                $"\"IdIsp\" = '{task.IdIsp}' ," +
+                $"\"IdKon\" = '{task.IdCon}' ," +
+                $"\"Date\" = '{task.Date}' , " +
+                $"\"DateClose\" = '{task.DateClose}' ," +
+                $"\"Otm\" = '{task.Otm}' , " +
+                $"\"Num\" = '{task.Num}'" +
+                $"WHERE \"Cod\" = '{code}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Удаляет данные из таблицы Isp
+        /// </summary>
+        /// <param name="entity">Модель класса</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Delete(IspEntity entity)
+        {
+            var query = $"DELETE FROM \"Isp\" WHERE \"Code\" = '{entity.Code}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Удаляет данные из таблицы Tasks
+        /// </summary>
+        /// <param name="entity">Модель класса</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Delete(TaskEntity entity)
+        {
+            var query = $"DELETE FROM \"Tasks\" WHERE \"Cod\" = '{entity.Code}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Удаляет данные из таблицы Arhiv
+        /// </summary>
+        /// <param name="entity">Модель класса</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Delete(ArhivEntity entity)
+        {
+            var query = $"DELETE FROM \"Arhiv\" WHERE \"Cod\" = '{entity.Code}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Удаляет данные из таблицы Holidays
+        /// </summary>
+        /// <param name="entity">Модель класса</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Delete(HolidayEntity entity)
+        {
+            var query = $"DELETE FROM \"Holidays\" WHERE \"Id\" = '{entity.Id}'";
 
             return DataModel.Complite(query);
         }

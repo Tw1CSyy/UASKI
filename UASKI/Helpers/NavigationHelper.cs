@@ -52,7 +52,13 @@ namespace UASKI.Helpers
                         , new DataGridRowModel("Табельный номер" , "Фамилия" , "Имя" , "Отчество" , "Код подразделения"));
                     form.IspDataGridView.Focus();
                     break;
+                case 3:
+                        SystemHelper.PullListInDataGridView(form.dataGridView3,
+                        TasksService.GetListByDataGrid(form.textBox19.Text),
+                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
 
+                    form.dataGridView3.Focus();
+                    break;
                 case 4:
                     form.textBox1.Focus();
                 break;
@@ -110,7 +116,10 @@ namespace UASKI.Helpers
                     form.textBox13.Clear();
                     form.IspDataGridView.DataSource = null;
                     break;
-
+                case 3:
+                    form.textBox18.Clear();
+                    form.dataGridView3.DataSource = null;
+                    break;
                 case 4:
                     form.textBox1.Clear();
                     form.textBox2.Clear();
@@ -155,6 +164,7 @@ namespace UASKI.Helpers
                     form.textBox14.Clear();
                     SystemHelper.SelectButton(false, form.button6);
                     SystemHelper.SelectButton(false, form.button7);
+                    form.textBox18.Focus();
                     break;
             }
         }
@@ -162,6 +172,11 @@ namespace UASKI.Helpers
         public static void GetIspView(int code)
         {
             GetView(7 , code);
+        }
+
+        public static void GetIspSelectView()
+        {
+            GetView(1);
         }
     }
 }
