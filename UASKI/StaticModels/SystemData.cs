@@ -22,19 +22,29 @@ namespace UASKI.StaticModels
                {
                    new ItemMenuLevel2
                    {
-                       Text = "Просмотр исполнителя-контролера",
+                       Text = "Просмотр Исполнителя-Контроллера",
                        NumberTabPage = 1
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Просмотр опозданий",
+                       Text = "Просмотр Планов",
                        NumberTabPage = 2
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Просмотр планов",
+                       Text = "Просмотр Архива",
                        NumberTabPage = 3
-                   }
+                   },
+                   new ItemMenuLevel2
+                   {
+                       Text = "Просмотр Празднечных Дней",
+                       NumberTabPage = 4
+                   },
+                   new ItemMenuLevel2
+                   {
+                       Text = "Просмотр Опозданий",
+                       NumberTabPage = 5
+                   },
                }
            },
            new ItemMenuLevel1
@@ -44,57 +54,18 @@ namespace UASKI.StaticModels
                {
                    new ItemMenuLevel2
                    {
-                       Text = "Добавление новых карточек",
-                       NumberTabPage = 4
-                   },
-                   new ItemMenuLevel2
-                   {
-                       Text = "Добавление исполнителей-контролеров",
-                       NumberTabPage = 5
-                   },
-                   new ItemMenuLevel2
-                   {
-                       Text = "Добавление празднечных дней",
+                       Text = "Добавление Новых Карточек",
                        NumberTabPage = 6
-                   }
-               }
-           },
-           new ItemMenuLevel1
-           {
-               Text = "Корректировка",
-               Items = new ItemMenuLevel2[]
-               {
+                   },
                    new ItemMenuLevel2
                    {
-                       Text = "Корректировка исполнителей-контролеров",
+                       Text = "Добавление Исполнителей-Контролеров",
                        NumberTabPage = 7
                    },
                    new ItemMenuLevel2
                    {
-                       Text = "Корректировка карточек",
+                       Text = "Добавление Празднечных Дней",
                        NumberTabPage = 8
-                   },
-                   new ItemMenuLevel2
-                   {
-                       Text = "Корректировка архива",
-                       NumberTabPage = 9
-                   }
-               }
-           },
-           new ItemMenuLevel1
-           {
-               Text = "Оперативная обработка информации",
-               Items = new ItemMenuLevel2[]
-               {
-                   new ItemMenuLevel2
-                   {
-                       Text = "Закрытие карточек",
-                       NumberTabPage = 10
-                   },
-                   new ItemMenuLevel2
-                   {
-                       Text = "Расчет коэффицента качества",
-                       NumberTabPage = 11
                    }
                }
            },

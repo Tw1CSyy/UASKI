@@ -15,23 +15,15 @@ namespace UASKI.Services
         private static UAContext context = new UAContext();
 
         /// <summary>
-        /// Возвращает список активных пользователей
-        /// </summary>
-        private static List<IspEntity> GetList()
-        {
-            return context.Isps.Where(c => c.IsActive).ToList();
-        }
-
-        /// <summary>
-        /// Возвращает список пользователей по результату поиска
+        /// Возращает список пользователей
         /// </summary>
         /// <param name="search">Строка поиска</param>
         /// <returns></returns>
-        private static List<IspEntity> Search(string search)
+        public static List<IspEntity> GetList(string search = "")
         {
-            var model = GetList();
+           var model = context.Isps.Where(c => c.IsActive).ToList();
 
-            if(!string.IsNullOrEmpty(search))
+            if (!string.IsNullOrEmpty(search))
             {
                 model = model.Where(c => c.Code.ToString().Contains(search) ||
                 c.CodePodr.ToString().Contains(search) ||
@@ -47,10 +39,8 @@ namespace UASKI.Services
         /// Преобразовывает список в модели для вывода в DataGridView
         /// </summary>
         /// <returns></returns>
-        public static List<DataGridRowModel> GetListByDataGrid(string search = "")
+        public static List<DataGridRowModel> GetListByDataGrid(List<IspEntity> model)
         {
-            var model = Search(search);
-
             var result = new List<DataGridRowModel>();
 
             foreach (var item in model.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName))

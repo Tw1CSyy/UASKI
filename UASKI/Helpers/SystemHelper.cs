@@ -75,11 +75,45 @@ namespace UASKI.Helpers
             if(selected)
             {
                 btn.BackColor = Color.LightBlue;
+                btn.Focus();
             }
             else
             {
                 btn.BackColor = Color.White;
             }
+        }
+
+        /// <summary>
+        /// Включает и выбирает DataGridView
+        /// </summary>
+        /// <param name="selected">Вкл/Выкл</param>
+        /// <param name="d">ДатаГридВью</param>
+        public static void SelectDataGridView(bool selected , DataGridView d)
+        {
+            if(selected)
+            {
+                d.Focus();
+                
+                if(d.Rows.Count > 0)
+                {
+                    d.Rows[0].Selected = true;
+                }
+            }
+            else
+            {
+                
+                d.ClearSelection();
+            }
+        }
+
+        /// <summary>
+        /// Выбирает текст бокс и переводит курсор
+        /// </summary>
+        /// <param name="t"></param>
+        public static void SelectTextBox(TextBox t)
+        {
+            t.Focus();
+            t.SelectionStart = t.Text.Length;
         }
 
         /// <summary>

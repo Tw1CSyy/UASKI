@@ -18,19 +18,49 @@ namespace UASKI.Services
         /// <summary>
         /// Возращает список задач
         /// </summary>
+        /// <param name="search">Строка поиска</param>
+        /// <param name="id">id пользователя</param>
         /// <returns></returns>
-        private static List<TaskEntity> GetListTask()
+        public static List<TaskEntity> GetListTask(string search = "", int id = 0)
         {
-            return context.Tasks;
+           var list = context.Tasks;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
+            }
+
+            if (id != 0)
+            {
+                list = list.Where(c => c.IdIsp == id || c.IdCon == id).ToList();
+            }
+
+            return list;
         }
 
         /// <summary>
-        /// Вохращает список архива
+        /// Возращает список архива
+        /// </summary>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <returns></returns>
+        public static List<ArhivEntity> GetListArhiv(DateTime dateFrom, DateTime dateTo)
+        {
+            var list = context.Arhiv;
+            list = list.Where(c => c.DateClose >= dateFrom && c.DateClose < dateFrom.AddDays(1)).ToList();
+
+            return list;
+        }
+
+        /// <summary>
+        /// Возращает список архива
         /// </summary>
         /// <returns></returns>
-        private static List<ArhivEntity> GetListArhiv()
+        public static List<ArhivEntity> GetListArhiv()
         {
-            return context.Arhiv;
+            var list = context.Arhiv;
+
+            return list;
         }
 
         /// <summary>
@@ -168,18 +198,11 @@ namespace UASKI.Services
         /// <summary>
         /// Формирует модель для вывода в DataGridView
         /// </summary>
-        /// <param name="search">Строка поиска</param>
+        /// <param name="list">Список объектов</param>
         /// <returns></returns>
-        public static List<DataGridRowModel> GetListByDataGrid(string search)
+        public static List<DataGridRowModel> GetListByDataGrid(List<TaskEntity> list)
         {
             var model = new List<DataGridRowModel>();
-
-            var list = GetListTask();
-
-            if(!string.IsNullOrEmpty(search))
-            {
-                list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
-            }
 
             foreach (var item in list.OrderByDescending(c => c.Date))
             {
@@ -191,6 +214,59 @@ namespace UASKI.Services
             }
 
             return model;
+        }
+
+        /// <summary>
+        /// Формирует модель для вывода в DataGridView
+        /// </summary>
+        /// <param name="list">Список объектов</param>
+        /// <returns></returns>
+        public static List<DataGridRowModel> GetListByDataGrid(List<ArhivEntity> list)
+        {
+            var model = new List<DataGridRowModel>();
+
+            foreach (var item in list.OrderByDescending(c => c.DateClose))
+            {
+                var isp = IspService.GetByCode(item.IdIsp);
+                var con = IspService.GetByCode(item.IdCon);
+
+                var st = new DataGridRowModel(item.Code, 
+                    $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.", 
+                    $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.", 
+                    item.Date.ToString("dd.MM.yyyy") , item.DateClose.ToString("dd.MM.yyyy") , 
+                    item.Otm.ToString() , 
+                    item.Num.ToString());
+
+                model.Add(st);
+            }
+
+            return model;
+        }
+
+        /// <summary>
+        /// Возращает задачу по коду
+        /// </summary>
+        /// <param name="code">Код задачи</param>
+        /// <returns></returns>
+        public static TaskEntity GetTaskByCode(string code)
+        {
+            var list = GetListTask();
+            var item = list.FirstOrDefault(c => c.Code.Equals(code));
+
+            return item;
+        }
+
+        /// <summary>
+        /// Возращает архивную задачу по коду
+        /// </summary>
+        /// <param name="code">Код аривной задачи</param>
+        /// <returns></returns>
+        public static ArhivEntity GetArhivByCode(string code)
+        {
+            var list = GetListArhiv();
+            var item = list.FirstOrDefault(c => c.Code.Equals(code));
+
+            return item;
         }
     }
 }

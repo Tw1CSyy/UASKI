@@ -31,7 +31,7 @@ namespace UASKI.Forms
 
         private void Start(string search = "")
         {
-            var model = IspService.GetListByDataGrid(search);
+            var model = IspService.GetListByDataGrid(IspService.GetList(search));
 
             SystemHelper.PullListInDataGridView(dataGridView1,
                 model,

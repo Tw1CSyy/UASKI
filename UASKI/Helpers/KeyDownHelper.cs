@@ -215,12 +215,33 @@ namespace UASKI.Helpers
 
         #endregion
 
+        #region Просмотр задач
+        public static void dataGridView3_KeyDown(KeyEventArgs e)
+        {
+            // Если нажали Enter и находимся на верхней строчке или Escape
+            if ((e.KeyCode == Keys.Up
+                && form.dataGridView3.SelectedRows.Count != 0
+                && form.dataGridView3.SelectedRows[0].Index == 0)
+                || e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                form.dataGridView3.ClearSelection();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                
+            }
+            else
+            {
+                SystemHelper.CharInTextBox(form.textBox19, e.KeyCode);
+            }
+        }
+
+        #endregion
+
         #region Добавление задачи
 
-        /// <summary>
-        /// При нажитии клавиши для выбора из списка исполнителей
-        /// </summary>
-        /// <param name="e">Объект события</param>
         public static void textBox1_KeyDown(KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
@@ -235,11 +256,11 @@ namespace UASKI.Helpers
                         form.textBox3.Text = isp.Code.ToString();
                     }
 
-                    form.textBox4.Focus();
+                    SystemHelper.SelectTextBox(form.textBox4);
                 }
                 else
                 {
-                    form.textBox4.Focus();
+                    SystemHelper.SelectTextBox(form.textBox4);
                 }    
             }
             else if(e.KeyCode == ActionKey)
@@ -254,10 +275,6 @@ namespace UASKI.Helpers
             }
         }
 
-        /// <summary>
-        /// При нажитии клавиши для выбора из списка исполнителей
-        /// </summa\ry>
-        /// <param name="e">Объект события</param>
         public static void textBox4_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
@@ -272,11 +289,11 @@ namespace UASKI.Helpers
                         form.textBox6.Text = isp.Code.ToString();
                     }
 
-                    form.textBox7.Focus();
+                    SystemHelper.SelectTextBox(form.textBox7);
                 }
                 else
                 {
-                    form.textBox7.Focus();
+                    SystemHelper.SelectTextBox(form.textBox7);
                 }
             }
             else if (e.KeyCode == ActionKey)
@@ -286,7 +303,7 @@ namespace UASKI.Helpers
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.textBox1.Focus();
+                SystemHelper.SelectTextBox(form.textBox1);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -295,10 +312,6 @@ namespace UASKI.Helpers
             }
         }
 
-        /// <summary>
-        /// 5 страница
-        /// </summary>
-        /// <param name="e">Объект запроса</param>
         public static void textBox7_KeyDown(KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
@@ -307,12 +320,7 @@ namespace UASKI.Helpers
             }
             else if(e.KeyCode == Keys.Up)
             {
-                form.textBox4.Focus();
-            }
-            else if (e.KeyCode == Keys.Down)
-            {
-                SystemHelper.SelectButton(true, form.button1);
-                form.button1.Focus();
+                SystemHelper.SelectTextBox(form.textBox4);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -321,10 +329,6 @@ namespace UASKI.Helpers
             }
         }
 
-        /// <summary>
-        /// 5 страница кнопка
-        /// </summary>
-        /// <param name="e">Объект запроса</param>
         public static void button1_KeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -355,7 +359,7 @@ namespace UASKI.Helpers
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.textBox4.Focus();
+                SystemHelper.SelectTextBox(form.textBox4);
                 SystemHelper.SelectButton(false, form.button1);
             }
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
@@ -369,6 +373,8 @@ namespace UASKI.Helpers
                 form.Menu_Step2.Focus();
                 SystemHelper.SelectButton(false, form.button1);
             }
+
+            e.IsInputKey = true;
         }
 
         public static void dateTimePicker1_KeyDown(KeyEventArgs e)
@@ -385,14 +391,14 @@ namespace UASKI.Helpers
                 e.SuppressKeyPress = true;
                 e.Handled = true;
 
-                form.textBox7.Focus();
+                SystemHelper.SelectTextBox(form.textBox7);
             }
             else if (e.KeyCode == Keys.Up)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
 
-                form.textBox4.Focus();
+                SystemHelper.SelectTextBox(form.textBox4);
             }
             else if(e.KeyCode == ActionKey)
             {
@@ -410,78 +416,74 @@ namespace UASKI.Helpers
 
         #region Добавления исполнителей
 
-        /// <summary>
-        /// При нажатии на ТекстБох с фамилией
-        /// </summary>
-        /// <param name="e">Объект с событием</param>
         public static void textBox8_KeyDown(KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox9.Focus();
+                SystemHelper.SelectTextBox(form.textBox9);
             }
             else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
             }
+            else if(e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectDataGridView(true, form.dataGridView1);
+            }
         }
 
-        /// <summary>
-        /// При нажатии на ТекстБох с именем
-        /// </summary>
-        /// <param name="e">Объект с событием</param>
         public static void textBox9_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox10.Focus();
+                SystemHelper.SelectTextBox(form.textBox10);
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.textBox8.Focus();
+                SystemHelper.SelectTextBox(form.textBox8);
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
             }
+            else if (e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectDataGridView(true, form.dataGridView1);
+            }
         }
 
-        /// <summary>
-        /// При нажатии на ТекстБох с отчеством
-        /// </summary>
-        /// <param name="e">Объект с событием</param>
         public static void textBox10_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox11.Focus();
+                SystemHelper.SelectTextBox(form.textBox11);
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.textBox9.Focus();
+                SystemHelper.SelectTextBox(form.textBox9);
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
             }
+            else if (e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectDataGridView(true, form.dataGridView1);
+            }
         }
 
-        /// <summary>
-        /// При нажатии на ТекстБох с кодом
-        /// </summary>
-        /// <param name="e">Объект с событием</param>
         public static void textBox11_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                form.textBox12.Focus();
+                SystemHelper.SelectTextBox(form.textBox12);
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.textBox10.Focus();
+                SystemHelper.SelectTextBox(form.textBox10);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -490,25 +492,23 @@ namespace UASKI.Helpers
             }
             else if(e.KeyCode == Keys.Down)
             {
-                form.button4.Focus();
-                SystemHelper.SelectButton(true, form.button4);
-            }
-        }
-
-        /// <summary>
-        /// При нажатии на ТекстБох с кодом подразделения
-        /// </summary>
-        /// <param name="e">Объект с событием</param>
-        public static void textBox12_KeyDown(KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
-            {
-                form.button4.Focus();
                 SystemHelper.SelectButton(true, form.button4);
             }
             else if (e.KeyCode == Keys.Left)
             {
-                form.textBox11.Focus();
+                SystemHelper.SelectDataGridView(true, form.dataGridView1);
+            }
+        }
+
+        public static void textBox12_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectButton(true, form.button4);
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectTextBox(form.textBox11);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -517,10 +517,6 @@ namespace UASKI.Helpers
             }
         }
 
-        /// <summary>
-        /// При нажатии на кнопку действия
-        /// </summary>
-        /// <param name="e">Объект с событием</param>
         public static void button4_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -558,8 +554,31 @@ namespace UASKI.Helpers
             }
             else if(e.KeyCode == Keys.Up)
             {
-                form.textBox12.Focus();
+                SystemHelper.SelectTextBox(form.textBox12);
                 SystemHelper.SelectButton(false, form.button4);
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectDataGridView(true, form.dataGridView1);
+            }
+
+            e.IsInputKey = true;
+        }
+
+        public static void dataGridView1_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
+            {
+                SystemHelper.SelectTextBox(form.textBox8);
+                SystemHelper.SelectDataGridView(false, form.dataGridView1);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                SystemHelper.SelectDataGridView(false, form.dataGridView1);
+                e.Handled = true;
             }
         }
 
@@ -618,6 +637,8 @@ namespace UASKI.Helpers
                 form.Menu_Step2.Focus();
                 SystemHelper.SelectButton(false, form.button5);
             }
+
+            e.IsInputKey = true;
         }
         #endregion
 
@@ -625,20 +646,17 @@ namespace UASKI.Helpers
 
         public static void textBox18_KeyDown(KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            if(e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                NavigationHelper.GetIspSelectView();
             }
             else if (e.KeyCode == Keys.Right)
             {
-                form.button6.Focus();
                 SystemHelper.SelectButton(true, form.button6);
             }
             else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox17.Focus();
-                form.textBox17.SelectionStart = form.textBox17.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox17);
             }
         }
 
@@ -646,23 +664,19 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Up)
             {
-                form.textBox18.Focus();
-                form.textBox18.SelectionStart = form.textBox18.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox18);
             }
             else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox16.Focus();
-                form.textBox16.SelectionStart = form.textBox16.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox16);
             }
             else if (e.KeyCode == Keys.Right)
             {
-                form.button6.Focus();
                 SystemHelper.SelectButton(true, form.button6);
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                NavigationHelper.GetIspSelectView();
             }
         }
 
@@ -670,23 +684,19 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Up)
             {
-                form.textBox17.Focus();
-                form.textBox17.SelectionStart = form.textBox17.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox17);
             }
             else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.textBox15.Focus();
-                form.textBox15.SelectionStart = form.textBox15.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox15);
             }
             else if (e.KeyCode == Keys.Right)
             {
-                form.button6.Focus();
                 SystemHelper.SelectButton(true, form.button6);
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                NavigationHelper.GetIspSelectView();
             }
         }
 
@@ -694,18 +704,19 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Up)
             {
-                form.textBox16.Focus();
-                form.textBox16.SelectionStart = form.textBox16.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox16);
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SystemHelper.SelectDataGridView(true, form.dataGridView4);
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                form.textBox14.Focus();
-                form.textBox14.SelectionStart = form.textBox14.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox14);
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                NavigationHelper.GetIspSelectView();
             }
         }
 
@@ -713,23 +724,23 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Left)
             {
-                form.textBox15.Focus();
-                form.textBox15.SelectionStart = form.textBox15.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox15);
             }
             else if(e.KeyCode == Keys.Up)
             {
-                form.textBox16.Focus();
-                form.textBox16.SelectionStart = form.textBox16.Text.Length;
+                SystemHelper.SelectTextBox(form.textBox16);
             }
-            else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.button6.Focus();
-                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectDataGridView(true, form.dataGridView4);
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                NavigationHelper.GetIspSelectView();
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                SystemHelper.SelectButton(true, form.button6);
             }
         }
 
@@ -737,14 +748,8 @@ namespace UASKI.Helpers
         {
             if(e.KeyCode == Keys.Left)
             {
-                form.textBox18.Focus();
-                form.textBox18.SelectionStart = form.textBox18.Text.Length;
                 SystemHelper.SelectButton(false, form.button6);
-            }
-            else if(e.KeyCode == Keys.Down)
-            {
-                SystemHelper.SelectButton(false, form.button6);
-                SystemHelper.SelectButton(true, form.button7);
+                SystemHelper.SelectTextBox(form.textBox16);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -776,26 +781,30 @@ namespace UASKI.Helpers
                     ErrorHelper.StatusQuery();
                 }
             }
-            else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
+            else if(e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectButton(false, form.button6);
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                SystemHelper.SelectButton(true, form.button7);
             }
+            else if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectButton(false, form.button6);
+                NavigationHelper.GetIspSelectView();
+            }
+            e.IsInputKey = true;
         }
 
         public static void button7_KeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectButton(true, form.button6);
                 SystemHelper.SelectButton(false, form.button7);
+                SystemHelper.SelectButton(true, form.button6);
             }
             else if(e.KeyCode == Keys.Left)
             {
-                form.textBox18.Focus();
-                form.textBox18.SelectionStart = form.textBox18.Text.Length;
                 SystemHelper.SelectButton(false, form.button7);
+                SystemHelper.SelectTextBox(form.textBox18);
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -822,16 +831,263 @@ namespace UASKI.Helpers
             else if(e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectButton(false, form.button7);
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                NavigationHelper.GetIspSelectView();
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SystemHelper.SelectButton(false, form.button7);
+
+                SystemHelper.SelectDataGridView(true, form.dataGridView4);
+            }
+
+            e.IsInputKey = true;
+        }
+
+        public static void dataGridView4_KeyDown(KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Up
+                && form.dataGridView4.SelectedRows.Count != 0
+                && form.dataGridView4.SelectedRows[0].Index == 0))
+            {
+
+                SystemHelper.SelectDataGridView(false, form.dataGridView4);
+                SystemHelper.SelectTextBox(form.textBox18);
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectDataGridView(false, form.dataGridView4);
+                SystemHelper.SelectTextBox(form.textBox18);
+                e.Handled = true;
             }
         }
 
         #endregion
 
-        #region Просмотр задач
+        #region Управление задачами-архивом
+        public static void textBox26_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                if (form.textBox25.Text.Length != 0 && form.textBox24.Text.Length == 0)
+                {
+                    var isp = IspService.GetByFirstName(form.textBox26.Text);
 
+                    if (isp != null)
+                    {
+                        form.textBox25.Text = isp.CodePodr.ToString();
+                        form.textBox24.Text = isp.Code.ToString();
+                    }
 
+                    SystemHelper.SelectTextBox(form.textBox21);
+                }
+                else
+                {
+                    SystemHelper.SelectTextBox(form.textBox21);
+                }
+            }
+            else if(e.KeyCode == ActionKey)
+            {
+                var ispForm = new IspForm(form.textBox26, form.textBox25, form.textBox24);
+                ispForm.Show();
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                SystemHelper.SelectButton(true , form.button10);
+            }  
+            else if(e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+        }
+
+        public static void textBox21_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                if (form.textBox22.Text.Length != 0 && form.textBox23.Text.Length == 0)
+                {
+                    var isp = IspService.GetByFirstName(form.textBox21.Text);
+
+                    if (isp != null)
+                    {
+                        form.textBox22.Text = isp.CodePodr.ToString();
+                        form.textBox23.Text = isp.Code.ToString();
+                    }
+
+                    SystemHelper.SelectTextBox(form.textBox27);
+                }
+                else
+                {
+                    SystemHelper.SelectTextBox(form.textBox27);
+                }
+            }
+            else if (e.KeyCode == ActionKey)
+            {
+                var ispForm = new IspForm(form.textBox21, form.textBox22, form.textBox23);
+                ispForm.Show();
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                SystemHelper.SelectButton(true, form.button10);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox26);
+            }
+        }
+
+        public static void textBox27_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                form.dateTimePicker4.Focus();
+            }
+            else if(e.KeyCode == Keys.Down && form.panel10.Visible)
+            {
+                form.dateTimePicker5.Focus();
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox21);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+        }
+
+        public static void dateTimePicker4_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectTextBox(form.textBox27);
+            }
+            else if(e.KeyCode == Keys.Down && form.panel10.Visible)
+            {
+                form.dateTimePicker5.Focus();
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                SystemHelper.SelectButton(true , form.button10);
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if(form.panel10.Visible)
+                    form.dateTimePicker5.Focus();
+                else
+                    SystemHelper.SelectButton(true, form.button10);
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox27);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+            else if(e.KeyCode == ActionKey)
+            {
+                var date = new DateForm(form.dateTimePicker4);
+            }
+        }
+
+        public static void dateTimePicker5_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectTextBox(form.textBox28);
+            }
+            else if(e.KeyCode == ActionKey)
+            {
+                var dateForm = new DateForm(form.dateTimePicker5);
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox27);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+        }
+
+        public static void textBox28_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                form.dateTimePicker5.Focus();
+            }
+            else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectTextBox(form.textBox29);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+            
+        }
+
+        public static void textBox29_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectTextBox(form.textBox28);
+            }
+            else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectButton(true, form.button10);
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                form.dateTimePicker4.Focus();
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
+            }
+        }
+
+        public static void button10_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+
+        }
+
+        public static void button11_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+
+        }
+
+        public static void button12_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+
+        }
         #endregion
     }
 }

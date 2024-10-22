@@ -42,8 +42,12 @@ namespace UASKI
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.IspDataGridView = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -102,8 +106,8 @@ namespace UASKI
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.button5 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.IspCon = new System.Windows.Forms.TabPage();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -131,14 +135,54 @@ namespace UASKI
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.Tasks = new System.Windows.Forms.TabPage();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label43 = new System.Windows.Forms.Label();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
+            this.label52 = new System.Windows.Forms.Label();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.label54 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.tabPage9.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -151,12 +195,16 @@ namespace UASKI
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.IspCon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            this.Tasks.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -192,13 +240,16 @@ namespace UASKI
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage9);
+            this.tabControl1.Controls.Add(this.tabPage10);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Location = new System.Drawing.Point(-1, 153);
+            this.tabControl1.Controls.Add(this.IspCon);
+            this.tabControl1.Controls.Add(this.Tasks);
+            this.tabControl1.Location = new System.Drawing.Point(0, 153);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(889, 569);
@@ -261,15 +312,6 @@ namespace UASKI
             this.IspDataGridView.TabIndex = 0;
             this.IspDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IspDataGridView_KeyDown);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(881, 543);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Просмотр опзд";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Gray;
@@ -280,6 +322,61 @@ namespace UASKI
             this.tabPage4.Size = new System.Drawing.Size(881, 543);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Просмотр задач";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox19.Location = new System.Drawing.Point(3, 4);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(296, 30);
+            this.textBox19.TabIndex = 1;
+            this.textBox19.TextChanged += new System.EventHandler(this.textBox19_TextChanged);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(0, 40);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(881, 503);
+            this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView3_KeyDown);
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage9.Controls.Add(this.label40);
+            this.tabPage9.Controls.Add(this.dateTimePicker3);
+            this.tabPage9.Controls.Add(this.label39);
+            this.tabPage9.Controls.Add(this.dateTimePicker2);
+            this.tabPage9.Controls.Add(this.textBox20);
+            this.tabPage9.Controls.Add(this.dataGridView5);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(881, 543);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "Просмотр Архива";
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(881, 543);
+            this.tabPage10.TabIndex = 9;
+            this.tabPage10.Text = "Просмотр праздн";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(881, 543);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Просмотр опзд";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
@@ -342,6 +439,7 @@ namespace UASKI
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.CausesValidation = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(48, 13);
             this.button1.Name = "button1";
@@ -629,6 +727,7 @@ namespace UASKI
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(342, 542);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // panel6
             // 
@@ -915,42 +1014,45 @@ namespace UASKI
             this.dataGridView2.Size = new System.Drawing.Size(349, 541);
             this.dataGridView2.TabIndex = 0;
             // 
-            // tabPage8
+            // IspCon
             // 
-            this.tabPage8.Controls.Add(this.pictureBox6);
-            this.tabPage8.Controls.Add(this.panel8);
-            this.tabPage8.Controls.Add(this.panel7);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(881, 543);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Исп-Кон";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.IspCon.Controls.Add(this.dataGridView4);
+            this.IspCon.Controls.Add(this.panel8);
+            this.IspCon.Controls.Add(this.panel7);
+            this.IspCon.Location = new System.Drawing.Point(4, 22);
+            this.IspCon.Name = "IspCon";
+            this.IspCon.Size = new System.Drawing.Size(881, 543);
+            this.IspCon.TabIndex = 7;
+            this.IspCon.Text = "Исп-Кон";
+            this.IspCon.UseVisualStyleBackColor = true;
             // 
-            // pictureBox6
+            // dataGridView4
             // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(221, 343);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(468, 181);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 5;
-            this.pictureBox6.TabStop = false;
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(3, 339);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView4.Size = new System.Drawing.Size(878, 204);
+            this.dataGridView4.TabIndex = 4;
+            this.dataGridView4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView4_KeyDown);
             // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.DarkGray;
             this.panel8.Controls.Add(this.button7);
             this.panel8.Controls.Add(this.button6);
-            this.panel8.Location = new System.Drawing.Point(569, 82);
+            this.panel8.Location = new System.Drawing.Point(555, 58);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(168, 146);
+            this.panel8.Size = new System.Drawing.Size(166, 182);
             this.panel8.TabIndex = 3;
             // 
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button7.Location = new System.Drawing.Point(13, 84);
+            this.button7.Location = new System.Drawing.Point(13, 100);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(141, 46);
             this.button7.TabIndex = 1;
@@ -961,7 +1063,7 @@ namespace UASKI
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button6.Location = new System.Drawing.Point(13, 9);
+            this.button6.Location = new System.Drawing.Point(13, 23);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(141, 46);
             this.button6.TabIndex = 0;
@@ -1213,24 +1315,425 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
-            // dataGridView3
+            // textBox20
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 40);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.Size = new System.Drawing.Size(881, 503);
-            this.dataGridView3.TabIndex = 0;
+            this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox20.Location = new System.Drawing.Point(3, 4);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(295, 26);
+            this.textBox20.TabIndex = 3;
             // 
-            // textBox19
+            // dataGridView5
             // 
-            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox19.Location = new System.Drawing.Point(3, 4);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(296, 30);
-            this.textBox19.TabIndex = 1;
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.BackgroundColor = System.Drawing.Color.Silver;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Location = new System.Drawing.Point(0, 36);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView5.Size = new System.Drawing.Size(881, 511);
+            this.dataGridView5.TabIndex = 2;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(362, 5);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(180, 26);
+            this.dateTimePicker2.TabIndex = 4;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label39.Location = new System.Drawing.Point(319, 5);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(39, 25);
+            this.label39.TabIndex = 5;
+            this.label39.Text = "От";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label40.Location = new System.Drawing.Point(548, 5);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(40, 25);
+            this.label40.TabIndex = 7;
+            this.label40.Text = "До";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker3.Location = new System.Drawing.Point(594, 5);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(180, 26);
+            this.dateTimePicker3.TabIndex = 6;
+            // 
+            // Tasks
+            // 
+            this.Tasks.Controls.Add(this.panel11);
+            this.Tasks.Controls.Add(this.panel10);
+            this.Tasks.Controls.Add(this.panel9);
+            this.Tasks.Location = new System.Drawing.Point(4, 22);
+            this.Tasks.Name = "Tasks";
+            this.Tasks.Size = new System.Drawing.Size(881, 543);
+            this.Tasks.TabIndex = 10;
+            this.Tasks.Text = "Задачи";
+            this.Tasks.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel9.Controls.Add(this.label54);
+            this.panel9.Controls.Add(this.dateTimePicker4);
+            this.panel9.Controls.Add(this.label41);
+            this.panel9.Controls.Add(this.label42);
+            this.panel9.Controls.Add(this.textBox27);
+            this.panel9.Controls.Add(this.button8);
+            this.panel9.Controls.Add(this.button9);
+            this.panel9.Controls.Add(this.label43);
+            this.panel9.Controls.Add(this.textBox21);
+            this.panel9.Controls.Add(this.label44);
+            this.panel9.Controls.Add(this.textBox22);
+            this.panel9.Controls.Add(this.label45);
+            this.panel9.Controls.Add(this.label46);
+            this.panel9.Controls.Add(this.textBox23);
+            this.panel9.Controls.Add(this.label47);
+            this.panel9.Controls.Add(this.textBox24);
+            this.panel9.Controls.Add(this.label48);
+            this.panel9.Controls.Add(this.textBox25);
+            this.panel9.Controls.Add(this.label49);
+            this.panel9.Controls.Add(this.label50);
+            this.panel9.Controls.Add(this.textBox26);
+            this.panel9.Location = new System.Drawing.Point(8, 13);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(631, 346);
+            this.panel9.TabIndex = 1;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.White;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button8.Location = new System.Drawing.Point(203, 217);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(19, 26);
+            this.button8.TabIndex = 16;
+            this.button8.Text = "^";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(428, 188);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(105, 26);
+            this.label43.TabIndex = 14;
+            this.label43.Text = "Таб.номер";
+            // 
+            // textBox21
+            // 
+            this.textBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox21.Location = new System.Drawing.Point(20, 217);
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(182, 26);
+            this.textBox21.TabIndex = 13;
+            this.textBox21.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox21_KeyDown);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(223, 188);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(161, 26);
+            this.label44.TabIndex = 12;
+            this.label44.Text = "Подразделение";
+            // 
+            // textBox22
+            // 
+            this.textBox22.Enabled = false;
+            this.textBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox22.Location = new System.Drawing.Point(228, 217);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(182, 26);
+            this.textBox22.TabIndex = 11;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(15, 188);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(97, 26);
+            this.label45.TabIndex = 10;
+            this.label45.Text = "Фамилия";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Uighur", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(236, 141);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(148, 34);
+            this.label46.TabIndex = 9;
+            this.label46.Text = "Контролер";
+            // 
+            // textBox23
+            // 
+            this.textBox23.Enabled = false;
+            this.textBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox23.Location = new System.Drawing.Point(433, 217);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(182, 26);
+            this.textBox23.TabIndex = 8;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(428, 57);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(105, 26);
+            this.label47.TabIndex = 7;
+            this.label47.Text = "Таб.номер";
+            // 
+            // textBox24
+            // 
+            this.textBox24.Enabled = false;
+            this.textBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox24.Location = new System.Drawing.Point(433, 86);
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new System.Drawing.Size(182, 26);
+            this.textBox24.TabIndex = 6;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(223, 57);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(161, 26);
+            this.label48.TabIndex = 5;
+            this.label48.Text = "Подразделение";
+            // 
+            // textBox25
+            // 
+            this.textBox25.Enabled = false;
+            this.textBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox25.Location = new System.Drawing.Point(228, 86);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(182, 26);
+            this.textBox25.TabIndex = 4;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(15, 57);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(97, 26);
+            this.label49.TabIndex = 3;
+            this.label49.Text = "Фамилия";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Microsoft Uighur", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(236, 10);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(174, 34);
+            this.label50.TabIndex = 2;
+            this.label50.Text = "Исполнитель";
+            // 
+            // textBox26
+            // 
+            this.textBox26.BackColor = System.Drawing.Color.White;
+            this.textBox26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox26.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox26.Location = new System.Drawing.Point(20, 86);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(182, 26);
+            this.textBox26.TabIndex = 0;
+            this.textBox26.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox26_KeyDown);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.White;
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button9.Location = new System.Drawing.Point(203, 86);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(19, 26);
+            this.button9.TabIndex = 15;
+            this.button9.Text = "^";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker4.Location = new System.Drawing.Point(326, 292);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(235, 29);
+            this.dateTimePicker4.TabIndex = 26;
+            this.dateTimePicker4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker4_KeyDown);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(341, 263);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(169, 26);
+            this.label41.TabIndex = 25;
+            this.label41.Text = "Срок исполнения";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(12, 263);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(129, 26);
+            this.label42.TabIndex = 24;
+            this.label42.Text = "Код задания";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox27.Location = new System.Drawing.Point(17, 292);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(279, 30);
+            this.textBox27.TabIndex = 23;
+            this.textBox27.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox27_KeyDown);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(8, 40);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(150, 26);
+            this.label51.TabIndex = 28;
+            this.label51.Text = "Дата закрытия";
+            // 
+            // dateTimePicker5
+            // 
+            this.dateTimePicker5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker5.Location = new System.Drawing.Point(16, 69);
+            this.dateTimePicker5.Name = "dateTimePicker5";
+            this.dateTimePicker5.Size = new System.Drawing.Size(235, 29);
+            this.dateTimePicker5.TabIndex = 29;
+            this.dateTimePicker5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker5_KeyDown);
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(264, 40);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(80, 26);
+            this.label52.TabIndex = 31;
+            this.label52.Text = "Оценка";
+            // 
+            // textBox28
+            // 
+            this.textBox28.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox28.Location = new System.Drawing.Point(269, 69);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(126, 30);
+            this.textBox28.TabIndex = 30;
+            this.textBox28.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox28_KeyDown);
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(410, 39);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(199, 26);
+            this.label53.TabIndex = 33;
+            this.label53.Text = "Номер при закрытии";
+            // 
+            // textBox29
+            // 
+            this.textBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox29.Location = new System.Drawing.Point(415, 68);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(196, 30);
+            this.textBox29.TabIndex = 32;
+            this.textBox29.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox29_KeyDown);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.Controls.Add(this.textBox29);
+            this.panel10.Controls.Add(this.label53);
+            this.panel10.Controls.Add(this.label51);
+            this.panel10.Controls.Add(this.dateTimePicker5);
+            this.panel10.Controls.Add(this.label52);
+            this.panel10.Controls.Add(this.textBox28);
+            this.panel10.Location = new System.Drawing.Point(8, 359);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(631, 142);
+            this.panel10.TabIndex = 34;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.Silver;
+            this.panel11.Controls.Add(this.button12);
+            this.panel11.Controls.Add(this.button11);
+            this.panel11.Controls.Add(this.button10);
+            this.panel11.Location = new System.Drawing.Point(645, 19);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(204, 208);
+            this.panel11.TabIndex = 35;
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Location = new System.Drawing.Point(22, 11);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(164, 43);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "Изменить";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button10_PreviewKeyDown);
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button11.Location = new System.Drawing.Point(22, 79);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(164, 43);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "Закрыть";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button11_PreviewKeyDown);
+            // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button12.Location = new System.Drawing.Point(22, 151);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(164, 43);
+            this.button12.TabIndex = 2;
+            this.button12.Text = "Удалить";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button12_PreviewKeyDown);
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(3, 330);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(41, 13);
+            this.label54.TabIndex = 27;
+            this.label54.Text = "label54";
+            this.label54.Visible = false;
             // 
             // Gl_Form
             // 
@@ -1258,6 +1761,9 @@ namespace UASKI
             ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1274,26 +1780,25 @@ namespace UASKI
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.tabPage8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.IspCon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.Tasks.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.ListBox Menu_Step1;
         public System.Windows.Forms.ListBox Menu_Step2;
@@ -1357,7 +1862,6 @@ namespace UASKI
         public System.Windows.Forms.Label label23;
         public System.Windows.Forms.Label label27;
         public System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Panel panel7;
         public System.Windows.Forms.Label label28;
         public System.Windows.Forms.Label label29;
@@ -1378,7 +1882,6 @@ namespace UASKI
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label DateTimeLabel;
         private System.Windows.Forms.Timer TimeTimer;
         public System.Windows.Forms.Button button7;
@@ -1386,6 +1889,57 @@ namespace UASKI
         public System.Windows.Forms.Label label38;
         public System.Windows.Forms.DataGridView dataGridView3;
         public System.Windows.Forms.TextBox textBox19;
+        public System.Windows.Forms.DataGridView dataGridView4;
+        public System.Windows.Forms.TabPage tabPage9;
+        public System.Windows.Forms.TabPage tabPage10;
+        public System.Windows.Forms.TabPage tabPage1;
+        public System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.TabPage tabPage4;
+        public System.Windows.Forms.TabPage tabPage5;
+        public System.Windows.Forms.TabPage tabPage6;
+        public System.Windows.Forms.TabPage tabPage7;
+        public System.Windows.Forms.TabPage IspCon;
+        public System.Windows.Forms.TextBox textBox20;
+        public System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
+        public System.Windows.Forms.DateTimePicker dateTimePicker3;
+        public System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TabPage Tasks;
+        public System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label43;
+        public System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.Label label44;
+        public System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label46;
+        public System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Label label47;
+        public System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.Label label48;
+        public System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
+        public System.Windows.Forms.TextBox textBox26;
+        public System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        public System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Label label53;
+        public System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.Label label52;
+        public System.Windows.Forms.TextBox textBox28;
+        public System.Windows.Forms.DateTimePicker dateTimePicker5;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Panel panel11;
+        public System.Windows.Forms.Panel panel10;
+        public System.Windows.Forms.Button button10;
+        public System.Windows.Forms.Button button11;
+        public System.Windows.Forms.Button button12;
+        public System.Windows.Forms.Label label54;
     }
 }
 

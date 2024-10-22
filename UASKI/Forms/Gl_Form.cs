@@ -40,6 +40,7 @@ namespace UASKI
             SystemData.Index = 0;
             SystemData.IsQuery = false;
             DataModel.Open();
+
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -192,7 +193,58 @@ namespace UASKI
         {
             KeyDownHelper.button7_KeyDown(e);
         }
+        private void dataGridView3_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.dataGridView3_KeyDown(e);
+        }
+        private void dataGridView4_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.dataGridView4_KeyDown(e);
+        }
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDownHelper.dataGridView1_KeyDown(e);
+        }
+        private void textBox26_KeyDown(object sender, KeyEventArgs e)
+        {
 
+        }
+        private void textBox21_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void textBox27_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void dateTimePicker4_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void dateTimePicker5_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void textBox28_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void textBox29_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+        private void button10_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+        }
+        private void button11_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+        }
+        private void button12_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+        }
         #endregion
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -211,8 +263,15 @@ namespace UASKI
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
             SystemHelper.PullListInDataGridView(IspDataGridView
-                       , IspService.GetListByDataGrid(textBox13.Text)
+                       , IspService.GetListByDataGrid(IspService.GetList(textBox13.Text))
                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
+        }
+
+        private void textBox19_TextChanged(object sender, EventArgs e)
+        {
+            SystemHelper.PullListInDataGridView(dataGridView3,
+                        TasksService.GetListByDataGrid(TasksService.GetListTask(textBox19.Text)),
+                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
         }
 
     }
