@@ -119,6 +119,7 @@
     <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
     <Compile Include="Models\BaseElement.cs" />
+    <Compile Include="Models\BasePage.cs" />
     <Compile Include="Models\DataGridRowModel.cs" />
     <Compile Include="Models\Elements\DateTimeElement.cs" />
     <Compile Include="Models\Elements\MonthElement.cs" />
@@ -126,11 +127,20 @@
     <Compile Include="Models\Elements\TextBoxElement.cs" />
     <Compile Include="Models\ItemMenuLevel1.cs" />
     <Compile Include="Models\ItemMenuLevel2.cs" />
+    <Compile Include="Pages\AddHoliday.cs" />
+    <Compile Include="Pages\AddIsp.cs" />
+    <Compile Include="Pages\AddTask.cs" />
+    <Compile Include="Pages\EditIsp.cs" />
+    <Compile Include="Pages\EditTask.cs" />
+    <Compile Include="Pages\SelectArhiv.cs" />
+    <Compile Include="Pages\SelectIsp.cs" />
+    <Compile Include="Pages\SelectTask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\HolidaysService.cs" />
     <Compile Include="Services\IspService.cs" />
     <Compile Include="Services\TasksService.cs" />
+    <Compile Include="StaticModels\Pages.cs" />
     <Compile Include="StaticModels\SystemData.cs" />
     <EmbeddedResource Include="Forms\DateForm.resx">
       <DependentUpon>DateForm.cs</DependentUpon>

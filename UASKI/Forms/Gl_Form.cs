@@ -6,6 +6,7 @@ using UASKI.StaticModels;
 using UASKI.Data.Context;
 using UASKI.Models;
 using UASKI.Services;
+using UASKI.Models.Pages;
 
 namespace UASKI
 {
@@ -40,7 +41,23 @@ namespace UASKI
             SystemData.Index = 0;
             SystemData.IsQuery = false;
             DataModel.Open();
+            
+            InitPage();
+        }
 
+        /// <summary>
+        /// Инициализируем страницы
+        /// </summary>
+        private void InitPage()
+        {
+            SystemData.Pages.AddHoliday = new Pages.AddHoliday();
+            SystemData.Pages.AddIsp = new Pages.AddIsp();
+            SystemData.Pages.AddTask = new Pages.AddTask();
+            SystemData.Pages.EditTask = new Pages.EditTask();
+            SystemData.Pages.EditIsp = new Pages.EditIsp();
+            SystemData.Pages.SelectArhiv = new Pages.SelectArhiv();
+            SystemData.Pages.SelectIsp = new SelectIsp();
+            SystemData.Pages.SelectTask = new Pages.SelectTask();
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -106,144 +123,143 @@ namespace UASKI
         }
         private void IspDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.IspDataGridView_KeyDown(e);
+            SystemData.Pages.SelectIsp.IspDataGridView_KeyDown(e);
         }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox1_KeyDown(e);
+            SystemData.Pages.AddTask.textBox1_KeyDown(e);
         }
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox4_KeyDown(e);
+            SystemData.Pages.AddTask.textBox4_KeyDown(e);
         }
         private void textBox7_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox7_KeyDown(e);
+            SystemData.Pages.AddTask.textBox7_KeyDown(e);
         }
         private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            KeyDownHelper.button1_KeyDown(e);
+            SystemData.Pages.AddTask.button1_KeyDown(e);
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            var r = new PreviewKeyDownEventArgs(Keys.Enter);
-            KeyDownHelper.button1_KeyDown(r);
+           
         }
         private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.dateTimePicker1_KeyDown(e);
+            SystemData.Pages.AddTask.dateTimePicker1_KeyDown(e);
         }
         private void textBox8_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox8_KeyDown(e);
+            SystemData.Pages.AddIsp.textBox8_KeyDown(e);
         }
         private void textBox9_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox9_KeyDown(e);
+            SystemData.Pages.AddIsp.textBox9_KeyDown(e);
         }
         private void textBox10_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox10_KeyDown(e);
+            SystemData.Pages.AddIsp.textBox10_KeyDown(e);
         }
         private void textBox11_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox11_KeyDown(e);
+            SystemData.Pages.AddIsp.textBox11_KeyDown(e);
         }
         private void textBox12_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox12_KeyDown(e);
+            SystemData.Pages.AddIsp.textBox12_KeyDown(e);
         }
         private void button4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            KeyDownHelper.button4_PreviewKeyDown(e);
+            SystemData.Pages.AddIsp.button4_PreviewKeyDown(e);
         }
         private void monthCalendar1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.monthCalendar1_KeyDown(e);
+            SystemData.Pages.AddHoliday.monthCalendar1_KeyDown(e);
         }
         private void button5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            KeyDownHelper.button5_PreviewKeyDown(e);
+            SystemData.Pages.AddHoliday.button5_PreviewKeyDown(e);
         }
         private void textBox18_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox18_KeyDown(e);
+            SystemData.Pages.EditIsp.textBox18_KeyDown(e);
         }
         private void textBox17_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox17_KeyDown(e);
+            SystemData.Pages.EditIsp.textBox17_KeyDown(e);
         }
         private void textBox16_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox16_KeyDown(e);
+            SystemData.Pages.EditIsp.textBox16_KeyDown(e);
         }
         private void textBox15_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox15_KeyDown(e);
+            SystemData.Pages.EditIsp.textBox15_KeyDown(e);
         }
         private void textBox14_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.textBox14_KeyDown(e);
+            SystemData.Pages.EditIsp.textBox14_KeyDown(e);
         }
         private void button6_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            KeyDownHelper.button6_KeyDown(e);
+            SystemData.Pages.EditIsp.button6_KeyDown(e);
         }
         private void button7_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            KeyDownHelper.button7_KeyDown(e);
+            SystemData.Pages.EditIsp.button7_KeyDown(e);
         }
         private void dataGridView3_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.dataGridView3_KeyDown(e);
+            SystemData.Pages.SelectTask.dataGridView3_KeyDown(e);
         }
         private void dataGridView4_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.dataGridView4_KeyDown(e);
+            SystemData.Pages.EditIsp.dataGridView4_KeyDown(e);
         }
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.dataGridView1_KeyDown(e);
+            SystemData.Pages.AddTask.dateTimePicker1_KeyDown(e);
         }
         private void textBox26_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.textBox26_KeyDown(e);
         }
         private void textBox21_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.textBox21_KeyDown(e);
         }
         private void textBox27_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.textBox27_KeyDown(e);
         }
         private void dateTimePicker4_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.dateTimePicker4_KeyDown(e);
         }
         private void dateTimePicker5_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.dateTimePicker5_KeyDown(e);
         }
         private void textBox28_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.textBox28_KeyDown(e);
         }
         private void textBox29_KeyDown(object sender, KeyEventArgs e)
         {
-
+            SystemData.Pages.EditTask.textBox29_KeyDown(e);
         }
         private void button10_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-
+            SystemData.Pages.EditTask.button10_PreviewKeyDown(e);
         }
         private void button11_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-
+            SystemData.Pages.EditTask.button11_PreviewKeyDown(e);
         }
         private void button12_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-
+            SystemData.Pages.EditTask.button12_PreviewKeyDown(e);
         }
         #endregion
 

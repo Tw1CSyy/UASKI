@@ -52,51 +52,28 @@ namespace UASKI.Helpers
             {
                 // Просмотр Исп-Кон
                 case 1:
-                    SystemHelper.PullListInDataGridView(form.IspDataGridView
-                        , IspService.GetListByDataGrid(IspService.GetList(form.textBox13.Text))
-                        , new DataGridRowModel("Табельный номер" , "Фамилия" , "Имя" , "Отчество" , "Код подразделения"));
-                    form.IspDataGridView.Focus();
+                    SystemData.Pages.SelectIsp.Show();
                     break;
                 // Просмотр планов
                 case 2:
-                     SystemHelper.PullListInDataGridView(form.dataGridView3,
-                        TasksService.GetListByDataGrid(TasksService.GetListTask(form.textBox19.Text)),
-                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
-
-                    form.dataGridView3.Focus();
+                    SystemData.Pages.SelectTask.Show();
                     break;
                 // Просмотр Архива
                 case 3:
-                    form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                    form.dateTimePicker3.Value = DateTime.Today;
-
-                    SystemHelper.PullListInDataGridView(form.dataGridView5,
-                        TasksService.GetListByDataGrid(TasksService.GetListArhiv(form.dateTimePicker2.Value, form.dateTimePicker3.Value)),
-                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок" , "Дата закрытия" , "Оценка" , "Номер"));
-                    form.dataGridView5.Focus();
+                    SystemData.Pages.SelectArhiv.Show();
                     break;
-
                 //Добавление карточек
                 case 6:
-                    form.textBox1.Focus();
+                    SystemData.Pages.AddTask.Show();
                 break;
 
                 // Добавление исполнителя
                 case 7:
-                    SystemHelper.PullListInDataGridView(form.dataGridView1
-                        , IspService.GetListByDataGrid(IspService.GetList())
-                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-                    form.textBox8.Focus();
-                    SystemHelper.SelectDataGridView(false, form.dataGridView1);
+                    SystemData.Pages.AddIsp.Show();
                     break;
                 // Добавление праздника
                 case 8:
-                    form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
-                    SystemHelper.PullListInDataGridView(form.dataGridView2,
-                        HolidaysService.GetListByDataGrid(),
-                        new DataGridRowModel("Дата"));
-
-                    form.monthCalendar1.Focus();
+                    SystemData.Pages.AddHoliday.Show();
                     break;
             }
 
@@ -119,76 +96,28 @@ namespace UASKI.Helpers
             switch (index)
             {
                 case 1:
-                    form.textBox13.Clear();
-                    form.IspDataGridView.DataSource = null;
+                    SystemData.Pages.SelectIsp.Clear();
                     break;
                 case 2:
-                    form.textBox18.Clear();
-                    form.dataGridView3.DataSource = null;
+                    SystemData.Pages.SelectTask.Clear();
                     break;
                 case 3:
-                    form.dataGridView5.DataSource = null;
+                    SystemData.Pages.SelectArhiv.Clear();
                     break;
                 case 6:
-                    form.textBox1.Clear();
-                    form.textBox2.Clear();
-                    form.textBox3.Clear();
-                    form.textBox4.Clear();
-                    form.textBox5.Clear();
-                    form.textBox6.Clear();
-                    form.textBox7.Clear();
-
-                    SystemHelper.SelectButton(false, form.button1);
-                    form.dateTimePicker1.Value = System.DateTime.Today;
-                    form.textBox1.Focus();
+                    SystemData.Pages.AddTask.Clear();
                     break;
                 case 7:
-                    SystemHelper.PullListInDataGridView(form.dataGridView1
-                        , IspService.GetListByDataGrid(IspService.GetList())
-                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-
-                    form.textBox8.Clear();
-                    form.textBox9.Clear();
-                    form.textBox10.Clear();
-                    form.textBox11.Clear();
-                    form.textBox12.Clear();
-
-                    form.textBox8.Focus();
-                    SystemHelper.SelectButton(false, form.button4);
+                    SystemData.Pages.AddIsp.Clear();
                     break;
                 case 8:
-                    SystemHelper.PullListInDataGridView(form.dataGridView2,
-                        HolidaysService.GetListByDataGrid(),
-                        new DataGridRowModel("Дата"));
-
-                    form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
-                    form.monthCalendar1.Focus();
-                    SystemHelper.SelectButton(false , form.button5);
+                    SystemData.Pages.AddHoliday.Clear();
                     break;
                 case IndexIsp:
-                    form.textBox18.Clear();
-                    form.textBox17.Clear();
-                    form.textBox16.Clear();
-                    form.textBox15.Clear();
-                    form.textBox14.Clear();
-
-                    form.dataGridView4.DataSource = null;
-                    SystemHelper.SelectButton(false, form.button6);
-                    SystemHelper.SelectButton(false, form.button7);
-                    form.textBox18.Focus();
+                    SystemData.Pages.EditIsp.Clear();
                     break;
                 case IndexTasks:
-                    form.textBox24.Clear();
-                    form.textBox25.Clear();
-                    form.textBox26.Clear();
-                    form.textBox27.Clear();
-                    form.textBox28.Clear();
-                    form.textBox29.Clear();
-                    form.panel10.Visible = false;
-                    form.button11.Enabled = form.button12.Enabled = false;
-                    SystemHelper.SelectButton(false, form.button10);
-                    SystemHelper.SelectButton(false, form.button11);
-                    SystemHelper.SelectButton(false, form.button12);
+                    SystemData.Pages.EditTask.Clear();
                     break;
             }
         }
@@ -199,23 +128,9 @@ namespace UASKI.Helpers
         /// <param name="code">Код сотрудника</param>
         public static void GetIspView(int code)
         {
-            var form = SystemData.Form;
-
-            var isp = IspService.GetByCode(code);
-
-            form.textBox18.Text = isp.FirstName;
-            form.textBox17.Text = isp.Name;
-            form.textBox16.Text = isp.LastName;
-            form.textBox15.Text = isp.Code.ToString();
-            form.textBox14.Text = isp.CodePodr.ToString();
-            form.label38.Text = isp.Code.ToString();
-
-            SystemHelper.PullListInDataGridView(form.dataGridView4,
-                 TasksService.GetListByDataGrid(TasksService.GetListTask("", code)),
-                 new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
-            SystemHelper.SelectTextBox(form.textBox18);
-
             GetView(IndexIsp);
+            SystemData.Pages.EditIsp.Show(code);
+            
         }
 
         /// <summary>
@@ -233,62 +148,9 @@ namespace UASKI.Helpers
         /// <param name="IsArhiv">Данные из архива?</param>
         public static void GetTaskOrArhiv(string code , bool IsArhiv)
         {
-            var form = SystemData.Form;
-           
-            if (!IsArhiv)
-            {
-                var task = TasksService.GetTaskByCode(code);
-
-                var usr1 = IspService.GetByCode(task.IdIsp);
-                var usr2 = IspService.GetByCode(task.IdCon);
-
-                form.textBox26.Text = $"{usr1.FirstName} {usr1.Name.ToUpper()[0]}. {usr1.LastName.ToUpper()[0]}.";
-                form.textBox21.Text = $"{usr2.FirstName} {usr2.Name.ToUpper()[0]}. {usr2.LastName.ToUpper()[0]}.";
-
-                form.textBox24.Text = usr1.Code.ToString();
-                form.textBox25.Text = usr1.CodePodr.ToString();
-                form.textBox23.Text = usr2.Code.ToString();
-                form.textBox22.Text = usr2.CodePodr.ToString();
-                form.label54.Text = task.Code.ToString();
-                form.label54.Enabled = true;
-
-                form.textBox27.Text = task.Code;
-                form.dateTimePicker4.Value = task.Date;
-
-                form.button11.Enabled = form.button12.Enabled = true;
-            }
-            else
-            {
-                var arhiv = TasksService.GetArhivByCode(code);
-
-                var usr1 = IspService.GetByCode(arhiv.IdIsp);
-                var usr2 = IspService.GetByCode(arhiv.IdCon);
-
-                form.textBox26.Text = $"{usr1.FirstName} {usr1.Name.ToUpper()[0]}. {usr1.LastName.ToUpper()[0]}.";
-                form.textBox21.Text = $"{usr2.FirstName} {usr2.Name.ToUpper()[0]}. {usr2.LastName.ToUpper()[0]}.";
-
-                form.textBox24.Text = usr1.Code.ToString();
-                form.textBox25.Text = usr1.CodePodr.ToString();
-                form.textBox23.Text = usr2.Code.ToString();
-                form.textBox22.Text = usr2.CodePodr.ToString();
-                form.label54.Text = arhiv.Code.ToString();
-                form.label54.Enabled = false;
-
-                form.textBox27.Text = arhiv.Code;
-                form.dateTimePicker4.Value = arhiv.Date;
-
-                form.button12.Enabled = true;
-
-                form.dateTimePicker5.Value = arhiv.DateClose;
-                form.textBox28.Text = arhiv.Otm.ToString();
-                form.textBox29.Text = arhiv.Num.ToString();
-
-                form.panel10.Visible = true;
-            }
-
             GetView(IndexTasks);
+            SystemData.Pages.EditTask.Show(code, IsArhiv);
         }
-
         /// <summary>
         /// Переходит на страницу списка задач
         /// </summary>

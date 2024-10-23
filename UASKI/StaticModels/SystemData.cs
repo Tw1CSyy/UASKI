@@ -103,10 +103,7 @@ namespace UASKI.StaticModels
            },
         };
 
-        /// <summary>
-        /// Объект главной формы
-        /// </summary>
-        public static Gl_Form Form { get; set; }
+        public static Pages Pages = new Pages();
 
         /// <summary>
         /// Текущая страница
@@ -117,6 +114,8 @@ namespace UASKI.StaticModels
         /// Требуется ли подтверждение операции
         /// </summary>
         public static bool IsQuery { get; set; }
+
+        public static Gl_Form Form { get; set; }
 
     }
 }
