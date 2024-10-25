@@ -39,6 +39,7 @@ namespace UASKI.Pages
                 form.dateTimePicker4.Value = task.Date;
 
                 form.button11.Enabled = form.button12.Enabled = true;
+                form.panel10.Visible = false;
             }
             else
             {

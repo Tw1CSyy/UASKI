@@ -37,9 +37,11 @@ namespace UASKI.Pages
                 form.Menu_Step2.Focus();
                 form.dataGridView3.ClearSelection();
             }
-            else if (e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter && form.dataGridView3.SelectedRows.Count > 0)
             {
+                var code = form.dataGridView3.SelectedRows[0].Cells[0].Value.ToString();
 
+                NavigationHelper.GetTaskOrArhiv(code, false);
             }
             else
             {
