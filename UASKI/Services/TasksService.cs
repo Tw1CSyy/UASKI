@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
 
@@ -18,23 +16,31 @@ namespace UASKI.Services
         /// <summary>
         /// Возращает список задач
         /// </summary>
+        public static List<TaskEntity> GetListTask()
+        {
+            return context.Tasks;
+        }
+
+        /// <summary>
+        /// Возращает список задач
+        /// </summary>
         /// <param name="search">Строка поиска</param>
+        public static List<TaskEntity> GetListTask(string search)
+        {
+            var list = context.Tasks;
+            list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
+            return list;
+        }
+
+        /// <summary>
+        /// Возращает список задач
+        /// </summary>
         /// <param name="id">id пользователя</param>
         /// <returns></returns>
-        public static List<TaskEntity> GetListTask(string search = "", int id = 0)
+        public static List<TaskEntity> GetListTask(int id)
         {
-           var list = context.Tasks;
-
-            if (!string.IsNullOrEmpty(search))
-            {
-                list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
-            }
-
-            if (id != 0)
-            {
-                list = list.Where(c => c.IdIsp == id || c.IdCon == id).ToList();
-            }
-
+            var list = context.Tasks;
+            list = list.Where(c => c.IdIsp == id || c.IdCon == id).ToList();
             return list;
         }
 
@@ -46,7 +52,7 @@ namespace UASKI.Services
         /// <returns></returns>
         public static List<ArhivEntity> GetListArhiv(DateTime dateFrom, DateTime dateTo)
         {
-            var list = context.Arhiv;
+            var list = GetListArhiv();
             list = list.Where(c => c.DateClose >= dateFrom && c.DateClose < dateFrom.AddDays(1)).ToList();
 
             return list;
@@ -58,9 +64,7 @@ namespace UASKI.Services
         /// <returns></returns>
         public static List<ArhivEntity> GetListArhiv()
         {
-            var list = context.Arhiv;
-
-            return list;
+            return context.Arhiv;
         }
 
         /// <summary>

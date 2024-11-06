@@ -40,37 +40,14 @@ namespace UASKI.Forms
 
             }
 
-            string symbol = "";
+            string symbol = SystemHelper.GetIntKeyDown(e.KeyCode).ToString();
 
-            switch (e.KeyCode)
+            if(e.KeyCode == Keys.Back && form.textBox1.Text.Length != 0)
             {
-                case Keys.D0:
-                    symbol = "0"; break;
-                case Keys.D1:
-                    symbol = "1"; break;
-                case Keys.D2:
-                    symbol = "2"; break;
-                case Keys.D3:
-                    symbol = "3"; break;
-                case Keys.D4:
-                    symbol = "4"; break;
-                case Keys.D5:
-                    symbol = "5"; break;
-                case Keys.D6:
-                    symbol = "6"; break;
-                case Keys.D7:
-                    symbol = "7"; break;
-                case Keys.D8:
-                    symbol = "8"; break;
-                case Keys.D9:
-                    symbol = "9"; break;
-                case Keys.Back:
-                    if (form.textBox1.Text.Length != 0)
-                        form.textBox1.Text = form.textBox1.Text.Remove(form.textBox1.Text.Length - 1, 1);
-                    break;
+                form.textBox1.Text = form.textBox1.Text.Remove(form.textBox1.Text.Length - 1, 1);
             }
 
-            if (!string.IsNullOrEmpty(symbol))
+            if (!symbol.Equals("-1"))
             {
                 var textBox = form.textBox1;
                 textBox.Text += symbol;

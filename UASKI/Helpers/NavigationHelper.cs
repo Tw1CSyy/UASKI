@@ -5,11 +5,6 @@ using UASKI.StaticModels;
 using UASKI.Services;
 using System.Windows.Forms.VisualStyles;
 using System.Reflection;
-using System;
-using UASKI.Data.Entityes;
-using System.Windows.Forms;
-using System.Threading.Tasks;
-
 namespace UASKI.Helpers
 {
     /// <summary>
@@ -66,7 +61,6 @@ namespace UASKI.Helpers
                 case 6:
                     SystemData.Pages.AddTask.Show();
                 break;
-
                 // Добавление исполнителя
                 case 7:
                     SystemData.Pages.AddIsp.Show();

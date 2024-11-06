@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace UASKI.Models
 {
@@ -9,7 +8,7 @@ namespace UASKI.Models
     /// </summary>
     public abstract class BaseElement
     {
-        
+
         /// <summary>
         /// Label для вывода ошибки для элемента
         /// </summary>

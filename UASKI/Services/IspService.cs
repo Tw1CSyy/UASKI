@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
 
@@ -17,20 +15,26 @@ namespace UASKI.Services
         /// <summary>
         /// Возращает список пользователей
         /// </summary>
+        /// <returns></returns>
+        public static List<IspEntity> GetList()
+        {
+            return context.Isps;
+        }
+
+        /// <summary>
+        /// Возращает список пользователей
+        /// </summary>
         /// <param name="search">Строка поиска</param>
         /// <returns></returns>
-        public static List<IspEntity> GetList(string search = "")
+        public static List<IspEntity> GetList(string search)
         {
-           var model = context.Isps.Where(c => c.IsActive).ToList();
+            var model = GetList().Where(c => c.IsActive).ToList();
 
-            if (!string.IsNullOrEmpty(search))
-            {
-                model = model.Where(c => c.Code.ToString().Contains(search) ||
+            model = model.Where(c => c.Code.ToString().Contains(search) ||
                 c.CodePodr.ToString().Contains(search) ||
                 c.FirstName.ToLower().Contains(search.ToLower()) ||
                 c.Name.ToLower().Contains(search.ToLower()))
-                    .ToList();
-            }
+                .ToList();
 
             return model;
         }

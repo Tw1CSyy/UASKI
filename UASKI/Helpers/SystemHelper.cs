@@ -116,7 +116,7 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Возращает русский символ эквивалетный нажатой клавише
+        /// Возращает русский символ эквивалетный нажатой клавише или '+'
         /// </summary>
         /// <param name="Key">Нажатая клавиша</param>
         private static char GetCharKeyDown(Keys Key)
@@ -142,6 +142,26 @@ namespace UASKI.Helpers
                 case Keys.D8:
                     return '8';
                 case Keys.D9:
+                    return '9';
+                case Keys.NumPad0:
+                    return '0';
+                case Keys.NumPad1:
+                    return '1';
+                case Keys.NumPad2:
+                    return '2';
+                case Keys.NumPad3:
+                    return '3';
+                case Keys.NumPad4:
+                    return '4';
+                case Keys.NumPad5:
+                    return '5';
+                case Keys.NumPad6:
+                    return '6';
+                case Keys.NumPad7:
+                    return '7';
+                case Keys.NumPad8:
+                    return '8';
+                case Keys.NumPad9:
                     return '9';
                 case Keys.A:
                     return 'ф';
@@ -292,6 +312,59 @@ namespace UASKI.Helpers
             }
 
             return DateTime.MinValue;
+        }
+
+        /// <summary>
+        /// Возращает число эквивалетное нажатой клавише или -1
+        /// </summary>
+        /// <param name="Key">Нажатая клавиша</param>
+        public static int GetIntKeyDown(Keys keys)
+        {
+            switch (keys)
+            {
+                case Keys.D0:
+                    return 0;
+                case Keys.D1:
+                    return 1;
+                case Keys.D2:
+                    return 2;
+                case Keys.D3:
+                    return 3;
+                case Keys.D4:
+                    return 4;
+                case Keys.D5:
+                    return 5;
+                case Keys.D6:
+                    return 6;
+                case Keys.D7:
+                    return 7;
+                case Keys.D8:
+                    return 8;
+                case Keys.D9:
+                    return 9;
+                case Keys.NumPad0:
+                    return 0;
+                case Keys.NumPad1:
+                    return 1;
+                case Keys.NumPad2:
+                    return 2;
+                case Keys.NumPad3:
+                    return 3;
+                case Keys.NumPad4:
+                    return 4;
+                case Keys.NumPad5:
+                    return 5;
+                case Keys.NumPad6:
+                    return 6;
+                case Keys.NumPad7:
+                    return 7;
+                case Keys.NumPad8:
+                    return 8;
+                case Keys.NumPad9:
+                    return 9;
+            }
+
+            return -1;
         }
     }
 }

@@ -39,7 +39,10 @@ namespace UASKI.Pages
                 form.dateTimePicker4.Value = task.Date;
 
                 form.button11.Enabled = form.button12.Enabled = true;
+                form.button11.Text = "Закрыть";
                 form.panel10.Visible = false;
+
+                SystemHelper.SelectTextBox(form.textBox26);
             }
             else
             {
@@ -62,12 +65,14 @@ namespace UASKI.Pages
                 form.dateTimePicker4.Value = arhiv.Date;
 
                 form.button12.Enabled = true;
+                form.button11.Text = "Открыть";
 
                 form.dateTimePicker5.Value = arhiv.DateClose;
                 form.textBox28.Text = arhiv.Otm.ToString();
                 form.textBox29.Text = arhiv.Num.ToString();
 
                 form.panel10.Visible = true;
+                SystemHelper.SelectTextBox(form.textBox26);
             }
         }
 
@@ -193,6 +198,8 @@ namespace UASKI.Pages
 
         public void dateTimePicker4_KeyDown(KeyEventArgs e)
         {
+            e.Handled = true;
+
             if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox27);
@@ -231,6 +238,8 @@ namespace UASKI.Pages
 
         public void dateTimePicker5_KeyDown(KeyEventArgs e)
         {
+            e.Handled = true;
+
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectTextBox(form.textBox28);
@@ -297,17 +306,85 @@ namespace UASKI.Pages
 
         public void button10_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
+            e.IsInputKey = true;
 
+            if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.SelectButton(false, form.button10);
+                SystemHelper.SelectButton(true, form.button11);
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+
+            }
+            else if(e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectButton(false, form.button10);
+                SystemHelper.SelectTextBox(form.textBox26);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectButton(false, form.button10);
+                form.Menu_Step2.Enabled = false;
+                form.Menu_Step2.Focus();
+            }
         }
 
         public void button11_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
+            e.IsInputKey = true;
 
+            if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectButton(true, form.button10);
+                SystemHelper.SelectButton(false, form.button11);
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SystemHelper.SelectButton(false, form.button11);
+                SystemHelper.SelectButton(true, form.button12);
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+
+            }
+            else if(e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectButton(false, form.button11);
+                SystemHelper.SelectTextBox(form.textBox26);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectButton(false, form.button11);
+                form.Menu_Step2.Enabled = false;
+                form.Menu_Step2.Focus();
+            }
         }
 
         public void button12_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
+            e.IsInputKey = true;
 
+            if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectButton(false, form.button12);
+                SystemHelper.SelectButton(true, form.button11);
+            }
+            else if(e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectButton(false, form.button12);
+                SystemHelper.SelectTextBox(form.textBox26);
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectButton(false, form.button11);
+                form.Menu_Step2.Enabled = false;
+                form.Menu_Step2.Focus();
+            }
         }
     }
 }

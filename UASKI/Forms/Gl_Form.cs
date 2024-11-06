@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
-using UASKI.Data.Context;
 using UASKI.Models;
 using UASKI.Services;
 using UASKI.Models.Pages;
@@ -37,10 +36,21 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
+            // Инициализируем системные переменные
             SystemData.Form = this;
             SystemData.Index = 0;
             SystemData.IsQuery = false;
-            DataModel.Open();
+
+            // Открываем подключение
+            try
+            {
+                DataModel.Open();
+            }
+            catch (Exception)
+            {
+                Menu_Step1.Visible = Menu_Step2.Visible = false;
+                ErrorHelper.StatusError();
+            }
             
             InitPage();
         }
@@ -98,18 +108,29 @@ namespace UASKI
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
             var form = this;
+
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
             }
-
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
                 form.Menu_Step2.SelectedIndex = 0;
                 form.Menu_Step1.Enabled = false;
+            }
+            else
+            {
+                int si = SystemHelper.GetIntKeyDown(e.KeyCode);
+
+                if(si != 0 && si != -1 && Menu_Step1.Items.Count >= si)
+                {
+                    Menu_Step1.SelectedIndex = si - 1;
+                    var r = new KeyEventArgs(Keys.Enter);
+                    Menu_Step1_KeyDown(sender, r);
+                }
             }
         }
         private void Menu_Step2_KeyDown(object sender, KeyEventArgs e)
@@ -132,6 +153,16 @@ namespace UASKI
             else if (e.KeyCode == Keys.Enter)
             {
                 NavigationHelper.Start();
+            }
+            else
+            {
+                int si = SystemHelper.GetIntKeyDown(e.KeyCode);
+
+                if (si != 0 && si != -1 && Menu_Step2.Items.Count >= si)
+                {
+                    Menu_Step2.SelectedIndex = si - 1;
+                    NavigationHelper.Start();
+                }
             }
         }
         private void Menu_Step2_Click(object sender, EventArgs e)
