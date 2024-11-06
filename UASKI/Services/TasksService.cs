@@ -82,41 +82,41 @@ namespace UASKI.Services
 
             if (string.IsNullOrEmpty(IdIsp.Value))
             {
-                ErrorHelper.Error("Поле не заполнено",IdIsp);
+                IdIsp.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(IdCon.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", IdCon);
+                IdCon.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Code.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Code);
+                Code.Error("Поле не заполнено");
                 result = false;
             }
 
-            var task = context.Tasks.FirstOrDefault(c => c.Code.Equals(Code.Value));
+            var task = GetListTask().FirstOrDefault(c => c.Code.Equals(Code.Value));
 
             if (task != null)
             {
-                ErrorHelper.Error("Код задачи должен быть уникальным", Code);
+                Code.Error("Код задачи должен быть уникальным");
                 result = false;
             }
 
             if (date.Value < DateTime.Today)
             {
-                ErrorHelper.Error("Срок исполнения не может быть раньше текущей даты", date);
+                date.Error("Срок исполнения не может быть раньше текущей даты");
                 result = false;
             }
 
-            var dat = context.Holidays.FirstOrDefault(c => c.Date == date.Value);
+            var dat = HolidaysService.GetList().FirstOrDefault(c => c.Date == date.Value);
 
             if (dat != null)
             {
-                ErrorHelper.Error("Срок исполнения не может быть празднечным днем", date);
+                date.Error("Срок исполнения не может быть празднечным днем");
                 result = false;
             }
 

@@ -43,10 +43,20 @@ namespace UASKI.Models.Elements
         /// </summary>
         /// <param name="text">TextBox</param>
         /// <param name="label">Label ошибки</param>
-        public TextBoxElement(TextBox text , Label label)
+        private TextBoxElement(TextBox text , Label label)
         {
             TextBox = text;
             ErrorLabel = label;
+        }
+
+        /// <summary>
+        /// Создает модель класса
+        /// </summary>
+        /// <param name="text">TextBox</param>
+        /// <param name="label">Label ошибки</param>
+        public static TextBoxElement New(TextBox text, Label label)
+        {
+            return new TextBoxElement(text, label);
         }
     }
 }

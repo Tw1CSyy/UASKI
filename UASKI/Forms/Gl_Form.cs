@@ -20,7 +20,7 @@ namespace UASKI
         }
 
         /// <summary>
-        /// Старотовый метод
+        /// Стартовый метод
         /// </summary>
         private void Start()
         {
@@ -97,18 +97,49 @@ namespace UASKI
 
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.Menu_Step1_KeyDown(e);
+            var form = this;
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                form.Menu_Step2.SelectedIndex = 0;
+                form.Menu_Step1.Enabled = false;
+            }
         }
         private void Menu_Step2_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.Menu_Step2_KeyDown(e);
+            var form = this;
+
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step1.Enabled = true;
+                form.Menu_Step1.Focus();
+                form.Menu_Step2.ClearSelected();
+                form.Menu_Step2.Enabled = false;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                NavigationHelper.Start();
+            }
         }
         private void Menu_Step2_Click(object sender, EventArgs e)
         {
             if(Menu_Step2.SelectedIndex != -1)
             {
                 var r = new KeyEventArgs(Keys.Enter);
-                KeyDownHelper.Menu_Step2_KeyDown(r);
+                Menu_Step2_KeyDown(sender , r);
             }
         }
         private void panel3_Click(object sender, EventArgs e)
@@ -281,7 +312,7 @@ namespace UASKI
             SystemHelper.PullListInDataGridView(IspDataGridView
                        , IspService.GetListByDataGrid(IspService.GetList(textBox13.Text))
                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-        }
+        } 
 
         private void textBox19_TextChanged(object sender, EventArgs e)
         {

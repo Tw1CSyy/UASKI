@@ -42,7 +42,29 @@ namespace UASKI.Forms
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyDownHelper.dataGridView_KeyDown(e , this , t1 , t2 , t3 , dataGridView1);
+            var form = this;
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                form.Dispose();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                var row = dataGridView1.SelectedRows;
+
+                if (row != null && row.Count > 0)
+                {
+                    t1.Text = row[0].Cells[1].Value.ToString() + " " + row[0].Cells[2].Value.ToString()[0] + ". " + row[0].Cells[3].Value.ToString()[0] + ".";
+                    t2.Text = row[0].Cells[4].Value.ToString();
+                    t3.Text = row[0].Cells[0].Value.ToString();
+
+                    form.Dispose();
+                }
+            }
+            else
+            {
+                SystemHelper.CharInTextBox(form.textBox1, e.KeyCode);
+            }
         }
 
         private void textBox1_TextChanged(object sender, System.EventArgs e)

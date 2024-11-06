@@ -95,43 +95,43 @@ namespace UASKI.Services
 
             if (string.IsNullOrEmpty(FirstName.Value))
             {
-                ErrorHelper.Error("Поле не заполнено" , FirstName);
+                FirstName.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Name.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Name);
+                Name.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(LastName.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", LastName);
+                LastName.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Code.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Code);
+                Code.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Podr.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Podr);
+                Podr.Error("Поле не заполнено");
                 result = false;
             }
 
             if (!Code.IsNumber)
             {
-                ErrorHelper.Error("Поле имеет не числовой тип", Code);
+                Code.Error("Поле имеет не числовой тип");
                 result = false;
             }
 
             if (!Podr.IsNumber)
             {
-                ErrorHelper.Error("Поле имеет не числовой тип", Podr);
+                Podr.Error("Поле имеет не числовой тип");
                 result = false;
             }
 
@@ -180,43 +180,43 @@ namespace UASKI.Services
 
             if (string.IsNullOrEmpty(FirstName.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", FirstName);
+                FirstName.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Name.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Name);
+                Name.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(LastName.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", LastName);
+                LastName.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Code.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Code);
+                Code.Error("Поле не заполнено");
                 result = false;
             }
 
             if (string.IsNullOrEmpty(Podr.Value))
             {
-                ErrorHelper.Error("Поле не заполнено", Podr);
+                Podr.Error("Поле не заполнено");
                 result = false;
             }
 
             if (!Code.IsNumber)
             {
-                ErrorHelper.Error("Поле имеет не числовой тип", Code);
+                Code.Error("Поле имеет не числовой тип");
                 result = false;
             }
 
             if (!Podr.IsNumber)
             {
-                ErrorHelper.Error("Поле имеет не числовой тип", Podr);
+                Podr.Error("Поле имеет не числовой тип");
                 result = false;
             }
 

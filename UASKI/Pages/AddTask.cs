@@ -53,7 +53,7 @@ namespace UASKI.Pages
                     SystemHelper.SelectTextBox(form.textBox4);
                 }
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var form1 = new IspForm(form.textBox1, form.textBox2, form.textBox3);
                 form1.Show();
@@ -86,7 +86,7 @@ namespace UASKI.Pages
                     SystemHelper.SelectTextBox(form.textBox7);
                 }
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var form1 = new IspForm(form.textBox4, form.textBox5, form.textBox6);
                 form1.Show();
@@ -126,10 +126,10 @@ namespace UASKI.Pages
                 if (SystemData.IsQuery)
                 {
                     var result = TasksService.Add(
-                    new TextBoxElement(form.textBox7, form.label25),
-                    new TextBoxElement(form.textBox3, form.label23),
-                    new TextBoxElement(form.textBox6, form.label24),
-                    new DateTimeElement(form.dateTimePicker1, form.label26)
+                    TextBoxElement.New(form.textBox7, form.label25),
+                    TextBoxElement.New(form.textBox3, form.label23),
+                    TextBoxElement.New(form.textBox6, form.label24),
+                    DateTimeElement.New(form.dateTimePicker1, form.label26)
                     );
 
                     if (result)
@@ -190,7 +190,7 @@ namespace UASKI.Pages
 
                 SystemHelper.SelectTextBox(form.textBox4);
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker1);
                 f.Show();

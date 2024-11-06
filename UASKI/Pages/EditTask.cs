@@ -107,7 +107,7 @@ namespace UASKI.Pages
                     SystemHelper.SelectTextBox(form.textBox21);
                 }
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var ispForm = new IspForm(form.textBox26, form.textBox25, form.textBox24);
                 ispForm.Show();
@@ -146,7 +146,7 @@ namespace UASKI.Pages
                     SystemHelper.SelectTextBox(form.textBox27);
                 }
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var ispForm = new IspForm(form.textBox21, form.textBox22, form.textBox23);
                 ispForm.Show();
@@ -223,7 +223,7 @@ namespace UASKI.Pages
                 else
                     NavigationHelper.GetArhivSelectView();
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var date = new DateForm(form.dateTimePicker4);
             }
@@ -235,7 +235,7 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectTextBox(form.textBox28);
             }
-            else if (e.KeyCode == KeyDownHelper.ActionKey)
+            else if (e.KeyCode == SystemData.ActionKey)
             {
                 var dateForm = new DateForm(form.dateTimePicker5);
             }

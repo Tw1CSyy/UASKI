@@ -4,7 +4,6 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using UASKI.Models;
-using UASKI.StaticModels;
 
 namespace UASKI.Helpers
 {

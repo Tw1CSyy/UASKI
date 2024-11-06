@@ -15,66 +15,7 @@ namespace UASKI.Helpers
     /// </summary>
     public static class ErrorHelper
     {
-        /// <summary>
-        /// Обработка ТекстБокса
-        /// </summary>
-        /// <param name="text">Текст ошибки</param>
-        /// <param name="error">Модель ошибки</param>
-        public static void Error(string text , TextBoxElement error)
-        {
-            if(error.ErrorLabel.Visible != true)
-            {
-                error.ErrorLabel.ForeColor = Color.Red;
-                error.ErrorLabel.Visible = true;
-                error.ErrorLabel.Text = text;
-            }
-        }
-
-        /// <summary>
-        /// Обработка Нумерика
-        /// </summary>
-        /// <param name="text">Текст ошибки</param>
-        /// <param name="error">Модель ошибки</param>
-        public static void Error(string text, NumericElement error)
-        {
-            if (error.ErrorLabel.Visible != true)
-            {
-                error.ErrorLabel.ForeColor = Color.Red;
-                error.ErrorLabel.Visible = true;
-                error.ErrorLabel.Text = text;
-            }
-        }
-
-        /// <summary>
-        /// Обработка Даты
-        /// </summary>
-        /// <param name="text">Текст ошибки</param>
-        /// <param name="error">Модель ошибки</param>
-        public static void Error(string text, DateTimeElement error)
-        {
-            if (error.ErrorLabel.Visible != true)
-            {
-                error.ErrorLabel.ForeColor = Color.Red;
-                error.ErrorLabel.Visible = true;
-                error.ErrorLabel.Text = text;
-            }
-        }
-
-        /// <summary>
-        /// Обработка Даты
-        /// </summary>
-        /// <param name="text">Текст ошибки</param>
-        /// <param name="error">Модель ошибки</param>
-        public static void Error(string text, MonthElement error)
-        {
-            if (error.ErrorLabel.Visible != true)
-            {
-                error.ErrorLabel.ForeColor = Color.Red;
-                error.ErrorLabel.Visible = true;
-                error.ErrorLabel.Text = text;
-            }
-        }
-
+        
         /// <summary>
         /// Изменяет статус на ошибку
         /// </summary>

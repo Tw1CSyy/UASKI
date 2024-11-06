@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace UASKI.Models
 {
@@ -20,6 +21,17 @@ namespace UASKI.Models
         public void Dispose()
         {
             ErrorLabel.Visible = false;
+        }
+
+        /// <summary>
+        /// Выводит ошибку
+        /// </summary>
+        /// <param name="text">Текст ошибки</param>
+        public void Error(string text)
+        {
+            ErrorLabel.ForeColor = Color.Red;
+            ErrorLabel.Visible = true;
+            ErrorLabel.Text = text;
         }
     }
 }

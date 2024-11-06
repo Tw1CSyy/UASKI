@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
+using System.Windows.Forms;
 using UASKI.Models;
 
 
@@ -116,6 +117,8 @@ namespace UASKI.StaticModels
         public static bool IsQuery { get; set; }
 
         public static Gl_Form Form { get; set; }
+
+        public static readonly Keys ActionKey = Keys.F2;
 
     }
 }

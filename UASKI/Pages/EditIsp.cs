@@ -165,11 +165,11 @@ namespace UASKI.Pages
                     var result = IspService.Update
                    (
                    Convert.ToInt32(form.label38.Text),
-                   new TextBoxElement(form.textBox18, form.label32),
-                   new TextBoxElement(form.textBox17, form.label31),
-                   new TextBoxElement(form.textBox16, form.label30),
-                   new TextBoxElement(form.textBox15, form.label29),
-                   new TextBoxElement(form.textBox14, form.label28)
+                   TextBoxElement.New(form.textBox18, form.label32),
+                   TextBoxElement.New(form.textBox17, form.label31),
+                   TextBoxElement.New(form.textBox16, form.label30),
+                   TextBoxElement.New(form.textBox15, form.label29),
+                   TextBoxElement.New(form.textBox14, form.label28)
                    );
 
                     if (result)

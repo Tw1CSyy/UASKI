@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+
 namespace UASKI.Models
 {
     /// <summary>

@@ -22,10 +22,20 @@ namespace UASKI.Models.Elements
         /// </summary>
         /// <param name="num">NumericUpDown</param>
         /// <param name="label">Label ошибки</param>
-        public NumericElement(NumericUpDown num , Label label)
+        private NumericElement(NumericUpDown num , Label label)
         {
             NumericUpDown = num;
             ErrorLabel = label;
+        }
+
+        /// <summary>
+        /// Создает модель класса
+        /// </summary>
+        /// <param name="num">NumericUpDown</param>
+        /// <param name="label">Label ошибки</param>
+        public static NumericElement New(NumericUpDown num, Label label)
+        {
+            return new NumericElement(num, label);
         }
     }
 }

@@ -23,10 +23,20 @@ namespace UASKI.Models.Elements
         /// </summary>
         /// <param name="date">DateTimePicker</param>
         /// <param name="label">Label ошибки</param>
-        public DateTimeElement(DateTimePicker date , Label label)
+        private DateTimeElement(DateTimePicker date , Label label)
         {
             DateTimePicker = date;
             ErrorLabel = label;
+        }
+
+        /// <summary>
+        /// Создает модель класса
+        /// </summary>
+        /// <param name="date">DateTimePicker</param>
+        /// <param name="label">Label ошибки</param>
+        public static DateTimeElement New(DateTimePicker date, Label label)
+        {
+            return new DateTimeElement(date, label);
         }
     }
 }

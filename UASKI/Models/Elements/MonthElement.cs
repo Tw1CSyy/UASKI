@@ -25,17 +25,6 @@ namespace UASKI.Models.Elements
         public List<DateTime> DateRange { get => GetRange(); }
 
         /// <summary>
-        /// Возращает модель класса
-        /// </summary>
-        /// <param name="calendar">MonthCalendar</param>
-        /// <param name="error">Label ошибки</param>
-        public MonthElement(MonthCalendar calendar , Label error)
-        {
-            MonthCalendar = calendar;
-            ErrorLabel = error;
-        }
-
-        /// <summary>
         /// Возращает список дат из диапазона
         /// </summary>
         private List<DateTime> GetRange()
@@ -49,6 +38,27 @@ namespace UASKI.Models.Elements
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Возращает модель класса
+        /// </summary>
+        /// <param name="calendar">MonthCalendar</param>
+        /// <param name="error">Label ошибки</param>
+        private MonthElement(MonthCalendar calendar, Label error)
+        {
+            MonthCalendar = calendar;
+            ErrorLabel = error;
+        }
+
+        /// <summary>
+        /// Возращает модель класса
+        /// </summary>
+        /// <param name="calendar">MonthCalendar</param>
+        /// <param name="error">Label ошибки</param>
+        public static MonthElement New(MonthCalendar calendar, Label error)
+        {
+            return new MonthElement(calendar, error);
         }
     }
 }

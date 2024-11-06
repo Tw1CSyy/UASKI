@@ -61,7 +61,7 @@ namespace UASKI.Pages
                 {
                     var result = HolidaysService.Add
                     (
-                        new MonthElement(form.monthCalendar1, form.label27)
+                        MonthElement.New(form.monthCalendar1, form.label27)
                     );
 
                     if (result)

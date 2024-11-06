@@ -18,7 +18,7 @@ namespace UASKI.Services
         /// Возращает список празднечных дней
         /// </summary>
         /// <returns></returns>
-        private static List<HolidayEntity> GetList()
+        public static List<HolidayEntity> GetList()
         {
             var context = new UAContext();
             return context.Holidays;
@@ -56,7 +56,7 @@ namespace UASKI.Services
 
             if(date.Date < DateTime.Today.Date)
             {
-                ErrorHelper.Error("Дата не может быть раньше текущей даты", date);
+                date.Error("Дата не может быть раньше текущей даты");
                 result = false;
             }
 
@@ -66,7 +66,7 @@ namespace UASKI.Services
 
                 if(holy != null)
                 {
-                    ErrorHelper.Error("Дата из диапазона уже существует" , date);
+                    date.Error("Дата из диапазона уже существует");
                     result = false;
                     continue;
                 }
