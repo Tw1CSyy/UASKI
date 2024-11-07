@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
@@ -77,6 +78,33 @@ namespace UASKI.Services
         /// <returns>true - успешное выполнение</returns>
         public static bool Add(TextBoxElement Code , TextBoxElement IdIsp , TextBoxElement IdCon , DateTimeElement date)
         {
+            var result = Validation(Code, IdIsp, IdCon, date);
+
+            if(!result)
+                return false;
+
+            var model = new TaskEntity
+                (
+                 Code.Value,
+                 Convert.ToInt32(IdIsp.Value),
+                 Convert.ToInt32(IdCon.Value),
+                 date.Value
+                );
+
+            return context.Add(model);
+
+        }
+
+        /// <summary>
+        /// Валидация задачи
+        /// </summary>
+        /// <param name="code">Код задания</param>
+        /// <param name="IdIsp">Номер исполнителя</param>
+        /// <param name="IdCon">Номер контролера</param>
+        /// <param name="date">Срок исполнения</param>
+        /// <returns>true - успешное выполнение</returns>
+        private static bool Validation(TextBoxElement Code, TextBoxElement IdIsp, TextBoxElement IdCon, DateTimeElement date)
+        {
             var result = true;
 
             Code.Dispose();
@@ -84,27 +112,25 @@ namespace UASKI.Services
             IdCon.Dispose();
             date.Dispose();
 
-            if (string.IsNullOrEmpty(IdIsp.Value))
+            if (IdIsp.IsNull)
             {
                 IdIsp.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(IdCon.Value))
+            if (IdCon.IsNull)
             {
                 IdCon.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(Code.Value))
+            if (Code.IsNull)
             {
                 Code.Error("Поле не заполнено");
                 result = false;
             }
 
-            var task = GetListTask().FirstOrDefault(c => c.Code.Equals(Code.Value));
-
-            if (task != null)
+            if (GetTaskByCode(Code.Value) != null)
             {
                 Code.Error("Код задачи должен быть уникальным");
                 result = false;
@@ -116,28 +142,13 @@ namespace UASKI.Services
                 result = false;
             }
 
-            var dat = HolidaysService.GetList().FirstOrDefault(c => c.Date == date.Value);
-
-            if (dat != null)
+            if (HolidaysService.CheckDay(date.Value))
             {
                 date.Error("Срок исполнения не может быть празднечным днем");
                 result = false;
             }
 
-            if(result)
-            {
-                var model = new TaskEntity
-                (
-                 Code.Value,
-                 Convert.ToInt32(IdIsp.Value),
-                 Convert.ToInt32(IdCon.Value),
-                 date.Value
-                );
-                return context.Add(model);
-            }
-
-            return false;
-           
+            return result;
         }
 
         /// <summary>
@@ -160,7 +171,7 @@ namespace UASKI.Services
             {
                 var entity = new TaskEntity(item.Code, newCode, item.IdCon, item.Date);
 
-                if(!context.Update(entity))
+                if(!context.Update(entity , entity.Code))
                 {
                     return false;
                 }
@@ -170,7 +181,7 @@ namespace UASKI.Services
             {
                 var entity = new TaskEntity(item.Code, item.IdIsp, newCode, item.Date);
 
-                if (!context.Update(entity))
+                if (!context.Update(entity , entity.Code))
                 {
                     return false;
                 }
@@ -178,9 +189,9 @@ namespace UASKI.Services
 
             foreach (var item in list3)
             {
-                var entity = new ArhivEntity(item.Code, newCode, item.IdCon, item.Date , item.DateClose , item.Otm , item.Num);
+                var entity = new ArhivEntity(item.Code, newCode, item.IdCon, item.Date , item.DateClose , item.Otm);
 
-                if (!context.Update(entity))
+                if (!context.Update(entity , entity.Code))
                 {
                     return false;
                 }
@@ -188,9 +199,9 @@ namespace UASKI.Services
 
             foreach (var item in list4)
             {
-                var entity = new ArhivEntity(item.Code, item.IdIsp, newCode, item.Date, item.DateClose, item.Otm, item.Num);
+                var entity = new ArhivEntity(item.Code, item.IdIsp, newCode, item.Date, item.DateClose, item.Otm);
 
-                if (!context.Update(entity))
+                if (!context.Update(entity , entity.Code))
                 {
                     return false;
                 }
@@ -238,8 +249,7 @@ namespace UASKI.Services
                     $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.", 
                     $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.", 
                     item.Date.ToString("dd.MM.yyyy") , item.DateClose.ToString("dd.MM.yyyy") , 
-                    item.Otm.ToString() , 
-                    item.Num.ToString());
+                    item.Otm.ToString());
 
                 model.Add(st);
             }
@@ -271,6 +281,26 @@ namespace UASKI.Services
             var item = list.FirstOrDefault(c => c.Code.Equals(code));
 
             return item;
+        }
+
+        /// <summary>
+        /// Изменяет задачу, предварительно валидируя
+        /// </summary>
+        /// <param name="code">Код текущей задачи</param>
+        /// <param name="IdIsp">Код исполнителя</param>
+        /// <param name="IdCon">Код котроллера</param>
+        /// <param name="Code">Новый код задачи</param>
+        /// <param name="date">Дата срока</param>
+        /// <returns>true - успешная операция</returns>
+        public static bool UpdateTask(string code, TextBoxElement IdIsp, TextBoxElement IdCon, TextBoxElement Code, DateTimeElement date)
+        {
+            var result = Validation(Code, IdIsp, IdCon, date);
+
+            if (!result)
+                return false;
+
+            var entity = new TaskEntity(Code.Value, Convert.ToInt32(IdIsp.Value), Convert.ToInt32(IdCon.Value), date.Value);
+            return context.Update(entity, code);
         }
     }
 }

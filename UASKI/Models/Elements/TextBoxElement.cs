@@ -25,6 +25,11 @@ namespace UASKI.Models.Elements
         public bool IsNumber { get => IsInt(); }
 
         /// <summary>
+        /// Пустое значение - true
+        /// </summary>
+        public bool IsNull { get => IsNul(); }
+
+        /// <summary>
         /// Провереят число ли значение элемента
         /// </summary>
         /// <returns></returns>
@@ -36,6 +41,15 @@ namespace UASKI.Models.Elements
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Проверяет на пустое значение
+        /// </summary>
+        /// <returns></returns>
+        private bool IsNul()
+        {
+            return string.IsNullOrEmpty(Value);
         }
 
         /// <summary>

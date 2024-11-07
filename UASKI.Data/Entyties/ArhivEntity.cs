@@ -35,25 +35,19 @@ namespace UASKI.Data.Entyties
         public int Otm { get; private set; }
 
         /// <summary>
-        /// Номер при закрытии задания
-        /// </summary>
-        public int Num { get; private set; }
-
-        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="code">Код</param>
         /// <param name="idIsp">Идентификатор исполнителя</param>
         /// <param name="idCon">Идентификатор котроллера</param>
         /// <param name="date">Дата срока</param>
-        public ArhivEntity(string code, int idIsp, int idCon, DateTime date , DateTime dateClose , int otm , int num)
+        public ArhivEntity(string code, int idIsp, int idCon, DateTime date , DateTime dateClose , int otm)
         {
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
             DateClose = dateClose;
-            Num = num;
             Otm = otm;
         }
     }

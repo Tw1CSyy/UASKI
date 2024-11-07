@@ -89,6 +89,29 @@ namespace UASKI.Services
         /// <returns>true - успешная операция</returns>
         public static bool Add(TextBoxElement FirstName , TextBoxElement Name , TextBoxElement LastName , TextBoxElement Code , TextBoxElement Podr)
         {
+            var result = Validation(FirstName, Name, LastName, Code, Podr);
+
+            if (!result)
+                return false;
+
+            var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value), true);
+            var context = new UAContext();
+            result = context.Add(item);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Валидация исполнителя
+        /// </summary>
+        /// <param name="FirstName">Фамилия сотрудника</param>
+        /// <param name="Name">Имя сотрудника</param>
+        /// <param name="LastName">Отчество сотрудника</param>
+        /// <param name="Code">Код сотрудника</param>
+        /// <param name="Podr">Код подразделения сотрудника</param>
+        /// <returns>true - успешная операция</returns>
+        private static bool Validation(TextBoxElement FirstName, TextBoxElement Name, TextBoxElement LastName, TextBoxElement Code, TextBoxElement Podr)
+        {
             var result = true;
 
             FirstName.Dispose();
@@ -97,31 +120,31 @@ namespace UASKI.Services
             Code.Dispose();
             Podr.Dispose();
 
-            if (string.IsNullOrEmpty(FirstName.Value))
+            if (FirstName.IsNull)
             {
                 FirstName.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(Name.Value))
+            if (Name.IsNull)
             {
                 Name.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(LastName.Value))
+            if (LastName.IsNull)
             {
                 LastName.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(Code.Value))
+            if (Code.IsNull)
             {
                 Code.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (string.IsNullOrEmpty(Podr.Value))
+            if (Podr.IsNull)
             {
                 Podr.Error("Поле не заполнено");
                 result = false;
@@ -137,14 +160,6 @@ namespace UASKI.Services
             {
                 Podr.Error("Поле имеет не числовой тип");
                 result = false;
-            }
-
-            if(result)
-            {
-                var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value) , true);
-
-                var context = new UAContext();
-                result = context.Add(item);
             }
 
             return result;
@@ -159,7 +174,7 @@ namespace UASKI.Services
         {
             var isp = GetByCode(code);
             var entiry = new IspEntity(isp.Code, isp.FirstName, isp.Name, isp.LastName, isp.CodePodr, false);
-            return context.Update(entiry);
+            return context.Update(entiry , code);
         }
 
         /// <summary>
@@ -174,71 +189,19 @@ namespace UASKI.Services
         /// <returns>true - успешная операция</returns>
         public static bool Update(int code , TextBoxElement FirstName, TextBoxElement Name, TextBoxElement LastName, TextBoxElement Code, TextBoxElement Podr)
         {
-            var result = true;
+            var result = Validation(FirstName , Name , LastName , Code , Podr);
 
-            FirstName.Dispose();
-            Name.Dispose();
-            LastName.Dispose();
-            Code.Dispose();
-            Podr.Dispose();
-
-            if (string.IsNullOrEmpty(FirstName.Value))
-            {
-                FirstName.Error("Поле не заполнено");
-                result = false;
-            }
-
-            if (string.IsNullOrEmpty(Name.Value))
-            {
-                Name.Error("Поле не заполнено");
-                result = false;
-            }
-
-            if (string.IsNullOrEmpty(LastName.Value))
-            {
-                LastName.Error("Поле не заполнено");
-                result = false;
-            }
-
-            if (string.IsNullOrEmpty(Code.Value))
-            {
-                Code.Error("Поле не заполнено");
-                result = false;
-            }
-
-            if (string.IsNullOrEmpty(Podr.Value))
-            {
-                Podr.Error("Поле не заполнено");
-                result = false;
-            }
-
-            if (!Code.IsNumber)
-            {
-                Code.Error("Поле имеет не числовой тип");
-                result = false;
-            }
-
-            if (!Podr.IsNumber)
-            {
-                Podr.Error("Поле имеет не числовой тип");
-                result = false;
-            }
-
-            if(!result)
-            {
-                return false;
-            }
+            if (!result)
+                return result;
 
             var entity = GetByCode(code);
             var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value) , entity.IsActive);
             result = context.Update(item , code);
 
             if(!result)
-            {
                 return false;
-            }
 
-            if(code != Convert.ToInt32(Code.Value))
+            if (code != Convert.ToInt32(Code.Value))
             {
                result = TasksService.EditIsp(code, Convert.ToInt32(Code.Value));
             }

@@ -299,17 +299,9 @@ namespace UASKI
         {
             SystemData.Pages.EditTask.dateTimePicker4_KeyDown(e);
         }
-        private void dateTimePicker5_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.EditTask.dateTimePicker5_KeyDown(e);
-        }
         private void textBox28_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.EditTask.textBox28_KeyDown(e);
-        }
-        private void textBox29_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.EditTask.textBox29_KeyDown(e);
         }
         private void button10_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {

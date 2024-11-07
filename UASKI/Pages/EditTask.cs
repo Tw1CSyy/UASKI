@@ -40,7 +40,6 @@ namespace UASKI.Pages
 
                 form.button11.Enabled = form.button12.Enabled = true;
                 form.button11.Text = "Закрыть";
-                form.panel10.Visible = false;
 
                 SystemHelper.SelectTextBox(form.textBox26);
             }
@@ -51,8 +50,8 @@ namespace UASKI.Pages
                 var usr1 = IspService.GetByCode(arhiv.IdIsp);
                 var usr2 = IspService.GetByCode(arhiv.IdCon);
 
-                form.textBox26.Text = $"{usr1.FirstName} {usr1.Name.ToUpper()[0]}. {usr1.LastName.ToUpper()[0]}.";
-                form.textBox21.Text = $"{usr2.FirstName} {usr2.Name.ToUpper()[0]}. {usr2.LastName.ToUpper()[0]}.";
+                form.textBox26.Text = usr1.FirstName;
+                form.textBox21.Text = usr2.FirstName;
 
                 form.textBox24.Text = usr1.Code.ToString();
                 form.textBox25.Text = usr1.CodePodr.ToString();
@@ -67,11 +66,8 @@ namespace UASKI.Pages
                 form.button12.Enabled = true;
                 form.button11.Text = "Открыть";
 
-                form.dateTimePicker5.Value = arhiv.DateClose;
                 form.textBox28.Text = arhiv.Otm.ToString();
-                form.textBox29.Text = arhiv.Num.ToString();
 
-                form.panel10.Visible = true;
                 SystemHelper.SelectTextBox(form.textBox26);
             }
         }
@@ -83,8 +79,6 @@ namespace UASKI.Pages
             form.textBox26.Clear();
             form.textBox27.Clear();
             form.textBox28.Clear();
-            form.textBox29.Clear();
-            form.panel10.Visible = false;
             form.button11.Enabled = form.button12.Enabled = false;
             SystemHelper.SelectButton(false, form.button10);
             SystemHelper.SelectButton(false, form.button11);
@@ -95,7 +89,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                if (form.textBox25.Text.Length != 0 && form.textBox24.Text.Length == 0)
+                if (form.textBox25.Text.Length == 0 && form.textBox24.Text.Length == 0)
                 {
                     var isp = IspService.GetByFirstName(form.textBox26.Text);
 
@@ -128,13 +122,19 @@ namespace UASKI.Pages
                 else
                     NavigationHelper.GetArhivSelectView();
             }
+            else if (e.KeyCode == Keys.Back)
+            {
+                form.textBox26.Clear();
+                form.textBox25.Clear();
+                form.textBox24.Clear();
+            }
         }
 
         public void textBox21_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                if (form.textBox22.Text.Length != 0 && form.textBox23.Text.Length == 0)
+                if (form.textBox22.Text.Length == 0 && form.textBox23.Text.Length == 0)
                 {
                     var isp = IspService.GetByFirstName(form.textBox21.Text);
 
@@ -171,6 +171,12 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectTextBox(form.textBox26);
             }
+            else if (e.KeyCode == Keys.Back)
+            {
+                form.textBox21.Clear();
+                form.textBox22.Clear();
+                form.textBox23.Clear();
+            }
         }
 
         public void textBox27_KeyDown(KeyEventArgs e)
@@ -179,9 +185,9 @@ namespace UASKI.Pages
             {
                 form.dateTimePicker4.Focus();
             }
-            else if (e.KeyCode == Keys.Down && form.panel10.Visible)
+            else if (e.KeyCode == Keys.Down)
             {
-                form.dateTimePicker5.Focus();
+                form.textBox28.Focus();
             }
             else if (e.KeyCode == Keys.Up)
             {
@@ -204,9 +210,9 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectTextBox(form.textBox27);
             }
-            else if (e.KeyCode == Keys.Down && form.panel10.Visible)
+            else if (e.KeyCode == Keys.Down)
             {
-                form.dateTimePicker5.Focus();
+                form.textBox28.Focus();
             }
             else if (e.KeyCode == Keys.Right)
             {
@@ -214,8 +220,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (form.panel10.Visible)
-                    form.dateTimePicker5.Focus();
+                if (!form.label54.Enabled)
+                    form.textBox28.Focus();
                 else
                     SystemHelper.SelectButton(true, form.button10);
             }
@@ -236,65 +242,16 @@ namespace UASKI.Pages
             }
         }
 
-        public void dateTimePicker5_KeyDown(KeyEventArgs e)
-        {
-            e.Handled = true;
-
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
-            {
-                SystemHelper.SelectTextBox(form.textBox28);
-            }
-            else if (e.KeyCode == SystemData.ActionKey)
-            {
-                var dateForm = new DateForm(form.dateTimePicker5);
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                SystemHelper.SelectTextBox(form.textBox27);
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
-                else
-                    NavigationHelper.GetArhivSelectView();
-            }
-        }
-
         public void textBox28_KeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Up)
             {
-                form.dateTimePicker5.Focus();
-            }
-            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
-            {
-                SystemHelper.SelectTextBox(form.textBox29);
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
-                else
-                    NavigationHelper.GetArhivSelectView();
-            }
-
-        }
-
-        public void textBox29_KeyDown(KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Left)
-            {
-                SystemHelper.SelectTextBox(form.textBox28);
+                form.dateTimePicker4.Focus();
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectButton(true, form.button10);
             }
-            else if (e.KeyCode == Keys.Up)
-            {
-                form.dateTimePicker4.Focus();
-            }
             else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
@@ -302,6 +259,7 @@ namespace UASKI.Pages
                 else
                     NavigationHelper.GetArhivSelectView();
             }
+
         }
 
         public void button10_PreviewKeyDown(PreviewKeyDownEventArgs e)
@@ -324,9 +282,10 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectButton(false, form.button10);
-                form.Menu_Step2.Enabled = false;
-                form.Menu_Step2.Focus();
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
             }
         }
 
@@ -355,9 +314,10 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectButton(false, form.button11);
-                form.Menu_Step2.Enabled = false;
-                form.Menu_Step2.Focus();
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
             }
         }
 
@@ -381,9 +341,10 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectButton(false, form.button11);
-                form.Menu_Step2.Enabled = false;
-                form.Menu_Step2.Focus();
+                if (form.label54.Enabled)
+                    NavigationHelper.GetTaskSelectView();
+                else
+                    NavigationHelper.GetArhivSelectView();
             }
         }
     }

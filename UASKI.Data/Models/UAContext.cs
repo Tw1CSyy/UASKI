@@ -124,8 +124,7 @@ namespace UASKI.Data.Context
                     Convert.ToInt32(reader.GetValue(2)),
                     Convert.ToDateTime(reader.GetValue(3)),
                     Convert.ToDateTime(reader.GetValue(4)),
-                    Convert.ToInt32(reader.GetValue(5)),
-                    Convert.ToInt32(reader.GetValue(6))
+                    Convert.ToInt32(reader.GetValue(5))
                 );
 
                 result.Add(item);
@@ -183,8 +182,8 @@ namespace UASKI.Data.Context
         /// <returns></returns>
         public bool Add(ArhivEntity entity)
         {
-            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\" , \"Num\") " +
-               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}' , '{entity.Num}')";
+            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\") " +
+               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}')";
 
             return DataModel.Complite(query);
         }
@@ -195,13 +194,9 @@ namespace UASKI.Data.Context
         /// <param name="isp">Модель исполнителя</param>
         /// <param name="code">Код исполнителя</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(IspEntity isp , int code = 0)
+        public bool Update(IspEntity isp , int code)
         {
-            if(code == 0)
-            {
-                code = isp.Code;
-            }
-
+            
             var query = $"UPDATE \"Isp\" SET " +
                 $"\"Code\" = '{isp.Code}', " +
                 $"\"FirstName\" = '{isp.FirstName}' ," +
@@ -220,13 +215,9 @@ namespace UASKI.Data.Context
         /// <param name="task">Модель задачи</param>
         /// <param name="code">Код задачи</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(TaskEntity task , string code = "")
+        public bool Update(TaskEntity task , string code)
         {
-            if(code.Length == 0)
-            {
-                code = task.Code;
-            }
-
+            
             var query = $"UPDATE \"Tasks\" SET " +
                 $"\"Cod\" = '{task.Code}' ," +
                 $"\"IdIsp\" = '{task.IdIsp}' ," +
@@ -255,21 +246,16 @@ namespace UASKI.Data.Context
         /// <param name="task">Модель задачи</param>
         /// <param name="code">Код задачи</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(ArhivEntity task, string code = "")
+        public bool Update(ArhivEntity task, string code)
         {
-            if (code.Length == 0)
-            {
-                code = task.Code;
-            }
-
+            
             var query = $"UPDATE \"Arhiv\" SET " +
                 $"\"Cod\" = '{task.Code}' ," +
                 $"\"IdIsp\" = '{task.IdIsp}' ," +
                 $"\"IdKon\" = '{task.IdCon}' ," +
                 $"\"Date\" = '{task.Date}' , " +
                 $"\"DateClose\" = '{task.DateClose}' ," +
-                $"\"Otm\" = '{task.Otm}' , " +
-                $"\"Num\" = '{task.Num}'" +
+                $"\"Otm\" = '{task.Otm}'" +
                 $"WHERE \"Cod\" = '{code}'";
 
             return DataModel.Complite(query);

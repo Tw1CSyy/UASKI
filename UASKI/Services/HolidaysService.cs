@@ -84,6 +84,17 @@ namespace UASKI.Services
             else
                 return false;
         }
+
+        /// <summary>
+        /// Проверяет дату на праздничный день
+        /// </summary>
+        /// <param name="date">Дата для проверки</param>
+        /// <returns>Положительный или отрицательный результат</returns>
+        public static bool CheckDay(DateTime date)
+        {
+            var day = GetList().FirstOrDefault(c => c.Date.Date == date.Date);
+            return day != null;
+        }
     }
 }
                                                                                                     
