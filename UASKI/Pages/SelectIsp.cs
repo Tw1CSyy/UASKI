@@ -9,8 +9,9 @@ namespace UASKI.Models.Pages
     public class SelectIsp : BasePage
     {
         private Gl_Form form = SystemData.Form;
-        
-        public override void Show()
+        public SelectIsp (int index) : base(index) { }
+
+        protected override void Show()
         {
             SystemHelper.PullListInDataGridView(form.IspDataGridView
                         , IspService.GetListByDataGrid(IspService.GetList(form.textBox13.Text))
@@ -41,7 +42,8 @@ namespace UASKI.Models.Pages
                 if (form.IspDataGridView.SelectedRows.Count > 0)
                 {
                     var code = Convert.ToInt32(form.IspDataGridView.SelectedRows[0].Cells[0].Value);
-                    NavigationHelper.GetIspView(code);
+                    SystemData.Pages.EditIsp.Init(false);
+                    SystemData.Pages.EditIsp.Show(code);
                 }
             }
             else

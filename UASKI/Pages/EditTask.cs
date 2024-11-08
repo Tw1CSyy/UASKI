@@ -10,8 +10,9 @@ namespace UASKI.Pages
     public class EditTask : BasePage
     {
         private Gl_Form form = SystemData.Form;
+        public EditTask (int index) : base(index) { }
 
-        public override void Show()
+        protected override void Show()
         {
 
         }
@@ -118,9 +119,9 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
             else if (e.KeyCode == Keys.Back)
             {
@@ -163,9 +164,9 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
             else if (e.KeyCode == Keys.Up)
             {
@@ -196,9 +197,9 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
         }
 
@@ -232,9 +233,9 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
@@ -255,9 +256,9 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
 
         }
@@ -283,9 +284,9 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
         }
 
@@ -315,9 +316,9 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
         }
 
@@ -342,9 +343,9 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
-                    NavigationHelper.GetTaskSelectView();
+                    SystemData.Pages.SelectTask.Init();
                 else
-                    NavigationHelper.GetArhivSelectView();
+                    SystemData.Pages.SelectArhiv.Init();
             }
         }
     }

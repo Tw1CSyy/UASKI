@@ -11,8 +11,9 @@ namespace UASKI.Pages
     public class EditIsp : BasePage
     {
         private Gl_Form form = SystemData.Form;
+        public EditIsp (int index) : base(index) { }
 
-        public override void Show()
+        protected override void Show()
         {
             
         }
@@ -55,7 +56,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Escape)
             {
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
             else if (e.KeyCode == Keys.Right)
             {
@@ -83,7 +84,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
         }
 
@@ -103,7 +104,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
         }
 
@@ -123,7 +124,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
         }
 
@@ -143,7 +144,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
             else if (e.KeyCode == Keys.Right)
             {
@@ -174,8 +175,7 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        NavigationHelper.ClearForm();
-                        NavigationHelper.GetIspSelectView();
+                        SystemData.Pages.SelectIsp.Init();
                         ErrorHelper.StatusComlite();
                     }
                     else
@@ -196,7 +196,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectButton(false, form.button6);
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
             e.IsInputKey = true;
         }
@@ -221,8 +221,7 @@ namespace UASKI.Pages
 
                     if (IspService.Disactive(code))
                     {
-                        NavigationHelper.ClearForm();
-                        NavigationHelper.GetIspSelectView();
+                        SystemData.Pages.SelectIsp.Init();
                         ErrorHelper.StatusComlite();
                     }
                     else
@@ -238,7 +237,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectButton(false, form.button7);
-                NavigationHelper.GetIspSelectView();
+                SystemData.Pages.SelectIsp.Init();
             }
             else if (e.KeyCode == Keys.Down)
             {

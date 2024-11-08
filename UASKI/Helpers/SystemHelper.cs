@@ -4,6 +4,9 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using UASKI.Models;
+using UASKI.StaticModels;
+using System.Linq;
+using UASKI.Pages;
 
 namespace UASKI.Helpers
 {
@@ -12,21 +15,7 @@ namespace UASKI.Helpers
     /// </summary>
     public static class SystemHelper
     {
-        /// <summary>
-        /// Добавляет в listBox список элементов
-        /// </summary>
-        /// <param name="listBox">Объект listBox</param>
-        /// <param name="items">Массив элементов</param>
-        public static void WriteListBox(ListBox listBox , string[] items)
-        {
-            listBox.Items.Clear();
-
-            foreach (var item in items)
-            {
-                listBox.Items.Add(item);
-            }
-        }
-
+       
         /// <summary>
         /// Заполняет DataGricView данными
         /// </summary>

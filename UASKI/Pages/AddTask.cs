@@ -11,8 +11,9 @@ namespace UASKI.Pages
     public class AddTask : BasePage
     {
         private Gl_Form form = SystemData.Form;
-        
-        public override void Show()
+        public AddTask (int index) : base(index) { }
+
+        protected override void Show()
         {
             form.textBox1.Focus();
         }
@@ -134,7 +135,7 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        NavigationHelper.ClearForm();
+                        SystemData.Pages.Clear();
                         ErrorHelper.StatusComlite();
                     }
                     else

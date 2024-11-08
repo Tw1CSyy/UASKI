@@ -10,8 +10,8 @@ namespace UASKI.Pages
     public class AddIsp : BasePage
     {
         private Gl_Form form = SystemData.Form;
-
-        public override void Show()
+        public AddIsp (int index) : base(index) { }
+        protected override void Show()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView1
                         , IspService.GetListByDataGrid(IspService.GetList())
@@ -153,7 +153,7 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        NavigationHelper.ClearForm();
+                        SystemData.Pages.Clear();
                         ErrorHelper.StatusComlite();
                     }
                     else

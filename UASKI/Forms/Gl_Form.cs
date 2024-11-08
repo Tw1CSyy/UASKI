@@ -5,8 +5,6 @@ using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Models;
 using UASKI.Services;
-using UASKI.Models.Pages;
-using UASKI.Pages;
 
 namespace UASKI
 {
@@ -27,8 +25,17 @@ namespace UASKI
             DateTimeLabel.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
             TimeTimer.Start();
 
+            // Инициализируем системные переменные
+            SystemData.Init(this);
+            
+
             // Рисуем меню
-            SystemHelper.WriteListBox(Menu_Step1, SystemData.MenuItems.Select(c => c.Text).ToArray());
+
+            foreach (var item in SystemData.MenuItems.Select(c => c.Text).ToArray())
+            {
+                Menu_Step1.Items.Add(item);
+            }
+
             Menu_Step1.SelectedIndex = 0;
             Menu_Step1.Focus();
 
@@ -36,11 +43,6 @@ namespace UASKI
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
-
-            // Инициализируем системные переменные
-            SystemData.Form = this;
-            SystemData.Index = 0;
-            SystemData.IsQuery = false;
 
             // Открываем подключение
             try
@@ -53,22 +55,6 @@ namespace UASKI
                 ErrorHelper.StatusError();
             }
             
-            InitPage();
-        }
-
-        /// <summary>
-        /// Инициализируем страницы
-        /// </summary>
-        private void InitPage()
-        {
-            SystemData.Pages.AddHoliday = new Pages.AddHoliday();
-            SystemData.Pages.AddIsp = new Pages.AddIsp();
-            SystemData.Pages.AddTask = new Pages.AddTask();
-            SystemData.Pages.EditTask = new Pages.EditTask();
-            SystemData.Pages.EditIsp = new Pages.EditIsp();
-            SystemData.Pages.SelectArhiv = new Pages.SelectArhiv();
-            SystemData.Pages.SelectIsp = new SelectIsp();
-            SystemData.Pages.SelectTask = new Pages.SelectTask();
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -77,8 +63,12 @@ namespace UASKI
             if(Menu_Step1.SelectedIndex != -1)
             {
                 var text = Menu_Step1.Items[Menu_Step1.SelectedIndex].ToString();
-                var item = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(text));
-                SystemHelper.WriteListBox(Menu_Step2, item.Items.Select(c => c.Text).ToArray());
+                var items = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(text));
+
+                foreach (var item in items.Items.Select(c => c.Text).ToArray())
+                {
+                    Menu_Step2.Items.Add(item);
+                }
             }
         }
 
@@ -153,7 +143,7 @@ namespace UASKI
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                NavigationHelper.Start();
+                SystemData.Pages.Open();
             }
             else
             {
@@ -162,7 +152,7 @@ namespace UASKI
                 if (si != 0 && si != -1 && Menu_Step2.Items.Count >= si)
                 {
                     Menu_Step2.SelectedIndex = si - 1;
-                    NavigationHelper.Start();
+                    SystemData.Pages.Open();
                 }
             }
         }

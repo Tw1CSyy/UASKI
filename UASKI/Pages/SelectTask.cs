@@ -9,8 +9,9 @@ namespace UASKI.Pages
     public class SelectTask : BasePage
     {
         private Gl_Form form = SystemData.Form;
-       
-        public override void Show()
+        public SelectTask (int index) : base(index) { }
+
+        protected override void Show()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView3,
                         TasksService.GetListByDataGrid(TasksService.GetList(form.textBox19.Text)),
@@ -41,7 +42,8 @@ namespace UASKI.Pages
             {
                 var code = form.dataGridView3.SelectedRows[0].Cells[0].Value.ToString();
 
-                NavigationHelper.GetTaskOrArhiv(code, false);
+                SystemData.Pages.EditTask.Init(false);
+                SystemData.Pages.EditTask.Show(code, false);
             }
             else
             {

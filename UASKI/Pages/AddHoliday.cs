@@ -10,9 +10,11 @@ namespace UASKI.Pages
 {
     public class AddHoliday : BasePage
     {
-        private Gl_Form form = SystemData.Form;
+        public AddHoliday(int index) : base(index) { }
 
-        public override void Show()
+        private Gl_Form form = SystemData.Form;
+        
+        protected override void Show()
         {
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
             SystemHelper.PullListInDataGridView(form.dataGridView2,
@@ -66,7 +68,7 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        NavigationHelper.ClearForm();
+                        SystemData.Pages.Clear();
                         ErrorHelper.StatusComlite();
                     }
                     else

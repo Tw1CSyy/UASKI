@@ -10,8 +10,9 @@ namespace UASKI.Pages
     public class SelectArhiv : BasePage
     {
         private Gl_Form form = SystemData.Form;
+        public SelectArhiv (int index) : base(index) { }
 
-        public override void Show()
+        protected override void Show()
         {
             form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker3.Value = DateTime.Today;
