@@ -33,7 +33,7 @@ namespace UASKI.Pages
 
             SystemHelper.PullListInDataGridView(form.dataGridView5,
                 ArhivService.GetListByDataGrid(ArhivService.GetList(form.dateTimePicker2.Value, form.dateTimePicker3.Value)),
-                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка", "Номер"));
+                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
             form.dataGridView5.Focus();
         }
 
@@ -48,7 +48,27 @@ namespace UASKI.Pages
         #region Клавиши
         public void dataGridView5_KeyDown(KeyEventArgs e)
         {
+            // Если нажали Enter и находимся на верхней строчке или Escape
+            if ((e.KeyCode == Keys.Up
+                && form.dataGridView5.SelectedRows.Count != 0
+                && form.dataGridView5.SelectedRows[0].Index == 0)
+                || e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+                form.dataGridView5.ClearSelection();
+            }
+            else if (e.KeyCode == Keys.Enter && form.dataGridView5.SelectedRows.Count > 0)
+            {
+                var code = form.dataGridView5.SelectedRows[0].Cells[0].Value.ToString();
 
+                SystemData.Pages.EditTask.Init(false);
+                SystemData.Pages.EditTask.Show(code, true);
+            }
+            else
+            {
+                SystemHelper.CharInTextBox(form.textBox20, e.KeyCode);
+            }
         }
         #endregion
 

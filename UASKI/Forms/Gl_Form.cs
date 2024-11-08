@@ -64,6 +64,7 @@ namespace UASKI
             {
                 var text = Menu_Step1.Items[Menu_Step1.SelectedIndex].ToString();
                 var items = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(text));
+                Menu_Step2.Items.Clear();
 
                 foreach (var item in items.Items.Select(c => c.Text).ToArray())
                 {
@@ -338,6 +339,18 @@ namespace UASKI
         private void dataGridView5_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.SelectArhiv.dataGridView5_KeyDown(e);
+        }
+
+        private void textBox28_TextChanged(object sender, EventArgs e)
+        {
+            if (label54.Enabled)
+            {
+                button11.Enabled = textBox28.Text.Length != 0;
+            }
+            else
+            {
+               // button10.Enabled = textBox28.Text.Length != 0;
+            }
         }
     }
 }

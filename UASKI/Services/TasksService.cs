@@ -83,7 +83,7 @@ namespace UASKI.Services
         /// <param name="IdCon">Номер контролера</param>
         /// <param name="date">Срок исполнения</param>
         /// <returns>true - успешное выполнение</returns>
-        private static bool Validation(TextBoxElement Code, TextBoxElement IdIsp, TextBoxElement IdCon, DateTimeElement date)
+        private static bool Validation(TextBoxElement Code, TextBoxElement IdIsp, TextBoxElement IdCon, DateTimeElement date , bool isUpdate = false)
         {
             var result = true;
 
@@ -110,13 +110,13 @@ namespace UASKI.Services
                 result = false;
             }
 
-            if (GetTaskByCode(Code.Value) != null)
+            if (!isUpdate && GetTaskByCode(Code.Value) != null)
             {
                 Code.Error("Код задачи должен быть уникальным");
                 result = false;
             }
 
-            if (date.Value < DateTime.Today)
+            if (!isUpdate && date.Value < DateTime.Today)
             {
                 date.Error("Срок исполнения не может быть раньше текущей даты");
                 result = false;
@@ -242,6 +242,32 @@ namespace UASKI.Services
 
             var entity = new TaskEntity(Code.Value, Convert.ToInt32(IdIsp.Value), Convert.ToInt32(IdCon.Value), date.Value);
             return context.Update(entity, code);
+        }
+
+        /// <summary>
+        /// Удаляет задачу из Task и добавляет в Arhiv
+        /// </summary>
+        /// <param name="code">Код задания</param>
+        /// <param name="Otm">Отметка задания</param>
+        /// <returns>Положительный или отрицательный результат</returns>
+        public static bool Close(string code , TextBoxElement Otm)
+        {
+            if (Otm.IsNull || !Otm.IsNumber || Otm.Value.Length > 1)
+                return false;
+
+            if (Convert.ToInt32(Otm.Value) > 5)
+                return false;
+
+            var task = GetTaskByCode(code);
+            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, DateTime.Now, Convert.ToInt32(Otm.Value));
+
+            var result = context.Add(arhiv);
+
+            if (!result)
+                return false;
+
+            return context.Delete(task);
+
         }
     }
 }

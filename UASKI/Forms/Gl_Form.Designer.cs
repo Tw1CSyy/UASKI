@@ -169,6 +169,11 @@ namespace UASKI
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.label51 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1355,6 +1360,7 @@ namespace UASKI
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.Controls.Add(this.label57);
             this.panel10.Controls.Add(this.textBox28);
             this.panel10.Controls.Add(this.label52);
             this.panel10.Location = new System.Drawing.Point(466, 365);
@@ -1369,6 +1375,7 @@ namespace UASKI
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(142, 26);
             this.textBox28.TabIndex = 32;
+            this.textBox28.TextChanged += new System.EventHandler(this.textBox28_TextChanged);
             this.textBox28.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox28_KeyDown);
             // 
             // label52
@@ -1384,6 +1391,10 @@ namespace UASKI
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel9.Controls.Add(this.label56);
+            this.panel9.Controls.Add(this.label55);
+            this.panel9.Controls.Add(this.label53);
+            this.panel9.Controls.Add(this.label51);
             this.panel9.Controls.Add(this.label54);
             this.panel9.Controls.Add(this.dateTimePicker4);
             this.panel9.Controls.Add(this.label41);
@@ -1664,6 +1675,61 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label51.ForeColor = System.Drawing.Color.Red;
+            this.label51.Location = new System.Drawing.Point(17, 115);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(185, 13);
+            this.label51.TabIndex = 28;
+            this.label51.Text = "Ошибка";
+            this.label51.Visible = false;
+            // 
+            // label53
+            // 
+            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label53.ForeColor = System.Drawing.Color.Red;
+            this.label53.Location = new System.Drawing.Point(17, 246);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(185, 13);
+            this.label53.TabIndex = 29;
+            this.label53.Text = "Ошибка";
+            this.label53.Visible = false;
+            // 
+            // label55
+            // 
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label55.ForeColor = System.Drawing.Color.Red;
+            this.label55.Location = new System.Drawing.Point(17, 325);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(279, 13);
+            this.label55.TabIndex = 30;
+            this.label55.Text = "Ошибка";
+            this.label55.Visible = false;
+            // 
+            // label56
+            // 
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label56.ForeColor = System.Drawing.Color.Red;
+            this.label56.Location = new System.Drawing.Point(323, 324);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(238, 13);
+            this.label56.TabIndex = 31;
+            this.label56.Text = "Ошибка";
+            this.label56.Visible = false;
+            // 
+            // label57
+            // 
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label57.ForeColor = System.Drawing.Color.Red;
+            this.label57.Location = new System.Drawing.Point(7, 70);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(145, 13);
+            this.label57.TabIndex = 32;
+            this.label57.Text = "Ошибка";
+            this.label57.Visible = false;
+            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1861,6 +1927,11 @@ namespace UASKI
         public System.Windows.Forms.Label label54;
         public System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Panel panel10;
+        public System.Windows.Forms.Label label57;
+        public System.Windows.Forms.Label label56;
+        public System.Windows.Forms.Label label55;
+        public System.Windows.Forms.Label label53;
+        public System.Windows.Forms.Label label51;
     }
 }
 

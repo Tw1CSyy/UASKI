@@ -4,6 +4,7 @@ using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Models.Elements;
 
 namespace UASKI.Pages
 {
@@ -54,11 +55,11 @@ namespace UASKI.Pages
                 form.textBox22.Text = usr2.CodePodr.ToString();
                 form.label54.Text = task.Code.ToString();
                 form.label54.Enabled = true;
+                form.button11.Enabled = false;
 
                 form.textBox27.Text = task.Code;
                 form.dateTimePicker4.Value = task.Date;
 
-                form.button11.Enabled = form.button12.Enabled = true;
                 form.button11.Text = "Закрыть";
 
                 SystemHelper.SelectTextBox(form.textBox26);
@@ -83,8 +84,8 @@ namespace UASKI.Pages
                 form.textBox27.Text = arhiv.Code;
                 form.dateTimePicker4.Value = arhiv.Date;
 
-                form.button12.Enabled = true;
                 form.button11.Text = "Открыть";
+                form.button10.Enabled = false;
 
                 form.textBox28.Text = arhiv.Otm.ToString();
 
@@ -99,7 +100,6 @@ namespace UASKI.Pages
             form.textBox26.Clear();
             form.textBox27.Clear();
             form.textBox28.Clear();
-            form.button11.Enabled = form.button12.Enabled = false;
             SystemHelper.SelectButton(false, form.button10);
             SystemHelper.SelectButton(false, form.button11);
             SystemHelper.SelectButton(false, form.button12);
@@ -134,7 +134,12 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button10);
+                if (form.button10.Enabled)
+                    SystemHelper.SelectButton(true, form.button10);
+                else if (form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else
+                    SystemHelper.SelectButton(true, form.button12);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -179,7 +184,12 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button10);
+                if (form.button10.Enabled)
+                    SystemHelper.SelectButton(true, form.button10);
+                else if (form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else
+                    SystemHelper.SelectButton(true, form.button12);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -237,14 +247,23 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button10);
+                if (form.button10.Enabled)
+                    SystemHelper.SelectButton(true, form.button10);
+                else if (form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else
+                    SystemHelper.SelectButton(true, form.button12);
             }
             else if (e.KeyCode == Keys.Enter)
             {
                 if (!form.label54.Enabled)
                     form.textBox28.Focus();
-                else
+                else if (form.button10.Enabled)
                     SystemHelper.SelectButton(true, form.button10);
+                else if (form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else
+                    SystemHelper.SelectButton(true, form.button12);
             }
             else if (e.KeyCode == Keys.Up)
             {
@@ -271,7 +290,12 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectButton(true, form.button10);
+                if(form.button10.Enabled)
+                    SystemHelper.SelectButton(true, form.button10);
+                else if(form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else
+                    SystemHelper.SelectButton(true, form.button12);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -290,11 +314,43 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectButton(false, form.button10);
-                SystemHelper.SelectButton(true, form.button11);
+
+                if (form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else
+                    SystemHelper.SelectButton(true, form.button12);
             }
             else if (e.KeyCode == Keys.Enter)
             {
+                if(SystemData.IsQuery)
+                {
+                    if(form.label54.Enabled)
+                    {
+                        var result = TasksService.UpdateTask(form.label54.Text,
+                            TextBoxElement.New(form.textBox24, form.label51),
+                            TextBoxElement.New(form.textBox23, form.label53),
+                            TextBoxElement.New(form.textBox27, form.label55),
+                            DateTimeElement.New(form.dateTimePicker4, form.label56));
 
+                        if(result)
+                        {
+                            ErrorHelper.StatusComlite();
+                            SystemData.Pages.SelectTask.Init();
+                        }
+                        else
+                        {
+                            ErrorHelper.StatusError();
+                        }
+                    }    
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    ErrorHelper.StatusQuery();
+                }
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -316,8 +372,10 @@ namespace UASKI.Pages
 
             if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectButton(true, form.button10);
                 SystemHelper.SelectButton(false, form.button11);
+
+                if(form.button10.Enabled)
+                    SystemHelper.SelectButton(true, form.button10);
             }
             else if (e.KeyCode == Keys.Down)
             {
@@ -326,7 +384,31 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
+                if(SystemData.IsQuery)
+                {
+                    if (form.label54.Enabled)
+                    {
+                        var result = TasksService.Close(form.label54.Text, TextBoxElement.New(form.textBox28, form.label57));
 
+                        if(result)
+                        {
+                            ErrorHelper.StatusComlite();
+                            SystemData.Pages.SelectTask.Init();
+                        }
+                        else
+                        {
+                            ErrorHelper.StatusError();
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    ErrorHelper.StatusQuery();
+                }
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -349,7 +431,11 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectButton(false, form.button12);
-                SystemHelper.SelectButton(true, form.button11);
+               
+                if(form.button11.Enabled)
+                    SystemHelper.SelectButton(true, form.button11);
+                else if(form.button10.Enabled)
+                    SystemHelper.SelectButton(true, form.button10);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -358,7 +444,21 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
+                if (SystemData.IsQuery)
+                {
+                    if (form.label54.Enabled)
+                    {
 
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    ErrorHelper.StatusQuery();
+                }
             }
             else if (e.KeyCode == Keys.Escape)
             {
