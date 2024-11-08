@@ -8,6 +8,9 @@ using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
+    /// <summary>
+    /// Сервис для работы с таблицей Holidays
+    /// </summary>
     public static class HolidaysService
     {
         private static readonly UAContext context = new UAContext();

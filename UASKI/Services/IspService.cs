@@ -8,6 +8,9 @@ using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
+    /// <summary>
+    /// Сервис для работы с таблицей Isp
+    /// </summary>
     public static class IspService
     {
         private static readonly UAContext context = new UAContext();

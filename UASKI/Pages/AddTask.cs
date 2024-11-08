@@ -8,16 +8,33 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы добавления задачи
+    /// </summary>
     public class AddTask : BasePage
     {
-        private Gl_Form form = SystemData.Form;
-        public AddTask (int index) : base(index) { }
+        /// <summary>
+        /// Базовый конструктор для установки индекса страницы
+        /// </summary>
+        /// <param name="index">Индекс страницы</param>
+        public AddTask(int index) : base(index) { }
 
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
+        private Gl_Form form = SystemData.Form;
+
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
             form.textBox1.Focus();
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         public override void Clear()
         {
             form.textBox1.Clear();
@@ -33,6 +50,7 @@ namespace UASKI.Pages
             form.textBox1.Focus();
         }
 
+        #region Клавиши
         public void textBox1_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
@@ -202,5 +220,6 @@ namespace UASKI.Pages
                 form.Menu_Step2.Focus();
             }
         }
+        #endregion
     }
 }

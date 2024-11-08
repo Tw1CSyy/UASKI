@@ -7,11 +7,25 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы просмотра архива заданий
+    /// </summary>
     public class SelectArhiv : BasePage
     {
-        private Gl_Form form = SystemData.Form;
-        public SelectArhiv (int index) : base(index) { }
+        /// <summary>
+        /// Базовый конструктор для установки индекса страницы
+        /// </summary>
+        /// <param name="index">Индекс страницы</param>
+        public SelectArhiv(int index) : base(index) { }
 
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
+        private Gl_Form form = SystemData.Form;
+
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
             form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
@@ -23,15 +37,20 @@ namespace UASKI.Pages
             form.dataGridView5.Focus();
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         public override void Clear()
         {
             form.dataGridView5.DataSource = null;
         }
 
+        #region Клавиши
         public void dataGridView5_KeyDown(KeyEventArgs e)
         {
-           
+
         }
+        #endregion
 
     }
 }

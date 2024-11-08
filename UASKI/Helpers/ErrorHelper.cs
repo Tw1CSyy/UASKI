@@ -4,11 +4,10 @@ using UASKI.StaticModels;
 namespace UASKI.Helpers
 {
     /// <summary>
-    /// Хелпер для обработки ошибок
+    /// Хелпер для обработки уведомлений
     /// </summary>
     public static class ErrorHelper
     {
-        
         /// <summary>
         /// Изменяет статус на ошибку
         /// </summary>

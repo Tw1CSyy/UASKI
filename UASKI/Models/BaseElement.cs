@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace UASKI.Models
 {
     /// <summary>
-    /// Класс для передачи данных на валидацию
+    /// Абстрактный класс для передачи данных на валидацию
     /// </summary>
     public abstract class BaseElement
     {

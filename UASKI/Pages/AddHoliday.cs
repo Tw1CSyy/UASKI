@@ -8,12 +8,25 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы добавления праздника
+    /// </summary>
     public class AddHoliday : BasePage
     {
+        /// <summary>
+        /// Базовый конструктор для установки индекса страницы
+        /// </summary>
+        /// <param name="index">Индекс страницы</param>
         public AddHoliday(int index) : base(index) { }
 
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
         private Gl_Form form = SystemData.Form;
         
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
@@ -24,6 +37,9 @@ namespace UASKI.Pages
             form.monthCalendar1.Focus();
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         public override void Clear()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView2,
@@ -35,6 +51,7 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button5);
         }
 
+        #region Клавиши
         public void monthCalendar1_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -90,5 +107,6 @@ namespace UASKI.Pages
 
             e.IsInputKey = true;
         }
+        #endregion
     }
 }

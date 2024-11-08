@@ -10,6 +10,9 @@ using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
+    /// <summary>
+    /// Сервис для работы с таблицей Tasks
+    /// </summary>
     public static class TasksService
     {
         private static readonly UAContext context = new UAContext();

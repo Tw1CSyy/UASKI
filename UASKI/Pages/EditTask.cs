@@ -7,16 +7,35 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы редактирования задачи
+    /// </summary>
     public class EditTask : BasePage
     {
-        private Gl_Form form = SystemData.Form;
-        public EditTask (int index) : base(index) { }
+        /// <summary>
+        /// Базовый конструктор для установки индекса страницы
+        /// </summary>
+        /// <param name="index">Индекс страницы</param>
+        public EditTask(int index) : base(index) { }
 
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
+        private Gl_Form form = SystemData.Form;
+
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
 
         }
 
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
+        /// <param name="code">Код задания</param>
+        /// <param name="IsArhiv">Архивное задание</param>
         public void Show(string code , bool IsArhiv)
         {
             if (!IsArhiv)
@@ -86,6 +105,7 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button12);
         }
 
+        #region Клавиши
         public void textBox26_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
@@ -272,16 +292,16 @@ namespace UASKI.Pages
                 SystemHelper.SelectButton(false, form.button10);
                 SystemHelper.SelectButton(true, form.button11);
             }
-            else if(e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter)
             {
 
             }
-            else if(e.KeyCode == Keys.Left)
+            else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button10);
                 SystemHelper.SelectTextBox(form.textBox26);
             }
-            else if(e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
                     SystemData.Pages.SelectTask.Init();
@@ -299,21 +319,21 @@ namespace UASKI.Pages
                 SystemHelper.SelectButton(true, form.button10);
                 SystemHelper.SelectButton(false, form.button11);
             }
-            else if(e.KeyCode == Keys.Down)
+            else if (e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectButton(false, form.button11);
                 SystemHelper.SelectButton(true, form.button12);
             }
-            else if(e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter)
             {
 
             }
-            else if(e.KeyCode == Keys.Left)
+            else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button11);
                 SystemHelper.SelectTextBox(form.textBox26);
             }
-            else if(e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
                     SystemData.Pages.SelectTask.Init();
@@ -326,21 +346,21 @@ namespace UASKI.Pages
         {
             e.IsInputKey = true;
 
-            if(e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectButton(false, form.button12);
                 SystemHelper.SelectButton(true, form.button11);
             }
-            else if(e.KeyCode == Keys.Left)
+            else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button12);
                 SystemHelper.SelectTextBox(form.textBox26);
             }
-            else if(e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter)
             {
 
             }
-            else if(e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 if (form.label54.Enabled)
                     SystemData.Pages.SelectTask.Init();
@@ -348,5 +368,6 @@ namespace UASKI.Pages
                     SystemData.Pages.SelectArhiv.Init();
             }
         }
+        #endregion
     }
 }

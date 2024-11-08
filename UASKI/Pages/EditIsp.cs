@@ -8,16 +8,34 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы редактирования исполнителя
+    /// </summary>
     public class EditIsp : BasePage
     {
-        private Gl_Form form = SystemData.Form;
-        public EditIsp (int index) : base(index) { }
+         /// <summary>
+         /// Базовый конструктор для установки индекса страницы
+         /// </summary>
+         /// <param name="index">Индекс страницы</param>
+        public EditIsp(int index) : base(index) { }
 
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
+        private Gl_Form form = SystemData.Form;
+
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
             
         }
 
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
+        /// <param name="code">Код исполнителя</param>
         public void Show(int code)
         {
             var form = SystemData.Form;
@@ -38,6 +56,9 @@ namespace UASKI.Pages
             SystemHelper.SelectTextBox(form.textBox18);
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         public override void Clear()
         {
             form.textBox18.Clear();
@@ -52,6 +73,7 @@ namespace UASKI.Pages
             form.textBox18.Focus();
         }
 
+        #region Клавиши
         public void textBox18_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -267,5 +289,6 @@ namespace UASKI.Pages
                 e.Handled = true;
             }
         }
+        #endregion
     }
 }

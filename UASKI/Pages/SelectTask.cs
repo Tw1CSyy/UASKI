@@ -6,11 +6,25 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы просмотра задач
+    /// </summary>
     public class SelectTask : BasePage
     {
-        private Gl_Form form = SystemData.Form;
-        public SelectTask (int index) : base(index) { }
+        /// <summary>
+        /// Базовый конструктор для установки индекса страницы
+        /// </summary>
+        /// <param name="index">Индекс страницы</param>
+        public SelectTask(int index) : base(index) { }
 
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
+        private Gl_Form form = SystemData.Form;
+
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView3,
@@ -20,12 +34,16 @@ namespace UASKI.Pages
             form.dataGridView3.Focus();
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         public override void Clear()
         {
             form.textBox18.Clear();
             form.dataGridView3.DataSource = null;
         }
 
+        #region Клавиши
         public void dataGridView3_KeyDown(KeyEventArgs e)
         {
             // Если нажали Enter и находимся на верхней строчке или Escape
@@ -50,6 +68,7 @@ namespace UASKI.Pages
                 SystemHelper.CharInTextBox(form.textBox19, e.KeyCode);
             }
         }
+        #endregion
 
     }
 }

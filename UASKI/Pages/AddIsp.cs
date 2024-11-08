@@ -7,10 +7,25 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
+    /// <summary>
+    /// Класс для объекта страницы добавления исполнителя
+    /// </summary>
     public class AddIsp : BasePage
     {
+        /// <summary>
+        /// Базовый конструктор для установки индекса страницы
+        /// </summary>
+        /// <param name="index">Индекс страницы</param>
+        public AddIsp(int index) : base(index) { }
+
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
         private Gl_Form form = SystemData.Form;
-        public AddIsp (int index) : base(index) { }
+
+        /// <summary>
+        /// Загружает данные на страницу
+        /// </summary>
         protected override void Show()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView1
@@ -20,6 +35,9 @@ namespace UASKI.Pages
             SystemHelper.SelectDataGridView(false, form.dataGridView1);
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         public override void Clear()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView1
@@ -36,6 +54,7 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button4);
         }
 
+        #region Клавиши
         public void textBox8_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
@@ -201,5 +220,6 @@ namespace UASKI.Pages
                 e.Handled = true;
             }
         }
+        #endregion
     }
 }

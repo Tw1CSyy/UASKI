@@ -7,6 +7,9 @@ using UASKI.Models;
 
 namespace UASKI.Services
 {
+    /// <summary>
+    /// Сервис для работы с таблицей Arhiv
+    /// </summary>
     public static class ArhivService
     {
         private static readonly UAContext context = new UAContext();

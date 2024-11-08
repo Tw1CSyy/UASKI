@@ -5,6 +5,9 @@ using UASKI.Pages;
 
 namespace UASKI.StaticModels
 {
+    /// <summary>
+    /// Страницы приложения
+    /// </summary>
     public class Pages
     {
         public SelectIsp SelectIsp = new SelectIsp(1);
