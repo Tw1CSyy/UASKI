@@ -10,7 +10,7 @@ namespace UASKI.Services
 {
     public static class IspService
     {
-        private static UAContext context = new UAContext();
+        private static readonly UAContext context = new UAContext();
 
         /// <summary>
         /// Возращает список пользователей

@@ -45,7 +45,7 @@ namespace UASKI.Pages
             }
             else
             {
-                var arhiv = TasksService.GetArhivByCode(code);
+                var arhiv = ArhivService.GetByCode(code);
 
                 var usr1 = IspService.GetByCode(arhiv.IdIsp);
                 var usr2 = IspService.GetByCode(arhiv.IdCon);

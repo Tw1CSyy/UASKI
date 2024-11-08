@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Services;
@@ -16,7 +17,7 @@ namespace UASKI.Pages
             form.dateTimePicker3.Value = DateTime.Today;
 
             SystemHelper.PullListInDataGridView(form.dataGridView5,
-                TasksService.GetListByDataGrid(TasksService.GetListArhiv(form.dateTimePicker2.Value, form.dateTimePicker3.Value)),
+                ArhivService.GetListByDataGrid(ArhivService.GetList(form.dateTimePicker2.Value, form.dateTimePicker3.Value)),
                 new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка", "Номер"));
             form.dataGridView5.Focus();
         }
@@ -24,6 +25,11 @@ namespace UASKI.Pages
         public override void Clear()
         {
             form.dataGridView5.DataSource = null;
+        }
+
+        public void dataGridView5_KeyDown(KeyEventArgs e)
+        {
+           
         }
 
     }

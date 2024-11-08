@@ -6,6 +6,7 @@ using UASKI.StaticModels;
 using UASKI.Models;
 using UASKI.Services;
 using UASKI.Models.Pages;
+using UASKI.Pages;
 
 namespace UASKI
 {
@@ -340,9 +341,13 @@ namespace UASKI
         private void textBox19_TextChanged(object sender, EventArgs e)
         {
             SystemHelper.PullListInDataGridView(dataGridView3,
-                        TasksService.GetListByDataGrid(TasksService.GetListTask(textBox19.Text)),
+                        TasksService.GetListByDataGrid(TasksService.GetList(textBox19.Text)),
                         new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
         }
 
+        private void dataGridView5_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.dataGridView5_KeyDown(e);
+        }
     }
 }

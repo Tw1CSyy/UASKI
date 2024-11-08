@@ -13,7 +13,7 @@ namespace UASKI.Pages
         public override void Show()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView3,
-                        TasksService.GetListByDataGrid(TasksService.GetListTask(form.textBox19.Text)),
+                        TasksService.GetListByDataGrid(TasksService.GetList(form.textBox19.Text)),
                         new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
 
             form.dataGridView3.Focus();

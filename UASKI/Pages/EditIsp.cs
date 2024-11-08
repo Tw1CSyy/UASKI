@@ -31,7 +31,7 @@ namespace UASKI.Pages
             form.label38.Text = isp.Code.ToString();
 
             SystemHelper.PullListInDataGridView(form.dataGridView4,
-                 TasksService.GetListByDataGrid(TasksService.GetListTask(code)),
+                 TasksService.GetListByDataGrid(TasksService.GetList(code)),
                  new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
 
             SystemHelper.SelectTextBox(form.textBox18);
