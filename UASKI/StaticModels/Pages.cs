@@ -52,7 +52,6 @@ namespace UASKI.StaticModels
         /// <summary>
         /// Отчищает сраницу по текущей странице
         /// </summary>
-        /// <param name="index"></param>
         public void Clear()
         {
             BasePage[] List =
@@ -70,7 +69,11 @@ namespace UASKI.StaticModels
             var item = List.FirstOrDefault(page => page.Index == SystemData.Index);
 
             if (item != null)
+            {
+                SystemData.IsClear = true;
                 item.Clear();
+                SystemData.IsClear = false;
+            }
         }
 
     }

@@ -16,11 +16,27 @@ namespace UASKI.Forms
     public partial class DateForm : Form
     {
         private static DateTimePicker pic;
+        private static DateTimePicker pic2;
+
         public DateForm(DateTimePicker p)
         {
             InitializeComponent();
             pic = p;
             monthCalendar1.SelectionStart = p.Value.Date;
+
+            monthCalendar1.MaxSelectionCount = 1;
+            monthCalendar1.Focus();
+        }
+
+        public DateForm(DateTimePicker p1 , DateTimePicker p2)
+        {
+            InitializeComponent();
+            pic = p1;
+            pic2 = p2;
+            monthCalendar1.MaxSelectionCount = 365;
+
+            monthCalendar1.SelectionStart = p1.Value;
+            monthCalendar1.SelectionEnd = p2.Value;
 
             monthCalendar1.Focus();
         }
@@ -35,7 +51,13 @@ namespace UASKI.Forms
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                pic.Value = form.monthCalendar1.SelectionStart.Date;
+                if(pic2 == null)
+                    pic.Value = form.monthCalendar1.SelectionStart.Date;
+                else
+                {
+                    pic.Value = form.monthCalendar1.SelectionRange.Start.Date;
+                    pic2.Value = form.monthCalendar1.SelectionRange.End.Date;
+                }
                 form.Dispose();
 
             }

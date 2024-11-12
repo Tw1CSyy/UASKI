@@ -355,5 +355,19 @@ namespace UASKI.Helpers
 
             return -1;
         }
+
+        /// <summary>
+        /// Устанавливает размер колонок в датагрид по ширине
+        /// </summary>
+        /// <param name="d">DataGirdView</param>
+        public static void ResizeDataGridView(DataGridView d)
+        {
+            var with = (int)Math.Floor((double)d.Width / (double)d.Columns.Count);
+
+            for(int i = 0; i < d.Columns.Count; i++)
+            {
+                d.Columns[i].Width = with;
+            }
+        }
     }
 }

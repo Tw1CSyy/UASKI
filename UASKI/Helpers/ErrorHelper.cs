@@ -45,7 +45,7 @@ namespace UASKI.Helpers
             Close();
 
             form.LabelStatus.Text = "Нажмите Enter еще раз для подтверждения";
-            form.LabelStatus.ForeColor = Color.Blue;
+            form.LabelStatus.ForeColor = Color.OrangeRed;
             form.LabelStatus.Visible = true;
             SystemData.IsQuery = true;
             form.TimerStatus.Start();

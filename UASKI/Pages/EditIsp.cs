@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
@@ -49,11 +50,21 @@ namespace UASKI.Pages
             form.textBox14.Text = isp.CodePodr.ToString();
             form.label38.Text = isp.Code.ToString();
 
+            form.label28.Visible = false;
+            form.label29.Visible = false;
+            form.label30.Visible = false;
+            form.label31.Visible = false;
+            form.label32.Visible = false;
+
+            var list = TasksService.GetList().Where(c => c.IdCon == code || c.IdIsp == code).ToList();
+
             SystemHelper.PullListInDataGridView(form.dataGridView4,
-                 TasksService.GetListByDataGrid(TasksService.GetList(code)),
+                 TasksService.GetListByDataGrid(list),
                  new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
 
             SystemHelper.SelectTextBox(form.textBox18);
+
+            form.dataGridView4.ClearSelection();
         }
 
         /// <summary>
@@ -179,7 +190,7 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button6);
-                SystemHelper.SelectTextBox(form.textBox16);
+                SystemHelper.SelectTextBox(form.textBox18);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -279,13 +290,13 @@ namespace UASKI.Pages
             {
 
                 SystemHelper.SelectDataGridView(false, form.dataGridView4);
-                SystemHelper.SelectTextBox(form.textBox18);
+                SystemHelper.SelectTextBox(form.textBox15);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectDataGridView(false, form.dataGridView4);
-                SystemHelper.SelectTextBox(form.textBox18);
+                SystemData.Pages.SelectIsp.Init();
                 e.Handled = true;
             }
         }

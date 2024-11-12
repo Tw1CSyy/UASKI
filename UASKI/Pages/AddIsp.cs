@@ -28,11 +28,8 @@ namespace UASKI.Pages
         /// </summary>
         protected override void Show()
         {
-            SystemHelper.PullListInDataGridView(form.dataGridView1
-                        , IspService.GetListByDataGrid(IspService.GetList())
-                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
             form.textBox8.Focus();
-            SystemHelper.SelectDataGridView(false, form.dataGridView1);
+
         }
 
         /// <summary>
@@ -40,15 +37,17 @@ namespace UASKI.Pages
         /// </summary>
         public override void Clear()
         {
-            SystemHelper.PullListInDataGridView(form.dataGridView1
-                        , IspService.GetListByDataGrid(IspService.GetList())
-                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-
             form.textBox8.Clear();
             form.textBox9.Clear();
             form.textBox10.Clear();
             form.textBox11.Clear();
             form.textBox12.Clear();
+
+            form.label18.Visible = false;
+            form.label19.Visible = false;
+            form.label20.Visible = false;
+            form.label21.Visible = false;
+            form.label22.Visible = false;
 
             form.textBox8.Focus();
             SystemHelper.SelectButton(false, form.button4);
@@ -65,10 +64,6 @@ namespace UASKI.Pages
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                SystemHelper.SelectDataGridView(true, form.dataGridView1);
             }
         }
 
@@ -87,10 +82,6 @@ namespace UASKI.Pages
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
             }
-            else if (e.KeyCode == Keys.Left)
-            {
-                SystemHelper.SelectDataGridView(true, form.dataGridView1);
-            }
         }
 
         public void textBox10_KeyDown(KeyEventArgs e)
@@ -107,10 +98,6 @@ namespace UASKI.Pages
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                SystemHelper.SelectDataGridView(true, form.dataGridView1);
             }
         }
 
@@ -132,10 +119,6 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectButton(true, form.button4);
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                SystemHelper.SelectDataGridView(true, form.dataGridView1);
             }
         }
 
@@ -196,30 +179,10 @@ namespace UASKI.Pages
                 SystemHelper.SelectTextBox(form.textBox12);
                 SystemHelper.SelectButton(false, form.button4);
             }
-            else if (e.KeyCode == Keys.Left)
-            {
-                SystemHelper.SelectDataGridView(true, form.dataGridView1);
-            }
 
             e.IsInputKey = true;
         }
 
-        public void dataGridView1_KeyDown(KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Right)
-            {
-                SystemHelper.SelectTextBox(form.textBox8);
-                SystemHelper.SelectDataGridView(false, form.dataGridView1);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
-                SystemHelper.SelectDataGridView(false, form.dataGridView1);
-                e.Handled = true;
-            }
-        }
         #endregion
     }
 }

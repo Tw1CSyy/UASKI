@@ -30,6 +30,7 @@ namespace UASKI.Pages
         protected override void Show()
         {
             form.textBox1.Focus();
+            form.dateTimePicker1.Value = System.DateTime.Today;
         }
 
         /// <summary>
@@ -45,8 +46,12 @@ namespace UASKI.Pages
             form.textBox6.Clear();
             form.textBox7.Clear();
 
+            form.label23.Visible = false;
+            form.label24.Visible = false;
+            form.label25.Visible = false;
+            form.label26.Visible = false;
+
             SystemHelper.SelectButton(false, form.button1);
-            form.dateTimePicker1.Value = System.DateTime.Today;
             form.textBox1.Focus();
         }
 

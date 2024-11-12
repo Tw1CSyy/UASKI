@@ -49,5 +49,10 @@ namespace UASKI.Models
             Index = index;
         }
 
+        public static void ClearPage()
+        {
+
+        }
+
     }
 }

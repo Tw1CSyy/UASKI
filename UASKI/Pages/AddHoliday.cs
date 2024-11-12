@@ -35,6 +35,8 @@ namespace UASKI.Pages
                 new DataGridRowModel("Дата"));
 
             form.monthCalendar1.Focus();
+
+            form.dataGridView2.ClearSelection();
         }
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace UASKI.Pages
                        HolidaysService.GetListByDataGrid(),
                        new DataGridRowModel("Дата"));
 
+            form.label27.Visible = false;
             form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
             form.monthCalendar1.Focus();
             SystemHelper.SelectButton(false, form.button5);

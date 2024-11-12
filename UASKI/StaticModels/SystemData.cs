@@ -31,6 +31,11 @@ namespace UASKI.StaticModels
         public static bool IsQuery { get; set; }
 
         /// <summary>
+        /// Производится ли отчистка элементов
+        /// </summary>
+        public static bool IsClear { get; set; }
+
+        /// <summary>
         /// Жаркая главиша
         /// </summary>
         public static readonly Keys ActionKey = Keys.F2;
@@ -139,6 +144,7 @@ namespace UASKI.StaticModels
             };
             Index = 0;
             IsQuery = false;
+            IsClear = false;
         }
     }
 }

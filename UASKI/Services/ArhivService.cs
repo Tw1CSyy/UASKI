@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System;
 using UASKI.Data.Entyties;
 using UASKI.Data.Context;
 using UASKI.Models;
+using System;
 
 namespace UASKI.Services
 {
@@ -17,24 +17,52 @@ namespace UASKI.Services
         /// <summary>
         /// Возращает список архива
         /// </summary>
-        /// <param name="dateFrom">Дата от</param>
-        /// <param name="dateTo">Дата до</param>
-        /// <returns></returns>
-        public static List<ArhivEntity> GetList(DateTime dateFrom, DateTime dateTo)
-        {
-            var list = GetList();
-            list = list.Where(c => c.DateClose >= dateFrom && c.DateClose < dateTo.AddDays(1)).ToList();
-
-            return list;
-        }
-
-        /// <summary>
-        /// Возращает список архива
-        /// </summary>
         /// <returns></returns>
         public static List<ArhivEntity> GetList()
         {
             return context.Arhiv;
+        }
+
+        /// <summary>
+        /// Возвращает список архива
+        /// </summary>
+        /// <param name="search">Код</param>
+        /// <param name="isp">Котроллер или исполнитель</param>
+        /// <param name="podr">Подразделение</param>
+        /// <param name="isDate">используется ли дата</param>
+        /// <param name="dateFrom">Дата закрытия от</param>
+        /// <param name="dateTo">Дата закрытия до</param>
+        /// <returns></returns>
+        public static List<ArhivEntity> GetList(string search , string isp , string podr , bool isDate , DateTime dateFrom , DateTime dateTo)
+        {
+            var list = GetList();
+
+            if (isDate)
+                list = list.Where(c => c.DateClose.Date >= dateFrom.Date && c.DateClose.Date <= dateTo.Date).ToList();
+
+            if (!string.IsNullOrEmpty(search))
+                list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
+
+            if (!string.IsNullOrEmpty(isp) && int.TryParse(isp, out int i))
+                list = list.Where(c => c.IdCon == Convert.ToInt32(isp) || c.IdIsp == Convert.ToInt32(isp)).ToList();
+
+            if(!string.IsNullOrEmpty(podr) && int.TryParse(podr , out int j))
+            {
+                var users = IspService.GetList().Where(c => c.CodePodr == Convert.ToInt32(podr)).ToList();
+                var list2 = new List<ArhivEntity>();
+
+                foreach (var user in users)
+                {
+                    var items = list.Where(c => c.IdCon == user.Code || c.IdIsp == user.Code).ToList();
+
+                    if (items.Any())
+                        list2.AddRange(items);
+                }
+
+                list = list2;
+            }
+
+            return list;
         }
 
         /// <summary>

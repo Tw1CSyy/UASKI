@@ -5,6 +5,7 @@ using System.Linq;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
+using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
 
@@ -25,26 +26,46 @@ namespace UASKI.Services
             return context.Tasks;
         }
 
-        /// <summary>
-        /// Возращает список задач
-        /// </summary>
-        /// <param name="search">Строка поиска</param>
-        public static List<TaskEntity> GetList(string search)
-        {
-            var list = context.Tasks;
-            list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
-            return list;
-        }
 
         /// <summary>
         /// Возращает список задач
         /// </summary>
-        /// <param name="id">id пользователя</param>
-        /// <returns></returns>
-        public static List<TaskEntity> GetList(int id)
+        /// <param name="search">Код задачи</param>
+        /// <param name="isp">Код котроллера или исполнителя</param>
+        /// <param name="podr">Код подразделения</param>
+        /// <param name="isDate">Используется ли дата</param>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        public static List<TaskEntity> GetList(string search, string isp, string podr , bool isDate , DateTime dateFrom , DateTime dateTo)
         {
-            var list = context.Tasks;
-            list = list.Where(c => c.IdIsp == id || c.IdCon == id).ToList();
+            var list = GetList();
+
+            if (isDate)
+                list = list.Where(c => c.Date.Date >= dateFrom.Date && c.Date.Date <= dateTo.Date).ToList();
+
+            if (!string.IsNullOrEmpty(search))
+                list = list.Where(c => c.Code.ToLower().Contains(search.ToLower())).ToList();
+
+            if (!string.IsNullOrEmpty(isp) && int.TryParse(isp, out int i))
+                list = list.Where(c => c.IdCon == Convert.ToInt32(isp) || c.IdIsp == Convert.ToInt32(isp)).ToList();
+
+            if(!string.IsNullOrEmpty(podr) && int.TryParse(podr , out int j))
+            {
+                var users = IspService.GetList().Where(c => c.CodePodr == Convert.ToInt32(podr)).ToList();
+                var list2 = new List<TaskEntity>();
+
+                foreach (var user in users)
+                {
+                    var items = list.Where(c => c.IdCon == user.Code || c.IdIsp == user.Code).ToList();
+
+                    if(items.Any())
+                        list2.AddRange(items);
+                }
+
+                list = list2;
+                
+            }
+
             return list;
         }
 
@@ -253,10 +274,18 @@ namespace UASKI.Services
         public static bool Close(string code , TextBoxElement Otm)
         {
             if (Otm.IsNull || !Otm.IsNumber || Otm.Value.Length > 1)
+            {
+                Otm.Error("Некоректные данные");
+                ErrorHelper.StatusError();
                 return false;
+            }    
 
-            if (Convert.ToInt32(Otm.Value) > 5)
+            if (Convert.ToInt32(Otm.Value) > 5 || Convert.ToInt32(Otm.Value) < 1)
+            {
+                Otm.Error("Число должно быть от 1 до 5");
+                ErrorHelper.StatusError();
                 return false;
+            }
 
             var task = GetTaskByCode(code);
             var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, DateTime.Now, Convert.ToInt32(Otm.Value));

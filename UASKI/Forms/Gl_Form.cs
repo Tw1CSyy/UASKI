@@ -5,6 +5,7 @@ using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Models;
 using UASKI.Services;
+using System.Collections.Generic;
 
 namespace UASKI
 {
@@ -307,11 +308,69 @@ namespace UASKI
         {
             SystemData.Pages.EditTask.button12_PreviewKeyDown(e);
         }
+        private void textBox13_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectIsp.textBox13_KeyDown(e);
+        }
+        private void textBox19_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectTask.textBox19_KeyDown(e);
+        }
+        private void textBox30_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectTask.textBox30_KeyDown(e);
+        }
+        private void textBox29_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectTask.textBox29_KeyDown(e);
+        }
+        private void textBox32_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.textBox32_KeyDown(e);
+        }
+        private void dateTimePicker3_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.dateTimePicker3_KeyDown(e);
+        }
+        private void dateTimePicker2_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.dateTimePicker2_KeyDown(e);
+        }
+        private void textBox31_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.textBox31_KeyDown(e);
+        }
+        private void textBox20_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.textBox20_KeyDown(e);
+        }
+        private void checkBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.checkBox1_PreviewKeyDown(e);
+        }
+        private void dataGridView5_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.dataGridView5_KeyDown(e);
+        }
+        private void checkBox2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectTask.checkBox2_PreviewKeyDown(e);
+        }
+        private void dateTimePicker5_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectTask.dateTimePicker5_KeyDown(e);
+        }
+        private void dateTimePicker6_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectTask.dateTimePicker6_KeyDown(e);
+        }
         #endregion
+
+        #region Обработка
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            if(monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
+            if (monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
             {
                 label17.Text = monthCalendar1.SelectionRange.Start.Date.ToString("dd.MM.yyyy");
             }
@@ -321,36 +380,99 @@ namespace UASKI
                     monthCalendar1.SelectionRange.End.Date.ToString("dd.MM.yyyy");
             }
         }
-        
-        private void textBox13_TextChanged(object sender, EventArgs e)
-        {
-            SystemHelper.PullListInDataGridView(IspDataGridView
-                       , IspService.GetListByDataGrid(IspService.GetList(textBox13.Text))
-                       , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-        } 
-
-        private void textBox19_TextChanged(object sender, EventArgs e)
-        {
-            SystemHelper.PullListInDataGridView(dataGridView3,
-                        TasksService.GetListByDataGrid(TasksService.GetList(textBox19.Text)),
-                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
-        }
-
-        private void dataGridView5_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.SelectArhiv.dataGridView5_KeyDown(e);
-        }
-
         private void textBox28_TextChanged(object sender, EventArgs e)
         {
             if (label54.Enabled)
             {
                 button11.Enabled = textBox28.Text.Length != 0;
             }
-            else
+           
+        }
+        private void textBox20_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+            if(!SystemData.IsClear)
             {
-               // button10.Enabled = textBox28.Text.Length != 0;
+                var model = IspService.GetList();
+                var search = textBox13.Text;
+
+                model = model.Where(c => c.Code.ToString().Contains(search) ||
+                    c.CodePodr.ToString().Contains(search) ||
+                    c.FirstName.ToLower().Contains(search.ToLower()) ||
+                    c.Name.ToLower().Contains(search.ToLower()))
+                    .ToList();
+
+                SystemHelper.PullListInDataGridView(IspDataGridView
+                            , IspService.GetListByDataGrid(model)
+                            , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
             }
         }
+        private void textBox19_TextChanged_1(object sender, EventArgs e)
+        {
+           if(!SystemData.IsClear)
+            {
+                var list = TasksService.GetList(textBox19.Text, textBox29.Text, textBox30.Text, checkBox2.Checked, dateTimePicker5.Value, dateTimePicker6.Value);
+
+                SystemHelper.PullListInDataGridView(dataGridView3,
+                            TasksService.GetListByDataGrid(list),
+                            new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+            }
+        }
+        private void textBox29_TextChanged(object sender, EventArgs e)
+        {
+            textBox19_TextChanged_1(sender, e);
+        }
+        private void textBox30_TextChanged(object sender, EventArgs e)
+        {
+            textBox19_TextChanged_1(sender, e);
+        }
+        private void textBox32_TextChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+            {
+                var list = ArhivService.GetList(textBox32.Text, textBox31.Text, textBox20.Text, checkBox1.Checked, dateTimePicker2.Value, dateTimePicker3.Value);
+
+                SystemHelper.PullListInDataGridView(dataGridView5,
+                    ArhivService.GetListByDataGrid(list),
+                    new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
+            }
+        }
+        private void textBox31_TextChanged(object sender, EventArgs e)
+        {
+            textBox32_TextChanged(sender, e);
+        }
+        private void textBox20_TextChanged_1(object sender, EventArgs e)
+        {
+            textBox32_TextChanged(sender, e);
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox32_TextChanged(sender, e);
+        }
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            textBox32_TextChanged(sender, e);
+        }
+        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            textBox32_TextChanged(sender, e);
+        }
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox19_TextChanged_1(sender, e);
+        }
+        private void dateTimePicker5_ValueChanged(object sender, EventArgs e)
+        {
+            textBox19_TextChanged_1(sender, e);
+        }
+        private void dateTimePicker6_ValueChanged(object sender, EventArgs e)
+        {
+            textBox19_TextChanged_1(sender, e);
+        }
+        #endregion
+
     }
 }

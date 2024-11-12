@@ -95,11 +95,19 @@ namespace UASKI.Pages
 
         public override void Clear()
         {
+           
             form.textBox24.Clear();
             form.textBox25.Clear();
             form.textBox26.Clear();
             form.textBox27.Clear();
             form.textBox28.Clear();
+
+            form.label51.Visible = false;
+            form.label53.Visible = false;
+            form.label55.Visible = false;
+            form.label56.Visible = false;
+            form.label57.Visible = false;
+
             SystemHelper.SelectButton(false, form.button10);
             SystemHelper.SelectButton(false, form.button11);
             SystemHelper.SelectButton(false, form.button12);

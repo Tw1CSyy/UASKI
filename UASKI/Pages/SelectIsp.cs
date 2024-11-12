@@ -28,9 +28,15 @@ namespace UASKI.Models.Pages
         protected override void Show()
         {
             SystemHelper.PullListInDataGridView(form.IspDataGridView
-                        , IspService.GetListByDataGrid(IspService.GetList(form.textBox13.Text))
+                        , IspService.GetListByDataGrid(IspService.GetList())
                         , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-            form.IspDataGridView.Focus();
+
+            form.IspDataGridView.Location = new System.Drawing.Point(0, 0);
+            form.IspDataGridView.Size = new System.Drawing.Size(881, 560);
+            SystemHelper.ResizeDataGridView(form.IspDataGridView);
+            form.panel12.Visible = false;
+           
+            SystemHelper.SelectDataGridView(true, form.IspDataGridView);
         }
 
         /// <summary>
@@ -64,9 +70,32 @@ namespace UASKI.Models.Pages
                     SystemData.Pages.EditIsp.Show(code);
                 }
             }
+            else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)
+            {
+                
+                form.IspDataGridView.Location = new System.Drawing.Point(247, 0);
+                form.IspDataGridView.Size = new System.Drawing.Size(634, 560);
+                SystemHelper.ResizeDataGridView(form.IspDataGridView);
+                form.panel12.Visible = true;
+                SystemHelper.SelectTextBox(form.textBox13);
+            }
             else
             {
                 SystemHelper.CharInTextBox(form.textBox13, e.KeyCode);
+            }
+
+        }
+
+        public void textBox13_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                form.IspDataGridView.Location = new System.Drawing.Point(0, 0);
+                form.IspDataGridView.Size = new System.Drawing.Size(881, 560);
+                SystemHelper.ResizeDataGridView(form.IspDataGridView);
+                form.panel12.Visible = false;
+                
+                form.IspDataGridView.Focus();
             }
         }
         #endregion

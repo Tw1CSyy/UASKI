@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using UASKI.Data.Entityes;
 using UASKI.Helpers;
@@ -31,10 +32,19 @@ namespace UASKI.Forms
 
         private void Start(string search = "")
         {
-            var model = IspService.GetListByDataGrid(IspService.GetList(search));
+            var model = IspService.GetList();
+
+            if(search.Length > 0)
+            {
+                model = model.Where(c => c.Code.ToString().Contains(search) ||
+                    c.CodePodr.ToString().Contains(search) ||
+                    c.FirstName.ToLower().Contains(search.ToLower()) ||
+                    c.Name.ToLower().Contains(search.ToLower()))
+                    .ToList();
+            }
 
             SystemHelper.PullListInDataGridView(dataGridView1,
-                model,
+                IspService.GetListByDataGrid(model),
                 new Models.DataGridRowModel("Код", "Фамилия", "Имя", "Отчество", "Подразделение"));
 
             dataGridView1.Focus();
