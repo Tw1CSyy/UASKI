@@ -1,0 +1,204 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using UASKI.Forms;
+using UASKI.Helpers;
+using UASKI.Models;
+using UASKI.Services;
+using UASKI.StaticModels;
+
+namespace UASKI.Pages
+{
+    public class SelectOpz : BasePage
+    {
+        public SelectOpz(int index) : base(index) { }
+
+        private Gl_Form form = SystemData.Form;
+
+        protected override void Show()
+        {
+            SystemHelper.PullListInDataGridView(form.dataGridView1,
+                ArhivService.GetOpzListDataGrid(form.textBox33.Text , form.textBox34.Text , form.textBox35.Text , form.checkBox3.Checked , form.dateTimePicker7.Value , form.dateTimePicker8.Value),
+                new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
+
+            form.dataGridView1.Focus();
+            FilterClose();
+
+            form.dateTimePicker7.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            form.dateTimePicker8.Value = DateTime.Today;
+            form.panel18.Visible = false;
+        }
+
+        protected override void Clear()
+        {
+            form.dataGridView1.DataSource = null;
+            form.textBox33.Clear();
+            form.textBox34.Clear();
+            form.textBox35.Clear();
+            form.checkBox3.Checked = false;
+        }
+
+        /// <summary>
+        /// Открывает панель фильтров
+        /// </summary>
+        private void FilterOpen()
+        {
+            form.dataGridView1.Location = new System.Drawing.Point(247, 0);
+            form.dataGridView1.Size = new System.Drawing.Size(634, 560);
+            SystemHelper.ResizeDataGridView(form.dataGridView1);
+            form.panel17.Visible = true;
+            SystemHelper.SelectTextBox(form.textBox19);
+        }
+
+        /// <summary>
+        /// Закрывает панель фильтров
+        /// </summary>
+        private void FilterClose()
+        {
+            form.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            form.dataGridView1.Size = new System.Drawing.Size(881, 560);
+            SystemHelper.ResizeDataGridView(form.dataGridView1);
+            form.panel17.Visible = false;
+            form.dataGridView1.Focus();
+        }
+
+        #region Клаваши
+        public void dataGridView1_KeyDown_1(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left || e.KeyCode == SystemData.ActionKey)
+            {
+                FilterOpen();
+                SystemHelper.SelectTextBox(form.textBox33);
+            }
+            else if ((e.KeyCode == Keys.Up
+                && form.dataGridView1.SelectedRows.Count != 0
+                && form.dataGridView1.SelectedRows[0].Index == 0)
+                || e.KeyCode == Keys.Escape)
+            {
+                form.Menu_Step2.Enabled = true;
+                form.Menu_Step2.Focus();
+            }
+            else
+            {
+                SystemHelper.CharInTextBox(form.textBox33, e.KeyCode);
+            }
+
+            e.Handled = true;
+        }
+        public void textBox33_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+            }
+            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectTextBox(form.textBox34);
+            }
+            
+        }
+
+        public void textBox34_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+            }
+            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectTextBox(form.textBox35);
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox33);
+            }
+            else if(e.KeyCode == SystemData.ActionKey)
+            {
+                var f = new IspForm(new TextBox() , new TextBox() , form.textBox34);
+                f.Show();
+            }
+        }
+
+        public void textBox35_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+            }
+            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.checkBox3.Focus();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox34);
+            }
+        }
+
+        public void checkBox3_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+            }
+            else if (e.KeyCode == Keys.Down && form.panel18.Visible)
+            {
+                form.dateTimePicker7.Focus();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox35);
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                form.checkBox3.Checked = !form.checkBox3.Checked;
+                form.panel18.Visible = form.checkBox3.Checked;
+            }
+
+            e.IsInputKey = true;
+        }
+
+        public void dateTimePicker7_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+            }
+            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.dateTimePicker8.Focus();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                form.checkBox3.Focus();
+            }
+            else if (e.KeyCode == SystemData.ActionKey)
+            {
+                var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
+                f.Show();
+            }
+        }
+
+        public void dateTimePicker8_KeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                form.dateTimePicker7.Focus();
+            }
+            else if (e.KeyCode == SystemData.ActionKey)
+            {
+                var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
+                f.Show();
+            }
+        }
+        #endregion
+    }
+}

@@ -20,7 +20,17 @@ namespace UASKI.Models
         /// <summary>
         /// Отчистить страницу
         /// </summary>
-        public abstract void Clear();
+        protected abstract void Clear();
+
+        /// <summary>
+        /// Отчистить страницу
+        /// </summary>
+        public void ClearPage()
+        {
+            SystemData.IsClear = true;
+            Clear();
+            SystemData.IsClear = false;
+        }
 
         /// <summary>
         /// Переход на страницу и ее загрузка
@@ -36,7 +46,9 @@ namespace UASKI.Models
 
             if(IsOpen)
             {
+                SystemData.IsClear = true;
                 Show();
+                SystemData.IsClear = false;
             }
         }
 
@@ -47,11 +59,6 @@ namespace UASKI.Models
         public BasePage(int index)
         {
             Index = index;
-        }
-
-        public static void ClearPage()
-        {
-
         }
 
     }

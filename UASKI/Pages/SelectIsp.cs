@@ -42,7 +42,7 @@ namespace UASKI.Models.Pages
         /// <summary>
         /// Отчищает страницу
         /// </summary>
-        public override void Clear()
+        protected override void Clear()
         {
             form.textBox13.Clear();
             form.IspDataGridView.DataSource = null;

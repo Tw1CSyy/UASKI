@@ -40,10 +40,40 @@ namespace UASKI
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label58 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
             this.IspDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -165,44 +195,35 @@ namespace UASKI
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.label59 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.label62 = new System.Windows.Forms.Label();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.label63 = new System.Windows.Forms.Label();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox31 = new System.Windows.Forms.TextBox();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.label66 = new System.Windows.Forms.Label();
-            this.textBox32 = new System.Windows.Forms.TextBox();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage9.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -221,12 +242,9 @@ namespace UASKI
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
-            this.panel15.SuspendLayout();
-            this.panel16.SuspendLayout();
+            this.panel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -312,6 +330,35 @@ namespace UASKI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Просмотр Исп-Кон";
             // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel12.Controls.Add(this.label58);
+            this.panel12.Controls.Add(this.textBox13);
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(246, 542);
+            this.panel12.TabIndex = 1;
+            this.panel12.Visible = false;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(6, 3);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(55, 20);
+            this.label58.TabIndex = 1;
+            this.label58.Text = "Поиск";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(5, 26);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(235, 26);
+            this.textBox13.TabIndex = 0;
+            this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
+            this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox13_KeyDown);
+            // 
             // IspDataGridView
             // 
             this.IspDataGridView.AllowUserToAddRows = false;
@@ -340,6 +387,145 @@ namespace UASKI
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Просмотр задач";
             // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel13.Controls.Add(this.panel16);
+            this.panel13.Controls.Add(this.checkBox2);
+            this.panel13.Controls.Add(this.label63);
+            this.panel13.Controls.Add(this.textBox30);
+            this.panel13.Controls.Add(this.label62);
+            this.panel13.Controls.Add(this.textBox29);
+            this.panel13.Controls.Add(this.label59);
+            this.panel13.Controls.Add(this.textBox19);
+            this.panel13.Location = new System.Drawing.Point(0, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(246, 542);
+            this.panel13.TabIndex = 2;
+            this.panel13.Visible = false;
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel16.Controls.Add(this.dateTimePicker5);
+            this.panel16.Controls.Add(this.dateTimePicker6);
+            this.panel16.Controls.Add(this.label60);
+            this.panel16.Controls.Add(this.label61);
+            this.panel16.Location = new System.Drawing.Point(2, 241);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(241, 129);
+            this.panel16.TabIndex = 15;
+            // 
+            // dateTimePicker5
+            // 
+            this.dateTimePicker5.Location = new System.Drawing.Point(5, 27);
+            this.dateTimePicker5.Name = "dateTimePicker5";
+            this.dateTimePicker5.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker5.TabIndex = 5;
+            this.dateTimePicker5.ValueChanged += new System.EventHandler(this.dateTimePicker5_ValueChanged);
+            this.dateTimePicker5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker5_KeyDown);
+            // 
+            // dateTimePicker6
+            // 
+            this.dateTimePicker6.Location = new System.Drawing.Point(5, 79);
+            this.dateTimePicker6.Name = "dateTimePicker6";
+            this.dateTimePicker6.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker6.TabIndex = 4;
+            this.dateTimePicker6.ValueChanged += new System.EventHandler(this.dateTimePicker6_ValueChanged);
+            this.dateTimePicker6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker6_KeyDown);
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label60.Location = new System.Drawing.Point(1, 4);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(30, 20);
+            this.label60.TabIndex = 6;
+            this.label60.Text = "От";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label61.Location = new System.Drawing.Point(1, 56);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(30, 20);
+            this.label61.TabIndex = 7;
+            this.label61.Text = "До";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(5, 211);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(199, 24);
+            this.checkBox2.TabIndex = 14;
+            this.checkBox2.Text = "Учитывать дату срока";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.checkBox2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox2_PreviewKeyDown);
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label63.Location = new System.Drawing.Point(1, 67);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(131, 20);
+            this.label63.TabIndex = 11;
+            this.label63.Text = "Код сотрудника";
+            // 
+            // textBox30
+            // 
+            this.textBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox30.Location = new System.Drawing.Point(5, 152);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(235, 26);
+            this.textBox30.TabIndex = 10;
+            this.textBox30.TextChanged += new System.EventHandler(this.textBox30_TextChanged);
+            this.textBox30.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox30_KeyDown);
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label62.Location = new System.Drawing.Point(1, 129);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(133, 20);
+            this.label62.TabIndex = 9;
+            this.label62.Text = "Подразделение";
+            // 
+            // textBox29
+            // 
+            this.textBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox29.Location = new System.Drawing.Point(5, 90);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(237, 26);
+            this.textBox29.TabIndex = 8;
+            this.textBox29.TextChanged += new System.EventHandler(this.textBox29_TextChanged);
+            this.textBox29.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox29_KeyDown);
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label59.Location = new System.Drawing.Point(1, 4);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(39, 20);
+            this.label59.TabIndex = 3;
+            this.label59.Text = "Код";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox19.Location = new System.Drawing.Point(5, 27);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(235, 26);
+            this.textBox19.TabIndex = 2;
+            this.textBox19.TextChanged += new System.EventHandler(this.textBox19_TextChanged_1);
+            this.textBox19.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox19_KeyDown);
+            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -366,6 +552,159 @@ namespace UASKI
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Просмотр Архива";
             // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.Controls.Add(this.panel15);
+            this.panel14.Controls.Add(this.checkBox1);
+            this.panel14.Controls.Add(this.label39);
+            this.panel14.Controls.Add(this.textBox20);
+            this.panel14.Controls.Add(this.label40);
+            this.panel14.Controls.Add(this.textBox31);
+            this.panel14.Controls.Add(this.label66);
+            this.panel14.Controls.Add(this.textBox32);
+            this.panel14.Location = new System.Drawing.Point(-1, 0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(246, 542);
+            this.panel14.TabIndex = 4;
+            this.panel14.Visible = false;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel15.Controls.Add(this.dateTimePicker2);
+            this.panel15.Controls.Add(this.dateTimePicker3);
+            this.panel15.Controls.Add(this.label65);
+            this.panel15.Controls.Add(this.label64);
+            this.panel15.Location = new System.Drawing.Point(2, 249);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(241, 129);
+            this.panel15.TabIndex = 13;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(5, 27);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker2.TabIndex = 5;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker2_KeyDown);
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(5, 79);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker3.TabIndex = 4;
+            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
+            this.dateTimePicker3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker3_KeyDown);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label65.Location = new System.Drawing.Point(1, 4);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(30, 20);
+            this.label65.TabIndex = 6;
+            this.label65.Text = "От";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label64.Location = new System.Drawing.Point(1, 56);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(30, 20);
+            this.label64.TabIndex = 7;
+            this.label64.Text = "До";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(5, 219);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(228, 24);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "Учитывать дату закрытия";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox1_PreviewKeyDown);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label39.Location = new System.Drawing.Point(1, 69);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(131, 20);
+            this.label39.TabIndex = 11;
+            this.label39.Text = "Код сотрудника";
+            // 
+            // textBox20
+            // 
+            this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox20.Location = new System.Drawing.Point(5, 154);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(235, 26);
+            this.textBox20.TabIndex = 10;
+            this.textBox20.TextChanged += new System.EventHandler(this.textBox20_TextChanged_1);
+            this.textBox20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox20_KeyDown);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label40.Location = new System.Drawing.Point(1, 131);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(133, 20);
+            this.label40.TabIndex = 9;
+            this.label40.Text = "Подразделение";
+            // 
+            // textBox31
+            // 
+            this.textBox31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox31.Location = new System.Drawing.Point(5, 92);
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(237, 26);
+            this.textBox31.TabIndex = 8;
+            this.textBox31.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
+            this.textBox31.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox31_KeyDown);
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label66.Location = new System.Drawing.Point(1, 4);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(39, 20);
+            this.label66.TabIndex = 3;
+            this.label66.Text = "Код";
+            // 
+            // textBox32
+            // 
+            this.textBox32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox32.Location = new System.Drawing.Point(5, 27);
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(235, 26);
+            this.textBox32.TabIndex = 2;
+            this.textBox32.TextChanged += new System.EventHandler(this.textBox32_TextChanged);
+            this.textBox32.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox32_KeyDown);
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Location = new System.Drawing.Point(245, 0);
+            this.dataGridView5.MultiSelect = false;
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView5.Size = new System.Drawing.Size(636, 543);
+            this.dataGridView5.TabIndex = 3;
+            this.dataGridView5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView5_KeyDown);
+            // 
             // tabPage10
             // 
             this.tabPage10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -378,6 +717,8 @@ namespace UASKI
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.panel17);
+            this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -1674,326 +2015,158 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
-            // panel12
+            // panel17
             // 
-            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel12.Controls.Add(this.label58);
-            this.panel12.Controls.Add(this.textBox13);
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(246, 542);
-            this.panel12.TabIndex = 1;
-            this.panel12.Visible = false;
+            this.panel17.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel17.Controls.Add(this.panel18);
+            this.panel17.Controls.Add(this.checkBox3);
+            this.panel17.Controls.Add(this.label69);
+            this.panel17.Controls.Add(this.textBox33);
+            this.panel17.Controls.Add(this.label70);
+            this.panel17.Controls.Add(this.textBox34);
+            this.panel17.Controls.Add(this.label71);
+            this.panel17.Controls.Add(this.textBox35);
+            this.panel17.Location = new System.Drawing.Point(-1, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(246, 542);
+            this.panel17.TabIndex = 6;
+            this.panel17.Visible = false;
             // 
-            // textBox13
+            // checkBox3
             // 
-            this.textBox13.Location = new System.Drawing.Point(5, 26);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(235, 26);
-            this.textBox13.TabIndex = 0;
-            this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
-            this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox13_KeyDown);
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(5, 200);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(199, 24);
+            this.checkBox3.TabIndex = 12;
+            this.checkBox3.Text = "Учитывать дату срока";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.checkBox3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox3_PreviewKeyDown);
             // 
-            // label58
+            // label69
             // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(6, 3);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(55, 20);
-            this.label58.TabIndex = 1;
-            this.label58.Text = "Поиск";
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label69.Location = new System.Drawing.Point(1, 69);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(131, 20);
+            this.label69.TabIndex = 11;
+            this.label69.Text = "Код сотрудника";
             // 
-            // panel13
+            // textBox33
             // 
-            this.panel13.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel13.Controls.Add(this.panel16);
-            this.panel13.Controls.Add(this.checkBox2);
-            this.panel13.Controls.Add(this.label63);
-            this.panel13.Controls.Add(this.textBox30);
-            this.panel13.Controls.Add(this.label62);
-            this.panel13.Controls.Add(this.textBox29);
-            this.panel13.Controls.Add(this.label59);
-            this.panel13.Controls.Add(this.textBox19);
-            this.panel13.Location = new System.Drawing.Point(0, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(246, 542);
-            this.panel13.TabIndex = 2;
-            this.panel13.Visible = false;
+            this.textBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox33.Location = new System.Drawing.Point(4, 27);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(235, 26);
+            this.textBox33.TabIndex = 10;
+            this.textBox33.TextChanged += new System.EventHandler(this.textBox33_TextChanged);
+            this.textBox33.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox33_KeyDown);
             // 
-            // label59
+            // label70
             // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label59.Location = new System.Drawing.Point(1, 4);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(39, 20);
-            this.label59.TabIndex = 3;
-            this.label59.Text = "Код";
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label70.Location = new System.Drawing.Point(1, 131);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(133, 20);
+            this.label70.TabIndex = 9;
+            this.label70.Text = "Подразделение";
             // 
-            // textBox19
+            // textBox34
             // 
-            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox19.Location = new System.Drawing.Point(5, 27);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(235, 26);
-            this.textBox19.TabIndex = 2;
-            this.textBox19.TextChanged += new System.EventHandler(this.textBox19_TextChanged_1);
-            this.textBox19.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox19_KeyDown);
+            this.textBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox34.Location = new System.Drawing.Point(5, 92);
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(237, 26);
+            this.textBox34.TabIndex = 8;
+            this.textBox34.TextChanged += new System.EventHandler(this.textBox34_TextChanged);
+            this.textBox34.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox34_KeyDown);
             // 
-            // label62
+            // label71
             // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label62.Location = new System.Drawing.Point(1, 129);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(133, 20);
-            this.label62.TabIndex = 9;
-            this.label62.Text = "Подразделение";
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label71.Location = new System.Drawing.Point(1, 4);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(39, 20);
+            this.label71.TabIndex = 3;
+            this.label71.Text = "Код";
             // 
-            // textBox29
+            // textBox35
             // 
-            this.textBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox29.Location = new System.Drawing.Point(5, 90);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(237, 26);
-            this.textBox29.TabIndex = 8;
-            this.textBox29.TextChanged += new System.EventHandler(this.textBox29_TextChanged);
-            this.textBox29.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox29_KeyDown);
+            this.textBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox35.Location = new System.Drawing.Point(6, 154);
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new System.Drawing.Size(235, 26);
+            this.textBox35.TabIndex = 2;
+            this.textBox35.TextChanged += new System.EventHandler(this.textBox35_TextChanged);
+            this.textBox35.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox35_KeyDown);
             // 
-            // label63
+            // dataGridView1
             // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label63.Location = new System.Drawing.Point(1, 67);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(131, 20);
-            this.label63.TabIndex = 11;
-            this.label63.Text = "Код сотрудника";
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(245, 0);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(636, 543);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown_1);
             // 
-            // textBox30
+            // panel18
             // 
-            this.textBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox30.Location = new System.Drawing.Point(5, 152);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(235, 26);
-            this.textBox30.TabIndex = 10;
-            this.textBox30.TextChanged += new System.EventHandler(this.textBox30_TextChanged);
-            this.textBox30.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox30_KeyDown);
+            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel18.Controls.Add(this.dateTimePicker7);
+            this.panel18.Controls.Add(this.dateTimePicker8);
+            this.panel18.Controls.Add(this.label67);
+            this.panel18.Controls.Add(this.label68);
+            this.panel18.Location = new System.Drawing.Point(1, 230);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(241, 129);
+            this.panel18.TabIndex = 14;
             // 
-            // panel14
+            // dateTimePicker7
             // 
-            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel14.Controls.Add(this.panel15);
-            this.panel14.Controls.Add(this.checkBox1);
-            this.panel14.Controls.Add(this.label39);
-            this.panel14.Controls.Add(this.textBox20);
-            this.panel14.Controls.Add(this.label40);
-            this.panel14.Controls.Add(this.textBox31);
-            this.panel14.Controls.Add(this.label66);
-            this.panel14.Controls.Add(this.textBox32);
-            this.panel14.Location = new System.Drawing.Point(-1, 0);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(246, 542);
-            this.panel14.TabIndex = 4;
-            this.panel14.Visible = false;
+            this.dateTimePicker7.Location = new System.Drawing.Point(5, 27);
+            this.dateTimePicker7.Name = "dateTimePicker7";
+            this.dateTimePicker7.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker7.TabIndex = 5;
+            this.dateTimePicker7.ValueChanged += new System.EventHandler(this.dateTimePicker7_ValueChanged);
+            this.dateTimePicker7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker7_KeyDown);
             // 
-            // label39
+            // dateTimePicker8
             // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label39.Location = new System.Drawing.Point(1, 69);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(131, 20);
-            this.label39.TabIndex = 11;
-            this.label39.Text = "Код сотрудника";
+            this.dateTimePicker8.Location = new System.Drawing.Point(5, 79);
+            this.dateTimePicker8.Name = "dateTimePicker8";
+            this.dateTimePicker8.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker8.TabIndex = 4;
+            this.dateTimePicker8.ValueChanged += new System.EventHandler(this.dateTimePicker8_ValueChanged);
+            this.dateTimePicker8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker8_KeyDown);
             // 
-            // label40
+            // label67
             // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label40.Location = new System.Drawing.Point(1, 131);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(133, 20);
-            this.label40.TabIndex = 9;
-            this.label40.Text = "Подразделение";
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label67.Location = new System.Drawing.Point(1, 4);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(30, 20);
+            this.label67.TabIndex = 6;
+            this.label67.Text = "От";
             // 
-            // textBox31
+            // label68
             // 
-            this.textBox31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox31.Location = new System.Drawing.Point(5, 92);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(237, 26);
-            this.textBox31.TabIndex = 8;
-            this.textBox31.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
-            this.textBox31.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox31_KeyDown);
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label64.Location = new System.Drawing.Point(1, 56);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(30, 20);
-            this.label64.TabIndex = 7;
-            this.label64.Text = "До";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label65.Location = new System.Drawing.Point(1, 4);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(30, 20);
-            this.label65.TabIndex = 6;
-            this.label65.Text = "От";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(5, 27);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(233, 26);
-            this.dateTimePicker2.TabIndex = 5;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
-            this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker2_KeyDown);
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(5, 79);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(233, 26);
-            this.dateTimePicker3.TabIndex = 4;
-            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
-            this.dateTimePicker3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker3_KeyDown);
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label66.Location = new System.Drawing.Point(1, 4);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(39, 20);
-            this.label66.TabIndex = 3;
-            this.label66.Text = "Код";
-            // 
-            // textBox32
-            // 
-            this.textBox32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox32.Location = new System.Drawing.Point(5, 27);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(235, 26);
-            this.textBox32.TabIndex = 2;
-            this.textBox32.TextChanged += new System.EventHandler(this.textBox32_TextChanged);
-            this.textBox32.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox32_KeyDown);
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.AllowUserToAddRows = false;
-            this.dataGridView5.AllowUserToDeleteRows = false;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(245, 0);
-            this.dataGridView5.MultiSelect = false;
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.ReadOnly = true;
-            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView5.Size = new System.Drawing.Size(636, 543);
-            this.dataGridView5.TabIndex = 3;
-            this.dataGridView5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView5_KeyDown);
-            // 
-            // textBox20
-            // 
-            this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox20.Location = new System.Drawing.Point(5, 154);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(235, 26);
-            this.textBox20.TabIndex = 10;
-            this.textBox20.TextChanged += new System.EventHandler(this.textBox20_TextChanged_1);
-            this.textBox20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox20_KeyDown);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 219);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(228, 24);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Учитывать дату закрытия";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            this.checkBox1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox1_PreviewKeyDown);
-            // 
-            // panel15
-            // 
-            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel15.Controls.Add(this.dateTimePicker2);
-            this.panel15.Controls.Add(this.dateTimePicker3);
-            this.panel15.Controls.Add(this.label65);
-            this.panel15.Controls.Add(this.label64);
-            this.panel15.Location = new System.Drawing.Point(2, 249);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(241, 129);
-            this.panel15.TabIndex = 13;
-            // 
-            // panel16
-            // 
-            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel16.Controls.Add(this.dateTimePicker5);
-            this.panel16.Controls.Add(this.dateTimePicker6);
-            this.panel16.Controls.Add(this.label60);
-            this.panel16.Controls.Add(this.label61);
-            this.panel16.Location = new System.Drawing.Point(2, 241);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(241, 129);
-            this.panel16.TabIndex = 15;
-            // 
-            // dateTimePicker5
-            // 
-            this.dateTimePicker5.Location = new System.Drawing.Point(5, 27);
-            this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(233, 26);
-            this.dateTimePicker5.TabIndex = 5;
-            this.dateTimePicker5.ValueChanged += new System.EventHandler(this.dateTimePicker5_ValueChanged);
-            this.dateTimePicker5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker5_KeyDown);
-            // 
-            // dateTimePicker6
-            // 
-            this.dateTimePicker6.Location = new System.Drawing.Point(5, 79);
-            this.dateTimePicker6.Name = "dateTimePicker6";
-            this.dateTimePicker6.Size = new System.Drawing.Size(233, 26);
-            this.dateTimePicker6.TabIndex = 4;
-            this.dateTimePicker6.ValueChanged += new System.EventHandler(this.dateTimePicker6_ValueChanged);
-            this.dateTimePicker6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker6_KeyDown);
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label60.Location = new System.Drawing.Point(1, 4);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(30, 20);
-            this.label60.TabIndex = 6;
-            this.label60.Text = "От";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label61.Location = new System.Drawing.Point(1, 56);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(30, 20);
-            this.label61.TabIndex = 7;
-            this.label61.Text = "До";
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(5, 211);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(199, 24);
-            this.checkBox2.TabIndex = 14;
-            this.checkBox2.Text = "Учитывать дату срока";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            this.checkBox2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox2_PreviewKeyDown);
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label68.Location = new System.Drawing.Point(1, 56);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(30, 20);
+            this.label68.TabIndex = 7;
+            this.label68.Text = "До";
             // 
             // Gl_Form
             // 
@@ -2017,10 +2190,22 @@ namespace UASKI
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage9.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2046,17 +2231,11 @@ namespace UASKI
             this.panel10.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
-            this.panel16.ResumeLayout(false);
-            this.panel16.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2224,6 +2403,20 @@ namespace UASKI
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label61;
         public System.Windows.Forms.CheckBox checkBox2;
+        public System.Windows.Forms.Panel panel17;
+        public System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Label label69;
+        public System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.Label label70;
+        public System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.Label label71;
+        public System.Windows.Forms.TextBox textBox35;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.Panel panel18;
+        public System.Windows.Forms.DateTimePicker dateTimePicker7;
+        public System.Windows.Forms.DateTimePicker dateTimePicker8;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label68;
     }
 }
 

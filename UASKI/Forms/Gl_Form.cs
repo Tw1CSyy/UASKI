@@ -364,6 +364,34 @@ namespace UASKI
         {
             SystemData.Pages.SelectTask.dateTimePicker6_KeyDown(e);
         }
+        private void dataGridView1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.dataGridView1_KeyDown_1(e);
+        }
+        private void textBox33_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.textBox33_KeyDown(e);
+        }
+        private void textBox34_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.textBox34_KeyDown(e);
+        }
+        private void textBox35_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.textBox35_KeyDown(e);
+        }
+        private void checkBox3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.checkBox3_PreviewKeyDown(e);
+        }
+        private void dateTimePicker7_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.dateTimePicker7_KeyDown(e);
+        }
+        private void dateTimePicker8_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.dateTimePicker8_KeyDown(e);
+        }
         #endregion
 
         #region Обработка
@@ -472,6 +500,38 @@ namespace UASKI
         {
             textBox19_TextChanged_1(sender, e);
         }
+        private void textBox33_TextChanged(object sender, EventArgs e)
+        {
+            if(!SystemData.IsClear)
+            {
+                var form = this;
+
+                SystemHelper.PullListInDataGridView(form.dataGridView1,
+                    ArhivService.GetOpzListDataGrid(form.textBox33.Text, form.textBox34.Text, form.textBox35.Text, form.checkBox3.Checked, form.dateTimePicker7.Value, form.dateTimePicker8.Value),
+                    new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
+            }
+        }
+        private void textBox34_TextChanged(object sender, EventArgs e)
+        {
+            textBox33_TextChanged(sender, e);
+        }
+        private void textBox35_TextChanged(object sender, EventArgs e)
+        {
+            textBox33_TextChanged(sender, e);
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox33_TextChanged(sender, e);
+        }
+        private void dateTimePicker7_ValueChanged(object sender, EventArgs e)
+        {
+            textBox33_TextChanged(sender, e);
+        }
+        private void dateTimePicker8_ValueChanged(object sender, EventArgs e)
+        {
+            textBox33_TextChanged(sender, e);
+        }
+
         #endregion
 
     }

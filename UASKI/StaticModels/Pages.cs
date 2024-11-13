@@ -14,6 +14,7 @@ namespace UASKI.StaticModels
         public SelectTask SelectTask = new SelectTask(2);
         public SelectArhiv SelectArhiv = new SelectArhiv(3);
 
+        public SelectOpz SelectOpz = new SelectOpz(5);
         public AddTask AddTask = new AddTask(6);
         public AddIsp AddIsp = new AddIsp(7);
         public AddHoliday AddHoliday = new AddHoliday(8);
@@ -24,7 +25,6 @@ namespace UASKI.StaticModels
         /// <summary>
         /// Открывает страницу по индексу из меню
         /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public void Open()
         {
             BasePage[] List =
@@ -36,7 +36,8 @@ namespace UASKI.StaticModels
                 EditTask,
                 SelectArhiv,
                 SelectIsp,
-                SelectTask
+                SelectTask,
+                SelectOpz
             };
 
             var form = SystemData.Form;
@@ -50,7 +51,7 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Отчищает сраницу по текущей странице
+        /// Отчищает по текущей странице
         /// </summary>
         public void Clear()
         {
@@ -63,17 +64,14 @@ namespace UASKI.StaticModels
                 EditTask,
                 SelectArhiv,
                 SelectIsp,
-                SelectTask
+                SelectTask,
+                SelectOpz
             };
 
             var item = List.FirstOrDefault(page => page.Index == SystemData.Index);
 
             if (item != null)
-            {
-                SystemData.IsClear = true;
-                item.Clear();
-                SystemData.IsClear = false;
-            }
+                item.ClearPage();
         }
 
     }

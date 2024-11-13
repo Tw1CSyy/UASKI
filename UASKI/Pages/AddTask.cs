@@ -36,7 +36,7 @@ namespace UASKI.Pages
         /// <summary>
         /// Отчищает страницу
         /// </summary>
-        public override void Clear()
+        protected override void Clear()
         {
             form.textBox1.Clear();
             form.textBox2.Clear();

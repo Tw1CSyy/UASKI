@@ -93,7 +93,7 @@ namespace UASKI.Pages
             }
         }
 
-        public override void Clear()
+        protected override void Clear()
         {
            
             form.textBox24.Clear();

@@ -83,7 +83,7 @@ namespace UASKI.StaticModels
                        new ItemMenuLevel2
                        {
                            Text = "Просмотр Опозданий",
-                           NumberTabPage = 0
+                           NumberTabPage = Pages.SelectOpz.Index
                        },
                    }
                },

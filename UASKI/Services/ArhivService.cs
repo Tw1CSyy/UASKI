@@ -4,6 +4,7 @@ using UASKI.Data.Entyties;
 using UASKI.Data.Context;
 using UASKI.Models;
 using System;
+using System.Windows.Forms;
 
 namespace UASKI.Services
 {
@@ -16,7 +17,7 @@ namespace UASKI.Services
 
         /// <summary>
         /// Возращает список архива
-        /// </summary>
+        /// </summary> 
         /// <returns></returns>
         public static List<ArhivEntity> GetList()
         {
@@ -29,7 +30,7 @@ namespace UASKI.Services
         /// <param name="search">Код</param>
         /// <param name="isp">Котроллер или исполнитель</param>
         /// <param name="podr">Подразделение</param>
-        /// <param name="isDate">используется ли дата</param>
+        /// <param name="isDate">Используется ли дата</param>
         /// <param name="dateFrom">Дата закрытия от</param>
         /// <param name="dateTo">Дата закрытия до</param>
         /// <returns></returns>
@@ -102,6 +103,92 @@ namespace UASKI.Services
             var item = list.FirstOrDefault(c => c.Code.Equals(code));
 
             return item;
+        }
+
+        public static List<DataGridRowModel> GetOpzListDataGrid(string search, string isp1, string podr, bool isDate, DateTime dateFrom, DateTime dateTo)
+        {
+            var model = new List<DataGridRowModel>();
+
+            var listTask = context.Tasks.Where(c => c.Date < DateTime.Now).OrderByDescending(c => c.Date).ToList();
+            var listArhiv = context.Arhiv.Where(c => c.DateClose > c.Date).OrderByDescending(c => c.Date).ToList();
+
+            foreach (var item in listTask)
+            {
+                var isp = IspService.GetByCode(item.IdIsp);
+                var con = IspService.GetByCode(item.IdCon);
+
+                if(!string.IsNullOrEmpty(isp1) && int.TryParse(isp1 , out int i))
+                {
+                    if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1))
+                        continue;
+                }
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    if (!item.Code.ToLower().Contains(search.ToLower()))
+                        continue;
+                }
+
+                if(!string.IsNullOrEmpty(podr) && int.TryParse(podr , out int j))
+                {
+                    if (isp.CodePodr != Convert.ToInt32(podr) && con.CodePodr != Convert.ToInt32(podr))
+                        continue;
+                }
+
+                if(isDate)
+                {
+                    if (item.Date.Date < dateFrom.Date || item.Date.Date > dateTo.Date)
+                        continue;
+                }
+
+                var task = new DataGridRowModel(item.Code,
+                 $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}",
+                 $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}",
+                 item.Date.ToString("dd.MM.yyyy"), "", "");
+
+                model.Add(task);
+            }
+
+            foreach (var item in listArhiv)
+            {
+                var isp = IspService.GetByCode(item.IdIsp);
+                var con = IspService.GetByCode(item.IdCon);
+
+                if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
+                {
+                    if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1))
+                        continue;
+                }
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    if (!item.Code.ToLower().Contains(search.ToLower()))
+                        continue;
+                }
+
+                if (!string.IsNullOrEmpty(podr) && int.TryParse(podr, out int j))
+                {
+                    if (isp.CodePodr != Convert.ToInt32(podr) && con.CodePodr != Convert.ToInt32(podr))
+                        continue;
+                }
+
+                if (isDate)
+                {
+                    if (item.DateClose.Date < dateFrom.Date || item.DateClose.Date > dateTo.Date)
+                        continue;
+                }
+
+                var task = new DataGridRowModel(item.Code,
+                     $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}",
+                     $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}",
+                     item.Date.ToString("dd.MM.yyyy"),
+                     item.DateClose.ToString("dd.MM.yyyy"),
+                     item.Otm.ToString());
+
+                model.Add(task);
+            }
+
+            return model;
         }
 
     }

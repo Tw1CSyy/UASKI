@@ -42,7 +42,7 @@ namespace UASKI.Pages
         /// <summary>
         /// Отчищает страницу
         /// </summary>
-        public override void Clear()
+        protected override void Clear()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView2,
                        HolidaysService.GetListByDataGrid(),

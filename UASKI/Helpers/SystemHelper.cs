@@ -51,6 +51,8 @@ namespace UASKI.Helpers
             {
                 d.Columns[i].Width = (int)Math.Floor((double)(d.Width - 40) / (double)columns.Values.Length);
             }
+
+            ResizeDataGridView(d);
         }
 
         /// <summary>

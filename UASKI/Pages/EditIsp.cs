@@ -70,7 +70,7 @@ namespace UASKI.Pages
         /// <summary>
         /// Отчищает страницу
         /// </summary>
-        public override void Clear()
+        protected override void Clear()
         {
             form.textBox18.Clear();
             form.textBox17.Clear();
