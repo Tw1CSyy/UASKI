@@ -55,6 +55,7 @@ namespace UASKI.Models.Pages
         {
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
+
         }
 
         #region Клавиши

@@ -22,7 +22,6 @@ namespace UASKI.Services
         /// <returns></returns>
         public static List<HolidayEntity> GetList()
         {
-            var context = new UAContext();
             return context.Holidays;
         }
 
@@ -64,7 +63,7 @@ namespace UASKI.Services
 
             foreach (var item in date.DateRange)
             {
-                var holy = context.Holidays.FirstOrDefault(c => c.Date.Date == item);
+                var holy = GetList().FirstOrDefault(c => c.Date.Date == item);
 
                 if(holy != null)
                 {

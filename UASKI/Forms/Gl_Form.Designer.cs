@@ -1738,35 +1738,38 @@ namespace UASKI
             // 
             // button12
             // 
+            this.button12.BackColor = System.Drawing.Color.White;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button12.Location = new System.Drawing.Point(22, 151);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(164, 43);
             this.button12.TabIndex = 2;
             this.button12.Text = "Удалить";
-            this.button12.UseVisualStyleBackColor = true;
+            this.button12.UseVisualStyleBackColor = false;
             this.button12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button12_PreviewKeyDown);
             // 
             // button11
             // 
+            this.button11.BackColor = System.Drawing.Color.White;
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button11.Location = new System.Drawing.Point(22, 79);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(164, 43);
             this.button11.TabIndex = 1;
             this.button11.Text = "Закрыть";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button11.UseVisualStyleBackColor = false;
             this.button11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button11_PreviewKeyDown);
             // 
             // button10
             // 
+            this.button10.BackColor = System.Drawing.Color.White;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button10.Location = new System.Drawing.Point(22, 11);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(164, 43);
             this.button10.TabIndex = 0;
             this.button10.Text = "Изменить";
-            this.button10.UseVisualStyleBackColor = true;
+            this.button10.UseVisualStyleBackColor = false;
             this.button10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button10_PreviewKeyDown);
             // 
             // panel10

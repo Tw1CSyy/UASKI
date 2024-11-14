@@ -11,8 +11,8 @@
         public string Text { get; set; }
 
         /// <summary>
-        /// Номер страницы реализации
+        /// Страница для отображения
         /// </summary>
-        public int NumberTabPage { get; set; }
+        public BasePage Page { get; set; }
     }
 }

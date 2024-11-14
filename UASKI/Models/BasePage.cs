@@ -10,7 +10,7 @@ namespace UASKI.Models
         /// <summary>
         /// Индекс страницы
         /// </summary>
-        public int Index { get; private set; }
+        private int Index;
 
         /// <summary>
         /// Загрузить данные на страницу
@@ -30,7 +30,7 @@ namespace UASKI.Models
         /// <summary>
         /// Отчистить страницу
         /// </summary>
-        public void ClearPage()
+        protected void ClearPage()
         {
             SystemData.IsClear = true;
             Clear();
@@ -46,13 +46,12 @@ namespace UASKI.Models
             var form = SystemData.Form;
             form.tabControl1.SelectedIndex = Index;
             form.Menu_Step2.Enabled = false;
-            //SystemData.Pages.Clear();
-            //SystemData.Index = Index;
+            
+            if(SystemData.This != null)
+                SystemData.This.ClearPage();
 
-            if(SystemData.Pages.This != null)
-                SystemData.Pages.This.ClearPage();
+            SystemData.This = this;
 
-            SystemData.Pages.This = this;
             if(IsOpen)
             {
                 SystemData.IsClear = true;

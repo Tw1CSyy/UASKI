@@ -76,6 +76,7 @@ namespace UASKI.Pages
                     {
                         form.textBox2.Text = isp.CodePodr.ToString();
                         form.textBox3.Text = isp.Code.ToString();
+                        form.textBox1.Text = $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.";
                     }
 
                     SystemHelper.SelectTextBox(form.textBox4);
@@ -108,6 +109,7 @@ namespace UASKI.Pages
                     {
                         form.textBox5.Text = isp.CodePodr.ToString();
                         form.textBox6.Text = isp.Code.ToString();
+                        form.textBox4.Text = $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.";
                     }
 
                     SystemHelper.SelectTextBox(form.textBox7);

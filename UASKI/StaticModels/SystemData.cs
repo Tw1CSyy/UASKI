@@ -21,11 +21,6 @@ namespace UASKI.StaticModels
         public static Gl_Form Form { get; private set; }
 
         /// <summary>
-        /// Индекс текущей страницы
-        /// </summary>
-        public static int Index { get; set; }
-
-        /// <summary>
         /// Требуется ли подтверждение операции
         /// </summary>
         public static bool IsQuery { get; set; }
@@ -46,6 +41,10 @@ namespace UASKI.StaticModels
         public static Pages Pages { get; private set; }
 
         /// <summary>
+        /// Текущая страница
+        /// </summary>
+        public static BasePage This { get; set; }
+        /// <summary>
         /// Инициализация данных
         /// </summary>
         /// <param name="form">Главная форма приложения для инициализации</param>
@@ -53,6 +52,9 @@ namespace UASKI.StaticModels
         {
             Form = form;
             Pages = new Pages();
+            IsQuery = false;
+            IsClear = false;
+
             MenuItems = new List<ItemMenuLevel1>
             {
                new ItemMenuLevel1
@@ -63,27 +65,27 @@ namespace UASKI.StaticModels
                        new ItemMenuLevel2
                        {
                            Text = "Просмотр Исполнителя-Контроллера",
-                           NumberTabPage = Pages.SelectIsp.Index
+                           Page = Pages.SelectIsp
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Просмотр Планов",
-                           NumberTabPage = Pages.SelectTask.Index
+                           Page = Pages.SelectTask
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Просмотр Архива",
-                           NumberTabPage = Pages.SelectArhiv.Index
+                           Page = Pages.SelectArhiv
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Просмотр Празднечных Дней",
-                           NumberTabPage = 0
+                           Page = null
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Просмотр Опозданий",
-                           NumberTabPage = Pages.SelectOpz.Index
+                           Page = Pages.SelectOpz
                        },
                    }
                },
@@ -95,17 +97,17 @@ namespace UASKI.StaticModels
                        new ItemMenuLevel2
                        {
                            Text = "Добавление Новых Карточек",
-                           NumberTabPage = Pages.AddTask.Index
+                           Page = Pages.AddTask
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Добавление Исполнителей-Контролеров",
-                           NumberTabPage = Pages.AddIsp.Index
+                           Page = Pages.AddIsp
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Добавление Празднечных Дней",
-                           NumberTabPage = Pages.AddHoliday.Index
+                           Page = Pages.AddHoliday
                        }
                    }
                },
@@ -117,34 +119,31 @@ namespace UASKI.StaticModels
                        new ItemMenuLevel2
                        {
                            Text = "Перечень заданий на месяц",
-                           NumberTabPage = 0
+                           Page = null
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Невыполненные задания",
-                           NumberTabPage = 0
+                           Page = null
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Состояние выполнения мероприятия",
-                           NumberTabPage = 0
+                           Page = null
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Текущие значения показателей работы",
-                           NumberTabPage = 0
+                           Page = null
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Составление коэффициента качества",
-                           NumberTabPage = 0
+                           Page = null
                        }
                    }
                },
             };
-            Index = 0;
-            IsQuery = false;
-            IsClear = false;
         }
     }
 }

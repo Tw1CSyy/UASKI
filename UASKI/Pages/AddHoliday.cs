@@ -46,6 +46,7 @@ namespace UASKI.Pages
         protected override void Clear()
         {
             form.label27.Visible = false;
+            form.dataGridView2.DataSource = null;
             SystemHelper.SelectButton(false, form.button5);
         }
 

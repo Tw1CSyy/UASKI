@@ -109,8 +109,8 @@ namespace UASKI.Services
         {
             var model = new List<DataGridRowModel>();
 
-            var listTask = context.Tasks.Where(c => c.Date < DateTime.Now).OrderByDescending(c => c.Date).ToList();
-            var listArhiv = context.Arhiv.Where(c => c.DateClose > c.Date).OrderByDescending(c => c.Date).ToList();
+            var listTask = TasksService.GetList().Where(c => c.Date < DateTime.Now).OrderByDescending(c => c.Date).ToList();
+            var listArhiv = GetList().Where(c => c.DateClose > c.Date).OrderByDescending(c => c.Date).ToList();
 
             foreach (var item in listTask)
             {

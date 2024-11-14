@@ -5,7 +5,6 @@ using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Models;
 using UASKI.Services;
-using System.Collections.Generic;
 
 namespace UASKI
 {
@@ -41,9 +40,9 @@ namespace UASKI
             Menu_Step1.Focus();
 
             // Отключаем отображение страниц
-            tabControl1.Appearance = TabAppearance.Buttons;
-            tabControl1.ItemSize = new System.Drawing.Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
+            //tabControl1.Appearance = TabAppearance.Buttons;
+            //tabControl1.ItemSize = new System.Drawing.Size(0, 1);
+            //tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Открываем подключение
             try
@@ -55,7 +54,6 @@ namespace UASKI
                 Menu_Step1.Visible = Menu_Step2.Visible = false;
                 ErrorHelper.StatusError();
             }
-            
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -94,6 +92,14 @@ namespace UASKI
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
             DateTimeLabel.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+        }
+
+        // Открываем страницы по меню
+        private void Open()
+        {
+            var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
+            var el = elem.Items.FirstOrDefault(c => c.Text.Equals(Menu_Step2.SelectedItem.ToString()));
+            el.Page.Init();
         }
 
         #region Нажатия клавиш
@@ -145,7 +151,7 @@ namespace UASKI
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                SystemData.Pages.Open();
+                Open();
             }
             else
             {
@@ -154,7 +160,7 @@ namespace UASKI
                 if (si != 0 && si != -1 && Menu_Step2.Items.Count >= si)
                 {
                     Menu_Step2.SelectedIndex = si - 1;
-                    SystemData.Pages.Open();
+                    Open();
                 }
             }
         }
@@ -410,7 +416,8 @@ namespace UASKI
         }
         private void textBox28_TextChanged(object sender, EventArgs e)
         {
-            button11.Enabled = !SystemData.Pages.EditTask.Arhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i);
+            if(!SystemData.IsClear)
+            button11.Enabled = (!SystemData.Pages.EditTask.Arhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i)) || SystemData.Pages.EditTask.Arhiv;
         }
         private void textBox20_TextChanged(object sender, EventArgs e)
         {
