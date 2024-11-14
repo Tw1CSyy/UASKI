@@ -29,7 +29,6 @@ namespace UASKI.Pages
         protected override void Show()
         {
             form.textBox8.Focus();
-
         }
 
         /// <summary>
@@ -49,8 +48,16 @@ namespace UASKI.Pages
             form.label21.Visible = false;
             form.label22.Visible = false;
 
-            form.textBox8.Focus();
             SystemHelper.SelectButton(false, form.button4);
+        }
+
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
         }
 
         #region Клавиши
@@ -62,8 +69,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -79,8 +85,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -96,8 +101,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -113,8 +117,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
             else if (e.KeyCode == Keys.Down)
             {
@@ -134,8 +137,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -155,8 +157,9 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        SystemData.Pages.Clear();
+                        ClearPage();
                         ErrorHelper.StatusComlite();
+                        Show();
                     }
                     else
                     {
@@ -170,8 +173,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
                 SystemHelper.SelectButton(false, form.button4);
             }
             else if (e.KeyCode == Keys.Up)

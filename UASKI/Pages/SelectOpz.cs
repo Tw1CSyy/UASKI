@@ -66,6 +66,16 @@ namespace UASKI.Pages
             form.dataGridView1.Focus();
         }
 
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
+            form.dataGridView1.ClearSelection();
+        }
+
         #region Клаваши
         public void dataGridView1_KeyDown_1(KeyEventArgs e)
         {
@@ -79,15 +89,25 @@ namespace UASKI.Pages
                 && form.dataGridView1.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                var d = form.dataGridView1;
+
+                if (d.SelectedRows.Count > 0)
+                {
+                    var code = d.SelectedRows[0].Cells[0].Value.ToString();
+                    var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
+                    SystemData.Pages.EditTask.Init(false);
+                    SystemData.Pages.EditTask.Show(code, IsArhiv , 3);
+                }
             }
             else
             {
                 SystemHelper.CharInTextBox(form.textBox33, e.KeyCode);
             }
 
-            e.Handled = true;
         }
         public void textBox33_KeyDown(KeyEventArgs e)
         {

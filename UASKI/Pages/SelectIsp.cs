@@ -48,6 +48,15 @@ namespace UASKI.Models.Pages
             form.IspDataGridView.DataSource = null;
         }
 
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
+        }
+
         #region Клавиши
         public void IspDataGridView_KeyDown(KeyEventArgs e)
         {
@@ -57,8 +66,7 @@ namespace UASKI.Models.Pages
                 && form.IspDataGridView.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
                 form.IspDataGridView.ClearSelection();
             }
             else if (e.KeyCode == Keys.Enter)
@@ -72,7 +80,6 @@ namespace UASKI.Models.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)
             {
-                
                 form.IspDataGridView.Location = new System.Drawing.Point(247, 0);
                 form.IspDataGridView.Size = new System.Drawing.Size(634, 560);
                 SystemHelper.ResizeDataGridView(form.IspDataGridView);

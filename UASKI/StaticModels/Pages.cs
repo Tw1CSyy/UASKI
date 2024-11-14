@@ -10,17 +10,17 @@ namespace UASKI.StaticModels
     /// </summary>
     public class Pages
     {
-        public SelectIsp SelectIsp = new SelectIsp(1);
-        public SelectTask SelectTask = new SelectTask(2);
-        public SelectArhiv SelectArhiv = new SelectArhiv(3);
+        public readonly SelectIsp SelectIsp = new SelectIsp(1);
+        public readonly SelectTask SelectTask = new SelectTask(2);
+        public readonly SelectArhiv SelectArhiv = new SelectArhiv(3);
 
-        public SelectOpz SelectOpz = new SelectOpz(5);
-        public AddTask AddTask = new AddTask(6);
-        public AddIsp AddIsp = new AddIsp(7);
-        public AddHoliday AddHoliday = new AddHoliday(8);
-        public EditIsp EditIsp = new EditIsp(9);
-        public EditTask EditTask = new EditTask(10);
-
+        public readonly SelectOpz SelectOpz = new SelectOpz(5);
+        public readonly AddTask AddTask = new AddTask(6);
+        public readonly AddIsp AddIsp = new AddIsp(7);
+        public readonly AddHoliday AddHoliday = new AddHoliday(8);
+        public readonly EditIsp EditIsp = new EditIsp(9);
+        public readonly EditTask EditTask = new EditTask(10);
+        public BasePage This { get; set; }
        
         /// <summary>
         /// Открывает страницу по индексу из меню
@@ -39,6 +39,8 @@ namespace UASKI.StaticModels
                 SelectTask,
                 SelectOpz
             };
+
+            BasePage d = new EditTask(10);
 
             var form = SystemData.Form;
             var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(form.Menu_Step1.SelectedItem.ToString()));

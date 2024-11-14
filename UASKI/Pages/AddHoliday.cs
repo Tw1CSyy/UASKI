@@ -34,6 +34,7 @@ namespace UASKI.Pages
                 HolidaysService.GetListByDataGrid(),
                 new DataGridRowModel("Дата"));
 
+            form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
             form.monthCalendar1.Focus();
 
             form.dataGridView2.ClearSelection();
@@ -44,14 +45,17 @@ namespace UASKI.Pages
         /// </summary>
         protected override void Clear()
         {
-            SystemHelper.PullListInDataGridView(form.dataGridView2,
-                       HolidaysService.GetListByDataGrid(),
-                       new DataGridRowModel("Дата"));
-
             form.label27.Visible = false;
-            form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
-            form.monthCalendar1.Focus();
             SystemHelper.SelectButton(false, form.button5);
+        }
+
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
         }
 
         #region Клавиши
@@ -64,8 +68,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -88,8 +91,9 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        SystemData.Pages.Clear();
+                        ClearPage();
                         ErrorHelper.StatusComlite();
+                        Show();
                     }
                     else
                     {
@@ -103,8 +107,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
                 SystemHelper.SelectButton(false, form.button5);
             }
 

@@ -32,13 +32,22 @@ namespace UASKI.Pages
 
         }
 
+        private string Code;
+        private int Page;
+        public  bool Arhiv { get; private set; }
+
         /// <summary>
         /// Загружает данные на страницу
         /// </summary>
         /// <param name="code">Код задания</param>
         /// <param name="IsArhiv">Архивное задание</param>
-        public void Show(string code , bool IsArhiv)
+        /// <param name="page">Прошлая страница</param>
+        public void Show(string code , bool IsArhiv , int page)
         {
+            Code = code;
+            Page = page;
+            Arhiv = IsArhiv;
+
             if (!IsArhiv)
             {
                 var task = TasksService.GetTaskByCode(code);
@@ -53,15 +62,13 @@ namespace UASKI.Pages
                 form.textBox25.Text = usr1.CodePodr.ToString();
                 form.textBox23.Text = usr2.Code.ToString();
                 form.textBox22.Text = usr2.CodePodr.ToString();
-                form.label54.Text = task.Code.ToString();
-                form.label54.Enabled = true;
+                form.button12.Enabled = false;
                 form.button11.Enabled = false;
-
                 form.textBox27.Text = task.Code;
                 form.dateTimePicker4.Value = task.Date;
 
                 form.button11.Text = "Закрыть";
-
+                form.label72.Visible = false;
                 SystemHelper.SelectTextBox(form.textBox26);
             }
             else
@@ -78,9 +85,7 @@ namespace UASKI.Pages
                 form.textBox25.Text = usr1.CodePodr.ToString();
                 form.textBox23.Text = usr2.Code.ToString();
                 form.textBox22.Text = usr2.CodePodr.ToString();
-                form.label54.Text = arhiv.Code.ToString();
-                form.label54.Enabled = false;
-
+                form.button11.Enabled = true;
                 form.textBox27.Text = arhiv.Code;
                 form.dateTimePicker4.Value = arhiv.Date;
 
@@ -88,7 +93,7 @@ namespace UASKI.Pages
                 form.button10.Enabled = false;
 
                 form.textBox28.Text = arhiv.Otm.ToString();
-
+                form.label72.Visible = true;
                 SystemHelper.SelectTextBox(form.textBox26);
             }
         }
@@ -111,6 +116,25 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button10);
             SystemHelper.SelectButton(false, form.button11);
             SystemHelper.SelectButton(false, form.button12);
+        }
+
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            switch (Page)
+            {
+                case 1:
+                    SystemData.Pages.SelectTask.Init();
+                    break;
+                case 2:
+                    SystemData.Pages.SelectArhiv.Init();
+                    break;
+                case 3:
+                    SystemData.Pages.SelectOpz.Init();
+                    break;
+            }
         }
 
         #region Клавиши
@@ -151,10 +175,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
             else if (e.KeyCode == Keys.Back)
             {
@@ -201,10 +222,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
             else if (e.KeyCode == Keys.Up)
             {
@@ -234,10 +252,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
         }
 
@@ -264,7 +279,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (!form.label54.Enabled)
+                if (!Arhiv)
                     form.textBox28.Focus();
                 else if (form.button10.Enabled)
                     SystemHelper.SelectButton(true, form.button10);
@@ -279,10 +294,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
@@ -307,10 +319,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
 
         }
@@ -332,9 +341,9 @@ namespace UASKI.Pages
             {
                 if(SystemData.IsQuery)
                 {
-                    if(form.label54.Enabled)
+                    if(!Arhiv)
                     {
-                        var result = TasksService.UpdateTask(form.label54.Text,
+                        var result = TasksService.UpdateTask(Code,
                             TextBoxElement.New(form.textBox24, form.label51),
                             TextBoxElement.New(form.textBox23, form.label53),
                             TextBoxElement.New(form.textBox27, form.label55),
@@ -343,7 +352,7 @@ namespace UASKI.Pages
                         if(result)
                         {
                             ErrorHelper.StatusComlite();
-                            SystemData.Pages.SelectTask.Init();
+                            Exit();
                         }
                         else
                         {
@@ -367,10 +376,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
         }
 
@@ -394,14 +400,14 @@ namespace UASKI.Pages
             {
                 if(SystemData.IsQuery)
                 {
-                    if (form.label54.Enabled)
+                    if (!Arhiv)
                     {
-                        var result = TasksService.Close(form.label54.Text, TextBoxElement.New(form.textBox28, form.label57));
+                        var result = TasksService.Close(Code, TextBoxElement.New(form.textBox28, form.label57));
 
                         if(result)
                         {
                             ErrorHelper.StatusComlite();
-                            SystemData.Pages.SelectTask.Init();
+                            Exit();
                         }
                         else
                         {
@@ -425,10 +431,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
         }
 
@@ -454,7 +457,7 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    if (form.label54.Enabled)
+                    if (!Arhiv)
                     {
 
                     }
@@ -470,10 +473,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                if (form.label54.Enabled)
-                    SystemData.Pages.SelectTask.Init();
-                else
-                    SystemData.Pages.SelectArhiv.Init();
+                Exit();
             }
         }
         #endregion

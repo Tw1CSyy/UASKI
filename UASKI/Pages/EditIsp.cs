@@ -37,10 +37,13 @@ namespace UASKI.Pages
         /// Загружает данные на страницу
         /// </summary>
         /// <param name="code">Код исполнителя</param>
+        
+        private int Code;
+
         public void Show(int code)
         {
+            Code = code;
             var form = SystemData.Form;
-
             var isp = IspService.GetByCode(code);
 
             form.textBox18.Text = isp.FirstName;
@@ -48,7 +51,6 @@ namespace UASKI.Pages
             form.textBox16.Text = isp.LastName;
             form.textBox15.Text = isp.Code.ToString();
             form.textBox14.Text = isp.CodePodr.ToString();
-            form.label38.Text = isp.Code.ToString();
 
             form.label28.Visible = false;
             form.label29.Visible = false;
@@ -81,7 +83,14 @@ namespace UASKI.Pages
             form.dataGridView4.DataSource = null;
             SystemHelper.SelectButton(false, form.button6);
             SystemHelper.SelectButton(false, form.button7);
-            form.textBox18.Focus();
+        }
+
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            SystemData.Pages.SelectIsp.Init();
         }
 
         #region Клавиши
@@ -89,7 +98,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Escape)
             {
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
             else if (e.KeyCode == Keys.Right)
             {
@@ -117,7 +126,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
         }
 
@@ -137,7 +146,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
         }
 
@@ -157,7 +166,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
         }
 
@@ -177,7 +186,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
             else if (e.KeyCode == Keys.Right)
             {
@@ -198,7 +207,7 @@ namespace UASKI.Pages
                 {
                     var result = IspService.Update
                    (
-                   Convert.ToInt32(form.label38.Text),
+                   Code,
                    TextBoxElement.New(form.textBox18, form.label32),
                    TextBoxElement.New(form.textBox17, form.label31),
                    TextBoxElement.New(form.textBox16, form.label30),
@@ -208,7 +217,7 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        SystemData.Pages.SelectIsp.Init();
+                        Exit();
                         ErrorHelper.StatusComlite();
                     }
                     else
@@ -229,7 +238,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectButton(false, form.button6);
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
             e.IsInputKey = true;
         }
@@ -250,11 +259,9 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var code = Convert.ToInt32(form.label38.Text);
-
-                    if (IspService.Disactive(code))
+                    if (IspService.Disactive(Code))
                     {
-                        SystemData.Pages.SelectIsp.Init();
+                        Exit();
                         ErrorHelper.StatusComlite();
                     }
                     else
@@ -270,7 +277,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectButton(false, form.button7);
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
             }
             else if (e.KeyCode == Keys.Down)
             {
@@ -296,7 +303,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectDataGridView(false, form.dataGridView4);
-                SystemData.Pages.SelectIsp.Init();
+                Exit();
                 e.Handled = true;
             }
         }

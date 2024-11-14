@@ -76,6 +76,19 @@ namespace UASKI
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.textBox35 = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -137,7 +150,6 @@ namespace UASKI
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label38 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -168,7 +180,6 @@ namespace UASKI
             this.label55 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
@@ -195,20 +206,8 @@ namespace UASKI
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label69 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
-            this.label70 = new System.Windows.Forms.Label();
-            this.textBox34 = new System.Windows.Forms.TextBox();
-            this.label71 = new System.Windows.Forms.Label();
-            this.textBox35 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -224,6 +223,8 @@ namespace UASKI
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -242,9 +243,7 @@ namespace UASKI
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -717,8 +716,8 @@ namespace UASKI
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.panel17);
             this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.panel17);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -726,6 +725,145 @@ namespace UASKI
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр опзд";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel17.Controls.Add(this.panel18);
+            this.panel17.Controls.Add(this.checkBox3);
+            this.panel17.Controls.Add(this.label69);
+            this.panel17.Controls.Add(this.textBox33);
+            this.panel17.Controls.Add(this.label70);
+            this.panel17.Controls.Add(this.textBox34);
+            this.panel17.Controls.Add(this.label71);
+            this.panel17.Controls.Add(this.textBox35);
+            this.panel17.Location = new System.Drawing.Point(-1, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(246, 542);
+            this.panel17.TabIndex = 6;
+            this.panel17.Visible = false;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel18.Controls.Add(this.dateTimePicker7);
+            this.panel18.Controls.Add(this.dateTimePicker8);
+            this.panel18.Controls.Add(this.label67);
+            this.panel18.Controls.Add(this.label68);
+            this.panel18.Location = new System.Drawing.Point(1, 230);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(241, 129);
+            this.panel18.TabIndex = 14;
+            // 
+            // dateTimePicker7
+            // 
+            this.dateTimePicker7.Location = new System.Drawing.Point(5, 27);
+            this.dateTimePicker7.Name = "dateTimePicker7";
+            this.dateTimePicker7.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker7.TabIndex = 5;
+            this.dateTimePicker7.ValueChanged += new System.EventHandler(this.dateTimePicker7_ValueChanged);
+            this.dateTimePicker7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker7_KeyDown);
+            // 
+            // dateTimePicker8
+            // 
+            this.dateTimePicker8.Location = new System.Drawing.Point(5, 79);
+            this.dateTimePicker8.Name = "dateTimePicker8";
+            this.dateTimePicker8.Size = new System.Drawing.Size(233, 26);
+            this.dateTimePicker8.TabIndex = 4;
+            this.dateTimePicker8.ValueChanged += new System.EventHandler(this.dateTimePicker8_ValueChanged);
+            this.dateTimePicker8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker8_KeyDown);
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label67.Location = new System.Drawing.Point(1, 4);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(30, 20);
+            this.label67.TabIndex = 6;
+            this.label67.Text = "От";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label68.Location = new System.Drawing.Point(1, 56);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(30, 20);
+            this.label68.TabIndex = 7;
+            this.label68.Text = "До";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(5, 200);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(199, 24);
+            this.checkBox3.TabIndex = 12;
+            this.checkBox3.Text = "Учитывать дату срока";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.checkBox3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox3_PreviewKeyDown);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label69.Location = new System.Drawing.Point(1, 69);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(131, 20);
+            this.label69.TabIndex = 11;
+            this.label69.Text = "Код сотрудника";
+            // 
+            // textBox33
+            // 
+            this.textBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox33.Location = new System.Drawing.Point(4, 27);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(235, 26);
+            this.textBox33.TabIndex = 10;
+            this.textBox33.TextChanged += new System.EventHandler(this.textBox33_TextChanged);
+            this.textBox33.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox33_KeyDown);
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label70.Location = new System.Drawing.Point(1, 131);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(133, 20);
+            this.label70.TabIndex = 9;
+            this.label70.Text = "Подразделение";
+            // 
+            // textBox34
+            // 
+            this.textBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox34.Location = new System.Drawing.Point(5, 92);
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(237, 26);
+            this.textBox34.TabIndex = 8;
+            this.textBox34.TextChanged += new System.EventHandler(this.textBox34_TextChanged);
+            this.textBox34.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox34_KeyDown);
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label71.Location = new System.Drawing.Point(1, 4);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(39, 20);
+            this.label71.TabIndex = 3;
+            this.label71.Text = "Код";
+            // 
+            // textBox35
+            // 
+            this.textBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox35.Location = new System.Drawing.Point(6, 154);
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new System.Drawing.Size(235, 26);
+            this.textBox35.TabIndex = 2;
+            this.textBox35.TextChanged += new System.EventHandler(this.textBox35_TextChanged);
+            this.textBox35.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox35_KeyDown);
             // 
             // tabPage5
             // 
@@ -1392,7 +1530,6 @@ namespace UASKI
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Silver;
-            this.panel7.Controls.Add(this.label38);
             this.panel7.Controls.Add(this.label28);
             this.panel7.Controls.Add(this.label29);
             this.panel7.Controls.Add(this.label30);
@@ -1413,16 +1550,6 @@ namespace UASKI
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(527, 311);
             this.panel7.TabIndex = 2;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(3, 215);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(60, 20);
-            this.label38.TabIndex = 16;
-            this.label38.Text = "label38";
-            this.label38.Visible = false;
             // 
             // label28
             // 
@@ -1687,11 +1814,11 @@ namespace UASKI
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel9.Controls.Add(this.label72);
             this.panel9.Controls.Add(this.label56);
             this.panel9.Controls.Add(this.label55);
             this.panel9.Controls.Add(this.label53);
             this.panel9.Controls.Add(this.label51);
-            this.panel9.Controls.Add(this.label54);
             this.panel9.Controls.Add(this.dateTimePicker4);
             this.panel9.Controls.Add(this.label41);
             this.panel9.Controls.Add(this.label42);
@@ -1760,16 +1887,6 @@ namespace UASKI
             this.label51.TabIndex = 28;
             this.label51.Text = "Ошибка";
             this.label51.Visible = false;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(3, 6);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(60, 20);
-            this.label54.TabIndex = 27;
-            this.label54.Text = "label54";
-            this.label54.Visible = false;
             // 
             // dateTimePicker4
             // 
@@ -2015,95 +2132,6 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
-            // panel17
-            // 
-            this.panel17.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel17.Controls.Add(this.panel18);
-            this.panel17.Controls.Add(this.checkBox3);
-            this.panel17.Controls.Add(this.label69);
-            this.panel17.Controls.Add(this.textBox33);
-            this.panel17.Controls.Add(this.label70);
-            this.panel17.Controls.Add(this.textBox34);
-            this.panel17.Controls.Add(this.label71);
-            this.panel17.Controls.Add(this.textBox35);
-            this.panel17.Location = new System.Drawing.Point(-1, 0);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(246, 542);
-            this.panel17.TabIndex = 6;
-            this.panel17.Visible = false;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(5, 200);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(199, 24);
-            this.checkBox3.TabIndex = 12;
-            this.checkBox3.Text = "Учитывать дату срока";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            this.checkBox3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox3_PreviewKeyDown);
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label69.Location = new System.Drawing.Point(1, 69);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(131, 20);
-            this.label69.TabIndex = 11;
-            this.label69.Text = "Код сотрудника";
-            // 
-            // textBox33
-            // 
-            this.textBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox33.Location = new System.Drawing.Point(4, 27);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(235, 26);
-            this.textBox33.TabIndex = 10;
-            this.textBox33.TextChanged += new System.EventHandler(this.textBox33_TextChanged);
-            this.textBox33.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox33_KeyDown);
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label70.Location = new System.Drawing.Point(1, 131);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(133, 20);
-            this.label70.TabIndex = 9;
-            this.label70.Text = "Подразделение";
-            // 
-            // textBox34
-            // 
-            this.textBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox34.Location = new System.Drawing.Point(5, 92);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(237, 26);
-            this.textBox34.TabIndex = 8;
-            this.textBox34.TextChanged += new System.EventHandler(this.textBox34_TextChanged);
-            this.textBox34.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox34_KeyDown);
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label71.Location = new System.Drawing.Point(1, 4);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(39, 20);
-            this.label71.TabIndex = 3;
-            this.label71.Text = "Код";
-            // 
-            // textBox35
-            // 
-            this.textBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox35.Location = new System.Drawing.Point(6, 154);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(235, 26);
-            this.textBox35.TabIndex = 2;
-            this.textBox35.TextChanged += new System.EventHandler(this.textBox35_TextChanged);
-            this.textBox35.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox35_KeyDown);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -2115,58 +2143,19 @@ namespace UASKI
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(636, 543);
-            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.TabIndex = 15;
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown_1);
             // 
-            // panel18
+            // label72
             // 
-            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel18.Controls.Add(this.dateTimePicker7);
-            this.panel18.Controls.Add(this.dateTimePicker8);
-            this.panel18.Controls.Add(this.label67);
-            this.panel18.Controls.Add(this.label68);
-            this.panel18.Location = new System.Drawing.Point(1, 230);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(241, 129);
-            this.panel18.TabIndex = 14;
-            // 
-            // dateTimePicker7
-            // 
-            this.dateTimePicker7.Location = new System.Drawing.Point(5, 27);
-            this.dateTimePicker7.Name = "dateTimePicker7";
-            this.dateTimePicker7.Size = new System.Drawing.Size(233, 26);
-            this.dateTimePicker7.TabIndex = 5;
-            this.dateTimePicker7.ValueChanged += new System.EventHandler(this.dateTimePicker7_ValueChanged);
-            this.dateTimePicker7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker7_KeyDown);
-            // 
-            // dateTimePicker8
-            // 
-            this.dateTimePicker8.Location = new System.Drawing.Point(5, 79);
-            this.dateTimePicker8.Name = "dateTimePicker8";
-            this.dateTimePicker8.Size = new System.Drawing.Size(233, 26);
-            this.dateTimePicker8.TabIndex = 4;
-            this.dateTimePicker8.ValueChanged += new System.EventHandler(this.dateTimePicker8_ValueChanged);
-            this.dateTimePicker8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker8_KeyDown);
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label67.Location = new System.Drawing.Point(1, 4);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(30, 20);
-            this.label67.TabIndex = 6;
-            this.label67.Text = "От";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label68.Location = new System.Drawing.Point(1, 56);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(30, 20);
-            this.label68.TabIndex = 7;
-            this.label68.Text = "До";
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.label72.ForeColor = System.Drawing.Color.Red;
+            this.label72.Location = new System.Drawing.Point(-1, 0);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(180, 24);
+            this.label72.TabIndex = 32;
+            this.label72.Text = "Архивная запись";
             // 
             // Gl_Form
             // 
@@ -2206,6 +2195,10 @@ namespace UASKI
             this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2231,11 +2224,7 @@ namespace UASKI
             this.panel10.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.panel17.ResumeLayout(false);
-            this.panel17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2325,7 +2314,6 @@ namespace UASKI
         private System.Windows.Forms.Timer TimeTimer;
         public System.Windows.Forms.Button button7;
         public System.Windows.Forms.Button button6;
-        public System.Windows.Forms.Label label38;
         public System.Windows.Forms.DataGridView dataGridView3;
         public System.Windows.Forms.DataGridView dataGridView4;
         public System.Windows.Forms.TabPage tabPage9;
@@ -2365,7 +2353,6 @@ namespace UASKI
         public System.Windows.Forms.Button button10;
         public System.Windows.Forms.Button button11;
         public System.Windows.Forms.Button button12;
-        public System.Windows.Forms.Label label54;
         public System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Panel panel10;
         public System.Windows.Forms.Label label57;
@@ -2411,12 +2398,13 @@ namespace UASKI
         public System.Windows.Forms.TextBox textBox34;
         private System.Windows.Forms.Label label71;
         public System.Windows.Forms.TextBox textBox35;
-        public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.Panel panel18;
         public System.Windows.Forms.DateTimePicker dateTimePicker7;
         public System.Windows.Forms.DateTimePicker dateTimePicker8;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Label label68;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.Label label72;
     }
 }
 

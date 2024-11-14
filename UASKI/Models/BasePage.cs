@@ -23,6 +23,11 @@ namespace UASKI.Models
         protected abstract void Clear();
 
         /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected abstract void Exit();
+
+        /// <summary>
         /// Отчистить страницу
         /// </summary>
         public void ClearPage()
@@ -41,9 +46,13 @@ namespace UASKI.Models
             var form = SystemData.Form;
             form.tabControl1.SelectedIndex = Index;
             form.Menu_Step2.Enabled = false;
-            SystemData.Pages.Clear();
-            SystemData.Index = Index;
+            //SystemData.Pages.Clear();
+            //SystemData.Index = Index;
 
+            if(SystemData.Pages.This != null)
+                SystemData.Pages.This.ClearPage();
+
+            SystemData.Pages.This = this;
             if(IsOpen)
             {
                 SystemData.IsClear = true;

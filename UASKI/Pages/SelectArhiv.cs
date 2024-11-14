@@ -63,6 +63,15 @@ namespace UASKI.Pages
         }
 
         /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
+        }
+
+        /// <summary>
         /// Открывает панель фильтров
         /// </summary>
         private void FilterOpen()
@@ -95,8 +104,7 @@ namespace UASKI.Pages
                 && form.dataGridView5.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
                 form.dataGridView5.ClearSelection();
             }
             else if (e.KeyCode == Keys.Enter && form.dataGridView5.SelectedRows.Count > 0)
@@ -104,7 +112,7 @@ namespace UASKI.Pages
                 var code = form.dataGridView5.SelectedRows[0].Cells[0].Value.ToString();
 
                 SystemData.Pages.EditTask.Init(false);
-                SystemData.Pages.EditTask.Show(code, true);
+                SystemData.Pages.EditTask.Show(code, true , 2);
             }
             else if(e.KeyCode == Keys.Left || e.KeyCode == SystemData.ActionKey)
             {

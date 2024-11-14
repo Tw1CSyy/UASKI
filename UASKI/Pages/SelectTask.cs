@@ -83,6 +83,14 @@ namespace UASKI.Pages
             form.dataGridView3.Focus();
         }
 
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
+        }
 
         #region Клавиши
         public void dataGridView3_KeyDown(KeyEventArgs e)
@@ -93,8 +101,7 @@ namespace UASKI.Pages
                 && form.dataGridView3.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
                 form.dataGridView3.ClearSelection();
             }
             else if (e.KeyCode == Keys.Enter && form.dataGridView3.SelectedRows.Count > 0)
@@ -102,7 +109,7 @@ namespace UASKI.Pages
                 var code = form.dataGridView3.SelectedRows[0].Cells[0].Value.ToString();
 
                 SystemData.Pages.EditTask.Init(false);
-                SystemData.Pages.EditTask.Show(code, false);
+                SystemData.Pages.EditTask.Show(code, false , 1);
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)
             {

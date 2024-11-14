@@ -410,11 +410,7 @@ namespace UASKI
         }
         private void textBox28_TextChanged(object sender, EventArgs e)
         {
-            if (label54.Enabled)
-            {
-                button11.Enabled = textBox28.Text.Length != 0;
-            }
-           
+            button11.Enabled = !SystemData.Pages.EditTask.Arhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i);
         }
         private void textBox20_TextChanged(object sender, EventArgs e)
         {

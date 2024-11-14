@@ -52,7 +52,15 @@ namespace UASKI.Pages
             form.label26.Visible = false;
 
             SystemHelper.SelectButton(false, form.button1);
-            form.textBox1.Focus();
+        }
+
+        /// <summary>
+        /// Выход с страницы
+        /// </summary>
+        protected override void Exit()
+        {
+            form.Menu_Step2.Enabled = true;
+            form.Menu_Step2.Focus();
         }
 
         #region Клавиши
@@ -84,8 +92,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -121,8 +128,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -138,8 +144,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
 
@@ -158,8 +163,9 @@ namespace UASKI.Pages
 
                     if (result)
                     {
-                        SystemData.Pages.Clear();
+                        ClearPage();
                         ErrorHelper.StatusComlite();
+                        Show();
                     }
                     else
                     {
@@ -183,8 +189,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
                 SystemHelper.SelectButton(false, form.button1);
             }
 
@@ -221,8 +226,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                form.Menu_Step2.Enabled = true;
-                form.Menu_Step2.Focus();
+                Exit();
             }
         }
         #endregion
