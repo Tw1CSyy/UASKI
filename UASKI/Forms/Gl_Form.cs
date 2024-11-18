@@ -40,9 +40,9 @@ namespace UASKI
             Menu_Step1.Focus();
 
             // Отключаем отображение страниц
-            //tabControl1.Appearance = TabAppearance.Buttons;
-            //tabControl1.ItemSize = new System.Drawing.Size(0, 1);
-            //tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.Appearance = TabAppearance.Buttons;
+            tabControl1.ItemSize = new System.Drawing.Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Открываем подключение
             try
@@ -99,7 +99,7 @@ namespace UASKI
         {
             var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
             var el = elem.Items.FirstOrDefault(c => c.Text.Equals(Menu_Step2.SelectedItem.ToString()));
-            el.Page.Init();
+            el.Page.Init(); 
         }
 
         #region Нажатия клавиш
@@ -397,6 +397,14 @@ namespace UASKI
         private void dateTimePicker8_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.SelectOpz.dateTimePicker8_KeyDown(e);
+        }
+        private void dataGridView6_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectHoliday.dataGridView6_KeyDown(e);
+        }
+        private void button13_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectHoliday.button13_PreviewKeyDown(e);
         }
         #endregion
 

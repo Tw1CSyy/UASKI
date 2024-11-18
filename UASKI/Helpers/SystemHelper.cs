@@ -364,7 +364,15 @@ namespace UASKI.Helpers
         /// <param name="d">DataGirdView</param>
         public static void ResizeDataGridView(DataGridView d)
         {
-            var with = (int)Math.Floor((double)d.Width / (double)d.Columns.Count);
+            var count = 0;
+
+            for (int i = 0; i < d.Columns.Count; i++)
+            {
+                if (d.Columns[i].Visible)
+                    count++;
+            }
+
+            var with = (int)Math.Floor((double)d.Width / (double)count);
 
             for(int i = 0; i < d.Columns.Count; i++)
             {

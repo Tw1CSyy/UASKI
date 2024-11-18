@@ -22,7 +22,7 @@ namespace UASKI.Services
         /// <returns></returns>
         public static List<HolidayEntity> GetList()
         {
-            return context.Holidays;
+            return context.Holidays.OrderByDescending(c => c.Date).ToList();
         }
 
         /// <summary>
@@ -32,12 +32,11 @@ namespace UASKI.Services
         public static List<DataGridRowModel> GetListByDataGrid()
         {
             var result = new List<DataGridRowModel>();
-
             var model = GetList();
 
-            foreach (var item in model.OrderByDescending(c => c.Date))
+            foreach (var item in model)
             {
-                var d = new DataGridRowModel(item.Date.ToString("dd.MM.yyyy"));
+                var d = new DataGridRowModel(item.Id.ToString() , item.Date.ToString("dd.MM.yyyy"));
                 result.Add(d);
             }
 
@@ -96,6 +95,27 @@ namespace UASKI.Services
         {
             var day = GetList().FirstOrDefault(c => c.Date.Date == date.Date);
             return day != null;
+        }
+
+        /// <summary>
+        /// Удаляет празднечные дни
+        /// </summary>
+        /// <param name="list">Список id дней</param>
+        /// <returns>true - Успешная операция</returns>
+        public static bool Delete(List<int> list)
+        {
+            var result = true;
+
+            foreach (var item in list)
+            {
+                var holy = GetList().FirstOrDefault(c => c.Id == item);
+                result = context.Delete(holy);
+
+                if (!result)
+                    break;
+            }
+
+            return result;
         }
     }
 }

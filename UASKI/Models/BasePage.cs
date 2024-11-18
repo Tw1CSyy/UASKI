@@ -46,13 +46,13 @@ namespace UASKI.Models
             var form = SystemData.Form;
             form.tabControl1.SelectedIndex = Index;
             form.Menu_Step2.Enabled = false;
-            
-            if(SystemData.This != null)
+
+            if (SystemData.This != null)
                 SystemData.This.ClearPage();
 
             SystemData.This = this;
 
-            if(IsOpen)
+            if (IsOpen)
             {
                 SystemData.IsClear = true;
                 Show();

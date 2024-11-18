@@ -76,6 +76,7 @@ namespace UASKI
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
@@ -176,6 +177,7 @@ namespace UASKI
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.label72 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
@@ -206,8 +208,8 @@ namespace UASKI
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label72 = new System.Windows.Forms.Label();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.button13 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -222,7 +224,9 @@ namespace UASKI
             this.panel14.SuspendLayout();
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            this.tabPage10.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel17.SuspendLayout();
             this.panel18.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -243,7 +247,7 @@ namespace UASKI
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -706,13 +710,15 @@ namespace UASKI
             // 
             // tabPage10
             // 
+            this.tabPage10.BackColor = System.Drawing.Color.Silver;
+            this.tabPage10.Controls.Add(this.button13);
+            this.tabPage10.Controls.Add(this.dataGridView6);
             this.tabPage10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Size = new System.Drawing.Size(881, 543);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Просмотр праздн";
-            this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -725,6 +731,20 @@ namespace UASKI
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр опзд";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(245, 0);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(636, 543);
+            this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown_1);
             // 
             // panel17
             // 
@@ -1847,6 +1867,17 @@ namespace UASKI
             this.panel9.Size = new System.Drawing.Size(631, 346);
             this.panel9.TabIndex = 1;
             // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.label72.ForeColor = System.Drawing.Color.Red;
+            this.label72.Location = new System.Drawing.Point(-1, 0);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(180, 24);
+            this.label72.TabIndex = 32;
+            this.label72.Text = "Архивная запись";
+            // 
             // label56
             // 
             this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -2135,30 +2166,28 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
-            // dataGridView1
+            // dataGridView6
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(245, 0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(636, 543);
-            this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown_1);
+            this.dataGridView6.AllowUserToAddRows = false;
+            this.dataGridView6.AllowUserToDeleteRows = false;
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.ReadOnly = true;
+            this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView6.Size = new System.Drawing.Size(705, 543);
+            this.dataGridView6.TabIndex = 0;
+            this.dataGridView6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView6_KeyDown);
             // 
-            // label72
+            // button13
             // 
-            this.label72.AutoSize = true;
-            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.label72.ForeColor = System.Drawing.Color.Red;
-            this.label72.Location = new System.Drawing.Point(-1, 0);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(180, 24);
-            this.label72.TabIndex = 32;
-            this.label72.Text = "Архивная запись";
+            this.button13.Location = new System.Drawing.Point(723, 16);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(149, 48);
+            this.button13.TabIndex = 1;
+            this.button13.Text = "Удалить";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button13_PreviewKeyDown);
             // 
             // Gl_Form
             // 
@@ -2197,7 +2226,9 @@ namespace UASKI
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.tabPage10.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
             this.panel18.ResumeLayout(false);
@@ -2227,7 +2258,7 @@ namespace UASKI
             this.panel10.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2408,6 +2439,8 @@ namespace UASKI
         private System.Windows.Forms.Label label68;
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.Label label72;
+        public System.Windows.Forms.DataGridView dataGridView6;
+        public System.Windows.Forms.Button button13;
     }
 }
 

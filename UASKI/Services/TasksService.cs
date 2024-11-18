@@ -255,7 +255,7 @@ namespace UASKI.Services
         /// <returns>true - успешная операция</returns>
         public static bool UpdateTask(string code, TextBoxElement IdIsp, TextBoxElement IdCon, TextBoxElement Code, DateTimeElement date)
         {
-            var result = Validation(Code, IdIsp, IdCon, date);
+            var result = Validation(Code, IdIsp, IdCon, date , true);
 
             if (!result)
                 return false;
@@ -272,7 +272,7 @@ namespace UASKI.Services
         /// <returns>Положительный или отрицательный результат</returns>
         public static bool Close(string code , TextBoxElement Otm)
         {
-            if (Otm.IsNull || !Otm.IsNumber || Otm.Value.Length > 1)
+            if (Otm.IsNull || !Otm.IsNumber)
             {
                 Otm.Error("Некоректные данные");
                 ErrorHelper.StatusError();

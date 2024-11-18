@@ -91,6 +91,12 @@ namespace UASKI.Pages
                 var form1 = new IspForm(form.textBox1, form.textBox2, form.textBox3);
                 form1.Show();
             }
+            else if(e.KeyCode == Keys.Back)
+            {
+                form.textBox1.Clear();
+                form.textBox2.Clear();
+                form.textBox3.Clear();
+            }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
                 Exit();
@@ -127,6 +133,12 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox1);
+            }
+            else if (e.KeyCode == Keys.Back)
+            {
+                form.textBox4.Clear();
+                form.textBox5.Clear();
+                form.textBox6.Clear();
             }
             else if (e.KeyCode == Keys.Escape)
             {

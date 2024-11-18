@@ -131,6 +131,7 @@
     <Compile Include="Pages\EditIsp.cs" />
     <Compile Include="Pages\EditTask.cs" />
     <Compile Include="Pages\SelectArhiv.cs" />
+    <Compile Include="Pages\SelectHoliday.cs" />
     <Compile Include="Pages\SelectIsp.cs" />
     <Compile Include="Pages\SelectOpz.cs" />
     <Compile Include="Pages\SelectTask.cs" />

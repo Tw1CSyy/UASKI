@@ -11,7 +11,7 @@ namespace UASKI.StaticModels
         public readonly SelectIsp SelectIsp = new SelectIsp(1);
         public readonly SelectTask SelectTask = new SelectTask(2);
         public readonly SelectArhiv SelectArhiv = new SelectArhiv(3);
-
+        public readonly SelectHoliday SelectHoliday = new SelectHoliday(4);
         public readonly SelectOpz SelectOpz = new SelectOpz(5);
         public readonly AddTask AddTask = new AddTask(6);
         public readonly AddIsp AddIsp = new AddIsp(7);

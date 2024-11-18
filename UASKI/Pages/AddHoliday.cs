@@ -32,7 +32,10 @@ namespace UASKI.Pages
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
             SystemHelper.PullListInDataGridView(form.dataGridView2,
                 HolidaysService.GetListByDataGrid(),
-                new DataGridRowModel("Дата"));
+                new DataGridRowModel("Номер" , "Дата"));
+
+            form.dataGridView2.Columns[0].Visible = false;
+            SystemHelper.ResizeDataGridView(form.dataGridView2);
 
             form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
             form.monthCalendar1.Focus();

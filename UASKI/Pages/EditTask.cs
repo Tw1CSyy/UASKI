@@ -100,9 +100,11 @@ namespace UASKI.Pages
             }
         }
 
+        /// <summary>
+        /// Отчищает страницу
+        /// </summary>
         protected override void Clear()
         {
-           
             form.textBox24.Clear();
             form.textBox25.Clear();
             form.textBox26.Clear();
@@ -307,7 +309,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox27);
+                SystemHelper.SelectTextBox(form.textBox21);
             }
             else if (e.KeyCode == Keys.Escape)
             {
