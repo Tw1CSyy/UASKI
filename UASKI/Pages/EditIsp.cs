@@ -44,7 +44,7 @@ namespace UASKI.Pages
         {
             Code = code;
             var form = SystemData.Form;
-            var isp = IspService.GetByCode(code);
+            var isp = IspService.GetByCode(code , IspService.GetList());
 
             form.textBox18.Text = isp.FirstName;
             form.textBox17.Text = isp.Name;

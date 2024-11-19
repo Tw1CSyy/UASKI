@@ -53,8 +53,6 @@ namespace UASKI
             this.label61 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label63 = new System.Windows.Forms.Label();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.label62 = new System.Windows.Forms.Label();
             this.textBox29 = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
             this.textBox19 = new System.Windows.Forms.TextBox();
@@ -68,8 +66,6 @@ namespace UASKI
             this.label64 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label39 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
             this.textBox31 = new System.Windows.Forms.TextBox();
             this.label66 = new System.Windows.Forms.Label();
             this.textBox32 = new System.Windows.Forms.TextBox();
@@ -220,6 +216,9 @@ namespace UASKI
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -388,6 +387,7 @@ namespace UASKI
             this.IspDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.IspDataGridView.Size = new System.Drawing.Size(636, 543);
             this.IspDataGridView.TabIndex = 0;
+            this.IspDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IspDataGridView_CellDoubleClick);
             this.IspDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IspDataGridView_KeyDown);
             // 
             // tabPage4
@@ -406,12 +406,11 @@ namespace UASKI
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel13.Controls.Add(this.button24);
             this.panel13.Controls.Add(this.button21);
             this.panel13.Controls.Add(this.panel16);
             this.panel13.Controls.Add(this.checkBox2);
             this.panel13.Controls.Add(this.label63);
-            this.panel13.Controls.Add(this.textBox30);
-            this.panel13.Controls.Add(this.label62);
             this.panel13.Controls.Add(this.textBox29);
             this.panel13.Controls.Add(this.label59);
             this.panel13.Controls.Add(this.textBox19);
@@ -428,7 +427,7 @@ namespace UASKI
             this.panel16.Controls.Add(this.dateTimePicker6);
             this.panel16.Controls.Add(this.label60);
             this.panel16.Controls.Add(this.label61);
-            this.panel16.Location = new System.Drawing.Point(4, 251);
+            this.panel16.Location = new System.Drawing.Point(4, 179);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(241, 129);
             this.panel16.TabIndex = 15;
@@ -474,7 +473,7 @@ namespace UASKI
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 221);
+            this.checkBox2.Location = new System.Drawing.Point(7, 149);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(199, 24);
             this.checkBox2.TabIndex = 14;
@@ -493,32 +492,12 @@ namespace UASKI
             this.label63.TabIndex = 11;
             this.label63.Text = "Код сотрудника";
             // 
-            // textBox30
-            // 
-            this.textBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox30.Location = new System.Drawing.Point(7, 162);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(235, 26);
-            this.textBox30.TabIndex = 10;
-            this.textBox30.TextChanged += new System.EventHandler(this.textBox30_TextChanged);
-            this.textBox30.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox30_KeyDown);
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label62.Location = new System.Drawing.Point(3, 139);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(133, 20);
-            this.label62.TabIndex = 9;
-            this.label62.Text = "Подразделение";
-            // 
             // textBox29
             // 
             this.textBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox29.Location = new System.Drawing.Point(7, 100);
             this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(237, 26);
+            this.textBox29.Size = new System.Drawing.Size(214, 26);
             this.textBox29.TabIndex = 8;
             this.textBox29.TextChanged += new System.EventHandler(this.textBox29_TextChanged);
             this.textBox29.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox29_KeyDown);
@@ -555,6 +534,7 @@ namespace UASKI
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(636, 543);
             this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellDoubleClick);
             this.dataGridView3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView3_KeyDown);
             // 
             // tabPage9
@@ -573,12 +553,11 @@ namespace UASKI
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.Controls.Add(this.button25);
             this.panel14.Controls.Add(this.button17);
             this.panel14.Controls.Add(this.panel15);
             this.panel14.Controls.Add(this.checkBox1);
             this.panel14.Controls.Add(this.label39);
-            this.panel14.Controls.Add(this.textBox20);
-            this.panel14.Controls.Add(this.label40);
             this.panel14.Controls.Add(this.textBox31);
             this.panel14.Controls.Add(this.label66);
             this.panel14.Controls.Add(this.textBox32);
@@ -595,7 +574,7 @@ namespace UASKI
             this.panel15.Controls.Add(this.dateTimePicker3);
             this.panel15.Controls.Add(this.label65);
             this.panel15.Controls.Add(this.label64);
-            this.panel15.Location = new System.Drawing.Point(2, 259);
+            this.panel15.Location = new System.Drawing.Point(2, 188);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(241, 129);
             this.panel15.TabIndex = 13;
@@ -641,7 +620,7 @@ namespace UASKI
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 229);
+            this.checkBox1.Location = new System.Drawing.Point(5, 158);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(228, 24);
             this.checkBox1.TabIndex = 12;
@@ -660,32 +639,12 @@ namespace UASKI
             this.label39.TabIndex = 11;
             this.label39.Text = "Код сотрудника";
             // 
-            // textBox20
-            // 
-            this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox20.Location = new System.Drawing.Point(5, 164);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(235, 26);
-            this.textBox20.TabIndex = 10;
-            this.textBox20.TextChanged += new System.EventHandler(this.textBox20_TextChanged_1);
-            this.textBox20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox20_KeyDown);
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label40.Location = new System.Drawing.Point(1, 141);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(133, 20);
-            this.label40.TabIndex = 9;
-            this.label40.Text = "Подразделение";
-            // 
             // textBox31
             // 
             this.textBox31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox31.Location = new System.Drawing.Point(5, 102);
             this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(237, 26);
+            this.textBox31.Size = new System.Drawing.Size(214, 26);
             this.textBox31.TabIndex = 8;
             this.textBox31.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
             this.textBox31.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox31_KeyDown);
@@ -722,6 +681,7 @@ namespace UASKI
             this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView5.Size = new System.Drawing.Size(636, 543);
             this.dataGridView5.TabIndex = 3;
+            this.dataGridView5.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellDoubleClick);
             this.dataGridView5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView5_KeyDown);
             // 
             // tabPage10
@@ -786,11 +746,13 @@ namespace UASKI
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(636, 543);
             this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown_1);
             // 
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel17.Controls.Add(this.button26);
             this.panel17.Controls.Add(this.button23);
             this.panel17.Controls.Add(this.panel18);
             this.panel17.Controls.Add(this.checkBox3);
@@ -903,7 +865,7 @@ namespace UASKI
             this.textBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox34.Location = new System.Drawing.Point(7, 100);
             this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(237, 26);
+            this.textBox34.Size = new System.Drawing.Size(214, 26);
             this.textBox34.TabIndex = 8;
             this.textBox34.TextChanged += new System.EventHandler(this.textBox34_TextChanged);
             this.textBox34.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox34_KeyDown);
@@ -2347,6 +2309,42 @@ namespace UASKI
             this.button23.UseVisualStyleBackColor = false;
             this.button23.Click += new System.EventHandler(this.button23_Click);
             // 
+            // button24
+            // 
+            this.button24.BackColor = System.Drawing.Color.White;
+            this.button24.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button24.Location = new System.Drawing.Point(224, 100);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(19, 26);
+            this.button24.TabIndex = 29;
+            this.button24.Text = "^";
+            this.button24.UseVisualStyleBackColor = false;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // button25
+            // 
+            this.button25.BackColor = System.Drawing.Color.White;
+            this.button25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button25.Location = new System.Drawing.Point(221, 102);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(19, 26);
+            this.button25.TabIndex = 27;
+            this.button25.Text = "^";
+            this.button25.UseVisualStyleBackColor = false;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button26
+            // 
+            this.button26.BackColor = System.Drawing.Color.White;
+            this.button26.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button26.Location = new System.Drawing.Point(224, 100);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(19, 26);
+            this.button26.TabIndex = 30;
+            this.button26.Text = "^";
+            this.button26.UseVisualStyleBackColor = false;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2558,13 +2556,10 @@ namespace UASKI
         public System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label59;
         public System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label62;
         public System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.Label label63;
-        public System.Windows.Forms.TextBox textBox30;
         public System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
         public System.Windows.Forms.TextBox textBox31;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label65;
@@ -2573,7 +2568,6 @@ namespace UASKI
         private System.Windows.Forms.Label label66;
         public System.Windows.Forms.TextBox textBox32;
         public System.Windows.Forms.DataGridView dataGridView5;
-        public System.Windows.Forms.TextBox textBox20;
         public System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.Panel panel15;
         public System.Windows.Forms.Panel panel16;
@@ -2609,6 +2603,9 @@ namespace UASKI
         public System.Windows.Forms.Button button21;
         public System.Windows.Forms.Button button22;
         public System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button26;
     }
 }
 

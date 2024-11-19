@@ -47,9 +47,8 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="FirstName"></param>
         /// <returns></returns>
-        public static IspEntity GetByFirstName(string FirstName)
+        public static IspEntity GetByFirstName(string FirstName , List<IspEntity> list)
         {
-            var list = GetList();
             var result = list.FirstOrDefault(c => c.FirstName.ToLower().Equals(FirstName.ToLower()));
             return result;
         }
@@ -59,9 +58,9 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="code">Код</param>
         /// <returns>Объект класса</returns>
-        public static IspEntity GetByCode(int code)
+        public static IspEntity GetByCode(int code , List<IspEntity> list)
         {
-            return GetList().FirstOrDefault(c => c.Code == code);
+            return list.FirstOrDefault(c => c.Code == code);
         }
 
         /// <summary>
@@ -158,7 +157,7 @@ namespace UASKI.Services
         /// <returns>true - успешная операция</returns>
         public static bool Disactive(int code)
         {
-            var isp = GetByCode(code);
+            var isp = GetByCode(code , GetList());
             var entiry = new IspEntity(isp.Code, isp.FirstName, isp.Name, isp.LastName, isp.CodePodr, false);
             return context.Update(entiry , code);
         }
@@ -180,7 +179,7 @@ namespace UASKI.Services
             if (!result)
                 return result;
 
-            var entity = GetByCode(code);
+            var entity = GetByCode(code , GetList());
             var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value) , entity.IsActive);
             result = context.Update(item , code);
 
@@ -188,9 +187,7 @@ namespace UASKI.Services
                 return false;
 
             if (code != Convert.ToInt32(Code.Value))
-            {
-               result = TasksService.EditIsp(code, Convert.ToInt32(Code.Value));
-            }
+                result = TasksService.EditIsp(code, Convert.ToInt32(Code.Value));
 
             return result;
         }

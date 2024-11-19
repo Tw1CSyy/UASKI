@@ -54,7 +54,6 @@ namespace UASKI.Pages
            
             form.textBox31.Clear();
             form.textBox32.Clear();
-            form.textBox20.Clear();
 
             form.panel15.Visible = false;
             form.checkBox1.Checked = false;
@@ -143,7 +142,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectTextBox(form.textBox20);
+                SystemHelper.SelectTextBox(form.textBox31);
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Right)
             {
@@ -160,22 +159,6 @@ namespace UASKI.Pages
             }
         }
 
-        public void textBox20_KeyDown(KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Right)
-            {
-                FilterClose();
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                SystemHelper.SelectTextBox(form.textBox31);
-            }
-            else if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
-            {
-                form.checkBox1.Focus();
-            }
-        }
-
         public void checkBox1_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -189,7 +172,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox20);
+                SystemHelper.SelectTextBox(form.textBox31);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {

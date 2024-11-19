@@ -30,6 +30,7 @@
         {
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button23 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -49,12 +50,25 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.Color.White;
+            this.button23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button23.Location = new System.Drawing.Point(154, 207);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(17, 30);
+            this.button23.TabIndex = 30;
+            this.button23.Text = ">";
+            this.button23.UseVisualStyleBackColor = false;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
             // DateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(179, 212);
+            this.ClientSize = new System.Drawing.Size(179, 239);
+            this.Controls.Add(this.button23);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.monthCalendar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -70,5 +84,6 @@
 
         public System.Windows.Forms.MonthCalendar monthCalendar1;
         public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.Button button23;
     }
 }

@@ -34,7 +34,7 @@ namespace UASKI.Services
         /// <param name="dateFrom">Дата закрытия от</param>
         /// <param name="dateTo">Дата закрытия до</param>
         /// <returns></returns>
-        public static List<ArhivEntity> GetList(string search , string isp , string podr , bool isDate , DateTime dateFrom , DateTime dateTo)
+        public static List<ArhivEntity> GetList(string search , string isp , bool isDate , DateTime dateFrom , DateTime dateTo)
         {
             var list = GetList();
 
@@ -47,22 +47,6 @@ namespace UASKI.Services
             if (!string.IsNullOrEmpty(isp) && int.TryParse(isp, out int i))
                 list = list.Where(c => c.IdCon == Convert.ToInt32(isp) || c.IdIsp == Convert.ToInt32(isp)).ToList();
 
-            if(!string.IsNullOrEmpty(podr) && int.TryParse(podr , out int j))
-            {
-                var users = IspService.GetList().Where(c => c.CodePodr == Convert.ToInt32(podr)).ToList();
-                var list2 = new List<ArhivEntity>();
-
-                foreach (var user in users)
-                {
-                    var items = list.Where(c => c.IdCon == user.Code || c.IdIsp == user.Code).ToList();
-
-                    if (items.Any())
-                        list2.AddRange(items);
-                }
-
-                list = list2;
-            }
-
             return list;
         }
 
@@ -74,11 +58,12 @@ namespace UASKI.Services
         public static List<DataGridRowModel> GetListByDataGrid(List<ArhivEntity> list)
         {
             var model = new List<DataGridRowModel>();
+            var listUser = IspService.GetList();
 
             foreach (var item in list.OrderByDescending(c => c.DateClose))
             {
-                var isp = IspService.GetByCode(item.IdIsp);
-                var con = IspService.GetByCode(item.IdCon);
+                var isp = IspService.GetByCode(item.IdIsp , listUser);
+                var con = IspService.GetByCode(item.IdCon , listUser);
 
                 var st = new DataGridRowModel(item.Code,
                     $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.",
@@ -97,14 +82,23 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="code">Код аривной задачи</param>
         /// <returns></returns>
-        public static ArhivEntity GetByCode(string code)
+        public static ArhivEntity GetByCode(string code , List<ArhivEntity> list)
         {
-            var list = GetList();
             var item = list.FirstOrDefault(c => c.Code.Equals(code));
 
             return item;
         }
 
+        /// <summary>
+        /// Формирует модель для заполнения DataGridView данными опазданий
+        /// </summary>
+        /// <param name="search">Строка поиска</param>
+        /// <param name="isp1">Исполнитель</param>
+        /// <param name="podr">Подразделение</param>
+        /// <param name="isDate">Использовать ли фильтр даты</param>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <returns>Модель для заполнения DataGridView</returns>
         public static List<DataGridRowModel> GetOpzListDataGrid(string search, string isp1, string podr, bool isDate, DateTime dateFrom, DateTime dateTo)
         {
             var model = new List<DataGridRowModel>();
@@ -112,10 +106,12 @@ namespace UASKI.Services
             var listTask = TasksService.GetList().Where(c => c.Date < DateTime.Now).OrderByDescending(c => c.Date).ToList();
             var listArhiv = GetList().Where(c => c.DateClose > c.Date).OrderByDescending(c => c.Date).ToList();
 
+            var listUser = IspService.GetList();
+
             foreach (var item in listTask)
             {
-                var isp = IspService.GetByCode(item.IdIsp);
-                var con = IspService.GetByCode(item.IdCon);
+                var isp = IspService.GetByCode(item.IdIsp , listUser);
+                var con = IspService.GetByCode(item.IdCon , listUser);
 
                 if(!string.IsNullOrEmpty(isp1) && int.TryParse(isp1 , out int i))
                 {
@@ -151,8 +147,8 @@ namespace UASKI.Services
 
             foreach (var item in listArhiv)
             {
-                var isp = IspService.GetByCode(item.IdIsp);
-                var con = IspService.GetByCode(item.IdCon);
+                var isp = IspService.GetByCode(item.IdIsp , listUser);
+                var con = IspService.GetByCode(item.IdCon , listUser);
 
                 if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
                 {

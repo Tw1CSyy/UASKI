@@ -35,7 +35,7 @@ namespace UASKI.Services
         /// <param name="isDate">Используется ли дата</param>
         /// <param name="dateFrom">Дата от</param>
         /// <param name="dateTo">Дата до</param>
-        public static List<TaskEntity> GetList(string search, string isp, string podr , bool isDate , DateTime dateFrom , DateTime dateTo)
+        public static List<TaskEntity> GetList(string search, string isp, bool isDate , DateTime dateFrom , DateTime dateTo)
         {
             var list = GetList();
 
@@ -47,23 +47,6 @@ namespace UASKI.Services
 
             if (!string.IsNullOrEmpty(isp) && int.TryParse(isp, out int i))
                 list = list.Where(c => c.IdCon == Convert.ToInt32(isp) || c.IdIsp == Convert.ToInt32(isp)).ToList();
-
-            if(!string.IsNullOrEmpty(podr) && int.TryParse(podr , out int j))
-            {
-                var users = IspService.GetList().Where(c => c.CodePodr == Convert.ToInt32(podr)).ToList();
-                var list2 = new List<TaskEntity>();
-
-                foreach (var user in users)
-                {
-                    var items = list.Where(c => c.IdCon == user.Code || c.IdIsp == user.Code).ToList();
-
-                    if(items.Any())
-                        list2.AddRange(items);
-                }
-
-                list = list2;
-                
-            }
 
             return list;
         }
@@ -130,7 +113,7 @@ namespace UASKI.Services
                 result = false;
             }
 
-            if (!isUpdate && GetTaskByCode(Code.Value) != null)
+            if (!isUpdate && GetTaskByCode(Code.Value , GetList()) != null)
             {
                 Code.Error("Код задачи должен быть уникальным");
                 result = false;
@@ -219,10 +202,12 @@ namespace UASKI.Services
         {
             var model = new List<DataGridRowModel>();
 
+            var listUser = IspService.GetList();
+
             foreach (var item in list.OrderByDescending(c => c.Date))
             {
-                var isp = IspService.GetByCode(item.IdIsp);
-                var con = IspService.GetByCode(item.IdCon);
+                var isp = IspService.GetByCode(item.IdIsp , listUser);
+                var con = IspService.GetByCode(item.IdCon , listUser);
 
                 var st = new DataGridRowModel(item.Code, $"{isp.FirstName} {isp.Name} {isp.LastName}", $"{con.FirstName} {con.Name} {con.LastName}", item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
@@ -236,9 +221,8 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="code">Код задачи</param>
         /// <returns></returns>
-        public static TaskEntity GetTaskByCode(string code)
+        public static TaskEntity GetTaskByCode(string code , List<TaskEntity> list)
         {
-            var list = GetList();
             var item = list.FirstOrDefault(c => c.Code.Equals(code));
 
             return item;
@@ -286,7 +270,7 @@ namespace UASKI.Services
                 return false;
             }
 
-            var task = GetTaskByCode(code);
+            var task = GetTaskByCode(code , GetList());
             var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, DateTime.Now, Convert.ToInt32(Otm.Value));
 
             var result = context.Add(arhiv);

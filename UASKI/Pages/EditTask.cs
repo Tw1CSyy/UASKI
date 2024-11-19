@@ -48,12 +48,15 @@ namespace UASKI.Pages
             Page = page;
             Arhiv = IsArhiv;
 
+            var listUser = IspService.GetList();
+            
             if (!IsArhiv)
             {
-                var task = TasksService.GetTaskByCode(code);
+                var taskList = TasksService.GetList();
+                var task = TasksService.GetTaskByCode(code , taskList);
 
-                var usr1 = IspService.GetByCode(task.IdIsp);
-                var usr2 = IspService.GetByCode(task.IdCon);
+                var usr1 = IspService.GetByCode(task.IdIsp , listUser);
+                var usr2 = IspService.GetByCode(task.IdCon , listUser);
 
                 form.textBox26.Text = $"{usr1.FirstName} {usr1.Name.ToUpper()[0]}. {usr1.LastName.ToUpper()[0]}.";
                 form.textBox21.Text = $"{usr2.FirstName} {usr2.Name.ToUpper()[0]}. {usr2.LastName.ToUpper()[0]}.";
@@ -74,10 +77,11 @@ namespace UASKI.Pages
             }
             else
             {
-                var arhiv = ArhivService.GetByCode(code);
+                var listArhiv = ArhivService.GetList();
+                var arhiv = ArhivService.GetByCode(code , listArhiv);
 
-                var usr1 = IspService.GetByCode(arhiv.IdIsp);
-                var usr2 = IspService.GetByCode(arhiv.IdCon);
+                var usr1 = IspService.GetByCode(arhiv.IdIsp, listUser);
+                var usr2 = IspService.GetByCode(arhiv.IdCon, listUser);
 
                 form.textBox26.Text = usr1.FirstName;
                 form.textBox21.Text = usr2.FirstName;
@@ -180,7 +184,7 @@ namespace UASKI.Pages
             {
                 if (form.textBox25.Text.Length == 0 && form.textBox24.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox26.Text);
+                    var isp = IspService.GetByFirstName(form.textBox26.Text , IspService.GetList());
 
                     if (isp != null)
                     {
@@ -223,7 +227,7 @@ namespace UASKI.Pages
             {
                 if (form.textBox22.Text.Length == 0 && form.textBox23.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox21.Text);
+                    var isp = IspService.GetByFirstName(form.textBox21.Text , IspService.GetList());
 
                     if (isp != null)
                     {

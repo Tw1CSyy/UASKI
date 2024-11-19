@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Helpers;
+using UASKI.StaticModels;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UASKI.Forms
@@ -93,6 +94,12 @@ namespace UASKI.Forms
                     monthCalendar1.SelectionStart = date.Date;
                 }
             }
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            monthCalendar1_KeyDown(sender, key);
         }
     }
 }

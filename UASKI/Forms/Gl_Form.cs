@@ -99,7 +99,9 @@ namespace UASKI
         {
             var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
             var el = elem.Items.FirstOrDefault(c => c.Text.Equals(Menu_Step2.SelectedItem.ToString()));
-            el.Page.Init(); 
+            
+            if(el.Page != null)
+                el.Page.Init();
         }
 
         #region Нажатия клавиш
@@ -318,10 +320,6 @@ namespace UASKI
         {
             SystemData.Pages.SelectTask.textBox19_KeyDown(e);
         }
-        private void textBox30_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.SelectTask.textBox30_KeyDown(e);
-        }
         private void textBox29_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.SelectTask.textBox29_KeyDown(e);
@@ -341,10 +339,6 @@ namespace UASKI
         private void textBox31_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.SelectArhiv.textBox31_KeyDown(e);
-        }
-        private void textBox20_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.SelectArhiv.textBox20_KeyDown(e);
         }
         private void checkBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -449,7 +443,7 @@ namespace UASKI
         {
            if(!SystemData.IsClear)
             {
-                var list = TasksService.GetList(textBox19.Text, textBox29.Text, textBox30.Text, checkBox2.Checked, dateTimePicker5.Value, dateTimePicker6.Value);
+                var list = TasksService.GetList(textBox19.Text, textBox29.Text, checkBox2.Checked, dateTimePicker5.Value, dateTimePicker6.Value);
 
                 SystemHelper.PullListInDataGridView(dataGridView3,
                             TasksService.GetListByDataGrid(list),
@@ -460,15 +454,11 @@ namespace UASKI
         {
             textBox19_TextChanged_1(sender, e);
         }
-        private void textBox30_TextChanged(object sender, EventArgs e)
-        {
-            textBox19_TextChanged_1(sender, e);
-        }
         private void textBox32_TextChanged(object sender, EventArgs e)
         {
             if (!SystemData.IsClear)
             {
-                var list = ArhivService.GetList(textBox32.Text, textBox31.Text, textBox20.Text, checkBox1.Checked, dateTimePicker2.Value, dateTimePicker3.Value);
+                var list = ArhivService.GetList(textBox32.Text, textBox31.Text, checkBox1.Checked, dateTimePicker2.Value, dateTimePicker3.Value);
 
                 SystemHelper.PullListInDataGridView(dataGridView5,
                     ArhivService.GetListByDataGrid(list),
@@ -476,10 +466,6 @@ namespace UASKI
             }
         }
         private void textBox31_TextChanged(object sender, EventArgs e)
-        {
-            textBox32_TextChanged(sender, e);
-        }
-        private void textBox20_TextChanged_1(object sender, EventArgs e)
         {
             textBox32_TextChanged(sender, e);
         }
@@ -657,7 +643,44 @@ namespace UASKI
             var key = new KeyEventArgs(Keys.Right);
             textBox33_KeyDown(sender, key);
         }
+        private void button24_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox29_KeyDown(sender, key);
+        }
+        private void button25_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox31_KeyDown(sender, key);
+        }
+        private void button26_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox34_KeyDown(sender, key);
+        }
+        private void IspDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            IspDataGridView_KeyDown(sender, key);
+        }
+        private void dataGridView3_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView3_KeyDown(sender, key);
+        }
+
         #endregion
 
+        private void dataGridView5_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView5_KeyDown(sender, key);
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView1_KeyDown_1(sender, key);
+        }
     }
 }

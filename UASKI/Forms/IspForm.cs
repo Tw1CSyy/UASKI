@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using UASKI.Data.Entityes;
 using UASKI.Helpers;
 using UASKI.Services;
+using UASKI.StaticModels;
 
 namespace UASKI.Forms
 {
@@ -80,6 +81,12 @@ namespace UASKI.Forms
         private void textBox1_TextChanged(object sender, System.EventArgs e)
         {
             Start(textBox1.Text);
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView1_KeyDown(sender, key);
         }
     }
 }
