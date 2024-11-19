@@ -81,6 +81,7 @@ namespace UASKI.Pages
             SystemHelper.ResizeDataGridView(form.dataGridView5);
             form.panel14.Visible = true;
             SystemHelper.SelectTextBox(form.textBox32);
+            form.button16.Visible = false;
         }
 
         /// <summary>
@@ -88,11 +89,12 @@ namespace UASKI.Pages
         /// </summary>
         private void FilterClose()
         {
-            form.dataGridView5.Location = new System.Drawing.Point(0, 0);
-            form.dataGridView5.Size = new System.Drawing.Size(881, 560);
+            form.dataGridView5.Location = new System.Drawing.Point(20, 0);
+            form.dataGridView5.Size = new System.Drawing.Size(861, 560);
             SystemHelper.ResizeDataGridView(form.dataGridView5);
             form.panel14.Visible = false;
             form.dataGridView5.Focus();
+            form.button16.Visible = true;
         }
 
         #region Клавиши

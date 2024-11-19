@@ -75,6 +75,8 @@ namespace UASKI
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -208,8 +210,16 @@ namespace UASKI
             this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -225,6 +235,7 @@ namespace UASKI
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.tabPage10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel17.SuspendLayout();
@@ -247,7 +258,6 @@ namespace UASKI
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -322,7 +332,8 @@ namespace UASKI
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Gray;
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage2.Controls.Add(this.button19);
             this.tabPage2.Controls.Add(this.panel12);
             this.tabPage2.Controls.Add(this.IspDataGridView);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -336,18 +347,19 @@ namespace UASKI
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel12.Controls.Add(this.button18);
             this.panel12.Controls.Add(this.label58);
             this.panel12.Controls.Add(this.textBox13);
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(246, 542);
+            this.panel12.Size = new System.Drawing.Size(248, 542);
             this.panel12.TabIndex = 1;
             this.panel12.Visible = false;
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(6, 3);
+            this.label58.Location = new System.Drawing.Point(1, 13);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(55, 20);
             this.label58.TabIndex = 1;
@@ -355,7 +367,7 @@ namespace UASKI
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(5, 26);
+            this.textBox13.Location = new System.Drawing.Point(3, 36);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(235, 26);
             this.textBox13.TabIndex = 0;
@@ -380,7 +392,8 @@ namespace UASKI
             // 
             // tabPage4
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.Gray;
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage4.Controls.Add(this.button20);
             this.tabPage4.Controls.Add(this.panel13);
             this.tabPage4.Controls.Add(this.dataGridView3);
             this.tabPage4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -393,6 +406,7 @@ namespace UASKI
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel13.Controls.Add(this.button21);
             this.panel13.Controls.Add(this.panel16);
             this.panel13.Controls.Add(this.checkBox2);
             this.panel13.Controls.Add(this.label63);
@@ -414,7 +428,7 @@ namespace UASKI
             this.panel16.Controls.Add(this.dateTimePicker6);
             this.panel16.Controls.Add(this.label60);
             this.panel16.Controls.Add(this.label61);
-            this.panel16.Location = new System.Drawing.Point(2, 241);
+            this.panel16.Location = new System.Drawing.Point(4, 251);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(241, 129);
             this.panel16.TabIndex = 15;
@@ -460,7 +474,7 @@ namespace UASKI
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(5, 211);
+            this.checkBox2.Location = new System.Drawing.Point(7, 221);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(199, 24);
             this.checkBox2.TabIndex = 14;
@@ -473,7 +487,7 @@ namespace UASKI
             // 
             this.label63.AutoSize = true;
             this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label63.Location = new System.Drawing.Point(1, 67);
+            this.label63.Location = new System.Drawing.Point(3, 77);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(131, 20);
             this.label63.TabIndex = 11;
@@ -482,7 +496,7 @@ namespace UASKI
             // textBox30
             // 
             this.textBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox30.Location = new System.Drawing.Point(5, 152);
+            this.textBox30.Location = new System.Drawing.Point(7, 162);
             this.textBox30.Name = "textBox30";
             this.textBox30.Size = new System.Drawing.Size(235, 26);
             this.textBox30.TabIndex = 10;
@@ -493,7 +507,7 @@ namespace UASKI
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label62.Location = new System.Drawing.Point(1, 129);
+            this.label62.Location = new System.Drawing.Point(3, 139);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(133, 20);
             this.label62.TabIndex = 9;
@@ -502,7 +516,7 @@ namespace UASKI
             // textBox29
             // 
             this.textBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox29.Location = new System.Drawing.Point(5, 90);
+            this.textBox29.Location = new System.Drawing.Point(7, 100);
             this.textBox29.Name = "textBox29";
             this.textBox29.Size = new System.Drawing.Size(237, 26);
             this.textBox29.TabIndex = 8;
@@ -513,7 +527,7 @@ namespace UASKI
             // 
             this.label59.AutoSize = true;
             this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label59.Location = new System.Drawing.Point(1, 4);
+            this.label59.Location = new System.Drawing.Point(3, 14);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(39, 20);
             this.label59.TabIndex = 3;
@@ -522,7 +536,7 @@ namespace UASKI
             // textBox19
             // 
             this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox19.Location = new System.Drawing.Point(5, 27);
+            this.textBox19.Location = new System.Drawing.Point(7, 37);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(235, 26);
             this.textBox19.TabIndex = 2;
@@ -546,6 +560,7 @@ namespace UASKI
             // tabPage9
             // 
             this.tabPage9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage9.Controls.Add(this.button16);
             this.tabPage9.Controls.Add(this.panel14);
             this.tabPage9.Controls.Add(this.dataGridView5);
             this.tabPage9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -558,6 +573,7 @@ namespace UASKI
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.Controls.Add(this.button17);
             this.panel14.Controls.Add(this.panel15);
             this.panel14.Controls.Add(this.checkBox1);
             this.panel14.Controls.Add(this.label39);
@@ -566,7 +582,7 @@ namespace UASKI
             this.panel14.Controls.Add(this.textBox31);
             this.panel14.Controls.Add(this.label66);
             this.panel14.Controls.Add(this.textBox32);
-            this.panel14.Location = new System.Drawing.Point(-1, 0);
+            this.panel14.Location = new System.Drawing.Point(0, 0);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(246, 542);
             this.panel14.TabIndex = 4;
@@ -579,7 +595,7 @@ namespace UASKI
             this.panel15.Controls.Add(this.dateTimePicker3);
             this.panel15.Controls.Add(this.label65);
             this.panel15.Controls.Add(this.label64);
-            this.panel15.Location = new System.Drawing.Point(2, 249);
+            this.panel15.Location = new System.Drawing.Point(2, 259);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(241, 129);
             this.panel15.TabIndex = 13;
@@ -625,7 +641,7 @@ namespace UASKI
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 219);
+            this.checkBox1.Location = new System.Drawing.Point(5, 229);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(228, 24);
             this.checkBox1.TabIndex = 12;
@@ -638,7 +654,7 @@ namespace UASKI
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label39.Location = new System.Drawing.Point(1, 69);
+            this.label39.Location = new System.Drawing.Point(1, 79);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(131, 20);
             this.label39.TabIndex = 11;
@@ -647,7 +663,7 @@ namespace UASKI
             // textBox20
             // 
             this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox20.Location = new System.Drawing.Point(5, 154);
+            this.textBox20.Location = new System.Drawing.Point(5, 164);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(235, 26);
             this.textBox20.TabIndex = 10;
@@ -658,7 +674,7 @@ namespace UASKI
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label40.Location = new System.Drawing.Point(1, 131);
+            this.label40.Location = new System.Drawing.Point(1, 141);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(133, 20);
             this.label40.TabIndex = 9;
@@ -667,7 +683,7 @@ namespace UASKI
             // textBox31
             // 
             this.textBox31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox31.Location = new System.Drawing.Point(5, 92);
+            this.textBox31.Location = new System.Drawing.Point(5, 102);
             this.textBox31.Name = "textBox31";
             this.textBox31.Size = new System.Drawing.Size(237, 26);
             this.textBox31.TabIndex = 8;
@@ -678,7 +694,7 @@ namespace UASKI
             // 
             this.label66.AutoSize = true;
             this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label66.Location = new System.Drawing.Point(1, 4);
+            this.label66.Location = new System.Drawing.Point(1, 14);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(39, 20);
             this.label66.TabIndex = 3;
@@ -687,7 +703,7 @@ namespace UASKI
             // textBox32
             // 
             this.textBox32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox32.Location = new System.Drawing.Point(5, 27);
+            this.textBox32.Location = new System.Drawing.Point(5, 37);
             this.textBox32.Name = "textBox32";
             this.textBox32.Size = new System.Drawing.Size(235, 26);
             this.textBox32.TabIndex = 2;
@@ -720,8 +736,35 @@ namespace UASKI
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Просмотр праздн";
             // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.White;
+            this.button13.Location = new System.Drawing.Point(723, 16);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(149, 48);
+            this.button13.TabIndex = 1;
+            this.button13.Text = "Удалить";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.button13.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button13_PreviewKeyDown);
+            // 
+            // dataGridView6
+            // 
+            this.dataGridView6.AllowUserToAddRows = false;
+            this.dataGridView6.AllowUserToDeleteRows = false;
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.ReadOnly = true;
+            this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView6.Size = new System.Drawing.Size(705, 543);
+            this.dataGridView6.TabIndex = 0;
+            this.dataGridView6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView6_KeyDown);
+            // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage3.Controls.Add(this.button22);
             this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.panel17);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -730,7 +773,6 @@ namespace UASKI
             this.tabPage3.Size = new System.Drawing.Size(881, 543);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр опзд";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -749,6 +791,7 @@ namespace UASKI
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel17.Controls.Add(this.button23);
             this.panel17.Controls.Add(this.panel18);
             this.panel17.Controls.Add(this.checkBox3);
             this.panel17.Controls.Add(this.label69);
@@ -770,7 +813,7 @@ namespace UASKI
             this.panel18.Controls.Add(this.dateTimePicker8);
             this.panel18.Controls.Add(this.label67);
             this.panel18.Controls.Add(this.label68);
-            this.panel18.Location = new System.Drawing.Point(1, 230);
+            this.panel18.Location = new System.Drawing.Point(3, 238);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(241, 129);
             this.panel18.TabIndex = 14;
@@ -816,7 +859,7 @@ namespace UASKI
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(5, 200);
+            this.checkBox3.Location = new System.Drawing.Point(7, 208);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(199, 24);
             this.checkBox3.TabIndex = 12;
@@ -829,7 +872,7 @@ namespace UASKI
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label69.Location = new System.Drawing.Point(1, 69);
+            this.label69.Location = new System.Drawing.Point(3, 77);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(131, 20);
             this.label69.TabIndex = 11;
@@ -838,7 +881,7 @@ namespace UASKI
             // textBox33
             // 
             this.textBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox33.Location = new System.Drawing.Point(4, 27);
+            this.textBox33.Location = new System.Drawing.Point(6, 35);
             this.textBox33.Name = "textBox33";
             this.textBox33.Size = new System.Drawing.Size(235, 26);
             this.textBox33.TabIndex = 10;
@@ -849,7 +892,7 @@ namespace UASKI
             // 
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label70.Location = new System.Drawing.Point(1, 131);
+            this.label70.Location = new System.Drawing.Point(3, 139);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(133, 20);
             this.label70.TabIndex = 9;
@@ -858,7 +901,7 @@ namespace UASKI
             // textBox34
             // 
             this.textBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox34.Location = new System.Drawing.Point(5, 92);
+            this.textBox34.Location = new System.Drawing.Point(7, 100);
             this.textBox34.Name = "textBox34";
             this.textBox34.Size = new System.Drawing.Size(237, 26);
             this.textBox34.TabIndex = 8;
@@ -869,7 +912,7 @@ namespace UASKI
             // 
             this.label71.AutoSize = true;
             this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label71.Location = new System.Drawing.Point(1, 4);
+            this.label71.Location = new System.Drawing.Point(3, 12);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(39, 20);
             this.label71.TabIndex = 3;
@@ -878,7 +921,7 @@ namespace UASKI
             // textBox35
             // 
             this.textBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox35.Location = new System.Drawing.Point(6, 154);
+            this.textBox35.Location = new System.Drawing.Point(8, 162);
             this.textBox35.Name = "textBox35";
             this.textBox35.Size = new System.Drawing.Size(235, 26);
             this.textBox35.TabIndex = 2;
@@ -887,6 +930,8 @@ namespace UASKI
             // 
             // tabPage5
             // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage5.Controls.Add(this.button14);
             this.tabPage5.Controls.Add(this.label26);
             this.tabPage5.Controls.Add(this.label25);
             this.tabPage5.Controls.Add(this.dateTimePicker1);
@@ -902,7 +947,6 @@ namespace UASKI
             this.tabPage5.Size = new System.Drawing.Size(881, 543);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Добавление задачи";
-            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // label26
             // 
@@ -937,7 +981,7 @@ namespace UASKI
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.BackColor = System.Drawing.Color.Silver;
             this.panel2.Controls.Add(this.button1);
             this.panel2.Location = new System.Drawing.Point(638, 394);
             this.panel2.Name = "panel2";
@@ -955,6 +999,7 @@ namespace UASKI
             this.button1.TabIndex = 0;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             this.button1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button1_PreviewKeyDown);
             // 
             // label11
@@ -998,7 +1043,7 @@ namespace UASKI
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.button3);
@@ -1054,6 +1099,7 @@ namespace UASKI
             this.button3.TabIndex = 16;
             this.button3.Text = "^";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -1065,6 +1111,7 @@ namespace UASKI
             this.button2.TabIndex = 15;
             this.button2.Text = "^";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label6
             // 
@@ -1204,6 +1251,7 @@ namespace UASKI
             // 
             // tabPage6
             // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage6.Controls.Add(this.panel6);
             this.tabPage6.Controls.Add(this.panel5);
             this.tabPage6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -1212,7 +1260,6 @@ namespace UASKI
             this.tabPage6.Size = new System.Drawing.Size(881, 543);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Добавление Исп-Кон";
-            this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
@@ -1225,13 +1272,15 @@ namespace UASKI
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.White;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button4.Location = new System.Drawing.Point(3, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(260, 54);
             this.button4.TabIndex = 0;
             this.button4.Text = "Добавить контроллера/исполнителя";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             this.button4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button4_PreviewKeyDown);
             // 
             // panel5
@@ -1421,6 +1470,7 @@ namespace UASKI
             // 
             // tabPage7
             // 
+            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage7.Controls.Add(this.label27);
             this.tabPage7.Controls.Add(this.label17);
             this.tabPage7.Controls.Add(this.monthCalendar1);
@@ -1432,7 +1482,6 @@ namespace UASKI
             this.tabPage7.Size = new System.Drawing.Size(881, 543);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Добавление празн";
-            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // label27
             // 
@@ -1468,13 +1517,15 @@ namespace UASKI
             // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.White;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button5.Location = new System.Drawing.Point(361, 236);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(171, 39);
             this.button5.TabIndex = 2;
             this.button5.Text = "Добавить";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             this.button5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button5_PreviewKeyDown);
             // 
             // dataGridView2
@@ -1491,6 +1542,7 @@ namespace UASKI
             // 
             // IspCon
             // 
+            this.IspCon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.IspCon.Controls.Add(this.dataGridView4);
             this.IspCon.Controls.Add(this.panel8);
             this.IspCon.Controls.Add(this.panel7);
@@ -1500,7 +1552,6 @@ namespace UASKI
             this.IspCon.Size = new System.Drawing.Size(881, 543);
             this.IspCon.TabIndex = 7;
             this.IspCon.Text = "Исп-Кон";
-            this.IspCon.UseVisualStyleBackColor = true;
             // 
             // dataGridView4
             // 
@@ -1527,24 +1578,28 @@ namespace UASKI
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.Color.White;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button7.Location = new System.Drawing.Point(13, 100);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(141, 46);
             this.button7.TabIndex = 1;
             this.button7.Text = "Удалить";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             this.button7.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button7_PreviewKeyDown);
             // 
             // button6
             // 
+            this.button6.BackColor = System.Drawing.Color.White;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button6.Location = new System.Drawing.Point(13, 23);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(141, 46);
             this.button6.TabIndex = 0;
             this.button6.Text = "Обновить";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             this.button6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button6_PreviewKeyDown);
             // 
             // panel7
@@ -1734,6 +1789,7 @@ namespace UASKI
             // 
             // Tasks
             // 
+            this.Tasks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Tasks.Controls.Add(this.panel11);
             this.Tasks.Controls.Add(this.panel10);
             this.Tasks.Controls.Add(this.panel9);
@@ -1743,7 +1799,6 @@ namespace UASKI
             this.Tasks.Size = new System.Drawing.Size(881, 543);
             this.Tasks.TabIndex = 10;
             this.Tasks.Text = "Задачи";
-            this.Tasks.UseVisualStyleBackColor = true;
             // 
             // panel11
             // 
@@ -1766,6 +1821,7 @@ namespace UASKI
             this.button12.TabIndex = 2;
             this.button12.Text = "Удалить";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             this.button12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button12_PreviewKeyDown);
             // 
             // button11
@@ -1778,6 +1834,7 @@ namespace UASKI
             this.button11.TabIndex = 1;
             this.button11.Text = "Закрыть";
             this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             this.button11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button11_PreviewKeyDown);
             // 
             // button10
@@ -1790,11 +1847,12 @@ namespace UASKI
             this.button10.TabIndex = 0;
             this.button10.Text = "Изменить";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             this.button10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button10_PreviewKeyDown);
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.BackColor = System.Drawing.Color.Silver;
             this.panel10.Controls.Add(this.label57);
             this.panel10.Controls.Add(this.textBox28);
             this.panel10.Controls.Add(this.label52);
@@ -1836,7 +1894,8 @@ namespace UASKI
             // 
             // panel9
             // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel9.BackColor = System.Drawing.Color.Silver;
+            this.panel9.Controls.Add(this.button15);
             this.panel9.Controls.Add(this.label72);
             this.panel9.Controls.Add(this.label56);
             this.panel9.Controls.Add(this.label55);
@@ -1970,6 +2029,7 @@ namespace UASKI
             this.button8.TabIndex = 16;
             this.button8.Text = "^";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -1981,6 +2041,7 @@ namespace UASKI
             this.button9.TabIndex = 15;
             this.button9.Text = "^";
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label43
             // 
@@ -2166,28 +2227,125 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
-            // dataGridView6
+            // button14
             // 
-            this.dataGridView6.AllowUserToAddRows = false;
-            this.dataGridView6.AllowUserToDeleteRows = false;
-            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.ReadOnly = true;
-            this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView6.Size = new System.Drawing.Size(705, 543);
-            this.dataGridView6.TabIndex = 0;
-            this.dataGridView6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView6_KeyDown);
+            this.button14.BackColor = System.Drawing.Color.White;
+            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button14.Location = new System.Drawing.Point(580, 416);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(19, 26);
+            this.button14.TabIndex = 24;
+            this.button14.Text = "^";
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // button13
+            // button15
             // 
-            this.button13.Location = new System.Drawing.Point(723, 16);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(149, 48);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "Удалить";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button13_PreviewKeyDown);
+            this.button15.BackColor = System.Drawing.Color.White;
+            this.button15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button15.Location = new System.Drawing.Point(567, 294);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(19, 26);
+            this.button15.TabIndex = 33;
+            this.button15.Text = "^";
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.White;
+            this.button16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button16.Location = new System.Drawing.Point(2, 0);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(17, 30);
+            this.button16.TabIndex = 25;
+            this.button16.Text = "<";
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button17
+            // 
+            this.button17.BackColor = System.Drawing.Color.White;
+            this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button17.Location = new System.Drawing.Point(226, 0);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(17, 30);
+            this.button17.TabIndex = 26;
+            this.button17.Text = ">";
+            this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button18
+            // 
+            this.button18.BackColor = System.Drawing.Color.White;
+            this.button18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button18.Location = new System.Drawing.Point(228, 0);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(17, 30);
+            this.button18.TabIndex = 28;
+            this.button18.Text = ">";
+            this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button19
+            // 
+            this.button19.BackColor = System.Drawing.Color.White;
+            this.button19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button19.Location = new System.Drawing.Point(2, 0);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(17, 30);
+            this.button19.TabIndex = 26;
+            this.button19.Text = "<";
+            this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.White;
+            this.button20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button20.Location = new System.Drawing.Point(2, 0);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(17, 30);
+            this.button20.TabIndex = 27;
+            this.button20.Text = "<";
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button21
+            // 
+            this.button21.BackColor = System.Drawing.Color.White;
+            this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button21.Location = new System.Drawing.Point(223, 0);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(17, 30);
+            this.button21.TabIndex = 28;
+            this.button21.Text = ">";
+            this.button21.UseVisualStyleBackColor = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // button22
+            // 
+            this.button22.BackColor = System.Drawing.Color.White;
+            this.button22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button22.Location = new System.Drawing.Point(2, 0);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(17, 30);
+            this.button22.TabIndex = 28;
+            this.button22.Text = "<";
+            this.button22.UseVisualStyleBackColor = false;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.Color.White;
+            this.button23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button23.Location = new System.Drawing.Point(226, 0);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(17, 30);
+            this.button23.TabIndex = 29;
+            this.button23.Text = ">";
+            this.button23.UseVisualStyleBackColor = false;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
             // 
             // Gl_Form
             // 
@@ -2227,6 +2385,7 @@ namespace UASKI
             this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.tabPage10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel17.ResumeLayout(false);
@@ -2258,7 +2417,6 @@ namespace UASKI
             this.panel10.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2441,6 +2599,16 @@ namespace UASKI
         public System.Windows.Forms.Label label72;
         public System.Windows.Forms.DataGridView dataGridView6;
         public System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button17;
+        public System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button18;
+        public System.Windows.Forms.Button button19;
+        public System.Windows.Forms.Button button20;
+        public System.Windows.Forms.Button button21;
+        public System.Windows.Forms.Button button22;
+        public System.Windows.Forms.Button button23;
     }
 }
 

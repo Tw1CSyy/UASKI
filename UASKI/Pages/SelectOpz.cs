@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
@@ -52,6 +47,7 @@ namespace UASKI.Pages
             SystemHelper.ResizeDataGridView(form.dataGridView1);
             form.panel17.Visible = true;
             SystemHelper.SelectTextBox(form.textBox19);
+            form.button22.Visible = false;
         }
 
         /// <summary>
@@ -59,11 +55,12 @@ namespace UASKI.Pages
         /// </summary>
         private void FilterClose()
         {
-            form.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            form.dataGridView1.Size = new System.Drawing.Size(881, 560);
+            form.dataGridView1.Location = new System.Drawing.Point(20, 0);
+            form.dataGridView1.Size = new System.Drawing.Size(861, 560);
             SystemHelper.ResizeDataGridView(form.dataGridView1);
             form.panel17.Visible = false;
             form.dataGridView1.Focus();
+            form.button22.Visible = true;
         }
 
         /// <summary>

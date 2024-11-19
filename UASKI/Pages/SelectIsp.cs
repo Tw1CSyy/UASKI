@@ -31,12 +31,7 @@ namespace UASKI.Models.Pages
                         , IspService.GetListByDataGrid(IspService.GetList())
                         , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
 
-            form.IspDataGridView.Location = new System.Drawing.Point(0, 0);
-            form.IspDataGridView.Size = new System.Drawing.Size(881, 560);
-            SystemHelper.ResizeDataGridView(form.IspDataGridView);
-            form.panel12.Visible = false;
-           
-            SystemHelper.SelectDataGridView(true, form.IspDataGridView);
+            FilterClose();
         }
 
         /// <summary>
@@ -56,6 +51,32 @@ namespace UASKI.Models.Pages
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
 
+        }
+
+        /// <summary>
+        /// Открывает панель фильтров
+        /// </summary>
+        public void FilterOpen()
+        {
+            form.IspDataGridView.Location = new System.Drawing.Point(247, 0);
+            form.IspDataGridView.Size = new System.Drawing.Size(634, 560);
+            SystemHelper.ResizeDataGridView(form.IspDataGridView);
+            form.panel12.Visible = true;
+            SystemHelper.SelectTextBox(form.textBox13);
+            form.button19.Visible = false;
+        }
+
+        /// <summary>
+        /// Закрывает панель фильтров
+        /// </summary>
+        public void FilterClose()
+        {
+            form.IspDataGridView.Location = new System.Drawing.Point(20, 0);
+            form.IspDataGridView.Size = new System.Drawing.Size(861, 560);
+            SystemHelper.ResizeDataGridView(form.IspDataGridView);
+            form.panel12.Visible = false;
+            form.button19.Visible = true;
+            SystemHelper.SelectDataGridView(true, form.IspDataGridView);
         }
 
         #region Клавиши
@@ -81,11 +102,7 @@ namespace UASKI.Models.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)
             {
-                form.IspDataGridView.Location = new System.Drawing.Point(247, 0);
-                form.IspDataGridView.Size = new System.Drawing.Size(634, 560);
-                SystemHelper.ResizeDataGridView(form.IspDataGridView);
-                form.panel12.Visible = true;
-                SystemHelper.SelectTextBox(form.textBox13);
+                FilterOpen();
             }
             else
             {
@@ -98,12 +115,7 @@ namespace UASKI.Models.Pages
         {
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
-                form.IspDataGridView.Location = new System.Drawing.Point(0, 0);
-                form.IspDataGridView.Size = new System.Drawing.Size(881, 560);
-                SystemHelper.ResizeDataGridView(form.IspDataGridView);
-                form.panel12.Visible = false;
-                
-                form.IspDataGridView.Focus();
+                FilterClose();
             }
         }
         #endregion

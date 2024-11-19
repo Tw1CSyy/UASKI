@@ -69,6 +69,7 @@ namespace UASKI.Pages
             SystemHelper.ResizeDataGridView(form.dataGridView3);
             form.panel13.Visible = true;
             SystemHelper.SelectTextBox(form.textBox19);
+            form.button20.Visible = false;
         }
 
         /// <summary>
@@ -76,11 +77,12 @@ namespace UASKI.Pages
         /// </summary>
         private void FilterClose()
         {
-            form.dataGridView3.Location = new System.Drawing.Point(0, 0);
-            form.dataGridView3.Size = new System.Drawing.Size(881, 560);
+            form.dataGridView3.Location = new System.Drawing.Point(20, 0);
+            form.dataGridView3.Size = new System.Drawing.Size(861, 560);
             SystemHelper.ResizeDataGridView(form.dataGridView3);
             form.panel13.Visible = false;
             form.dataGridView3.Focus();
+            form.button20.Visible = true;
         }
 
         /// <summary>

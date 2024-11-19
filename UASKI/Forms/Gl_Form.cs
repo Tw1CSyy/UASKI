@@ -113,7 +113,7 @@ namespace UASKI
                 e.SuppressKeyPress = true;
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 form.Menu_Step2.Enabled = true;
                 form.Menu_Step2.Focus();
@@ -277,10 +277,6 @@ namespace UASKI
         private void dataGridView4_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.EditIsp.dataGridView4_KeyDown(e);
-        }
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.AddTask.dateTimePicker1_KeyDown(e);
         }
         private void textBox26_KeyDown(object sender, KeyEventArgs e)
         {
@@ -543,6 +539,124 @@ namespace UASKI
             textBox33_TextChanged(sender, e);
         }
 
+        #endregion
+
+        #region Обработка курсора
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox1_KeyDown(sender, key);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox4_KeyDown(sender, key);
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button1_PreviewKeyDown(sender, key);
+        }
+        private void button14_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker1_KeyDown(sender, key);
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox26_KeyDown(sender, key);
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox21_KeyDown(sender, key);
+        }
+        private void button15_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker4_KeyDown(sender, key);
+        }
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button10_PreviewKeyDown(sender, key);
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button11_PreviewKeyDown(sender, key);
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button12_PreviewKeyDown(sender, key);
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button6_PreviewKeyDown(sender, key);
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button7_PreviewKeyDown(sender, key);
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button5_PreviewKeyDown(sender, key);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button4_PreviewKeyDown(sender, key);
+        }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button13_PreviewKeyDown(sender, key);
+        }
+        private void button19_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            IspDataGridView_KeyDown(sender, key);
+        }
+        private void button18_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox13_KeyDown(sender, key);
+        }
+        private void button20_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            dataGridView3_KeyDown(sender, key);
+        }
+        private void button21_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox19_KeyDown(sender, key);
+        }
+        private void button16_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            dataGridView5_KeyDown(sender, key);
+        }
+        private void button17_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox32_KeyDown(sender, key);
+        }
+        private void button22_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            dataGridView1_KeyDown_1(sender, key);
+        }
+        private void button23_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox33_KeyDown(sender, key);
+        }
         #endregion
 
     }
