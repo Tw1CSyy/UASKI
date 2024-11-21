@@ -35,7 +35,7 @@ namespace UASKI.Services
         /// <param name="isDate">Используется ли дата</param>
         /// <param name="dateFrom">Дата от</param>
         /// <param name="dateTo">Дата до</param>
-        public static List<TaskEntity> GetList(string search, string isp, bool isDate , DateTime dateFrom , DateTime dateTo)
+        public static List<TaskEntity> GetList(string search, string isp, bool isDate , DateTime dateFrom, DateTime dateTo)
         {
             var list = GetList();
 

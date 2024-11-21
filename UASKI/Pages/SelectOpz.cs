@@ -8,7 +8,10 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
-    public class SelectOpz : BasePage
+    /// <summary>
+    /// Класс для объекта страницы просмотра опозданий
+    /// </summary>
+    public class SelectOpz : BasePageSelect
     {
         public SelectOpz(int index) : base(index) { }
 
@@ -16,10 +19,7 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            SystemHelper.PullListInDataGridView(form.dataGridView1,
-                ArhivService.GetOpzListDataGrid(form.textBox33.Text , form.textBox34.Text , form.textBox35.Text , form.checkBox3.Checked , form.dateTimePicker7.Value , form.dateTimePicker8.Value),
-                new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
-
+            Select();
             form.dataGridView1.Focus();
             FilterClose();
 
@@ -33,39 +33,26 @@ namespace UASKI.Pages
             form.dataGridView1.DataSource = null;
             form.textBox33.Clear();
             form.textBox34.Clear();
-            form.textBox35.Clear();
             form.checkBox3.Checked = false;
         }
 
-        /// <summary>
-        /// Открывает панель фильтров
-        /// </summary>
-        private void FilterOpen()
+        public override void Select()
         {
-            form.dataGridView1.Location = new System.Drawing.Point(247, 0);
-            form.dataGridView1.Size = new System.Drawing.Size(634, 560);
-            SystemHelper.ResizeDataGridView(form.dataGridView1);
-            form.panel17.Visible = true;
-            SystemHelper.SelectTextBox(form.textBox19);
-            form.button22.Visible = false;
+            SystemHelper.PullListInDataGridView(form.dataGridView1,
+                ArhivService.GetOpzListDataGrid(form.textBox33.Text, form.textBox34.Text, form.checkBox3.Checked, form.dateTimePicker7.Value, form.dateTimePicker8.Value),
+                new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
         }
 
-        /// <summary>
-        /// Закрывает панель фильтров
-        /// </summary>
-        private void FilterClose()
+        protected override void FilterOpen()
         {
-            form.dataGridView1.Location = new System.Drawing.Point(20, 0);
-            form.dataGridView1.Size = new System.Drawing.Size(861, 560);
-            SystemHelper.ResizeDataGridView(form.dataGridView1);
-            form.panel17.Visible = false;
-            form.dataGridView1.Focus();
-            form.button22.Visible = true;
+            FilterOpen(form.dataGridView1, form.panel17, form.textBox19, form.button22);
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
+        protected override void FilterClose()
+        {
+            FilterClose(form.dataGridView1, form.panel17, form.textBox19, form.button22);
+        }
+
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;
@@ -118,7 +105,6 @@ namespace UASKI.Pages
             }
             
         }
-
         public void textBox34_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -127,7 +113,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectTextBox(form.textBox35);
+                form.checkBox3.Focus();
             }
             else if(e.KeyCode == Keys.Up)
             {
@@ -139,23 +125,6 @@ namespace UASKI.Pages
                 f.Show();
             }
         }
-
-        public void textBox35_KeyDown(KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
-            {
-                FilterClose();
-            }
-            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
-            {
-                form.checkBox3.Focus();
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                SystemHelper.SelectTextBox(form.textBox34);
-            }
-        }
-
         public void checkBox3_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -168,7 +137,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox35);
+                SystemHelper.SelectTextBox(form.textBox34);
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -178,7 +147,6 @@ namespace UASKI.Pages
 
             e.IsInputKey = true;
         }
-
         public void dateTimePicker7_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -199,7 +167,6 @@ namespace UASKI.Pages
                 f.Show();
             }
         }
-
         public void dateTimePicker8_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)

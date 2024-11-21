@@ -5,37 +5,21 @@ using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Services;
 using UASKI.StaticModels;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 
 namespace UASKI.Pages
 {
     /// <summary>
     /// Класс для объекта страницы просмотра задач
     /// </summary>
-    public class SelectTask : BasePage
+    public class SelectTask : BasePageSelect
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public SelectTask(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
-            var list = TasksService.GetList();
-
-            SystemHelper.PullListInDataGridView(form.dataGridView3,
-                        TasksService.GetListByDataGrid(list),
-                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+            Select();
 
             form.panel16.Visible = form.checkBox2.Checked = false;
 
@@ -45,9 +29,6 @@ namespace UASKI.Pages
             FilterClose();
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
             form.textBox19.Clear();
@@ -58,35 +39,24 @@ namespace UASKI.Pages
             form.dataGridView3.DataSource = null;
         }
 
-        /// <summary>
-        /// Открывает панель фильтров
-        /// </summary>
-        private void FilterOpen()
+        public override void Select()
         {
-            form.dataGridView3.Location = new System.Drawing.Point(247, 0);
-            form.dataGridView3.Size = new System.Drawing.Size(634, 560);
-            SystemHelper.ResizeDataGridView(form.dataGridView3);
-            form.panel13.Visible = true;
-            SystemHelper.SelectTextBox(form.textBox19);
-            form.button20.Visible = false;
+            var list = TasksService.GetList(form.textBox19.Text, form.textBox29.Text, form.checkBox2.Checked, form.dateTimePicker5.Value, form.dateTimePicker6.Value);
+            SystemHelper.PullListInDataGridView(form.dataGridView3,
+            TasksService.GetListByDataGrid(list),
+                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
         }
 
-        /// <summary>
-        /// Закрывает панель фильтров
-        /// </summary>
-        private void FilterClose()
+        protected override void FilterOpen()
         {
-            form.dataGridView3.Location = new System.Drawing.Point(20, 0);
-            form.dataGridView3.Size = new System.Drawing.Size(861, 560);
-            SystemHelper.ResizeDataGridView(form.dataGridView3);
-            form.panel13.Visible = false;
-            form.dataGridView3.Focus();
-            form.button20.Visible = true;
+            FilterOpen(form.dataGridView3, form.panel13, form.textBox19, form.button20);
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
+        protected override void FilterClose()
+        {
+            FilterClose(form.dataGridView3, form.panel13, form.textBox19, form.button20);
+        }
+
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;

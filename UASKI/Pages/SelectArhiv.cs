@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
@@ -12,29 +11,15 @@ namespace UASKI.Pages
     /// <summary>
     /// Класс для объекта страницы просмотра архива заданий
     /// </summary>
-    public class SelectArhiv : BasePage
+    public class SelectArhiv : BasePageSelect
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public SelectArhiv(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
-            var list = ArhivService.GetList();
-
-            SystemHelper.PullListInDataGridView(form.dataGridView5,
-                ArhivService.GetListByDataGrid(list),
-                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
+            Select();
 
             form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker3.Value = DateTime.Today;
@@ -46,9 +31,6 @@ namespace UASKI.Pages
             form.dataGridView5.Focus();
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
            
@@ -57,43 +39,32 @@ namespace UASKI.Pages
 
             form.panel15.Visible = false;
             form.checkBox1.Checked = false;
-
             form.dataGridView5.DataSource = null;
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
+        public override void Select()
+        {
+            var list = ArhivService.GetList(form.textBox32.Text, form.textBox31.Text, form.checkBox1.Checked, form.dateTimePicker2.Value, form.dateTimePicker3.Value);
+           
+            SystemHelper.PullListInDataGridView(form.dataGridView5,
+            ArhivService.GetListByDataGrid(list),
+                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
+        }
+
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
         }
 
-        /// <summary>
-        /// Открывает панель фильтров
-        /// </summary>
-        private void FilterOpen()
+        protected override void FilterOpen()
         {
-            form.dataGridView5.Location = new System.Drawing.Point(247, 0);
-            form.dataGridView5.Size = new System.Drawing.Size(634, 560);
-            SystemHelper.ResizeDataGridView(form.dataGridView5);
-            form.panel14.Visible = true;
-            SystemHelper.SelectTextBox(form.textBox32);
-            form.button16.Visible = false;
+            FilterOpen(form.dataGridView5, form.panel14, form.textBox32, form.button16);
         }
 
-        /// <summary>
-        /// Закрывает панель фильтров
-        /// </summary>
-        private void FilterClose()
+        protected override void FilterClose()
         {
-            form.dataGridView5.Location = new System.Drawing.Point(20, 0);
-            form.dataGridView5.Size = new System.Drawing.Size(861, 560);
-            SystemHelper.ResizeDataGridView(form.dataGridView5);
-            form.panel14.Visible = false;
-            form.dataGridView5.Focus();
-            form.button16.Visible = true;
+            FilterClose(form.dataGridView5, form.panel14, form.textBox32, form.button16);
         }
 
         #region Клавиши

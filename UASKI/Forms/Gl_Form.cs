@@ -372,10 +372,6 @@ namespace UASKI
         {
             SystemData.Pages.SelectOpz.textBox34_KeyDown(e);
         }
-        private void textBox35_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.SelectOpz.textBox35_KeyDown(e);
-        }
         private void checkBox3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             SystemData.Pages.SelectOpz.checkBox3_PreviewKeyDown(e);
@@ -425,29 +421,14 @@ namespace UASKI
         {
             if(!SystemData.IsClear)
             {
-                var model = IspService.GetList();
-                var search = textBox13.Text;
-
-                model = model.Where(c => c.Code.ToString().Contains(search) ||
-                    c.CodePodr.ToString().Contains(search) ||
-                    c.FirstName.ToLower().Contains(search.ToLower()) ||
-                    c.Name.ToLower().Contains(search.ToLower()))
-                    .ToList();
-
-                SystemHelper.PullListInDataGridView(IspDataGridView
-                            , IspService.GetListByDataGrid(model)
-                            , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
+                SystemData.Pages.SelectIsp.Select();
             }
         }
         private void textBox19_TextChanged_1(object sender, EventArgs e)
         {
            if(!SystemData.IsClear)
             {
-                var list = TasksService.GetList(textBox19.Text, textBox29.Text, checkBox2.Checked, dateTimePicker5.Value, dateTimePicker6.Value);
-
-                SystemHelper.PullListInDataGridView(dataGridView3,
-                            TasksService.GetListByDataGrid(list),
-                            new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+                SystemData.Pages.SelectTask.Select();
             }
         }
         private void textBox29_TextChanged(object sender, EventArgs e)
@@ -458,11 +439,7 @@ namespace UASKI
         {
             if (!SystemData.IsClear)
             {
-                var list = ArhivService.GetList(textBox32.Text, textBox31.Text, checkBox1.Checked, dateTimePicker2.Value, dateTimePicker3.Value);
-
-                SystemHelper.PullListInDataGridView(dataGridView5,
-                    ArhivService.GetListByDataGrid(list),
-                    new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
+                SystemData.Pages.SelectArhiv.Select();
             }
         }
         private void textBox31_TextChanged(object sender, EventArgs e)
@@ -497,11 +474,7 @@ namespace UASKI
         {
             if(!SystemData.IsClear)
             {
-                var form = this;
-
-                SystemHelper.PullListInDataGridView(form.dataGridView1,
-                    ArhivService.GetOpzListDataGrid(form.textBox33.Text, form.textBox34.Text, form.textBox35.Text, form.checkBox3.Checked, form.dateTimePicker7.Value, form.dateTimePicker8.Value),
-                    new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
+                SystemData.Pages.SelectOpz.Select();
             }
         }
         private void textBox34_TextChanged(object sender, EventArgs e)

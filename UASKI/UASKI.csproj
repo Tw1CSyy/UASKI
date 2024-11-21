@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
+    <Compile Include="Models\BasePageSelect.cs" />
     <Compile Include="Models\BaseElement.cs" />
     <Compile Include="Models\BasePage.cs" />
     <Compile Include="Models\DataGridRowModel.cs" />

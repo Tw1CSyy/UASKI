@@ -12,28 +12,15 @@ namespace UASKI.Pages
     /// </summary>
     public class AddIsp : BasePage
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public AddIsp(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
             form.textBox8.Focus();
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
             form.textBox8.Clear();
@@ -51,9 +38,6 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button4);
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;

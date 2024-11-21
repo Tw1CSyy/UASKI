@@ -3,49 +3,31 @@ using System;
 using UASKI.Helpers;
 using UASKI.Services;
 using UASKI.StaticModels;
+using System.Linq;
 
 namespace UASKI.Models.Pages
 {
     /// <summary>
     /// Класс для объекта страницы просмотра исполнителей
     /// </summary>
-    public class SelectIsp : BasePage
+    public class SelectIsp : BasePageSelect
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public SelectIsp(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
-            SystemHelper.PullListInDataGridView(form.IspDataGridView
-                        , IspService.GetListByDataGrid(IspService.GetList())
-                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-
+            Select();
             FilterClose();
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
             form.textBox13.Clear();
             form.IspDataGridView.DataSource = null;
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;
@@ -53,30 +35,30 @@ namespace UASKI.Models.Pages
 
         }
 
-        /// <summary>
-        /// Открывает панель фильтров
-        /// </summary>
-        public void FilterOpen()
+        public override void Select()
         {
-            form.IspDataGridView.Location = new System.Drawing.Point(247, 0);
-            form.IspDataGridView.Size = new System.Drawing.Size(634, 560);
-            SystemHelper.ResizeDataGridView(form.IspDataGridView);
-            form.panel12.Visible = true;
-            SystemHelper.SelectTextBox(form.textBox13);
-            form.button19.Visible = false;
+            var model = IspService.GetList();
+            var search = form.textBox13.Text;
+
+            model = model.Where(c => c.Code.ToString().Contains(search) ||
+                c.CodePodr.ToString().Contains(search) ||
+                c.FirstName.ToLower().Contains(search.ToLower()) ||
+                c.Name.ToLower().Contains(search.ToLower()))
+                .ToList();
+
+            SystemHelper.PullListInDataGridView(form.IspDataGridView
+                        , IspService.GetListByDataGrid(model)
+                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
         }
 
-        /// <summary>
-        /// Закрывает панель фильтров
-        /// </summary>
-        public void FilterClose()
+        protected override void FilterOpen()
         {
-            form.IspDataGridView.Location = new System.Drawing.Point(20, 0);
-            form.IspDataGridView.Size = new System.Drawing.Size(861, 560);
-            SystemHelper.ResizeDataGridView(form.IspDataGridView);
-            form.panel12.Visible = false;
-            form.button19.Visible = true;
-            SystemHelper.SelectDataGridView(true, form.IspDataGridView);
+            FilterOpen(form.IspDataGridView, form.panel12, form.textBox13, form.button19);
+        }
+
+        protected override void FilterClose()
+        {
+            FilterClose(form.IspDataGridView, form.panel12, form.textBox13, form.button19);
         }
 
         #region Клавиши

@@ -99,7 +99,7 @@ namespace UASKI.Services
         /// <param name="dateFrom">Дата от</param>
         /// <param name="dateTo">Дата до</param>
         /// <returns>Модель для заполнения DataGridView</returns>
-        public static List<DataGridRowModel> GetOpzListDataGrid(string search, string isp1, string podr, bool isDate, DateTime dateFrom, DateTime dateTo)
+        public static List<DataGridRowModel> GetOpzListDataGrid(string search, string isp1,  bool isDate, DateTime dateFrom, DateTime dateTo)
         {
             var model = new List<DataGridRowModel>();
 
@@ -113,7 +113,13 @@ namespace UASKI.Services
                 var isp = IspService.GetByCode(item.IdIsp , listUser);
                 var con = IspService.GetByCode(item.IdCon , listUser);
 
-                if(!string.IsNullOrEmpty(isp1) && int.TryParse(isp1 , out int i))
+                if (isDate)
+                {
+                    if (item.Date.Date < dateFrom.Date || item.Date.Date > dateTo.Date)
+                        continue;
+                }
+
+                if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1 , out int i))
                 {
                     if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1))
                         continue;
@@ -125,22 +131,10 @@ namespace UASKI.Services
                         continue;
                 }
 
-                if(!string.IsNullOrEmpty(podr) && int.TryParse(podr , out int j))
-                {
-                    if (isp.CodePodr != Convert.ToInt32(podr) && con.CodePodr != Convert.ToInt32(podr))
-                        continue;
-                }
-
-                if(isDate)
-                {
-                    if (item.Date.Date < dateFrom.Date || item.Date.Date > dateTo.Date)
-                        continue;
-                }
-
                 var task = new DataGridRowModel(item.Code,
-                 $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}",
-                 $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}",
-                 item.Date.ToString("dd.MM.yyyy"), "", "");
+                     $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}",
+                     $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}",
+                     item.Date.ToString("dd.MM.yyyy"), "", "");
 
                 model.Add(task);
             }
@@ -149,6 +143,12 @@ namespace UASKI.Services
             {
                 var isp = IspService.GetByCode(item.IdIsp , listUser);
                 var con = IspService.GetByCode(item.IdCon , listUser);
+
+                if (isDate)
+                {
+                    if (item.DateClose.Date < dateFrom.Date || item.DateClose.Date > dateTo.Date)
+                        continue;
+                }
 
                 if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
                 {
@@ -159,18 +159,6 @@ namespace UASKI.Services
                 if (!string.IsNullOrEmpty(search))
                 {
                     if (!item.Code.ToLower().Contains(search.ToLower()))
-                        continue;
-                }
-
-                if (!string.IsNullOrEmpty(podr) && int.TryParse(podr, out int j))
-                {
-                    if (isp.CodePodr != Convert.ToInt32(podr) && con.CodePodr != Convert.ToInt32(podr))
-                        continue;
-                }
-
-                if (isDate)
-                {
-                    if (item.DateClose.Date < dateFrom.Date || item.DateClose.Date > dateTo.Date)
                         continue;
                 }
 

@@ -13,20 +13,10 @@ namespace UASKI.Pages
     /// </summary>
     public class EditTask : BasePage
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public EditTask(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
 
@@ -36,12 +26,6 @@ namespace UASKI.Pages
         private int Page;
         public bool Arhiv { get; private set; }
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
-        /// <param name="code">Код задания</param>
-        /// <param name="IsArhiv">Архивное задание</param>
-        /// <param name="page">Прошлая страница</param>
         public void Show(string code , bool IsArhiv , int page)
         {
             Code = code;
@@ -104,9 +88,6 @@ namespace UASKI.Pages
             }
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
             form.textBox24.Clear();
@@ -126,9 +107,6 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button12);
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
         protected override void Exit()
         {
             switch (Page)
@@ -145,11 +123,6 @@ namespace UASKI.Pages
             }
         }
 
-        /// <summary>
-        /// Выбирает кнопку, если она доступна
-        /// </summary>
-        /// <param name="idButton">Номер текущей кнопки</param>
-        /// <param name="Up">true - двигаемся вверх</param>
         private void SelectButton(int idButton = 0 , bool Up = false)
         {
             var list = new Button[] { form.button10, form.button11, form.button12 };

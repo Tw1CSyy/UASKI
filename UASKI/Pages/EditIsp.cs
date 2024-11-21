@@ -14,30 +14,15 @@ namespace UASKI.Pages
     /// </summary>
     public class EditIsp : BasePage
     {
-         /// <summary>
-         /// Базовый конструктор для установки индекса страницы
-         /// </summary>
-         /// <param name="index">Индекс страницы</param>
         public EditIsp(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
             
         }
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
-        /// <param name="code">Код исполнителя</param>
-        
         private int Code;
 
         public void Show(int code)
@@ -69,9 +54,6 @@ namespace UASKI.Pages
             form.dataGridView4.ClearSelection();
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
             form.textBox18.Clear();
@@ -85,9 +67,6 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button7);
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
         protected override void Exit()
         {
             SystemData.Pages.SelectIsp.Init();

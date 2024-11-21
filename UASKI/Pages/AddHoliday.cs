@@ -13,20 +13,10 @@ namespace UASKI.Pages
     /// </summary>
     public class AddHoliday : BasePage
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public AddHoliday(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
         
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
         {
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
@@ -43,9 +33,6 @@ namespace UASKI.Pages
             form.dataGridView2.ClearSelection();
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
         protected override void Clear()
         {
             form.label27.Visible = false;
@@ -53,9 +40,6 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button5);
         }
 
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;

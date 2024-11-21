@@ -8,23 +8,29 @@ using System.Collections.Generic;
 
 namespace UASKI.Pages
 {
-    public class SelectHoliday : BasePage
+    /// <summary>
+    /// Класс для объекта страницы просмотра праздников
+    /// </summary>
+    public class SelectHoliday : BasePageSelect
     {
-        /// <summary>
-        /// Базовый конструктор для установки индекса страницы
-        /// </summary>
-        /// <param name="index">Индекс страницы</param>
         public SelectHoliday(int index) : base(index) { }
 
-        /// <summary>
-        /// Главная форма приложения
-        /// </summary>
         private Gl_Form form = SystemData.Form;
 
-        /// <summary>
-        /// Загружает данные на страницу
-        /// </summary>
         protected override void Show()
+        {
+            Select();
+            form.dataGridView6.Focus();
+            SystemHelper.SelectButton(false, form.button13);
+        }
+
+        protected override void Clear()
+        {
+            form.dataGridView6.DataSource = null;
+            SystemHelper.SelectButton(false, form.button13);
+        }
+
+        public override void Select()
         {
             SystemHelper.PullListInDataGridView(form.dataGridView6,
                 HolidaysService.GetListByDataGrid(),
@@ -32,22 +38,8 @@ namespace UASKI.Pages
 
             form.dataGridView6.Columns[0].Visible = false;
             SystemHelper.ResizeDataGridView(form.dataGridView6);
-            form.dataGridView6.Focus();
-            SystemHelper.SelectButton(false, form.button13);
         }
 
-        /// <summary>
-        /// Отчищает страницу
-        /// </summary>
-        protected override void Clear()
-        {
-            form.dataGridView6.DataSource = null;
-            SystemHelper.SelectButton(false, form.button13);
-        }
-
-        /// <summary>
-        /// Выход с страницы
-        /// </summary>
         protected override void Exit()
         {
             form.dataGridView6.ClearSelection();
@@ -55,6 +47,17 @@ namespace UASKI.Pages
             form.Menu_Step2.Focus();
             SystemHelper.SelectButton(false, form.button13);
         }
+
+        protected override void FilterOpen()
+        {
+            
+        }
+
+        protected override void FilterClose()
+        {
+
+        }
+
 
         #region Клавиши
         public void dataGridView6_KeyDown(KeyEventArgs e)
