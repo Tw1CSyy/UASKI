@@ -152,12 +152,15 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
+
+                    ErrorHelper.StatusWait();
+
                     var result = TasksService.Add(
-                    TextBoxElement.New(form.textBox7, form.label25),
-                    TextBoxElement.New(form.textBox3, form.label23),
-                    TextBoxElement.New(form.textBox6, form.label24),
-                    DateTimeElement.New(form.dateTimePicker1, form.label26)
-                    );
+                        TextBoxElement.New(form.textBox7, form.label25),
+                        TextBoxElement.New(form.textBox3, form.label23),
+                        TextBoxElement.New(form.textBox6, form.label24),
+                        DateTimeElement.New(form.dateTimePicker1, form.label26)
+                        );
 
                     if (result)
                     {

@@ -5,6 +5,7 @@ using UASKI.Models;
 using UASKI.Services;
 using UASKI.StaticModels;
 using UASKI.Models.Elements;
+using System;
 
 namespace UASKI.Pages
 {
@@ -55,7 +56,7 @@ namespace UASKI.Pages
                 form.button11.Text = "Закрыть";
                 form.button10.Enabled = true;
                 form.button11.Enabled = false;
-                form.button12.Enabled = false;
+                form.button12.Enabled = true;
                 form.label72.Visible = false;
                 SystemHelper.SelectTextBox(form.textBox26);
             }
@@ -83,6 +84,7 @@ namespace UASKI.Pages
                 form.button12.Enabled = false;
 
                 form.textBox28.Text = arhiv.Otm.ToString();
+                form.dateTimePicker9.Value = arhiv.DateClose.Date;
                 form.label72.Visible = true;
                 SystemHelper.SelectTextBox(form.textBox26);
             }
@@ -95,6 +97,8 @@ namespace UASKI.Pages
             form.textBox26.Clear();
             form.textBox27.Clear();
             form.textBox28.Clear();
+
+            form.dateTimePicker9.Value = DateTime.Today.Date;
 
             form.label51.Visible = false;
             form.label53.Visible = false;
@@ -249,7 +253,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down)
             {
-                form.textBox28.Focus();
+                form.dateTimePicker9.Focus();
             }
             else if (e.KeyCode == Keys.Up)
             {
@@ -313,6 +317,10 @@ namespace UASKI.Pages
             {
                 Exit();
             }
+            else if(e.KeyCode == Keys.Left)
+            {
+                form.dateTimePicker9.Focus();
+            }
 
         }
 
@@ -328,7 +336,9 @@ namespace UASKI.Pages
             {
                 if(SystemData.IsQuery)
                 {
-                    if(!Arhiv)
+                    ErrorHelper.StatusWait();
+
+                    if (!Arhiv)
                     {
                         var result = TasksService.UpdateTask(Code,
                             TextBoxElement.New(form.textBox24, form.label51),
@@ -383,9 +393,11 @@ namespace UASKI.Pages
             {
                 if(SystemData.IsQuery)
                 {
+                    ErrorHelper.StatusWait();
+
                     if (!Arhiv)
                     {
-                        var result = TasksService.Close(Code, TextBoxElement.New(form.textBox28, form.label57));
+                        var result = TasksService.Close(Code, TextBoxElement.New(form.textBox28, form.label57) , DateTimeElement.New(form.dateTimePicker9 , form.label38));
 
                         if(result)
                         {
@@ -399,7 +411,17 @@ namespace UASKI.Pages
                     }
                     else
                     {
+                        var result = ArhivService.Open(Code);
 
+                        if(result)
+                        {
+                            ErrorHelper.StatusComlite();
+                            Exit();
+                        }
+                        else
+                        {
+                            ErrorHelper.StatusError();
+                        }
                     }
                 }
                 else
@@ -435,13 +457,18 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    if (!Arhiv)
-                    {
+                    ErrorHelper.StatusWait();
 
+                    var result = TasksService.Delete(Code);
+
+                    if(result)
+                    {
+                        ErrorHelper.StatusComlite();
+                        Exit();
                     }
                     else
                     {
-
+                        ErrorHelper.StatusError();
                     }
                 }
                 else
@@ -453,6 +480,28 @@ namespace UASKI.Pages
             {
                 Exit();
             }
+        }
+
+        public void dateTimePicker9_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
+            {
+                SystemHelper.SelectTextBox(form.textBox28);
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox27);
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                Exit();
+            }
+            else if(e.KeyCode == SystemData.ActionKey)
+            {
+                var f = new DateForm(form.dateTimePicker9);
+                f.Show();
+            }
+
         }
         #endregion
     }

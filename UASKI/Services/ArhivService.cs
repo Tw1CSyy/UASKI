@@ -5,6 +5,7 @@ using UASKI.Data.Context;
 using UASKI.Models;
 using System;
 using System.Windows.Forms;
+using UASKI.Data.Entityes;
 
 namespace UASKI.Services
 {
@@ -173,6 +174,25 @@ namespace UASKI.Services
             }
 
             return model;
+        }
+
+        /// <summary>
+        /// Возращает задачу в активное состояние
+        /// </summary>
+        /// <param name="code">Код закрытой задачи</param>
+        /// <returns></returns>
+        public static bool Open(string code)
+        {
+            var arhiv = GetByCode(code, GetList());
+            var task = new TaskEntity(arhiv.Code, arhiv.IdIsp, arhiv.IdCon, arhiv.Date);
+
+            var result = context.Add(task);
+
+            if (!result)
+                return false;
+
+            result = context.Delete(arhiv);
+            return result;
         }
 
     }

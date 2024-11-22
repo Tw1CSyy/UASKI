@@ -392,6 +392,11 @@ namespace UASKI
         {
             SystemData.Pages.SelectHoliday.button13_PreviewKeyDown(e);
         }
+        private void dateTimePicker9_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.EditTask.dateTimePicker9_KeyDown(e);
+        }
+
         #endregion
 
         #region Обработка
@@ -641,19 +646,28 @@ namespace UASKI
             var key = new KeyEventArgs(Keys.Enter);
             dataGridView3_KeyDown(sender, key);
         }
-
-        #endregion
-
+        private void button27_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker9_KeyDown(sender, key);
+        }
         private void dataGridView5_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var key = new KeyEventArgs(Keys.Enter);
             dataGridView5_KeyDown(sender, key);
         }
-
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var key = new KeyEventArgs(Keys.Enter);
             dataGridView1_KeyDown_1(sender, key);
+        }
+
+
+        #endregion
+
+        private void Gl_Form_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

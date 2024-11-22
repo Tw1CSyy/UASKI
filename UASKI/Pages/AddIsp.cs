@@ -131,12 +131,14 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
+                    ErrorHelper.StatusWait();
+
                     var result = IspService.Add(
-                    TextBoxElement.New(form.textBox8, form.label18),
-                    TextBoxElement.New(form.textBox9, form.label19),
-                    TextBoxElement.New(form.textBox10, form.label20),
-                    TextBoxElement.New(form.textBox11, form.label21),
-                    TextBoxElement.New(form.textBox12, form.label22)
+                        TextBoxElement.New(form.textBox8, form.label18),
+                        TextBoxElement.New(form.textBox9, form.label19),
+                        TextBoxElement.New(form.textBox10, form.label20),
+                        TextBoxElement.New(form.textBox11, form.label21),
+                        TextBoxElement.New(form.textBox12, form.label22)
                     );
 
                     if (result)

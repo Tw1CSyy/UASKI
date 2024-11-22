@@ -253,25 +253,25 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="code">Код задания</param>
         /// <param name="Otm">Отметка задания</param>
+        /// <param name="Date">Дата закрытия</param>
         /// <returns>Положительный или отрицательный результат</returns>
-        public static bool Close(string code , TextBoxElement Otm)
+        public static bool Close(string code , TextBoxElement Otm , DateTimeElement Date)
         {
             if (Otm.IsNull || !Otm.IsNumber)
             {
                 Otm.Error("Некоректные данные");
-                ErrorHelper.StatusError();
                 return false;
             }    
 
             if (Convert.ToInt32(Otm.Value) > 5 || Convert.ToInt32(Otm.Value) < 1)
             {
                 Otm.Error("Число должно быть от 1 до 5");
-                ErrorHelper.StatusError();
                 return false;
             }
 
             var task = GetTaskByCode(code , GetList());
-            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, DateTime.Now, Convert.ToInt32(Otm.Value));
+           
+            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, Date.Value, Convert.ToInt32(Otm.Value));
 
             var result = context.Add(arhiv);
 
@@ -280,6 +280,18 @@ namespace UASKI.Services
 
             return context.Delete(task);
 
+        }
+
+        /// <summary>
+        /// Удаляет задачу
+        /// </summary>
+        /// <param name="code">Код задачи</param>
+        /// <returns></returns>
+        public static bool Delete(string code)
+        {
+            var task = GetTaskByCode(code, GetList());
+            var result = context.Delete(task);
+            return result;
         }
     }
 }

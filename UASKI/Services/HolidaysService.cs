@@ -102,13 +102,13 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="list">Список id дней</param>
         /// <returns>true - Успешная операция</returns>
-        public static bool Delete(List<int> list)
+        public static bool Delete(List<int> list , List<HolidayEntity> listEn)
         {
             var result = true;
 
             foreach (var item in list)
             {
-                var holy = GetList().FirstOrDefault(c => c.Id == item);
+                var holy = listEn.FirstOrDefault(c => c.Id == item);
                 result = context.Delete(holy);
 
                 if (!result)

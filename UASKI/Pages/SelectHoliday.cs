@@ -90,6 +90,8 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
+                    ErrorHelper.StatusWait();
+
                     var list = new List<int>();
 
                     foreach (DataGridViewRow item in form.dataGridView6.SelectedRows)
@@ -97,7 +99,7 @@ namespace UASKI.Pages
                         list.Add(Convert.ToInt32(item.Cells[0].Value));
                     }
 
-                    var result = HolidaysService.Delete(list);
+                    var result = HolidaysService.Delete(list , HolidaysService.GetList());
 
                     if (result)
                     {

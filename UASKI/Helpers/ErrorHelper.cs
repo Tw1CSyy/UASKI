@@ -29,7 +29,7 @@ namespace UASKI.Helpers
         {
             var form = SystemData.Form;
             Close();
-
+          
             form.LabelStatus.Text = "Успешно";
             form.LabelStatus.ForeColor = Color.Green;
             form.LabelStatus.Visible = true;
@@ -51,6 +51,19 @@ namespace UASKI.Helpers
             form.TimerStatus.Start();
         }
 
+        /// <summary>
+        /// Изменяет статус на ожидание
+        /// </summary>
+        public static void StatusWait()
+        {
+            var form = SystemData.Form;
+            SystemData.IsQuery = false;
+            Close();
+            
+            form.LabelStatus.Text = "Ожидайте... Еще немного";
+            form.LabelStatus.ForeColor = Color.GreenYellow;
+            form.LabelStatus.Visible = true;
+        }
         /// <summary>
         /// Закрывает и скрывает статус
         /// </summary>
