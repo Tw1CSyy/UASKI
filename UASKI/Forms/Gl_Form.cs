@@ -432,9 +432,9 @@ namespace UASKI
         private void textBox19_TextChanged_1(object sender, EventArgs e)
         {
            if(!SystemData.IsClear)
-            {
+           {
                 SystemData.Pages.SelectTask.Select();
-            }
+           }
         }
         private void textBox29_TextChanged(object sender, EventArgs e)
         {
@@ -453,7 +453,11 @@ namespace UASKI
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            textBox32_TextChanged(sender, e);
+            if(!SystemData.IsClear)
+            {
+                textBox32_TextChanged(sender, e);
+                panel15.Visible = checkBox1.Checked;
+            }
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
@@ -465,7 +469,11 @@ namespace UASKI
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            textBox19_TextChanged_1(sender, e);
+            if(!SystemData.IsClear)
+            {
+                textBox19_TextChanged_1(sender, e);
+                panel16.Visible = checkBox2.Checked;
+            }
         }
         private void dateTimePicker5_ValueChanged(object sender, EventArgs e)
         {
@@ -492,7 +500,11 @@ namespace UASKI
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            textBox33_TextChanged(sender, e);
+            if(!SystemData.IsClear)
+            {
+                textBox33_TextChanged(sender, e);
+                panel18.Visible = checkBox3.Checked;
+            }
         }
         private void dateTimePicker7_ValueChanged(object sender, EventArgs e)
         {
@@ -665,9 +677,5 @@ namespace UASKI
 
         #endregion
 
-        private void Gl_Form_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
     }
 }

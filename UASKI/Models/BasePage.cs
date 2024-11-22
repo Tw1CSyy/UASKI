@@ -49,6 +49,8 @@ namespace UASKI.Models
 
             if (SystemData.This != null)
                 SystemData.This.ClearPage();
+            else
+                ClearPage();
 
             SystemData.This = this;
 

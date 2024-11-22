@@ -19,13 +19,10 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            Select();
-
             form.panel16.Visible = form.checkBox2.Checked = false;
-
             form.dateTimePicker5.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker6.Value = DateTime.Today;
-
+            Select();
             FilterClose();
         }
 
@@ -33,9 +30,6 @@ namespace UASKI.Pages
         {
             form.textBox19.Clear();
             form.textBox29.Clear();
-
-            form.panel16.Visible = form.checkBox2.Checked = false;
-
             form.dataGridView3.DataSource = null;
         }
 
@@ -86,6 +80,10 @@ namespace UASKI.Pages
             {
                 FilterOpen();
             }
+            else if (e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView3, e.KeyCode);
+            }
             else
             {
                 SystemHelper.CharInTextBox(form.textBox19, e.KeyCode);
@@ -130,7 +128,6 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Enter)
             {
                 form.checkBox2.Checked = !form.checkBox2.Checked;
-                form.panel16.Visible = form.checkBox2.Checked;
             }
             else if(e.KeyCode == Keys.Down && form.panel16.Visible)
             {

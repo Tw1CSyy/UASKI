@@ -99,13 +99,22 @@ namespace UASKI.Services
         /// <param name="isDate">Использовать ли фильтр даты</param>
         /// <param name="dateFrom">Дата от</param>
         /// <param name="dateTo">Дата до</param>
+        /// <param name="dateOpz">Дата на которую смотрим опоздания</param>
         /// <returns>Модель для заполнения DataGridView</returns>
         public static List<DataGridRowModel> GetOpzListDataGrid(string search, string isp1,  bool isDate, DateTime dateFrom, DateTime dateTo)
         {
             var model = new List<DataGridRowModel>();
 
-            var listTask = TasksService.GetList().Where(c => c.Date < DateTime.Now).OrderByDescending(c => c.Date).ToList();
-            var listArhiv = GetList().Where(c => c.DateClose > c.Date).OrderByDescending(c => c.Date).ToList();
+            var listTask = TasksService
+                .GetList()
+                .Where(c => c.Date < DateTime.Today)
+                .OrderByDescending(c => c.Date)
+                .ToList();
+
+            var listArhiv = GetList()
+                .Where(c => c.DateClose > c.Date)
+                .OrderByDescending(c => c.Date)
+                .ToList();
 
             var listUser = IspService.GetList();
 

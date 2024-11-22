@@ -379,5 +379,23 @@ namespace UASKI.Helpers
                 d.Columns[i].Width = with;
             }
         }
+
+        /// <summary>
+        /// Сортирует DataGridView по столбцу
+        /// </summary>
+        /// <param name="d">DataGridView</param>
+        /// <param name="key">Нажатая клавиша</param>
+        public static void DataGridViewSort(DataGridView d, Keys key)
+        {
+            var index = GetIntKeyDown(key);
+
+            if (d.Columns.Count >= index && index != -1)
+            {
+                if (d.Columns[index - 1].HeaderCell.SortGlyphDirection == SortOrder.Descending || d.Columns[index - 1].HeaderCell.SortGlyphDirection == SortOrder.None)
+                    d.Sort(d.Columns[index - 1], System.ComponentModel.ListSortDirection.Ascending);
+                else
+                    d.Sort(d.Columns[index - 1], System.ComponentModel.ListSortDirection.Descending);
+            }
+        }
     }
 }

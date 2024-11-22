@@ -86,6 +86,10 @@ namespace UASKI.Models.Pages
             {
                 FilterOpen();
             }
+            else if(e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.IspDataGridView, e.KeyCode);
+            }
             else
             {
                 SystemHelper.CharInTextBox(form.textBox13, e.KeyCode);

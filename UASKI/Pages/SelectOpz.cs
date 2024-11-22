@@ -19,13 +19,13 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            Select();
-            form.dataGridView1.Focus();
             FilterClose();
-
+            form.checkBox3.Checked = true;
             form.dateTimePicker7.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker8.Value = DateTime.Today;
-            form.panel18.Visible = false;
+            form.panel18.Visible = true;
+            Select();
+            form.dataGridView1.Focus();
         }
 
         protected override void Clear()
@@ -33,7 +33,6 @@ namespace UASKI.Pages
             form.dataGridView1.DataSource = null;
             form.textBox33.Clear();
             form.textBox34.Clear();
-            form.checkBox3.Checked = false;
         }
 
         public override void Select()
@@ -87,6 +86,10 @@ namespace UASKI.Pages
                     SystemData.Pages.EditTask.Show(code, IsArhiv , 3);
                 }
             }
+            else if (e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView1, e.KeyCode);
+            }
             else
             {
                 SystemHelper.CharInTextBox(form.textBox33, e.KeyCode);
@@ -125,6 +128,7 @@ namespace UASKI.Pages
                 f.Show();
             }
         }
+
         public void checkBox3_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -142,7 +146,6 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Enter)
             {
                 form.checkBox3.Checked = !form.checkBox3.Checked;
-                form.panel18.Visible = form.checkBox3.Checked;
             }
 
             e.IsInputKey = true;
@@ -166,6 +169,7 @@ namespace UASKI.Pages
                 var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
                 f.Show();
             }
+            e.Handled = true;
         }
         public void dateTimePicker8_KeyDown(KeyEventArgs e)
         {
@@ -182,6 +186,7 @@ namespace UASKI.Pages
                 var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
                 f.Show();
             }
+            e.Handled = true;
         }
         #endregion
     }

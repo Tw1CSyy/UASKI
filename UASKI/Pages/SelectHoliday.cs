@@ -73,6 +73,10 @@ namespace UASKI.Pages
             {
                 Exit();
             }
+            else if (e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView6, e.KeyCode);
+            }
         }
 
         public void button13_PreviewKeyDown(PreviewKeyDownEventArgs e)
