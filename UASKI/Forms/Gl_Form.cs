@@ -673,7 +673,36 @@ namespace UASKI
             var key = new KeyEventArgs(Keys.Enter);
             dataGridView1_KeyDown_1(sender, key);
         }
-
+        private void button28_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker5_KeyDown(sender, key);
+        }
+        private void button29_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker6_KeyDown(sender, key);
+        }
+        private void button30_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker2_KeyDown(sender, key);
+        }
+        private void button31_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker3_KeyDown(sender, key);
+        }
+        private void button32_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker7_KeyDown(sender, key);
+        }
+        private void button33_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker8_KeyDown(sender, key);
+        }
 
         #endregion
 
