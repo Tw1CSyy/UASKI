@@ -56,7 +56,9 @@ namespace UASKI.Forms
                     pic.Value = form.monthCalendar1.SelectionStart.Date;
                 else
                 {
+                    SystemData.IsClear = true;
                     pic.Value = form.monthCalendar1.SelectionRange.Start.Date;
+                    SystemData.IsClear = false;
                     pic2.Value = form.monthCalendar1.SelectionRange.End.Date;
                 }
                 form.Dispose();

@@ -37,7 +37,7 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            SystemHelper.PullListInDataGridView(form.dataGridView1,
+            Select(form.dataGridView1,
                 ArhivService.GetOpzListDataGrid(form.textBox33.Text, form.textBox34.Text, form.checkBox3.Checked, form.dateTimePicker7.Value, form.dateTimePicker8.Value),
                 new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
         }

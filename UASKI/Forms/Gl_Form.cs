@@ -396,11 +396,25 @@ namespace UASKI
         {
             SystemData.Pages.EditTask.dateTimePicker9_KeyDown(e);
         }
-
+        private void dateTimePicker10_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintTaskList.dateTimePicker10_KeyDown(e);
+        }
+        private void dateTimePicker11_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintTaskList.dateTimePicker11_KeyDown(e);
+        }
+        private void textBox30_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintTaskList.textBox30_KeyDown(e);
+        }
+        private void button34_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintTaskList.button34_KeyDown(e);
+        }
         #endregion
 
         #region Обработка
-
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             if (monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
@@ -706,5 +720,6 @@ namespace UASKI
 
         #endregion
 
+        
     }
 }

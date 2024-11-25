@@ -36,7 +36,8 @@ namespace UASKI.Pages
         public override void Select()
         {
             var list = TasksService.GetList(form.textBox19.Text, form.textBox29.Text, form.checkBox2.Checked, form.dateTimePicker5.Value, form.dateTimePicker6.Value);
-            SystemHelper.PullListInDataGridView(form.dataGridView3,
+            
+            Select(form.dataGridView3,
             TasksService.GetListByDataGrid(list),
                         new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
         }

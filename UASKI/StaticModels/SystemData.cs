@@ -119,7 +119,7 @@ namespace UASKI.StaticModels
                        new ItemMenuLevel2
                        {
                            Text = "Перечень заданий на месяц",
-                           Page = null
+                           Page = Pages.PrintTaskList
                        },
                        new ItemMenuLevel2
                        {

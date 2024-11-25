@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
@@ -25,6 +26,15 @@ namespace UASKI.Pages
 
         private int Code;
 
+        public void Select()
+        {
+            var list = TasksService.GetList().Where(c => c.IdCon == Code || c.IdIsp == Code).ToList();
+
+            Select(form.dataGridView4,
+                TasksService.GetListByDataGrid(list),
+                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+        }
+
         public void Show(int code)
         {
             Code = code;
@@ -43,11 +53,7 @@ namespace UASKI.Pages
             form.label31.Visible = false;
             form.label32.Visible = false;
 
-            var list = TasksService.GetList().Where(c => c.IdCon == code || c.IdIsp == code).ToList();
-
-            SystemHelper.PullListInDataGridView(form.dataGridView4,
-                 TasksService.GetListByDataGrid(list),
-                 new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+            Select();
 
             SystemHelper.SelectTextBox(form.textBox18);
 

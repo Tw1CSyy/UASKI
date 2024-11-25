@@ -32,7 +32,7 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            SystemHelper.PullListInDataGridView(form.dataGridView6,
+            Select(form.dataGridView6,
                 HolidaysService.GetListByDataGrid(),
                 new DataGridRowModel("Номер", "Дата"));
 

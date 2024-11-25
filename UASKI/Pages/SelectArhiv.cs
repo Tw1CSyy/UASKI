@@ -41,7 +41,7 @@ namespace UASKI.Pages
         {
             var list = ArhivService.GetList(form.textBox32.Text, form.textBox31.Text, form.checkBox1.Checked, form.dateTimePicker2.Value, form.dateTimePicker3.Value);
            
-            SystemHelper.PullListInDataGridView(form.dataGridView5,
+            Select(form.dataGridView5,
             ArhivService.GetListByDataGrid(list),
                 new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
         }

@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
+    <Compile Include="Models\BasePagePrint.cs" />
     <Compile Include="Models\BasePageSelect.cs" />
     <Compile Include="Models\BaseElement.cs" />
     <Compile Include="Models\BasePage.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Pages\AddTask.cs" />
     <Compile Include="Pages\EditIsp.cs" />
     <Compile Include="Pages\EditTask.cs" />
+    <Compile Include="Pages\PrintTaskList.cs" />
     <Compile Include="Pages\SelectArhiv.cs" />
     <Compile Include="Pages\SelectHoliday.cs" />
     <Compile Include="Pages\SelectIsp.cs" />

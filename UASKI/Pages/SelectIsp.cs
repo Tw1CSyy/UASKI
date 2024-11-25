@@ -46,7 +46,7 @@ namespace UASKI.Models.Pages
                 c.Name.ToLower().Contains(search.ToLower()))
                 .ToList();
 
-            SystemHelper.PullListInDataGridView(form.IspDataGridView
+            Select(form.IspDataGridView
                         , IspService.GetListByDataGrid(model)
                         , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
         }

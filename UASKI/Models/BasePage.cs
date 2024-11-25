@@ -1,4 +1,11 @@
-﻿using UASKI.StaticModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Reflection;
+using System.Windows.Forms;
+using UASKI.Helpers;
+using UASKI.Services;
+using UASKI.StaticModels;
 
 namespace UASKI.Models
 {
@@ -71,5 +78,15 @@ namespace UASKI.Models
             Index = index;
         }
 
+        /// <summary>
+        /// Выводит данные в DataGridView
+        /// </summary>
+        /// <param name="d">DataGridView</param>
+        /// <param name="values">Список моделей данных</param>
+        /// <param name="columns">Список моделей названий</param>
+        protected void Select(DataGridView d, List<DataGridRowModel> values, DataGridRowModel columns)
+        {
+            SystemHelper.PullListInDataGridView(d, values, columns);
+        }
     }
 }

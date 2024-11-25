@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
@@ -291,6 +292,59 @@ namespace UASKI.Services
         {
             var task = GetTaskByCode(code, GetList());
             var result = context.Delete(task);
+            return result;
+        }
+
+        /// <summary>
+        /// Возращает список моделей для DataGridView задачи исполнителя
+        /// </summary>
+        /// <param name="dateForm">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <param name="ispCode">Код исполнителя</param>
+        /// <returns></returns>
+        public static List<DataGridRowModel> GetModelPrintTaskList(DateTime dateForm , DateTime dateTo , string ispCode)
+        {
+            var taskList = GetList()
+                .Where(c => c.Date >= dateForm && c.Date < dateTo.AddDays(1))
+                .ToList();
+
+            var arhivList = ArhivService.GetList()
+                .Where(c => c.Date >= dateForm && c.Date < dateTo.AddDays(1))
+                .ToList();
+
+            if(int.TryParse(ispCode , out int id))
+            {
+                taskList = taskList.Where(c => c.IdIsp == id).ToList();
+                arhivList = arhivList.Where(c => c.IdIsp == id).ToList();
+            }
+
+            var result = new List<DataGridRowModel>();
+            var ispList = IspService.GetList();
+
+            foreach (var task in taskList)
+            {
+                var con = IspService.GetByCode(task.IdCon , ispList);
+                var item = new DataGridRowModel(
+                    task.Code,
+                    task.Date.ToString("dd.MM.yyyy"),
+                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.");
+
+                result.Add(item);
+            }
+
+            foreach (var task in arhivList)
+            {
+                var con = IspService.GetByCode(task.IdCon, ispList);
+                var item = new DataGridRowModel(
+                    task.Code,
+                    task.Date.ToString("dd.MM.yyyy"),
+                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}." ,
+                    task.DateClose.ToString("dd.MM.yyyy"),
+                    task.Otm.ToString());
+
+                result.Add(item);
+            }
+
             return result;
         }
     }

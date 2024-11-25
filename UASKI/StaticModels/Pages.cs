@@ -18,6 +18,7 @@ namespace UASKI.StaticModels
         public readonly AddHoliday AddHoliday = new AddHoliday(8);
         public readonly EditIsp EditIsp = new EditIsp(9);
         public readonly EditTask EditTask = new EditTask(10);
+        public readonly PrintTaskList PrintTaskList = new PrintTaskList(11);
         
     }
 }
