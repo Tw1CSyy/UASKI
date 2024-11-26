@@ -19,7 +19,7 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            form.textBox1.Focus();
+            SystemHelper.SelectTextBox(form.textBox1);
             form.dateTimePicker1.Value = System.DateTime.Today;
         }
 
@@ -69,21 +69,26 @@ namespace UASKI.Pages
                 {
                     SystemHelper.SelectTextBox(form.textBox4);
                 }
+
+                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var form1 = new IspForm(form.textBox1, form.textBox2, form.textBox3);
                 form1.Show();
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Back)
             {
                 form.textBox1.Clear();
                 form.textBox2.Clear();
                 form.textBox3.Clear();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -108,25 +113,31 @@ namespace UASKI.Pages
                 {
                     SystemHelper.SelectTextBox(form.textBox7);
                 }
+
+                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var form1 = new IspForm(form.textBox4, form.textBox5, form.textBox6);
                 form1.Show();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox1);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Back)
             {
                 form.textBox4.Clear();
                 form.textBox5.Clear();
                 form.textBox6.Clear();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -135,14 +146,17 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 form.dateTimePicker1.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox4);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -177,21 +191,25 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox4);
                 SystemHelper.SelectButton(false, form.button1);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectButton(false, form.button1);
                 form.dateTimePicker1.Focus();
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button1);
+                e.IsInputKey = true;
             }
 
             e.IsInputKey = true;
@@ -201,32 +219,30 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true;
                 e.Handled = true;
                 SystemHelper.SelectButton(true, form.button1);
                 form.button1.Focus();
             }
             else if (e.KeyCode == Keys.Left)
             {
-                e.SuppressKeyPress = true;
                 e.Handled = true;
 
                 SystemHelper.SelectTextBox(form.textBox7);
             }
             else if (e.KeyCode == Keys.Up)
             {
-                e.SuppressKeyPress = true;
                 e.Handled = true;
-
                 SystemHelper.SelectTextBox(form.textBox4);
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker1);
                 f.Show();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
+                e.Handled = true;
                 Exit();
             }
         }

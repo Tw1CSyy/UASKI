@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
@@ -20,10 +21,7 @@ namespace UASKI.Pages
         protected override void Show()
         {
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
-            SystemHelper.PullListInDataGridView(form.dataGridView2,
-                HolidaysService.GetListByDataGrid(),
-                new DataGridRowModel("Номер" , "Дата"));
-
+            Select();
             form.dataGridView2.Columns[0].Visible = false;
             SystemHelper.ResizeDataGridView(form.dataGridView2);
 
@@ -33,6 +31,22 @@ namespace UASKI.Pages
             form.dataGridView2.ClearSelection();
         }
 
+        private void Select()
+        {
+            var result = new List<DataGridRowModel>();
+            var model = HolidaysService.GetList();
+
+            foreach (var item in model)
+            {
+                var d = new DataGridRowModel(item.Id.ToString(), item.Date.ToString("dd.MM.yyyy"));
+                result.Add(d);
+            }
+
+            SystemHelper.PullListInDataGridView(form.dataGridView2,
+                result,
+                new DataGridRowModel("Номер", "Дата"));
+
+        }
         protected override void Clear()
         {
             form.label27.Visible = false;
@@ -53,10 +67,12 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectButton(true, form.button5);
                 form.button5.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -66,6 +82,7 @@ namespace UASKI.Pages
             {
                 form.monthCalendar1.Focus();
                 SystemHelper.SelectButton(false, form.button5);
+                e.IsInputKey = true;
 
             }
             else if (e.KeyCode == Keys.Enter)
@@ -92,14 +109,15 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
+
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button5);
+                e.IsInputKey = true;
             }
-
-            e.IsInputKey = true;
         }
         #endregion
     }

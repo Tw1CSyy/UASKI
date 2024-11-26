@@ -20,26 +20,18 @@ namespace UASKI.Services
         /// Возращает список пользователей
         /// </summary>
         /// <returns></returns>
-        public static List<IspEntity> GetList(bool isActive = true)
+        public static List<IspEntity> GetList(bool isActive)
         {
             return context.Isps.Where(c => c.IsActive == isActive).ToList();
         }
 
         /// <summary>
-        /// Преобразовывает список в модели для вывода в DataGridView
+        /// Возращает список пользователей
         /// </summary>
         /// <returns></returns>
-        public static List<DataGridRowModel> GetListByDataGrid(List<IspEntity> model)
+        public static List<IspEntity> GetList()
         {
-            var result = new List<DataGridRowModel>();
-
-            foreach (var item in model.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName))
-            {
-                var d = new DataGridRowModel(item.Code.ToString() , item.FirstName , item.Name , item.LastName , item.CodePodr.ToString());
-                result.Add(d);
-            }
-
-            return result;
+            return context.Isps.ToList();
         }
 
         /// <summary>

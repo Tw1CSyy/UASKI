@@ -133,6 +133,10 @@
     <Compile Include="Pages\AddTask.cs" />
     <Compile Include="Pages\EditIsp.cs" />
     <Compile Include="Pages\EditTask.cs" />
+    <Compile Include="Pages\PrintCof.cs" />
+    <Compile Include="Pages\PrintMer.cs" />
+    <Compile Include="Pages\PrintOpz.cs" />
+    <Compile Include="Pages\PrintPoc.cs" />
     <Compile Include="Pages\PrintTaskList.cs" />
     <Compile Include="Pages\SelectArhiv.cs" />
     <Compile Include="Pages\SelectHoliday.cs" />

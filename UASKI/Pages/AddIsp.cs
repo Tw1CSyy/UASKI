@@ -50,10 +50,12 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectTextBox(form.textBox9);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -62,14 +64,17 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectTextBox(form.textBox10);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox8);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -78,14 +83,17 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectTextBox(form.textBox11);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox9);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -94,18 +102,22 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectTextBox(form.textBox12);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox10);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectButton(true, form.button4);
+                e.Handled = true;
             }
         }
 
@@ -114,14 +126,22 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectButton(true, form.button4);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox11);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                SystemHelper.SelectTextBox(form.textBox10);
+                e.Handled = true;
             }
         }
 
@@ -156,19 +176,21 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
+
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button4);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox12);
                 SystemHelper.SelectButton(false, form.button4);
+                e.IsInputKey = true;
             }
-
-            e.IsInputKey = true;
         }
 
         #endregion

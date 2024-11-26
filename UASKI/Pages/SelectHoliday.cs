@@ -32,8 +32,17 @@ namespace UASKI.Pages
 
         public override void Select()
         {
+            var result = new List<DataGridRowModel>();
+            var model = HolidaysService.GetList();
+
+            foreach (var item in model)
+            {
+                var d = new DataGridRowModel(item.Id.ToString(), item.Date.ToString("dd.MM.yyyy"));
+                result.Add(d);
+            }
+
             Select(form.dataGridView6,
-                HolidaysService.GetListByDataGrid(),
+                result,
                 new DataGridRowModel("Номер", "Дата"));
 
             form.dataGridView6.Columns[0].Visible = false;
@@ -72,10 +81,12 @@ namespace UASKI.Pages
                || e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if (e.Control)
             {
                 SystemHelper.DataGridViewSort(form.dataGridView6, e.KeyCode);
+                e.Handled = true;
             }
         }
 
@@ -85,10 +96,12 @@ namespace UASKI.Pages
             {
                 form.dataGridView6.Focus();
                 SystemHelper.SelectButton(false, form.button13);
+                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -115,9 +128,9 @@ namespace UASKI.Pages
                 }
                 else
                     ErrorHelper.StatusQuery();
-            }
 
-            e.IsInputKey = true;
+                e.IsInputKey = true;
+            }
         }
 
         #endregion

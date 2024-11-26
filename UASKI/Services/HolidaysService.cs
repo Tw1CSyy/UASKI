@@ -26,24 +26,6 @@ namespace UASKI.Services
         }
 
         /// <summary>
-        /// Возращает данные для заполнения в DataGridView
-        /// </summary>
-        /// <returns></returns>
-        public static List<DataGridRowModel> GetListByDataGrid()
-        {
-            var result = new List<DataGridRowModel>();
-            var model = GetList();
-
-            foreach (var item in model)
-            {
-                var d = new DataGridRowModel(item.Id.ToString() , item.Date.ToString("dd.MM.yyyy"));
-                result.Add(d);
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// Добавляет празднечный день
         /// </summary>
         /// <param name="date">Дата</param>

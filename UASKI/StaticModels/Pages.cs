@@ -19,6 +19,10 @@ namespace UASKI.StaticModels
         public readonly EditIsp EditIsp = new EditIsp(9);
         public readonly EditTask EditTask = new EditTask(10);
         public readonly PrintTaskList PrintTaskList = new PrintTaskList(11);
+        public readonly PrintOpz PrintOpz = new PrintOpz(12);
+        public readonly PrintMer PrintMer = new PrintMer(13);
+        public readonly PrintPoc PrintPoc = new PrintPoc(14);
+        public readonly PrintCof PrintCof = new PrintCof(15);
         
     }
 }

@@ -124,22 +124,22 @@ namespace UASKI.StaticModels
                        new ItemMenuLevel2
                        {
                            Text = "Невыполненные задания",
-                           Page = null
+                           Page = Pages.PrintOpz
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Состояние выполнения мероприятия",
-                           Page = null
+                           Page = Pages.PrintMer
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Текущие значения показателей работы",
-                           Page = null
+                           Page = Pages.PrintPoc
                        },
                        new ItemMenuLevel2
                        {
                            Text = "Составление коэффициента качества",
-                           Page = null
+                           Page = Pages.PrintCof
                        }
                    }
                },

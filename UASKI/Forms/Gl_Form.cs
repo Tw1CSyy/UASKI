@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Models;
-using UASKI.Services;
 
 namespace UASKI
 {
@@ -408,9 +407,69 @@ namespace UASKI
         {
             SystemData.Pages.PrintTaskList.textBox30_KeyDown(e);
         }
-        private void button34_KeyDown(object sender, KeyEventArgs e)
+        private void button34_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintTaskList.button34_KeyDown(e);
+            SystemData.Pages.PrintTaskList.button34_PreviewKeyDown(e);
+        }
+        private void dataGridView7_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintTaskList.dataGridView7_KeyDown(e);
+        }
+        private void button37_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.PrintOpz.button37_PreviewKeyDown(e);
+        }
+        private void dataGridView8_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintOpz.dataGridView8_KeyDown(e);
+        }
+        private void textBox35_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintMer.textBox35_KeyDown(e);
+        }
+        private void dataGridView9_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintMer.dataGridView9_KeyDown(e);
+        }
+        private void button38_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.PrintMer.button38_PreviewKeyDown(e);
+        }
+        private void dateTimePicker12_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPoc.dateTimePicker12_KeyDown(e);
+        }
+        private void dateTimePicker13_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPoc.dateTimePicker13_KeyDown(e);
+        }
+        private void button40_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.PrintPoc.button40_PreviewKeyDown(e);
+        }
+        private void dataGridView10_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPoc.dataGridView10_KeyDown(e);
+        }
+        private void textBox36_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintCof.textBox36_KeyDown(e);
+        }
+        private void dateTimePicker14_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintCof.dateTimePicker14_KeyDown(e);
+        }
+        private void dateTimePicker15_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintCof.dateTimePicker15_KeyDown(e);
+        }
+        private void button42_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.PrintCof.button42_PreviewKeyDown(e);
+        }
+        private void dataGridView11_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintCof.dataGridView11_KeyDown(e);
         }
         #endregion
 
@@ -527,6 +586,35 @@ namespace UASKI
         private void dateTimePicker8_ValueChanged(object sender, EventArgs e)
         {
             textBox33_TextChanged(sender, e);
+        }
+        private void textBox30_TextChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear && textBox30.Text.Length > 0)
+                SystemData.Pages.PrintTaskList.Select();
+            else if (!SystemData.IsClear)
+                dataGridView7.DataSource = null;
+        }
+        private void dateTimePicker10_ValueChanged(object sender, EventArgs e)
+        {
+            textBox30_TextChanged(sender , e);
+        }
+        private void dateTimePicker11_ValueChanged(object sender, EventArgs e)
+        {
+            textBox30_TextChanged(sender, e);
+        }
+        private void textBox35_TextChanged_1(object sender, EventArgs e)
+        {
+            if(!SystemData.IsClear)
+            {
+                if(textBox35.Text.Length >= 8)
+                {
+                    SystemData.Pages.PrintMer.Select();
+                }
+                else
+                {
+                    dataGridView9.DataSource = null;
+                }
+            }
         }
 
         #endregion
@@ -718,8 +806,11 @@ namespace UASKI
             dateTimePicker8_KeyDown(sender, key);
         }
 
+
+
+
+
         #endregion
 
-        
     }
 }

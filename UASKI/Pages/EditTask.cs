@@ -176,25 +176,31 @@ namespace UASKI.Pages
                 {
                     SystemHelper.SelectTextBox(form.textBox21);
                 }
+
+                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var ispForm = new IspForm(form.textBox26, form.textBox25, form.textBox24);
                 ispForm.Show();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)
             {
                 SelectButton();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Back)
             {
                 form.textBox26.Clear();
                 form.textBox25.Clear();
                 form.textBox24.Clear();
+                e.Handled = true;
             }
         }
 
@@ -219,29 +225,36 @@ namespace UASKI.Pages
                 {
                     SystemHelper.SelectTextBox(form.textBox27);
                 }
+
+                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var ispForm = new IspForm(form.textBox21, form.textBox22, form.textBox23);
                 ispForm.Show();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)
             {
                 SelectButton();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox26);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Back)
             {
                 form.textBox21.Clear();
                 form.textBox22.Clear();
                 form.textBox23.Clear();
+                e.Handled = true;
             }
         }
 
@@ -250,36 +263,42 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 form.dateTimePicker4.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down)
             {
                 form.dateTimePicker9.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox21);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
         public void dateTimePicker4_KeyDown(KeyEventArgs e)
         {
-            e.Handled = true;
-
+            
             if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox27);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down)
             {
                 form.textBox28.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)
             {
                 SelectButton();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -287,19 +306,23 @@ namespace UASKI.Pages
                     form.textBox28.Focus();
                 else
                     SelectButton();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox21);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var date = new DateForm(form.dateTimePicker4);
                 date.Show();
+                e.Handled = true;
             }
         }
 
@@ -308,29 +331,33 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker4.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 SelectButton();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Left)
             {
                 form.dateTimePicker9.Focus();
+                e.Handled = true;
             }
 
         }
 
         public void button10_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
-            e.IsInputKey = true;
-
+            
             if (e.KeyCode == Keys.Down)
             {
                 SelectButton(1 , false);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -360,34 +387,40 @@ namespace UASKI.Pages
                     {
 
                     }
+
+                    e.IsInputKey = true;
                 }
                 else
                 {
                     ErrorHelper.StatusQuery();
+                    e.IsInputKey = true;
                 }
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button10);
                 SystemHelper.SelectTextBox(form.textBox26);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.IsInputKey = true;
             }
         }
 
         public void button11_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
-            e.IsInputKey = true;
-
+            
             if (e.KeyCode == Keys.Up)
             {
                 SelectButton(2 , true);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Down)
             {
                 SelectButton(2 , false);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -423,35 +456,40 @@ namespace UASKI.Pages
                             ErrorHelper.StatusError();
                         }
                     }
+
                 }
                 else
                 {
                     ErrorHelper.StatusQuery();
                 }
+
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button11);
                 SystemHelper.SelectTextBox(form.textBox26);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.IsInputKey = true;
             }
         }
 
         public void button12_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
-            e.IsInputKey = true;
-
             if (e.KeyCode == Keys.Up)
             {
                 SelectButton(3 , true);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button12);
                 SystemHelper.SelectTextBox(form.textBox26);
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -475,10 +513,13 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
+
+                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.IsInputKey = true;
             }
         }
 
@@ -487,19 +528,23 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectTextBox(form.textBox28);
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox27);
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker9);
                 f.Show();
+                e.Handled = true;
             }
 
         }

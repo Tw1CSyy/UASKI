@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using UASKI.Data.Context;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
-using UASKI.Helpers;
-using UASKI.Models;
 using UASKI.Models.Elements;
 
 namespace UASKI.Services
@@ -143,17 +140,25 @@ namespace UASKI.Services
         /// <returns></returns>
         public static bool EditIsp(int code , int newCode)
         {
-            var tasks = GetList();
-            var arhiv = ArhivService.GetList();
-
-            var list1 = tasks.Where(c => c.IdIsp == code).ToList();
-            var list2 = tasks.Where(c => c.IdCon == code).ToList();
-            var list3 = arhiv.Where(c => c.IdIsp == code).ToList();
-            var list4 = arhiv.Where(c => c.IdCon == code).ToList();
+           
+            var list1 = GetList().Where(c => c.IdIsp == code || c.IdCon == code).ToList();
+            var list2 = ArhivService.GetList().Where(c => c.IdIsp == code || c.IdCon == code).ToList();
 
             foreach (var item in list1)
             {
-                var entity = new TaskEntity(item.Code, newCode, item.IdCon, item.Date);
+                int isp = item.IdIsp, con = item.IdCon;
+
+                if (item.IdIsp == code)
+                {
+                    isp = newCode;
+                }
+
+                if (item.IdCon == code)
+                {
+                    con = newCode;
+                }
+               
+                var entity = new TaskEntity(item.Code, isp, con, item.Date);
 
                 if(!context.Update(entity , entity.Code))
                 {
@@ -163,27 +168,19 @@ namespace UASKI.Services
 
             foreach (var item in list2)
             {
-                var entity = new TaskEntity(item.Code, item.IdIsp, newCode, item.Date);
+                int isp = item.IdIsp, con = item.IdCon;
 
-                if (!context.Update(entity , entity.Code))
+                if (item.IdIsp == code)
                 {
-                    return false;
+                    isp = newCode;
                 }
-            }
 
-            foreach (var item in list3)
-            {
-                var entity = new ArhivEntity(item.Code, newCode, item.IdCon, item.Date , item.DateClose , item.Otm);
-
-                if (!context.Update(entity , entity.Code))
+                if (item.IdCon == code)
                 {
-                    return false;
+                    con = newCode;
                 }
-            }
 
-            foreach (var item in list4)
-            {
-                var entity = new ArhivEntity(item.Code, item.IdIsp, newCode, item.Date, item.DateClose, item.Otm);
+                var entity = new ArhivEntity(item.Code, isp, con, item.Date, item.DateClose, item.Otm);
 
                 if (!context.Update(entity , entity.Code))
                 {
@@ -192,29 +189,6 @@ namespace UASKI.Services
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Формирует модель для вывода в DataGridView
-        /// </summary>
-        /// <param name="list">Список объектов</param>
-        /// <returns></returns>
-        public static List<DataGridRowModel> GetListByDataGrid(List<TaskEntity> list)
-        {
-            var model = new List<DataGridRowModel>();
-
-            var listUser = IspService.GetList();
-
-            foreach (var item in list.OrderByDescending(c => c.Date))
-            {
-                var isp = IspService.GetByCode(item.IdIsp , listUser);
-                var con = IspService.GetByCode(item.IdCon , listUser);
-
-                var st = new DataGridRowModel(item.Code, $"{isp.FirstName} {isp.Name} {isp.LastName}", $"{con.FirstName} {con.Name} {con.LastName}", item.Date.ToString("dd.MM.yyyy"));
-                model.Add(st);
-            }
-
-            return model;
         }
 
         /// <summary>
@@ -295,57 +269,5 @@ namespace UASKI.Services
             return result;
         }
 
-        /// <summary>
-        /// Возращает список моделей для DataGridView задачи исполнителя
-        /// </summary>
-        /// <param name="dateForm">Дата от</param>
-        /// <param name="dateTo">Дата до</param>
-        /// <param name="ispCode">Код исполнителя</param>
-        /// <returns></returns>
-        public static List<DataGridRowModel> GetModelPrintTaskList(DateTime dateForm , DateTime dateTo , string ispCode)
-        {
-            var taskList = GetList()
-                .Where(c => c.Date >= dateForm && c.Date < dateTo.AddDays(1))
-                .ToList();
-
-            var arhivList = ArhivService.GetList()
-                .Where(c => c.Date >= dateForm && c.Date < dateTo.AddDays(1))
-                .ToList();
-
-            if(int.TryParse(ispCode , out int id))
-            {
-                taskList = taskList.Where(c => c.IdIsp == id).ToList();
-                arhivList = arhivList.Where(c => c.IdIsp == id).ToList();
-            }
-
-            var result = new List<DataGridRowModel>();
-            var ispList = IspService.GetList();
-
-            foreach (var task in taskList)
-            {
-                var con = IspService.GetByCode(task.IdCon , ispList);
-                var item = new DataGridRowModel(
-                    task.Code,
-                    task.Date.ToString("dd.MM.yyyy"),
-                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.");
-
-                result.Add(item);
-            }
-
-            foreach (var task in arhivList)
-            {
-                var con = IspService.GetByCode(task.IdCon, ispList);
-                var item = new DataGridRowModel(
-                    task.Code,
-                    task.Date.ToString("dd.MM.yyyy"),
-                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}." ,
-                    task.DateClose.ToString("dd.MM.yyyy"),
-                    task.Otm.ToString());
-
-                result.Add(item);
-            }
-
-            return result;
-        }
     }
 }

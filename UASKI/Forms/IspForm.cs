@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using UASKI.Data.Entityes;
 using UASKI.Helpers;
+using UASKI.Models;
 using UASKI.Services;
-using UASKI.StaticModels;
 
 namespace UASKI.Forms
 {
@@ -44,8 +43,16 @@ namespace UASKI.Forms
                     .ToList();
             }
 
+            var result = new List<DataGridRowModel>();
+
+            foreach (var item in model.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName))
+            {
+                var d = new DataGridRowModel(item.Code.ToString(), item.FirstName, item.Name, item.LastName, item.CodePodr.ToString());
+                result.Add(d);
+            }
+
             SystemHelper.PullListInDataGridView(dataGridView1,
-                IspService.GetListByDataGrid(model),
+                result,
                 new Models.DataGridRowModel("Код", "Фамилия", "Имя", "Отчество", "Подразделение"));
 
             dataGridView1.Focus();
@@ -71,6 +78,10 @@ namespace UASKI.Forms
 
                     form.Dispose();
                 }
+            }
+            else if(e.Control)
+            {
+                SystemHelper.DataGridViewSort(dataGridView1, e.KeyCode);
             }
             else
             {

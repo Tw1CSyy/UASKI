@@ -4,6 +4,7 @@ using UASKI.Helpers;
 using UASKI.Services;
 using UASKI.StaticModels;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace UASKI.Models.Pages
 {
@@ -46,8 +47,16 @@ namespace UASKI.Models.Pages
                 c.Name.ToLower().Contains(search.ToLower()))
                 .ToList();
 
+            var result = new List<DataGridRowModel>();
+
+            foreach (var item in model.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName))
+            {
+                var d = new DataGridRowModel(item.Code.ToString(), item.FirstName, item.Name, item.LastName, item.CodePodr.ToString());
+                result.Add(d);
+            }
+
             Select(form.IspDataGridView
-                        , IspService.GetListByDataGrid(model)
+                        , result
                         , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
         }
 
@@ -71,7 +80,8 @@ namespace UASKI.Models.Pages
                 || e.KeyCode == Keys.Escape)
             {
                 Exit();
-                form.IspDataGridView.ClearSelection();
+                SystemHelper.SelectDataGridView(false, form.IspDataGridView);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -81,14 +91,18 @@ namespace UASKI.Models.Pages
                     SystemData.Pages.EditIsp.Init(false);
                     SystemData.Pages.EditIsp.Show(code);
                 }
+
+                e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)
             {
                 FilterOpen();
+                e.Handled = true;
             }
             else if(e.Control)
             {
                 SystemHelper.DataGridViewSort(form.IspDataGridView, e.KeyCode);
+                e.Handled = true;
             }
             else
             {
@@ -102,6 +116,7 @@ namespace UASKI.Models.Pages
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
+                e.Handled = true;
             }
         }
         #endregion

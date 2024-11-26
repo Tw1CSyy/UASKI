@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +22,6 @@ namespace UASKI.Pages
         {
             form.dateTimePicker10.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker11.Value = DateTime.Today;
-            Select();
             form.dateTimePicker10.Focus();
 
         }
@@ -43,8 +43,53 @@ namespace UASKI.Pages
 
         public override void Select()
         {
+            var dateFrom = form.dateTimePicker10.Value;
+            var dateTo = form.dateTimePicker11.Value;
+            var ispCode = form.textBox30.Text;
+
+            var taskList = TasksService.GetList()
+                .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
+                .ToList();
+
+            var arhivList = ArhivService.GetList()
+                .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
+            .ToList();
+
+            if (int.TryParse(ispCode, out int id))
+            {
+                taskList = taskList.Where(c => c.IdIsp == id).ToList();
+                arhivList = arhivList.Where(c => c.IdIsp == id).ToList();
+            }
+
+            var result = new List<DataGridRowModel>();
+            var ispList = IspService.GetList();
+
+            foreach (var task in taskList)
+            {
+                var con = IspService.GetByCode(task.IdCon, ispList);
+                var item = new DataGridRowModel(
+                    task.Code,
+                    task.Date.ToString("dd.MM.yyyy"),
+                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.");
+
+                result.Add(item);
+            }
+
+            foreach (var task in arhivList)
+            {
+                var con = IspService.GetByCode(task.IdCon, ispList);
+                var item = new DataGridRowModel(
+                    task.Code,
+                    task.Date.ToString("dd.MM.yyyy"),
+                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.",
+                    task.DateClose.ToString("dd.MM.yyyy"),
+                    task.Otm.ToString());
+
+                result.Add(item);
+            }
+
             Select(form.dataGridView7,
-                TasksService.GetModelPrintTaskList(form.dateTimePicker10.Value, form.dateTimePicker11.Value, form.textBox30.Text),
+                result,
                 new DataGridRowModel("Код задания" , "Срок исполнения" , "Код контролера" , "Дата закрытия" , "Оценка"));
         }
 
@@ -59,18 +104,23 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectTextBox(form.textBox30);
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right)
             {
                 form.dateTimePicker11.Focus();
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
+                e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker10, form.dateTimePicker11);
+                f.Show();
+                e.Handled = true;
             }
         }
 
@@ -79,26 +129,33 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectTextBox(form.textBox30);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)
             {
                 SystemHelper.SelectButton(true, form.button34);
+                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker10, form.dateTimePicker11);
+                f.Show();
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Left)
             {
                 form.dateTimePicker10.Focus();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
             }
         }
 
@@ -107,32 +164,81 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker10.Focus();
+                e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 SystemHelper.SelectButton(true, form.button34);
+                e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
                 var f = new IspForm(form.textBox20 , new TextBox() , form.textBox30);
                 f.Show();
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                Exit();
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SystemHelper.SelectDataGridView(true, form.dataGridView7);
+                e.Handled = true;
             }
         }
 
-        public void button34_KeyDown(KeyEventArgs e)
+        public void button34_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
-            if(e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox30);
                 SystemHelper.SelectButton(false, form.button34);
+                e.IsInputKey = true;
             }
-            else if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
+            else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.IsInputKey = true;
             }
-            
+            else if(e.KeyCode == Keys.Up)
+            {
+                form.dateTimePicker11.Focus();
+                SystemHelper.SelectButton(false, form.button34);
+                e.IsInputKey = true;
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                if(SystemHelper.SelectDataGridView(true, form.dataGridView7))
+                SystemHelper.SelectButton(false, form.button34);
+                e.IsInputKey = true;
+            }
         }
 
+        public void dataGridView7_KeyDown(KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Up
+                && form.dataGridView7.SelectedRows.Count != 0
+                && form.dataGridView7.SelectedRows[0].Index == 0)
+                || e.KeyCode == Keys.Escape)
+            {
+                SystemHelper.SelectTextBox(form.textBox30);
+                SystemHelper.SelectDataGridView(false, form.dataGridView7);
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                SystemHelper.SelectButton(true, form.button34);
+                SystemHelper.SelectDataGridView(false, form.dataGridView7);
+                e.Handled = true;
+            }
+            else if(e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView7, e.KeyCode);
+                e.Handled = true;
+            }
+        }
         #endregion
     }
 }

@@ -78,21 +78,23 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="selected">Вкл/Выкл</param>
         /// <param name="d">ДатаГридВью</param>
-        public static void SelectDataGridView(bool selected , DataGridView d)
+        public static bool SelectDataGridView(bool selected , DataGridView d)
         {
             if(selected)
             {
-                d.Focus();
-                
                 if(d.Rows.Count > 0)
                 {
                     d.Rows[0].Selected = true;
+                    d.Focus();
+                    return true;
                 }
+
+                return false;
             }
             else
             {
-                
                 d.ClearSelection();
+                return true;
             }
         }
 

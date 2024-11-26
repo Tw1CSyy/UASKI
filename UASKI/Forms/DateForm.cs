@@ -65,19 +65,51 @@ namespace UASKI.Forms
 
             }
 
-            string symbol = SystemHelper.GetIntKeyDown(e.KeyCode).ToString();
-
-            if(e.KeyCode == Keys.Back && form.textBox1.Text.Length != 0)
+            if(e.Control && (e.KeyCode == Keys.D1 || e.KeyCode == Keys.D2 || e.KeyCode == Keys.D3))
             {
-                form.textBox1.Text = form.textBox1.Text.Remove(form.textBox1.Text.Length - 1, 1);
+                switch (e.KeyCode)
+                {
+                    case Keys.D1:
+                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 1);
+                        monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 10);
+                        break;
+                    case Keys.D2:
+                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 11);
+                        monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 20);
+                        break;
+                    case Keys.D3:
+                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 21);
+                        monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 1).AddMonths(1).AddDays(-1);
+                        break;
+                }
+
+                if (pic2 == null)
+                    pic.Value = form.monthCalendar1.SelectionStart.Date;
+                else
+                {
+                    SystemData.IsClear = true;
+                    pic.Value = form.monthCalendar1.SelectionRange.Start.Date;
+                    SystemData.IsClear = false;
+                    pic2.Value = form.monthCalendar1.SelectionRange.End.Date;
+                }
+                form.Dispose();
+            }
+            else
+            {
+                string symbol = SystemHelper.GetIntKeyDown(e.KeyCode).ToString();
+
+                if (e.KeyCode == Keys.Back && form.textBox1.Text.Length != 0)
+                {
+                    form.textBox1.Text = form.textBox1.Text.Remove(form.textBox1.Text.Length - 1, 1);
+                }
+
+                if (!symbol.Equals("-1"))
+                {
+                    var textBox = form.textBox1;
+                    textBox.Text += symbol;
+                }
             }
 
-            if (!symbol.Equals("-1"))
-            {
-                var textBox = form.textBox1;
-                textBox.Text += symbol;
-            }
-            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
