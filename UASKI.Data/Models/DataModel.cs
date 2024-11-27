@@ -10,7 +10,7 @@ namespace UASKI.Models
         /// <summary>
         /// Строка подключения
         /// </summary>
-        private readonly static string ConnectionString = "Host=localhost;UserName=uaski;Password=0404;Database=UASKI";
+        private readonly static string ConnectionString = "Host=localhost;UserName=postgres;Password=0404;Database=UASKI";
 
         /// <summary>
         /// Объект подключения

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -23,7 +25,7 @@ namespace UASKI.Pages
             form.dateTimePicker10.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker11.Value = DateTime.Today;
             form.dateTimePicker10.Focus();
-
+            
         }
 
         protected override void Clear()
@@ -91,14 +93,34 @@ namespace UASKI.Pages
             Select(form.dataGridView7,
                 result,
                 new DataGridRowModel("Код задания" , "Срок исполнения" , "Код контролера" , "Дата закрытия" , "Оценка"));
+            form.dataGridView7.ClearSelection();
         }
 
         protected override void Print()
         {
-            
+            if(form.dataGridView7.Columns.Count == 0)
+            {
+                ErrorHelper.StatusError();
+            }  
+            else
+            {
+                var printDocument = new PrintDocument();
+                printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
+                GetPrint(printDocument);
+            }
         }
 
-        #region Клаваши
+        protected override void PrintPage(object sender, PrintPageEventArgs e)
+        {
+            var font = new Font("Arial", 10);
+            string header1 = $"Перечень заданий с {form.dateTimePicker10.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker11.Value.ToString("dd.MM.yyyy")}";
+            string header2 = $"Исполнитель {form.textBox30.Text} {form.textBox20.Text}";
+
+            var model = new PrintModel(font, e, form.dataGridView7, header1, header2);
+            SystemHelper.PrintDocument(model);
+        }
+
+        #region Клавиши
         public void dateTimePicker10_KeyDown(KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
@@ -213,6 +235,15 @@ namespace UASKI.Pages
                 if(SystemHelper.SelectDataGridView(true, form.dataGridView7))
                 SystemHelper.SelectButton(false, form.button34);
                 e.IsInputKey = true;
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if (SystemData.IsQuery)
+                {
+                    Print();
+                }
+                else
+                    ErrorHelper.StatusQuery();
             }
         }
 

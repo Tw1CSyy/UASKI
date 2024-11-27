@@ -399,5 +399,62 @@ namespace UASKI.Helpers
                     d.Sort(d.Columns[index - 1], System.ComponentModel.ListSortDirection.Descending);
             }
         }
+
+        /// <summary>
+        /// Формирует документ для печати
+        /// </summary>
+        /// <param name="model">Модель для печати</param>
+        public static void PrintDocument(PrintModel model)
+        {
+            // Вытаскиваем аргументы из модели
+            var e = model.Argument;
+            var font = model.Font;
+            var d = model.DataGridView;
+
+            // Инициализируем переменные для работы
+            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
+            int count = 0;
+            int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
+
+            // // Инициализируем переменные для заголовков
+            var headerFont = new Font("Arial", 16, FontStyle.Bold);
+            float headerY = e.MarginBounds.Top;
+
+            // Выводим заголовки
+            foreach (var header in model.Headers)
+            {
+                SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
+                float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
+
+                e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
+                headerY += headerSize.Height + 10;
+            }
+
+            // Расчитываем следующую строку
+            float yPosition = headerY + headerFont.Size;
+
+            // Печать заголовков таблиы
+            foreach (DataGridViewColumn column in d.Columns)
+            {
+                e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
+            }
+            yPosition += font.GetHeight(e.Graphics);
+            yPosition += font.GetHeight(e.Graphics);
+
+            // Печать строк
+            while (count < linesPerPage && count < d.Rows.Count)
+            {
+                DataGridViewRow row = d.Rows[count];
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    e.Graphics.DrawString(row.Cells[i].Value.ToString(), font, Brushes.Black, i * with + 15, yPosition);
+                }
+                yPosition += font.GetHeight(e.Graphics);
+                count++;
+            }
+
+            // Указать, что печать окончена
+            e.HasMorePages = (count < d.Rows.Count);
+        }
     }
 }

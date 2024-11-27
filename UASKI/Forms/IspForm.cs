@@ -77,6 +77,7 @@ namespace UASKI.Forms
                     t3.Text = row[0].Cells[0].Value.ToString();
 
                     form.Dispose();
+                    SystemHelper.SelectTextBox(t3);
                 }
             }
             else if(e.Control)

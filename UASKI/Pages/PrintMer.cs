@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
@@ -83,9 +84,15 @@ namespace UASKI.Pages
             SystemHelper.PullListInDataGridView(form.dataGridView9,
                 result,
                 new DataGridRowModel("Код задания", "Исполнитель", "Котролер", "Срок", "Дата закрытия", "Оценка", "Дни опоздания"));
+            form.dataGridView9.ClearSelection();
         }
 
         protected override void Print()
+        {
+            
+        }
+
+        protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
 
         }
@@ -116,6 +123,7 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Escape)
             {
                 Exit();
+                SystemHelper.SelectDataGridView(false, form.dataGridView9);
                 e.Handled = true;
             }
             else if ((e.KeyCode == Keys.Up
@@ -124,6 +132,7 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectTextBox(form.textBox35);
                 e.Handled = true;
+                SystemHelper.SelectDataGridView(false, form.dataGridView9);
             }
                 
         }

@@ -128,6 +128,7 @@
     <Compile Include="Models\Elements\TextBoxElement.cs" />
     <Compile Include="Models\ItemMenuLevel1.cs" />
     <Compile Include="Models\ItemMenuLevel2.cs" />
+    <Compile Include="Models\PrintModel.cs" />
     <Compile Include="Pages\AddHoliday.cs" />
     <Compile Include="Pages\AddIsp.cs" />
     <Compile Include="Pages\AddTask.cs" />

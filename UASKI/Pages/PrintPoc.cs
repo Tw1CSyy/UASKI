@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
@@ -34,10 +35,16 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            
+
+            form.dataGridView10.ClearSelection();
         }
 
         protected override void Print()
+        {
+            
+        }
+
+        protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
 
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,9 +62,14 @@ namespace UASKI.Pages
             SystemHelper.PullListInDataGridView(form.dataGridView8,
                 result,
                 new DataGridRowModel("Исполнитель", "Код задания", "Код котролера", "Срок исполнения", "Дней опозданий"));
+            form.dataGridView8.ClearSelection();
         }
 
         protected override void Print()
+        {
+           
+        }
+        protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
 
         }

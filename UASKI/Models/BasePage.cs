@@ -54,9 +54,9 @@ namespace UASKI.Models
             form.tabControl1.SelectedIndex = Index;
             form.Menu_Step2.Enabled = false;
 
-            if (SystemData.This != null)
+            if (SystemData.This != null && SystemData.This.Index != this.Index)
                 SystemData.This.ClearPage();
-            else
+            else if(SystemData.This == null)
                 ClearPage();
 
             SystemData.This = this;
