@@ -29,7 +29,6 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="search">Код задачи</param>
         /// <param name="isp">Код котроллера или исполнителя</param>
-        /// <param name="podr">Код подразделения</param>
         /// <param name="isDate">Используется ли дата</param>
         /// <param name="dateFrom">Дата от</param>
         /// <param name="dateTo">Дата до</param>
@@ -52,23 +51,22 @@ namespace UASKI.Services
         /// <summary>
         /// Добавляет новую задачу, предварительно валидируя
         /// </summary>
-        /// <param name="code">Код задания</param>
-        /// <param name="IdIsp">Номер исполнителя</param>
-        /// <param name="IdCon">Номер контролера</param>
-        /// <param name="date">Срок исполнения</param>
+        /// <param name="idIsp">Элемент номер исполнителя</param>
+        /// <param name="idCon">Элемент номер контролера</param>
+        /// <param name="date">Элемент срок исполнения</param>
         /// <returns>true - успешное выполнение</returns>
-        public static bool Add(TextBoxElement Code , TextBoxElement IdIsp , TextBoxElement IdCon , DateTimeElement date)
+        public static bool Add(TextBoxElement code , TextBoxElement idIsp , TextBoxElement idCon , DateTimeElement date)
         {
-            var result = Validation(Code, IdIsp, IdCon, date);
+            var result = Validation(code, idIsp, idCon, date);
 
             if(!result)
                 return false;
 
             var model = new TaskEntity
                 (
-                 Code.Value,
-                 Convert.ToInt32(IdIsp.Value),
-                 Convert.ToInt32(IdCon.Value),
+                 code.Value,
+                 Convert.ToInt32(idIsp.Value),
+                 Convert.ToInt32(idCon.Value),
                  date.Value
                 );
 
@@ -79,41 +77,40 @@ namespace UASKI.Services
         /// <summary>
         /// Валидация задачи
         /// </summary>
-        /// <param name="code">Код задания</param>
-        /// <param name="IdIsp">Номер исполнителя</param>
-        /// <param name="IdCon">Номер контролера</param>
-        /// <param name="date">Срок исполнения</param>
+        /// <param name="idIsp">Элемент номер исполнителя</param>
+        /// <param name="idCon">Элемент номер контролера</param>
+        /// <param name="date">Элемент срок исполнения</param>
         /// <returns>true - успешное выполнение</returns>
-        private static bool Validation(TextBoxElement Code, TextBoxElement IdIsp, TextBoxElement IdCon, DateTimeElement date , bool isUpdate = false)
+        private static bool Validation(TextBoxElement code, TextBoxElement idIsp, TextBoxElement idCon, DateTimeElement date , bool isUpdate = false)
         {
             var result = true;
 
-            Code.Dispose();
-            IdIsp.Dispose();
-            IdCon.Dispose();
+            code.Dispose();
+            idIsp.Dispose();
+            idCon.Dispose();
             date.Dispose();
 
-            if (IdIsp.IsNull)
+            if (idIsp.IsNull)
             {
-                IdIsp.Error("Поле не заполнено");
+                idIsp.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (IdCon.IsNull)
+            if (idCon.IsNull)
             {
-                IdCon.Error("Поле не заполнено");
+                idCon.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (Code.IsNull)
+            if (code.IsNull)
             {
-                Code.Error("Поле не заполнено");
+                code.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (!isUpdate && GetTaskByCode(Code.Value , GetList()) != null)
+            if (!isUpdate && GetTaskByCode(code.Value , GetList()) != null)
             {
-                Code.Error("Код задачи должен быть уникальным");
+                code.Error("Код задачи должен быть уникальным");
                 result = false;
             }
 
@@ -206,47 +203,47 @@ namespace UASKI.Services
         /// <summary>
         /// Изменяет задачу, предварительно валидируя
         /// </summary>
-        /// <param name="code">Код текущей задачи</param>
-        /// <param name="IdIsp">Код исполнителя</param>
-        /// <param name="IdCon">Код котроллера</param>
-        /// <param name="Code">Новый код задачи</param>
+        /// <param name="codeTask">Код текущей задачи</param>
+        /// <param name="idIsp">Код исполнителя</param>
+        /// <param name="idCon">Код котроллера</param>
+        /// <param name="code">Новый код задачи</param>
         /// <param name="date">Дата срока</param>
         /// <returns>true - успешная операция</returns>
-        public static bool UpdateTask(string code, TextBoxElement IdIsp, TextBoxElement IdCon, TextBoxElement Code, DateTimeElement date)
+        public static bool UpdateTask(string codeTask, TextBoxElement idIsp, TextBoxElement idCon, TextBoxElement code, DateTimeElement date)
         {
-            var result = Validation(Code, IdIsp, IdCon, date , true);
+            var result = Validation(code, idIsp, idCon, date , true);
 
             if (!result)
                 return false;
 
-            var entity = new TaskEntity(Code.Value, Convert.ToInt32(IdIsp.Value), Convert.ToInt32(IdCon.Value), date.Value);
-            return context.Update(entity, code);
+            var entity = new TaskEntity(code.Value, Convert.ToInt32(idIsp.Value), Convert.ToInt32(idCon.Value), date.Value);
+            return context.Update(entity, codeTask);
         }
 
         /// <summary>
         /// Удаляет задачу из Task и добавляет в Arhiv
         /// </summary>
         /// <param name="code">Код задания</param>
-        /// <param name="Otm">Отметка задания</param>
-        /// <param name="Date">Дата закрытия</param>
+        /// <param name="otm">Отметка задания</param>
+        /// <param name="date">Дата закрытия</param>
         /// <returns>Положительный или отрицательный результат</returns>
-        public static bool Close(string code , TextBoxElement Otm , DateTimeElement Date)
+        public static bool Close(string code , TextBoxElement otm , DateTimeElement date)
         {
-            if (Otm.IsNull || !Otm.IsNumber)
+            if (otm.IsNull || !otm.IsNumber)
             {
-                Otm.Error("Некоректные данные");
+                otm.Error("Некоректные данные");
                 return false;
             }    
 
-            if (Convert.ToInt32(Otm.Value) > 5 || Convert.ToInt32(Otm.Value) < 1)
+            if (Convert.ToInt32(otm.Value) > 5 || Convert.ToInt32(otm.Value) < 1)
             {
-                Otm.Error("Число должно быть от 1 до 5");
+                otm.Error("Число должно быть от 1 до 5");
                 return false;
             }
 
             var task = GetTaskByCode(code , GetList());
            
-            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, Date.Value, Convert.ToInt32(Otm.Value));
+            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, date.Value, Convert.ToInt32(otm.Value));
 
             var result = context.Add(arhiv);
 

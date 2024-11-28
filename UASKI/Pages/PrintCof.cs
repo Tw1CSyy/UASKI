@@ -153,20 +153,19 @@ namespace UASKI.Pages
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button42);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Left)
             {
                 form.dateTimePicker15.Focus();
                 SystemHelper.SelectButton(false, form.button42);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Down)
             {
                 if(SystemHelper.SelectDataGridView(true , form.dataGridView11))
                     SystemHelper.SelectButton(false, form.button42);
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void dataGridView11_KeyDown(KeyEventArgs e)

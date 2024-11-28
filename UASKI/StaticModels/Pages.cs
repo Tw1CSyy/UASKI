@@ -23,6 +23,8 @@ namespace UASKI.StaticModels
         public readonly PrintMer PrintMer = new PrintMer(13);
         public readonly PrintPoc PrintPoc = new PrintPoc(14);
         public readonly PrintCof PrintCof = new PrintCof(15);
+        public readonly EditPret EditPret = new EditPret(16);
+        public readonly SelectPret SelectPret = new SelectPret(17);
         
     }
 }

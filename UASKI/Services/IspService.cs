@@ -37,11 +37,11 @@ namespace UASKI.Services
         /// <summary>
         /// Возвращает объект исполнителя по фамилии
         /// </summary>
-        /// <param name="FirstName"></param>
+        /// <param name="firstName"></param>
         /// <returns></returns>
-        public static IspEntity GetByFirstName(string FirstName , List<IspEntity> list)
+        public static IspEntity GetByFirstName(string firstName , List<IspEntity> list)
         {
-            var result = list.FirstOrDefault(c => c.FirstName.ToLower().Equals(FirstName.ToLower()));
+            var result = list.FirstOrDefault(c => c.FirstName.ToLower().Equals(firstName.ToLower()));
             return result;
         }
 
@@ -56,22 +56,22 @@ namespace UASKI.Services
         }
 
         /// <summary>
-        /// Добавляет в базу исполнительно, предварительно валидируя
+        /// Добавляет в базу исполнителя, предварительно валидируя
         /// </summary>
-        /// <param name="FirstName">Фамилия сотрудника</param>
-        /// <param name="Name">Имя сотрудника</param>
-        /// <param name="LastName">Отчество сотрудника</param>
-        /// <param name="Code">Код сотрудника</param>
-        /// <param name="Podr">Код подразделения сотрудника</param>
+        /// <param name="firstName">Элемент фамилия сотрудника</param>
+        /// <param name="name">Элемент имя сотрудника</param>
+        /// <param name="lastName">Элемент отчество сотрудника</param>
+        /// <param name="code">Элемент код сотрудника</param>
+        /// <param name="podr">Элемент код подразделения сотрудника</param>
         /// <returns>true - успешная операция</returns>
-        public static bool Add(TextBoxElement FirstName , TextBoxElement Name , TextBoxElement LastName , TextBoxElement Code , TextBoxElement Podr)
+        public static bool Add(TextBoxElement firstName , TextBoxElement name , TextBoxElement lastName , TextBoxElement code , TextBoxElement podr)
         {
-            var result = Validation(FirstName, Name, LastName, Code, Podr);
+            var result = Validation(firstName, name, lastName, code, podr);
 
             if (!result)
                 return false;
 
-            var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value), true);
+            var item = new IspEntity(Convert.ToInt32(code.Value), firstName.Value, name.Value, lastName.Value, Convert.ToInt32(podr.Value), true);
             var context = new UAContext();
             result = context.Add(item);
 
@@ -81,61 +81,61 @@ namespace UASKI.Services
         /// <summary>
         /// Валидация исполнителя
         /// </summary>
-        /// <param name="FirstName">Фамилия сотрудника</param>
-        /// <param name="Name">Имя сотрудника</param>
-        /// <param name="LastName">Отчество сотрудника</param>
-        /// <param name="Code">Код сотрудника</param>
-        /// <param name="Podr">Код подразделения сотрудника</param>
+        /// <param name="firstName">Элемент фамилия сотрудника</param>
+        /// <param name="name">Элемент имя сотрудника</param>
+        /// <param name="lastName">Элемент отчество сотрудника</param>
+        /// <param name="code">Элемент код сотрудника</param>
+        /// <param name="podr">Элемент код подразделения сотрудника</param>
         /// <returns>true - успешная операция</returns>
-        private static bool Validation(TextBoxElement FirstName, TextBoxElement Name, TextBoxElement LastName, TextBoxElement Code, TextBoxElement Podr)
+        private static bool Validation(TextBoxElement firstName, TextBoxElement name, TextBoxElement lastName, TextBoxElement code, TextBoxElement podr)
         {
             var result = true;
 
-            FirstName.Dispose();
-            Name.Dispose();
-            LastName.Dispose();
-            Code.Dispose();
-            Podr.Dispose();
+            firstName.Dispose();
+            name.Dispose();
+            lastName.Dispose();
+            code.Dispose();
+            podr.Dispose();
 
-            if (FirstName.IsNull)
+            if (firstName.IsNull)
             {
-                FirstName.Error("Поле не заполнено");
+                firstName.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (Name.IsNull)
+            if (name.IsNull)
             {
-                Name.Error("Поле не заполнено");
+                name.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (LastName.IsNull)
+            if (lastName.IsNull)
             {
-                LastName.Error("Поле не заполнено");
+                lastName.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (Code.IsNull)
+            if (code.IsNull)
             {
-                Code.Error("Поле не заполнено");
+                code.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (Podr.IsNull)
+            if (podr.IsNull)
             {
-                Podr.Error("Поле не заполнено");
+                podr.Error("Поле не заполнено");
                 result = false;
             }
 
-            if (!Code.IsNumber)
+            if (!code.IsNumber)
             {
-                Code.Error("Поле имеет не числовой тип");
+                code.Error("Поле имеет не числовой тип");
                 result = false;
             }
 
-            if (!Podr.IsNumber)
+            if (!podr.IsNumber)
             {
-                Podr.Error("Поле имеет не числовой тип");
+                podr.Error("Поле имеет не числовой тип");
                 result = false;
             }
 
@@ -157,29 +157,29 @@ namespace UASKI.Services
         /// <summary>
         /// Обновляет данные сотрудника
         /// </summary>
-        /// <param name="code">Код сотрудника (старый)</param>
-        /// <param name="FirstName">Фамилия сотрудника</param>
-        /// <param name="Name">Имя сотрудника</param>
-        /// <param name="LastName">Отчество сотрудника</param>
-        /// <param name="Code">Код сотрудника (новый)</param>
-        /// <param name="Podr">Код подразделения сотрудника</param>
+        /// <param name="codeIsp">Код сотрудника (старый)</param>
+        /// <param name="firstName">Фамилия сотрудника</param>
+        /// <param name="name">Имя сотрудника</param>
+        /// <param name="lastName">Отчество сотрудника</param>
+        /// <param name="code">Код сотрудника (новый)</param>
+        /// <param name="podr">Код подразделения сотрудника</param>
         /// <returns>true - успешная операция</returns>
-        public static bool Update(int code , TextBoxElement FirstName, TextBoxElement Name, TextBoxElement LastName, TextBoxElement Code, TextBoxElement Podr)
+        public static bool Update(int codeIsp , TextBoxElement firstName, TextBoxElement name, TextBoxElement lastName, TextBoxElement code, TextBoxElement podr)
         {
-            var result = Validation(FirstName , Name , LastName , Code , Podr);
+            var result = Validation(firstName , name , lastName , code , podr);
 
             if (!result)
                 return result;
 
-            var entity = GetByCode(code , GetList());
-            var item = new IspEntity(Convert.ToInt32(Code.Value), FirstName.Value, Name.Value, LastName.Value, Convert.ToInt32(Podr.Value) , entity.IsActive);
-            result = context.Update(item , code);
+            var entity = GetByCode(codeIsp , GetList());
+            var item = new IspEntity(Convert.ToInt32(code.Value), firstName.Value, name.Value, lastName.Value, Convert.ToInt32(podr.Value) , entity.IsActive);
+            result = context.Update(item , codeIsp);
 
             if(!result)
                 return false;
 
-            if (code != Convert.ToInt32(Code.Value))
-                result = TasksService.EditIsp(code, Convert.ToInt32(Code.Value));
+            if (codeIsp != Convert.ToInt32(code.Value))
+                result = TasksService.EditIsp(codeIsp, Convert.ToInt32(code.Value));
 
             return result;
         }

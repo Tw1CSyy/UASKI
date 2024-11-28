@@ -13,6 +13,7 @@ namespace UASKI.Data.Context
         public List<TaskEntity> Tasks { get => SelectTasks(); }
         public List<HolidayEntity> Holidays { get => SelectHolidays(); }
         public List<ArhivEntity> Arhiv { get => SelectArhiv(); }
+        public List<PretEntity> Prets { get => SelectPret(); }
 
 
         /// <summary>
@@ -136,6 +137,37 @@ namespace UASKI.Data.Context
         }
 
         /// <summary>
+        /// Выборка из таблицы Pret
+        /// </summary>
+        /// <returns></returns>
+        private List<PretEntity> SelectPret()
+        {
+            var result = new List<PretEntity>();
+            var query = "SELECT * FROM \"Pret\"";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new PretEntity
+                (
+                    reader.GetValue(0).ToString(),
+                    reader.GetValue(1).ToString(),
+                    Convert.ToDateTime(reader.GetValue(2)),
+                    Convert.ToInt32(reader.GetValue(3)),
+                    Convert.ToInt32(reader.GetValue(4))
+                );
+
+                result.Add(item);
+
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
         /// Добавляет запись в таблицу Isp
         /// </summary>
         /// <param name="entity">Объект класса</param>
@@ -184,6 +216,19 @@ namespace UASKI.Data.Context
         {
             var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\") " +
                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}')";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Добавляет запись в таблицу Pret
+        /// </summary>
+        /// <param name="entity">Объкт класса</param>
+        /// <returns></returns>
+        public bool Add(PretEntity entity)
+        {
+            var query = $"INSERT INTO \"Pret\" (\"Code\" , \"CodeTask\" , \"Date\" , \"Otm\" , \"Type\") " +
+               $"VALUES ('{entity.Code}' , '{entity.CodeTask}' , '{entity.Date}' , '{entity.Otm}' , '{entity.Type}')";
 
             return DataModel.Complite(query);
         }
@@ -305,6 +350,18 @@ namespace UASKI.Data.Context
         public bool Delete(HolidayEntity entity)
         {
             var query = $"DELETE FROM \"Holidays\" WHERE \"Id\" = '{entity.Id}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
+        /// Удаляет данные из таблицы Pret
+        /// </summary>
+        /// <param name="entity">Модель класса</param>
+        /// <returns>Положительный или отрицательный ответ</returns>
+        public bool Delete(PretEntity entity)
+        {
+            var query = $"DELETE FROM \"Pret\" WHERE \"Code\" = '{entity.Code}'";
 
             return DataModel.Complite(query);
         }

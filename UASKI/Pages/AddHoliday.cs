@@ -82,8 +82,6 @@ namespace UASKI.Pages
             {
                 form.monthCalendar1.Focus();
                 SystemHelper.SelectButton(false, form.button5);
-                e.IsInputKey = true;
-
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -109,15 +107,14 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
-
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button5);
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
         #endregion
     }

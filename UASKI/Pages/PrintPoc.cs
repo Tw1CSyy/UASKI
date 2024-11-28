@@ -110,21 +110,20 @@ namespace UASKI.Pages
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button40);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Down)
             {
                 if (SystemHelper.SelectDataGridView(true, form.dataGridView10))
                     SystemHelper.SelectButton(false, form.button40);
 
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Left)
             {
                 form.dateTimePicker13.Focus();
                 SystemHelper.SelectButton(false, form.button40);
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void dataGridView10_KeyDown(KeyEventArgs e)

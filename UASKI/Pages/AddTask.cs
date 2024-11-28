@@ -191,25 +191,21 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox4);
                 SystemHelper.SelectButton(false, form.button1);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectButton(false, form.button1);
                 form.dateTimePicker1.Focus();
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button1);
-                e.IsInputKey = true;
             }
 
             e.IsInputKey = true;

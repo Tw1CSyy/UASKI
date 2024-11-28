@@ -96,12 +96,10 @@ namespace UASKI.Pages
             {
                 form.dataGridView6.Focus();
                 SystemHelper.SelectButton(false, form.button13);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
                 Exit();
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -129,8 +127,9 @@ namespace UASKI.Pages
                 else
                     ErrorHelper.StatusQuery();
 
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         #endregion

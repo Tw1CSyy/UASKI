@@ -109,6 +109,8 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(false, form.button10);
             SystemHelper.SelectButton(false, form.button11);
             SystemHelper.SelectButton(false, form.button12);
+            SystemHelper.SelectButton(false, form.button47);
+            SystemHelper.SelectButton(false, form.button48);
         }
 
         protected override void Exit()
@@ -129,7 +131,7 @@ namespace UASKI.Pages
 
         private void SelectButton(int idButton = 0 , bool Up = false)
         {
-            var list = new Button[] { form.button10, form.button11, form.button12 };
+            var list = new Button[] { form.button10, form.button11, form.button12 , form.button47 , form.button48 };
             int index = idButton - 1;
 
             while (true)
@@ -139,7 +141,7 @@ namespace UASKI.Pages
                 else
                     index++;
 
-                if (index == -1 || index == 3)
+                if (index == -1 || index == list.Length)
                     break;
 
                 if (list[index].Enabled)
@@ -357,7 +359,6 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down)
             {
                 SelectButton(1 , false);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -387,26 +388,23 @@ namespace UASKI.Pages
                     {
 
                     }
-
-                    e.IsInputKey = true;
                 }
                 else
                 {
                     ErrorHelper.StatusQuery();
-                    e.IsInputKey = true;
                 }
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button10);
                 SystemHelper.SelectTextBox(form.textBox26);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void button11_PreviewKeyDown(PreviewKeyDownEventArgs e)
@@ -415,12 +413,11 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 SelectButton(2 , true);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Down)
             {
                 SelectButton(2 , false);
-                e.IsInputKey = true;
+               
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -463,19 +460,19 @@ namespace UASKI.Pages
                     ErrorHelper.StatusQuery();
                 }
 
-                e.IsInputKey = true;
+               
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button11);
                 SystemHelper.SelectTextBox(form.textBox26);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void button12_PreviewKeyDown(PreviewKeyDownEventArgs e)
@@ -483,13 +480,11 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 SelectButton(3 , true);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button12);
                 SystemHelper.SelectTextBox(form.textBox26);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -514,13 +509,17 @@ namespace UASKI.Pages
                     ErrorHelper.StatusQuery();
                 }
 
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                e.IsInputKey = true;
             }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SelectButton(3, false);
+            }
+
+            e.IsInputKey = true;
         }
 
         public void dateTimePicker9_KeyDown(KeyEventArgs e)
@@ -547,6 +546,58 @@ namespace UASKI.Pages
                 e.Handled = true;
             }
 
+        }
+
+        public void button47_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                SelectButton(4, true);
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SelectButton(4, false);
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                SystemData.Pages.EditPret.Init(false);
+                SystemData.Pages.EditPret.Show(Code, 1, Page, Arhiv);
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectButton(false, form.button47);
+                SystemHelper.SelectTextBox(form.textBox26);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Exit();
+            }
+
+            e.IsInputKey = true;
+        }
+
+        public void button48_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                SelectButton(5, true);
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                SystemData.Pages.EditPret.Init(false);
+                SystemData.Pages.EditPret.Show(Code, 2, Page, Arhiv);
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                SystemHelper.SelectButton(false, form.button48);
+                SystemHelper.SelectTextBox(form.textBox26);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Exit();
+            }
+
+            e.IsInputKey = true;
         }
         #endregion
     }

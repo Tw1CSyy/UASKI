@@ -97,12 +97,10 @@ namespace UASKI.Pages
             {
                 if (SystemHelper.SelectDataGridView(true, form.dataGridView8))
                     SystemHelper.SelectButton(false, form.button37);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -113,8 +111,9 @@ namespace UASKI.Pages
                 else
                     ErrorHelper.StatusQuery();
 
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void dataGridView8_KeyDown(KeyEventArgs e)

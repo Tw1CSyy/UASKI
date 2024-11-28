@@ -218,7 +218,6 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectButton(false, form.button6);
                 SystemHelper.SelectTextBox(form.textBox18);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -248,21 +247,19 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
-
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Down)
             {
                 SystemHelper.SelectButton(false, form.button6);
                 SystemHelper.SelectButton(true, form.button7);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectButton(false, form.button6);
                 Exit();
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void button7_KeyDown(PreviewKeyDownEventArgs e)
@@ -271,13 +268,11 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectButton(false, form.button7);
                 SystemHelper.SelectButton(true, form.button6);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectButton(false, form.button7);
                 SystemHelper.SelectTextBox(form.textBox18);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -297,20 +292,19 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 SystemHelper.SelectButton(false, form.button7);
-                Exit();
-                e.IsInputKey = true;
+                Exit(); 
             }
             else if (e.KeyCode == Keys.Down)
             {
                 if (SystemHelper.SelectDataGridView(true, form.dataGridView4))
                 SystemHelper.SelectButton(false, form.button7);
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void dataGridView4_KeyDown(KeyEventArgs e)

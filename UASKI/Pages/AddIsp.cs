@@ -176,21 +176,19 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusQuery();
                 }
-
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectButton(false, form.button4);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox12);
                 SystemHelper.SelectButton(false, form.button4);
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         #endregion

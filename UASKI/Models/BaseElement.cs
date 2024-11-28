@@ -28,9 +28,12 @@ namespace UASKI.Models
         /// <param name="text">Текст ошибки</param>
         public void Error(string text)
         {
-            ErrorLabel.ForeColor = Color.Red;
-            ErrorLabel.Visible = true;
-            ErrorLabel.Text = text;
+            if(!ErrorLabel.Visible)
+            {
+                ErrorLabel.ForeColor = Color.Red;
+                ErrorLabel.Visible = true;
+                ErrorLabel.Text = text;
+            }
         }
     }
 }

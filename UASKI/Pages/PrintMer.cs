@@ -163,19 +163,16 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox35);
                 SystemHelper.SelectButton(false, form.button38);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Down)
             {
                 if(SystemHelper.SelectDataGridView(true, form.dataGridView9))
                     SystemHelper.SelectButton(false, form.button38);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -186,9 +183,9 @@ namespace UASKI.Pages
                 else
                     ErrorHelper.StatusQuery();
 
-                e.IsInputKey = true;
-
             }
+
+            e.IsInputKey = true;
 
         }
         #endregion

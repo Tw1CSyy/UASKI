@@ -87,6 +87,11 @@ namespace UASKI.StaticModels
                            Text = "Просмотр Опозданий",
                            Page = Pages.SelectOpz
                        },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Претензий/Рецензий",
+                           Page = Pages.SelectPret
+                       }
                    }
                },
                new ItemMenuLevel1

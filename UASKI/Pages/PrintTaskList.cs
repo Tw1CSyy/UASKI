@@ -217,24 +217,20 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectTextBox(form.textBox30);
                 SystemHelper.SelectButton(false, form.button34);
-                e.IsInputKey = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker11.Focus();
                 SystemHelper.SelectButton(false, form.button34);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Down)
             {
                 if(SystemHelper.SelectDataGridView(true, form.dataGridView7))
                 SystemHelper.SelectButton(false, form.button34);
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -245,8 +241,9 @@ namespace UASKI.Pages
                 else
                     ErrorHelper.StatusQuery();
 
-                e.IsInputKey = true;
             }
+
+            e.IsInputKey = true;
         }
 
         public void dataGridView7_KeyDown(KeyEventArgs e)

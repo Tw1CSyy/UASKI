@@ -471,6 +471,70 @@ namespace UASKI
         {
             SystemData.Pages.PrintCof.dataGridView11_KeyDown(e);
         }
+        private void button47_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.EditTask.button47_PreviewKeyDown(e);
+        }
+        private void button48_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.EditTask.button48_PreviewKeyDown(e);
+        }
+        private void textBox38_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.EditPret.textBox38_KeyDown(e);
+        }
+        private void dateTimePicker16_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.EditPret.dateTimePicker16_KeyDown(e);
+        }
+        private void textBox39_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.EditPret.textBox39_KeyDown(e);
+        }
+        private void button46_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.EditPret.button46_PreviewKeyDown(e);
+        }
+        private void button45_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.EditPret.button45_PreviewKeyDown(e);
+        }
+        private void button44_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.EditPret.button44_PreviewKeyDown(e);
+        }
+        private void dataGridView12_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectPret.dataGridView12_KeyDown(e);
+        }
+        private void textBox40_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectPret.textBox40_KeyDown(e);
+        }
+        private void textBox41_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectPret.textBox41_KeyDown(e);
+        }
+        private void checkBox5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectPret.checkBox5_PreviewKeyDown(e);
+        }
+        private void checkBox6_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectPret.checkBox6_PreviewKeyDown(e);
+        }
+        private void checkBox4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectPret.checkBox4_PreviewKeyDown(e);
+        }
+        private void dateTimePicker17_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectPret.dateTimePicker17_KeyDown(e);
+        }
+        private void dateTimePicker18_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectPret.dateTimePicker18_KeyDown(e);
+        }
         #endregion
 
         #region Обработка
@@ -855,8 +919,28 @@ namespace UASKI
             var key = new PreviewKeyDownEventArgs(Keys.Enter);
             button42_PreviewKeyDown(sender, key);
         }
-
+        private void button49_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker16_KeyDown(sender, key);
+        }
+        private void button46_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button46_PreviewKeyDown(sender, key);
+        }
+        private void button45_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button45_PreviewKeyDown(sender, key);
+        }
+        private void button44_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button44_PreviewKeyDown(sender, key);
+        }
 
         #endregion
+
     }
 }
