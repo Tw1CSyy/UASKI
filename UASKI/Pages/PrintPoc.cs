@@ -138,6 +138,11 @@ namespace UASKI.Pages
                 SystemHelper.SelectDataGridView(false, form.dataGridView10);
                 e.Handled = true;
             }
+            else if (e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView10, e.KeyCode);
+                e.Handled = true;
+            }
         }
         #endregion
     }

@@ -244,6 +244,8 @@ namespace UASKI.Pages
                 }
                 else
                     ErrorHelper.StatusQuery();
+
+                e.IsInputKey = true;
             }
         }
 

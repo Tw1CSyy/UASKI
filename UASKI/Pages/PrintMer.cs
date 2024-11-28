@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
@@ -89,12 +90,27 @@ namespace UASKI.Pages
 
         protected override void Print()
         {
-            
+            if (form.dataGridView9.Columns.Count == 0)
+            {
+                ErrorHelper.StatusError();
+            }
+            else
+            {
+                var printDocument = new PrintDocument();
+                printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
+                GetPrint(printDocument);
+            }
         }
 
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
+            var font = new Font("Arial", 9);
+            string header1 = $"Состояние выполнения мероприятия (приказа)";
+            string header2 = $"{form.textBox35.Text}";
+            string header3 = $"На {DateTime.Today.ToString("dd.MM.yyyy")}";
 
+            var model = new PrintModel(font, e, form.dataGridView9, header1, header2 , header3);
+            SystemHelper.PrintDocument(model);
         }
 
         #region Клавиши
@@ -134,6 +150,11 @@ namespace UASKI.Pages
                 e.Handled = true;
                 SystemHelper.SelectDataGridView(false, form.dataGridView9);
             }
+            else if(e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView9, e.KeyCode);
+                e.Handled = true;
+            }
                 
         }
 
@@ -155,6 +176,18 @@ namespace UASKI.Pages
                 if(SystemHelper.SelectDataGridView(true, form.dataGridView9))
                     SystemHelper.SelectButton(false, form.button38);
                 e.IsInputKey = true;
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if (SystemData.IsQuery)
+                {
+                    Print();
+                }
+                else
+                    ErrorHelper.StatusQuery();
+
+                e.IsInputKey = true;
+
             }
 
         }

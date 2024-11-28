@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
@@ -67,11 +68,25 @@ namespace UASKI.Pages
 
         protected override void Print()
         {
-           
+            if (form.dataGridView8.Columns.Count == 0)
+            {
+                ErrorHelper.StatusError();
+            }
+            else
+            {
+                var printDocument = new PrintDocument();
+                printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
+                GetPrint(printDocument);
+            }
         }
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
+            var font = new Font("Arial", 10);
+            string header1 = $"Не выполнили задание в срок";
+            string header2 = $"На {DateTime.Today.ToString("dd.MM.yyyy")}";
 
+            var model = new PrintModel(font, e, form.dataGridView8, header1, header2);
+            SystemHelper.PrintDocument(model);
         }
 
         #region Клавиши
@@ -89,6 +104,17 @@ namespace UASKI.Pages
                 Exit();
                 e.IsInputKey = true;
             }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if (SystemData.IsQuery)
+                {
+                    Print();
+                }
+                else
+                    ErrorHelper.StatusQuery();
+
+                e.IsInputKey = true;
+            }
         }
 
         public void dataGridView8_KeyDown(KeyEventArgs e)
@@ -104,6 +130,11 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
+            }
+            else if(e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView8, e.KeyCode);
                 e.Handled = true;
             }
         }

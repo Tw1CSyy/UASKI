@@ -805,12 +805,58 @@ namespace UASKI
             var key = new KeyEventArgs(SystemData.ActionKey);
             dateTimePicker8_KeyDown(sender, key);
         }
-
-
-
+        private void button35_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker10_KeyDown(sender, key);
+        }
+        private void button36_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox30_KeyDown(sender, key);
+        }
+        private void button39_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker12_KeyDown(sender, key);
+        }
+        private void button43_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox36_KeyDown(sender, key);
+        }
+        private void button41_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker14_KeyDown(sender, key);
+        }
+        private void button34_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button34_PreviewKeyDown(sender, key);
+        }
+        private void button37_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button37_PreviewKeyDown(sender, key);
+        }
+        private void button38_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button38_PreviewKeyDown(sender, key);
+        }
+        private void button40_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button40_PreviewKeyDown(sender, key);
+        }
+        private void button42_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button42_PreviewKeyDown(sender, key);
+        }
 
 
         #endregion
-
     }
 }

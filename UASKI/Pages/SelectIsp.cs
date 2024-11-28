@@ -38,7 +38,7 @@ namespace UASKI.Models.Pages
 
         public override void Select()
         {
-            var model = IspService.GetList();
+            var model = IspService.GetList().Where(c => c.IsActive).ToList();
             var search = form.textBox13.Text;
 
             model = model.Where(c => c.Code.ToString().Contains(search) ||

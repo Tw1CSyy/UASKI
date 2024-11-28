@@ -32,7 +32,7 @@ namespace UASKI.Forms
 
         private void Start(string search = "")
         {
-            var model = IspService.GetList();
+            var model = IspService.GetList().Where(c => c.IsActive).ToList();
 
             if(search.Length > 0)
             {

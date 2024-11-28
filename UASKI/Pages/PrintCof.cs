@@ -179,6 +179,11 @@ namespace UASKI.Pages
                 form.dateTimePicker14.Focus();
                 e.Handled = true;
             }
+            else if (e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView11, e.KeyCode);
+                e.Handled = true;
+            }
         }
         #endregion
     }

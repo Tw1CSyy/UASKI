@@ -277,6 +277,7 @@ namespace UASKI
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -374,6 +375,7 @@ namespace UASKI
             this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Controls.Add(this.tabPage14);
+            this.tabControl1.Controls.Add(this.tabPage15);
             this.tabControl1.Location = new System.Drawing.Point(1, 153);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -2558,6 +2560,7 @@ namespace UASKI
             this.button36.TabIndex = 32;
             this.button36.Text = "^";
             this.button36.UseVisualStyleBackColor = false;
+            this.button36.Click += new System.EventHandler(this.button36_Click);
             // 
             // button35
             // 
@@ -2569,6 +2572,7 @@ namespace UASKI
             this.button35.TabIndex = 31;
             this.button35.Text = "^";
             this.button35.UseVisualStyleBackColor = false;
+            this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
             // button34
             // 
@@ -2580,6 +2584,7 @@ namespace UASKI
             this.button34.TabIndex = 7;
             this.button34.Text = "Печать";
             this.button34.UseVisualStyleBackColor = false;
+            this.button34.Click += new System.EventHandler(this.button34_Click);
             this.button34.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button34_PreviewKeyDown);
             // 
             // dataGridView7
@@ -2679,6 +2684,7 @@ namespace UASKI
             this.button37.TabIndex = 12;
             this.button37.Text = "Печать";
             this.button37.UseVisualStyleBackColor = false;
+            this.button37.Click += new System.EventHandler(this.button37_Click);
             this.button37.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button37_PreviewKeyDown);
             // 
             // dataGridView8
@@ -2748,6 +2754,7 @@ namespace UASKI
             this.button38.TabIndex = 16;
             this.button38.Text = "Печать";
             this.button38.UseVisualStyleBackColor = false;
+            this.button38.Click += new System.EventHandler(this.button38_Click);
             this.button38.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button38_PreviewKeyDown);
             // 
             // dataGridView9
@@ -2820,6 +2827,7 @@ namespace UASKI
             this.button39.TabIndex = 38;
             this.button39.Text = "^";
             this.button39.UseVisualStyleBackColor = false;
+            this.button39.Click += new System.EventHandler(this.button39_Click);
             // 
             // button40
             // 
@@ -2831,6 +2839,7 @@ namespace UASKI
             this.button40.TabIndex = 37;
             this.button40.Text = "Печать";
             this.button40.UseVisualStyleBackColor = false;
+            this.button40.Click += new System.EventHandler(this.button40_Click);
             this.button40.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button40_PreviewKeyDown);
             // 
             // dataGridView10
@@ -2926,6 +2935,7 @@ namespace UASKI
             this.button43.TabIndex = 50;
             this.button43.Text = "^";
             this.button43.UseVisualStyleBackColor = false;
+            this.button43.Click += new System.EventHandler(this.button43_Click);
             // 
             // textBox37
             // 
@@ -2966,6 +2976,7 @@ namespace UASKI
             this.button41.TabIndex = 46;
             this.button41.Text = "^";
             this.button41.UseVisualStyleBackColor = false;
+            this.button41.Click += new System.EventHandler(this.button41_Click);
             // 
             // button42
             // 
@@ -2977,6 +2988,7 @@ namespace UASKI
             this.button42.TabIndex = 45;
             this.button42.Text = "Печать";
             this.button42.UseVisualStyleBackColor = false;
+            this.button42.Click += new System.EventHandler(this.button42_Click);
             this.button42.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button42_PreviewKeyDown);
             // 
             // dataGridView11
@@ -3089,6 +3101,15 @@ namespace UASKI
             this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
             this.printPreviewDialog.Name = "printPreviewDialog2";
             this.printPreviewDialog.Visible = false;
+            // 
+            // tabPage15
+            // 
+            this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Size = new System.Drawing.Size(881, 543);
+            this.tabPage15.TabIndex = 16;
+            this.tabPage15.Text = "Претензии";
             // 
             // Gl_Form
             // 
@@ -3424,6 +3445,7 @@ namespace UASKI
         public System.Windows.Forms.TextBox textBox37;
         private System.Windows.Forms.Label label87;
         public System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
+        private System.Windows.Forms.TabPage tabPage15;
     }
 }
 
