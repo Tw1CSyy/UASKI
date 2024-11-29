@@ -25,10 +25,10 @@ namespace UASKI.Pages
             form.checkBox4.Checked = false;
             form.panel22.Visible = false;
             FilterClose();
-            Select();
             form.dateTimePicker17.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker18.Value = DateTime.Today;
             form.checkBox5.Checked = form.checkBox6.Checked = true;
+            Select();
             form.dataGridView12.Focus();
         }
 
@@ -37,6 +37,7 @@ namespace UASKI.Pages
             form.textBox40.Clear();
             form.textBox41.Clear();
             form.dataGridView12.DataSource = null;
+            SystemHelper.SelectCheckBox(form.checkBox5, false);
         }
 
         public override void Select()
@@ -120,7 +121,7 @@ namespace UASKI.Pages
                 || e.KeyCode == Keys.Escape)
             {
                 Exit();
-                SystemHelper.SelectDataGridView(false, form.dataGridView12);
+                SystemHelper.SelectDataGridView(form.dataGridView12, false);
                 e.Handled = true;
             }
             else if(e.Control)
@@ -157,7 +158,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.checkBox5.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox5);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -172,14 +173,17 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox41);
+                SystemHelper.SelectCheckBox(form.checkBox5, false);
             }
-            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Down)
             {
-                form.checkBox6.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox6);
+                SystemHelper.SelectCheckBox(form.checkBox5, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
+                SystemHelper.SelectCheckBox(form.checkBox5, false);
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -193,15 +197,18 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Up)
             {
-                form.checkBox5.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox5);
+                SystemHelper.SelectCheckBox(form.checkBox6, false);
             }
-            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Down)
             {
-                form.checkBox4.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox4);
+                SystemHelper.SelectCheckBox(form.checkBox6, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
+                SystemHelper.SelectCheckBox(form.checkBox6, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -216,14 +223,17 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down)
             {
                 form.dateTimePicker17.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox4 , false);
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.checkBox6.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox6);
+                SystemHelper.SelectCheckBox(form.checkBox4, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
+                SystemHelper.SelectCheckBox(form.checkBox4, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -242,7 +252,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.checkBox4.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox4);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)

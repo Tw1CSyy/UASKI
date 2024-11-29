@@ -19,11 +19,15 @@ namespace UASKI.Forms
         private static DateTimePicker pic;
         private static DateTimePicker pic2;
 
+        private bool IsTwo = false;
+
         public DateForm(DateTimePicker p)
         {
             InitializeComponent();
             pic = p;
             monthCalendar1.SelectionStart = p.Value.Date;
+            monthCalendar1.SelectionEnd = p.Value.Date;
+            IsTwo = false;
 
             monthCalendar1.MaxSelectionCount = 1;
             monthCalendar1.Focus();
@@ -35,33 +39,72 @@ namespace UASKI.Forms
             pic = p1;
             pic2 = p2;
             monthCalendar1.MaxSelectionCount = 365;
-
+            IsTwo = true;
             monthCalendar1.SelectionStart = p1.Value;
-            monthCalendar1.SelectionEnd = p2.Value;
-
+            monthCalendar1.SelectionEnd = p1.Value;
             monthCalendar1.Focus();
+        }
+
+        private void GetOne()
+        {
+            var value = monthCalendar1.SelectionStart;
+            var date = SystemHelper.GetDate(textBox1.Text, value);
+
+            if (date != DateTime.MinValue)
+            {
+                monthCalendar1.SelectionStart = date.Date;
+            }
+        }
+
+        private void GetTwo()
+        {
+            var start = monthCalendar1.SelectionStart;
+            var value = monthCalendar1.SelectionEnd;
+            var date = SystemHelper.GetDate(textBox1.Text, value);
+
+            if (date != DateTime.MinValue)
+            {
+                monthCalendar1.SelectionStart = start;
+                monthCalendar1.SelectionEnd = date.Date;
+            }
+        }
+
+        private void Data()
+        {
+            if (pic2.Value.Date != monthCalendar1.SelectionRange.End.Date)
+            {
+                SystemData.IsClear = true;
+                pic.Value = monthCalendar1.SelectionRange.Start.Date;
+                SystemData.IsClear = false;
+                pic2.Value = monthCalendar1.SelectionRange.End.Date;
+            }
+            else
+            {
+                pic.Value = monthCalendar1.SelectionRange.Start.Date;
+
+                SystemData.IsClear = true;
+                pic2.Value = monthCalendar1.SelectionRange.End.Date;
+                SystemData.IsClear = false;
+            }
         }
 
         private void monthCalendar1_KeyDown(object sender, KeyEventArgs e)
         {
-            var form = this;
-
+           
             if (e.KeyCode == Keys.Escape)
             {
-                form.Dispose();
+                Dispose();
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(pic2 == null)
-                    pic.Value = form.monthCalendar1.SelectionStart.Date;
+                if(!IsTwo)
+                    pic.Value = monthCalendar1.SelectionStart.Date;
                 else
                 {
-                    SystemData.IsClear = true;
-                    pic.Value = form.monthCalendar1.SelectionRange.Start.Date;
-                    SystemData.IsClear = false;
-                    pic2.Value = form.monthCalendar1.SelectionRange.End.Date;
+                    Data();
+                   
                 }
-                form.Dispose();
+                Dispose();
 
             }
 
@@ -83,29 +126,26 @@ namespace UASKI.Forms
                         break;
                 }
 
-                if (pic2 == null)
-                    pic.Value = form.monthCalendar1.SelectionStart.Date;
+                if (!IsTwo)
+                    pic.Value = monthCalendar1.SelectionStart.Date;
                 else
                 {
-                    SystemData.IsClear = true;
-                    pic.Value = form.monthCalendar1.SelectionRange.Start.Date;
-                    SystemData.IsClear = false;
-                    pic2.Value = form.monthCalendar1.SelectionRange.End.Date;
+                    Data();
                 }
-                form.Dispose();
+                Dispose();
             }
             else
             {
                 string symbol = SystemHelper.GetIntKeyDown(e.KeyCode).ToString();
 
-                if (e.KeyCode == Keys.Back && form.textBox1.Text.Length != 0)
+                if (e.KeyCode == Keys.Back && textBox1.Text.Length != 0)
                 {
-                    form.textBox1.Text = form.textBox1.Text.Remove(form.textBox1.Text.Length - 1, 1);
+                    textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1, 1);
                 }
 
                 if (!symbol.Equals("-1"))
                 {
-                    var textBox = form.textBox1;
+                    var textBox = textBox1;
                     textBox.Text += symbol;
                 }
             }
@@ -121,12 +161,10 @@ namespace UASKI.Forms
             }
             else
             {
-                var date = SystemHelper.GetDate(textBox1.Text, monthCalendar1.SelectionStart);
-
-                if (date != DateTime.MinValue)
-                {
-                    monthCalendar1.SelectionStart = date.Date;
-                }
+                if (IsTwo)
+                    GetTwo();
+                else
+                    GetOne();
             }
         }
 
@@ -135,5 +173,6 @@ namespace UASKI.Forms
             var key = new KeyEventArgs(Keys.Enter);
             monthCalendar1_KeyDown(sender, key);
         }
+
     }
 }

@@ -195,6 +195,8 @@ namespace UASKI
             this.label38 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.button48 = new System.Windows.Forms.Button();
+            this.button47 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -270,35 +272,29 @@ namespace UASKI
             this.dateTimePicker14 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker15 = new System.Windows.Forms.DateTimePicker();
             this.label86 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.LabelStatus = new System.Windows.Forms.Label();
-            this.TimerStatus = new System.Windows.Forms.Timer(this.components);
-            this.DateTimeLabel = new System.Windows.Forms.Label();
-            this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.label102 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label89 = new System.Windows.Forms.Label();
-            this.textBox38 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker16 = new System.Windows.Forms.DateTimePicker();
-            this.label90 = new System.Windows.Forms.Label();
-            this.label91 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
             this.panel20 = new System.Windows.Forms.Panel();
             this.button44 = new System.Windows.Forms.Button();
             this.button45 = new System.Windows.Forms.Button();
             this.button46 = new System.Windows.Forms.Button();
-            this.label92 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
-            this.button47 = new System.Windows.Forms.Button();
-            this.button48 = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.button49 = new System.Windows.Forms.Button();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
+            this.label92 = new System.Windows.Forms.Label();
+            this.label91 = new System.Windows.Forms.Label();
+            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker16 = new System.Windows.Forms.DateTimePicker();
+            this.label90 = new System.Windows.Forms.Label();
+            this.label89 = new System.Windows.Forms.Label();
+            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.label102 = new System.Windows.Forms.Label();
             this.tabPage16 = new System.Windows.Forms.TabPage();
+            this.button54 = new System.Windows.Forms.Button();
             this.dataGridView12 = new System.Windows.Forms.DataGridView();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.label88 = new System.Windows.Forms.Label();
             this.button51 = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
@@ -313,9 +309,13 @@ namespace UASKI
             this.textBox40 = new System.Windows.Forms.TextBox();
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.label98 = new System.Windows.Forms.Label();
-            this.button54 = new System.Windows.Forms.Button();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.LabelStatus = new System.Windows.Forms.Label();
+            this.TimerStatus = new System.Windows.Forms.Timer(this.components);
+            this.DateTimeLabel = new System.Windows.Forms.Label();
+            this.TimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -365,8 +365,8 @@ namespace UASKI
             this.tabPage14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).BeginInit();
             this.tabPage15.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.panel20.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.tabPage16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).BeginInit();
             this.panel21.SuspendLayout();
@@ -478,7 +478,7 @@ namespace UASKI
             // 
             // panel12
             // 
-            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel12.Controls.Add(this.label62);
             this.panel12.Controls.Add(this.button18);
             this.panel12.Controls.Add(this.label58);
@@ -573,7 +573,7 @@ namespace UASKI
             // 
             // panel13
             // 
-            this.panel13.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel13.Controls.Add(this.label54);
             this.panel13.Controls.Add(this.button24);
             this.panel13.Controls.Add(this.button21);
@@ -794,7 +794,7 @@ namespace UASKI
             // 
             // panel14
             // 
-            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel14.Controls.Add(this.label70);
             this.panel14.Controls.Add(this.button25);
             this.panel14.Controls.Add(this.button17);
@@ -989,7 +989,7 @@ namespace UASKI
             // 
             // tabPage10
             // 
-            this.tabPage10.BackColor = System.Drawing.Color.Silver;
+            this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage10.Controls.Add(this.button13);
             this.tabPage10.Controls.Add(this.dataGridView6);
             this.tabPage10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -1066,7 +1066,7 @@ namespace UASKI
             // 
             // panel17
             // 
-            this.panel17.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel17.Controls.Add(this.label73);
             this.panel17.Controls.Add(this.button26);
             this.panel17.Controls.Add(this.button23);
@@ -2229,6 +2229,30 @@ namespace UASKI
             this.panel11.Size = new System.Drawing.Size(204, 340);
             this.panel11.TabIndex = 35;
             // 
+            // button48
+            // 
+            this.button48.BackColor = System.Drawing.Color.White;
+            this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button48.Location = new System.Drawing.Point(22, 289);
+            this.button48.Name = "button48";
+            this.button48.Size = new System.Drawing.Size(164, 43);
+            this.button48.TabIndex = 4;
+            this.button48.Text = "Рецензия";
+            this.button48.UseVisualStyleBackColor = false;
+            this.button48.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button48_PreviewKeyDown);
+            // 
+            // button47
+            // 
+            this.button47.BackColor = System.Drawing.Color.White;
+            this.button47.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button47.Location = new System.Drawing.Point(22, 222);
+            this.button47.Name = "button47";
+            this.button47.Size = new System.Drawing.Size(164, 43);
+            this.button47.TabIndex = 3;
+            this.button47.Text = "Претензия";
+            this.button47.UseVisualStyleBackColor = false;
+            this.button47.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button47_PreviewKeyDown);
+            // 
             // button12
             // 
             this.button12.BackColor = System.Drawing.Color.White;
@@ -3092,6 +3116,431 @@ namespace UASKI
             this.label86.TabIndex = 40;
             this.label86.Text = "Справка о составляющих коэффициента качества";
             // 
+            // tabPage15
+            // 
+            this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage15.Controls.Add(this.panel20);
+            this.tabPage15.Controls.Add(this.panel10);
+            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Size = new System.Drawing.Size(881, 543);
+            this.tabPage15.TabIndex = 16;
+            this.tabPage15.Text = "Претензии";
+            // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.Silver;
+            this.panel20.Controls.Add(this.button44);
+            this.panel20.Controls.Add(this.button45);
+            this.panel20.Controls.Add(this.button46);
+            this.panel20.Location = new System.Drawing.Point(563, 44);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(204, 208);
+            this.panel20.TabIndex = 36;
+            // 
+            // button44
+            // 
+            this.button44.BackColor = System.Drawing.Color.White;
+            this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button44.Location = new System.Drawing.Point(22, 151);
+            this.button44.Name = "button44";
+            this.button44.Size = new System.Drawing.Size(164, 43);
+            this.button44.TabIndex = 2;
+            this.button44.Text = "Удалить";
+            this.button44.UseVisualStyleBackColor = false;
+            this.button44.Click += new System.EventHandler(this.button44_Click);
+            this.button44.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button44_PreviewKeyDown);
+            // 
+            // button45
+            // 
+            this.button45.BackColor = System.Drawing.Color.White;
+            this.button45.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button45.Location = new System.Drawing.Point(22, 79);
+            this.button45.Name = "button45";
+            this.button45.Size = new System.Drawing.Size(164, 43);
+            this.button45.TabIndex = 1;
+            this.button45.Text = "Изменить";
+            this.button45.UseVisualStyleBackColor = false;
+            this.button45.Click += new System.EventHandler(this.button45_Click);
+            this.button45.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button45_PreviewKeyDown);
+            // 
+            // button46
+            // 
+            this.button46.BackColor = System.Drawing.Color.White;
+            this.button46.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button46.Location = new System.Drawing.Point(22, 11);
+            this.button46.Name = "button46";
+            this.button46.Size = new System.Drawing.Size(164, 43);
+            this.button46.TabIndex = 0;
+            this.button46.Text = "Создать";
+            this.button46.UseVisualStyleBackColor = false;
+            this.button46.Click += new System.EventHandler(this.button46_Click);
+            this.button46.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button46_PreviewKeyDown);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.Silver;
+            this.panel10.Controls.Add(this.button49);
+            this.panel10.Controls.Add(this.label94);
+            this.panel10.Controls.Add(this.label93);
+            this.panel10.Controls.Add(this.label92);
+            this.panel10.Controls.Add(this.label91);
+            this.panel10.Controls.Add(this.textBox39);
+            this.panel10.Controls.Add(this.dateTimePicker16);
+            this.panel10.Controls.Add(this.label90);
+            this.panel10.Controls.Add(this.label89);
+            this.panel10.Controls.Add(this.textBox38);
+            this.panel10.Controls.Add(this.label102);
+            this.panel10.Location = new System.Drawing.Point(7, 13);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(550, 316);
+            this.panel10.TabIndex = 2;
+            // 
+            // button49
+            // 
+            this.button49.BackColor = System.Drawing.Color.White;
+            this.button49.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button49.Location = new System.Drawing.Point(274, 168);
+            this.button49.Name = "button49";
+            this.button49.Size = new System.Drawing.Size(19, 26);
+            this.button49.TabIndex = 34;
+            this.button49.Text = "^";
+            this.button49.UseVisualStyleBackColor = false;
+            this.button49.Click += new System.EventHandler(this.button49_Click);
+            // 
+            // label94
+            // 
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label94.ForeColor = System.Drawing.Color.Red;
+            this.label94.Location = new System.Drawing.Point(30, 289);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(238, 13);
+            this.label94.TabIndex = 33;
+            this.label94.Text = "Ошибка";
+            this.label94.Visible = false;
+            // 
+            // label93
+            // 
+            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label93.ForeColor = System.Drawing.Color.Red;
+            this.label93.Location = new System.Drawing.Point(30, 200);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(238, 13);
+            this.label93.TabIndex = 32;
+            this.label93.Text = "Ошибка";
+            this.label93.Visible = false;
+            // 
+            // label92
+            // 
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label92.ForeColor = System.Drawing.Color.Red;
+            this.label92.Location = new System.Drawing.Point(30, 117);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(279, 13);
+            this.label92.TabIndex = 31;
+            this.label92.Text = "Ошибка";
+            this.label92.Visible = false;
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label91.Location = new System.Drawing.Point(28, 227);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(80, 26);
+            this.label91.TabIndex = 30;
+            this.label91.Text = "Оценка";
+            // 
+            // textBox39
+            // 
+            this.textBox39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox39.Location = new System.Drawing.Point(33, 256);
+            this.textBox39.Name = "textBox39";
+            this.textBox39.Size = new System.Drawing.Size(119, 30);
+            this.textBox39.TabIndex = 29;
+            this.textBox39.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox39_KeyDown);
+            // 
+            // dateTimePicker16
+            // 
+            this.dateTimePicker16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker16.Location = new System.Drawing.Point(33, 168);
+            this.dateTimePicker16.Name = "dateTimePicker16";
+            this.dateTimePicker16.Size = new System.Drawing.Size(235, 29);
+            this.dateTimePicker16.TabIndex = 28;
+            this.dateTimePicker16.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker16_KeyDown);
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.Location = new System.Drawing.Point(28, 139);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(184, 26);
+            this.label90.TabIndex = 27;
+            this.label90.Text = "Дата выставления";
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label89.Location = new System.Drawing.Point(28, 55);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(48, 26);
+            this.label89.TabIndex = 26;
+            this.label89.Text = "Код";
+            // 
+            // textBox38
+            // 
+            this.textBox38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox38.Location = new System.Drawing.Point(33, 84);
+            this.textBox38.Name = "textBox38";
+            this.textBox38.Size = new System.Drawing.Size(276, 30);
+            this.textBox38.TabIndex = 25;
+            this.textBox38.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox38_KeyDown);
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Font = new System.Drawing.Font("Arial", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Location = new System.Drawing.Point(3, 9);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(304, 32);
+            this.label102.TabIndex = 2;
+            this.label102.Text = "Претензия на задачу";
+            // 
+            // tabPage16
+            // 
+            this.tabPage16.Controls.Add(this.button54);
+            this.tabPage16.Controls.Add(this.dataGridView12);
+            this.tabPage16.Controls.Add(this.panel21);
+            this.tabPage16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage16.Location = new System.Drawing.Point(4, 22);
+            this.tabPage16.Name = "tabPage16";
+            this.tabPage16.Size = new System.Drawing.Size(881, 543);
+            this.tabPage16.TabIndex = 17;
+            this.tabPage16.Text = "Просм. претензий";
+            this.tabPage16.UseVisualStyleBackColor = true;
+            // 
+            // button54
+            // 
+            this.button54.BackColor = System.Drawing.Color.White;
+            this.button54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button54.Location = new System.Drawing.Point(2, 0);
+            this.button54.Name = "button54";
+            this.button54.Size = new System.Drawing.Size(17, 30);
+            this.button54.TabIndex = 28;
+            this.button54.Text = "<";
+            this.button54.UseVisualStyleBackColor = false;
+            this.button54.Click += new System.EventHandler(this.button54_Click);
+            // 
+            // dataGridView12
+            // 
+            this.dataGridView12.AllowUserToAddRows = false;
+            this.dataGridView12.AllowUserToDeleteRows = false;
+            this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView12.Location = new System.Drawing.Point(245, 0);
+            this.dataGridView12.MultiSelect = false;
+            this.dataGridView12.Name = "dataGridView12";
+            this.dataGridView12.ReadOnly = true;
+            this.dataGridView12.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView12.Size = new System.Drawing.Size(636, 543);
+            this.dataGridView12.TabIndex = 17;
+            this.dataGridView12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView12_KeyDown);
+            // 
+            // panel21
+            // 
+            this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel21.Controls.Add(this.checkBox6);
+            this.panel21.Controls.Add(this.checkBox5);
+            this.panel21.Controls.Add(this.label88);
+            this.panel21.Controls.Add(this.button51);
+            this.panel21.Controls.Add(this.panel22);
+            this.panel21.Controls.Add(this.checkBox4);
+            this.panel21.Controls.Add(this.label97);
+            this.panel21.Controls.Add(this.textBox40);
+            this.panel21.Controls.Add(this.textBox41);
+            this.panel21.Controls.Add(this.label98);
+            this.panel21.Location = new System.Drawing.Point(-1, 0);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(246, 542);
+            this.panel21.TabIndex = 16;
+            this.panel21.Visible = false;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(6, 176);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(100, 24);
+            this.checkBox6.TabIndex = 33;
+            this.checkBox6.Text = "Рецензии";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            this.checkBox6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox6_PreviewKeyDown);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(7, 146);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(111, 24);
+            this.checkBox5.TabIndex = 32;
+            this.checkBox5.Text = "Претензии";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            this.checkBox5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox5_PreviewKeyDown);
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label88.Location = new System.Drawing.Point(3, 527);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(202, 15);
+            this.label88.TabIndex = 31;
+            this.label88.Text = "Сортировка: Ctrl + номер столбца";
+            // 
+            // button51
+            // 
+            this.button51.BackColor = System.Drawing.Color.White;
+            this.button51.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button51.Location = new System.Drawing.Point(226, 0);
+            this.button51.Name = "button51";
+            this.button51.Size = new System.Drawing.Size(17, 30);
+            this.button51.TabIndex = 29;
+            this.button51.Text = ">";
+            this.button51.UseVisualStyleBackColor = false;
+            this.button51.Click += new System.EventHandler(this.button51_Click);
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel22.Controls.Add(this.button52);
+            this.panel22.Controls.Add(this.button53);
+            this.panel22.Controls.Add(this.dateTimePicker17);
+            this.panel22.Controls.Add(this.dateTimePicker18);
+            this.panel22.Controls.Add(this.label95);
+            this.panel22.Controls.Add(this.label96);
+            this.panel22.Location = new System.Drawing.Point(0, 264);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(241, 129);
+            this.panel22.TabIndex = 14;
+            // 
+            // button52
+            // 
+            this.button52.BackColor = System.Drawing.Color.White;
+            this.button52.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button52.Location = new System.Drawing.Point(222, 79);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(19, 26);
+            this.button52.TabIndex = 31;
+            this.button52.Text = "^";
+            this.button52.UseVisualStyleBackColor = false;
+            this.button52.Click += new System.EventHandler(this.button52_Click);
+            // 
+            // button53
+            // 
+            this.button53.BackColor = System.Drawing.Color.White;
+            this.button53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button53.Location = new System.Drawing.Point(222, 27);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(19, 26);
+            this.button53.TabIndex = 30;
+            this.button53.Text = "^";
+            this.button53.UseVisualStyleBackColor = false;
+            this.button53.Click += new System.EventHandler(this.button53_Click);
+            // 
+            // dateTimePicker17
+            // 
+            this.dateTimePicker17.Location = new System.Drawing.Point(5, 27);
+            this.dateTimePicker17.Name = "dateTimePicker17";
+            this.dateTimePicker17.Size = new System.Drawing.Size(214, 26);
+            this.dateTimePicker17.TabIndex = 5;
+            this.dateTimePicker17.ValueChanged += new System.EventHandler(this.dateTimePicker17_ValueChanged);
+            this.dateTimePicker17.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker17_KeyDown);
+            // 
+            // dateTimePicker18
+            // 
+            this.dateTimePicker18.Location = new System.Drawing.Point(5, 79);
+            this.dateTimePicker18.Name = "dateTimePicker18";
+            this.dateTimePicker18.Size = new System.Drawing.Size(214, 26);
+            this.dateTimePicker18.TabIndex = 4;
+            this.dateTimePicker18.ValueChanged += new System.EventHandler(this.dateTimePicker18_ValueChanged);
+            this.dateTimePicker18.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker18_KeyDown);
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label95.Location = new System.Drawing.Point(1, 4);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(30, 20);
+            this.label95.TabIndex = 6;
+            this.label95.Text = "От";
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label96.Location = new System.Drawing.Point(1, 56);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(30, 20);
+            this.label96.TabIndex = 7;
+            this.label96.Text = "До";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.checkBox4.Location = new System.Drawing.Point(4, 234);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(152, 24);
+            this.checkBox4.TabIndex = 12;
+            this.checkBox4.Text = "Учитывать дату";
+            this.checkBox4.UseVisualStyleBackColor = false;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            this.checkBox4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox4_PreviewKeyDown);
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label97.Location = new System.Drawing.Point(3, 77);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(98, 20);
+            this.label97.TabIndex = 11;
+            this.label97.Text = "Код задачи";
+            // 
+            // textBox40
+            // 
+            this.textBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox40.Location = new System.Drawing.Point(6, 35);
+            this.textBox40.Name = "textBox40";
+            this.textBox40.Size = new System.Drawing.Size(235, 26);
+            this.textBox40.TabIndex = 10;
+            this.textBox40.TextChanged += new System.EventHandler(this.textBox40_TextChanged);
+            this.textBox40.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox40_KeyDown);
+            // 
+            // textBox41
+            // 
+            this.textBox41.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox41.Location = new System.Drawing.Point(7, 100);
+            this.textBox41.Name = "textBox41";
+            this.textBox41.Size = new System.Drawing.Size(214, 26);
+            this.textBox41.TabIndex = 8;
+            this.textBox41.TextChanged += new System.EventHandler(this.textBox41_TextChanged);
+            this.textBox41.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox41_KeyDown);
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label98.Location = new System.Drawing.Point(3, 12);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(39, 20);
+            this.label98.TabIndex = 3;
+            this.label98.Text = "Код";
+            // 
             // panel3
             // 
             this.panel3.Location = new System.Drawing.Point(446, 4);
@@ -3149,443 +3598,6 @@ namespace UASKI
             this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
             this.printPreviewDialog.Name = "printPreviewDialog2";
             this.printPreviewDialog.Visible = false;
-            // 
-            // tabPage15
-            // 
-            this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tabPage15.Controls.Add(this.panel20);
-            this.tabPage15.Controls.Add(this.panel10);
-            this.tabPage15.Location = new System.Drawing.Point(4, 22);
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(881, 543);
-            this.tabPage15.TabIndex = 16;
-            this.tabPage15.Text = "Претензии";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Arial", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(3, 9);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(304, 32);
-            this.label102.TabIndex = 2;
-            this.label102.Text = "Претензия на задачу";
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.Silver;
-            this.panel10.Controls.Add(this.button49);
-            this.panel10.Controls.Add(this.label94);
-            this.panel10.Controls.Add(this.label93);
-            this.panel10.Controls.Add(this.label92);
-            this.panel10.Controls.Add(this.label91);
-            this.panel10.Controls.Add(this.textBox39);
-            this.panel10.Controls.Add(this.dateTimePicker16);
-            this.panel10.Controls.Add(this.label90);
-            this.panel10.Controls.Add(this.label89);
-            this.panel10.Controls.Add(this.textBox38);
-            this.panel10.Controls.Add(this.label102);
-            this.panel10.Location = new System.Drawing.Point(7, 13);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(550, 316);
-            this.panel10.TabIndex = 2;
-            // 
-            // label89
-            // 
-            this.label89.AutoSize = true;
-            this.label89.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.Location = new System.Drawing.Point(28, 55);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(48, 26);
-            this.label89.TabIndex = 26;
-            this.label89.Text = "Код";
-            // 
-            // textBox38
-            // 
-            this.textBox38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox38.Location = new System.Drawing.Point(33, 84);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(276, 30);
-            this.textBox38.TabIndex = 25;
-            this.textBox38.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox38_KeyDown);
-            // 
-            // dateTimePicker16
-            // 
-            this.dateTimePicker16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker16.Location = new System.Drawing.Point(33, 168);
-            this.dateTimePicker16.Name = "dateTimePicker16";
-            this.dateTimePicker16.Size = new System.Drawing.Size(235, 29);
-            this.dateTimePicker16.TabIndex = 28;
-            this.dateTimePicker16.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker16_KeyDown);
-            // 
-            // label90
-            // 
-            this.label90.AutoSize = true;
-            this.label90.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(28, 139);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(184, 26);
-            this.label90.TabIndex = 27;
-            this.label90.Text = "Дата выставления";
-            // 
-            // label91
-            // 
-            this.label91.AutoSize = true;
-            this.label91.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(28, 227);
-            this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(80, 26);
-            this.label91.TabIndex = 30;
-            this.label91.Text = "Оценка";
-            // 
-            // textBox39
-            // 
-            this.textBox39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox39.Location = new System.Drawing.Point(33, 256);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(119, 30);
-            this.textBox39.TabIndex = 29;
-            this.textBox39.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox39_KeyDown);
-            // 
-            // panel20
-            // 
-            this.panel20.BackColor = System.Drawing.Color.Silver;
-            this.panel20.Controls.Add(this.button44);
-            this.panel20.Controls.Add(this.button45);
-            this.panel20.Controls.Add(this.button46);
-            this.panel20.Location = new System.Drawing.Point(563, 44);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(204, 208);
-            this.panel20.TabIndex = 36;
-            // 
-            // button44
-            // 
-            this.button44.BackColor = System.Drawing.Color.White;
-            this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button44.Location = new System.Drawing.Point(22, 151);
-            this.button44.Name = "button44";
-            this.button44.Size = new System.Drawing.Size(164, 43);
-            this.button44.TabIndex = 2;
-            this.button44.Text = "Удалить";
-            this.button44.UseVisualStyleBackColor = false;
-            this.button44.Click += new System.EventHandler(this.button44_Click);
-            this.button44.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button44_PreviewKeyDown);
-            // 
-            // button45
-            // 
-            this.button45.BackColor = System.Drawing.Color.White;
-            this.button45.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button45.Location = new System.Drawing.Point(22, 79);
-            this.button45.Name = "button45";
-            this.button45.Size = new System.Drawing.Size(164, 43);
-            this.button45.TabIndex = 1;
-            this.button45.Text = "Изменить";
-            this.button45.UseVisualStyleBackColor = false;
-            this.button45.Click += new System.EventHandler(this.button45_Click);
-            this.button45.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button45_PreviewKeyDown);
-            // 
-            // button46
-            // 
-            this.button46.BackColor = System.Drawing.Color.White;
-            this.button46.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button46.Location = new System.Drawing.Point(22, 11);
-            this.button46.Name = "button46";
-            this.button46.Size = new System.Drawing.Size(164, 43);
-            this.button46.TabIndex = 0;
-            this.button46.Text = "Создать";
-            this.button46.UseVisualStyleBackColor = false;
-            this.button46.Click += new System.EventHandler(this.button46_Click);
-            this.button46.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button46_PreviewKeyDown);
-            // 
-            // label92
-            // 
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label92.ForeColor = System.Drawing.Color.Red;
-            this.label92.Location = new System.Drawing.Point(30, 117);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(279, 13);
-            this.label92.TabIndex = 31;
-            this.label92.Text = "Ошибка";
-            this.label92.Visible = false;
-            // 
-            // label93
-            // 
-            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label93.ForeColor = System.Drawing.Color.Red;
-            this.label93.Location = new System.Drawing.Point(30, 200);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(238, 13);
-            this.label93.TabIndex = 32;
-            this.label93.Text = "Ошибка";
-            this.label93.Visible = false;
-            // 
-            // label94
-            // 
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label94.ForeColor = System.Drawing.Color.Red;
-            this.label94.Location = new System.Drawing.Point(30, 289);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(238, 13);
-            this.label94.TabIndex = 33;
-            this.label94.Text = "Ошибка";
-            this.label94.Visible = false;
-            // 
-            // button47
-            // 
-            this.button47.BackColor = System.Drawing.Color.White;
-            this.button47.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button47.Location = new System.Drawing.Point(22, 222);
-            this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(164, 43);
-            this.button47.TabIndex = 3;
-            this.button47.Text = "Претензия";
-            this.button47.UseVisualStyleBackColor = false;
-            this.button47.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button47_PreviewKeyDown);
-            // 
-            // button48
-            // 
-            this.button48.BackColor = System.Drawing.Color.White;
-            this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button48.Location = new System.Drawing.Point(22, 289);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(164, 43);
-            this.button48.TabIndex = 4;
-            this.button48.Text = "Рецензия";
-            this.button48.UseVisualStyleBackColor = false;
-            this.button48.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button48_PreviewKeyDown);
-            // 
-            // button49
-            // 
-            this.button49.BackColor = System.Drawing.Color.White;
-            this.button49.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button49.Location = new System.Drawing.Point(274, 168);
-            this.button49.Name = "button49";
-            this.button49.Size = new System.Drawing.Size(19, 26);
-            this.button49.TabIndex = 34;
-            this.button49.Text = "^";
-            this.button49.UseVisualStyleBackColor = false;
-            this.button49.Click += new System.EventHandler(this.button49_Click);
-            // 
-            // tabPage16
-            // 
-            this.tabPage16.Controls.Add(this.button54);
-            this.tabPage16.Controls.Add(this.dataGridView12);
-            this.tabPage16.Controls.Add(this.panel21);
-            this.tabPage16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabPage16.Location = new System.Drawing.Point(4, 22);
-            this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(881, 543);
-            this.tabPage16.TabIndex = 17;
-            this.tabPage16.Text = "Просм. претензий";
-            this.tabPage16.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView12
-            // 
-            this.dataGridView12.AllowUserToAddRows = false;
-            this.dataGridView12.AllowUserToDeleteRows = false;
-            this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView12.Location = new System.Drawing.Point(245, 0);
-            this.dataGridView12.MultiSelect = false;
-            this.dataGridView12.Name = "dataGridView12";
-            this.dataGridView12.ReadOnly = true;
-            this.dataGridView12.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView12.Size = new System.Drawing.Size(636, 543);
-            this.dataGridView12.TabIndex = 17;
-            this.dataGridView12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView12_KeyDown);
-            // 
-            // panel21
-            // 
-            this.panel21.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel21.Controls.Add(this.checkBox6);
-            this.panel21.Controls.Add(this.checkBox5);
-            this.panel21.Controls.Add(this.label88);
-            this.panel21.Controls.Add(this.button51);
-            this.panel21.Controls.Add(this.panel22);
-            this.panel21.Controls.Add(this.checkBox4);
-            this.panel21.Controls.Add(this.label97);
-            this.panel21.Controls.Add(this.textBox40);
-            this.panel21.Controls.Add(this.textBox41);
-            this.panel21.Controls.Add(this.label98);
-            this.panel21.Location = new System.Drawing.Point(-1, 0);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(246, 542);
-            this.panel21.TabIndex = 16;
-            this.panel21.Visible = false;
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label88.Location = new System.Drawing.Point(3, 527);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(202, 15);
-            this.label88.TabIndex = 31;
-            this.label88.Text = "Сортировка: Ctrl + номер столбца";
-            // 
-            // button51
-            // 
-            this.button51.BackColor = System.Drawing.Color.White;
-            this.button51.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button51.Location = new System.Drawing.Point(226, 0);
-            this.button51.Name = "button51";
-            this.button51.Size = new System.Drawing.Size(17, 30);
-            this.button51.TabIndex = 29;
-            this.button51.Text = ">";
-            this.button51.UseVisualStyleBackColor = false;
-            // 
-            // panel22
-            // 
-            this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel22.Controls.Add(this.button52);
-            this.panel22.Controls.Add(this.button53);
-            this.panel22.Controls.Add(this.dateTimePicker17);
-            this.panel22.Controls.Add(this.dateTimePicker18);
-            this.panel22.Controls.Add(this.label95);
-            this.panel22.Controls.Add(this.label96);
-            this.panel22.Location = new System.Drawing.Point(0, 264);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(241, 129);
-            this.panel22.TabIndex = 14;
-            // 
-            // button52
-            // 
-            this.button52.BackColor = System.Drawing.Color.White;
-            this.button52.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button52.Location = new System.Drawing.Point(222, 79);
-            this.button52.Name = "button52";
-            this.button52.Size = new System.Drawing.Size(19, 26);
-            this.button52.TabIndex = 31;
-            this.button52.Text = "^";
-            this.button52.UseVisualStyleBackColor = false;
-            // 
-            // button53
-            // 
-            this.button53.BackColor = System.Drawing.Color.White;
-            this.button53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button53.Location = new System.Drawing.Point(222, 27);
-            this.button53.Name = "button53";
-            this.button53.Size = new System.Drawing.Size(19, 26);
-            this.button53.TabIndex = 30;
-            this.button53.Text = "^";
-            this.button53.UseVisualStyleBackColor = false;
-            // 
-            // dateTimePicker17
-            // 
-            this.dateTimePicker17.Location = new System.Drawing.Point(5, 27);
-            this.dateTimePicker17.Name = "dateTimePicker17";
-            this.dateTimePicker17.Size = new System.Drawing.Size(214, 26);
-            this.dateTimePicker17.TabIndex = 5;
-            this.dateTimePicker17.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker17_KeyDown);
-            // 
-            // dateTimePicker18
-            // 
-            this.dateTimePicker18.Location = new System.Drawing.Point(5, 79);
-            this.dateTimePicker18.Name = "dateTimePicker18";
-            this.dateTimePicker18.Size = new System.Drawing.Size(214, 26);
-            this.dateTimePicker18.TabIndex = 4;
-            this.dateTimePicker18.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker18_KeyDown);
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label95.Location = new System.Drawing.Point(1, 4);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(30, 20);
-            this.label95.TabIndex = 6;
-            this.label95.Text = "От";
-            // 
-            // label96
-            // 
-            this.label96.AutoSize = true;
-            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label96.Location = new System.Drawing.Point(1, 56);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(30, 20);
-            this.label96.TabIndex = 7;
-            this.label96.Text = "До";
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(4, 234);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(152, 24);
-            this.checkBox4.TabIndex = 12;
-            this.checkBox4.Text = "Учитывать дату";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox4_PreviewKeyDown);
-            // 
-            // label97
-            // 
-            this.label97.AutoSize = true;
-            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label97.Location = new System.Drawing.Point(3, 77);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(98, 20);
-            this.label97.TabIndex = 11;
-            this.label97.Text = "Код задачи";
-            // 
-            // textBox40
-            // 
-            this.textBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox40.Location = new System.Drawing.Point(6, 35);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(235, 26);
-            this.textBox40.TabIndex = 10;
-            this.textBox40.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox40_KeyDown);
-            // 
-            // textBox41
-            // 
-            this.textBox41.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox41.Location = new System.Drawing.Point(7, 100);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(214, 26);
-            this.textBox41.TabIndex = 8;
-            this.textBox41.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox41_KeyDown);
-            // 
-            // label98
-            // 
-            this.label98.AutoSize = true;
-            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label98.Location = new System.Drawing.Point(3, 12);
-            this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(39, 20);
-            this.label98.TabIndex = 3;
-            this.label98.Text = "Код";
-            // 
-            // button54
-            // 
-            this.button54.BackColor = System.Drawing.Color.White;
-            this.button54.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button54.Location = new System.Drawing.Point(2, 0);
-            this.button54.Name = "button54";
-            this.button54.Size = new System.Drawing.Size(17, 30);
-            this.button54.TabIndex = 28;
-            this.button54.Text = "<";
-            this.button54.UseVisualStyleBackColor = false;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(7, 146);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(111, 24);
-            this.checkBox5.TabIndex = 32;
-            this.checkBox5.Text = "Претензии";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox5_PreviewKeyDown);
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(6, 176);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(100, 24);
-            this.checkBox6.TabIndex = 33;
-            this.checkBox6.Text = "Рецензии";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox6_PreviewKeyDown);
             // 
             // Gl_Form
             // 
@@ -3673,9 +3685,9 @@ namespace UASKI
             this.tabPage14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).EndInit();
             this.tabPage15.ResumeLayout(false);
+            this.panel20.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel20.ResumeLayout(false);
             this.tabPage16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).EndInit();
             this.panel21.ResumeLayout(false);

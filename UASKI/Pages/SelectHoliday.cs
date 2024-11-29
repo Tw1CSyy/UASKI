@@ -21,13 +21,13 @@ namespace UASKI.Pages
         {
             Select();
             form.dataGridView6.Focus();
-            SystemHelper.SelectButton(false, form.button13);
+            SystemHelper.SelectButton(form.button13, false);
         }
 
         protected override void Clear()
         {
             form.dataGridView6.DataSource = null;
-            SystemHelper.SelectButton(false, form.button13);
+            SystemHelper.SelectButton(form.button13, false);
         }
 
         public override void Select()
@@ -54,7 +54,7 @@ namespace UASKI.Pages
             form.dataGridView6.ClearSelection();
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
-            SystemHelper.SelectButton(false, form.button13);
+            SystemHelper.SelectButton(form.button13, false);
         }
 
         protected override void FilterOpen()
@@ -73,7 +73,7 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectButton(true, form.button13);
+                SystemHelper.SelectButton(form.button13);
             }
             else if ((e.KeyCode == Keys.Up
                && form.dataGridView6.SelectedRows.Count != 0
@@ -95,7 +95,7 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Left)
             {
                 form.dataGridView6.Focus();
-                SystemHelper.SelectButton(false, form.button13);
+                SystemHelper.SelectButton(form.button13, false);
             }
             else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {

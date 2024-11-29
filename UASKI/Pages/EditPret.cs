@@ -52,9 +52,9 @@ namespace UASKI.Pages
             form.textBox38.Clear();
             form.textBox39.Clear();
 
-            SystemHelper.SelectButton(false, form.button44);
-            SystemHelper.SelectButton(false, form.button45);
-            SystemHelper.SelectButton(false, form.button46);
+            SystemHelper.SelectButton(form.button44, false);
+            SystemHelper.SelectButton(form.button45, false);
+            SystemHelper.SelectButton(form.button46, false);
         }
 
         protected override void Exit()
@@ -81,9 +81,9 @@ namespace UASKI.Pages
                 if (list[index].Enabled)
                 {
                     foreach (var item in list)
-                        SystemHelper.SelectButton(false, item);
+                        SystemHelper.SelectButton(item, false);
 
-                    SystemHelper.SelectButton(true, list[index]);
+                    SystemHelper.SelectButton(list[index]);
                     break;
                 }
 
@@ -164,7 +164,7 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox38);
-                SystemHelper.SelectButton(false, form.button46);
+                SystemHelper.SelectButton(form.button46, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
@@ -202,7 +202,7 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox38);
-                SystemHelper.SelectButton(false, form.button45);
+                SystemHelper.SelectButton(form.button45, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
@@ -235,7 +235,7 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Left)
             {
                 SystemHelper.SelectTextBox(form.textBox38);
-                SystemHelper.SelectButton(false, form.button44);
+                SystemHelper.SelectButton(form.button44, false);
             }
             else if(e.KeyCode == Keys.Up)
             {

@@ -52,8 +52,8 @@ namespace UASKI.Pages
                 var con = IspService.GetByCode(item.IdCon, listUser);
 
                 var st = new DataGridRowModel(item.Code,
-                    $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.",
-                    $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.",
+                    IspService.GetIniz(isp),
+                    IspService.GetIniz(con),
                     item.Date.ToString("dd.MM.yyyy"), item.DateClose.ToString("dd.MM.yyyy"),
                     item.Otm.ToString());
 
@@ -136,7 +136,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                form.checkBox1.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox1);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Right)
@@ -162,23 +162,25 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Enter)
             {
                 form.checkBox1.Checked = !form.checkBox1.Checked;
-                e.IsInputKey = true;
+                
             }
             else if (e.KeyCode == Keys.Down && form.panel15.Visible)
             {
                 form.dateTimePicker2.Focus();
-                e.IsInputKey = true;
+                SystemHelper.SelectCheckBox(form.checkBox1 , false);
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox31);
-                e.IsInputKey = true;
+                SystemHelper.SelectCheckBox(form.checkBox1, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                e.IsInputKey = true;
+                SystemHelper.SelectCheckBox(form.checkBox1, false);
             }
+
+            e.IsInputKey = true;
         }
 
         public void dateTimePicker2_KeyDown(KeyEventArgs e)
@@ -195,7 +197,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                form.checkBox1.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox1);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)

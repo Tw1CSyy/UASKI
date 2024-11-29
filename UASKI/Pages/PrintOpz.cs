@@ -21,8 +21,8 @@ namespace UASKI.Pages
         protected override void Show()
         {
             Select();
-            SystemHelper.SelectButton(true, form.button37);
-            SystemHelper.SelectDataGridView(false, form.dataGridView8);
+            SystemHelper.SelectButton(form.button37);
+            SystemHelper.SelectDataGridView(form.dataGridView8, false);
             form.label77.Text = "На " + DateTime.Today.ToString("dd.MM.yyyy");
         }
 
@@ -35,8 +35,8 @@ namespace UASKI.Pages
         {
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
-            SystemHelper.SelectDataGridView(false, form.dataGridView8);
-            SystemHelper.SelectButton(false, form.button37);
+            SystemHelper.SelectDataGridView(form.dataGridView8, false);
+            SystemHelper.SelectButton(form.button37, false);
         }
 
         public override void Select()
@@ -95,8 +95,8 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Down)
             {
-                if (SystemHelper.SelectDataGridView(true, form.dataGridView8))
-                    SystemHelper.SelectButton(false, form.button37);
+                if (SystemHelper.SelectDataGridView(form.dataGridView8))
+                    SystemHelper.SelectButton(form.button37, false);
             }
             else if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
@@ -122,8 +122,8 @@ namespace UASKI.Pages
                 && form.dataGridView8.SelectedRows.Count != 0
                 && form.dataGridView8.SelectedRows[0].Index == 0))
             {
-                SystemHelper.SelectButton(true, form.button37);
-                SystemHelper.SelectDataGridView(false, form.dataGridView8);
+                SystemHelper.SelectButton(form.button37);
+                SystemHelper.SelectDataGridView(form.dataGridView8, false);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Escape)

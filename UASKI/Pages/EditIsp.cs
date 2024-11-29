@@ -82,8 +82,8 @@ namespace UASKI.Pages
             form.label32.Visible = false;
 
             form.dataGridView4.DataSource = null;
-            SystemHelper.SelectButton(false, form.button6);
-            SystemHelper.SelectButton(false, form.button7);
+            SystemHelper.SelectButton(form.button6, false);
+            SystemHelper.SelectButton(form.button7, false);
         }
 
         protected override void Exit()
@@ -101,7 +101,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectButton(form.button6);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
@@ -125,7 +125,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectButton(form.button6);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
@@ -149,7 +149,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectButton(form.button6);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
@@ -168,7 +168,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectDataGridView(true, form.dataGridView4);
+                SystemHelper.SelectDataGridView(form.dataGridView4);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
@@ -197,7 +197,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectDataGridView(true, form.dataGridView4);
+                SystemHelper.SelectDataGridView(form.dataGridView4);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
@@ -207,7 +207,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectButton(form.button6);
                 e.Handled = true;
             }
         }
@@ -216,7 +216,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(false, form.button6);
+                SystemHelper.SelectButton(form.button6, false);
                 SystemHelper.SelectTextBox(form.textBox18);
             }
             else if (e.KeyCode == Keys.Enter)
@@ -250,12 +250,12 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectButton(false, form.button6);
-                SystemHelper.SelectButton(true, form.button7);
+                SystemHelper.SelectButton(form.button6, false);
+                SystemHelper.SelectButton(form.button7);
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectButton(false, form.button6);
+                SystemHelper.SelectButton(form.button6, false);
                 Exit();
             }
 
@@ -266,12 +266,12 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectButton(false, form.button7);
-                SystemHelper.SelectButton(true, form.button6);
+                SystemHelper.SelectButton(form.button7, false);
+                SystemHelper.SelectButton(form.button6);
             }
             else if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(false, form.button7);
+                SystemHelper.SelectButton(form.button7, false);
                 SystemHelper.SelectTextBox(form.textBox18);
             }
             else if (e.KeyCode == Keys.Enter)
@@ -295,13 +295,13 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectButton(false, form.button7);
+                SystemHelper.SelectButton(form.button7, false);
                 Exit(); 
             }
             else if (e.KeyCode == Keys.Down)
             {
-                if (SystemHelper.SelectDataGridView(true, form.dataGridView4))
-                SystemHelper.SelectButton(false, form.button7);
+                if (SystemHelper.SelectDataGridView(form.dataGridView4))
+                SystemHelper.SelectButton(form.button7, false);
             }
 
             e.IsInputKey = true;
@@ -314,13 +314,13 @@ namespace UASKI.Pages
                 && form.dataGridView4.SelectedRows[0].Index == 0))
             {
 
-                SystemHelper.SelectDataGridView(false, form.dataGridView4);
+                SystemHelper.SelectDataGridView(form.dataGridView4, false);
                 SystemHelper.SelectTextBox(form.textBox15);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectDataGridView(false, form.dataGridView4);
+                SystemHelper.SelectDataGridView(form.dataGridView4, false);
                 Exit();
                 e.Handled = true;
             }

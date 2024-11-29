@@ -38,7 +38,7 @@ namespace UASKI.Pages
             form.label25.Visible = false;
             form.label26.Visible = false;
 
-            SystemHelper.SelectButton(false, form.button1);
+            SystemHelper.SelectButton(form.button1, false);
         }
 
         protected override void Exit()
@@ -60,7 +60,7 @@ namespace UASKI.Pages
                     {
                         form.textBox2.Text = isp.CodePodr.ToString();
                         form.textBox3.Text = isp.Code.ToString();
-                        form.textBox1.Text = $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.";
+                        form.textBox1.Text = IspService.GetIniz(isp , false);
                     }
 
                     SystemHelper.SelectTextBox(form.textBox4);
@@ -104,7 +104,7 @@ namespace UASKI.Pages
                     {
                         form.textBox5.Text = isp.CodePodr.ToString();
                         form.textBox6.Text = isp.Code.ToString();
-                        form.textBox4.Text = $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.";
+                        form.textBox4.Text = IspService.GetIniz(isp , false);
                     }
 
                     SystemHelper.SelectTextBox(form.textBox7);
@@ -195,17 +195,17 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox4);
-                SystemHelper.SelectButton(false, form.button1);
+                SystemHelper.SelectButton(form.button1, false);
             }
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectButton(false, form.button1);
+                SystemHelper.SelectButton(form.button1, false);
                 form.dateTimePicker1.Focus();
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                SystemHelper.SelectButton(false, form.button1);
+                SystemHelper.SelectButton(form.button1, false);
             }
 
             e.IsInputKey = true;
@@ -216,7 +216,7 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
-                SystemHelper.SelectButton(true, form.button1);
+                SystemHelper.SelectButton(form.button1);
                 form.button1.Focus();
             }
             else if (e.KeyCode == Keys.Left)

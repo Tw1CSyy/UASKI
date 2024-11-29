@@ -35,7 +35,7 @@ namespace UASKI.Pages
             form.label21.Visible = false;
             form.label22.Visible = false;
 
-            SystemHelper.SelectButton(false, form.button4);
+            SystemHelper.SelectButton(form.button4, false);
         }
 
         protected override void Exit()
@@ -116,7 +116,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectButton(true, form.button4);
+                SystemHelper.SelectButton(form.button4);
                 e.Handled = true;
             }
         }
@@ -125,7 +125,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectButton(true, form.button4);
+                SystemHelper.SelectButton(form.button4);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Left)
@@ -180,12 +180,12 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                SystemHelper.SelectButton(false, form.button4);
+                SystemHelper.SelectButton(form.button4, false);
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox12);
-                SystemHelper.SelectButton(false, form.button4);
+                SystemHelper.SelectButton(form.button4, false);
             }
 
             e.IsInputKey = true;

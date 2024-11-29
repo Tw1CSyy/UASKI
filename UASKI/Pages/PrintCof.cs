@@ -31,7 +31,7 @@ namespace UASKI.Pages
         {
             form.textBox36.Clear();
             form.textBox37.Clear();
-            SystemHelper.SelectButton(false, form.button42);
+            SystemHelper.SelectButton(form.button42, false);
             form.dataGridView11.DataSource = null;
         }
 
@@ -61,7 +61,7 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button42);
+                SystemHelper.SelectButton(form.button42);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
@@ -101,7 +101,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectDataGridView(true, form.dataGridView11);
+                SystemHelper.SelectDataGridView(form.dataGridView11);
                 e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey)
@@ -116,7 +116,7 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(true, form.button42);
+                SystemHelper.SelectButton(form.button42);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Escape)
@@ -131,7 +131,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectDataGridView(true, form.dataGridView11);
+                SystemHelper.SelectDataGridView(form.dataGridView11);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
@@ -152,17 +152,17 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
-                SystemHelper.SelectButton(false, form.button42);
+                SystemHelper.SelectButton(form.button42 , false);
             }
             else if(e.KeyCode == Keys.Left)
             {
                 form.dateTimePicker15.Focus();
-                SystemHelper.SelectButton(false, form.button42);
+                SystemHelper.SelectButton(form.button42, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
-                if(SystemHelper.SelectDataGridView(true , form.dataGridView11))
-                    SystemHelper.SelectButton(false, form.button42);
+                if(SystemHelper.SelectDataGridView(form.dataGridView11))
+                    SystemHelper.SelectButton(form.button42, false);
             }
 
             e.IsInputKey = true;

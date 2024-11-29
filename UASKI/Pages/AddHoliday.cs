@@ -51,7 +51,7 @@ namespace UASKI.Pages
         {
             form.label27.Visible = false;
             form.dataGridView2.DataSource = null;
-            SystemHelper.SelectButton(false, form.button5);
+            SystemHelper.SelectButton(form.button5, false);
         }
 
         protected override void Exit()
@@ -65,7 +65,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectButton(true, form.button5);
+                SystemHelper.SelectButton(form.button5);
                 form.button5.Focus();
                 e.Handled = true;
             }
@@ -81,7 +81,7 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 form.monthCalendar1.Focus();
-                SystemHelper.SelectButton(false, form.button5);
+                SystemHelper.SelectButton(form.button5, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -111,7 +111,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
-                SystemHelper.SelectButton(false, form.button5);
+                SystemHelper.SelectButton(form.button5, false);
             }
 
             e.IsInputKey = true;

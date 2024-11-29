@@ -80,7 +80,7 @@ namespace UASKI.Models.Pages
                 || e.KeyCode == Keys.Escape)
             {
                 Exit();
-                SystemHelper.SelectDataGridView(false, form.IspDataGridView);
+                SystemHelper.SelectDataGridView(form.IspDataGridView, false);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Enter)

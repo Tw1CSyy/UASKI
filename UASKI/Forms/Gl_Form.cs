@@ -680,6 +680,36 @@ namespace UASKI
                 }
             }
         }
+        private void textBox40_TextChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+                SystemData.Pages.SelectPret.Select();
+        }
+        private void textBox41_TextChanged(object sender, EventArgs e)
+        {
+            textBox40_TextChanged(sender, e);
+        }
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox40_TextChanged(sender, e);
+        }
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox40_TextChanged(sender, e);
+        }
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox40_TextChanged(sender, e);
+            panel22.Visible = checkBox4.Checked;
+        }
+        private void dateTimePicker17_ValueChanged(object sender, EventArgs e)
+        {
+            textBox40_TextChanged(sender, e);
+        }
+        private void dateTimePicker18_ValueChanged(object sender, EventArgs e)
+        {
+            textBox40_TextChanged(sender, e);
+        }
 
         #endregion
 
@@ -938,6 +968,26 @@ namespace UASKI
         {
             var key = new PreviewKeyDownEventArgs(Keys.Enter);
             button44_PreviewKeyDown(sender, key);
+        }
+        private void button53_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker17_KeyDown(sender, key);
+        }
+        private void button52_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker18_KeyDown(sender, key);
+        }
+        private void button54_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            dataGridView12_KeyDown(sender, key);
+        }
+        private void button51_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox40_KeyDown(sender, key);
         }
 
         #endregion

@@ -183,5 +183,18 @@ namespace UASKI.Services
 
             return result;
         }
+
+        /// <summary>
+        /// Возвращает строку кода и инициалов исполнителя
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public static string GetIniz(IspEntity entity , bool code = true)
+        {
+           if(code)
+                return $"{entity.Code} {entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}.";
+           else
+                return $"{entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}.";
+        }
     }
 }

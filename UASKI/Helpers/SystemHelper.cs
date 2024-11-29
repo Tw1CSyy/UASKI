@@ -56,11 +56,11 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Меняет фон кнопки для отображения выделения
+        /// Включает и меняет фон кнопки для отображения выделения
         /// </summary>
+        /// <param name="btn">Button для выделения</param>
         /// <param name="selected">Вкл/Выкл</param>
-        /// <param name="btn">Кнопка</param>
-        public static void SelectButton(bool selected , Button btn)
+        public static void SelectButton(Button btn , bool selected = true)
         {
             if(selected)
             {
@@ -74,11 +74,11 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Включает и выбирает DataGridView
+        /// Выбирает DataGridView
         /// </summary>
+        /// <param name="d">DataGridView для выделения</param>
         /// <param name="selected">Вкл/Выкл</param>
-        /// <param name="d">ДатаГридВью</param>
-        public static bool SelectDataGridView(bool selected , DataGridView d)
+        public static bool SelectDataGridView(DataGridView d , bool selected = true)
         {
             if(selected)
             {
@@ -101,11 +101,29 @@ namespace UASKI.Helpers
         /// <summary>
         /// Выбирает текст бокс и переводит курсор
         /// </summary>
-        /// <param name="t"></param>
+        /// <param name="t">TextBox для выделения</param>
         public static void SelectTextBox(TextBox t)
         {
             t.Focus();
             t.SelectionStart = t.Text.Length;
+        }
+
+        /// <summary>
+        /// Выбирает и веделяет CheckBox
+        /// </summary>
+        /// <param name="c">CheckBox для выделения</param>
+        /// <param name="selected"></param>
+        public static void SelectCheckBox(CheckBox c , bool selected = true)
+        {
+            if (selected)
+            {
+                c.BackColor = Color.LightBlue;
+                c.Focus();
+            }
+            else
+            {
+                c.BackColor = Color.FromArgb(224, 224, 224);
+            }
         }
 
         /// <summary>
@@ -399,6 +417,7 @@ namespace UASKI.Helpers
                     d.Sort(d.Columns[index - 1], System.ComponentModel.ListSortDirection.Descending);
             }
         }
+
 
         /// <summary>
         /// Формирует документ для печати

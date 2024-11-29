@@ -47,7 +47,7 @@ namespace UASKI.Pages
                 var isp = IspService.GetByCode(item.IdIsp, listUser);
                 var con = IspService.GetByCode(item.IdCon, listUser);
 
-                var st = new DataGridRowModel(item.Code, $"{isp.FirstName} {isp.Name} {isp.LastName}", $"{con.FirstName} {con.Name} {con.LastName}", item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Code, IspService.GetIniz(isp), IspService.GetIniz(con), item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 
@@ -132,7 +132,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                form.checkBox2.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox2);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
@@ -153,23 +153,24 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Enter)
             {
                 form.checkBox2.Checked = !form.checkBox2.Checked;
-                e.IsInputKey = true;
             }
             else if(e.KeyCode == Keys.Down && form.panel16.Visible)
             {
                 form.dateTimePicker5.Focus();
-                e.IsInputKey = true;
+                SystemHelper.SelectCheckBox(form.checkBox2, false);
             }
             else if(e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectTextBox(form.textBox29);
-                e.IsInputKey = true;
+                SystemHelper.SelectCheckBox(form.checkBox2, false);
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                e.IsInputKey = true;
+                SystemHelper.SelectCheckBox(form.checkBox2, false);
             }
+
+            e.IsInputKey = true;
 
         }
 
@@ -182,7 +183,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Up)
             {
-                form.checkBox2.Focus();
+                SystemHelper.SelectCheckBox(form.checkBox2);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
