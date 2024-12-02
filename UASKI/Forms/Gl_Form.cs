@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Models;
+using UASKI.Services;
+using UASKI.Data.Entityes;
 
 namespace UASKI
 {
@@ -535,6 +537,10 @@ namespace UASKI
         {
             SystemData.Pages.SelectPret.dateTimePicker18_KeyDown(e);
         }
+        private void dataGridView13_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintCof.dataGridView13_KeyDown(e);
+        }
         #endregion
 
         #region Обработка
@@ -653,10 +659,32 @@ namespace UASKI
         }
         private void textBox30_TextChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear && textBox30.Text.Length > 0)
-                SystemData.Pages.PrintTaskList.Select();
-            else if (!SystemData.IsClear)
-                dataGridView7.DataSource = null;
+            
+            if (!SystemData.IsClear)
+            {
+                if (textBox20.Text.Length == 0 && textBox30.Text.Length >= 4)
+                {
+                    int code;
+
+                    if (int.TryParse(textBox30.Text, out code))
+                    {
+                        var isp = IspService.GetByCode(code, IspService.GetList());
+
+                        if (isp != null)
+                            textBox20.Text = IspService.GetIniz(isp);
+                    }
+                }
+
+                if (textBox30.Text.Length >= 4)
+                {
+                    SystemData.Pages.PrintTaskList.Select();
+                }
+                else
+                {
+                    dataGridView7.DataSource = null;
+                    textBox20.Clear();
+                }
+            }
         }
         private void dateTimePicker10_ValueChanged(object sender, EventArgs e)
         {
@@ -710,7 +738,56 @@ namespace UASKI
         {
             textBox40_TextChanged(sender, e);
         }
+        private void dateTimePicker12_ValueChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+            {
+                SystemData.Pages.PrintPoc.Select();
+            }
+        }
+        private void dateTimePicker13_ValueChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+            {
+                SystemData.Pages.PrintPoc.Select();
+            }
+        }
+        private void textBox36_TextChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+            {
+                if (textBox37.Text.Length == 0 && textBox36.Text.Length >= 4)
+                {
+                    int code;
 
+                    if (int.TryParse(textBox36.Text, out code))
+                    {
+                        var isp = IspService.GetByCode(code, IspService.GetList());
+
+                        if (isp != null)
+                            textBox37.Text = IspService.GetIniz(isp);
+                    }
+                }
+
+                if (textBox36.Text.Length >= 4)
+                {
+                    SystemData.Pages.PrintCof.Select();
+                }
+                else
+                {
+                    SystemData.Pages.PrintCof.ClearTime();
+                }
+            }
+
+        }
+        private void dateTimePicker14_ValueChanged(object sender, EventArgs e)
+        {
+            textBox36_TextChanged(sender, e);
+        }
+        private void dateTimePicker15_ValueChanged(object sender, EventArgs e)
+        {
+            textBox36_TextChanged(sender, e);
+        }
         #endregion
 
         #region Обработка курсора

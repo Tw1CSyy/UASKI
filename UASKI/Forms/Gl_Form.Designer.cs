@@ -316,6 +316,9 @@ namespace UASKI
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.dataGridView13 = new System.Windows.Forms.DataGridView();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -371,6 +374,7 @@ namespace UASKI
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).BeginInit();
             this.panel21.SuspendLayout();
             this.panel22.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -2945,6 +2949,7 @@ namespace UASKI
             this.dateTimePicker12.Name = "dateTimePicker12";
             this.dateTimePicker12.Size = new System.Drawing.Size(149, 32);
             this.dateTimePicker12.TabIndex = 34;
+            this.dateTimePicker12.ValueChanged += new System.EventHandler(this.dateTimePicker12_ValueChanged);
             this.dateTimePicker12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker12_KeyDown);
             // 
             // dateTimePicker13
@@ -2955,6 +2960,7 @@ namespace UASKI
             this.dateTimePicker13.Name = "dateTimePicker13";
             this.dateTimePicker13.Size = new System.Drawing.Size(149, 32);
             this.dateTimePicker13.TabIndex = 33;
+            this.dateTimePicker13.ValueChanged += new System.EventHandler(this.dateTimePicker13_ValueChanged);
             this.dateTimePicker13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker13_KeyDown);
             // 
             // label82
@@ -2970,6 +2976,9 @@ namespace UASKI
             // tabPage14
             // 
             this.tabPage14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage14.Controls.Add(this.label100);
+            this.tabPage14.Controls.Add(this.label99);
+            this.tabPage14.Controls.Add(this.dataGridView13);
             this.tabPage14.Controls.Add(this.textBox36);
             this.tabPage14.Controls.Add(this.button43);
             this.tabPage14.Controls.Add(this.textBox37);
@@ -2995,6 +3004,7 @@ namespace UASKI
             this.textBox36.Name = "textBox36";
             this.textBox36.Size = new System.Drawing.Size(95, 32);
             this.textBox36.TabIndex = 51;
+            this.textBox36.TextChanged += new System.EventHandler(this.textBox36_TextChanged);
             this.textBox36.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox36_KeyDown);
             // 
             // button43
@@ -3072,7 +3082,7 @@ namespace UASKI
             this.dataGridView11.Name = "dataGridView11";
             this.dataGridView11.ReadOnly = true;
             this.dataGridView11.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView11.Size = new System.Drawing.Size(881, 427);
+            this.dataGridView11.Size = new System.Drawing.Size(881, 247);
             this.dataGridView11.TabIndex = 44;
             this.dataGridView11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView11_KeyDown);
             // 
@@ -3094,6 +3104,7 @@ namespace UASKI
             this.dateTimePicker14.Name = "dateTimePicker14";
             this.dateTimePicker14.Size = new System.Drawing.Size(149, 32);
             this.dateTimePicker14.TabIndex = 42;
+            this.dateTimePicker14.ValueChanged += new System.EventHandler(this.dateTimePicker14_ValueChanged);
             this.dateTimePicker14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker14_KeyDown);
             // 
             // dateTimePicker15
@@ -3104,6 +3115,7 @@ namespace UASKI
             this.dateTimePicker15.Name = "dateTimePicker15";
             this.dateTimePicker15.Size = new System.Drawing.Size(149, 32);
             this.dateTimePicker15.TabIndex = 41;
+            this.dateTimePicker15.ValueChanged += new System.EventHandler(this.dateTimePicker15_ValueChanged);
             this.dateTimePicker15.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker15_KeyDown);
             // 
             // label86
@@ -3599,6 +3611,42 @@ namespace UASKI
             this.printPreviewDialog.Name = "printPreviewDialog2";
             this.printPreviewDialog.Visible = false;
             // 
+            // dataGridView13
+            // 
+            this.dataGridView13.AllowUserToAddRows = false;
+            this.dataGridView13.AllowUserToDeleteRows = false;
+            this.dataGridView13.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView13.Location = new System.Drawing.Point(0, 423);
+            this.dataGridView13.Name = "dataGridView13";
+            this.dataGridView13.ReadOnly = true;
+            this.dataGridView13.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView13.Size = new System.Drawing.Size(881, 120);
+            this.dataGridView13.TabIndex = 52;
+            this.dataGridView13.Visible = false;
+            this.dataGridView13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView13_KeyDown);
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label99.Location = new System.Drawing.Point(247, 362);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(383, 29);
+            this.label99.TabIndex = 53;
+            this.label99.Text = "Уважаемый товарищ Месси Л.О";
+            this.label99.Visible = false;
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label100.Location = new System.Drawing.Point(128, 391);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(667, 29);
+            this.label100.TabIndex = 54;
+            this.label100.Text = "Ваша работа учтена УАСКИ следующими показателями";
+            this.label100.Visible = false;
+            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3694,6 +3742,7 @@ namespace UASKI
             this.panel21.PerformLayout();
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3982,6 +4031,9 @@ namespace UASKI
         public System.Windows.Forms.Button button54;
         public System.Windows.Forms.CheckBox checkBox6;
         public System.Windows.Forms.CheckBox checkBox5;
+        public System.Windows.Forms.DataGridView dataGridView13;
+        public System.Windows.Forms.Label label99;
+        public System.Windows.Forms.Label label100;
     }
 }
 

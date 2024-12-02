@@ -22,7 +22,7 @@ namespace UASKI.Services
         /// <returns></returns>
         public static List<IspEntity> GetList(bool isActive)
         {
-            return context.Isps.Where(c => c.IsActive == isActive).ToList();
+            return GetList().Where(c => c.IsActive == isActive).ToList();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace UASKI.Services
         /// <returns></returns>
         public static List<IspEntity> GetList()
         {
-            return context.Isps.ToList();
+            return context.Isps.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName).ToList();
         }
 
         /// <summary>

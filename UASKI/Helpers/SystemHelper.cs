@@ -7,6 +7,10 @@ using UASKI.Models;
 using UASKI.StaticModels;
 using System.Linq;
 using UASKI.Pages;
+using UASKI.Data.Entyties;
+using UASKI.Services;
+using UASKI.ViewModels;
+using UASKI.Data.Entityes;
 
 namespace UASKI.Helpers
 {
@@ -423,57 +427,137 @@ namespace UASKI.Helpers
         /// Формирует документ для печати
         /// </summary>
         /// <param name="model">Модель для печати</param>
-        public static void PrintDocument(PrintModel model)
+        public static void PrintDocument(params PrintModel[] models)
         {
-            // Вытаскиваем аргументы из модели
-            var e = model.Argument;
-            var font = model.Font;
-            var d = model.DataGridView;
+            float headerY = 0f;
 
-            // Инициализируем переменные для работы
-            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
-            int count = 0;
-            int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
-
-            // // Инициализируем переменные для заголовков
-            var headerFont = new Font("Arial", 16, FontStyle.Bold);
-            float headerY = e.MarginBounds.Top;
-
-            // Выводим заголовки
-            foreach (var header in model.Headers)
+            foreach (var model in models)
             {
-                SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
-                float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
+                // Вытаскиваем аргументы из модели
+                var e = model.Argument;
+                var font = model.Font;
+                var d = model.DataGridView;
 
-                e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
-                headerY += headerSize.Height + 10;
-            }
+                // Инициализируем переменные для работы
+                float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
+                int count = 0;
+                int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
 
-            // Расчитываем следующую строку
-            float yPosition = headerY + headerFont.Size;
+                // // Инициализируем переменные для заголовков
+                var headerFont = new Font("Arial", 16, FontStyle.Bold);
+                
+                if(headerY == 0f)
+                    headerY = e.MarginBounds.Top;
 
-            // Печать заголовков таблиы
-            foreach (DataGridViewColumn column in d.Columns)
-            {
-                e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
-            }
-            yPosition += font.GetHeight(e.Graphics);
-            yPosition += font.GetHeight(e.Graphics);
-
-            // Печать строк
-            while (count < linesPerPage && count < d.Rows.Count)
-            {
-                DataGridViewRow row = d.Rows[count];
-                for (int i = 0; i < row.Cells.Count; i++)
+                // Выводим заголовки
+                foreach (var header in model.Headers)
                 {
-                    e.Graphics.DrawString(row.Cells[i].Value.ToString(), font, Brushes.Black, i * with + 15, yPosition);
+                    SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
+                    float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
+
+                    e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
+                    headerY += headerSize.Height + 10;
+                }
+
+                // Расчитываем следующую строку
+                float yPosition = headerY + headerFont.Size;
+
+                // Печать заголовков таблиы
+                foreach (DataGridViewColumn column in d.Columns)
+                {
+                    e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
                 }
                 yPosition += font.GetHeight(e.Graphics);
-                count++;
+                yPosition += font.GetHeight(e.Graphics);
+
+                // Печать строк
+                while (count < linesPerPage && count < d.Rows.Count)
+                {
+                    DataGridViewRow row = d.Rows[count];
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        e.Graphics.DrawString(row.Cells[i].Value.ToString(), font, Brushes.Black, i * with + 15, yPosition);
+                    }
+                    yPosition += font.GetHeight(e.Graphics);
+                    count++;
+                }
+
+                headerY = yPosition + 30;
             }
 
-            // Указать, что печать окончена
-            e.HasMorePages = (count < d.Rows.Count);
+        }
+
+        /// <summary>
+        /// Расчитывает коофициент качества по списку задач
+        /// </summary>
+        /// <param name="tasks">Список задач</param>
+        /// <param name="listPret">Список претензий и рецензий</param>
+        /// <returns></returns>
+        private static double GetCof(List<ArhivEntity> tasks , List<PretEntity> listPret)
+        {
+            if (tasks.Count == 0)
+            {
+                return 0;
+            }
+
+            int countTask = 0, countPret = 0, countRez = 0, countOpz = 0, countCof = 0;
+
+            foreach (var task in tasks)
+            {
+                countTask += Convert.ToInt32(task.Code[0].ToString()) * task.Otm;
+
+                var prets = listPret.Where(c => c.CodeTask.Equals(task.Code) && c.Type == 1).ToList();
+                var rezs = listPret.Where(c => c.CodeTask.Equals(task.Code) && c.Type == 2).ToList();
+
+                countPret += prets.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+                countRez += rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+
+                if(task.Date < task.DateClose)
+                {
+                    countOpz += Convert.ToInt32(task.Code[0].ToString()) * (task.DateClose - task.Date).Days;
+                }
+
+                countCof += Convert.ToInt32(task.Code[0].ToString()) + prets.Sum(c => Convert.ToInt32(c.Code[0].ToString())) + rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()));
+            }
+
+            double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
+            result = Math.Round(result, 2);
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Расчитывает данные для коофициента качества для исполнителя
+        /// </summary>
+        /// <param name="isp">Исполнитель</param>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <returns></returns>
+        public static PrintPocViewModel GetKofModel(IspEntity isp , DateTime dateFrom , DateTime dateTo)
+        {
+            var item = new PrintPocViewModel();
+            item.Isp = IspService.GetIniz(isp);
+
+            var tasks = ArhivService.GetList().Where(c => c.IdIsp == isp.Code).ToList();
+            var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
+            var tasksMonth = tasks.Where(c => c.DateClose.Month == dateFrom.Month && c.DateClose.Year == dateFrom.Year).ToList();
+
+            item.CountPeriod = tasksPediod.Count();
+            item.CountMonth = tasksMonth.Count();
+
+            item.CountOpzPeriod = tasksPediod.Count(c => c.Date < c.DateClose);
+            item.CountOpzMonth = tasksMonth.Count(c => c.Date < c.DateClose);
+
+            item.CountDayPeriod = tasksPediod.Where(c => c.Date < c.DateClose).Sum(c => (c.DateClose - c.Date).Days);
+            item.CountDayMonth = tasksMonth.Where(c => c.Date < c.DateClose).Sum(c => (c.DateClose - c.Date).Days);
+
+            var pretList = PretService.GetList();
+
+            item.KofPeriod = SystemHelper.GetCof(tasksPediod, pretList);
+            item.KofMonth = SystemHelper.GetCof(tasksMonth, pretList);
+
+            return item;
         }
     }
 }
