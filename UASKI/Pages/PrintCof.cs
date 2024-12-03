@@ -209,9 +209,18 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker14, form.dateTimePicker15);
-                f.Show();
-                e.Handled = true;
+                if(e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker14, form.dateTimePicker15);
+                    f.Show();
+                    e.Handled = true;
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker14);
+                    f.Show();
+                    e.Handled = true;
+                }
             }
         }
 
@@ -239,9 +248,18 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker14, form.dateTimePicker15);
-                f.Show();
-                e.Handled = true;
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker14, form.dateTimePicker15);
+                    f.Show();
+                    e.Handled = true;
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker15);
+                    f.Show();
+                    e.Handled = true;
+                }
             }
             else if(e.KeyCode == Keys.Left)
             {

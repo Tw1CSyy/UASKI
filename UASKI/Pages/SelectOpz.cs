@@ -86,7 +86,7 @@ namespace UASKI.Pages
                 var task = new DataGridRowModel(item.Code,
                      IspService.GetIniz(isp),
                      IspService.GetIniz(con),
-                     item.Date.ToString("dd.MM.yyyy"), "", "");
+                     item.Date.ToString("dd.MM.yyyy"), "", "" , (DateTime.Today - item.Date).Days.ToString());
 
                 model.Add(task);
             }
@@ -115,18 +115,19 @@ namespace UASKI.Pages
                 }
 
                 var task = new DataGridRowModel(item.Code,
-                     $"{isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}",
-                     $"{con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}",
+                     IspService.GetIniz(isp),
+                      IspService.GetIniz(con),
                      item.Date.ToString("dd.MM.yyyy"),
                      item.DateClose.ToString("dd.MM.yyyy"),
-                     item.Otm.ToString());
+                     item.Otm.ToString(),
+                     (item.DateClose - item.Date).Days.ToString());
 
                 model.Add(task);
             }
 
             Select(form.dataGridView1,
                 model,
-                new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка"));
+                new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка" , "Дней опозданий"));
         }
 
         protected override void FilterOpen()
@@ -255,43 +256,56 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
                 form.dateTimePicker8.Focus();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectCheckBox(form.checkBox3);
-                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
-                f.Show();
-                e.Handled = true;
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
+                    f.Show();
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker7);
+                    f.Show();
+                }
             }
+
+            e.Handled = true;
         }
         public void dateTimePicker8_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker7.Focus();
-                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
-                f.Show();
-                e.Handled = true;
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker7, form.dateTimePicker8);
+                    f.Show();
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker8);
+                    f.Show();
+                }
             }
+
+            e.Handled = true;
         }
         #endregion
     }

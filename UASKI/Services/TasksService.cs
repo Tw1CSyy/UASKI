@@ -108,12 +108,6 @@ namespace UASKI.Services
                 result = false;
             }
 
-            if (!isUpdate && GetTaskByCode(code.Value , GetList()) != null)
-            {
-                code.Error("Код задачи должен быть уникальным");
-                result = false;
-            }
-
             if (!isUpdate && date.Value < DateTime.Today)
             {
                 date.Error("Срок исполнения не может быть раньше текущей даты");

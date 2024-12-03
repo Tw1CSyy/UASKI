@@ -42,15 +42,31 @@ namespace UASKI.Services
                 result = false;
             }
 
+            var holyList = GetList();
+
             foreach (var item in date.DateRange)
             {
-                var holy = GetList().FirstOrDefault(c => c.Date.Date == item);
+                var holy = holyList.FirstOrDefault(c => c.Date.Date == item);
 
                 if(holy != null)
                 {
                     date.Error("Дата из диапазона уже существует");
                     result = false;
-                    continue;
+                    break;
+                }
+            }
+
+            var taskList = TasksService.GetList();
+
+            foreach (var item in date.DateRange)
+            {
+                var task = taskList.FirstOrDefault(c => c.Date == item.Date);
+
+                if(task != null)
+                {
+                    date.Error($"День является сроком задачи {task.Code}");
+                    result = false;
+                    break;
                 }
             }
 

@@ -39,7 +39,7 @@ namespace UASKI.Pages
                 var isp = IspService.GetByCode(item.IdIsp, listUser);
                 var con = IspService.GetByCode(item.IdCon, listUser);
 
-                var st = new DataGridRowModel(item.Code, $"{isp.FirstName} {isp.Name} {isp.LastName}", $"{con.FirstName} {con.Name} {con.LastName}", item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Code, IspService.GetIniz(isp), IspService.GetIniz(con), item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 
@@ -323,6 +323,10 @@ namespace UASKI.Pages
                 SystemHelper.SelectDataGridView(form.dataGridView4, false);
                 Exit();
                 e.Handled = true;
+            }
+            else if(e.Control)
+            {
+                SystemHelper.DataGridViewSort(form.dataGridView4, e.KeyCode);
             }
         }
         #endregion

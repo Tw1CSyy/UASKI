@@ -188,24 +188,30 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
                 form.dateTimePicker3.Focus();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Right)
             {
                 FilterClose();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectCheckBox(form.checkBox1);
-                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker2, form.dateTimePicker3);
-                f.Show();
-                e.Handled = true;
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker2, form.dateTimePicker3);
+                    f.Show();
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker2);
+                    f.Show();
+                }
             }
+
+            e.Handled = true;
         }
 
         public void dateTimePicker3_KeyDown(KeyEventArgs e)
@@ -213,19 +219,26 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Right)
             {
                 FilterClose();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker2.Focus();
-                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker2, form.dateTimePicker3);
-                f.Show();
-                e.Handled = true;
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker2, form.dateTimePicker3);
+                    f.Show();
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker3);
+                    f.Show();
+                }
             }
+
+            e.Handled = true;
         }
         #endregion
 

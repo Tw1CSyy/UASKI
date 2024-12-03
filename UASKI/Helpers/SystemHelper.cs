@@ -295,35 +295,41 @@ namespace UASKI.Helpers
         {
             DateTime date;
 
-            if (text.Length == 2)
+            try
             {
-                var day = Convert.ToInt32(text);
-                date = new DateTime(dateFrom.Year , dateFrom.Month , day);
-                return date;
+                if (text.Length == 2)
+                {
+                    var day = Convert.ToInt32(text);
+                    date = new DateTime(dateFrom.Year, dateFrom.Month, day);
+                    return date;
+                }
+
+                if (text.Length == 4)
+                {
+                    string value = string.Empty;
+                    value += text[2];
+                    value += text[3];
+
+                    var month = Convert.ToInt32(value);
+                    date = new DateTime(dateFrom.Year, month, dateFrom.Day);
+                    return date;
+                }
+
+                if (text.Length == 6)
+                {
+                    string value = string.Empty;
+                    value += "20";
+                    value += text[4];
+                    value += text[5];
+
+                    var year = Convert.ToInt32(value);
+                    date = new DateTime(year, dateFrom.Month, dateFrom.Day);
+                    return date;
+                }
             }
-
-            if (text.Length == 4)
+            catch (Exception)
             {
-                string value = string.Empty;
-                value += text[2];
-                value += text[3];
-
-                var month = Convert.ToInt32(value);
-                date = new DateTime(dateFrom.Year , month , dateFrom.Day);
-                return date;
-            }
-
-            if (text.Length == 8)
-            {
-                string value = string.Empty;
-                value += text[4];
-                value += text[5];
-                value += text[6];
-                value += text[7];
-
-                var year = Convert.ToInt32(value);
-                date = new DateTime(year, dateFrom.Month , dateFrom.Day);
-                return date;
+                return DateTime.MinValue;
             }
 
             return DateTime.MinValue;

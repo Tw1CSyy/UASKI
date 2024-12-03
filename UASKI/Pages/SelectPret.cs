@@ -248,23 +248,30 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
                 form.dateTimePicker18.Focus();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SystemHelper.SelectCheckBox(form.checkBox4);
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker17, form.dateTimePicker18);
-                f.Show();
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker17, form.dateTimePicker18);
+                    f.Show();
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker17);
+                    f.Show();
+                }
             }
+
+            e.Handled = true;
 
         }
 
@@ -273,18 +280,26 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker17.Focus();
-                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var f = new DateForm(form.dateTimePicker17, form.dateTimePicker18);
-                f.Show();
+                if (e.Control)
+                {
+                    var f = new DateForm(form.dateTimePicker17, form.dateTimePicker18);
+                    f.Show();
+                }
+                else
+                {
+                    var f = new DateForm(form.dateTimePicker18);
+                    f.Show();
+                }
             }
+
+            e.Handled = true;
         }
 
         #endregion

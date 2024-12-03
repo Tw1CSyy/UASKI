@@ -33,7 +33,7 @@ namespace UASKI.Forms
             monthCalendar1.Focus();
         }
 
-        public DateForm(DateTimePicker p1 , DateTimePicker p2)
+        public DateForm(DateTimePicker p1, DateTimePicker p2)
         {
             InitializeComponent();
             pic = p1;
@@ -61,7 +61,7 @@ namespace UASKI.Forms
             var start = monthCalendar1.SelectionStart;
             var value = monthCalendar1.SelectionEnd;
             var date = SystemHelper.GetDate(textBox1.Text, value);
-
+             
             if (date != DateTime.MinValue)
             {
                 monthCalendar1.SelectionStart = start;
