@@ -7,16 +7,17 @@ namespace UASKI.Models
     /// </summary>
     public static class DataModel
     {
-        /// <summary>
-        /// Строка подключения
-        /// </summary>
-        private readonly static string ConnectionString = "Host=localhost;UserName=postgres;Password=0404;Database=UASKI";
-
+        
         /// <summary>
         /// Объект подключения
         /// </summary>
-        private readonly static NpgsqlConnection Connection = new NpgsqlConnection(ConnectionString);
+        private static NpgsqlConnection Connection { get; set; }
         
+        public static void CreateConnection(string connectionString)
+        {
+            Connection = new NpgsqlConnection(connectionString);
+        }
+
         /// <summary>
         /// Открывает подключение
         /// </summary>

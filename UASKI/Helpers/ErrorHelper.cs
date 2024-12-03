@@ -75,5 +75,20 @@ namespace UASKI.Helpers
             form.LabelStatus.Visible = false;
             form.timerTick = 0;
         }
+
+        /// <summary>
+        /// Статус, что программа подключилась к базе
+        /// </summary>
+        public static void StatusConnection()
+        {
+            var form = SystemData.Form;
+            SystemData.IsQuery = false;
+            Close();
+
+            form.LabelStatus.Text = "Подключение установлено. Удачной работы!";
+            form.LabelStatus.ForeColor = Color.Green;
+            form.LabelStatus.Visible = true;
+            form.TimerStatus.Start();
+        }
     }
 }

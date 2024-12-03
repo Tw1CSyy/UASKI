@@ -6,6 +6,8 @@ using UASKI.StaticModels;
 using UASKI.Models;
 using UASKI.Services;
 using UASKI.Data.Entityes;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace UASKI
 {
@@ -29,9 +31,7 @@ namespace UASKI
             // Инициализируем системные переменные
             SystemData.Init(this);
             
-
             // Рисуем меню
-
             foreach (var item in SystemData.MenuItems.Select(c => c.Text).ToArray())
             {
                 Menu_Step1.Items.Add(item);
@@ -45,10 +45,24 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
+            // Создаем или загружаем файл настроек
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
+
+            if(!File.Exists(path))
+            {
+                CreateSettings(path);
+            }
+            else
+            {
+                LoadSettings(path);
+            }
+
             // Открываем подключение
             try
             {
+                DataModel.CreateConnection(SystemData.Settings.ConnectionString);
                 DataModel.Open();
+                ErrorHelper.StatusConnection();
             }
             catch (Exception)
             {
@@ -103,6 +117,30 @@ namespace UASKI
             
             if(el.Page != null)
                 el.Page.Init();
+        }
+
+        private void CreateSettings(string filePath)
+        {
+            var defult = new AppSettings
+            {
+                ConnectionString = "Host=localhost;UserName=postgres;Password=0404;Database=UASKI"
+            };
+
+            var json = JsonConvert.SerializeObject(defult, Formatting.Indented);
+            File.WriteAllText(filePath, json);
+        }
+
+        private void LoadSettings(string filePath)
+        {
+            if(File.Exists(filePath))
+            {
+                var json = File.ReadAllText(filePath);
+                SystemData.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
+            }
+            else
+            {
+
+            }
         }
 
         #region Нажатия клавиш

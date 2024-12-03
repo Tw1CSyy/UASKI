@@ -260,6 +260,9 @@ namespace UASKI
             this.dateTimePicker13 = new System.Windows.Forms.DateTimePicker();
             this.label82 = new System.Windows.Forms.Label();
             this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.label100 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
+            this.dataGridView13 = new System.Windows.Forms.DataGridView();
             this.textBox36 = new System.Windows.Forms.TextBox();
             this.button43 = new System.Windows.Forms.Button();
             this.textBox37 = new System.Windows.Forms.TextBox();
@@ -316,9 +319,6 @@ namespace UASKI
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
-            this.dataGridView13 = new System.Windows.Forms.DataGridView();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -366,6 +366,7 @@ namespace UASKI
             this.tabPage13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).BeginInit();
             this.tabPage14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).BeginInit();
             this.tabPage15.SuspendLayout();
             this.panel20.SuspendLayout();
@@ -374,7 +375,6 @@ namespace UASKI
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).BeginInit();
             this.panel21.SuspendLayout();
             this.panel22.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Step1
@@ -2997,6 +2997,42 @@ namespace UASKI
             this.tabPage14.TabIndex = 15;
             this.tabPage14.Text = "Печать кооф";
             // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label100.Location = new System.Drawing.Point(128, 391);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(667, 29);
+            this.label100.TabIndex = 54;
+            this.label100.Text = "Ваша работа учтена УАСКИ следующими показателями";
+            this.label100.Visible = false;
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label99.Location = new System.Drawing.Point(247, 362);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(383, 29);
+            this.label99.TabIndex = 53;
+            this.label99.Text = "Уважаемый товарищ Месси Л.О";
+            this.label99.Visible = false;
+            // 
+            // dataGridView13
+            // 
+            this.dataGridView13.AllowUserToAddRows = false;
+            this.dataGridView13.AllowUserToDeleteRows = false;
+            this.dataGridView13.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView13.Location = new System.Drawing.Point(0, 423);
+            this.dataGridView13.Name = "dataGridView13";
+            this.dataGridView13.ReadOnly = true;
+            this.dataGridView13.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView13.Size = new System.Drawing.Size(881, 120);
+            this.dataGridView13.TabIndex = 52;
+            this.dataGridView13.Visible = false;
+            this.dataGridView13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView13_KeyDown);
+            // 
             // textBox36
             // 
             this.textBox36.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -3611,42 +3647,6 @@ namespace UASKI
             this.printPreviewDialog.Name = "printPreviewDialog2";
             this.printPreviewDialog.Visible = false;
             // 
-            // dataGridView13
-            // 
-            this.dataGridView13.AllowUserToAddRows = false;
-            this.dataGridView13.AllowUserToDeleteRows = false;
-            this.dataGridView13.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView13.Location = new System.Drawing.Point(0, 423);
-            this.dataGridView13.Name = "dataGridView13";
-            this.dataGridView13.ReadOnly = true;
-            this.dataGridView13.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView13.Size = new System.Drawing.Size(881, 120);
-            this.dataGridView13.TabIndex = 52;
-            this.dataGridView13.Visible = false;
-            this.dataGridView13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView13_KeyDown);
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label99.Location = new System.Drawing.Point(247, 362);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(383, 29);
-            this.label99.TabIndex = 53;
-            this.label99.Text = "Уважаемый товарищ Месси Л.О";
-            this.label99.Visible = false;
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label100.Location = new System.Drawing.Point(128, 391);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(667, 29);
-            this.label100.TabIndex = 54;
-            this.label100.Text = "Ваша работа учтена УАСКИ следующими показателями";
-            this.label100.Visible = false;
-            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3664,7 +3664,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "УАСКИ";
+            this.Text = "УАСКИ 2.0";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -3731,6 +3731,7 @@ namespace UASKI
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).EndInit();
             this.tabPage14.ResumeLayout(false);
             this.tabPage14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).EndInit();
             this.tabPage15.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
@@ -3742,7 +3743,6 @@ namespace UASKI
             this.panel21.PerformLayout();
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

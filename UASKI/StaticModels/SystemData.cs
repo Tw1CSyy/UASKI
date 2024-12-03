@@ -44,6 +44,8 @@ namespace UASKI.StaticModels
         /// Текущая страница
         /// </summary>
         public static BasePage This { get; set; }
+
+        public static AppSettings Settings { get; set; }
         /// <summary>
         /// Инициализация данных
         /// </summary>
