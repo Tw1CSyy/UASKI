@@ -110,17 +110,68 @@ namespace UASKI.Services
 
             if (!isUpdate && date.Value < DateTime.Today)
             {
-                date.Error("Срок исполнения не может быть раньше текущей даты");
+                date.Error("Мы из будущего?");
                 result = false;
             }
 
             if (HolidaysService.CheckDay(date.Value))
             {
-                date.Error("Срок исполнения не может быть празднечным днем");
+                date.Error("В праздник никто работать не будет");
+                result = false;
+            }
+
+            if(code.Value.Length < 13)
+            {
+                code.Error("13 символов и не на символ меньше");
+                result = false;
+            }
+            else if (code.Value.Length > 13)
+            {
+                code.Error("13 символов и не на символ больше");
+                result = false;
+            }
+
+            if (!CheckCode(code.Value))
+            {
+                code.Error("Код имеет не верный формат");
+                result = false;
+            }
+
+            if(date.Value.DayOfWeek == DayOfWeek.Sunday || date.Value.DayOfWeek == DayOfWeek.Saturday)
+            {
+                date.Error("В выходной никто работать не будет");
                 result = false;
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Проверяет код на правильность заполнения
+        /// </summary>
+        /// <param name="code">Код задачи</param>
+        /// <returns>true - положительный ответ</returns>
+        private static bool CheckCode(string code)
+        {
+            var c = code.ToArray();
+
+            if (int.TryParse(c[1].ToString() , out int j1) || !int.TryParse(c[2].ToString(), out int j2))
+            {
+                return false;
+            }
+
+            for(int i = 0; i < c.Length; i++)
+            {
+                if (i == 1 || i == 2)
+                    continue;
+
+                if(!int.TryParse(c[i].ToString(), out int j))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -225,13 +276,13 @@ namespace UASKI.Services
         {
             if (Otm.IsNull || !Otm.IsNumber)
             {
-                Otm.Error("Некоректные данные");
+                Otm.Error("Что то не так");
                 return false;
             }    
 
             if (Convert.ToInt32(Otm.Value) > 5 || Convert.ToInt32(Otm.Value) < 1)
             {
-                Otm.Error("Число должно быть от 1 до 5");
+                Otm.Error("У нас не 12ти бальная система. От 1 до 5");
                 return false;
             }
 

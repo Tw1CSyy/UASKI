@@ -129,13 +129,18 @@ namespace UASKI.Services
 
             if (!code.IsNumber)
             {
-                code.Error("Поле имеет не числовой тип");
+                code.Error("Тут должно быть число");
                 result = false;
             }
 
-            if (!podr.IsNumber)
+            if (!podr.IsNumber && !code.IsNumber)
             {
-                podr.Error("Поле имеет не числовой тип");
+                podr.Error("И тут тоже");
+                result = false;
+            }
+            else if(!podr.IsNumber)
+            {
+                podr.Error("Тут должно быть число");
                 result = false;
             }
 

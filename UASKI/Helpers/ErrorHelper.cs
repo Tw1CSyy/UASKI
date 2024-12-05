@@ -16,7 +16,7 @@ namespace UASKI.Helpers
             var form = SystemData.Form;
             Close();
 
-            form.LabelStatus.Text = "Ошибка";
+            form.LabelStatus.Text = "Ой... Что то не так";
             form.LabelStatus.ForeColor = Color.Red;
             form.LabelStatus.Visible = true;
             form.TimerStatus.Start();
@@ -30,7 +30,7 @@ namespace UASKI.Helpers
             var form = SystemData.Form;
             Close();
           
-            form.LabelStatus.Text = "Успешно";
+            form.LabelStatus.Text = "Все сделано!";
             form.LabelStatus.ForeColor = Color.Green;
             form.LabelStatus.Visible = true;
             form.TimerStatus.Start();
@@ -44,7 +44,7 @@ namespace UASKI.Helpers
             var form = SystemData.Form;
             Close();
 
-            form.LabelStatus.Text = "Нажмите еще раз для подтверждения";
+            form.LabelStatus.Text = "И еще раз для подтверждения";
             form.LabelStatus.ForeColor = Color.OrangeRed;
             form.LabelStatus.Visible = true;
             SystemData.IsQuery = true;
@@ -85,7 +85,7 @@ namespace UASKI.Helpers
             SystemData.IsQuery = false;
             Close();
 
-            form.LabelStatus.Text = "Подключение установлено. Удачной работы!";
+            form.LabelStatus.Text = "Подключение установлено. Поработаем";
             form.LabelStatus.ForeColor = Color.Green;
             form.LabelStatus.Visible = true;
             form.TimerStatus.Start();

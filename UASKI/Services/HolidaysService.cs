@@ -38,7 +38,7 @@ namespace UASKI.Services
 
             if(date.Date < DateTime.Today.Date)
             {
-                date.Error("Дата не может быть раньше текущей даты");
+                date.Error("Мы из будущего?");
                 result = false;
             }
 
@@ -50,7 +50,7 @@ namespace UASKI.Services
 
                 if(holy != null)
                 {
-                    date.Error("Дата из диапазона уже существует");
+                    date.Error("Вы уже добавили эту дату");
                     result = false;
                     break;
                 }

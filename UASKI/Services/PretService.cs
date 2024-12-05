@@ -93,13 +93,7 @@ namespace UASKI.Services
 
             if(!otm.IsNumber)
             {
-                otm.Error("Поле имеет не числовой тип");
-                result = false;
-            }
-
-            if(GetList().FirstOrDefault(c => c.Code.Equals(code.Value)) != null)
-            {
-                code.Error("Код должен быть уникальным");
+                otm.Error("Тут должно быть число");
                 result = false;
             }
 

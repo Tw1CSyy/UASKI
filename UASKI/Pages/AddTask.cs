@@ -54,7 +54,7 @@ namespace UASKI.Pages
             {
                 if (form.textBox1.Text.Length != 0 && form.textBox3.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox1.Text , IspService.GetList());
+                    var isp = IspService.GetByFirstName(form.textBox1.Text , IspService.GetList(true));
 
                     if (isp != null)
                     {
