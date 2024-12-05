@@ -5,12 +5,8 @@ using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Models;
 using UASKI.Services;
-using UASKI.Data.Entityes;
 using Newtonsoft.Json;
 using System.IO;
-using UASKI.Data.Context;
-using System.Collections.Generic;
-using UASKI.Data.Entyties;
 
 namespace UASKI
 {

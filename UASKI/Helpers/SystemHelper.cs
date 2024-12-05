@@ -512,8 +512,8 @@ namespace UASKI.Helpers
             {
                 countTask += Convert.ToInt32(task.Code[0].ToString()) * task.Otm;
 
-                var prets = listPret.Where(c => c.CodeTask.Equals(task.Code) && c.Type == 1).ToList();
-                var rezs = listPret.Where(c => c.CodeTask.Equals(task.Code) && c.Type == 2).ToList();
+                var prets = listPret.Where(c => c.IdTask == task.Id && c.Type == 1).ToList();
+                var rezs = listPret.Where(c => c.IdTask == task.Id && c.Type == 2).ToList();
 
                 countPret += prets.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
                 countRez += rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);

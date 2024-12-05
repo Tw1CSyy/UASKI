@@ -174,7 +174,7 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var result = PretService.Add("CodeTask" , TextBoxElement.New(form.textBox38, form.label92),
+                    var result = PretService.Add(IdTask , TextBoxElement.New(form.textBox38, form.label92),
                         DateTimeElement.New(form.dateTimePicker16, form.label93),
                         TextBoxElement.New(form.textBox39, form.label94) , Type);
 

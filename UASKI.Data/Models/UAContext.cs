@@ -154,11 +154,12 @@ namespace UASKI.Data.Context
             {
                 var item = new PretEntity
                 (
-                    reader.GetValue(0).ToString(),
+                    Convert.ToInt32(reader.GetValue(0)),
                     reader.GetValue(1).ToString(),
-                    Convert.ToDateTime(reader.GetValue(2)),
-                    Convert.ToInt32(reader.GetValue(3)),
-                    Convert.ToInt32(reader.GetValue(4))
+                    Convert.ToInt32(reader.GetValue(2)),
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToInt32(reader.GetValue(4)),
+                    Convert.ToInt32(reader.GetValue(5))
                 );
 
                 result.Add(item);
@@ -229,8 +230,8 @@ namespace UASKI.Data.Context
         /// <returns></returns>
         public bool Add(PretEntity entity)
         {
-            var query = $"INSERT INTO \"Pret\" (\"Code\" , \"CodeTask\" , \"Date\" , \"Otm\" , \"Type\") " +
-               $"VALUES ('{entity.Code}' , '{entity.CodeTask}' , '{entity.Date}' , '{entity.Otm}' , '{entity.Type}')";
+            var query = $"INSERT INTO \"Pret\" (\"Code\" , \"IdTask\" , \"Date\" , \"Otm\" , \"Type\") " +
+               $"VALUES ('{entity.Code}' , '{entity.IdTask}' , '{entity.Date}' , '{entity.Otm}' , '{entity.Type}')";
 
             return DataModel.Complite(query);
         }
@@ -363,7 +364,7 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(PretEntity entity)
         {
-            var query = $"DELETE FROM \"Pret\" WHERE \"Code\" = '{entity.Code}'";
+            var query = $"DELETE FROM \"Pret\" WHERE \"Id\" = '{entity.Id}'";
 
             return DataModel.Complite(query);
         }

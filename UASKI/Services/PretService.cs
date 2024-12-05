@@ -25,40 +25,40 @@ namespace UASKI.Services
         /// <summary>
         /// Возвращает pret по коду
         /// </summary>
-        /// <param name="code">Код</param>
+        /// <param name="Id">Id</param>
         /// <param name="list">Список</param>
-        public static PretEntity GetByCode(string code , List<PretEntity> list)
+        public static PretEntity GetById(int Id , List<PretEntity> list)
         {
-            return list.FirstOrDefault(c => c.Code.Equals(code));
+            return list.FirstOrDefault(c => c.Id == Id);
         }
 
         /// <summary>
         /// Возвращает pret по коду задача
         /// </summary>
-        /// <param name="code">Код</param>
+        /// <param name="IdTask">Код</param>
         /// <param name="list">Список</param>
-        public static PretEntity GetByCodeTask(string code, List<PretEntity> list)
+        public static PretEntity GetByCodeTask(int IdTask, List<PretEntity> list)
         {
-            return list.FirstOrDefault(c => c.CodeTask.Equals(code));
+            return list.FirstOrDefault(c => c.IdTask == IdTask);
         }
 
         /// <summary>
         /// Добавляет новую претензию или рецензию, предаварительно валидируя
         /// </summary>
-        /// <param name="codeTask">Код задачи</param>
+        /// <param name="IdTask">Id задачи</param>
         /// <param name="code"> Элемемент кода претензии</param>
         /// <param name="date">Элемемент даты</param>
         /// <param name="otm">Элемемент оценки</param>
         /// <param name="type">1 - претензия, 2 - рецензия</param>
         /// <returns>true - успешное выполнение</returns>
-        public static bool Add(string codeTask , TextBoxElement code , DateTimeElement date , TextBoxElement otm , int type)
+        public static bool Add(int IdTask , TextBoxElement code , DateTimeElement date , TextBoxElement otm , int type)
         {
             var result = Validation(code, date, otm);
 
             if (!result)
                 return result;
 
-            var entity = new PretEntity(code.Value, codeTask, date.Value, Convert.ToInt32(otm.Value) , type);
+            var entity = new PretEntity(code.Value, IdTask, date.Value, Convert.ToInt32(otm.Value) , type);
             result = context.Add(entity);
 
             return result;

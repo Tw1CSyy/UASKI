@@ -49,10 +49,10 @@ namespace UASKI.Pages
                 list = list.Where(c => c.Code.ToLower().Contains(form.textBox40.Text.ToLower())).ToList();
             }
 
-            if(form.textBox41.Text.Length > 0)
-            {
-                list = list.Where(c => c.CodeTask.ToLower().Contains(form.textBox41.Text.ToLower())).ToList();
-            }
+            //if(form.textBox41.Text.Length > 0)
+            //{
+            //    list = list.Where(c => c.CodeTask.ToLower().Contains(form.textBox41.Text.ToLower())).ToList();
+            //}
 
             if(form.checkBox4.Checked)
             {
@@ -81,7 +81,7 @@ namespace UASKI.Pages
                 else
                     type = "Рецензия";
 
-                var item = new DataGridRowModel(type, pret.Code, pret.CodeTask, pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
+                var item = new DataGridRowModel(type, pret.Code, "pret.CodeTask", pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
                 model.Add(item);
             }
 
