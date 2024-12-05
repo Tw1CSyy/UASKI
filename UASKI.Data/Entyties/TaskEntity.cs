@@ -27,6 +27,11 @@ namespace UASKI.Data.Entityes
         /// </summary>
         public DateTime Date { get; private set; }
 
+        /// <summary> 
+        /// Идентификатор задачи
+        /// </summary>
+        public int Id { get; private set; }
+
         /// <summary>
         /// Создает объект класса
         /// </summary>
@@ -40,6 +45,23 @@ namespace UASKI.Data.Entityes
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
+        }
+
+        /// <summary>
+        /// Создает объект класса
+        /// </summary>
+        /// <param name="code">Код</param>
+        /// <param name="idIsp">Идентификатор исполнителя</param>
+        /// <param name="idCon">Идентификатор котроллера</param>
+        /// <param name="date">Дата срока</param>
+        /// <param name="id">Идентификатор задачи</param>
+        public TaskEntity(string code, int idIsp, int idCon, DateTime date , int id)
+        {
+            Code = code;
+            IdIsp = idIsp;
+            IdCon = idCon;
+            Date = date;
+            Id = id;
         }
     }
 }

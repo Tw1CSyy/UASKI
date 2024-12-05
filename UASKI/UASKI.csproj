@@ -124,6 +124,7 @@
     <Compile Include="Models\BasePageSelect.cs" />
     <Compile Include="Models\BaseElement.cs" />
     <Compile Include="Models\BasePage.cs" />
+    <Compile Include="Models\DataGridColumnModel.cs" />
     <Compile Include="Models\DataGridRowModel.cs" />
     <Compile Include="Models\Elements\DateTimeElement.cs" />
     <Compile Include="Models\Elements\MonthElement.cs" />

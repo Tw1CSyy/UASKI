@@ -85,9 +85,16 @@ namespace UASKI.Pages
                 model.Add(item);
             }
 
-            SystemHelper.PullListInDataGridView(form.dataGridView12,
-                model,
-                new DataGridRowModel("Тип", "Код", "Задание", "Дата", "Оценка"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Тип"),
+                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Задание"),
+                new DataGridColumnModel("Дата"),
+                new DataGridColumnModel("Оценка")
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView12, model.ToArray(), columns);
         }
 
         protected override void FilterOpen()

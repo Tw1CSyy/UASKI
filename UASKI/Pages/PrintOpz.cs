@@ -60,10 +60,16 @@ namespace UASKI.Pages
                 result.Add(model);
             }
 
-            SystemHelper.PullListInDataGridView(form.dataGridView8,
-                result,
-                new DataGridRowModel("Исполнитель", "Код задания", "Код котролера", "Срок исполнения", "Дней опозданий"));
-            form.dataGridView8.ClearSelection();
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Исполнитель"),
+                new DataGridColumnModel("Код задания"),
+                new DataGridColumnModel("Код котролера"),
+                new DataGridColumnModel("Срок исполнения"),
+                new DataGridColumnModel("Дней опозданий")
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView8, result.ToArray(), columns);
         }
 
         protected override void Print()

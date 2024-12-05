@@ -42,10 +42,13 @@ namespace UASKI.Pages
                 result.Add(d);
             }
 
-            SystemHelper.PullListInDataGridView(form.dataGridView2,
-                result,
-                new DataGridRowModel("Номер", "Дата"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Номер"),
+                new DataGridColumnModel("Дата")
+            };
 
+            SystemHelper.PullListInDataGridView(form.dataGridView2, result.ToArray(), columns);
         }
         protected override void Clear()
         {

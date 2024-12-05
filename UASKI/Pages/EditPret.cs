@@ -20,14 +20,14 @@ namespace UASKI.Pages
 
         }
 
-        private string CodeTask;
+        private int IdTask;
         private int Type;
         private int Page;
         private bool IsArhiv;
 
-        public void Show(string codeTask , int type , int page , bool isArhiv)
+        public void Show(int idTask , int type , int page , bool isArhiv , string codeTask)
         {
-            CodeTask = codeTask;
+            IdTask = idTask;
             Type = type;
             Page = page;
             IsArhiv = isArhiv;
@@ -60,7 +60,7 @@ namespace UASKI.Pages
         protected override void Exit()
         {
             SystemData.Pages.EditTask.Init(false);
-            SystemData.Pages.EditTask.Show(CodeTask, IsArhiv, Page);
+            SystemData.Pages.EditTask.Show(IdTask, IsArhiv, Page);
         }
 
         private void SelectButton(int idButton = 0, bool Up = false)
@@ -174,7 +174,7 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var result = PretService.Add(CodeTask , TextBoxElement.New(form.textBox38, form.label92),
+                    var result = PretService.Add("CodeTask" , TextBoxElement.New(form.textBox38, form.label92),
                         DateTimeElement.New(form.dateTimePicker16, form.label93),
                         TextBoxElement.New(form.textBox39, form.label94) , Type);
 

@@ -81,9 +81,18 @@ namespace UASKI.Pages
                     model.Add(item);
                 }
 
-                SystemHelper.PullListInDataGridView(form.dataGridView11, model,
-                    new DataGridRowModel("Код", "Срок", "Котроллер", "Дата выполнения", "Оценка", "Опзд"));
+                var columns = new DataGridColumnModel[]
+                {
+                    new DataGridColumnModel("Код"),
+                    new DataGridColumnModel("Срок"),
+                    new DataGridColumnModel("Котроллер"),
+                    new DataGridColumnModel("Дата выполнения"),
+                    new DataGridColumnModel("Оценка"),
+                    new DataGridColumnModel("Опзд"),
+                };
 
+                SystemHelper.PullListInDataGridView(form.dataGridView11, model.ToArray(), columns);
+                   
                 var cof = SystemHelper.GetKofModel(isp, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                 model = new List<DataGridRowModel>();
@@ -108,8 +117,16 @@ namespace UASKI.Pages
 
                 model.Add(item);
 
-                SystemHelper.PullListInDataGridView(form.dataGridView13, model,
-                    new DataGridRowModel("#", "Заданий", "Случ.опзд", "К-во Дн.опзд", "Качество"));
+                columns = new DataGridColumnModel[]
+                {
+                    new DataGridColumnModel("#"),
+                    new DataGridColumnModel("Заданий"),
+                    new DataGridColumnModel("Случ.опзд"),
+                    new DataGridColumnModel("К-во Дн.опзд"),
+                    new DataGridColumnModel("Качество")
+                };
+
+                SystemHelper.PullListInDataGridView(form.dataGridView13, model.ToArray(), columns);
 
                 form.dataGridView13.Visible = true;
                 form.label99.Visible = true;

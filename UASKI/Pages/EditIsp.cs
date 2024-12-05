@@ -43,9 +43,15 @@ namespace UASKI.Pages
                 model.Add(st);
             }
 
-            Select(form.dataGridView4,
-                model,
-                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Исполнитель"),
+                new DataGridColumnModel("Контроллер"),
+                new DataGridColumnModel("Срок")
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView4, model.ToArray(), columns);
         }
 
         public void Show(int code)

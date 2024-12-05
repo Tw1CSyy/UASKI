@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+﻿ using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
@@ -23,13 +23,14 @@ namespace UASKI.Pages
 
         }
 
-        private string Code;
+        private int Id;
         private int Page;
+        private string CodeTask;
         public bool Arhiv { get; private set; }
 
-        public void Show(string code , bool IsArhiv , int page)
+        public void Show(int id , bool IsArhiv , int page)
         {
-            Code = code;
+            Id = id;
             Page = page;
             Arhiv = IsArhiv;
 
@@ -38,7 +39,7 @@ namespace UASKI.Pages
             if (!IsArhiv)
             {
                 var taskList = TasksService.GetList();
-                var task = TasksService.GetTaskByCode(code , taskList);
+                var task = TasksService.GetTaskById(Id , taskList);
 
                 var usr1 = IspService.GetByCode(task.IdIsp , listUser);
                 var usr2 = IspService.GetByCode(task.IdCon , listUser);
@@ -50,7 +51,7 @@ namespace UASKI.Pages
                 form.textBox25.Text = usr1.CodePodr.ToString();
                 form.textBox23.Text = usr2.Code.ToString();
                 form.textBox22.Text = usr2.CodePodr.ToString();
-                form.textBox27.Text = task.Code;
+                form.textBox27.Text = CodeTask = task.Code;
                 form.dateTimePicker4.Value = task.Date;
 
                 form.button11.Text = "Закрыть";
@@ -63,7 +64,7 @@ namespace UASKI.Pages
             else
             {
                 var listArhiv = ArhivService.GetList();
-                var arhiv = ArhivService.GetByCode(code , listArhiv);
+                var arhiv = ArhivService.GetById(Id , listArhiv);
 
                 var usr1 = IspService.GetByCode(arhiv.IdIsp, listUser);
                 var usr2 = IspService.GetByCode(arhiv.IdCon, listUser);
@@ -368,7 +369,7 @@ namespace UASKI.Pages
 
                     if (!Arhiv)
                     {
-                        var result = TasksService.UpdateTask(Code,
+                        var result = TasksService.UpdateTask(Id,
                             TextBoxElement.New(form.textBox24, form.label51),
                             TextBoxElement.New(form.textBox23, form.label53),
                             TextBoxElement.New(form.textBox27, form.label55),
@@ -427,7 +428,7 @@ namespace UASKI.Pages
 
                     if (!Arhiv)
                     {
-                        var result = TasksService.Close(Code, TextBoxElement.New(form.textBox28, form.label57) , DateTimeElement.New(form.dateTimePicker9 , form.label38));
+                        var result = TasksService.Close(Id, TextBoxElement.New(form.textBox28, form.label57) , DateTimeElement.New(form.dateTimePicker9 , form.label38));
 
                         if(result)
                         {
@@ -441,7 +442,7 @@ namespace UASKI.Pages
                     }
                     else
                     {
-                        var result = ArhivService.Open(Code);
+                        var result = ArhivService.Open(Id);
 
                         if(result)
                         {
@@ -492,7 +493,7 @@ namespace UASKI.Pages
                 {
                     ErrorHelper.StatusWait();
 
-                    var result = TasksService.Delete(Code);
+                    var result = TasksService.Delete(Id);
 
                     if(result)
                     {
@@ -561,7 +562,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Enter)
             {
                 SystemData.Pages.EditPret.Init(false);
-                SystemData.Pages.EditPret.Show(Code, 1, Page, Arhiv);
+                SystemData.Pages.EditPret.Show(Id, 1, Page, Arhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -585,7 +586,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Enter)
             {
                 SystemData.Pages.EditPret.Init(false);
-                SystemData.Pages.EditPret.Show(Code, 2, Page, Arhiv);
+                SystemData.Pages.EditPret.Show(Id, 2, Page, Arhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {

@@ -35,13 +35,19 @@ namespace UASKI.Data.Entyties
         public int Otm { get; private set; }
 
         /// <summary>
+        /// Идентификатор задачи
+        /// </summary>
+        public int Id { get; private set; }
+
+        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="code">Код</param>
         /// <param name="idIsp">Идентификатор исполнителя</param>
         /// <param name="idCon">Идентификатор котроллера</param>
         /// <param name="date">Дата срока</param>
-        public ArhivEntity(string code, int idIsp, int idCon, DateTime date , DateTime dateClose , int otm)
+        /// <param name="id">Идентификатор задачи</param>
+        public ArhivEntity(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm , int id)
         {
             Code = code;
             IdIsp = idIsp;
@@ -49,6 +55,7 @@ namespace UASKI.Data.Entyties
             Date = date;
             DateClose = dateClose;
             Otm = otm;
+            Id = id;
         }
     }
 }

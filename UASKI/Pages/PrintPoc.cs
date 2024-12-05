@@ -59,9 +59,16 @@ namespace UASKI.Pages
                 c.KofPeriod.ToString() + " / " + c.KofMonth.ToString()
                 )).ToList();
 
-            SystemHelper.PullListInDataGridView(form.dataGridView10,
-                dataRowModels,
-                new DataGridRowModel("Исполнитель" , "Кол-во Заданий" , "Кол-во Опзд", "Кол-во Дней Опзд" , "Кооф"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Исполнитель"),
+                new DataGridColumnModel("Кол-во Заданий"),
+                new DataGridColumnModel("Кол-во Опзд"),
+                new DataGridColumnModel("Кол-во Дней Опзд"),
+                new DataGridColumnModel("Кооф")
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView10, dataRowModels.ToArray(), columns);
 
             form.dataGridView10.ClearSelection();
         }

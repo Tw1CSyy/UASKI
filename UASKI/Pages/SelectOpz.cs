@@ -125,9 +125,18 @@ namespace UASKI.Pages
                 model.Add(task);
             }
 
-            Select(form.dataGridView1,
-                model,
-                new DataGridRowModel("Код", "Исполнитель", "Котроллер", "Срок", "Дата закрытия", "Оценка" , "Дней опозданий"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Исполнитель"),
+                new DataGridColumnModel("Котроллер"),
+                new DataGridColumnModel("Срок"),
+                new DataGridColumnModel("Дата закрытия"),
+                new DataGridColumnModel("Оценка"),
+                new DataGridColumnModel("Дней опозданий")
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView1, model.ToArray(), columns);
         }
 
         protected override void FilterOpen()
@@ -169,10 +178,11 @@ namespace UASKI.Pages
 
                 if (d.SelectedRows.Count > 0)
                 {
-                    var code = d.SelectedRows[0].Cells[0].Value.ToString();
+                    int id = Convert.ToInt32(d.SelectedRows[0].Cells[0].Value);
+
                     var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
                     SystemData.Pages.EditTask.Init(false);
-                    SystemData.Pages.EditTask.Show(code, IsArhiv , 3);
+                    SystemData.Pages.EditTask.Show(id, IsArhiv , 3);
                 }
 
                 e.Handled = true;

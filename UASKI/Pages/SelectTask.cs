@@ -47,13 +47,20 @@ namespace UASKI.Pages
                 var isp = IspService.GetByCode(item.IdIsp, listUser);
                 var con = IspService.GetByCode(item.IdCon, listUser);
 
-                var st = new DataGridRowModel(item.Code, IspService.GetIniz(isp), IspService.GetIniz(con), item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Id.ToString(), item.Code, IspService.GetIniz(isp), IspService.GetIniz(con), item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 
-            Select(form.dataGridView3,
-                        model,
-                        new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Id" , false),
+                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Исполнитель"),
+                new DataGridColumnModel("Контроллер"),
+                new DataGridColumnModel("Срок"),
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView3, model.ToArray(), columns);
         }
 
         protected override void FilterOpen()
@@ -87,10 +94,10 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter && form.dataGridView3.SelectedRows.Count > 0)
             {
-                var code = form.dataGridView3.SelectedRows[0].Cells[0].Value.ToString();
+                var id = Convert.ToInt32(form.dataGridView3.SelectedRows[0].Cells[0].Value);
 
                 SystemData.Pages.EditTask.Init(false);
-                SystemData.Pages.EditTask.Show(code, false , 1);
+                SystemData.Pages.EditTask.Show(id, false , 1);
                 e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)

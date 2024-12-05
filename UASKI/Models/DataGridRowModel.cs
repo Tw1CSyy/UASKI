@@ -8,7 +8,7 @@
         /// <summary>
         /// Список значений
         /// </summary>
-       public string[] Values { get; set; }
+       public string[] Values { get; private set; }
        
         /// <summary>
         /// Создает объект класса

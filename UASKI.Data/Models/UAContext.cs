@@ -66,7 +66,8 @@ namespace UASKI.Data.Context
                     reader.GetValue(0).ToString(),
                     Convert.ToInt32(reader.GetValue(1)),
                     Convert.ToInt32(reader.GetValue(2)),
-                    Convert.ToDateTime(reader.GetValue(3))
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToInt32(reader.GetValue(4))
                 );
 
                 result.Add(item);
@@ -125,7 +126,8 @@ namespace UASKI.Data.Context
                     Convert.ToInt32(reader.GetValue(2)),
                     Convert.ToDateTime(reader.GetValue(3)),
                     Convert.ToDateTime(reader.GetValue(4)),
-                    Convert.ToInt32(reader.GetValue(5))
+                    Convert.ToInt32(reader.GetValue(5)),
+                    Convert.ToInt32(reader.GetValue(6))
                 );
 
                 result.Add(item);
@@ -187,7 +189,7 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
-            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\") " +
+            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\")" +
                 $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}')";
 
             return DataModel.Complite(query);
@@ -214,8 +216,8 @@ namespace UASKI.Data.Context
         /// <returns></returns>
         public bool Add(ArhivEntity entity)
         {
-            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\") " +
-               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}')";
+            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\", \"Id\") " +
+               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}' , '{entity.Id}')";
 
             return DataModel.Complite(query);
         }
@@ -258,9 +260,9 @@ namespace UASKI.Data.Context
         /// Обновляет задачу
         /// </summary>
         /// <param name="task">Модель задачи</param>
-        /// <param name="code">Код задачи</param>
+        /// <param name="Id">Id задачи</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(TaskEntity task , string code)
+        public bool Update(TaskEntity task , int Id)
         {
             
             var query = $"UPDATE \"Tasks\" SET " +
@@ -268,7 +270,7 @@ namespace UASKI.Data.Context
                 $"\"IdIsp\" = '{task.IdIsp}' ," +
                 $"\"IdKon\" = '{task.IdCon}' ," +
                 $"\"Date\" = '{task.Date}' " +
-                $"WHERE \"Cod\" = '{code}'";
+                $"WHERE \"Id\" = '{Id}'";
 
             return DataModel.Complite(query);
         }
@@ -289,9 +291,9 @@ namespace UASKI.Data.Context
         /// Обновляет задачу в архиве
         /// </summary>
         /// <param name="task">Модель задачи</param>
-        /// <param name="code">Код задачи</param>
+        /// <param name="Id">Id задачи</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(ArhivEntity task, string code)
+        public bool Update(ArhivEntity task, int Id)
         {
             
             var query = $"UPDATE \"Arhiv\" SET " +
@@ -301,7 +303,7 @@ namespace UASKI.Data.Context
                 $"\"Date\" = '{task.Date}' , " +
                 $"\"DateClose\" = '{task.DateClose}' ," +
                 $"\"Otm\" = '{task.Otm}'" +
-                $"WHERE \"Cod\" = '{code}'";
+                $"WHERE \"Id\" = '{Id}'";
 
             return DataModel.Complite(query);
         }
@@ -325,7 +327,7 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(TaskEntity entity)
         {
-            var query = $"DELETE FROM \"Tasks\" WHERE \"Cod\" = '{entity.Code}'";
+            var query = $"DELETE FROM \"Tasks\" WHERE \"Id\" = '{entity.Id}'";
 
             return DataModel.Complite(query);
         }
@@ -337,7 +339,7 @@ namespace UASKI.Data.Context
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(ArhivEntity entity)
         {
-            var query = $"DELETE FROM \"Arhiv\" WHERE \"Cod\" = '{entity.Code}'";
+            var query = $"DELETE FROM \"Arhiv\" WHERE \"Id\" = '{entity.Id}'";
 
             return DataModel.Complite(query);
         }

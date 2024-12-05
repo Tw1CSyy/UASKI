@@ -30,7 +30,6 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="search">Код</param>
         /// <param name="isp">Котроллер или исполнитель</param>
-        /// <param name="podr">Подразделение</param>
         /// <param name="isDate">Используется ли дата</param>
         /// <param name="dateFrom">Дата закрытия от</param>
         /// <param name="dateTo">Дата закрытия до</param>
@@ -54,11 +53,11 @@ namespace UASKI.Services
         /// <summary>
         /// Возращает архивную задачу по коду
         /// </summary>
-        /// <param name="code">Код аривной задачи</param>
+        /// <param name="Id">Id аривной задачи</param>
         /// <returns></returns>
-        public static ArhivEntity GetByCode(string code , List<ArhivEntity> list)
+        public static ArhivEntity GetById(int Id , List<ArhivEntity> list)
         {
-            var item = list.FirstOrDefault(c => c.Code.Equals(code));
+            var item = list.FirstOrDefault(c => c.Id == Id);
 
             return item;
         }
@@ -66,12 +65,12 @@ namespace UASKI.Services
         /// <summary>
         /// Возращает задачу в активное состояние
         /// </summary>
-        /// <param name="code">Код закрытой задачи</param>
+        /// <param name="Id">Id закрытой задачи</param>
         /// <returns></returns>
-        public static bool Open(string code)
+        public static bool Open(int Id)
         {
-            var arhiv = GetByCode(code, GetList());
-            var task = new TaskEntity(arhiv.Code, arhiv.IdIsp, arhiv.IdCon, arhiv.Date);
+            var arhiv = GetById(Id, GetList());
+            var task = new TaskEntity(arhiv.Code, arhiv.IdIsp, arhiv.IdCon, arhiv.Date , Id);
 
             var result = context.Add(task);
 

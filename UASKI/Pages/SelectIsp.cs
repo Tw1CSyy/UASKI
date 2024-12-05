@@ -55,11 +55,18 @@ namespace UASKI.Models.Pages
                 result.Add(d);
             }
 
-            Select(form.IspDataGridView
-                        , result
-                        , new DataGridRowModel("Табельный номер", "Фамилия", "Имя", "Отчество", "Код подразделения"));
-        }
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Таб номер"),
+                new DataGridColumnModel("Фамилия"),
+                new DataGridColumnModel("Имя"),
+                new DataGridColumnModel("Отчество"),
+                new DataGridColumnModel("Код подразделения")
+            };
 
+            SystemHelper.PullListInDataGridView(form.IspDataGridView, result.ToArray(), columns);
+        }
+              
         protected override void FilterOpen()
         {
             FilterOpen(form.IspDataGridView, form.panel12, form.textBox13, form.button19);

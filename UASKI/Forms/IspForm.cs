@@ -51,9 +51,16 @@ namespace UASKI.Forms
                 result.Add(d);
             }
 
-            SystemHelper.PullListInDataGridView(dataGridView1,
-                result,
-                new Models.DataGridRowModel("Код", "Фамилия", "Имя", "Отчество", "Подразделение"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Фамилия"),
+                new DataGridColumnModel("Имя"),
+                new DataGridColumnModel("Отчество"),
+                new DataGridColumnModel("Подразделение")
+            };
+
+            SystemHelper.PullListInDataGridView(dataGridView1, result.ToArray(), columns);
 
             dataGridView1.Focus();
         }

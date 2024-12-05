@@ -51,7 +51,8 @@ namespace UASKI.Pages
                 var isp = IspService.GetByCode(item.IdIsp, listUser);
                 var con = IspService.GetByCode(item.IdCon, listUser);
 
-                var st = new DataGridRowModel(item.Code,
+                var st = new DataGridRowModel(item.Id.ToString(),
+                    item.Code,
                     IspService.GetIniz(isp),
                     IspService.GetIniz(con),
                     item.Date.ToString("dd.MM.yyyy"), item.DateClose.ToString("dd.MM.yyyy"),
@@ -60,9 +61,19 @@ namespace UASKI.Pages
                 model.Add(st);
             }
 
-            Select(form.dataGridView5,
-            model,
-                new DataGridRowModel("Код", "Исполнитель", "Контроллер", "Срок", "Дата закрытия", "Оценка"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Id" , false),
+                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Исполнитель"),
+                new DataGridColumnModel("Контроллер"),
+                new DataGridColumnModel("Срок"),
+                new DataGridColumnModel("Дата закрытия"),
+                new DataGridColumnModel("Оценка")
+            };
+
+            SystemHelper.PullListInDataGridView(form.dataGridView5, model.ToArray(), columns);
+
         }
 
         protected override void Exit()
@@ -96,10 +107,10 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter && form.dataGridView5.SelectedRows.Count > 0)
             {
-                var code = form.dataGridView5.SelectedRows[0].Cells[0].Value.ToString();
+                var id = Convert.ToInt32(form.dataGridView5.SelectedRows[0].Cells[0].Value);
 
                 SystemData.Pages.EditTask.Init(false);
-                SystemData.Pages.EditTask.Show(code, true , 2);
+                SystemData.Pages.EditTask.Show(id, true , 2);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Left || e.KeyCode == SystemData.ActionKey)

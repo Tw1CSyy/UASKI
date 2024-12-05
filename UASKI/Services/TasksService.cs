@@ -149,9 +149,9 @@ namespace UASKI.Services
                     con = newCode;
                 }
                
-                var entity = new TaskEntity(item.Code, isp, con, item.Date);
+                var entity = new TaskEntity(item.Code, isp, con, item.Date , item.Id);
 
-                if(!context.Update(entity , entity.Code))
+                if(!context.Update(entity , entity.Id))
                 {
                     return false;
                 }
@@ -171,9 +171,9 @@ namespace UASKI.Services
                     con = newCode;
                 }
 
-                var entity = new ArhivEntity(item.Code, isp, con, item.Date, item.DateClose, item.Otm);
+                var entity = new ArhivEntity(item.Code, isp, con, item.Date, item.DateClose, item.Otm , item.Id);
 
-                if (!context.Update(entity , entity.Code))
+                if (!context.Update(entity , entity.Id))
                 {
                     return false;
                 }
@@ -183,13 +183,13 @@ namespace UASKI.Services
         }
 
         /// <summary>
-        /// Возращает задачу по коду
+        /// Возращает задачу по Id
         /// </summary>
-        /// <param name="code">Код задачи</param>
+        /// <param name="code">Id задачи</param>
         /// <returns></returns>
-        public static TaskEntity GetTaskByCode(string code , List<TaskEntity> list)
+        public static TaskEntity GetTaskById(int code , List<TaskEntity> list)
         {
-            var item = list.FirstOrDefault(c => c.Code.Equals(code));
+            var item = list.FirstOrDefault(c => c.Id == code);
 
             return item;
         }
@@ -197,47 +197,47 @@ namespace UASKI.Services
         /// <summary>
         /// Изменяет задачу, предварительно валидируя
         /// </summary>
-        /// <param name="codeTask">Код текущей задачи</param>
+        /// <param name="IdTask">Id текущей задачи</param>
         /// <param name="idIsp">Код исполнителя</param>
         /// <param name="idCon">Код котроллера</param>
         /// <param name="code">Новый код задачи</param>
         /// <param name="date">Дата срока</param>
         /// <returns>true - успешная операция</returns>
-        public static bool UpdateTask(string codeTask, TextBoxElement idIsp, TextBoxElement idCon, TextBoxElement code, DateTimeElement date)
+        public static bool UpdateTask(int IdTask, TextBoxElement idIsp, TextBoxElement idCon, TextBoxElement code, DateTimeElement date)
         {
             var result = Validation(code, idIsp, idCon, date , true);
 
             if (!result)
                 return false;
 
-            var entity = new TaskEntity(code.Value, Convert.ToInt32(idIsp.Value), Convert.ToInt32(idCon.Value), date.Value);
-            return context.Update(entity, codeTask);
+            var entity = new TaskEntity(code.Value, Convert.ToInt32(idIsp.Value), Convert.ToInt32(idCon.Value), date.Value , IdTask);
+            return context.Update(entity, IdTask);
         }
 
         /// <summary>
         /// Удаляет задачу из Task и добавляет в Arhiv
         /// </summary>
-        /// <param name="code">Код задания</param>
-        /// <param name="otm">Отметка задания</param>
-        /// <param name="date">Дата закрытия</param>
+        /// <param name="IdTask">Id задания</param>
+        /// <param name="Otm">Отметка задания</param>
+        /// <param name="Date">Дата закрытия</param>
         /// <returns>Положительный или отрицательный результат</returns>
-        public static bool Close(string code , TextBoxElement otm , DateTimeElement date)
+        public static bool Close(int IdTask , TextBoxElement Otm , DateTimeElement Date)
         {
-            if (otm.IsNull || !otm.IsNumber)
+            if (Otm.IsNull || !Otm.IsNumber)
             {
-                otm.Error("Некоректные данные");
+                Otm.Error("Некоректные данные");
                 return false;
             }    
 
-            if (Convert.ToInt32(otm.Value) > 5 || Convert.ToInt32(otm.Value) < 1)
+            if (Convert.ToInt32(Otm.Value) > 5 || Convert.ToInt32(Otm.Value) < 1)
             {
-                otm.Error("Число должно быть от 1 до 5");
+                Otm.Error("Число должно быть от 1 до 5");
                 return false;
             }
 
-            var task = GetTaskByCode(code , GetList());
+            var task = GetTaskById(IdTask , GetList());
            
-            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, date.Value, Convert.ToInt32(otm.Value));
+            var arhiv = new ArhivEntity(task.Code, task.IdIsp, task.IdCon, task.Date, Date.Value, Convert.ToInt32(Otm.Value) , IdTask);
 
             var result = context.Add(arhiv);
 
@@ -251,11 +251,11 @@ namespace UASKI.Services
         /// <summary>
         /// Удаляет задачу
         /// </summary>
-        /// <param name="code">Код задачи</param>
+        /// <param name="Id">Id задачи</param>
         /// <returns></returns>
-        public static bool Delete(string code)
+        public static bool Delete(int Id)
         {
-            var task = GetTaskByCode(code, GetList());
+            var task = GetTaskById(Id, GetList());
             var result = context.Delete(task);
             return result;
         }

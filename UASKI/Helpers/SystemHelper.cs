@@ -19,22 +19,22 @@ namespace UASKI.Helpers
     /// </summary>
     public static class SystemHelper
     {
-       
+
         /// <summary>
         /// Заполняет DataGricView данными
         /// </summary>
         /// <param name="d">DataGridView</param>
         /// <param name="values">Колекция строк с данными</param>
-        /// <param name="columns">Набор названий колонок</param>
-        public static void PullListInDataGridView(DataGridView d , List<DataGridRowModel> values , DataGridRowModel columns)
+        /// <param name="columns">Колекция колонок</param>
+        public static void PullListInDataGridView(DataGridView d , DataGridRowModel[] values , DataGridColumnModel[] columns)
         {
             d.DataSource = null;
             
             var table = new DataTable();
 
-            foreach (var item in columns.Values)
+            foreach (var item in columns)
             {
-                table.Columns.Add(item);
+                table.Columns.Add(item.Name);
             }
 
             foreach (var line in values)
@@ -51,9 +51,9 @@ namespace UASKI.Helpers
 
             d.DataSource = table;
 
-            for(int i = 0; i < columns.Values.Length; i++)
+            for(int i = 0; i < d.Columns.Count; i++)
             {
-                d.Columns[i].Width = (int)Math.Floor((double)(d.Width - 40) / (double)columns.Values.Length);
+                d.Columns[i].Visible = columns[i].Visible;
             }
 
             ResizeDataGridView(d);
@@ -389,7 +389,7 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Устанавливает размер колонок в датагрид по ширине
+        /// Устанавливает размер колонок в DataGrid по ширине
         /// </summary>
         /// <param name="d">DataGirdView</param>
         public static void ResizeDataGridView(DataGridView d)

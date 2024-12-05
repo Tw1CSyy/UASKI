@@ -41,12 +41,14 @@ namespace UASKI.Pages
                 result.Add(d);
             }
 
-            Select(form.dataGridView6,
-                result,
-                new DataGridRowModel("Номер", "Дата"));
+            var columns = new DataGridColumnModel[]
+            {
+                new DataGridColumnModel("Номер" , false),
+                new DataGridColumnModel("Дата")
+            };
 
-            form.dataGridView6.Columns[0].Visible = false;
-            SystemHelper.ResizeDataGridView(form.dataGridView6);
+            SystemHelper.PullListInDataGridView(form.dataGridView6, result.ToArray(), columns);
+
         }
 
         protected override void Exit()
