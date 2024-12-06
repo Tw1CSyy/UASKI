@@ -131,7 +131,7 @@ namespace UASKI.Services
                 result = false;
             }
 
-            if (!CheckCode(code.Value))
+            if (!code.IsNull && !CheckCode(code.Value))
             {
                 code.Error("Код имеет не верный формат");
                 result = false;

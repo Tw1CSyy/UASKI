@@ -20,6 +20,11 @@ namespace UASKI.Models
         private int Index;
 
         /// <summary>
+        /// Отчищена ли форма
+        /// </summary>
+        protected bool IsCleared = true;
+
+        /// <summary>
         /// Загрузить данные на страницу
         /// </summary>
         protected abstract void Show();
@@ -42,31 +47,35 @@ namespace UASKI.Models
             SystemData.IsClear = true;
             Clear();
             SystemData.IsClear = false;
+            IsCleared = true;
         }
 
         /// <summary>
         /// Переход на страницу и ее загрузка
         /// </summary>
         /// <param name="IsOpen">false - не открывать автоматически</param>
-        public void Init(bool IsOpen = true)
+        /// <param name="IsClear">false - не отчищать предыдущую страницу</param>
+        public void Init(bool IsOpen = true , bool IsClear = true)
         {
             var form = SystemData.Form;
-            form.tabControl1.SelectedIndex = Index;
             form.Menu_Step2.Enabled = false;
 
-            if (SystemData.This != null && SystemData.This.Index != this.Index)
+            if (SystemData.This != null && SystemData.This.Index != this.Index && IsClear)
                 SystemData.This.ClearPage();
             else if(SystemData.This == null)
                 ClearPage();
 
             SystemData.This = this;
-
+           
             if (IsOpen)
             {
                 SystemData.IsClear = true;
                 Show();
                 SystemData.IsClear = false;
             }
+
+            form.tabControl1.SelectedIndex = Index;
+            IsCleared = false;
         }
 
         /// <summary>

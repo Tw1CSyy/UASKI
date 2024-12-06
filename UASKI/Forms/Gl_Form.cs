@@ -71,7 +71,7 @@ namespace UASKI
 
         }
 
-        public void Loads()
+        private void Loads()
         {
             //OpenFileDialog dialog = new OpenFileDialog();
             //var context = new UAContext();
@@ -1169,7 +1169,12 @@ namespace UASKI
             textBox40_KeyDown(sender, key);
         }
 
+
         #endregion
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

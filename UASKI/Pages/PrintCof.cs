@@ -335,6 +335,16 @@ namespace UASKI.Pages
                 SystemHelper.SelectDataGridView(form.dataGridView11, false);
                 e.Handled = true;
             }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.dataGridView11);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.dataGridView11);
+                e.Handled = true;
+            }
             else if (e.Control)
             {
                 SystemHelper.DataGridViewSort(form.dataGridView11, e.KeyCode);
@@ -351,6 +361,16 @@ namespace UASKI.Pages
             {
                 SystemHelper.SelectDataGridView(form.dataGridView11);
                 SystemHelper.SelectDataGridView(form.dataGridView13, false);
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.dataGridView13);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.dataGridView13);
+                e.Handled = true;
             }
         }
         #endregion

@@ -287,6 +287,16 @@ namespace UASKI.Pages
                 SystemHelper.SelectDataGridView(form.dataGridView7, false);
                 e.Handled = true;
             }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.dataGridView7);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.dataGridView7);
+                e.Handled = true;
+            }
             else if(e.Control)
             {
                 SystemHelper.DataGridViewSort(form.dataGridView7, e.KeyCode);

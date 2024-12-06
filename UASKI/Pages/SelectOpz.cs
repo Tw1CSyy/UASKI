@@ -21,11 +21,15 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            FilterClose();
-            form.checkBox3.Checked = true;
-            form.dateTimePicker7.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            form.dateTimePicker8.Value = DateTime.Today;
-            form.panel18.Visible = true;
+            if(this.IsCleared)
+            {
+                FilterClose();
+                form.checkBox3.Checked = true;
+                form.dateTimePicker7.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                form.dateTimePicker8.Value = DateTime.Today;
+                form.panel18.Visible = true;
+            }
+
             Select();
             form.dataGridView1.Focus();
         }
@@ -83,7 +87,8 @@ namespace UASKI.Pages
                         continue;
                 }
 
-                var task = new DataGridRowModel(item.Code,
+                var task = new DataGridRowModel(item.Id.ToString(),
+                     item.Code,
                      IspService.GetIniz(isp),
                      IspService.GetIniz(con),
                      item.Date.ToString("dd.MM.yyyy"), "", "" , (DateTime.Today - item.Date).Days.ToString());
@@ -114,9 +119,10 @@ namespace UASKI.Pages
                         continue;
                 }
 
-                var task = new DataGridRowModel(item.Code,
+                var task = new DataGridRowModel(item.Id.ToString(),
+                     item.Code,
                      IspService.GetIniz(isp),
-                      IspService.GetIniz(con),
+                     IspService.GetIniz(con),
                      item.Date.ToString("dd.MM.yyyy"),
                      item.DateClose.ToString("dd.MM.yyyy"),
                      item.Otm.ToString(),
@@ -127,6 +133,7 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("Id" , false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Котроллер"),
@@ -164,10 +171,7 @@ namespace UASKI.Pages
                 FilterOpen();
                 SystemHelper.SelectTextBox(form.textBox33);
             }
-            else if ((e.KeyCode == Keys.Up
-                && form.dataGridView1.SelectedRows.Count != 0
-                && form.dataGridView1.SelectedRows[0].Index == 0)
-                || e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 e.Handled = true;
@@ -181,10 +185,24 @@ namespace UASKI.Pages
                     int id = Convert.ToInt32(d.SelectedRows[0].Cells[0].Value);
 
                     var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
-                    SystemData.Pages.EditTask.Init(false);
+                    SystemData.Pages.EditTask.Init(false , false);
                     SystemData.Pages.EditTask.Show(id, IsArhiv , 3);
                 }
 
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.dataGridView1);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.dataGridView1);
                 e.Handled = true;
             }
             else if (e.Control)
@@ -236,7 +254,6 @@ namespace UASKI.Pages
                 e.Handled = true;
             }
         }
-
         public void checkBox3_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)

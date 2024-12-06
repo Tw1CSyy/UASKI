@@ -160,6 +160,16 @@ namespace UASKI.Pages
                 e.Handled = true;
                 SystemHelper.SelectDataGridView(form.dataGridView9, false);
             }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.dataGridView9);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.dataGridView9);
+                e.Handled = true;
+            }
             else if(e.Control)
             {
                 SystemHelper.DataGridViewSort(form.dataGridView9, e.KeyCode);

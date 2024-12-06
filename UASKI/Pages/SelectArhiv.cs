@@ -21,14 +21,16 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            form.dateTimePicker3.Value = DateTime.Today;
-            form.panel15.Visible = true;
-            form.checkBox1.Checked = true;
+            if(this.IsCleared)
+            {
+                form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                form.dateTimePicker3.Value = DateTime.Today;
+                form.panel15.Visible = true;
+                form.checkBox1.Checked = true;
+                FilterClose();
+            }
+            
             Select();
-
-            FilterClose();
-
             form.dataGridView5.Focus();
         }
 
@@ -95,11 +97,7 @@ namespace UASKI.Pages
         #region Клавиши
         public void dataGridView5_KeyDown(KeyEventArgs e)
         {
-            // Если нажали Enter и находимся на верхней строчке или Escape
-            if ((e.KeyCode == Keys.Up
-                && form.dataGridView5.SelectedRows.Count != 0
-                && form.dataGridView5.SelectedRows[0].Index == 0)
-                || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 form.dataGridView5.ClearSelection();
@@ -109,8 +107,22 @@ namespace UASKI.Pages
             {
                 var id = Convert.ToInt32(form.dataGridView5.SelectedRows[0].Cells[0].Value);
 
-                SystemData.Pages.EditTask.Init(false);
+                SystemData.Pages.EditTask.Init(false , false);
                 SystemData.Pages.EditTask.Show(id, true , 2);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.dataGridView5);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.dataGridView5);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Left || e.KeyCode == SystemData.ActionKey)

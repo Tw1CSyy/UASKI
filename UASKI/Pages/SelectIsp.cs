@@ -19,8 +19,13 @@ namespace UASKI.Models.Pages
 
         protected override void Show()
         {
+            if(this.IsCleared)
+            {
+                FilterClose();
+            }
+
             Select();
-            FilterClose();
+            form.IspDataGridView.Focus();
         }
 
         protected override void Clear()
@@ -80,11 +85,7 @@ namespace UASKI.Models.Pages
         #region Клавиши
         public void IspDataGridView_KeyDown(KeyEventArgs e)
         {
-            // Если нажали Enter и находимся на верхней строчке или Escape
-            if ((e.KeyCode == Keys.Up
-                && form.IspDataGridView.SelectedRows.Count != 0
-                && form.IspDataGridView.SelectedRows[0].Index == 0)
-                || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SystemHelper.SelectDataGridView(form.IspDataGridView, false);
@@ -95,10 +96,24 @@ namespace UASKI.Models.Pages
                 if (form.IspDataGridView.SelectedRows.Count > 0)
                 {
                     var code = Convert.ToInt32(form.IspDataGridView.SelectedRows[0].Cells[0].Value);
-                    SystemData.Pages.EditIsp.Init(false);
+                    SystemData.Pages.EditIsp.Init(false , false);
                     SystemData.Pages.EditIsp.Show(code);
                 }
 
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SystemHelper.DataGridDownSelect(form.IspDataGridView);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SystemHelper.DataGridUpSelect(form.IspDataGridView);
                 e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)

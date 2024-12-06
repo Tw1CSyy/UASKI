@@ -426,11 +426,12 @@ namespace UASKI
             this.tabControl1.Controls.Add(this.tabPage14);
             this.tabControl1.Controls.Add(this.tabPage15);
             this.tabControl1.Controls.Add(this.tabPage16);
-            this.tabControl1.Location = new System.Drawing.Point(1, 153);
+            this.tabControl1.Location = new System.Drawing.Point(2, 153);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(889, 569);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -1058,7 +1059,7 @@ namespace UASKI
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(245, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(242, -3);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -2669,6 +2670,7 @@ namespace UASKI
             this.dataGridView7.AllowUserToDeleteRows = false;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView7.Location = new System.Drawing.Point(0, 88);
+            this.dataGridView7.MultiSelect = false;
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.ReadOnly = true;
             this.dataGridView7.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -2769,6 +2771,7 @@ namespace UASKI
             this.dataGridView8.AllowUserToDeleteRows = false;
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView8.Location = new System.Drawing.Point(0, 80);
+            this.dataGridView8.MultiSelect = false;
             this.dataGridView8.Name = "dataGridView8";
             this.dataGridView8.ReadOnly = true;
             this.dataGridView8.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -2839,6 +2842,7 @@ namespace UASKI
             this.dataGridView9.AllowUserToDeleteRows = false;
             this.dataGridView9.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView9.Location = new System.Drawing.Point(0, 98);
+            this.dataGridView9.MultiSelect = false;
             this.dataGridView9.Name = "dataGridView9";
             this.dataGridView9.ReadOnly = true;
             this.dataGridView9.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -2924,6 +2928,7 @@ namespace UASKI
             this.dataGridView10.AllowUserToDeleteRows = false;
             this.dataGridView10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView10.Location = new System.Drawing.Point(0, 80);
+            this.dataGridView10.MultiSelect = false;
             this.dataGridView10.Name = "dataGridView10";
             this.dataGridView10.ReadOnly = true;
             this.dataGridView10.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -3025,6 +3030,7 @@ namespace UASKI
             this.dataGridView13.AllowUserToDeleteRows = false;
             this.dataGridView13.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView13.Location = new System.Drawing.Point(0, 423);
+            this.dataGridView13.MultiSelect = false;
             this.dataGridView13.Name = "dataGridView13";
             this.dataGridView13.ReadOnly = true;
             this.dataGridView13.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -3115,6 +3121,7 @@ namespace UASKI
             this.dataGridView11.AllowUserToDeleteRows = false;
             this.dataGridView11.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView11.Location = new System.Drawing.Point(0, 112);
+            this.dataGridView11.MultiSelect = false;
             this.dataGridView11.Name = "dataGridView11";
             this.dataGridView11.ReadOnly = true;
             this.dataGridView11.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -3661,10 +3668,11 @@ namespace UASKI
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "УАСКИ 2.0";
+            this.Text = " УАСКИ 2.1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

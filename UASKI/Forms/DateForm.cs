@@ -48,7 +48,7 @@ namespace UASKI.Forms
         private void GetOne()
         {
             var value = monthCalendar1.SelectionStart;
-            var date = SystemHelper.GetDate(textBox1.Text, value);
+            var date = GetDate(textBox1.Text, value);
 
             if (date != DateTime.MinValue)
             {
@@ -60,7 +60,7 @@ namespace UASKI.Forms
         {
             var start = monthCalendar1.SelectionStart;
             var value = monthCalendar1.SelectionEnd;
-            var date = SystemHelper.GetDate(textBox1.Text, value);
+            var date = GetDate(textBox1.Text, value);
              
             if (date != DateTime.MinValue)
             {
@@ -172,6 +172,50 @@ namespace UASKI.Forms
         {
             var key = new KeyEventArgs(Keys.Enter);
             monthCalendar1_KeyDown(sender, key);
+        }
+
+        private DateTime GetDate(string text, DateTime dateFrom)
+        {
+            DateTime date;
+
+            try
+            {
+                if (text.Length == 2)
+                {
+                    var day = Convert.ToInt32(text);
+                    date = new DateTime(dateFrom.Year, dateFrom.Month, day);
+                    return date;
+                }
+
+                if (text.Length == 4)
+                {
+                    string value = string.Empty;
+                    value += text[2];
+                    value += text[3];
+
+                    var month = Convert.ToInt32(value);
+                    date = new DateTime(dateFrom.Year, month, dateFrom.Day);
+                    return date;
+                }
+
+                if (text.Length == 6)
+                {
+                    string value = string.Empty;
+                    value += "20";
+                    value += text[4];
+                    value += text[5];
+
+                    var year = Convert.ToInt32(value);
+                    date = new DateTime(year, dateFrom.Month, dateFrom.Day);
+                    return date;
+                }
+            }
+            catch (Exception)
+            {
+                return DateTime.MinValue;
+            }
+
+            return DateTime.MinValue;
         }
 
     }

@@ -19,7 +19,6 @@ namespace UASKI.Helpers
     /// </summary>
     public static class SystemHelper
     {
-
         /// <summary>
         /// Заполняет DataGricView данными
         /// </summary>
@@ -28,6 +27,21 @@ namespace UASKI.Helpers
         /// <param name="columns">Колекция колонок</param>
         public static void PullListInDataGridView(DataGridView d , DataGridRowModel[] values , DataGridColumnModel[] columns)
         {
+            int selected = -1;
+            int columnSort = -1;
+            SortOrder sort = SortOrder.None;
+
+            if(d.Rows.Count > 0 && d.SelectedRows.Count > 0)
+            {
+                selected = d.SelectedRows[0].Index;
+                
+                if(d.SortedColumn != null)
+                {
+                    columnSort = d.SortedColumn.Index;
+                    sort = d.Columns[columnSort].HeaderCell.SortGlyphDirection;
+                }
+            }
+
             d.DataSource = null;
             
             var table = new DataTable();
@@ -57,6 +71,26 @@ namespace UASKI.Helpers
             }
 
             ResizeDataGridView(d);
+            
+            if(selected != -1 && d.Rows.Count > 0)
+            {
+                if (d.Rows.Count > selected)
+                    d.Rows[selected].Selected = true;
+                else if (selected != 0)
+                    d.Rows[d.Rows.Count - 1].Selected = true;
+            }
+            else if(d.Rows.Count > 0)
+            {
+                d.Rows[0].Selected = true;
+            }
+
+            if(d.Rows.Count > 0 && columnSort != -1 && sort != SortOrder.None)
+            {
+                if(sort == SortOrder.Ascending)
+                    d.Sort(d.Columns[columnSort], System.ComponentModel.ListSortDirection.Ascending);
+                else
+                    d.Sort(d.Columns[columnSort], System.ComponentModel.ListSortDirection.Descending);
+            }
         }
 
         /// <summary>
@@ -286,106 +320,21 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Преобразует строку в дату
-        /// </summary>
-        /// <param name="text">Строка</param>
-        /// <param name="dateFrom">Изначальная дата</param>
-        /// <returns>DateTime</returns>
-        public static DateTime GetDate(string text , DateTime dateFrom)
-        {
-            DateTime date;
-
-            try
-            {
-                if (text.Length == 2)
-                {
-                    var day = Convert.ToInt32(text);
-                    date = new DateTime(dateFrom.Year, dateFrom.Month, day);
-                    return date;
-                }
-
-                if (text.Length == 4)
-                {
-                    string value = string.Empty;
-                    value += text[2];
-                    value += text[3];
-
-                    var month = Convert.ToInt32(value);
-                    date = new DateTime(dateFrom.Year, month, dateFrom.Day);
-                    return date;
-                }
-
-                if (text.Length == 6)
-                {
-                    string value = string.Empty;
-                    value += "20";
-                    value += text[4];
-                    value += text[5];
-
-                    var year = Convert.ToInt32(value);
-                    date = new DateTime(year, dateFrom.Month, dateFrom.Day);
-                    return date;
-                }
-            }
-            catch (Exception)
-            {
-                return DateTime.MinValue;
-            }
-
-            return DateTime.MinValue;
-        }
-
-        /// <summary>
         /// Возращает число эквивалетное нажатой клавише или -1
         /// </summary>
         /// <param name="Key">Нажатая клавиша</param>
         public static int GetIntKeyDown(Keys keys)
         {
-            switch (keys)
-            {
-                case Keys.D0:
-                    return 0;
-                case Keys.D1:
-                    return 1;
-                case Keys.D2:
-                    return 2;
-                case Keys.D3:
-                    return 3;
-                case Keys.D4:
-                    return 4;
-                case Keys.D5:
-                    return 5;
-                case Keys.D6:
-                    return 6;
-                case Keys.D7:
-                    return 7;
-                case Keys.D8:
-                    return 8;
-                case Keys.D9:
-                    return 9;
-                case Keys.NumPad0:
-                    return 0;
-                case Keys.NumPad1:
-                    return 1;
-                case Keys.NumPad2:
-                    return 2;
-                case Keys.NumPad3:
-                    return 3;
-                case Keys.NumPad4:
-                    return 4;
-                case Keys.NumPad5:
-                    return 5;
-                case Keys.NumPad6:
-                    return 6;
-                case Keys.NumPad7:
-                    return 7;
-                case Keys.NumPad8:
-                    return 8;
-                case Keys.NumPad9:
-                    return 9;
-            }
+            var h = GetCharKeyDown(keys).ToString();
 
-            return -1;
+            if(int.TryParse(h , out int i))
+            {
+                return i;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         /// <summary>
@@ -415,19 +364,37 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="d">DataGridView</param>
         /// <param name="key">Нажатая клавиша</param>
-        public static void DataGridViewSort(DataGridView d, Keys key)
+        public static bool DataGridViewSort(DataGridView d, Keys key)
         {
             var index = GetIntKeyDown(key);
 
-            if (d.Columns.Count >= index && index != -1)
+            if (d.Columns.Count < index || index == -1)
             {
-                if (d.Columns[index - 1].HeaderCell.SortGlyphDirection == SortOrder.Descending || d.Columns[index - 1].HeaderCell.SortGlyphDirection == SortOrder.None)
-                    d.Sort(d.Columns[index - 1], System.ComponentModel.ListSortDirection.Ascending);
-                else
-                    d.Sort(d.Columns[index - 1], System.ComponentModel.ListSortDirection.Descending);
+                return false;
             }
-        }
 
+            for (int i = index - 1; i < d.ColumnCount - 1; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    if (d.Columns[j].Visible == false)
+                        i++;
+                }
+
+                if (d.Columns[i].HeaderCell.SortGlyphDirection == SortOrder.Descending || d.Columns[i].HeaderCell.SortGlyphDirection == SortOrder.None)
+                {
+                    d.Sort(d.Columns[i], System.ComponentModel.ListSortDirection.Ascending);
+                    break;
+                }
+                else
+                {
+                    d.Sort(d.Columns[i], System.ComponentModel.ListSortDirection.Descending);
+                    break;
+                }
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// Формирует документ для печати
@@ -532,7 +499,6 @@ namespace UASKI.Helpers
             return result;
         }
 
-
         /// <summary>
         /// Расчитывает данные для коофициента качества для исполнителя
         /// </summary>
@@ -564,6 +530,42 @@ namespace UASKI.Helpers
             item.KofMonth = SystemHelper.GetCof(tasksMonth, pretList);
 
             return item;
+        }
+
+        /// <summary>
+        /// Переводит выбранную строку в DataGridView на 1 вверх
+        /// </summary>
+        /// <param name="d">DataGridView</param>
+        public static void DataGridUpSelect(DataGridView d)
+        {
+            if (d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != 0)
+            {
+                var index = d.SelectedRows[0].Index;
+                d.Rows[index - 1].Selected = true;
+
+                if (d.FirstDisplayedScrollingRowIndex + 1 >= d.SelectedRows[0].Index && d.FirstDisplayedScrollingRowIndex != 0)
+                {
+                    d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex - 1;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Переводит выбранную строку в DataGridView на 1 вниз
+        /// </summary>
+        /// <param name="d">DataGridView</param>
+        public static void DataGridDownSelect(DataGridView d)
+        {
+            if (d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != d.Rows.Count - 1)
+            {
+                var index = d.SelectedRows[0].Index;
+                d.Rows[index + 1].Selected = true;
+
+                if (d.DisplayedRowCount(true) <= index + 2)
+                {
+                    d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex + 1;
+                }
+            }
         }
     }
 }
