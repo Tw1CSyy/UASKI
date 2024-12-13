@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
-using UASKI.Models;
 
-namespace UASKI.Data.Context
+namespace UASKI.Data
 {
     public class UAContext
     {

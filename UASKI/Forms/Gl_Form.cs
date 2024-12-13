@@ -8,6 +8,11 @@ using UASKI.Services;
 using Newtonsoft.Json;
 using System.IO;
 
+using UASKI.Data;
+using System.Collections.Generic;
+using UASKI.Data.Entyties;
+using UASKI.Data.Entityes;
+
 namespace UASKI
 {
     public partial class Gl_Form : Form
@@ -69,45 +74,46 @@ namespace UASKI
                 ErrorHelper.StatusError();
             }
 
+           // Loads();
         }
 
         private void Loads()
         {
-            //OpenFileDialog dialog = new OpenFileDialog();
-            //var context = new UAContext();
+            OpenFileDialog dialog = new OpenFileDialog();
+            var context = new UAContext();
 
-            //var num = new List<string>();
-            //var code = new List<string>();
-            //var date = new List<string>();
-            //var isp = new List<string>();
-            //var con = new List<string>();
-            //var date2 = new List<string>();
-            //var otm = new List<string>();
+            var num = new List<string>();
+            var code = new List<string>();
+            var date = new List<string>();
+            var isp = new List<string>();
+            var con = new List<string>();
+            var date2 = new List<string>();
+            var otm = new List<string>();
 
-            //if(dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    num = File.ReadAllLines(dialog.FileName).ToList();
-            //}
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                num = File.ReadAllLines(dialog.FileName).ToList();
+            }
 
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    code = File.ReadAllLines(dialog.FileName).ToList();
-            //}
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                code = File.ReadAllLines(dialog.FileName).ToList();
+            }
 
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    date = File.ReadAllLines(dialog.FileName).ToList();
-            //}
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                date = File.ReadAllLines(dialog.FileName).ToList();
+            }
 
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    isp = File.ReadAllLines(dialog.FileName).ToList();
-            //}
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                isp = File.ReadAllLines(dialog.FileName).ToList();
+            }
 
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    con = File.ReadAllLines(dialog.FileName).ToList();
-            //}
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                con = File.ReadAllLines(dialog.FileName).ToList();
+            }
 
             //if (dialog.ShowDialog() == DialogResult.OK)
             //{
@@ -119,20 +125,22 @@ namespace UASKI
             //    otm = File.ReadAllLines(dialog.FileName).ToList();
             //}
 
-            //for(int i = 0; i < num.Count; i++)
-            //{
-            //    var cod = num[i] + code[i];
-            //    var dat = date[i].Split('.');
-            //    var date1 = new DateTime(Convert.ToInt32(dat[2]) + 2000, Convert.ToInt32(dat[1]), Convert.ToInt32(dat[0]));
-            //    var dat2 = date2[i].Split('.');
-            //    var date12 = new DateTime(Convert.ToInt32(dat2[2]) + 2000, Convert.ToInt32(dat2[1]), Convert.ToInt32(dat2[0]));
-            //    var isps = Convert.ToInt32(isp[i]);
-            //    var cons = Convert.ToInt32(con[i]);
-            //    var otms = Convert.ToInt32(otm[i]);
+            for (int i = 0; i < num.Count; i++)
+            {
+                var cod = num[i] + code[i];
+                var dat = date[i].Split('.');
+                var date1 = new DateTime(Convert.ToInt32(dat[2]) + 2000, Convert.ToInt32(dat[1]), Convert.ToInt32(dat[0]));
+               //var dat2 = date2[i].Split('.');
+               // var date12 = new DateTime(Convert.ToInt32(dat2[2]) + 2000, Convert.ToInt32(dat2[1]), Convert.ToInt32(dat2[0]));
+                var isps = Convert.ToInt32(isp[i]);
+                var cons = Convert.ToInt32(con[i]);
+               // var otms = Convert.ToInt32(otm[i]);
 
-            //    var en = new ArhivEntity(cod, isps, cons, date1, date12, otms);
-            //    context.Add(en);
-            //}
+                var en = new TaskEntity(cod, isps, cons, date1);
+                context.Add(en);
+            }
+
+            MessageBox.Show("ВВВв");
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню

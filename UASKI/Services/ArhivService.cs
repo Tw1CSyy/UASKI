@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UASKI.Data.Entyties;
-using UASKI.Data.Context;
+using UASKI.Data;
 using UASKI.Models;
 using System;
 using System.Windows.Forms;

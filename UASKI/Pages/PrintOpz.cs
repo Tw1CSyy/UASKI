@@ -50,9 +50,10 @@ namespace UASKI.Pages
                 var con = IspService.GetByCode(item.IdCon, ispList);
                 var day = (DateTime.Today - item.Date).Days;
 
-                var model = new DataGridRowModel($"{isp.Code} {isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}",
+                var model = new DataGridRowModel(
+                    IspService.GetIniz(isp),
                     item.Code,
-                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}",
+                    IspService.GetIniz(con),
                     item.Date.ToString("dd.MM.yyyy"),
                     day.ToString());
 

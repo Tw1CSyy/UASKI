@@ -57,5 +57,6 @@ namespace UASKI.Data.Entyties
             Otm = otm;
             Id = id;
         }
+
     }
 }

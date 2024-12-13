@@ -82,7 +82,7 @@ namespace UASKI.Pages
                 var item = new DataGridRowModel(
                     task.Code,
                     task.Date.ToString("dd.MM.yyyy"),
-                   IspService.GetIniz(con),
+                    IspService.GetIniz(con),
                     task.DateClose.ToString("dd.MM.yyyy"),
                     task.Otm.ToString());
 

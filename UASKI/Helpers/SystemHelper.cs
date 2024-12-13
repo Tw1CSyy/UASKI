@@ -416,7 +416,7 @@ namespace UASKI.Helpers
                 int count = 0;
                 int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
 
-                // // Инициализируем переменные для заголовков
+                // Инициализируем переменные для заголовков
                 var headerFont = new Font("Arial", 16, FontStyle.Bold);
                 
                 if(headerY == 0f)

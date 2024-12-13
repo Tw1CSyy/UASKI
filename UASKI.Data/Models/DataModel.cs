@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 
-namespace UASKI.Models
+namespace UASKI
 {
     /// <summary>
     /// Класс для подключения к БД

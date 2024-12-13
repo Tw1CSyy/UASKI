@@ -53,8 +53,8 @@ namespace UASKI.Pages
                     date = 0;
 
                 var model = new DataGridRowModel(item.Code,
-                    $"{isp.Code} {isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.",
-                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.",
+                    IspService.GetIniz(isp),
+                    IspService.GetIniz(con),
                     item.Date.ToString("dd.MM.yyyy"), "", "", date.ToString());
 
                 result.Add(model);
