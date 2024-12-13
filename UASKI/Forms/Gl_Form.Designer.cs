@@ -308,9 +308,7 @@ namespace UASKI
             this.label95 = new System.Windows.Forms.Label();
             this.label96 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.label97 = new System.Windows.Forms.Label();
             this.textBox40 = new System.Windows.Forms.TextBox();
-            this.textBox41 = new System.Windows.Forms.TextBox();
             this.label98 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -3411,9 +3409,7 @@ namespace UASKI
             this.panel21.Controls.Add(this.button51);
             this.panel21.Controls.Add(this.panel22);
             this.panel21.Controls.Add(this.checkBox4);
-            this.panel21.Controls.Add(this.label97);
             this.panel21.Controls.Add(this.textBox40);
-            this.panel21.Controls.Add(this.textBox41);
             this.panel21.Controls.Add(this.label98);
             this.panel21.Location = new System.Drawing.Point(-1, 0);
             this.panel21.Name = "panel21";
@@ -3424,7 +3420,7 @@ namespace UASKI
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(6, 176);
+            this.checkBox6.Location = new System.Drawing.Point(8, 113);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(100, 24);
             this.checkBox6.TabIndex = 33;
@@ -3436,7 +3432,7 @@ namespace UASKI
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(7, 146);
+            this.checkBox5.Location = new System.Drawing.Point(9, 83);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(111, 24);
             this.checkBox5.TabIndex = 32;
@@ -3476,7 +3472,7 @@ namespace UASKI
             this.panel22.Controls.Add(this.dateTimePicker18);
             this.panel22.Controls.Add(this.label95);
             this.panel22.Controls.Add(this.label96);
-            this.panel22.Location = new System.Drawing.Point(0, 264);
+            this.panel22.Location = new System.Drawing.Point(2, 201);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(241, 129);
             this.panel22.TabIndex = 14;
@@ -3547,7 +3543,7 @@ namespace UASKI
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.checkBox4.Location = new System.Drawing.Point(4, 234);
+            this.checkBox4.Location = new System.Drawing.Point(6, 171);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(152, 24);
             this.checkBox4.TabIndex = 12;
@@ -3555,16 +3551,6 @@ namespace UASKI
             this.checkBox4.UseVisualStyleBackColor = false;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             this.checkBox4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox4_PreviewKeyDown);
-            // 
-            // label97
-            // 
-            this.label97.AutoSize = true;
-            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label97.Location = new System.Drawing.Point(3, 77);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(98, 20);
-            this.label97.TabIndex = 11;
-            this.label97.Text = "Код задачи";
             // 
             // textBox40
             // 
@@ -3575,16 +3561,6 @@ namespace UASKI
             this.textBox40.TabIndex = 10;
             this.textBox40.TextChanged += new System.EventHandler(this.textBox40_TextChanged);
             this.textBox40.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox40_KeyDown);
-            // 
-            // textBox41
-            // 
-            this.textBox41.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox41.Location = new System.Drawing.Point(7, 100);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(214, 26);
-            this.textBox41.TabIndex = 8;
-            this.textBox41.TextChanged += new System.EventHandler(this.textBox41_TextChanged);
-            this.textBox41.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox41_KeyDown);
             // 
             // label98
             // 
@@ -3668,7 +3644,6 @@ namespace UASKI
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -4032,9 +4007,7 @@ namespace UASKI
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.Label label96;
         public System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Label label97;
         public System.Windows.Forms.TextBox textBox40;
-        public System.Windows.Forms.TextBox textBox41;
         private System.Windows.Forms.Label label98;
         public System.Windows.Forms.Button button54;
         public System.Windows.Forms.CheckBox checkBox6;

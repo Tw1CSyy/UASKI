@@ -18,8 +18,7 @@ namespace UASKI.Pages
     public class PrintTaskList : BasePagePrint
     {
         public PrintTaskList(int index) : base(index) { }
-        private Gl_Form form = SystemData.Form;
-
+       
         protected override void Show()
         {
             form.dateTimePicker10.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);

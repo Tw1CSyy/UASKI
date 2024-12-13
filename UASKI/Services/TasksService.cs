@@ -155,7 +155,7 @@ namespace UASKI.Services
         {
             var c = code.ToArray();
 
-            if (int.TryParse(c[1].ToString() , out int j1) || !int.TryParse(c[2].ToString(), out int j2))
+            if (int.TryParse(c[1].ToString() , out int j1) || int.TryParse(c[2].ToString(), out int j2))
             {
                 return false;
             }

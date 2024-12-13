@@ -16,8 +16,7 @@ namespace UASKI.Pages
     public class SelectOpz : BasePageSelect
     {
         public SelectOpz(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
+        public override DataGridView DataGridView { get => form.dataGridView1; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -186,7 +185,7 @@ namespace UASKI.Pages
 
                     var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
                     SystemData.Pages.EditTask.Init(false , false);
-                    SystemData.Pages.EditTask.Show(id, IsArhiv , 3);
+                    SystemData.Pages.EditTask.Show(id, IsArhiv , this);
                 }
 
                 e.Handled = true;

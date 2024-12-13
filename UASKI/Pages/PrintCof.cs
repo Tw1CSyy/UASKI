@@ -16,8 +16,6 @@ namespace UASKI.Pages
     {
         public PrintCof(int index) : base(index) { }
 
-        private Gl_Form form = SystemData.Form;
-
         protected override void Show()
         {
             SystemHelper.SelectTextBox(form.textBox36);

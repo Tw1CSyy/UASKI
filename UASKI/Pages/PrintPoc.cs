@@ -17,8 +17,6 @@ namespace UASKI.Pages
     {
         public PrintPoc(int index) : base(index) { }
 
-        private Gl_Form form = SystemData.Form;
-
         protected override void Show()
         {
             form.dateTimePicker12.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);

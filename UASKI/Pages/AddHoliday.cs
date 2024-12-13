@@ -16,8 +16,6 @@ namespace UASKI.Pages
     {
         public AddHoliday(int index) : base(index) { }
 
-        private Gl_Form form = SystemData.Form;
-        
         protected override void Show()
         {
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");

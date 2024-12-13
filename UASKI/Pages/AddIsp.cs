@@ -14,8 +14,6 @@ namespace UASKI.Pages
     {
         public AddIsp(int index) : base(index) { }
 
-        private Gl_Form form = SystemData.Form;
-
         protected override void Show()
         {
             form.textBox8.Focus();

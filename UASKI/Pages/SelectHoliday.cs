@@ -14,8 +14,7 @@ namespace UASKI.Pages
     public class SelectHoliday : BasePageSelect
     {
         public SelectHoliday(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
+        public override DataGridView DataGridView { get => form.dataGridView6; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {

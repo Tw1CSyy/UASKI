@@ -14,8 +14,7 @@ namespace UASKI.Models.Pages
     public class SelectIsp : BasePageSelect
     {
         public SelectIsp(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
+        public override DataGridView DataGridView { get => form.IspDataGridView; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -97,7 +96,7 @@ namespace UASKI.Models.Pages
                 {
                     var code = Convert.ToInt32(form.IspDataGridView.SelectedRows[0].Cells[0].Value);
                     SystemData.Pages.EditIsp.Init(false , false);
-                    SystemData.Pages.EditIsp.Show(code);
+                    SystemData.Pages.EditIsp.Show(code , this);
                 }
 
                 e.Handled = true;

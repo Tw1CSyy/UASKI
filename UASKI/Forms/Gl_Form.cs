@@ -615,10 +615,6 @@ namespace UASKI
         {
             SystemData.Pages.SelectPret.textBox40_KeyDown(e);
         }
-        private void textBox41_KeyDown(object sender, KeyEventArgs e)
-        {
-            SystemData.Pages.SelectPret.textBox41_KeyDown(e);
-        }
         private void checkBox5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             SystemData.Pages.SelectPret.checkBox5_PreviewKeyDown(e);

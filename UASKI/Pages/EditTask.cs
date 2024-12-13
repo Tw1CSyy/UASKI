@@ -12,11 +12,9 @@ namespace UASKI.Pages
     /// <summary>
     /// Класс для объекта страницы редактирования задачи
     /// </summary>
-    public class EditTask : BasePage
+    public class EditTask : BasePageEdit
     {
         public EditTask(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
 
         protected override void Show()
         {
@@ -24,11 +22,10 @@ namespace UASKI.Pages
         }
 
         private int Id;
-        private int Page;
         private string CodeTask;
         public bool Arhiv { get; private set; }
 
-        public void Show(int id , bool IsArhiv , int page)
+        public void Show(int id , bool IsArhiv , BasePageSelect page)
         {
             Id = id;
             Page = page;
@@ -112,22 +109,6 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(form.button12, false);
             SystemHelper.SelectButton(form.button47, false);
             SystemHelper.SelectButton(form.button48, false);
-        }
-
-        protected override void Exit()
-        {
-            switch (Page)
-            {
-                case 1:
-                    SystemData.Pages.SelectTask.Init();
-                    break;
-                case 2:
-                    SystemData.Pages.SelectArhiv.Init();
-                    break;
-                case 3:
-                    SystemData.Pages.SelectOpz.Init();
-                    break;
-            }
         }
 
         private void SelectButton(int idButton = 0 , bool Up = false)

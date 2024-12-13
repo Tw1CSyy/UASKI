@@ -15,8 +15,6 @@ namespace UASKI.Pages
     {
         public AddTask(int index) : base(index) { }
 
-        private Gl_Form form = SystemData.Form;
-
         protected override void Show()
         {
             SystemHelper.SelectTextBox(form.textBox1);
@@ -25,13 +23,13 @@ namespace UASKI.Pages
 
         protected override void Clear()
         {
-            form.textBox1.Clear();
-            form.textBox2.Clear();
-            form.textBox3.Clear();
-            form.textBox4.Clear();
-            form.textBox5.Clear();
-            form.textBox6.Clear();
-            form.textBox7.Clear();
+            //form.textBox1.Clear();
+            //form.textBox2.Clear();
+            //form.textBox3.Clear();
+            //form.textBox4.Clear();
+            //form.textBox5.Clear();
+            //form.textBox6.Clear();
+            //form.textBox7.Clear();
 
             form.label23.Visible = false;
             form.label24.Visible = false;

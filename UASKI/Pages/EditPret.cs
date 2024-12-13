@@ -9,11 +9,9 @@ using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {
-    public class EditPret : BasePage
+    public class EditPret : BasePageEdit
     {
         public EditPret(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
 
         protected override void Show()
         {
@@ -22,10 +20,9 @@ namespace UASKI.Pages
 
         private int IdTask;
         private int Type;
-        private int Page;
         private bool IsArhiv;
 
-        public void Show(int idTask , int type , int page , bool isArhiv , string codeTask)
+        public void Show(int idTask , int type , BasePageSelect page , bool isArhiv , string codeTask)
         {
             IdTask = idTask;
             Type = type;
@@ -57,7 +54,7 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(form.button46, false);
         }
 
-        protected override void Exit()
+        protected new void Exit()
         {
             SystemData.Pages.EditTask.Init(false);
             SystemData.Pages.EditTask.Show(IdTask, IsArhiv, Page);

@@ -17,8 +17,7 @@ namespace UASKI.Pages
     public class SelectPret : BasePageSelect
     {
         public SelectPret(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
+        public override DataGridView DataGridView { get => form.dataGridView12; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -35,7 +34,6 @@ namespace UASKI.Pages
         protected override void Clear()
         {
             form.textBox40.Clear();
-            form.textBox41.Clear();
             form.dataGridView12.DataSource = null;
             SystemHelper.SelectCheckBox(form.checkBox5, false);
         }
@@ -48,11 +46,6 @@ namespace UASKI.Pages
             {
                 list = list.Where(c => c.Code.ToLower().Contains(form.textBox40.Text.ToLower())).ToList();
             }
-
-            //if(form.textBox41.Text.Length > 0)
-            //{
-            //    list = list.Where(c => c.CodeTask.ToLower().Contains(form.textBox41.Text.ToLower())).ToList();
-            //}
 
             if(form.checkBox4.Checked)
             {
@@ -71,7 +64,7 @@ namespace UASKI.Pages
                 list.Clear();
 
             var model = new List<DataGridRowModel>();
-
+            
             foreach (var pret in list.OrderBy(c => c.Date))
             {
                 string type;
@@ -81,7 +74,7 @@ namespace UASKI.Pages
                 else
                     type = "Рецензия";
 
-                var item = new DataGridRowModel(type, pret.Code, "pret.CodeTask", pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
+                var item = new DataGridRowModel(type, pret.Code, pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
                 model.Add(item);
             }
 
@@ -89,7 +82,6 @@ namespace UASKI.Pages
             {
                 new DataGridColumnModel("Тип"),
                 new DataGridColumnModel("Код"),
-                new DataGridColumnModel("Задание"),
                 new DataGridColumnModel("Дата"),
                 new DataGridColumnModel("Оценка")
             };
@@ -112,7 +104,6 @@ namespace UASKI.Pages
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
         }
-
 
         #region Клавиши
         public void dataGridView12_KeyDown(KeyEventArgs e)
@@ -151,26 +142,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectTextBox(form.textBox41);
-                e.Handled = true;
-            }
-        }
-
-        public void textBox41_KeyDown(KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Up)
-            {
-                SystemHelper.SelectTextBox(form.textBox40);
-                e.Handled = true;
-            }
-            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
-            {
                 SystemHelper.SelectCheckBox(form.checkBox5);
-                e.Handled = true;
-            }
-            else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
-            {
-                FilterClose();
                 e.Handled = true;
             }
         }
@@ -179,7 +151,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox41);
+                SystemHelper.SelectTextBox(form.textBox40);
                 SystemHelper.SelectCheckBox(form.checkBox5, false);
             }
             else if (e.KeyCode == Keys.Down)

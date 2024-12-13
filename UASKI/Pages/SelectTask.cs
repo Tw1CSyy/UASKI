@@ -16,8 +16,7 @@ namespace UASKI.Pages
     public class SelectTask : BasePageSelect
     {
         public SelectTask(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
+        public override DataGridView DataGridView { get => form.dataGridView3; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -98,7 +97,7 @@ namespace UASKI.Pages
                 var id = Convert.ToInt32(form.dataGridView3.SelectedRows[0].Cells[0].Value);
 
                 SystemData.Pages.EditTask.Init(false , false);
-                SystemData.Pages.EditTask.Show(id, false , 1);
+                SystemData.Pages.EditTask.Show(id, false , this);
                 e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey || e.KeyCode == Keys.Left)

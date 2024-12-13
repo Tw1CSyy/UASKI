@@ -16,8 +16,7 @@ namespace UASKI.Pages
     public class SelectArhiv : BasePageSelect
     {
         public SelectArhiv(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
+        public override DataGridView DataGridView { get => form.dataGridView5; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -108,7 +107,7 @@ namespace UASKI.Pages
                 var id = Convert.ToInt32(form.dataGridView5.SelectedRows[0].Cells[0].Value);
 
                 SystemData.Pages.EditTask.Init(false , false);
-                SystemData.Pages.EditTask.Show(id, true , 2);
+                SystemData.Pages.EditTask.Show(id, true , this);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)

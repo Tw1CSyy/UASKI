@@ -7,6 +7,8 @@ namespace UASKI.Models
     {
         public BasePageSelect(int index) : base(index) { }
 
+        public abstract DataGridView DataGridView { get; protected set; }
+
         /// <summary>
         /// Выводит данные в DataGridView
         /// </summary>

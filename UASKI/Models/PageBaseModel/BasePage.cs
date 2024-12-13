@@ -20,6 +20,11 @@ namespace UASKI.Models
         private int Index;
 
         /// <summary>
+        /// Главная форма
+        /// </summary>
+        protected Gl_Form form { get => SystemData.Form; }
+
+        /// <summary>
         /// Отчищена ли форма
         /// </summary>
         protected bool IsCleared = true;

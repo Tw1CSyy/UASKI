@@ -15,8 +15,6 @@ namespace UASKI.Pages
     {
         public PrintMer(int index) : base(index) { }
 
-        private Gl_Form form = SystemData.Form;
-
         protected override void Show()
         {
             form.label79.Text = "На " + DateTime.Today.ToString("dd.MM.yyyy");

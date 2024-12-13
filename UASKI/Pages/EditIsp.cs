@@ -13,11 +13,9 @@ namespace UASKI.Pages
     /// <summary>
     /// Класс для объекта страницы редактирования исполнителя
     /// </summary>
-    public class EditIsp : BasePage
+    public class EditIsp : BasePageEdit
     {
         public EditIsp(int index) : base(index) { }
-
-        private Gl_Form form = SystemData.Form;
 
         protected override void Show()
         {
@@ -54,9 +52,11 @@ namespace UASKI.Pages
             SystemHelper.PullListInDataGridView(form.dataGridView4, model.ToArray(), columns);
         }
 
-        public void Show(int code)
+        public void Show(int code , BasePageSelect page)
         {
             Code = code;
+            Page = page;
+
             var form = SystemData.Form;
             var isp = IspService.GetByCode(code , IspService.GetList());
 
@@ -92,10 +92,6 @@ namespace UASKI.Pages
             SystemHelper.SelectButton(form.button7, false);
         }
 
-        protected override void Exit()
-        {
-            SystemData.Pages.SelectIsp.Init();
-        }
 
         #region Клавиши
         public void textBox18_KeyDown(KeyEventArgs e)
