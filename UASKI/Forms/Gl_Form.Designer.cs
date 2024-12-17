@@ -2143,7 +2143,7 @@ namespace UASKI
             this.panel19.Controls.Add(this.label40);
             this.panel19.Location = new System.Drawing.Point(184, 365);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(455, 93);
+            this.panel19.Size = new System.Drawing.Size(455, 103);
             this.panel19.TabIndex = 35;
             // 
             // label57
@@ -2152,7 +2152,7 @@ namespace UASKI
             this.label57.ForeColor = System.Drawing.Color.Red;
             this.label57.Location = new System.Drawing.Point(294, 66);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(145, 13);
+            this.label57.Size = new System.Drawing.Size(145, 37);
             this.label57.TabIndex = 37;
             this.label57.Text = "Ошибка";
             this.label57.Visible = false;
@@ -2204,7 +2204,7 @@ namespace UASKI
             this.label38.ForeColor = System.Drawing.Color.Red;
             this.label38.Location = new System.Drawing.Point(7, 70);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(145, 13);
+            this.label38.Size = new System.Drawing.Size(238, 13);
             this.label38.TabIndex = 32;
             this.label38.Text = "Ошибка";
             this.label38.Visible = false;

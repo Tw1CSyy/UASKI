@@ -6,6 +6,7 @@ using UASKI.Models;
 using System;
 using System.Windows.Forms;
 using UASKI.Data.Entityes;
+using UASKI.Models.Elements;
 
 namespace UASKI.Services
 {
@@ -81,5 +82,119 @@ namespace UASKI.Services
             return result;
         }
 
+        /// <summary>
+        /// Валидация Архива
+        /// </summary>
+        /// <param name="idIsp">Элемент номер исполнителя</param>
+        /// <param name="idCon">Элемент номер контролера</param>
+        /// <param name="date">Элемент срок исполнения</param>
+        /// <param name="dateClose">Элемент дата закрытия</param>
+        /// <param name="Otm">Элемент оценка</param>
+        /// <returns>true - успешное выполнение</returns>
+        private static bool Validation(TextBoxElement code, TextBoxElement idIsp, TextBoxElement idCon, DateTimeElement date, DateTimeElement dateClose , TextBoxElement Otm)
+        {
+            var result = true;
+
+            code.Dispose();
+            idIsp.Dispose();
+            idCon.Dispose();
+            date.Dispose();
+            dateClose.Dispose();
+            Otm.Dispose();
+
+            if (idIsp.IsNull)
+            {
+                idIsp.Error("Поле не заполнено");
+                result = false;
+            }
+
+            if (idCon.IsNull)
+            {
+                idCon.Error("Поле не заполнено");
+                result = false;
+            }
+
+            if (code.IsNull)
+            {
+                code.Error("Поле не заполнено");
+                result = false;
+            }
+
+            if(Otm.IsNull)
+            {
+                Otm.Error("Поле не заполнено");
+                result = false;
+            }
+
+            if (!Otm.IsNumber || (Convert.ToInt32(Otm.Value) < 1 && Convert.ToInt32(Otm.Value) > 5))
+            {
+                Otm.Error("По 5ти бальной системе пожайлусто");
+                result = false;
+            }
+
+            if (HolidaysService.CheckDay(date.Value))
+            {
+                date.Error("В праздник никто работать не будет");
+                result = false;
+            }
+
+            if (HolidaysService.CheckDay(dateClose.Value))
+            {
+                dateClose.Error("В праздник никто работать не будет");
+                result = false;
+            }
+
+            if (code.Value.Length < 13)
+            {
+                code.Error("13 символов и не на символ меньше");
+                result = false;
+            }
+
+            else if (code.Value.Length > 13)
+            {
+                code.Error("13 символов и не на символ больше");
+                result = false;
+            }
+
+            if (!code.IsNull && !TasksService.CheckCode(code.Value))
+            {
+                code.Error("Код имеет не верный формат");
+                result = false;
+            }
+
+            if (date.Value.DayOfWeek == DayOfWeek.Sunday || date.Value.DayOfWeek == DayOfWeek.Saturday)
+            {
+                date.Error("В выходной никто работать не будет");
+                result = false;
+            }
+
+            if (dateClose.Value.DayOfWeek == DayOfWeek.Sunday || dateClose.Value.DayOfWeek == DayOfWeek.Saturday)
+            {
+                dateClose.Error("В выходной никто работать не будет");
+                result = false;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Обновление архива с предварительной валидацией
+        /// </summary>
+        /// <param name="idIsp">Элемент номер исполнителя</param>
+        /// <param name="idCon">Элемент номер контролера</param>
+        /// <param name="date">Элемент срок исполнения</param>
+        /// <param name="dateClose">Элемент дата закрытия</param>
+        /// <param name="Otm">Элемент оценка</param>
+        /// <returns>true - успешное выполнение</returns>
+        public static bool Update(int id , TextBoxElement code, TextBoxElement idIsp, TextBoxElement idCon, DateTimeElement date, DateTimeElement dateClose, TextBoxElement Otm)
+        {
+            if(!Validation(code , idIsp , idCon , date , dateClose , Otm))
+            {
+                return false;
+            }
+
+            var arhiv = new ArhivEntity(code.Value, Convert.ToInt32(idIsp.Value), Convert.ToInt32(idCon.Value), date.Value, dateClose.Value, Convert.ToInt32(Otm.Value), id);
+            return context.Update(arhiv , id);
+        }
     }
 }

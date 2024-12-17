@@ -151,7 +151,7 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="code">Код задачи</param>
         /// <returns>true - положительный ответ</returns>
-        private static bool CheckCode(string code)
+        public static bool CheckCode(string code)
         {
             var c = code.ToArray();
 

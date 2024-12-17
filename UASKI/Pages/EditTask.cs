@@ -77,7 +77,7 @@ namespace UASKI.Pages
                 form.dateTimePicker4.Value = arhiv.Date;
 
                 form.button11.Text = "Открыть";
-                form.button10.Enabled = false;
+                form.button10.Enabled = true;
                 form.button11.Enabled = true;
                 form.button12.Enabled = false;
 
@@ -368,7 +368,24 @@ namespace UASKI.Pages
                     }    
                     else
                     {
+                        var result = ArhivService.Update(Id,
+                             TextBoxElement.New(form.textBox27, form.label55),
+                            TextBoxElement.New(form.textBox24, form.label51),
+                            TextBoxElement.New(form.textBox23, form.label53),
+                            DateTimeElement.New(form.dateTimePicker4, form.label56),
+                            DateTimeElement.New(form.dateTimePicker9 , form.label38),
+                            TextBoxElement.New(form.textBox28 , form.label57)
+                            );
 
+                        if (result)
+                        {
+                            ErrorHelper.StatusComlite();
+                            Exit();
+                        }
+                        else
+                        {
+                            ErrorHelper.StatusError();
+                        }
                     }
                 }
                 else

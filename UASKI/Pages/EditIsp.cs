@@ -32,7 +32,7 @@ namespace UASKI.Pages
 
             var listUser = IspService.GetList();
 
-            foreach (var item in list.OrderByDescending(c => c.Date))
+            foreach (var item in list.OrderBy(c => c.Date))
             {
                 var isp = IspService.GetByCode(item.IdIsp, listUser);
                 var con = IspService.GetByCode(item.IdCon, listUser);
