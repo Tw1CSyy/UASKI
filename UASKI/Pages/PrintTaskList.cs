@@ -31,15 +31,15 @@ namespace UASKI.Pages
         {
             form.textBox20.Clear();
             form.textBox30.Clear();
-            form.dataGridView7.DataSource = null;
-            SystemHelper.SelectButton(form.button34, false);
+            form.DataGridView7.d.DataSource = null;
+            SelectButton(form.button34, false);
         }
 
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
-            SystemHelper.SelectButton(form.button34, false);
+            SelectButton(form.button34, false);
         }
 
         public override void Select()
@@ -98,12 +98,12 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Оценка")
             };
 
-            SystemHelper.PullListInDataGridView(form.dataGridView7, result.ToArray(), columns);
+            SystemHelper.PullListInDataGridView(form.DataGridView7.d, result.ToArray(), columns);
         }
 
         protected override void Print()
         {
-            if(form.dataGridView7.Columns.Count == 0)
+            if(form.DataGridView7.d.Columns.Count == 0)
             {
                 ErrorHelper.StatusError();
             }  
@@ -122,7 +122,7 @@ namespace UASKI.Pages
             string header1 = $"Перечень заданий с {form.dateTimePicker10.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker11.Value.ToString("dd.MM.yyyy")}";
             string header2 = $"Исполнитель {form.textBox30.Text} {form.textBox20.Text}";
 
-            var model = new PrintModel(font, e, form.dataGridView7, header1, header2);
+            var model = new PrintModel(font, e, form.DataGridView7.d, header1, header2);
             SystemHelper.PrintDocument(model);
         }
 
@@ -131,7 +131,7 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectTextBox(form.textBox30);
+                SelectTextBox(form.textBox30);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right)
@@ -165,7 +165,7 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectTextBox(form.textBox30);
+                SelectTextBox(form.textBox30);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
@@ -175,7 +175,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(form.button34);
+                SelectButton(form.button34);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
@@ -214,7 +214,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectButton(form.button34);
+                SelectButton(form.button34);
                 e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey)
@@ -230,7 +230,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectDataGridView(form.dataGridView7);
+                SelectDataGridView(form.DataGridView7.d);
                 e.Handled = true;
             }
         }
@@ -239,8 +239,8 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectTextBox(form.textBox30);
-                SystemHelper.SelectButton(form.button34, false);
+                SelectTextBox(form.textBox30);
+                SelectButton(form.button34, false);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -249,12 +249,12 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Up)
             {
                 form.dateTimePicker11.Focus();
-                SystemHelper.SelectButton(form.button34, false);
+                SelectButton(form.button34, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
-                if(SystemHelper.SelectDataGridView(form.dataGridView7))
-                SystemHelper.SelectButton(form.button34, false);
+                if(SelectDataGridView(form.DataGridView7.d))
+                SelectButton(form.button34, false);
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -273,33 +273,23 @@ namespace UASKI.Pages
         public void dataGridView7_KeyDown(KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Up
-                && form.dataGridView7.SelectedRows.Count != 0
-                && form.dataGridView7.SelectedRows[0].Index == 0)
+                && form.DataGridView7.d.SelectedRows.Count != 0
+                && form.DataGridView7.d.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
-                SystemHelper.SelectTextBox(form.textBox30);
-                SystemHelper.SelectDataGridView(form.dataGridView7, false);
+                SelectTextBox(form.textBox30);
+                SelectDataGridView(form.DataGridView7.d, false);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(form.button34);
-                SystemHelper.SelectDataGridView(form.dataGridView7, false);
+                SelectButton(form.button34);
+                SelectDataGridView(form.DataGridView7.d, false);
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Down)
+            else
             {
-                SystemHelper.DataGridDownSelect(form.dataGridView7);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                SystemHelper.DataGridUpSelect(form.dataGridView7);
-                e.Handled = true;
-            }
-            else if(e.Control)
-            {
-                SystemHelper.DataGridViewSort(form.dataGridView7, e.KeyCode);
+                form.DataGridView7.KeyDown(e);
                 e.Handled = true;
             }
         }

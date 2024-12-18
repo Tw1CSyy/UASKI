@@ -27,45 +27,38 @@ namespace UASKI.Models
         protected BasePageSelect Page;
         
         /// <summary>
-        /// Устанавливает значение индекса выбраной строки на DataGridView на странице просмотра
-        /// </summary>
-        void PullDataGridViewSelectedIndex()
-        {
-            var d = Page.DataGridView;
-
-            if(d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != 0)
-            {
-                SelectedIndex = d.SelectedRows[0].Index;
-            }
-        }
-
-        /// <summary>
-        /// Устанавливает индекс выбранной строки в DataGridView
-        /// </summary>
-        void PushDataGridViewSelect()
-        {
-            var d = Page.DataGridView;
-
-            if(d.Rows.Count > 0)
-            {
-                if(d.Rows.Count >= SelectedIndex)
-                    d.Rows[d.Rows.Count - 1].Selected = true;
-                else
-                    d.Rows[SelectedIndex].Selected = true;
-
-                SelectedIndex = 0;
-            }
-        }
-
-        /// <summary>
         /// Выход со страницы
         /// </summary>
         protected override void Exit()
         {
-            PullDataGridViewSelectedIndex();
-            Page.Init();
-            PushDataGridViewSelect();
-        }
+            var d = Page.DataGridView;
 
+            if (d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != 0)
+            {
+                SelectedIndex = d.SelectedRows[0].Index;
+            }
+
+            Page.Init();
+
+            if (d.Rows.Count > 0)
+            {
+                if (d.Rows.Count < SelectedIndex)
+                {
+                    d.Rows[d.Rows.Count - 1].Selected = true;
+                    SelectedIndex = d.Rows.Count - 1;
+                }
+                else
+                {
+                    d.Rows[SelectedIndex].Selected = true;
+                }
+
+                if (!d.Rows[SelectedIndex].Displayed)
+                {
+                    d.FirstDisplayedScrollingRowIndex = SelectedIndex - d.DisplayedRowCount(false) + 2;
+                }
+
+                SelectedIndex = 0;
+            }
+        }
     }
 }

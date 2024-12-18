@@ -144,6 +144,27 @@ namespace UASKI.Services
                 result = false;
             }
 
+            if(result)
+            {
+                var list = GetList();
+                var isp = GetByCode(Convert.ToInt32(code.Value) , list);
+
+                if(isp != null)
+                {
+                    code.Error("Код должен быть уникальным");
+                    result = false;
+                }
+
+                isp = list.FirstOrDefault(c => c.CodePodr == Convert.ToInt32(podr.Value));
+
+                if(isp != null)
+                {
+                    podr.Error("Код должен быть уникальным");
+                    result = false;
+                }
+                
+            }
+
             return result;
         }
 

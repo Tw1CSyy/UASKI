@@ -6,6 +6,7 @@ using UASKI.StaticModels;
 using UASKI.Services;
 using Newtonsoft.Json;
 using System.IO;
+using UASKI.Models.Components;
 
 namespace UASKI
 {
@@ -28,12 +29,11 @@ namespace UASKI
 
             // Инициализируем системные переменные
             SystemData.Init(this);
+            ComponentIniz();
             
             // Рисуем меню
             foreach (var item in SystemData.MenuItems.Select(c => c.Text).ToArray())
-            {
                 Menu_Step1.Items.Add(item);
-            }
 
             Menu_Step1.SelectedIndex = 0;
             Menu_Step1.Focus();
@@ -47,13 +47,9 @@ namespace UASKI
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
 
             if(!File.Exists(path))
-            {
                 CreateSettings(path);
-            }
             else
-            {
                 LoadSettings(path);
-            }
 
             // Открываем подключение
             try
@@ -69,10 +65,12 @@ namespace UASKI
             }
         }
 
+        #region Системное
+
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
         private void Menu_Step1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Menu_Step1.SelectedIndex != -1)
+            if (Menu_Step1.SelectedIndex != -1)
             {
                 var text = Menu_Step1.Items[Menu_Step1.SelectedIndex].ToString();
                 var items = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(text));
@@ -112,11 +110,12 @@ namespace UASKI
         {
             var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
             var el = elem.Items.FirstOrDefault(c => c.Text.Equals(Menu_Step2.SelectedItem.ToString()));
-            
-            if(el.Page != null)
+
+            if (el.Page != null)
                 el.Page.Init();
         }
 
+        // Создает файл настроек
         private void CreateSettings(string filePath)
         {
             var defult = new AppSettings
@@ -128,14 +127,52 @@ namespace UASKI
             File.WriteAllText(filePath, json);
         }
 
+        // Загружает файл настроек
         private void LoadSettings(string filePath)
         {
-            if(File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 var json = File.ReadAllText(filePath);
                 SystemData.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
             }
         }
+        #endregion
+
+        #region Компоненты-Переменные
+        
+        private void ComponentIniz()
+        {
+            IspDataGridView = new DataGridViewComponent(ispDataGridView);
+            DataGridView3 = new DataGridViewComponent(dataGridView3);
+            DataGridView5 = new DataGridViewComponent(dataGridView5);
+            DataGridView6 = new DataGridViewComponent(dataGridView6);
+            DataGridView1 = new DataGridViewComponent(dataGridView1);
+            DataGridView2 = new DataGridViewComponent(dataGridView2);
+            DataGridView4 = new DataGridViewComponent(dataGridView4);
+            DataGridView7 = new DataGridViewComponent(dataGridView7);
+            DataGridView8 = new DataGridViewComponent(dataGridView8);
+            DataGridView9 = new DataGridViewComponent(dataGridView9);
+            DataGridView10 = new DataGridViewComponent(dataGridView10);
+            DataGridView11 = new DataGridViewComponent(dataGridView11);
+            DataGridView13 = new DataGridViewComponent(dataGridView13);
+            DataGridView12 = new DataGridViewComponent(dataGridView12);
+        }
+
+        public DataGridViewComponent IspDataGridView { get; private set; }
+        public DataGridViewComponent DataGridView3 { get; private set; }
+        public DataGridViewComponent DataGridView5 { get; private set; }
+        public DataGridViewComponent DataGridView6 { get; private set; }
+        public DataGridViewComponent DataGridView1 { get; private set; }
+        public DataGridViewComponent DataGridView2 { get; private set; }
+        public DataGridViewComponent DataGridView4 { get; private set; }
+        public DataGridViewComponent DataGridView7 { get; private set; }
+        public DataGridViewComponent DataGridView8 { get; private set; }
+        public DataGridViewComponent DataGridView9 { get; private set; }
+        public DataGridViewComponent DataGridView10 { get; private set; }
+        public DataGridViewComponent DataGridView11 { get; private set; }
+        public DataGridViewComponent DataGridView13 { get; private set; }
+        public DataGridViewComponent DataGridView12 { get; private set; }
+        #endregion
 
         #region Нажатия клавиш
 

@@ -14,19 +14,19 @@ namespace UASKI.Pages
     public class SelectHoliday : BasePageSelect
     {
         public SelectHoliday(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.dataGridView6; protected set => throw new NotImplementedException(); }
+        public override DataGridView DataGridView { get => form.DataGridView6.d; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
             Select();
-            form.dataGridView6.Focus();
-            SystemHelper.SelectButton(form.button13, false);
+            form.DataGridView6.d.Focus();
+            SelectButton(form.button13, false);
         }
 
         protected override void Clear()
         {
-            form.dataGridView6.DataSource = null;
-            SystemHelper.SelectButton(form.button13, false);
+            form.DataGridView6.d.DataSource = null;
+            SelectButton(form.button13, false);
         }
 
         public override void Select()
@@ -46,16 +46,16 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Дата")
             };
 
-            SystemHelper.PullListInDataGridView(form.dataGridView6, result.ToArray(), columns);
+            SystemHelper.PullListInDataGridView(form.DataGridView6.d, result.ToArray(), columns);
 
         }
 
         protected override void Exit()
         {
-            form.dataGridView6.ClearSelection();
+            form.DataGridView6.d.ClearSelection();
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
-            SystemHelper.SelectButton(form.button13, false);
+            SelectButton(form.button13, false);
         }
 
         protected override void FilterOpen()
@@ -74,20 +74,19 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectButton(form.button13);
+                SelectButton(form.button13);
             }
             else if ((e.KeyCode == Keys.Up
-               && form.dataGridView6.SelectedRows.Count != 0
-               && form.dataGridView6.SelectedRows[0].Index == 0)
+               && form.DataGridView6.d.SelectedRows.Count != 0
+               && form.DataGridView6.d.SelectedRows[0].Index == 0)
                || e.KeyCode == Keys.Escape)
             {
                 Exit();
                 e.Handled = true;
             }
-            else if (e.Control)
+            else
             {
-                SystemHelper.DataGridViewSort(form.dataGridView6, e.KeyCode);
-                e.Handled = true;
+                form.DataGridView6.KeyDown(e);
             }
         }
 
@@ -95,8 +94,8 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Left)
             {
-                form.dataGridView6.Focus();
-                SystemHelper.SelectButton(form.button13, false);
+                form.DataGridView6.d.Focus();
+                SelectButton(form.button13, false);
             }
             else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
             {
@@ -110,7 +109,7 @@ namespace UASKI.Pages
 
                     var list = new List<int>();
 
-                    foreach (DataGridViewRow item in form.dataGridView6.SelectedRows)
+                    foreach (DataGridViewRow item in form.DataGridView6.d.SelectedRows)
                     {
                         list.Add(Convert.ToInt32(item.Cells[0].Value));
                     }

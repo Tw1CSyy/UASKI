@@ -120,10 +120,11 @@
     </Compile>
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
+    <Compile Include="Models\Components\DataGridViewComponent.cs" />
     <Compile Include="Models\PageBaseModel\BasePageEdit.cs" />
     <Compile Include="Models\PageBaseModel\BasePagePrint.cs" />
     <Compile Include="Models\PageBaseModel\BasePageSelect.cs" />
-    <Compile Include="Models\BaseElement.cs" />
+    <Compile Include="Models\Elements\BaseElement.cs" />
     <Compile Include="Models\PageBaseModel\BasePage.cs" />
     <Compile Include="Models\DataGridColumnModel.cs" />
     <Compile Include="Models\DataGridRowModel.cs" />

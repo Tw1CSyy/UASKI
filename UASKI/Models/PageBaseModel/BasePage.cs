@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using UASKI.Helpers;
@@ -90,6 +91,77 @@ namespace UASKI.Models
         public BasePage(int index)
         {
             Index = index;
+        }
+
+        /// <summary>
+        /// Включает и меняет фон кнопки для отображения выделения
+        /// </summary>
+        /// <param name="btn">Button для выделения</param>
+        /// <param name="selected">Вкл/Выкл</param>
+        protected static void SelectButton(Button btn, bool selected = true)
+        {
+            if (selected)
+            {
+                btn.BackColor = Color.LightBlue;
+                btn.Focus();
+            }
+            else
+            {
+                btn.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
+        /// Выбирает DataGridView
+        /// </summary>
+        /// <param name="d">DataGridView для выделения</param>
+        /// <param name="selected">Вкл/Выкл</param>
+        protected bool SelectDataGridView(DataGridView d, bool selected = true)
+        {
+            if (selected)
+            {
+                if (d.Rows.Count > 0)
+                {
+                    d.Rows[0].Selected = true;
+                    d.Focus();
+                    return true;
+                }
+
+                return false;
+            }
+            else
+            {
+                d.ClearSelection();
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Выбирает текст бокс и переводит курсор
+        /// </summary>
+        /// <param name="t">TextBox для выделения</param>
+        protected static void SelectTextBox(TextBox t)
+        {
+            t.Focus();
+            t.SelectionStart = t.Text.Length;
+        }
+
+        /// <summary>
+        /// Выбирает и веделяет CheckBox
+        /// </summary>
+        /// <param name="c">CheckBox для выделения</param>
+        /// <param name="selected"></param>
+        protected static void SelectCheckBox(CheckBox c, bool selected = true)
+        {
+            if (selected)
+            {
+                c.BackColor = Color.LightBlue;
+                c.Focus();
+            }
+            else
+            {
+                c.BackColor = Color.FromArgb(224, 224, 224);
+            }
         }
 
     }

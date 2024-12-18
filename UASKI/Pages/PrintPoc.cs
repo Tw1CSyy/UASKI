@@ -27,8 +27,8 @@ namespace UASKI.Pages
 
         protected override void Clear()
         {
-            SystemHelper.SelectButton(form.button40, false);
-            form.dataGridView10.DataSource = null;
+            SelectButton(form.button40, false);
+            form.DataGridView10.d.DataSource = null;
         }
 
         protected override void Exit()
@@ -51,10 +51,10 @@ namespace UASKI.Pages
 
             var dataRowModels = result.Select(c => new DataGridRowModel(
                 c.Isp,
-                c.CountMonth.ToString(),
-                c.CountOpzMonth.ToString(),
-                c.CountDayMonth.ToString(),
-                c.KofMonth.ToString()
+                c.CountPeriod.ToString(),
+                c.CountOpzPeriod.ToString(),
+                c.CountDayPeriod.ToString(),
+                c.KofPeriod.ToString()
                 )).ToList();
 
             var columns = new DataGridColumnModel[]
@@ -66,14 +66,14 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Кооф")
             };
 
-            SystemHelper.PullListInDataGridView(form.dataGridView10, dataRowModels.ToArray(), columns);
+            SystemHelper.PullListInDataGridView(form.DataGridView10.d, dataRowModels.ToArray(), columns);
 
-            form.dataGridView10.ClearSelection();
+            form.DataGridView10.d.ClearSelection();
         }
 
         protected override void Print()
         {
-            if (form.dataGridView10.Columns.Count == 0)
+            if (form.DataGridView10.d.Columns.Count == 0)
             {
                 ErrorHelper.StatusError();
             }
@@ -92,7 +92,7 @@ namespace UASKI.Pages
             string header1 = $"Текущие значения показателей работы подразделений";
             string header2 = $"C {form.dateTimePicker12.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker13.Value.ToString("dd.MM.yyyy")}";
 
-            var model = new PrintModel(font, e, form.dataGridView10, header1, header2);
+            var model = new PrintModel(font, e, form.DataGridView10.d, header1, header2);
             SystemHelper.PrintDocument(model);
         }
 
@@ -111,7 +111,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectDataGridView(form.dataGridView10);
+                SelectDataGridView(form.DataGridView10.d);
                 e.Handled = true;
             }
             else if(e.KeyCode == SystemData.ActionKey)
@@ -160,12 +160,12 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectDataGridView(form.dataGridView10);
+                SelectDataGridView(form.DataGridView10.d);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right)
             {
-                SystemHelper.SelectButton(form.button40);
+                SelectButton(form.button40);
                 e.Handled = true;
             }
         }
@@ -175,18 +175,18 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
-                SystemHelper.SelectButton(form.button40, false);
+                SelectButton(form.button40, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
-                if (SystemHelper.SelectDataGridView(form.dataGridView10))
-                    SystemHelper.SelectButton(form.button40, false);
+                if (SelectDataGridView(form.DataGridView10.d))
+                    SelectButton(form.button40, false);
 
             }
             else if(e.KeyCode == Keys.Left)
             {
                 form.dateTimePicker13.Focus();
-                SystemHelper.SelectButton(form.button40, false);
+                SelectButton(form.button40, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -205,27 +205,17 @@ namespace UASKI.Pages
         public void dataGridView10_KeyDown(KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Up
-                && form.dataGridView10.SelectedRows.Count != 0
-                && form.dataGridView10.SelectedRows[0].Index == 0)
+                && form.DataGridView10.d.SelectedRows.Count != 0
+                && form.DataGridView10.d.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
                 form.dateTimePicker12.Focus();
-                SystemHelper.SelectDataGridView(form.dataGridView10, false);
+                SelectDataGridView(form.DataGridView10.d, false);
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Down)
+            else
             {
-                SystemHelper.DataGridDownSelect(form.dataGridView10);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                SystemHelper.DataGridUpSelect(form.dataGridView10);
-                e.Handled = true;
-            }
-            else if (e.Control)
-            {
-                SystemHelper.DataGridViewSort(form.dataGridView10, e.KeyCode);
+                form.DataGridView10.KeyDown(e);
                 e.Handled = true;
             }
         }

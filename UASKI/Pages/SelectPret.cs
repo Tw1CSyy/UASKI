@@ -17,7 +17,7 @@ namespace UASKI.Pages
     public class SelectPret : BasePageSelect
     {
         public SelectPret(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.dataGridView12; protected set => throw new NotImplementedException(); }
+        public override DataGridView DataGridView { get => form.DataGridView12.d; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -28,14 +28,14 @@ namespace UASKI.Pages
             form.dateTimePicker18.Value = DateTime.Today;
             form.checkBox5.Checked = form.checkBox6.Checked = true;
             Select();
-            form.dataGridView12.Focus();
+            form.DataGridView12.d.Focus();
         }
 
         protected override void Clear()
         {
             form.textBox40.Clear();
-            form.dataGridView12.DataSource = null;
-            SystemHelper.SelectCheckBox(form.checkBox5, false);
+            form.DataGridView12.d.DataSource = null;
+            SelectCheckBox(form.checkBox5, false);
         }
 
         public override void Select()
@@ -86,17 +86,17 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Оценка")
             };
 
-            SystemHelper.PullListInDataGridView(form.dataGridView12, model.ToArray(), columns);
+            SystemHelper.PullListInDataGridView(form.DataGridView12.d, model.ToArray(), columns);
         }
 
         protected override void FilterOpen()
         {
-            FilterOpen(form.dataGridView12, form.panel21, form.textBox40, form.button54);
+            FilterOpen(form.DataGridView12.d, form.panel21, form.textBox40, form.button54);
         }
 
         protected override void FilterClose()
         {
-            FilterClose(form.dataGridView12, form.panel21, form.textBox40, form.button54);
+            FilterClose(form.DataGridView12.d, form.panel21, form.textBox40, form.button54);
         }
 
         protected override void Exit()
@@ -114,22 +114,17 @@ namespace UASKI.Pages
                 e.Handled = true;
             }
             if ((e.KeyCode == Keys.Up
-                && form.dataGridView12.SelectedRows.Count != 0
-                && form.dataGridView12.SelectedRows[0].Index == 0)
+                && form.DataGridView12.d.SelectedRows.Count != 0
+                && form.DataGridView12.d.SelectedRows[0].Index == 0)
                 || e.KeyCode == Keys.Escape)
             {
                 Exit();
-                SystemHelper.SelectDataGridView(form.dataGridView12, false);
-                e.Handled = true;
-            }
-            else if(e.Control)
-            {
-                SystemHelper.DataGridViewSort(form.dataGridView12, e.KeyCode);
+                SelectDataGridView(form.DataGridView12.d, false);
                 e.Handled = true;
             }
             else
             {
-                SystemHelper.CharInTextBox(form.textBox40, e.KeyCode);
+                form.DataGridView12.KeyDown(e, form.textBox40);
             }
         }
 
@@ -142,7 +137,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectCheckBox(form.checkBox5);
+                SelectCheckBox(form.checkBox5);
                 e.Handled = true;
             }
         }
@@ -151,18 +146,18 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox40);
-                SystemHelper.SelectCheckBox(form.checkBox5, false);
+                SelectTextBox(form.textBox40);
+                SelectCheckBox(form.checkBox5, false);
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectCheckBox(form.checkBox6);
-                SystemHelper.SelectCheckBox(form.checkBox5, false);
+                SelectCheckBox(form.checkBox6);
+                SelectCheckBox(form.checkBox5, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                SystemHelper.SelectCheckBox(form.checkBox5, false);
+                SelectCheckBox(form.checkBox5, false);
             }
             else if(e.KeyCode == Keys.Enter)
             {
@@ -176,18 +171,18 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectCheckBox(form.checkBox5);
-                SystemHelper.SelectCheckBox(form.checkBox6, false);
+                SelectCheckBox(form.checkBox5);
+                SelectCheckBox(form.checkBox6, false);
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SystemHelper.SelectCheckBox(form.checkBox4);
-                SystemHelper.SelectCheckBox(form.checkBox6, false);
+                SelectCheckBox(form.checkBox4);
+                SelectCheckBox(form.checkBox6, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                SystemHelper.SelectCheckBox(form.checkBox6, false);
+                SelectCheckBox(form.checkBox6, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -202,17 +197,17 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down)
             {
                 form.dateTimePicker17.Focus();
-                SystemHelper.SelectCheckBox(form.checkBox4 , false);
+                SelectCheckBox(form.checkBox4 , false);
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectCheckBox(form.checkBox6);
-                SystemHelper.SelectCheckBox(form.checkBox4, false);
+                SelectCheckBox(form.checkBox6);
+                SelectCheckBox(form.checkBox4, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {
                 FilterClose();
-                SystemHelper.SelectCheckBox(form.checkBox4, false);
+                SelectCheckBox(form.checkBox4, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -230,7 +225,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectCheckBox(form.checkBox4);
+                SelectCheckBox(form.checkBox4);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
             {

@@ -95,77 +95,6 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Включает и меняет фон кнопки для отображения выделения
-        /// </summary>
-        /// <param name="btn">Button для выделения</param>
-        /// <param name="selected">Вкл/Выкл</param>
-        public static void SelectButton(Button btn , bool selected = true)
-        {
-            if(selected)
-            {
-                btn.BackColor = Color.LightBlue;
-                btn.Focus();
-            }
-            else
-            {
-                btn.BackColor = Color.White;
-            }
-        }
-
-        /// <summary>
-        /// Выбирает DataGridView
-        /// </summary>
-        /// <param name="d">DataGridView для выделения</param>
-        /// <param name="selected">Вкл/Выкл</param>
-        public static bool SelectDataGridView(DataGridView d , bool selected = true)
-        {
-            if(selected)
-            {
-                if(d.Rows.Count > 0)
-                {
-                    d.Rows[0].Selected = true;
-                    d.Focus();
-                    return true;
-                }
-
-                return false;
-            }
-            else
-            {
-                d.ClearSelection();
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Выбирает текст бокс и переводит курсор
-        /// </summary>
-        /// <param name="t">TextBox для выделения</param>
-        public static void SelectTextBox(TextBox t)
-        {
-            t.Focus();
-            t.SelectionStart = t.Text.Length;
-        }
-
-        /// <summary>
-        /// Выбирает и веделяет CheckBox
-        /// </summary>
-        /// <param name="c">CheckBox для выделения</param>
-        /// <param name="selected"></param>
-        public static void SelectCheckBox(CheckBox c , bool selected = true)
-        {
-            if (selected)
-            {
-                c.BackColor = Color.LightBlue;
-                c.Focus();
-            }
-            else
-            {
-                c.BackColor = Color.FromArgb(224, 224, 224);
-            }
-        }
-
-        /// <summary>
         /// Возращает русский символ эквивалетный нажатой клавише или '+'
         /// </summary>
         /// <param name="Key">Нажатая клавиша</param>
@@ -544,40 +473,5 @@ namespace UASKI.Helpers
             return item;
         }
 
-        /// <summary>
-        /// Переводит выбранную строку в DataGridView на 1 вверх
-        /// </summary>
-        /// <param name="d">DataGridView</param>
-        public static void DataGridUpSelect(DataGridView d)
-        {
-            if (d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != 0)
-            {
-                var index = d.SelectedRows[0].Index;
-                d.Rows[index - 1].Selected = true;
-
-                if (d.FirstDisplayedScrollingRowIndex + 1 >= d.SelectedRows[0].Index && d.FirstDisplayedScrollingRowIndex != 0)
-                {
-                    d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex - 1;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Переводит выбранную строку в DataGridView на 1 вниз
-        /// </summary>
-        /// <param name="d">DataGridView</param>
-        public static void DataGridDownSelect(DataGridView d)
-        {
-            if (d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != d.Rows.Count - 1)
-            {
-                var index = d.SelectedRows[0].Index;
-                d.Rows[index + 1].Selected = true;
-
-                if (d.DisplayedRowCount(true) <= index + 2)
-                {
-                    d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex + 1;
-                }
-            }
-        }
     }
 }

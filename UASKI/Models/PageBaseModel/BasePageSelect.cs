@@ -37,7 +37,7 @@ namespace UASKI.Models
             d.Size = new System.Drawing.Size(634, 560);
             SystemHelper.ResizeDataGridView(d);
             p.Visible = true;
-            SystemHelper.SelectTextBox(t);
+            SelectTextBox(t);
             but.Visible = false;
         }
 
@@ -57,6 +57,5 @@ namespace UASKI.Models
             d.Focus();
             but.Visible = true;
         }
-
     }
 }

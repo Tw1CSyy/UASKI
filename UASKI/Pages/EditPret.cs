@@ -40,7 +40,7 @@ namespace UASKI.Pages
             form.button45.Enabled = false;
             form.button44.Enabled = false;
 
-            SystemHelper.SelectTextBox(form.textBox38);
+            SelectTextBox(form.textBox38);
             
         }
 
@@ -49,9 +49,9 @@ namespace UASKI.Pages
             form.textBox38.Clear();
             form.textBox39.Clear();
 
-            SystemHelper.SelectButton(form.button44, false);
-            SystemHelper.SelectButton(form.button45, false);
-            SystemHelper.SelectButton(form.button46, false);
+            SelectButton(form.button44, false);
+            SelectButton(form.button45, false);
+            SelectButton(form.button46, false);
         }
 
         protected new void Exit()
@@ -78,9 +78,9 @@ namespace UASKI.Pages
                 if (list[index].Enabled)
                 {
                     foreach (var item in list)
-                        SystemHelper.SelectButton(item, false);
+                        SelectButton(item, false);
 
-                    SystemHelper.SelectButton(list[index]);
+                    SelectButton(list[index]);
                     break;
                 }
 
@@ -111,12 +111,12 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectTextBox(form.textBox39);
+                SelectTextBox(form.textBox39);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox38);
+                SelectTextBox(form.textBox38);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Right)
@@ -160,8 +160,8 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectTextBox(form.textBox38);
-                SystemHelper.SelectButton(form.button46, false);
+                SelectTextBox(form.textBox38);
+                SelectButton(form.button46, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
@@ -198,8 +198,8 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectTextBox(form.textBox38);
-                SystemHelper.SelectButton(form.button45, false);
+                SelectTextBox(form.textBox38);
+                SelectButton(form.button45, false);
             }
             else if(e.KeyCode == Keys.Down)
             {
@@ -231,8 +231,8 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectTextBox(form.textBox38);
-                SystemHelper.SelectButton(form.button44, false);
+                SelectTextBox(form.textBox38);
+                SelectButton(form.button44, false);
             }
             else if(e.KeyCode == Keys.Up)
             {

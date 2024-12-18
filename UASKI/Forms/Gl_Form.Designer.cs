@@ -45,7 +45,7 @@ namespace UASKI
             this.button18 = new System.Windows.Forms.Button();
             this.label58 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.IspDataGridView = new System.Windows.Forms.DataGridView();
+            this.ispDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button20 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -318,7 +318,7 @@ namespace UASKI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ispDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel16.SuspendLayout();
@@ -453,7 +453,7 @@ namespace UASKI
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage2.Controls.Add(this.button19);
             this.tabPage2.Controls.Add(this.panel12);
-            this.tabPage2.Controls.Add(this.IspDataGridView);
+            this.tabPage2.Controls.Add(this.ispDataGridView);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -516,22 +516,22 @@ namespace UASKI
             this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
             this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox13_KeyDown);
             // 
-            // IspDataGridView
+            // ispDataGridView
             // 
-            this.IspDataGridView.AllowUserToAddRows = false;
-            this.IspDataGridView.AllowUserToDeleteRows = false;
-            this.IspDataGridView.BackgroundColor = System.Drawing.Color.Silver;
-            this.IspDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.IspDataGridView.Location = new System.Drawing.Point(246, 0);
-            this.IspDataGridView.MultiSelect = false;
-            this.IspDataGridView.Name = "IspDataGridView";
-            this.IspDataGridView.ReadOnly = true;
-            this.IspDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.IspDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.IspDataGridView.Size = new System.Drawing.Size(636, 543);
-            this.IspDataGridView.TabIndex = 0;
-            this.IspDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IspDataGridView_CellDoubleClick);
-            this.IspDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IspDataGridView_KeyDown);
+            this.ispDataGridView.AllowUserToAddRows = false;
+            this.ispDataGridView.AllowUserToDeleteRows = false;
+            this.ispDataGridView.BackgroundColor = System.Drawing.Color.Silver;
+            this.ispDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ispDataGridView.Location = new System.Drawing.Point(246, 0);
+            this.ispDataGridView.MultiSelect = false;
+            this.ispDataGridView.Name = "ispDataGridView";
+            this.ispDataGridView.ReadOnly = true;
+            this.ispDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ispDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ispDataGridView.Size = new System.Drawing.Size(636, 543);
+            this.ispDataGridView.TabIndex = 0;
+            this.ispDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IspDataGridView_CellDoubleClick);
+            this.ispDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IspDataGridView_KeyDown);
             // 
             // tabPage4
             // 
@@ -3605,7 +3605,7 @@ namespace UASKI
             this.tabPage2.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.IspDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ispDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
@@ -3687,7 +3687,6 @@ namespace UASKI
         public System.Windows.Forms.ListBox Menu_Step1;
         public System.Windows.Forms.ListBox Menu_Step2;
         public System.Windows.Forms.TabControl tabControl1;
-        public System.Windows.Forms.DataGridView IspDataGridView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -3731,7 +3730,6 @@ namespace UASKI
         public System.Windows.Forms.Button button5;
         public System.Windows.Forms.MonthCalendar monthCalendar1;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.DataGridView dataGridView2;
         public System.Windows.Forms.Label LabelStatus;
         public System.Windows.Forms.Timer TimerStatus;
         public System.Windows.Forms.Label label22;
@@ -3766,8 +3764,6 @@ namespace UASKI
         private System.Windows.Forms.Timer TimeTimer;
         public System.Windows.Forms.Button button7;
         public System.Windows.Forms.Button button6;
-        public System.Windows.Forms.DataGridView dataGridView3;
-        public System.Windows.Forms.DataGridView dataGridView4;
         public System.Windows.Forms.TabPage tabPage9;
         public System.Windows.Forms.TabPage tabPage10;
         public System.Windows.Forms.TabPage tabPage1;
@@ -3825,7 +3821,6 @@ namespace UASKI
         public System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label66;
         public System.Windows.Forms.TextBox textBox32;
-        public System.Windows.Forms.DataGridView dataGridView5;
         public System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.Panel panel15;
         public System.Windows.Forms.Panel panel16;
@@ -3845,9 +3840,7 @@ namespace UASKI
         public System.Windows.Forms.DateTimePicker dateTimePicker8;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Label label68;
-        public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.Label label72;
-        public System.Windows.Forms.DataGridView dataGridView6;
         public System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
@@ -3886,23 +3879,19 @@ namespace UASKI
         public System.Windows.Forms.DateTimePicker dateTimePicker10;
         public System.Windows.Forms.TextBox textBox20;
         public System.Windows.Forms.Button button34;
-        public System.Windows.Forms.DataGridView dataGridView7;
         public System.Windows.Forms.TextBox textBox30;
         private System.Windows.Forms.TabPage tabPage11;
         public System.Windows.Forms.Button button37;
-        public System.Windows.Forms.DataGridView dataGridView8;
         private System.Windows.Forms.Label label78;
         public System.Windows.Forms.Label label77;
         private System.Windows.Forms.TabPage tabPage12;
         public System.Windows.Forms.TextBox textBox35;
         public System.Windows.Forms.Button button38;
-        public System.Windows.Forms.DataGridView dataGridView9;
         public System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.TabPage tabPage13;
         private System.Windows.Forms.Button button39;
         public System.Windows.Forms.Button button40;
-        public System.Windows.Forms.DataGridView dataGridView10;
         private System.Windows.Forms.Label label81;
         public System.Windows.Forms.DateTimePicker dateTimePicker12;
         public System.Windows.Forms.DateTimePicker dateTimePicker13;
@@ -3912,7 +3901,6 @@ namespace UASKI
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Button button41;
         public System.Windows.Forms.Button button42;
-        public System.Windows.Forms.DataGridView dataGridView11;
         private System.Windows.Forms.Label label85;
         public System.Windows.Forms.DateTimePicker dateTimePicker14;
         public System.Windows.Forms.DateTimePicker dateTimePicker15;
@@ -3942,7 +3930,6 @@ namespace UASKI
         public System.Windows.Forms.Button button47;
         private System.Windows.Forms.Button button49;
         private System.Windows.Forms.TabPage tabPage16;
-        public System.Windows.Forms.DataGridView dataGridView12;
         public System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Label label88;
         public System.Windows.Forms.Button button51;
@@ -3959,9 +3946,22 @@ namespace UASKI
         public System.Windows.Forms.Button button54;
         public System.Windows.Forms.CheckBox checkBox6;
         public System.Windows.Forms.CheckBox checkBox5;
-        public System.Windows.Forms.DataGridView dataGridView13;
         public System.Windows.Forms.Label label99;
         public System.Windows.Forms.Label label100;
+        private System.Windows.Forms.DataGridView ispDataGridView;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.DataGridView dataGridView7;
+        private System.Windows.Forms.DataGridView dataGridView8;
+        private System.Windows.Forms.DataGridView dataGridView9;
+        private System.Windows.Forms.DataGridView dataGridView10;
+        private System.Windows.Forms.DataGridView dataGridView11;
+        private System.Windows.Forms.DataGridView dataGridView12;
+        private System.Windows.Forms.DataGridView dataGridView13;
     }
 }
 

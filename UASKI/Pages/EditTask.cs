@@ -57,7 +57,7 @@ namespace UASKI.Pages
                 form.button11.Enabled = false;
                 form.button12.Enabled = true;
                 form.label72.Visible = false;
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox26);
             }
             else
             {
@@ -85,7 +85,7 @@ namespace UASKI.Pages
                 form.textBox28.Text = arhiv.Otm.ToString();
                 form.dateTimePicker9.Value = arhiv.DateClose.Date;
                 form.label72.Visible = true;
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox26);
             }
         }
 
@@ -105,11 +105,11 @@ namespace UASKI.Pages
             form.label56.Visible = false;
             form.label57.Visible = false;
 
-            SystemHelper.SelectButton(form.button10, false);
-            SystemHelper.SelectButton(form.button11, false);
-            SystemHelper.SelectButton(form.button12, false);
-            SystemHelper.SelectButton(form.button47, false);
-            SystemHelper.SelectButton(form.button48, false);
+            SelectButton(form.button10, false);
+            SelectButton(form.button11, false);
+            SelectButton(form.button12, false);
+            SelectButton(form.button47, false);
+            SelectButton(form.button48, false);
         }
 
         private void SelectButton(int idButton = 0 , bool Up = false)
@@ -130,9 +130,9 @@ namespace UASKI.Pages
                 if (list[index].Enabled)
                 {
                     foreach (var item in list)
-                        SystemHelper.SelectButton(item, false);
+                        SelectButton(item, false);
 
-                    SystemHelper.SelectButton(list[index]);
+                    SelectButton(list[index]);
                     break;
                 }
 
@@ -155,11 +155,11 @@ namespace UASKI.Pages
                         form.textBox26.Text = IspService.GetIniz(isp , false);
                     }
 
-                    SystemHelper.SelectTextBox(form.textBox21);
+                    SelectTextBox(form.textBox21);
                 }
                 else
                 {
-                    SystemHelper.SelectTextBox(form.textBox21);
+                    SelectTextBox(form.textBox21);
                 }
 
                 e.Handled = true;
@@ -204,11 +204,11 @@ namespace UASKI.Pages
                         form.textBox21.Text = IspService.GetIniz(isp , false);
                     }
 
-                    SystemHelper.SelectTextBox(form.textBox27);
+                    SelectTextBox(form.textBox27);
                 }
                 else
                 {
-                    SystemHelper.SelectTextBox(form.textBox27);
+                    SelectTextBox(form.textBox27);
                 }
 
                 e.Handled = true;
@@ -231,7 +231,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox26);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Back)
@@ -257,7 +257,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox21);
+                SelectTextBox(form.textBox21);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
@@ -272,7 +272,7 @@ namespace UASKI.Pages
             
             if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectTextBox(form.textBox27);
+                SelectTextBox(form.textBox27);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Down)
@@ -295,7 +295,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox21);
+                SelectTextBox(form.textBox21);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
@@ -396,8 +396,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(form.button10, false);
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectButton(form.button10, false);
+                SelectTextBox(form.textBox26);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -464,8 +464,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(form.button11, false);
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectButton(form.button11, false);
+                SelectTextBox(form.textBox26);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -483,8 +483,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(form.button12, false);
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectButton(form.button12, false);
+                SelectTextBox(form.textBox26);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -526,12 +526,12 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                SystemHelper.SelectTextBox(form.textBox28);
+                SelectTextBox(form.textBox28);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Up)
             {
-                SystemHelper.SelectTextBox(form.textBox27);
+                SelectTextBox(form.textBox27);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Escape)
@@ -565,8 +565,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(form.button47, false);
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectButton(form.button47, false);
+                SelectTextBox(form.textBox26);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -589,8 +589,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Left)
             {
-                SystemHelper.SelectButton(form.button48, false);
-                SystemHelper.SelectTextBox(form.textBox26);
+                SelectButton(form.button48, false);
+                SelectTextBox(form.textBox26);
             }
             else if (e.KeyCode == Keys.Escape)
             {

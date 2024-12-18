@@ -84,7 +84,8 @@ namespace UASKI.Forms
                     t3.Text = row[0].Cells[0].Value.ToString();
 
                     form.Dispose();
-                    SystemHelper.SelectTextBox(t3);
+                    t3.Focus();
+                    t3.SelectionStart = t3.Text.Length;
                 }
             }
             else if(e.Control)

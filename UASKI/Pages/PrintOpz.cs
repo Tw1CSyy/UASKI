@@ -20,22 +20,22 @@ namespace UASKI.Pages
         protected override void Show()
         {
             Select();
-            SystemHelper.SelectButton(form.button37);
-            SystemHelper.SelectDataGridView(form.dataGridView8, false);
+            SelectButton(form.button37);
+            SelectDataGridView(form.DataGridView8.d, false);
             form.label77.Text = "На " + DateTime.Today.ToString("dd.MM.yyyy");
         }
 
         protected override void Clear()
         {
-            form.dataGridView8.DataSource = null;
+            form.DataGridView8.d.DataSource = null;
         }
 
         protected override void Exit()
         {
             form.Menu_Step2.Enabled = true;
             form.Menu_Step2.Focus();
-            SystemHelper.SelectDataGridView(form.dataGridView8, false);
-            SystemHelper.SelectButton(form.button37, false);
+            SelectDataGridView(form.DataGridView8.d, false);
+            SelectButton(form.button37, false);
         }
 
         public override void Select()
@@ -69,12 +69,12 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Дней опозданий")
             };
 
-            SystemHelper.PullListInDataGridView(form.dataGridView8, result.ToArray(), columns);
+            SystemHelper.PullListInDataGridView(form.DataGridView8.d, result.ToArray(), columns);
         }
 
         protected override void Print()
         {
-            if (form.dataGridView8.Columns.Count == 0)
+            if (form.DataGridView8.d.Columns.Count == 0)
             {
                 ErrorHelper.StatusError();
             }
@@ -92,7 +92,7 @@ namespace UASKI.Pages
             string header1 = $"Не выполнили задание в срок";
             string header2 = $"На {DateTime.Today.ToString("dd.MM.yyyy")}";
 
-            var model = new PrintModel(font, e, form.dataGridView8, header1, header2);
+            var model = new PrintModel(font, e, form.DataGridView8.d, header1, header2);
             SystemHelper.PrintDocument(model);
         }
 
@@ -102,8 +102,8 @@ namespace UASKI.Pages
         {
             if(e.KeyCode == Keys.Down)
             {
-                if (SystemHelper.SelectDataGridView(form.dataGridView8))
-                    SystemHelper.SelectButton(form.button37, false);
+                if (SelectDataGridView(form.DataGridView8.d))
+                    SelectButton(form.button37, false);
             }
             else if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
@@ -126,11 +126,11 @@ namespace UASKI.Pages
         public void dataGridView8_KeyDown(KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Up
-                && form.dataGridView8.SelectedRows.Count != 0
-                && form.dataGridView8.SelectedRows[0].Index == 0))
+                && form.DataGridView8.d.SelectedRows.Count != 0
+                && form.DataGridView8.d.SelectedRows[0].Index == 0))
             {
-                SystemHelper.SelectButton(form.button37);
-                SystemHelper.SelectDataGridView(form.dataGridView8, false);
+                SelectButton(form.button37);
+                SelectDataGridView(form.DataGridView8.d, false);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Escape)
@@ -138,19 +138,9 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Down)
+            else
             {
-                SystemHelper.DataGridDownSelect(form.dataGridView8);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                SystemHelper.DataGridUpSelect(form.dataGridView8);
-                e.Handled = true;
-            }
-            else if(e.Control)
-            {
-                SystemHelper.DataGridViewSort(form.dataGridView8, e.KeyCode);
+                form.DataGridView8.KeyDown(e);
                 e.Handled = true;
             }
         }
