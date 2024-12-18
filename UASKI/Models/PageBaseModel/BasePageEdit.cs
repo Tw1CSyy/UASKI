@@ -29,7 +29,7 @@ namespace UASKI.Models
         /// <summary>
         /// Устанавливает значение индекса выбраной строки на DataGridView на странице просмотра
         /// </summary>
-        protected void PullDataGridViewSelectedIndex()
+        void PullDataGridViewSelectedIndex()
         {
             var d = Page.DataGridView;
 
@@ -42,17 +42,24 @@ namespace UASKI.Models
         /// <summary>
         /// Устанавливает индекс выбранной строки в DataGridView
         /// </summary>
-        protected void PushDataGridViewSelect()
+        void PushDataGridViewSelect()
         {
             var d = Page.DataGridView;
 
             if(d.Rows.Count > 0)
             {
-                d.Rows[SelectedIndex].Selected = true;
+                if(d.Rows.Count >= SelectedIndex)
+                    d.Rows[d.Rows.Count - 1].Selected = true;
+                else
+                    d.Rows[SelectedIndex].Selected = true;
+
                 SelectedIndex = 0;
             }
         }
 
+        /// <summary>
+        /// Выход со страницы
+        /// </summary>
         protected override void Exit()
         {
             PullDataGridViewSelectedIndex();

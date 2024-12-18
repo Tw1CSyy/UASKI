@@ -11,6 +11,7 @@ using UASKI.Data.Entyties;
 using UASKI.Services;
 using UASKI.ViewModels;
 using UASKI.Data.Entityes;
+using System.Reflection;
 
 namespace UASKI.Helpers
 {
@@ -20,7 +21,7 @@ namespace UASKI.Helpers
     public static class SystemHelper
     {
         /// <summary>
-        /// Заполняет DataGricView данными
+        /// Заполняет DataGridView данными
         /// </summary>
         /// <param name="d">DataGridView</param>
         /// <param name="values">Колекция строк с данными</param>
@@ -403,7 +404,7 @@ namespace UASKI.Helpers
         public static void PrintDocument(params PrintModel[] models)
         {
             float headerY = 0f;
-
+            
             foreach (var model in models)
             {
                 // Вытаскиваем аргументы из модели
@@ -419,7 +420,7 @@ namespace UASKI.Helpers
                 // Инициализируем переменные для заголовков
                 var headerFont = new Font("Arial", 16, FontStyle.Bold);
                 
-                if(headerY == 0f)
+                if(headerY == 0f && models.Length > 1)
                     headerY = e.MarginBounds.Top;
 
                 // Выводим заголовки
@@ -440,6 +441,7 @@ namespace UASKI.Helpers
                 {
                     e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
                 }
+
                 yPosition += font.GetHeight(e.Graphics);
                 yPosition += font.GetHeight(e.Graphics);
 

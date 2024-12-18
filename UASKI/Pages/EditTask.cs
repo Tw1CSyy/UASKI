@@ -14,6 +14,7 @@ namespace UASKI.Pages
     /// </summary>
     public class EditTask : BasePageEdit
     {
+
         public EditTask(int index) : base(index) { }
 
         protected override void Show()
@@ -319,7 +320,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
             {
-                SelectButton();
+                SelectButton(1);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
