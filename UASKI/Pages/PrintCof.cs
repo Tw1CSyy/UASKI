@@ -62,10 +62,10 @@ namespace UASKI.Pages
                 {
                     var con = IspService.GetByCode(task.IdCon, ispList);
                     int opzDays = (task.DateClose - task.Date).Days;
-                    string opz = string.Empty;
+                    int opz = 0;
 
                     if (opzDays > 0)
-                        opz = opzDays.ToString();
+                        opz = opzDays;
 
                     item = new DataGridRowModel(
                         task.Code,
@@ -73,7 +73,7 @@ namespace UASKI.Pages
                         IspService.GetIniz(con),
                         task.DateClose.ToString("dd.MM.yyyy"),
                         task.Otm.ToString(),
-                        opz
+                        opz.ToString()
                         );
 
                     model.Add(item);
@@ -82,11 +82,11 @@ namespace UASKI.Pages
                 var columns = new DataGridColumnModel[]
                 {
                     new DataGridColumnModel("Код"),
-                    new DataGridColumnModel("Срок"),
+                    new DataGridColumnModel("Срок" , typeof(DateTime)),
                     new DataGridColumnModel("Котроллер"),
-                    new DataGridColumnModel("Дата выполнения"),
-                    new DataGridColumnModel("Оценка"),
-                    new DataGridColumnModel("Опзд"),
+                    new DataGridColumnModel("Дата выполнения" , typeof(DateTime)),
+                    new DataGridColumnModel("Оценка" , typeof(int)),
+                    new DataGridColumnModel("Опзд" , typeof(int)),
                 };
 
                 form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);

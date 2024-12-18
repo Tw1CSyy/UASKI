@@ -92,10 +92,10 @@ namespace UASKI.Pages
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Код задания"),
-                new DataGridColumnModel("Срок исполнения"),
+                new DataGridColumnModel("Срок исполнения" , typeof(DateTime)),
                 new DataGridColumnModel("Код контролера"),
-                new DataGridColumnModel("Дата закрытия"),
-                new DataGridColumnModel("Оценка")
+                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
+                new DataGridColumnModel("Оценка" , typeof(int))
             };
 
             form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);

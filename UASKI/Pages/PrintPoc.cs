@@ -60,10 +60,10 @@ namespace UASKI.Pages
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("Кол-во Выполненных Заданий"),
-                new DataGridColumnModel("Кол-во Случаев Опзд"),
-                new DataGridColumnModel("Кол-во Дней Опзд"),
-                new DataGridColumnModel("Кооф")
+                new DataGridColumnModel("Кол-во Выполненных Заданий" , typeof(int)),
+                new DataGridColumnModel("Кол-во Случаев Опзд" , typeof(int)),
+                new DataGridColumnModel("Кол-во Дней Опзд" , typeof(int)),
+                new DataGridColumnModel("Кооф" , typeof(float))
             };
 
             form.DataGridView10.PullListInDataGridView(dataRowModels.ToArray(), columns);

@@ -84,13 +84,14 @@ namespace UASKI.Models.Components
         private bool DataGridViewSort(Keys key)
         {
             var index = SystemHelper.GetIntKeyDown(key);
+            var id = d.SelectedRows[0].Index;
 
             if (d.Columns.Count < index || index == -1)
             {
                 return false;
             }
 
-            for (int i = index - 1; i < d.ColumnCount - 1;)
+            for (int i = index - 1; i < d.ColumnCount;)
             {
                 for (int j = 0; j <= i; j++)
                 {
@@ -110,6 +111,7 @@ namespace UASKI.Models.Components
                 }
             }
 
+            d.Rows[id].Selected = true;
             return true;
         }
 
@@ -141,7 +143,7 @@ namespace UASKI.Models.Components
 
             foreach (var item in columns)
             {
-                table.Columns.Add(item.Name);
+                table.Columns.Add(item.Name , item.Type);
             }
 
             foreach (var line in values)
@@ -150,7 +152,14 @@ namespace UASKI.Models.Components
 
                 for (int i = 0; i < line.Values.Length; i++)
                 {
-                    row[i] = line.Values[i];
+                    try
+                    {
+                        row[i] = line.Values[i];
+                    }
+                    catch (Exception)
+                    {
+                        row[i] = DBNull.Value;
+                    }
                 }
 
                 table.Rows.Add(row);

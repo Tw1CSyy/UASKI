@@ -56,11 +56,11 @@ namespace UASKI.Forms
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Код" , typeof(int)),
                 new DataGridColumnModel("Фамилия"),
                 new DataGridColumnModel("Имя"),
                 new DataGridColumnModel("Отчество"),
-                new DataGridColumnModel("Подразделение")
+                new DataGridColumnModel("Подразделение" , typeof(int))
             };
 
             DataGridView.PullListInDataGridView(result.ToArray(), columns);

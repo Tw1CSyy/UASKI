@@ -137,10 +137,10 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Котроллер"),
-                new DataGridColumnModel("Срок"),
-                new DataGridColumnModel("Дата закрытия"),
-                new DataGridColumnModel("Оценка"),
-                new DataGridColumnModel("Дней опозданий")
+                new DataGridColumnModel("Срок" , typeof(DateTime)),
+                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
+                new DataGridColumnModel("Оценка" , typeof(int)),
+                new DataGridColumnModel("Дней опозданий" , typeof(int))
             };
 
             form.DataGridView1.PullListInDataGridView(model.ToArray(), columns);

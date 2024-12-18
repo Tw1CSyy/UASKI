@@ -85,10 +85,10 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролер"),
-                new DataGridColumnModel("Срок"),
-                new DataGridColumnModel("Дата закрытия"),
-                new DataGridColumnModel("Оценка"),
-                new DataGridColumnModel("Дни опоздания")
+                new DataGridColumnModel("Срок" , typeof(DateTime)),
+                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
+                new DataGridColumnModel("Оценка" , typeof(int)),
+                new DataGridColumnModel("Дни опоздания" , typeof(int))
             };
 
             form.DataGridView9.PullListInDataGridView(result.ToArray(), columns);

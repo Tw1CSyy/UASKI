@@ -65,13 +65,13 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Id" , false),
+                new DataGridColumnModel("Id" , typeof(string) , false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контроллер"),
-                new DataGridColumnModel("Срок"),
-                new DataGridColumnModel("Дата закрытия"),
-                new DataGridColumnModel("Оценка")
+                new DataGridColumnModel("Срок" , typeof(DateTime)),
+                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
+                new DataGridColumnModel("Оценка" , typeof(int))
             };
 
             form.DataGridView5.PullListInDataGridView(model.ToArray(), columns);

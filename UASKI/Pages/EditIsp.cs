@@ -46,7 +46,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контроллер"),
-                new DataGridColumnModel("Срок")
+                new DataGridColumnModel("Срок" , typeof(DateTime))
             };
 
             form.DataGridView4.PullListInDataGridView(model.ToArray(), columns);

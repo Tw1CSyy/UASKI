@@ -43,8 +43,8 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Номер" , false),
-                new DataGridColumnModel("Дата")
+                new DataGridColumnModel("Номер"  , typeof(int), false),
+                new DataGridColumnModel("Дата" , typeof(DateTime))
             };
 
             form.DataGridView6.PullListInDataGridView(result.ToArray(), columns);

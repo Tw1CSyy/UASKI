@@ -83,8 +83,8 @@ namespace UASKI.Pages
             {
                 new DataGridColumnModel("Тип"),
                 new DataGridColumnModel("Код"),
-                new DataGridColumnModel("Дата"),
-                new DataGridColumnModel("Оценка")
+                new DataGridColumnModel("Дата" , typeof(DateTime)),
+                new DataGridColumnModel("Оценка" , typeof(int))
             };
 
             form.DataGridView12.PullListInDataGridView(model.ToArray(), columns);

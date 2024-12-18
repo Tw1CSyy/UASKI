@@ -62,11 +62,11 @@ namespace UASKI.Models.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Таб номер"),
+                new DataGridColumnModel("Таб номер" , typeof(int)),
                 new DataGridColumnModel("Фамилия"),
                 new DataGridColumnModel("Имя"),
                 new DataGridColumnModel("Отчество"),
-                new DataGridColumnModel("Код подразделения")
+                new DataGridColumnModel("Код подразделения" , typeof(int))
             };
 
             form.IspDataGridView.PullListInDataGridView(result.ToArray(), columns);
