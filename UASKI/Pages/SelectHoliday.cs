@@ -5,6 +5,7 @@ using UASKI.Models;
 using UASKI.Services;
 using UASKI.StaticModels;
 using System.Collections.Generic;
+using UASKI.Models.Components;
 
 namespace UASKI.Pages
 {
@@ -14,7 +15,7 @@ namespace UASKI.Pages
     public class SelectHoliday : BasePageSelect
     {
         public SelectHoliday(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.DataGridView6.d; protected set => throw new NotImplementedException(); }
+        public override DataGridViewComponent DataGridView { get => form.DataGridView6; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -46,7 +47,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Дата")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView6.d, result.ToArray(), columns);
+            form.DataGridView6.PullListInDataGridView(result.ToArray(), columns);
 
         }
 

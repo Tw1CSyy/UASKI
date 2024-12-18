@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using UASKI.Helpers;
+using UASKI.Models.Components;
 
 namespace UASKI.Models
 {
@@ -7,7 +8,7 @@ namespace UASKI.Models
     {
         public BasePageSelect(int index) : base(index) { }
 
-        public abstract DataGridView DataGridView { get; protected set; }
+        public abstract DataGridViewComponent DataGridView { get; protected set; }
 
         /// <summary>
         /// Выводит данные в DataGridView
@@ -31,11 +32,11 @@ namespace UASKI.Models
         /// <param name="p">Panel фильтров</param>
         /// <param name="t">Первый TextBox для фокуса</param>
         /// <param name="but">Кнопка открытия панели</param>
-        protected void FilterOpen(DataGridView d , Panel p , TextBox t , Button but)
+        protected void FilterOpen(DataGridViewComponent d , Panel p , TextBox t , Button but)
         {
-            d.Location = new System.Drawing.Point(247, 0);
-            d.Size = new System.Drawing.Size(634, 560);
-            SystemHelper.ResizeDataGridView(d);
+            d.d.Location = new System.Drawing.Point(247, 0);
+            d.d.Size = new System.Drawing.Size(634, 560);
+            d.ResizeDataGridView();
             p.Visible = true;
             SelectTextBox(t);
             but.Visible = false;
@@ -48,13 +49,13 @@ namespace UASKI.Models
         /// <param name="p">Panel фильтров</param>
         /// <param name="t">Первый TextBox для фокуса</param>
         /// <param name="but">Кнопка открытия панели</param>
-        protected void FilterClose(DataGridView d , Panel p , TextBox t , Button but)
+        protected void FilterClose(DataGridViewComponent d , Panel p , TextBox t , Button but)
         {
-            d.Location = new System.Drawing.Point(20, 0);
-            d.Size = new System.Drawing.Size(861, 560);
-            SystemHelper.ResizeDataGridView(d);
+            d.d.Location = new System.Drawing.Point(20, 0);
+            d.d.Size = new System.Drawing.Size(861, 560);
+            d.ResizeDataGridView();
             p.Visible = false;
-            d.Focus();
+            d.d.Focus();
             but.Visible = true;
         }
     }

@@ -5,6 +5,7 @@ using UASKI.Services;
 using UASKI.StaticModels;
 using System.Linq;
 using System.Collections.Generic;
+using UASKI.Models.Components;
 
 namespace UASKI.Models.Pages
 {
@@ -14,7 +15,7 @@ namespace UASKI.Models.Pages
     public class SelectIsp : BasePageSelect
     {
         public SelectIsp(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.IspDataGridView.d; protected set => throw new NotImplementedException(); }
+        public override DataGridViewComponent DataGridView { get => form.IspDataGridView; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -68,17 +69,17 @@ namespace UASKI.Models.Pages
                 new DataGridColumnModel("Код подразделения")
             };
 
-            SystemHelper.PullListInDataGridView(form.IspDataGridView.d, result.ToArray(), columns);
+            form.IspDataGridView.PullListInDataGridView(result.ToArray(), columns);
         }
               
         protected override void FilterOpen()
         {
-            FilterOpen(form.IspDataGridView.d, form.panel12, form.textBox13, form.button19);
+            FilterOpen(form.IspDataGridView, form.panel12, form.textBox13, form.button19);
         }
 
         protected override void FilterClose()
         {
-            FilterClose(form.IspDataGridView.d, form.panel12, form.textBox13, form.button19);
+            FilterClose(form.IspDataGridView, form.panel12, form.textBox13, form.button19);
         }
 
         #region Клавиши

@@ -49,7 +49,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Срок")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView4.d, model.ToArray(), columns);
+            form.DataGridView4.PullListInDataGridView(model.ToArray(), columns);
         }
 
         public void Show(int code , BasePageSelect page)
@@ -326,9 +326,9 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if(e.Control)
+            else
             {
-                SystemHelper.DataGridViewSort(form.DataGridView4.d, e.KeyCode);
+                form.DataGridView4.KeyDown(e);
             }
         }
         #endregion

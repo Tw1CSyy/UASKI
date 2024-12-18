@@ -66,7 +66,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Кооф")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView10.d, dataRowModels.ToArray(), columns);
+            form.DataGridView10.PullListInDataGridView(dataRowModels.ToArray(), columns);
 
             form.DataGridView10.d.ClearSelection();
         }

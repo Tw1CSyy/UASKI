@@ -33,28 +33,28 @@ namespace UASKI.Models
         {
             var d = Page.DataGridView;
 
-            if (d.SelectedRows.Count > 0 && d.SelectedRows[0].Index != 0)
+            if (d.d.SelectedRows.Count > 0 && d.d.SelectedRows[0].Index != 0)
             {
-                SelectedIndex = d.SelectedRows[0].Index;
+                SelectedIndex = d.d.SelectedRows[0].Index;
             }
 
             Page.Init();
 
-            if (d.Rows.Count > 0)
+            if (d.d.Rows.Count > 0)
             {
-                if (d.Rows.Count < SelectedIndex)
+                if (d.d.Rows.Count < SelectedIndex)
                 {
-                    d.Rows[d.Rows.Count - 1].Selected = true;
-                    SelectedIndex = d.Rows.Count - 1;
+                    d.d.Rows[d.d.Rows.Count - 1].Selected = true;
+                    SelectedIndex = d.d.Rows.Count - 1;
                 }
                 else
                 {
-                    d.Rows[SelectedIndex].Selected = true;
+                    d.d.Rows[SelectedIndex].Selected = true;
                 }
 
-                if (!d.Rows[SelectedIndex].Displayed)
+                if (!d.d.Rows[SelectedIndex].Displayed)
                 {
-                    d.FirstDisplayedScrollingRowIndex = SelectedIndex - d.DisplayedRowCount(false) + 2;
+                    d.d.FirstDisplayedScrollingRowIndex = SelectedIndex - d.d.DisplayedRowCount(false) + 2;
                 }
 
                 SelectedIndex = 0;

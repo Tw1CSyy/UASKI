@@ -20,80 +20,7 @@ namespace UASKI.Helpers
     /// </summary>
     public static class SystemHelper
     {
-        /// <summary>
-        /// Заполняет DataGridView данными
-        /// </summary>
-        /// <param name="d">DataGridView</param>
-        /// <param name="values">Колекция строк с данными</param>
-        /// <param name="columns">Колекция колонок</param>
-        public static void PullListInDataGridView(DataGridView d , DataGridRowModel[] values , DataGridColumnModel[] columns)
-        {
-            int selected = -1;
-            int columnSort = -1;
-            SortOrder sort = SortOrder.None;
-
-            if(d.Rows.Count > 0 && d.SelectedRows.Count > 0)
-            {
-                selected = d.SelectedRows[0].Index;
-                
-                if(d.SortedColumn != null)
-                {
-                    columnSort = d.SortedColumn.Index;
-                    sort = d.Columns[columnSort].HeaderCell.SortGlyphDirection;
-                }
-            }
-
-            d.DataSource = null;
-            
-            var table = new DataTable();
-
-            foreach (var item in columns)
-            {
-                table.Columns.Add(item.Name);
-            }
-
-            foreach (var line in values)
-            {
-                var row = table.NewRow();
-                
-                for(int i = 0; i < line.Values.Length; i++)
-                {
-                    row[i] = line.Values[i];
-                }
-
-                table.Rows.Add(row);
-            }
-
-            d.DataSource = table;
-
-            for(int i = 0; i < d.Columns.Count; i++)
-            {
-                d.Columns[i].Visible = columns[i].Visible;
-            }
-
-            ResizeDataGridView(d);
-            
-            if(selected != -1 && d.Rows.Count > 0)
-            {
-                if (d.Rows.Count > selected)
-                    d.Rows[selected].Selected = true;
-                else if (selected != 0)
-                    d.Rows[d.Rows.Count - 1].Selected = true;
-            }
-            else if(d.Rows.Count > 0)
-            {
-                d.Rows[0].Selected = true;
-            }
-
-            if(d.Rows.Count > 0 && columnSort != -1 && sort != SortOrder.None)
-            {
-                if(sort == SortOrder.Ascending)
-                    d.Sort(d.Columns[columnSort], System.ComponentModel.ListSortDirection.Ascending);
-                else
-                    d.Sort(d.Columns[columnSort], System.ComponentModel.ListSortDirection.Descending);
-            }
-        }
-
+        
         /// <summary>
         /// Возращает русский символ эквивалетный нажатой клавише или '+'
         /// </summary>
@@ -268,71 +195,12 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Устанавливает размер колонок в DataGrid по ширине
-        /// </summary>
-        /// <param name="d">DataGirdView</param>
-        public static void ResizeDataGridView(DataGridView d)
-        {
-            var count = 0;
-
-            for (int i = 0; i < d.Columns.Count; i++)
-            {
-                if (d.Columns[i].Visible)
-                    count++;
-            }
-
-            var with = (int)Math.Floor((double)d.Width / (double)count);
-
-            for(int i = 0; i < d.Columns.Count; i++)
-            {
-                d.Columns[i].Width = with;
-            }
-        }
-
-        /// <summary>
-        /// Сортирует DataGridView по столбцу
-        /// </summary>
-        /// <param name="d">DataGridView</param>
-        /// <param name="key">Нажатая клавиша</param>
-        public static bool DataGridViewSort(DataGridView d, Keys key)
-        {
-            var index = GetIntKeyDown(key);
-
-            if (d.Columns.Count < index || index == -1)
-            {
-                return false;
-            }
-
-            for (int i = index - 1; i < d.ColumnCount - 1; i++)
-            {
-                for (int j = 0; j <= i; j++)
-                {
-                    if (d.Columns[j].Visible == false)
-                        i++;
-                }
-
-                if (d.Columns[i].HeaderCell.SortGlyphDirection == SortOrder.Descending || d.Columns[i].HeaderCell.SortGlyphDirection == SortOrder.None)
-                {
-                    d.Sort(d.Columns[i], System.ComponentModel.ListSortDirection.Ascending);
-                    break;
-                }
-                else
-                {
-                    d.Sort(d.Columns[i], System.ComponentModel.ListSortDirection.Descending);
-                    break;
-                }
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// Формирует документ для печати
         /// </summary>
         /// <param name="model">Модель печати</param>
         /// <param name="YPosition">Позиция по y</param>
         /// <returns>Конечную позицию по y</returns>
-        public static float PrintDocument(PrintModel model , float YPosition = 0f)
+        public static float PrintDocument(PrintModel model , float YPosition = 5f)
         {
             float headerY = YPosition;
 
@@ -348,9 +216,6 @@ namespace UASKI.Helpers
 
             // Инициализируем переменные для заголовков
             var headerFont = new Font("Arial", 16, FontStyle.Bold);
-
-            //if (headerY == 0f)
-            //    headerY = e.MarginBounds.Top;
 
             // Выводим заголовки
             foreach (var header in model.Headers)

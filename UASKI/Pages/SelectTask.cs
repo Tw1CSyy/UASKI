@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
 using UASKI.Forms;
 using System;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Services;
 using UASKI.StaticModels;
 using System.Collections.Generic;
 using System.Linq;
+using UASKI.Models.Components;
 
 namespace UASKI.Pages
 {
@@ -16,7 +16,7 @@ namespace UASKI.Pages
     public class SelectTask : BasePageSelect
     {
         public SelectTask(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.DataGridView3.d; protected set => throw new NotImplementedException(); }
+        public override DataGridViewComponent DataGridView { get => form.DataGridView3; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -64,17 +64,17 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Срок"),
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView3.d, model.ToArray(), columns);
+            form.DataGridView3.PullListInDataGridView(model.ToArray(), columns);
         }
 
         protected override void FilterOpen()
         {
-            FilterOpen(form.DataGridView3.d, form.panel13, form.textBox19, form.button20);
+            FilterOpen(form.DataGridView3, form.panel13, form.textBox19, form.button20);
         }
 
         protected override void FilterClose()
         {
-            FilterClose(form.DataGridView3.d, form.panel13, form.textBox19, form.button20);
+            FilterClose(form.DataGridView3, form.panel13, form.textBox19, form.button20);
         }
 
         protected override void Exit()

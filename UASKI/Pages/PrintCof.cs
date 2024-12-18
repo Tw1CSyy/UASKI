@@ -89,7 +89,7 @@ namespace UASKI.Pages
                     new DataGridColumnModel("Опзд"),
                 };
 
-                SystemHelper.PullListInDataGridView(form.DataGridView11.d, model.ToArray(), columns);
+                form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
                    
                 var cof = SystemHelper.GetKofModel(isp, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
@@ -124,7 +124,7 @@ namespace UASKI.Pages
                     new DataGridColumnModel("Качество")
                 };
 
-                SystemHelper.PullListInDataGridView(form.DataGridView13.d, model.ToArray(), columns);
+                form.DataGridView13.PullListInDataGridView(model.ToArray(), columns);
 
                 form.DataGridView13.d.Visible = true;
                 form.label99.Visible = true;

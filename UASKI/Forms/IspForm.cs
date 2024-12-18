@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
+using UASKI.Models.Components;
 using UASKI.Services;
 
 namespace UASKI.Forms
@@ -13,6 +14,7 @@ namespace UASKI.Forms
         private TextBox t2;
         private TextBox t3;
 
+        private DataGridViewComponent DataGridView;
         /// <summary>
         /// Начальная настройка
         /// </summary>
@@ -27,6 +29,7 @@ namespace UASKI.Forms
             this.t2 = t2;
             this.t3 = t3;
 
+            DataGridView = new DataGridViewComponent(dataGridView1);
             Start();
         }
 
@@ -60,9 +63,9 @@ namespace UASKI.Forms
                 new DataGridColumnModel("Подразделение")
             };
 
-            SystemHelper.PullListInDataGridView(dataGridView1, result.ToArray(), columns);
+            DataGridView.PullListInDataGridView(result.ToArray(), columns);
 
-            dataGridView1.Focus();
+            DataGridView.d.Focus();
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -88,13 +91,9 @@ namespace UASKI.Forms
                     t3.SelectionStart = t3.Text.Length;
                 }
             }
-            else if(e.Control)
-            {
-                SystemHelper.DataGridViewSort(dataGridView1, e.KeyCode);
-            }
             else
             {
-                SystemHelper.CharInTextBox(form.textBox1, e.KeyCode);
+                DataGridView.KeyDown(e, textBox1);
             }
         }
 

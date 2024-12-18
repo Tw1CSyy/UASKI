@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
+using UASKI.Models.Components;
 using UASKI.Services;
 using UASKI.StaticModels;
 
@@ -17,7 +18,7 @@ namespace UASKI.Pages
     public class SelectPret : BasePageSelect
     {
         public SelectPret(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.DataGridView12.d; protected set => throw new NotImplementedException(); }
+        public override DataGridViewComponent DataGridView { get => form.DataGridView12; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -86,17 +87,17 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Оценка")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView12.d, model.ToArray(), columns);
+            form.DataGridView12.PullListInDataGridView(model.ToArray(), columns);
         }
 
         protected override void FilterOpen()
         {
-            FilterOpen(form.DataGridView12.d, form.panel21, form.textBox40, form.button54);
+            FilterOpen(form.DataGridView12, form.panel21, form.textBox40, form.button54);
         }
 
         protected override void FilterClose()
         {
-            FilterClose(form.DataGridView12.d, form.panel21, form.textBox40, form.button54);
+            FilterClose(form.DataGridView12, form.panel21, form.textBox40, form.button54);
         }
 
         protected override void Exit()

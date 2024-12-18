@@ -21,7 +21,7 @@ namespace UASKI.Pages
             form.label17.Text = form.monthCalendar1.SelectionRange.Start.ToString("dd.MM.yyyy");
             Select();
             form.DataGridView2.d.Columns[0].Visible = false;
-            SystemHelper.ResizeDataGridView(form.DataGridView2.d);
+            form.DataGridView2.ResizeDataGridView();
 
             form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
             form.monthCalendar1.Focus();
@@ -46,7 +46,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Дата")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView2.d, result.ToArray(), columns);
+            form.DataGridView2.PullListInDataGridView(result.ToArray(), columns);
         }
         protected override void Clear()
         {

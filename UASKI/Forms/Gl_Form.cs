@@ -28,8 +28,8 @@ namespace UASKI
             TimeTimer.Start();
 
             // Инициализируем системные переменные
-            SystemData.Init(this);
             ComponentIniz();
+            SystemData.Init(this);
             
             // Рисуем меню
             foreach (var item in SystemData.MenuItems.Select(c => c.Text).ToArray())

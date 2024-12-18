@@ -98,7 +98,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Оценка")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView7.d, result.ToArray(), columns);
+            form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);
         }
 
         protected override void Print()

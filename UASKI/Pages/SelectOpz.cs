@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
+using UASKI.Models.Components;
 using UASKI.Services;
 using UASKI.StaticModels;
 
@@ -16,7 +17,7 @@ namespace UASKI.Pages
     public class SelectOpz : BasePageSelect
     {
         public SelectOpz(int index) : base(index) { }
-        public override DataGridView DataGridView { get => form.DataGridView1.d; protected set => throw new NotImplementedException(); }
+        public override DataGridViewComponent DataGridView { get => form.DataGridView1; protected set => throw new NotImplementedException(); }
 
         protected override void Show()
         {
@@ -142,17 +143,17 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Дней опозданий")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView1.d, model.ToArray(), columns);
+            form.DataGridView1.PullListInDataGridView(model.ToArray(), columns);
         }
 
         protected override void FilterOpen()
         {
-            FilterOpen(form.DataGridView1.d, form.panel17, form.textBox19, form.button22);
+            FilterOpen(form.DataGridView1, form.panel17, form.textBox19, form.button22);
         }
 
         protected override void FilterClose()
         {
-            FilterClose(form.DataGridView1.d, form.panel17, form.textBox19, form.button22);
+            FilterClose(form.DataGridView1, form.panel17, form.textBox19, form.button22);
         }
 
         protected override void Exit()

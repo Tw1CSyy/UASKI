@@ -69,7 +69,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Дней опозданий")
             };
 
-            SystemHelper.PullListInDataGridView(form.DataGridView8.d, result.ToArray(), columns);
+            form.DataGridView8.PullListInDataGridView(result.ToArray(), columns);
         }
 
         protected override void Print()
