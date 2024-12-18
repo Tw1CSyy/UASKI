@@ -42,7 +42,6 @@ namespace UASKI
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button19 = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.label62 = new System.Windows.Forms.Label();
             this.button18 = new System.Windows.Forms.Button();
             this.label58 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
@@ -50,7 +49,6 @@ namespace UASKI
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button20 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.label54 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -69,7 +67,6 @@ namespace UASKI
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.button16 = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.label70 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -92,7 +89,6 @@ namespace UASKI
             this.button22 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.label73 = new System.Windows.Forms.Label();
             this.button26 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -429,7 +425,6 @@ namespace UASKI
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(889, 569);
             this.tabControl1.TabIndex = 2;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -482,7 +477,6 @@ namespace UASKI
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel12.Controls.Add(this.label62);
             this.panel12.Controls.Add(this.button18);
             this.panel12.Controls.Add(this.label58);
             this.panel12.Controls.Add(this.textBox13);
@@ -491,16 +485,6 @@ namespace UASKI
             this.panel12.Size = new System.Drawing.Size(248, 542);
             this.panel12.TabIndex = 1;
             this.panel12.Visible = false;
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label62.Location = new System.Drawing.Point(2, 525);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(202, 15);
-            this.label62.TabIndex = 31;
-            this.label62.Text = "Сортировка: Ctrl + номер столбца";
             // 
             // button18
             // 
@@ -577,7 +561,6 @@ namespace UASKI
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel13.Controls.Add(this.label54);
             this.panel13.Controls.Add(this.button24);
             this.panel13.Controls.Add(this.button21);
             this.panel13.Controls.Add(this.panel16);
@@ -591,16 +574,6 @@ namespace UASKI
             this.panel13.Size = new System.Drawing.Size(246, 542);
             this.panel13.TabIndex = 2;
             this.panel13.Visible = false;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label54.Location = new System.Drawing.Point(1, 527);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(202, 15);
-            this.label54.TabIndex = 30;
-            this.label54.Text = "Сортировка: Ctrl + номер столбца";
             // 
             // button24
             // 
@@ -798,7 +771,6 @@ namespace UASKI
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel14.Controls.Add(this.label70);
             this.panel14.Controls.Add(this.button25);
             this.panel14.Controls.Add(this.button17);
             this.panel14.Controls.Add(this.panel15);
@@ -812,16 +784,6 @@ namespace UASKI
             this.panel14.Size = new System.Drawing.Size(246, 542);
             this.panel14.TabIndex = 4;
             this.panel14.Visible = false;
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label70.Location = new System.Drawing.Point(2, 527);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(202, 15);
-            this.label70.TabIndex = 31;
-            this.label70.Text = "Сортировка: Ctrl + номер столбца";
             // 
             // button25
             // 
@@ -1070,7 +1032,6 @@ namespace UASKI
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel17.Controls.Add(this.label73);
             this.panel17.Controls.Add(this.button26);
             this.panel17.Controls.Add(this.button23);
             this.panel17.Controls.Add(this.panel18);
@@ -1084,16 +1045,6 @@ namespace UASKI
             this.panel17.Size = new System.Drawing.Size(246, 542);
             this.panel17.TabIndex = 6;
             this.panel17.Visible = false;
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label73.Location = new System.Drawing.Point(3, 527);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(202, 15);
-            this.label73.TabIndex = 31;
-            this.label73.Text = "Сортировка: Ctrl + номер столбца";
             // 
             // button26
             // 
@@ -3919,10 +3870,6 @@ namespace UASKI
         public System.Windows.Forms.Label label57;
         public System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Button button31;

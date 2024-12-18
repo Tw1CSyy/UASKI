@@ -3,15 +3,9 @@ using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
-using UASKI.Models;
 using UASKI.Services;
 using Newtonsoft.Json;
 using System.IO;
-
-using UASKI.Data;
-using System.Collections.Generic;
-using UASKI.Data.Entyties;
-using UASKI.Data.Entityes;
 
 namespace UASKI
 {
@@ -73,74 +67,6 @@ namespace UASKI
                 Menu_Step1.Visible = Menu_Step2.Visible = false;
                 ErrorHelper.StatusError();
             }
-
-           // Loads();
-        }
-
-        private void Loads()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            var context = new UAContext();
-
-            var num = new List<string>();
-            var code = new List<string>();
-            var date = new List<string>();
-            var isp = new List<string>();
-            var con = new List<string>();
-            var date2 = new List<string>();
-            var otm = new List<string>();
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                num = File.ReadAllLines(dialog.FileName).ToList();
-            }
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                code = File.ReadAllLines(dialog.FileName).ToList();
-            }
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                date = File.ReadAllLines(dialog.FileName).ToList();
-            }
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                isp = File.ReadAllLines(dialog.FileName).ToList();
-            }
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                con = File.ReadAllLines(dialog.FileName).ToList();
-            }
-
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    date2 = File.ReadAllLines(dialog.FileName).ToList();
-            //}
-
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    otm = File.ReadAllLines(dialog.FileName).ToList();
-            //}
-
-            for (int i = 0; i < num.Count; i++)
-            {
-                var cod = num[i] + code[i];
-                var dat = date[i].Split('.');
-                var date1 = new DateTime(Convert.ToInt32(dat[2]) + 2000, Convert.ToInt32(dat[1]), Convert.ToInt32(dat[0]));
-               //var dat2 = date2[i].Split('.');
-               // var date12 = new DateTime(Convert.ToInt32(dat2[2]) + 2000, Convert.ToInt32(dat2[1]), Convert.ToInt32(dat2[0]));
-                var isps = Convert.ToInt32(isp[i]);
-                var cons = Convert.ToInt32(con[i]);
-               // var otms = Convert.ToInt32(otm[i]);
-
-                var en = new TaskEntity(cod, isps, cons, date1);
-                context.Add(en);
-            }
-
-            MessageBox.Show("ВВВв");
         }
 
         // При смене выбраного элемента меню 1го уровня меняем содержимое 2го меню
@@ -195,7 +121,7 @@ namespace UASKI
         {
             var defult = new AppSettings
             {
-                ConnectionString = "Host=localhost;UserName=postgres;Password=0404;Database=UASKI"
+                ConnectionString = "Host=localhost;UserName=user;Password=password;Database=UASKI"
             };
 
             var json = JsonConvert.SerializeObject(defult, Formatting.Indented);
@@ -208,10 +134,6 @@ namespace UASKI
             {
                 var json = File.ReadAllText(filePath);
                 SystemData.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
-            }
-            else
-            {
-
             }
         }
 
@@ -314,10 +236,6 @@ namespace UASKI
         private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             SystemData.Pages.AddTask.button1_KeyDown(e);
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
         }
         private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -667,10 +585,6 @@ namespace UASKI
             if(!SystemData.IsClear)
             button11.Enabled = (!SystemData.Pages.EditTask.Arhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i)) || SystemData.Pages.EditTask.Arhiv;
         }
-        private void textBox20_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
             if(!SystemData.IsClear)
@@ -765,7 +679,6 @@ namespace UASKI
         }
         private void textBox30_TextChanged(object sender, EventArgs e)
         {
-            
             if (!SystemData.IsClear)
             {
                 if (textBox20.Text.Length == 0 && textBox30.Text.Length >= 4)
@@ -1172,13 +1085,6 @@ namespace UASKI
             var key = new KeyEventArgs(Keys.Right);
             textBox40_KeyDown(sender, key);
         }
-
-
         #endregion
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
