@@ -81,6 +81,7 @@ namespace UASKI.Pages
             else
             {
                 var printDocument = new PrintDocument();
+                printDocument.DefaultPageSettings.Landscape = true;
                 printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
                 GetPrint(printDocument);
             }

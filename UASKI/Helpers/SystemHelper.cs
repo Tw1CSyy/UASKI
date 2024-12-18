@@ -400,66 +400,76 @@ namespace UASKI.Helpers
         /// <summary>
         /// Формирует документ для печати
         /// </summary>
-        /// <param name="model">Модель для печати</param>
-        public static void PrintDocument(params PrintModel[] models)
+        /// <param name="model">Модель печати</param>
+        /// <param name="YPosition">Позиция по y</param>
+        /// <returns>Конечную позицию по y</returns>
+        public static float PrintDocument(PrintModel model , float YPosition = 0f)
         {
-            float headerY = 0f;
-            
-            foreach (var model in models)
+            float headerY = YPosition;
+
+            // Вытаскиваем аргументы из модели
+            var e = model.Argument;
+            var font = model.Font;
+            var d = model.DataGridView;
+
+            // Инициализируем переменные для работы
+            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
+            int count = 0;
+            int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
+
+            // Инициализируем переменные для заголовков
+            var headerFont = new Font("Arial", 16, FontStyle.Bold);
+
+            //if (headerY == 0f)
+            //    headerY = e.MarginBounds.Top;
+
+            // Выводим заголовки
+            foreach (var header in model.Headers)
             {
-                // Вытаскиваем аргументы из модели
-                var e = model.Argument;
-                var font = model.Font;
-                var d = model.DataGridView;
+                SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
+                float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
 
-                // Инициализируем переменные для работы
-                float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
-                int count = 0;
-                int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
-
-                // Инициализируем переменные для заголовков
-                var headerFont = new Font("Arial", 16, FontStyle.Bold);
-                
-                if(headerY == 0f && models.Length > 1)
-                    headerY = e.MarginBounds.Top;
-
-                // Выводим заголовки
-                foreach (var header in model.Headers)
-                {
-                    SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
-                    float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
-
-                    e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
-                    headerY += headerSize.Height + 10;
-                }
-
-                // Расчитываем следующую строку
-                float yPosition = headerY + headerFont.Size;
-
-                // Печать заголовков таблиы
-                foreach (DataGridViewColumn column in d.Columns)
-                {
-                    e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
-                }
-
-                yPosition += font.GetHeight(e.Graphics);
-                yPosition += font.GetHeight(e.Graphics);
-
-                // Печать строк
-                while (count < linesPerPage && count < d.Rows.Count)
-                {
-                    DataGridViewRow row = d.Rows[count];
-                    for (int i = 0; i < row.Cells.Count; i++)
-                    {
-                        e.Graphics.DrawString(row.Cells[i].Value.ToString(), font, Brushes.Black, i * with + 15, yPosition);
-                    }
-                    yPosition += font.GetHeight(e.Graphics);
-                    count++;
-                }
-
-                headerY = yPosition + 30;
+                e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
+                headerY += headerSize.Height + 10;
             }
 
+            // Расчитываем следующую строку
+            float yPosition = headerY + headerFont.Size;
+
+            // Печать заголовков таблицы
+            foreach (DataGridViewColumn column in d.Columns)
+            {
+                e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
+            }
+
+            yPosition += font.GetHeight(e.Graphics);
+            yPosition += font.GetHeight(e.Graphics);
+
+            // Печать строк
+            while (count < linesPerPage && count < d.Rows.Count)
+            {
+                DataGridViewRow row = d.Rows[count];
+
+                if (row.Tag != null)
+                {
+                    count++;
+                    linesPerPage++;
+                    continue;
+                }
+                    
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    e.Graphics.DrawString(row.Cells[i].Value.ToString(), font, Brushes.Black, i * with + 15, yPosition);
+                }
+
+                yPosition += font.GetHeight(e.Graphics);
+                d.Rows[count].Tag = false;
+                count++;
+                
+            }
+            e.HasMorePages = d.Rows[d.Rows.Count - 1].Tag == null;
+            headerY = yPosition + 30;
+            return headerY;
         }
 
         /// <summary>

@@ -146,6 +146,7 @@ namespace UASKI.Pages
             {
                 var printDocument = new PrintDocument();
                 printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
+                printDocument.DefaultPageSettings.Landscape = true;
                 GetPrint(printDocument);
             }
         }
@@ -160,7 +161,8 @@ namespace UASKI.Pages
 
             var model = new PrintModel(font, e, form.dataGridView11, header1, header2);
             var model2 = new PrintModel(font, e, form.dataGridView13, header3, header4);
-            SystemHelper.PrintDocument(model , model2);
+            var y = SystemHelper.PrintDocument(model);
+            SystemHelper.PrintDocument(model2 , y);
         }
 
         public void ClearTime()

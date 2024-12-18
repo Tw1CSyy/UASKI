@@ -43,7 +43,7 @@ namespace UASKI.Pages
            
             var result = new List<PrintPocViewModel>();
 
-            foreach (var isp in ispList)
+            foreach (var isp in ispList.OrderBy(c => c.CodePodr))
             {
                 var item = SystemHelper.GetKofModel(isp, form.dateTimePicker12.Value, form.dateTimePicker13.Value);
                 result.Add(item);
@@ -51,17 +51,17 @@ namespace UASKI.Pages
 
             var dataRowModels = result.Select(c => new DataGridRowModel(
                 c.Isp,
-                c.CountPeriod.ToString() + " / " + c.CountMonth.ToString(),
-                c.CountOpzPeriod.ToString() + " / " + c.CountOpzMonth.ToString(),
-                c.CountDayPeriod.ToString() + " / " + c.CountDayMonth.ToString(),
-                c.KofPeriod.ToString() + " / " + c.KofMonth.ToString()
+                c.CountMonth.ToString(),
+                c.CountOpzMonth.ToString(),
+                c.CountDayMonth.ToString(),
+                c.KofMonth.ToString()
                 )).ToList();
 
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("Кол-во Заданий"),
-                new DataGridColumnModel("Кол-во Опзд"),
+                new DataGridColumnModel("Кол-во Выполненных Заданий"),
+                new DataGridColumnModel("Кол-во Случаев Опзд"),
                 new DataGridColumnModel("Кол-во Дней Опзд"),
                 new DataGridColumnModel("Кооф")
             };
@@ -88,7 +88,6 @@ namespace UASKI.Pages
 
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
-
             var font = new Font("Arial", 10);
             string header1 = $"Текущие значения показателей работы подразделений";
             string header2 = $"C {form.dateTimePicker12.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker13.Value.ToString("dd.MM.yyyy")}";

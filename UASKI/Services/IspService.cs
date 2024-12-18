@@ -197,7 +197,7 @@ namespace UASKI.Services
         public static string GetIniz(IspEntity entity , bool code = true)
         {
            if(code)
-                return $"{entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}. {entity.CodePodr}";
+                return $"{entity.CodePodr} {entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}.";
            else
                 return $"{entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}.";
         }
