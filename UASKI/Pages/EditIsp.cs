@@ -280,10 +280,12 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    if (IspService.Disactive(Code))
+                    var result = IspService.Delete(Code);
+
+                    if(result)
                     {
-                        Exit();
                         ErrorHelper.StatusComlite();
+                        Exit();
                     }
                     else
                     {

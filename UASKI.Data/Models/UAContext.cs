@@ -35,8 +35,7 @@ namespace UASKI.Data
                     reader.GetValue(1).ToString(),
                     reader.GetValue(2).ToString(),
                     reader.GetValue(3).ToString(),
-                    Convert.ToInt32(reader.GetValue(4)),
-                    Convert.ToBoolean(reader.GetValue(5))
+                    Convert.ToInt32(reader.GetValue(4))
                 );
 
                 result.Add(item);
@@ -176,8 +175,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(IspEntity entity)
         {
-            var query = $"INSERT INTO \"Isp\" (\"Code\" , \"FirstName\" , \"Name\" , \"LastName\" , \"CodePodr\" , \"IsActive\") " +
-                $"VALUES ('{entity.Code}' , '{entity.FirstName}' , '{entity.Name}' , '{entity.LastName}' , '{entity.CodePodr}' , '{entity.IsActive}')";
+            var query = $"INSERT INTO \"Isp\" (\"Code\" , \"FirstName\" , \"Name\" , \"LastName\" , \"CodePodr\" ) " +
+                $"VALUES ('{entity.Code}' , '{entity.FirstName}' , '{entity.Name}' , '{entity.LastName}' , '{entity.CodePodr}')";
 
             return DataModel.Complite(query);
         }
@@ -249,8 +248,7 @@ namespace UASKI.Data
                 $"\"FirstName\" = '{isp.FirstName}' ," +
                 $"\"Name\" = '{isp.Name}' ," +
                 $"\"LastName\" = '{isp.LastName}' ," +
-                $"\"CodePodr\" = '{isp.CodePodr}' ," +
-                $"\"IsActive\" = '{isp.IsActive}' " +
+                $"\"CodePodr\" = '{isp.CodePodr}'" +
                 $"WHERE \"Code\" = '{code}'";
 
             return DataModel.Complite(query);

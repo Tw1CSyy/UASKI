@@ -39,7 +39,7 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var ispList = IspService.GetList(true);
+            var ispList = IspService.GetList();
            
             var result = new List<PrintPocViewModel>();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using UASKI.Data;
 using UASKI.Data.Entityes;
@@ -15,15 +16,6 @@ namespace UASKI.Services
     public static class IspService
     {
         private static readonly UAContext context = new UAContext();
-
-        /// <summary>
-        /// Возращает список пользователей
-        /// </summary>
-        /// <returns></returns>
-        public static List<IspEntity> GetList(bool isActive)
-        {
-            return GetList().Where(c => c.IsActive == isActive).ToList();
-        }
 
         /// <summary>
         /// Возращает список пользователей
@@ -71,7 +63,7 @@ namespace UASKI.Services
             if (!result)
                 return false;
 
-            var item = new IspEntity(Convert.ToInt32(code.Value), firstName.Value, name.Value, lastName.Value, Convert.ToInt32(podr.Value), true);
+            var item = new IspEntity(Convert.ToInt32(code.Value), firstName.Value, name.Value, lastName.Value, Convert.ToInt32(podr.Value));
             var context = new UAContext();
             result = context.Add(item);
 
@@ -169,18 +161,6 @@ namespace UASKI.Services
         }
 
         /// <summary>
-        /// Дизактивирует исполнителя
-        /// </summary>
-        /// <param name="code">Код исполнителя</param>
-        /// <returns>true - успешная операция</returns>
-        public static bool Disactive(int code)
-        {
-            var isp = GetByCode(code , GetList());
-            var entiry = new IspEntity(isp.Code, isp.FirstName, isp.Name, isp.LastName, isp.CodePodr, false);
-            return context.Update(entiry , code);
-        }
-
-        /// <summary>
         /// Обновляет данные сотрудника
         /// </summary>
         /// <param name="codeIsp">Код сотрудника (старый)</param>
@@ -198,7 +178,7 @@ namespace UASKI.Services
                 return result;
 
             var entity = GetByCode(codeIsp , GetList());
-            var item = new IspEntity(Convert.ToInt32(code.Value), firstName.Value, name.Value, lastName.Value, Convert.ToInt32(podr.Value) , entity.IsActive);
+            var item = new IspEntity(Convert.ToInt32(code.Value), firstName.Value, name.Value, lastName.Value, Convert.ToInt32(podr.Value));
             result = context.Update(item , codeIsp);
 
             if(!result)
@@ -221,6 +201,27 @@ namespace UASKI.Services
                 return $"{entity.CodePodr} {entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}.";
            else
                 return $"{entity.FirstName} {entity.Name.ToUpper()[0]}. {entity.LastName.ToUpper()[0]}.";
+        }
+
+        /// <summary>
+        /// Удаляет Исполнителя-Котроллера если на нем нет задач
+        /// </summary>
+        /// <param name="code">Код задачи</param>
+        /// <returns>false - На исполнителе есть задачи или неуспешное выполнение запроса</returns>
+        public static bool Delete(int code)
+        {
+            var taskList = TasksService.GetList().Count(c => c.IdCon == code || c.IdIsp == code);
+
+            if (taskList != 0)
+                return false;
+
+            taskList = ArhivService.GetList().Count(c => c.IdCon == code || c.IdIsp == code);
+
+            if (taskList != 0)
+                return false;
+
+            var entity = GetByCode(code, GetList());
+            return context.Delete(entity);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace UASKI.Pages
         protected override void Show()
         {
             SelectTextBox(form.textBox1);
-            form.dateTimePicker1.Value = System.DateTime.Today;
+            // form.dateTimePicker1.Value = System.DateTime.Today;
         }
 
         protected override void Clear()
@@ -48,11 +48,11 @@ namespace UASKI.Pages
         #region Клавиши
         public void textBox1_KeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Down)
             {
                 if (form.textBox1.Text.Length != 0 && form.textBox3.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox1.Text , IspService.GetList(true));
+                    var isp = IspService.GetByFirstName(form.textBox1.Text , IspService.GetList());
 
                     if (isp != null)
                     {
@@ -68,6 +68,11 @@ namespace UASKI.Pages
                     SelectTextBox(form.textBox4);
                 }
 
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                SelectButton(form.button1, true);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
@@ -92,7 +97,7 @@ namespace UASKI.Pages
 
         public void textBox4_KeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Down)
             {
                 if (form.textBox4.Text.Length != 0 && form.textBox6.Text.Length == 0)
                 {
@@ -112,6 +117,11 @@ namespace UASKI.Pages
                     SelectTextBox(form.textBox7);
                 }
 
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                SelectButton(form.button1, true);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)

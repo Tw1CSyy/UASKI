@@ -31,11 +31,6 @@
         public int CodePodr { get; private set; }
 
         /// <summary>
-        /// Активен
-        /// </summary>
-        public bool IsActive { get; private set; }
-
-        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="code">Код сотрудника</param>
@@ -43,14 +38,13 @@
         /// <param name="name">Имя</param>
         /// <param name="lastName">Отчество</param>
         /// <param name="codePodr">Код подразделения</param>
-        public IspEntity(int code , string firstName , string name , string lastName , int codePodr , bool isActive)
+        public IspEntity(int code , string firstName , string name , string lastName , int codePodr)
         {
             Code = code;
             FirstName = firstName;
             Name = name;
             LastName = lastName;
             CodePodr = codePodr;
-            IsActive = isActive;
         }
     }
 }
