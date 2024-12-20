@@ -4,8 +4,6 @@ using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
 using UASKI.Services;
-using Newtonsoft.Json;
-using System.IO;
 using UASKI.Models.Components;
 
 namespace UASKI
@@ -44,19 +42,17 @@ namespace UASKI
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Создаем или загружаем файл настроек
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
-
-            if(!File.Exists(path))
-                CreateSettings(path);
-            else
-                LoadSettings(path);
+            ApplicationHelper.Settings();
 
             // Открываем подключение
             try
             {
-                DataModel.CreateConnection(SystemData.Settings.ConnectionString);
+                var settings = SystemData.Settings;
+                string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}";
+                DataModel.CreateConnection(connectionString);
                 DataModel.Open();
                 ErrorHelper.StatusConnection();
+                ApplicationHelper.Dump();
             }
             catch (Exception)
             {
@@ -115,27 +111,6 @@ namespace UASKI
                 el.Page.Init();
         }
 
-        // Создает файл настроек
-        private void CreateSettings(string filePath)
-        {
-            var defult = new AppSettings
-            {
-                ConnectionString = "Host=localhost;UserName=user;Password=password;Database=UASKI"
-            };
-
-            var json = JsonConvert.SerializeObject(defult, Formatting.Indented);
-            File.WriteAllText(filePath, json);
-        }
-
-        // Загружает файл настроек
-        private void LoadSettings(string filePath)
-        {
-            if (File.Exists(filePath))
-            {
-                var json = File.ReadAllText(filePath);
-                SystemData.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
-            }
-        }
         #endregion
 
         #region Компоненты-Переменные

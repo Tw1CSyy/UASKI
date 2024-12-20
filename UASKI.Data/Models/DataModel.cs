@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System.Runtime.InteropServices;
 
 namespace UASKI
 {

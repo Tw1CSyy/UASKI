@@ -1,0 +1,124 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+using System.IO;
+using UASKI.StaticModels;
+
+namespace UASKI.Helpers
+{
+    /// <summary>
+    /// Хелпер для работы приложения
+    /// </summary>
+    public static class ApplicationHelper
+    {
+        private static readonly string SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
+        private static readonly string DumpUtilePath = @"C:\Program Files\PostgreSQL\16\bin\pg_dump.exe";
+        private static readonly string DumpSavePath = @"C:\Program Files\PostgreSQL\16\bin\BAK";
+
+        /// <summary>
+        /// Обработка настроек при запуске приложения
+        /// </summary>
+        public static void Settings()
+        {
+            if (!File.Exists(SettingsPath))
+                CreateSettings(SettingsPath);
+
+            LoadSettings(SettingsPath);
+        }
+
+        /// <summary>
+        /// Создает файл настроек
+        /// </summary>
+        /// <param name="filePath">Путь до каталога</param>
+        private static void CreateSettings(string filePath)
+        {
+            var defult = new AppSettings
+            {
+                User = "user",
+                Password = "password",
+                Host = "localhost",
+                Port = "5432",
+                DateBase = "UASKI"
+            };
+
+            var json = JsonConvert.SerializeObject(defult, Formatting.Indented);
+            File.WriteAllText(filePath, json);
+        }
+
+        /// <summary>
+        /// Загружает файл настроек 
+        /// </summary>
+        /// <param name="filePath">Путь до каталога</param>
+        private static void LoadSettings(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                var json = File.ReadAllText(filePath);
+                SystemData.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
+            }
+        }
+
+        /// <summary>
+        /// Создает резервную копию базы, если сегодня этого еще не делалось
+        /// </summary>
+        /// <returns>true - успешная операция</returns>
+        public static bool Dump()
+        {
+            var name = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}_dump";
+
+            if (File.Exists(Path.Combine(DumpSavePath, name)))
+                return true;
+
+            return CreateDump(Path.Combine(DumpSavePath, name));
+        }
+
+        /// <summary>
+        /// Выполняет процесс создания резервной копии базы данных
+        /// </summary>
+        /// <param name="nameDump"></param>
+        /// <returns>true - успешная операция</returns>
+        private static bool CreateDump(string nameDump)
+        {
+            var settings = SystemData.Settings;
+
+            var process = new ProcessStartInfo()
+            {
+                FileName = DumpUtilePath,
+                Arguments = $"-U {settings.User} -F c -b -v -p {settings.Port} -f \"{nameDump}\" \"{settings.DateBase}\"",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            Environment.SetEnvironmentVariable("PGPASSWORD", settings.Password);
+
+            using (Process proces = new Process())
+            {
+                proces.StartInfo = process;
+
+                try
+                {
+                    proces.Start();
+
+                    string output = proces.StandardOutput.ReadToEnd();
+                    string error = proces.StandardError.ReadToEnd();
+
+                    proces.WaitForExit();
+                    Environment.SetEnvironmentVariable("PGPASSWORD", null);
+
+                    if (proces.ExitCode == 0)
+                        return true;
+                    else
+                        return false;
+                }
+                catch (Exception)
+                {
+                    Environment.SetEnvironmentVariable("PGPASSWORD", null);
+                    return false;
+                }
+            }
+        }
+
+    }
+}
