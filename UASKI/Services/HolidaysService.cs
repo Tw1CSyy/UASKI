@@ -89,9 +89,9 @@ namespace UASKI.Services
         /// </summary>
         /// <param name="date">Дата для проверки</param>
         /// <returns>Положительный или отрицательный результат</returns>
-        public static bool CheckDay(DateTime date)
+        public static bool CheckDay(DateTime date , List<HolidayEntity> list)
         {
-            var day = GetList().FirstOrDefault(c => c.Date.Date == date.Date);
+            var day = list.FirstOrDefault(c => c.Date.Date == date.Date);
             return day != null;
         }
 

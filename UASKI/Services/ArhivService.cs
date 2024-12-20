@@ -132,13 +132,15 @@ namespace UASKI.Services
                 result = false;
             }
 
-            if (HolidaysService.CheckDay(date.Value))
+            var holidayList = HolidaysService.GetList();
+
+            if (HolidaysService.CheckDay(date.Value.Date , holidayList))
             {
                 date.Error("В праздник никто работать не будет");
                 result = false;
             }
 
-            if (HolidaysService.CheckDay(dateClose.Value))
+            if (HolidaysService.CheckDay(dateClose.Value.Date , holidayList))
             {
                 dateClose.Error("В праздник никто работать не будет");
                 result = false;
@@ -196,5 +198,6 @@ namespace UASKI.Services
             var arhiv = new ArhivEntity(code.Value, Convert.ToInt32(idIsp.Value), Convert.ToInt32(idCon.Value), date.Value, dateClose.Value, Convert.ToInt32(Otm.Value), id);
             return context.Update(arhiv , id);
         }
+
     }
 }

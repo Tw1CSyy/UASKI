@@ -23,7 +23,6 @@ namespace UASKI.Services
             return context.Tasks;
         }
 
-
         /// <summary>
         /// Возращает список задач
         /// </summary>
@@ -114,7 +113,9 @@ namespace UASKI.Services
                 result = false;
             }
 
-            if (HolidaysService.CheckDay(date.Value))
+            var holidayList = HolidaysService.GetList();
+
+            if (HolidaysService.CheckDay(date.Value , holidayList))
             {
                 date.Error("В праздник никто работать не будет");
                 result = false;

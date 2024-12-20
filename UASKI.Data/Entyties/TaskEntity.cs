@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace UASKI.Data.Entityes
 {
@@ -63,5 +64,6 @@ namespace UASKI.Data.Entityes
             Date = date;
             Id = id;
         }
+
     }
 }
