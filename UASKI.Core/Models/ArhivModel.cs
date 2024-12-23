@@ -78,7 +78,6 @@ namespace UASKI.Core.Models
             Date = task.Date;
             DateClose = dateClose;
             Otm = otm;
-            Id = task.Id;
         }
 
         /// <summary>

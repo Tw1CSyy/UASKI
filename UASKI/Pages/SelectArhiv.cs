@@ -62,7 +62,7 @@ namespace UASKI.Pages
 
             var model = new List<DataGridRowModel>();
            
-            foreach (var item in list.OrderByDescending(c => c.DateClose))
+            foreach (var item in list.OrderByDescending(c => c.DateClose).ThenBy(c => c.Id))
             {
                 
                 var st = new DataGridRowModel(item.Id.ToString(),

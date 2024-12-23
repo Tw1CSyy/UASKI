@@ -20,6 +20,7 @@ namespace UASKI.Helpers
             form.LabelStatus.ForeColor = Color.Red;
             form.LabelStatus.Visible = true;
             form.TimerStatus.Start();
+            SystemData.IsQuery = false;
         }
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace UASKI.Helpers
             form.LabelStatus.ForeColor = Color.Green;
             form.LabelStatus.Visible = true;
             form.TimerStatus.Start();
+            SystemData.IsQuery = false;
         }
 
         /// <summary>

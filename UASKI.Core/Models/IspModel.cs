@@ -72,11 +72,14 @@ namespace UASKI.Core.Models
         /// <param name="entity">Сущность сотрудника</param>
         internal IspModel(IspEntity entity)
         {
-            Code = entity.Code;
-            FirstName = entity.FirstName;
-            Name = entity.Name;
-            LastName = entity.LastName;
-            CodePodr = entity.CodePodr;
+           if(entity != null)
+           {
+                Code = entity.Code;
+                FirstName = entity.FirstName;
+                Name = entity.Name;
+                LastName = entity.LastName;
+                CodePodr = entity.CodePodr;
+           }
         }
 
         /// <summary>

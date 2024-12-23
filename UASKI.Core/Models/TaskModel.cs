@@ -93,7 +93,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект TaskEntity</returns>
         private TaskEntity Get()
         {
-            return new TaskEntity(Code, IdIsp, IdCon, Date);
+            return new TaskEntity(Code, IdIsp, IdCon, Date , Id);
         }
 
         /// <summary>

@@ -54,11 +54,13 @@ namespace UASKI.Pages
                 .GetList()
                 .Where(c => c.DaysOpz != 0)
                 .OrderByDescending(c => c.Date)
+                .ThenBy(c => c.Id)
                 .ToList();
 
             var listArhiv = ArhivModel.GetList()
                 .Where(c => c.DaysOpz != 0)
                 .OrderByDescending(c => c.Date)
+                .ThenBy(c => c.Id)
                 .ToList();
 
             foreach (var item in listTask.OrderBy(c => c.Date))

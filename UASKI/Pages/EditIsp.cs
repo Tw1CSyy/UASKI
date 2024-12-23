@@ -227,7 +227,7 @@ namespace UASKI.Pages
                     var code = TextBoxElement.New(form.textBox15, form.label29);
                     var podr = TextBoxElement.New(form.textBox14, form.label28);
 
-                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr);
+                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr , true);
 
                     if(result == false)
                     {
@@ -237,7 +237,6 @@ namespace UASKI.Pages
 
                     var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
                     result = isp.Update(Isp.Code);
-
 
                     if (result == false)
                     {

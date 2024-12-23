@@ -294,7 +294,7 @@ namespace UASKI.Helpers
         /// <param name="code">Элемент код сотрудника</param>
         /// <param name="podr">Элемент код подразделения сотрудника</param>
         /// <returns>true - успешная операция</returns>
-        public static bool IspValidation(TextBoxElement firstName, TextBoxElement name, TextBoxElement lastName, TextBoxElement code, TextBoxElement podr)
+        public static bool IspValidation(TextBoxElement firstName, TextBoxElement name, TextBoxElement lastName, TextBoxElement code, TextBoxElement podr , bool IsUpdate = false)
         {
             var result = true;
 
@@ -351,7 +351,7 @@ namespace UASKI.Helpers
                 result = false;
             }
 
-            if (result)
+            if (result && !IsUpdate)
             {
                 var list = IspModel.GetList();
                 var isp = IspModel.GetByCode(Convert.ToInt32(code.Value));
