@@ -1,9 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
-using UASKI.Services;
 using UASKI.StaticModels;
 
 namespace UASKI.Pages
@@ -52,13 +53,13 @@ namespace UASKI.Pages
             {
                 if (form.textBox1.Text.Length != 0 && form.textBox3.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox1.Text , IspService.GetList());
+                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Equals(form.textBox1.Text.ToLower()));
 
                     if (isp != null)
                     {
                         form.textBox2.Text = isp.CodePodr.ToString();
                         form.textBox3.Text = isp.Code.ToString();
-                        form.textBox1.Text = IspService.GetIniz(isp , false);
+                        form.textBox1.Text = isp.InizByCode;
                     }
 
                     SelectTextBox(form.textBox4);
@@ -101,13 +102,13 @@ namespace UASKI.Pages
             {
                 if (form.textBox4.Text.Length != 0 && form.textBox6.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox4.Text , IspService.GetList());
+                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Equals(form.textBox4.Text.ToLower()));
 
                     if (isp != null)
                     {
                         form.textBox5.Text = isp.CodePodr.ToString();
                         form.textBox6.Text = isp.Code.ToString();
-                        form.textBox4.Text = IspService.GetIniz(isp , false);
+                        form.textBox4.Text = isp.InizByCode;
                     }
 
                     SelectTextBox(form.textBox7);
@@ -168,32 +169,37 @@ namespace UASKI.Pages
             }
         }
 
-        public void button1_KeyDown(PreviewKeyDownEventArgs e)
+        public bool button1_KeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 if (SystemData.IsQuery)
                 {
+                    var code = TextBoxElement.New(form.textBox7, form.label25);
+                    var idIsp = TextBoxElement.New(form.textBox3, form.label23);
+                    var idCon = TextBoxElement.New(form.textBox6, form.label24);
+                    var date = DateTimeElement.New(form.dateTimePicker1, form.label26);
 
-                    ErrorHelper.StatusWait();
-
-                    var result = TasksService.Add(
-                        TextBoxElement.New(form.textBox7, form.label25),
-                        TextBoxElement.New(form.textBox3, form.label23),
-                        TextBoxElement.New(form.textBox6, form.label24),
-                        DateTimeElement.New(form.dateTimePicker1, form.label26)
-                        );
-
-                    if (result)
-                    {
-                        ClearPage();
-                        ErrorHelper.StatusComlite();
-                        Show();
-                    }
-                    else
+                    var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date);
+                      
+                    if(result == false)
                     {
                         ErrorHelper.StatusError();
+                        return false;
                     }
+                        
+                    var model = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value);
+                    result = model.Add();
+
+                    if (result == false)
+                    {
+                        ErrorHelper.StatusError();
+                        return false;
+                    }
+
+                    ClearPage();
+                    ErrorHelper.StatusComlite();
+                    Show();
                 }
                 else
                 {
@@ -217,6 +223,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
         public void dateTimePicker1_KeyDown(KeyEventArgs e)

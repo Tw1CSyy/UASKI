@@ -4,8 +4,8 @@ using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -32,7 +32,7 @@ namespace UASKI.Pages
         private void Select()
         {
             var result = new List<DataGridRowModel>();
-            var model = HolidaysService.GetList();
+            var model = HolidayModel.GetList();
 
             foreach (var item in model)
             {
@@ -77,7 +77,7 @@ namespace UASKI.Pages
             }
         }
 
-        public void button5_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button5_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
             {
@@ -88,10 +88,17 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var result = HolidaysService.Add
-                    (
-                        MonthElement.New(form.monthCalendar1, form.label27)
-                    );
+                    var date = MonthElement.New(form.monthCalendar1, form.label27);
+
+                    var result = ValidationHelper.HolidayValidation(date);
+
+                    if(!result)
+                    {
+                        ErrorHelper.StatusError();
+                        return false;
+                    }
+
+                    var holy = new HolidayModel(date.Date);
 
                     if (result)
                     {
@@ -101,7 +108,7 @@ namespace UASKI.Pages
                     }
                     else
                     {
-                        ErrorHelper.StatusError();
+                        
                     }
                 }
                 else
@@ -116,6 +123,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
         #endregion
     }

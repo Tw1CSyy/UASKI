@@ -1,4 +1,5 @@
-﻿using UASKI.Models;
+﻿using UASKI.Core;
+using UASKI.Models;
 
 namespace UASKI
 {
@@ -21,7 +22,7 @@ namespace UASKI
                
             }
             base.Dispose(disposing);
-            DataModel.Close();
+            DataConnection.Close();
         }
 
         #region Код, автоматически созданный конструктором форм Windows

@@ -1,11 +1,10 @@
 ﻿using System.Windows.Forms;
 using System;
-using UASKI.Helpers;
-using UASKI.Services;
 using UASKI.StaticModels;
 using System.Linq;
 using System.Collections.Generic;
 using UASKI.Models.Components;
+using UASKI.Core.Models;
 
 namespace UASKI.Models.Pages
 {
@@ -43,7 +42,7 @@ namespace UASKI.Models.Pages
 
         public override void Select()
         {
-            var model = IspService.GetList();
+            var model = IspModel.GetList();
             var search = form.textBox13.Text;
 
             model = model.Where(c => c.Code.ToString().Contains(search) ||

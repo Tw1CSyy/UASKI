@@ -4,14 +4,9 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using UASKI.Models;
-using UASKI.StaticModels;
 using System.Linq;
-using UASKI.Pages;
-using UASKI.Data.Entyties;
-using UASKI.Services;
 using UASKI.ViewModels;
-using UASKI.Data.Entityes;
-using System.Reflection;
+using UASKI.Core.Models;
 
 namespace UASKI.Helpers
 {
@@ -269,10 +264,10 @@ namespace UASKI.Helpers
         /// <summary>
         /// Расчитывает коофициент качества по списку задач
         /// </summary>
-        /// <param name="tasks">Список задач</param>
+        /// <param name="tasks">Список архивных задач</param>
         /// <param name="listPret">Список претензий и рецензий</param>
         /// <returns></returns>
-        private static double GetCof(List<ArhivEntity> tasks , List<PretEntity> listPret)
+        private static double GetCof(List<ArhivModel> tasks , List<PretModel> listPret)
         {
             if (tasks.Count == 0)
             {
@@ -312,12 +307,12 @@ namespace UASKI.Helpers
         /// <param name="dateFrom">Дата от</param>
         /// <param name="dateTo">Дата до</param>
         /// <returns></returns>
-        public static PrintPocViewModel GetKofModel(IspEntity isp , DateTime dateFrom , DateTime dateTo)
+        public static PrintPocViewModel GetKofModel(IspModel isp , DateTime dateFrom , DateTime dateTo)
         {
             var item = new PrintPocViewModel();
-            item.Isp = IspService.GetIniz(isp);
+            item.Isp = isp.InizByCode;
 
-            var tasks = ArhivService.GetList().Where(c => c.IdIsp == isp.Code).ToList();
+            var tasks = ArhivModel.GetList().Where(c => c.IdIsp == isp.Code).ToList();
             var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
             var tasksMonth = tasks.Where(c => c.DateClose.Month == dateFrom.Month && c.DateClose.Year == dateFrom.Year).ToList();
 
@@ -330,10 +325,10 @@ namespace UASKI.Helpers
             item.CountDayPeriod = tasksPediod.Where(c => c.Date < c.DateClose).Sum(c => (c.DateClose - c.Date).Days);
             item.CountDayMonth = tasksMonth.Where(c => c.Date < c.DateClose).Sum(c => (c.DateClose - c.Date).Days);
 
-            var pretList = PretService.GetList();
+            var pretList = PretModel.GetList();
 
-            item.KofPeriod = SystemHelper.GetCof(tasksPediod, pretList);
-            item.KofMonth = SystemHelper.GetCof(tasksMonth, pretList);
+            item.KofPeriod = GetCof(tasksPediod, pretList);
+            item.KofMonth = GetCof(tasksMonth, pretList);
 
             return item;
         }

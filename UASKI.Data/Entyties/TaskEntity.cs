@@ -4,7 +4,7 @@ using System.Linq;
 namespace UASKI.Data.Entityes
 {
     /// <summary>
-    /// Модель задач
+    /// Класс сущности задачи
     /// </summary>
     public class TaskEntity
     {

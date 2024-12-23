@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Components;
-using UASKI.Services;
+using UASKI.Core.Models;
 
 namespace UASKI.Forms
 {
@@ -35,7 +34,7 @@ namespace UASKI.Forms
 
         private void Start(string search = "")
         {
-            var model = IspService.GetList();
+            var model = IspModel.GetList();
 
             if(search.Length > 0)
             {

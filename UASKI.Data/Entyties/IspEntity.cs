@@ -1,7 +1,7 @@
 ﻿namespace UASKI.Data.Entityes
 {
     /// <summary>
-    /// Модель элемента таблицы Isp
+    /// Класс сущности Исполнителей/Котроллеров
     /// </summary>
     public class IspEntity
     {

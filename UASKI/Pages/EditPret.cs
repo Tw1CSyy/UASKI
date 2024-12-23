@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
-using UASKI.Services;
 using UASKI.StaticModels;
 
 namespace UASKI.Pages
@@ -156,7 +156,7 @@ namespace UASKI.Pages
             }
         }
 
-        public void button46_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button46_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Left)
             {
@@ -171,17 +171,29 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var result = PretService.Add(IdTask , TextBoxElement.New(form.textBox38, form.label92),
-                        DateTimeElement.New(form.dateTimePicker16, form.label93),
-                        TextBoxElement.New(form.textBox39, form.label94) , Type);
+                    var code = TextBoxElement.New(form.textBox38, form.label92);
+                    var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
+                    var otm = TextBoxElement.New(form.textBox39, form.label94);
 
-                    if (result)
+                    var result = ValidationHelper.PretValidation(code, date, otm);
+
+                    if (!result)
                     {
-                        ErrorHelper.StatusComlite();
-                        Exit();
-                    }
-                    else
                         ErrorHelper.StatusError();
+                        return false;
+                    }
+                        
+                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, Type);
+                    result = item.Add();
+
+                    if (!result)
+                    {
+                        ErrorHelper.StatusError();
+                        return false;
+                    }
+
+                    ErrorHelper.StatusComlite();
+                    Exit();
                 }
                 else
                     ErrorHelper.StatusQuery();
@@ -192,6 +204,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
         public void button45_PreviewKeyDown(PreviewKeyDownEventArgs e)

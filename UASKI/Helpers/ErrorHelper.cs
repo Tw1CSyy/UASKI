@@ -52,19 +52,6 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Изменяет статус на ожидание
-        /// </summary>
-        public static void StatusWait()
-        {
-            var form = SystemData.Form;
-            SystemData.IsQuery = false;
-            Close();
-            
-            form.LabelStatus.Text = "Ожидайте... Еще немного";
-            form.LabelStatus.ForeColor = Color.GreenYellow;
-            form.LabelStatus.Visible = true;
-        }
-        /// <summary>
         /// Закрывает и скрывает статус
         /// </summary>
         private static void Close()

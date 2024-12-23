@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Forms;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Components;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -51,23 +50,21 @@ namespace UASKI.Pages
 
             var model = new List<DataGridRowModel>();
 
-            var listTask = TasksService
+            var listTask = TaskModel
                 .GetList()
                 .Where(c => c.Date < DateTime.Today)
                 .OrderByDescending(c => c.Date)
                 .ToList();
 
-            var listArhiv = ArhivService.GetList()
+            var listArhiv = ArhivModel.GetList()
                 .Where(c => c.DateClose > c.Date)
                 .OrderByDescending(c => c.Date)
                 .ToList();
 
-            var listUser = IspService.GetList();
-
             foreach (var item in listTask.OrderBy(c => c.Date))
             {
-                var isp = IspService.GetByCode(item.IdIsp, listUser);
-                var con = IspService.GetByCode(item.IdCon, listUser);
+                var isp = item.Isp;
+                var con = item.Con;
 
                 if (isDate)
                 {
@@ -89,8 +86,8 @@ namespace UASKI.Pages
 
                 var task = new DataGridRowModel(item.Id.ToString(),
                      item.Code,
-                     IspService.GetIniz(isp),
-                     IspService.GetIniz(con),
+                     isp.InizByCode,
+                     con.InizByCode,
                      item.Date.ToString("dd.MM.yyyy"), "", "" , (DateTime.Today - item.Date).Days.ToString());
 
                 model.Add(task);
@@ -98,9 +95,6 @@ namespace UASKI.Pages
 
             foreach (var item in listArhiv)
             {
-                var isp = IspService.GetByCode(item.IdIsp, listUser);
-                var con = IspService.GetByCode(item.IdCon, listUser);
-
                 if (isDate)
                 {
                     if (item.DateClose.Date < dateFrom.Date || item.DateClose.Date > dateTo.Date)
@@ -109,7 +103,7 @@ namespace UASKI.Pages
 
                 if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
                 {
-                    if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1))
+                    if (item.Isp.Code != Convert.ToInt32(isp1) && item.Con.Code != Convert.ToInt32(isp1))
                         continue;
                 }
 
@@ -121,8 +115,8 @@ namespace UASKI.Pages
 
                 var task = new DataGridRowModel(item.Id.ToString(),
                      item.Code,
-                     IspService.GetIniz(isp),
-                     IspService.GetIniz(con),
+                     item.Isp.InizByCode,
+                     item.Con.InizByCode,
                      item.Date.ToString("dd.MM.yyyy"),
                      item.DateClose.ToString("dd.MM.yyyy"),
                      item.Otm.ToString(),

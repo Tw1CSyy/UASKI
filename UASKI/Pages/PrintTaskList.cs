@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -48,11 +45,11 @@ namespace UASKI.Pages
             var dateTo = form.dateTimePicker11.Value;
             var ispCode = form.textBox30.Text;
 
-            var taskList = TasksService.GetList()
+            var taskList = TaskModel.GetList()
                 .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
                 .ToList();
 
-            var arhivList = ArhivService.GetList()
+            var arhivList = ArhivModel.GetList()
                 .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
             .ToList();
 
@@ -63,26 +60,23 @@ namespace UASKI.Pages
             }
 
             var result = new List<DataGridRowModel>();
-            var ispList = IspService.GetList();
-
+           
             foreach (var task in taskList)
             {
-                var con = IspService.GetByCode(task.IdCon, ispList);
                 var item = new DataGridRowModel(
                     task.Code,
                     task.Date.ToString("dd.MM.yyyy"),
-                    IspService.GetIniz(con));
+                    task.Con.InizByCode);
 
                 result.Add(item);
             }
 
             foreach (var task in arhivList)
             {
-                var con = IspService.GetByCode(task.IdCon, ispList);
                 var item = new DataGridRowModel(
                     task.Code,
                     task.Date.ToString("dd.MM.yyyy"),
-                    IspService.GetIniz(con),
+                    task.Con.InizByCode,
                     task.DateClose.ToString("dd.MM.yyyy"),
                     task.Otm.ToString());
 

@@ -121,6 +121,7 @@
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
+    <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Models\Components\DataGridViewComponent.cs" />
     <Compile Include="Models\PageBaseModel\BasePageEdit.cs" />
     <Compile Include="Models\PageBaseModel\BasePagePrint.cs" />
@@ -155,11 +156,6 @@
     <Compile Include="Pages\SelectTask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ArhivService.cs" />
-    <Compile Include="Services\HolidaysService.cs" />
-    <Compile Include="Services\IspService.cs" />
-    <Compile Include="Services\PretService.cs" />
-    <Compile Include="Services\TasksService.cs" />
     <Compile Include="StaticModels\AppSettings.cs" />
     <Compile Include="StaticModels\Pages.cs" />
     <Compile Include="StaticModels\SystemData.cs" />
@@ -200,11 +196,10 @@
     <Content Include="d9d2afcc-5598-48c6-9c0c-5c2685ffeca5-_2_.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UASKI.Data\UASKI.Data.csproj">
-      <Project>{7d6f6c3a-4174-454f-9020-49add6a0df5a}</Project>
-      <Name>UASKI.Data</Name>
+    <ProjectReference Include="..\UASKI.Core\UASKI.Core.csproj">
+      <Project>{faad5c1d-3d9d-4406-a0b5-f6dcf7f8046a}</Project>
+      <Name>UASKI.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

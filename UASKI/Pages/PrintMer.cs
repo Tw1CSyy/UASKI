@@ -6,8 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -38,23 +38,20 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var taskList = TasksService.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
-            var arhivList = ArhivService.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
-            var ispList = IspService.GetList();
+            var taskList = TaskModel.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
+            var arhivList = ArhivModel.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
             var result = new List<DataGridRowModel>();
-
+           
             foreach (var item in taskList)
             {
-                var isp = IspService.GetByCode(item.IdIsp, ispList);
-                var con = IspService.GetByCode(item.IdCon, ispList);
                 var date = (DateTime.Today - item.Date).Days;
 
                 if (date < 0)
                     date = 0;
 
                 var model = new DataGridRowModel(item.Code,
-                    IspService.GetIniz(isp),
-                    IspService.GetIniz(con),
+                    item.Isp.InizByCode,
+                    item.Con.InizByCode,
                     item.Date.ToString("dd.MM.yyyy"), "", "", date.ToString());
 
                 result.Add(model);
@@ -62,16 +59,14 @@ namespace UASKI.Pages
 
             foreach (var item in arhivList)
             {
-                var isp = IspService.GetByCode(item.IdIsp, ispList);
-                var con = IspService.GetByCode(item.IdCon, ispList);
                 var date = (item.DateClose - item.Date).Days;
 
                 if (date < 0)
                     date = 0;
 
                 var model = new DataGridRowModel(item.Code,
-                    $"{isp.Code} {isp.FirstName} {isp.Name.ToUpper()[0]}. {isp.LastName.ToUpper()[0]}.",
-                    $"{con.Code} {con.FirstName} {con.Name.ToUpper()[0]}. {con.LastName.ToUpper()[0]}.",
+                    item.Isp.InizByCode,
+                    item.Con.InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),
                     item.DateClose.ToString("dd.MM.yyyy"),
                     item.Otm.ToString(),

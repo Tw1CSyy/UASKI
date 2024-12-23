@@ -2,10 +2,11 @@
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
 using System.Collections.Generic;
 using UASKI.Models.Components;
+using UASKI.Core.Models;
+using System.Linq;
 
 namespace UASKI.Pages
 {
@@ -33,7 +34,7 @@ namespace UASKI.Pages
         public override void Select()
         {
             var result = new List<DataGridRowModel>();
-            var model = HolidaysService.GetList();
+            var model = HolidayModel.GetList();
 
             foreach (var item in model)
             {
@@ -91,7 +92,7 @@ namespace UASKI.Pages
             }
         }
 
-        public void button13_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button13_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Left)
             {
@@ -106,24 +107,27 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    ErrorHelper.StatusWait();
-
-                    var list = new List<int>();
+                    var list = HolidayModel.GetList();
+                    var result = true;
 
                     foreach (DataGridViewRow item in form.DataGridView6.d.SelectedRows)
                     {
-                        list.Add(Convert.ToInt32(item.Cells[0].Value));
+                        var id = Convert.ToInt32(item.Cells[0].Value);
+                        var holy = list.FirstOrDefault(c => c.Id == id);
+                        result = holy.Delete();
+
+                        if (!result)
+                            break;
                     }
 
-                    var result = HolidaysService.Delete(list , HolidaysService.GetList());
-
-                    if (result)
+                    if(!result)
                     {
-                        ErrorHelper.StatusComlite();
-                        Show();
-                    }
-                    else
                         ErrorHelper.StatusError();
+                        return false;
+                    }
+
+                    ErrorHelper.StatusComlite();
+                    Show();
                 }
                 else
                     ErrorHelper.StatusQuery();
@@ -131,6 +135,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
         #endregion

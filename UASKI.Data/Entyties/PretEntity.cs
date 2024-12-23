@@ -3,6 +3,9 @@ using System.Diagnostics.Contracts;
 
 namespace UASKI.Data.Entyties
 {
+    /// <summary>
+    /// Класс сущности претензий/рецензий
+    /// </summary>
     public class PretEntity
     {
         /// <summary>

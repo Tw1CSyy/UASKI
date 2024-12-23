@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -40,20 +38,17 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var list = TasksService.GetList().Where(c => c.Date < DateTime.Today).ToList();
-            var ispList = IspService.GetList();
+            var list = TaskModel.GetList().Where(c => c.Date < DateTime.Today).ToList();
             var result = new List<DataGridRowModel>();
 
             foreach (var item in list)
             {
-                var isp = IspService.GetByCode(item.IdIsp, ispList);
-                var con = IspService.GetByCode(item.IdCon, ispList);
                 var day = (DateTime.Today - item.Date).Days;
 
                 var model = new DataGridRowModel(
-                    IspService.GetIniz(isp),
+                    item.Isp.InizByCode,
                     item.Code,
-                    IspService.GetIniz(con),
+                    item.Con.InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),
                     day.ToString());
 

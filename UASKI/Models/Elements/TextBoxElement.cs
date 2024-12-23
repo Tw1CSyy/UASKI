@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
@@ -30,6 +31,11 @@ namespace UASKI.Models.Elements
         public bool IsNull { get => IsNul(); }
 
         /// <summary>
+        /// Число, эквивалетное строке или -1
+        /// </summary>
+        public int Num { get => GetInt(); }
+
+        /// <summary>
         /// Провереят число ли значение элемента
         /// </summary>
         /// <returns></returns>
@@ -50,6 +56,17 @@ namespace UASKI.Models.Elements
         private bool IsNul()
         {
             return string.IsNullOrEmpty(Value);
+        }
+
+        /// <summary>
+        /// Возвращает число, эквивалетное строке или -1
+        /// </summary>
+        private int GetInt()
+        {
+            if (!IsNull && IsNumber)
+                return Convert.ToInt32(Value);
+            else
+                return -1;
         }
 
         /// <summary>

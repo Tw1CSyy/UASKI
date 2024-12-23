@@ -3,8 +3,9 @@ using System.Linq;
 using System.Windows.Forms;
 using UASKI.Helpers;
 using UASKI.StaticModels;
-using UASKI.Services;
 using UASKI.Models.Components;
+using UASKI.Core.Models;
+using UASKI.Core;
 
 namespace UASKI
 {
@@ -45,16 +46,16 @@ namespace UASKI
             ApplicationHelper.Settings();
 
             // Открываем подключение
-            try
+            var settings = SystemData.Settings;
+            string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}";
+            var connection = new DataConnection(connectionString);
+
+            if(connection.IsConnection)
             {
-                var settings = SystemData.Settings;
-                string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}";
-                DataModel.CreateConnection(connectionString);
-                DataModel.Open();
                 ErrorHelper.StatusConnection();
                 ApplicationHelper.Dump();
             }
-            catch (Exception)
+            else
             {
                 Menu_Step1.Visible = Menu_Step2.Visible = false;
                 ErrorHelper.StatusError();
@@ -595,7 +596,7 @@ namespace UASKI
         private void textBox28_TextChanged(object sender, EventArgs e)
         {
             if(!SystemData.IsClear)
-            button11.Enabled = (!SystemData.Pages.EditTask.Arhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i)) || SystemData.Pages.EditTask.Arhiv;
+            button11.Enabled = (!SystemData.Pages.EditTask.IsArhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i)) || SystemData.Pages.EditTask.IsArhiv;
         }
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
@@ -699,10 +700,10 @@ namespace UASKI
 
                     if (int.TryParse(textBox30.Text, out code))
                     {
-                        var isp = IspService.GetByCode(code, IspService.GetList());
+                        var isp = IspModel.GetByCode(code);
 
                         if (isp != null)
-                            textBox20.Text = IspService.GetIniz(isp);
+                            textBox20.Text = isp.InizNotCode;
                     }
                 }
 
@@ -793,10 +794,10 @@ namespace UASKI
 
                     if (int.TryParse(textBox36.Text, out code))
                     {
-                        var isp = IspService.GetByCode(code, IspService.GetList());
+                        var isp = IspModel.GetByCode(code);
 
                         if (isp != null)
-                            textBox37.Text = IspService.GetIniz(isp);
+                            textBox37.Text = isp.InizNotCode;
                     }
                 }
 

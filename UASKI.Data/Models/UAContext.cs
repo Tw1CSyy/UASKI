@@ -169,6 +169,167 @@ namespace UASKI.Data
         }
 
         /// <summary>
+        /// Получает объект из таблицы Isp по Id
+        /// </summary>
+        /// <param name="code">Id</param>
+        /// <returns></returns>
+        public IspEntity IspFirstOrDefult(int code)
+        {
+            IspEntity result = null;
+            var query = $"SELECT * FROM \"Isp\" WHERE \"Code\" = {code}";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new IspEntity
+                (
+                    Convert.ToInt32(reader.GetValue(0)),
+                    reader.GetValue(1).ToString(),
+                    reader.GetValue(2).ToString(),
+                    reader.GetValue(3).ToString(),
+                    Convert.ToInt32(reader.GetValue(4))
+                );
+
+                result = item;
+                break;
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Получает объект из таблицы Tasks по Id
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
+        public TaskEntity TaskFirstOrDefult(int id)
+        {
+            TaskEntity result = null;
+            var query = $"SELECT * FROM \"Tasks\" WHERE \"Id\" = {id}";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new TaskEntity
+                (
+                    reader.GetValue(0).ToString(),
+                    Convert.ToInt32(reader.GetValue(1)),
+                    Convert.ToInt32(reader.GetValue(2)),
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToInt32(reader.GetValue(4))
+                );
+
+                result = item;
+                break;
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Получает объект из таблицы Arhiv по Id
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
+        public ArhivEntity ArhivFirstOrDefult(int id)
+        {
+            ArhivEntity result = null;
+            var query = $"SELECT * FROM \"Arhiv\" WHERE \"Id\" = {id}";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new ArhivEntity
+                (
+                    reader.GetValue(0).ToString(),
+                    Convert.ToInt32(reader.GetValue(1)),
+                    Convert.ToInt32(reader.GetValue(2)),
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToDateTime(reader.GetValue(4)),
+                    Convert.ToInt32(reader.GetValue(5)),
+                    Convert.ToInt32(reader.GetValue(6))
+                );
+
+                result = item;
+                break;
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Получает объект из таблицы Holidays по Id
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
+        public HolidayEntity HolidayFirstOrDefult(int id)
+        {
+            HolidayEntity result = null;
+            var query = $"SELECT * FROM \"Holidays\" WHERE \"Id\" = {id}";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new HolidayEntity
+                (
+                    Convert.ToInt32(reader.GetValue(1)),
+                    Convert.ToDateTime(reader.GetValue(0))
+                );
+
+                result = item;
+                break;
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Получает объект из таблицы Prets по Id
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
+        public PretEntity PretFirstOrDefult(int id)
+        {
+            PretEntity result = null;
+            var query = $"SELECT * FROM \"Pret\" WHERE \"Id\" = {id}";
+
+            var command = new NpgsqlCommand(query, DataModel.Get());
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var item = new PretEntity
+                (
+                    Convert.ToInt32(reader.GetValue(0)),
+                    reader.GetValue(1).ToString(),
+                    Convert.ToInt32(reader.GetValue(2)),
+                    Convert.ToDateTime(reader.GetValue(3)),
+                    Convert.ToInt32(reader.GetValue(4)),
+                    Convert.ToInt32(reader.GetValue(5))
+                );
+
+                result = item;
+                break;
+
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
         /// Добавляет запись в таблицу Isp
         /// </summary>
         /// <param name="entity">Объект класса</param>
@@ -366,5 +527,4 @@ namespace UASKI.Data
             return DataModel.Complite(query);
         }
     }
-
 }

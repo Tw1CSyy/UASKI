@@ -7,8 +7,8 @@ using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
-using UASKI.Services;
 using System.Drawing;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -48,10 +48,9 @@ namespace UASKI.Pages
            if(form.textBox37.Text.Length != 0)
             {
                 var model = new List<DataGridRowModel>();
-                var ispList = IspService.GetList();
 
-                var isp = IspService.GetByCode(Convert.ToInt32(form.textBox36.Text), ispList);
-                var tasks = ArhivService.GetList()
+                var isp = IspModel.GetByCode(Convert.ToInt32(form.textBox36.Text));
+                var tasks = ArhivModel.GetList()
                     .Where(c => c.IdIsp == isp.Code)
                     .Where(c => c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value)
                     .ToList();
@@ -60,7 +59,7 @@ namespace UASKI.Pages
 
                 foreach (var task in tasks)
                 {
-                    var con = IspService.GetByCode(task.IdCon, ispList);
+                    var con = IspModel.GetByCode(task.IdCon);
                     int opzDays = (task.DateClose - task.Date).Days;
                     int opz = 0;
 
@@ -70,7 +69,7 @@ namespace UASKI.Pages
                     item = new DataGridRowModel(
                         task.Code,
                         task.Date.ToString("dd.MM.yyyy"),
-                        IspService.GetIniz(con),
+                        con.InizByCode,
                         task.DateClose.ToString("dd.MM.yyyy"),
                         task.Otm.ToString(),
                         opz.ToString()
@@ -130,7 +129,7 @@ namespace UASKI.Pages
                 form.label99.Visible = true;
                 form.label100.Visible = true;
 
-                form.label99.Text = $"Уважаемый товарищ {IspService.GetIniz(isp, false)}";
+                form.label99.Text = $"Уважаемый товарищ {isp.InizNotCode}";
                 form.DataGridView11.d.ClearSelection();
                 form.DataGridView13.d.ClearSelection();
            }

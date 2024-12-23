@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Forms;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Components;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -43,20 +42,32 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var list = ArhivService.GetList(form.textBox32.Text, form.textBox31.Text, form.checkBox1.Checked, form.dateTimePicker2.Value, form.dateTimePicker3.Value);
+            var list = ArhivModel.GetList();
+
+            if(form.textBox32.Text.Length > 0)
+            {
+                list = list.Where(c => c.Code.ToLower().Contains(form.textBox32.Text.ToLower())).ToList();
+            }
+
+            if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text , out int j))
+            {
+                list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox31.Text) || c.IdCon == Convert.ToInt32(form.textBox31.Text)).ToList();
+            }
+
+            if(form.checkBox1.Checked)
+            {
+                list = list.Where(c => c.Date >= form.dateTimePicker2.Value && c.Date <= form.dateTimePicker3.Value).ToList();
+            }
 
             var model = new List<DataGridRowModel>();
-            var listUser = IspService.GetList();
-
+           
             foreach (var item in list.OrderByDescending(c => c.DateClose))
             {
-                var isp = IspService.GetByCode(item.IdIsp, listUser);
-                var con = IspService.GetByCode(item.IdCon, listUser);
-
+                
                 var st = new DataGridRowModel(item.Id.ToString(),
                     item.Code,
-                    IspService.GetIniz(isp),
-                    IspService.GetIniz(con),
+                    item.Isp.InizByCode,
+                    item.Con.InizByCode,
                     item.Date.ToString("dd.MM.yyyy"), item.DateClose.ToString("dd.MM.yyyy"),
                     item.Otm.ToString());
 

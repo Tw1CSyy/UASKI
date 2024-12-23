@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
-using UASKI.Services;
 using UASKI.StaticModels;
 
 namespace UASKI.Pages
@@ -22,22 +22,17 @@ namespace UASKI.Pages
             
         }
 
-        private int Code;
+        private IspModel Isp;
 
         public void Select()
         {
-            var list = TasksService.GetList().Where(c => c.IdCon == Code || c.IdIsp == Code).ToList();
+            var list = TaskModel.GetList().Where(c => c.IdCon == Isp.Code || c.IdIsp == Isp.Code).ToList();
 
             var model = new List<DataGridRowModel>();
 
-            var listUser = IspService.GetList();
-
             foreach (var item in list.OrderBy(c => c.Date))
             {
-                var isp = IspService.GetByCode(item.IdIsp, listUser);
-                var con = IspService.GetByCode(item.IdCon, listUser);
-
-                var st = new DataGridRowModel(item.Code, IspService.GetIniz(isp), IspService.GetIniz(con), item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Code, item.Isp.InizByCode, item.Con.InizByCode, item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 
@@ -54,11 +49,12 @@ namespace UASKI.Pages
 
         public void Show(int code , BasePageSelect page)
         {
-            Code = code;
             Page = page;
 
             var form = SystemData.Form;
-            var isp = IspService.GetByCode(code , IspService.GetList());
+            var isp = IspModel.GetByCode(code);
+
+            Isp = isp;
 
             form.textBox18.Text = isp.FirstName;
             form.textBox17.Text = isp.Name;
@@ -214,7 +210,7 @@ namespace UASKI.Pages
             }
         }
 
-        public void button6_KeyDown(PreviewKeyDownEventArgs e)
+        public bool button6_KeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
@@ -225,25 +221,32 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var result = IspService.Update
-                   (
-                   Code,
-                   TextBoxElement.New(form.textBox18, form.label32),
-                   TextBoxElement.New(form.textBox17, form.label31),
-                   TextBoxElement.New(form.textBox16, form.label30),
-                   TextBoxElement.New(form.textBox15, form.label29),
-                   TextBoxElement.New(form.textBox14, form.label28)
-                   );
+                    var firstName = TextBoxElement.New(form.textBox18, form.label32);
+                    var name = TextBoxElement.New(form.textBox17, form.label31);
+                    var lastName = TextBoxElement.New(form.textBox16, form.label30);
+                    var code = TextBoxElement.New(form.textBox15, form.label29);
+                    var podr = TextBoxElement.New(form.textBox14, form.label28);
 
-                    if (result)
-                    {
-                        Exit();
-                        ErrorHelper.StatusComlite();
-                    }
-                    else
+                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr);
+
+                    if(result == false)
                     {
                         ErrorHelper.StatusError();
+                        return false;
                     }
+
+                    var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
+                    result = isp.Update(Isp.Code);
+
+
+                    if (result == false)
+                    {
+                        ErrorHelper.StatusError();
+                        return false;
+                    }
+
+                    Exit();
+                    ErrorHelper.StatusComlite();
                 }
                 else
                 {
@@ -262,6 +265,8 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+
+            return true;
         }
 
         public void button7_KeyDown(PreviewKeyDownEventArgs e)
@@ -280,7 +285,7 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    var result = IspService.Delete(Code);
+                    var result = Isp.Delete();
 
                     if(result)
                     {

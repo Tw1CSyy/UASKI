@@ -2,11 +2,11 @@
 using UASKI.Forms;
 using System;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
 using System.Collections.Generic;
 using System.Linq;
 using UASKI.Models.Components;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -41,17 +41,28 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var list = TasksService.GetList(form.textBox19.Text, form.textBox29.Text, form.checkBox2.Checked, form.dateTimePicker5.Value, form.dateTimePicker6.Value);
+            var list = TaskModel.GetList();
+
+            if(form.textBox19.Text.Length > 0)
+            {
+                list = list.Where(c => c.Code.ToLower().Contains(form.textBox19.Text.ToLower())).ToList();
+            }
+
+            if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text , out int j))
+            {
+                list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox29.Text) || c.IdCon == Convert.ToInt32(form.textBox29.Text)).ToList();
+            }
+
+            if(form.checkBox2.Checked)
+            {
+                list = list.Where(c => c.Date >= form.dateTimePicker5.Value && c.Date <= form.dateTimePicker6.Value).ToList();
+            }
 
             var model = new List<DataGridRowModel>();
-            var listUser = IspService.GetList();
-
+           
             foreach (var item in list.OrderBy(c => c.Date))
             {
-                var isp = IspService.GetByCode(item.IdIsp, listUser);
-                var con = IspService.GetByCode(item.IdCon, listUser);
-
-                var st = new DataGridRowModel(item.Id.ToString(), item.Code, IspService.GetIniz(isp), IspService.GetIniz(con), item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Id.ToString(), item.Code, item.Isp.InizByCode, item.Con.InizByCode, item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 

@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
-using UASKI.Services;
 using UASKI.StaticModels;
 
 namespace UASKI.Pages
@@ -143,32 +143,38 @@ namespace UASKI.Pages
             }
         }
 
-        public void button4_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button4_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 if (SystemData.IsQuery)
                 {
-                    ErrorHelper.StatusWait();
+                    var firstName = TextBoxElement.New(form.textBox8, form.label18);
+                    var name = TextBoxElement.New(form.textBox9, form.label19);
+                    var lastName = TextBoxElement.New(form.textBox10, form.label20);
+                    var code = TextBoxElement.New(form.textBox11, form.label21);
+                    var podr = TextBoxElement.New(form.textBox12, form.label22);
 
-                    var result = IspService.Add(
-                        TextBoxElement.New(form.textBox8, form.label18),
-                        TextBoxElement.New(form.textBox9, form.label19),
-                        TextBoxElement.New(form.textBox10, form.label20),
-                        TextBoxElement.New(form.textBox11, form.label21),
-                        TextBoxElement.New(form.textBox12, form.label22)
-                    );
-
-                    if (result)
-                    {
-                        ClearPage();
-                        ErrorHelper.StatusComlite();
-                        Show();
-                    }
-                    else
+                    var result = ValidationHelper.IspValidation(firstName , name , lastName , code , podr);
+                    
+                    if(!result)
                     {
                         ErrorHelper.StatusError();
+                        return false;
                     }
+
+                    var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
+                    result = isp.Add();
+
+                    if (!result)
+                    {
+                        ErrorHelper.StatusError();
+                        return false;
+                    }
+
+                    ClearPage();
+                    ErrorHelper.StatusComlite();
+                    Show();
                 }
                 else
                 {
@@ -187,6 +193,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
         #endregion

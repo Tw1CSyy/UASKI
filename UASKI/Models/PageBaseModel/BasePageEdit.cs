@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Reflection;
-using System.Windows.Forms;
-using UASKI.Helpers;
-using UASKI.Services;
-using UASKI.StaticModels;
-
-namespace UASKI.Models
+﻿namespace UASKI.Models
 {
     /// <summary>
     /// Абстрактный класс для объектов страницы

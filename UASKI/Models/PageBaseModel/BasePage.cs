@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Reflection;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using UASKI.Helpers;
-using UASKI.Services;
 using UASKI.StaticModels;
 
 namespace UASKI.Models

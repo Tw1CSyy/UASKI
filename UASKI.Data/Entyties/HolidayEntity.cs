@@ -3,7 +3,7 @@
 namespace UASKI.Data.Entityes
 {
     /// <summary>
-    /// Модель элемента таблицы Holidays
+    /// Класс сущности Holiday
     /// </summary>
     public class HolidayEntity
     {

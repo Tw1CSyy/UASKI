@@ -7,9 +7,9 @@ using System.Windows.Forms;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
 using UASKI.ViewModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -39,7 +39,7 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var ispList = IspService.GetList();
+            var ispList = IspModel.GetList();
            
             var result = new List<PrintPocViewModel>();
 

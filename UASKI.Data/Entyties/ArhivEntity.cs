@@ -2,6 +2,9 @@
 
 namespace UASKI.Data.Entyties
 {
+    /// <summary>
+    /// Класс сущности архивной задачи
+    /// </summary>
     public class ArhivEntity
     {
         /// <summary>

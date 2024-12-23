@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Forms;
-using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Components;
-using UASKI.Services;
 using UASKI.StaticModels;
+using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {
@@ -41,7 +36,7 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var list = PretService.GetList();
+            var list = PretModel.GetList();
 
             if(form.textBox40.Text.Length > 0)
             {

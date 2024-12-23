@@ -2,10 +2,13 @@
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.Services;
 using UASKI.StaticModels;
 using UASKI.Models.Elements;
 using System;
+using UASKI.Core.Models;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Linq;
 
 namespace UASKI.Pages
 {
@@ -22,28 +25,29 @@ namespace UASKI.Pages
 
         }
 
-        private int Id;
+        private TaskModel Task;
+        private ArhivModel Arhiv;
+
         private string CodeTask;
-        public bool Arhiv { get; private set; }
+        public bool IsArhiv { get; private set; }
 
-        public void Show(int id , bool IsArhiv , BasePageSelect page)
+        public void Show(int id , bool isArhiv , BasePageSelect page)
         {
-            Id = id;
             Page = page;
-            Arhiv = IsArhiv;
+            IsArhiv = isArhiv;
 
-            var listUser = IspService.GetList();
-            
+            var listUser = IspModel.GetList();
+
             if (!IsArhiv)
             {
-                var taskList = TasksService.GetList();
-                var task = TasksService.GetTaskById(Id , taskList);
+                var task = TaskModel.GetById(id);
+                Task = task;
 
-                var usr1 = IspService.GetByCode(task.IdIsp , listUser);
-                var usr2 = IspService.GetByCode(task.IdCon , listUser);
+                var usr1 = IspModel.GetByCode(task.IdIsp);
+                var usr2 = IspModel.GetByCode(task.IdCon);
 
-                form.textBox26.Text = IspService.GetIniz(usr1 , false);
-                form.textBox21.Text = IspService.GetIniz(usr2 , false);
+                form.textBox26.Text = usr1.InizNotCode;
+                form.textBox21.Text = usr2.InizNotCode;
 
                 form.textBox24.Text = usr1.Code.ToString();
                 form.textBox25.Text = usr1.CodePodr.ToString();
@@ -61,19 +65,17 @@ namespace UASKI.Pages
             }
             else
             {
-                var listArhiv = ArhivService.GetList();
-                var arhiv = ArhivService.GetById(Id , listArhiv);
+                var listArhiv = ArhivModel.GetList();
+                var arhiv = ArhivModel.GetById(id);
+                Arhiv = arhiv;
 
-                var usr1 = IspService.GetByCode(arhiv.IdIsp, listUser);
-                var usr2 = IspService.GetByCode(arhiv.IdCon, listUser);
+                form.textBox26.Text = arhiv.Isp.InizNotCode;
+                form.textBox21.Text = arhiv.Con.InizNotCode;
 
-                form.textBox26.Text = usr1.FirstName;
-                form.textBox21.Text = usr2.FirstName;
-
-                form.textBox24.Text = usr1.Code.ToString();
-                form.textBox25.Text = usr1.CodePodr.ToString();
-                form.textBox23.Text = usr2.Code.ToString();
-                form.textBox22.Text = usr2.CodePodr.ToString();
+                form.textBox24.Text = arhiv.Isp.Code.ToString();
+                form.textBox25.Text = arhiv.Isp.CodePodr.ToString();
+                form.textBox23.Text = arhiv.Con.Code.ToString();
+                form.textBox22.Text = arhiv.Con.CodePodr.ToString();
                 form.textBox27.Text = arhiv.Code;
                 form.dateTimePicker4.Value = arhiv.Date;
 
@@ -146,13 +148,13 @@ namespace UASKI.Pages
             {
                 if (form.textBox25.Text.Length == 0 && form.textBox24.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox26.Text , IspService.GetList());
+                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Contains(form.textBox26.Text.ToLower()));
 
                     if (isp != null)
                     {
                         form.textBox25.Text = isp.CodePodr.ToString();
                         form.textBox24.Text = isp.Code.ToString();
-                        form.textBox26.Text = IspService.GetIniz(isp , false);
+                        form.textBox26.Text = isp.InizNotCode;
                     }
 
                     SelectTextBox(form.textBox21);
@@ -195,13 +197,13 @@ namespace UASKI.Pages
             {
                 if (form.textBox22.Text.Length == 0 && form.textBox23.Text.Length == 0)
                 {
-                    var isp = IspService.GetByFirstName(form.textBox21.Text , IspService.GetList());
+                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Equals(form.textBox21.Text.ToLower()));
 
                     if (isp != null)
                     {
                         form.textBox22.Text = isp.CodePodr.ToString();
                         form.textBox23.Text = isp.Code.ToString();
-                        form.textBox21.Text = IspService.GetIniz(isp , false);
+                        form.textBox21.Text = isp.InizNotCode;
                     }
 
                     SelectTextBox(form.textBox27);
@@ -287,7 +289,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (!Arhiv)
+                if (!IsArhiv)
                     form.textBox28.Focus();
                 else
                     SelectButton();
@@ -336,7 +338,7 @@ namespace UASKI.Pages
 
         }
 
-        public void button10_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button10_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             
             if (e.KeyCode == Keys.Down)
@@ -347,46 +349,62 @@ namespace UASKI.Pages
             {
                 if(SystemData.IsQuery)
                 {
-                    ErrorHelper.StatusWait();
 
-                    if (!Arhiv)
+                    if (!IsArhiv)
                     {
-                        var result = TasksService.UpdateTask(Id,
-                            TextBoxElement.New(form.textBox24, form.label51),
-                            TextBoxElement.New(form.textBox23, form.label53),
-                            TextBoxElement.New(form.textBox27, form.label55),
-                            DateTimeElement.New(form.dateTimePicker4, form.label56));
+                        var code = TextBoxElement.New(form.textBox24, form.label51);
+                        var idIsp = TextBoxElement.New(form.textBox23, form.label53);
+                        var idCon = TextBoxElement.New(form.textBox27, form.label55);
+                        var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
 
-                        if(result)
-                        {
-                            ErrorHelper.StatusComlite();
-                            Exit();
-                        }
-                        else
+                        var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date, true);
+
+                        if(result == false)
                         {
                             ErrorHelper.StatusError();
+                            return false;
                         }
+
+                        var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value);
+                        result = task.Update();
+
+                        if (result == false)
+                        {
+                            ErrorHelper.StatusError();
+                            return false;
+                        }
+
+                        ErrorHelper.StatusComlite();
+                        Exit();
                     }    
                     else
                     {
-                        var result = ArhivService.Update(Id,
-                             TextBoxElement.New(form.textBox27, form.label55),
-                            TextBoxElement.New(form.textBox24, form.label51),
-                            TextBoxElement.New(form.textBox23, form.label53),
-                            DateTimeElement.New(form.dateTimePicker4, form.label56),
-                            DateTimeElement.New(form.dateTimePicker9 , form.label38),
-                            TextBoxElement.New(form.textBox28 , form.label57)
-                            );
+                        var code = TextBoxElement.New(form.textBox27, form.label55);
+                        var idIsp = TextBoxElement.New(form.textBox24, form.label51);
+                        var idCon = TextBoxElement.New(form.textBox23, form.label53);
+                        var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
+                        var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
+                        var otm = TextBoxElement.New(form.textBox28, form.label57);
 
-                        if (result)
-                        {
-                            ErrorHelper.StatusComlite();
-                            Exit();
-                        }
-                        else
+                        var result = ValidationHelper.ArhivValidation(code , idIsp , idCon , date , dateClose , otm);
+
+                        if (result == false)
                         {
                             ErrorHelper.StatusError();
+                            return false;
                         }
+
+                        var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num , Arhiv.Id);
+                        result = arhiv.Update();
+
+                        if (result == false)
+                        {
+                            ErrorHelper.StatusError();
+                            return false;
+                        }
+
+                        ErrorHelper.StatusComlite();
+                        Exit();
                     }
                 }
                 else
@@ -405,9 +423,10 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
-        public void button11_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button11_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             
             if (e.KeyCode == Keys.Up)
@@ -423,25 +442,34 @@ namespace UASKI.Pages
             {
                 if(SystemData.IsQuery)
                 {
-                    ErrorHelper.StatusWait();
-
-                    if (!Arhiv)
+                    
+                    if (!IsArhiv)
                     {
-                        var result = TasksService.Close(Id, TextBoxElement.New(form.textBox28, form.label57) , DateTimeElement.New(form.dateTimePicker9 , form.label38));
+                        var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
+                        var otm = TextBoxElement.New(form.textBox28, form.label57);
 
-                        if(result)
-                        {
-                            ErrorHelper.StatusComlite();
-                            Exit();
-                        }
-                        else
+                        var result = ValidationHelper.CloseTaskValidation(otm, dateClose);
+
+                        if(result == false)
                         {
                             ErrorHelper.StatusError();
+                            return false;
                         }
+
+                        result = Task.Close(otm.Num, dateClose.Value);
+
+                        if (result == false)
+                        {
+                            ErrorHelper.StatusError();
+                            return false;
+                        }
+
+                        ErrorHelper.StatusComlite();
+                        Exit();
                     }
                     else
                     {
-                        var result = ArhivService.Open(Id);
+                        var result = Arhiv.Open();
 
                         if(result)
                         {
@@ -473,6 +501,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
         public void button12_PreviewKeyDown(PreviewKeyDownEventArgs e)
@@ -490,9 +519,7 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
-                    ErrorHelper.StatusWait();
-
-                    var result = TasksService.Delete(Id);
+                    var result = Task.Delete();
 
                     if(result)
                     {
@@ -561,7 +588,14 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Enter)
             {
                 SystemData.Pages.EditPret.Init(false);
-                SystemData.Pages.EditPret.Show(Id, 1, Page, Arhiv , CodeTask);
+                int id = 0;
+
+                if (Task != null)
+                    id = Task.Id;
+                else
+                    id = Arhiv.Id;
+
+                SystemData.Pages.EditPret.Show(id, 1, Page, IsArhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -584,8 +618,15 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
+                int id = 0;
+
+                if (Task != null)
+                    id = Task.Id;
+                else
+                    id = Arhiv.Id;
+
                 SystemData.Pages.EditPret.Init(false);
-                SystemData.Pages.EditPret.Show(Id, 2, Page, Arhiv , CodeTask);
+                SystemData.Pages.EditPret.Show(id, 2, Page, IsArhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {
