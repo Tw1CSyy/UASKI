@@ -38,12 +38,12 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var list = TaskModel.GetList().Where(c => c.Date < DateTime.Today).ToList();
+            var list = TaskModel.GetList().Where(c => c.DaysOpz != 0).ToList();
             var result = new List<DataGridRowModel>();
 
             foreach (var item in list)
             {
-                var day = (DateTime.Today - item.Date).Days;
+                var day = item.DaysOpz;
 
                 var model = new DataGridRowModel(
                     item.Isp.InizByCode,

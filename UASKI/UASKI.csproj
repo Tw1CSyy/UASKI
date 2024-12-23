@@ -159,7 +159,6 @@
     <Compile Include="StaticModels\AppSettings.cs" />
     <Compile Include="StaticModels\Pages.cs" />
     <Compile Include="StaticModels\SystemData.cs" />
-    <Compile Include="ViewModels\PrintPocViewModel.cs" />
     <EmbeddedResource Include="Forms\DateForm.resx">
       <DependentUpon>DateForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -52,12 +52,17 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Исполнитель
         /// </summary>
-        public IspModel Isp { get => IspModel.GetByCode(IdIsp); }
+        public IspModel Isp { get; private set; }
 
         /// <summary>
         /// Контроллер
         /// </summary>
-        public IspModel Con { get => IspModel.GetByCode(IdCon); }
+        public IspModel Con { get; private set; }
+
+        /// <summary>
+        /// Дней опазданий с учетом выходных и праздников
+        /// </summary>
+        public int DaysOpz { get; private set; }
 
         /// <summary>
         /// Создает объект класса
@@ -100,7 +105,7 @@ namespace UASKI.Core.Models
         /// Создает объект класса
         /// <param name="a">Сущность архивной задачи</param>
         /// </summary>
-        private ArhivModel(ArhivEntity a)
+        internal ArhivModel(ArhivEntity a, IspModel isp, IspModel con, int dayOpz)
         {
             Code = a.Code;
             IdIsp = a.IdIsp;
@@ -109,6 +114,10 @@ namespace UASKI.Core.Models
             DateClose = a.DateClose;
             Otm = a.Otm;
             Id = a.Id;
+
+            Isp = isp;
+            Con = con;
+            DaysOpz = dayOpz;
         }
 
         /// <summary>
@@ -174,7 +183,34 @@ namespace UASKI.Core.Models
         /// <returns>Список архивных задач</returns>
         public static List<ArhivModel> GetList()
         {
-            return context.Arhiv.Select(c => new ArhivModel(c)).ToList();
+            var ispList = context.Isps;
+            var taskList = context.Arhiv;
+            var holidayList = context.Holidays;
+            var result = new List<ArhivModel>();
+
+            foreach (var task in taskList)
+            {
+                var isp = ispList.FirstOrDefault(c => c.Code == task.IdIsp);
+                var con = ispList.FirstOrDefault(c => c.Code == task.IdCon);
+                var days = 0;
+
+                for (DateTime date = task.Date; date < task.DateClose;)
+                {
+                    if (holidayList.FirstOrDefault(c => c.Date == date) != null)
+                    {
+                        date = date.AddDays(1);
+                        continue;
+                    }
+
+                    days++;
+                    date = date.AddDays(1);
+                }
+
+                var item = new ArhivModel(task, new IspModel(isp), new IspModel(con), days);
+                result.Add(item);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -184,7 +220,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект модели архивной задачи</returns>
         public static ArhivModel GetById(int Id)
         {
-            return new ArhivModel(context.ArhivFirstOrDefult(Id));
+            return GetList().FirstOrDefault(c => c.Id == Id);
         }
 
     }

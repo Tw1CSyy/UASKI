@@ -51,7 +51,8 @@ namespace UASKI.Pages
 
             if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text , out int j))
             {
-                list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox31.Text) || c.IdCon == Convert.ToInt32(form.textBox31.Text)).ToList();
+                list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox31.Text) || c.IdCon == Convert.ToInt32(form.textBox31.Text) ||
+                c.Isp.CodePodr == Convert.ToInt32(form.textBox31.Text) || c.Con.CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
             }
 
             if(form.checkBox1.Checked)

@@ -52,12 +52,12 @@ namespace UASKI.Pages
 
             var listTask = TaskModel
                 .GetList()
-                .Where(c => c.Date < DateTime.Today)
+                .Where(c => c.DaysOpz != 0)
                 .OrderByDescending(c => c.Date)
                 .ToList();
 
             var listArhiv = ArhivModel.GetList()
-                .Where(c => c.DateClose > c.Date)
+                .Where(c => c.DaysOpz != 0)
                 .OrderByDescending(c => c.Date)
                 .ToList();
 
@@ -74,7 +74,7 @@ namespace UASKI.Pages
 
                 if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
                 {
-                    if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1))
+                    if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1) && isp.CodePodr != Convert.ToInt32(isp1) && con.CodePodr != Convert.ToInt32(isp1))
                         continue;
                 }
 
@@ -88,7 +88,7 @@ namespace UASKI.Pages
                      item.Code,
                      isp.InizByCode,
                      con.InizByCode,
-                     item.Date.ToString("dd.MM.yyyy"), "", "" , (DateTime.Today - item.Date).Days.ToString());
+                     item.Date.ToString("dd.MM.yyyy"), "", "" , item.DaysOpz.ToString());
 
                 model.Add(task);
             }
@@ -120,7 +120,7 @@ namespace UASKI.Pages
                      item.Date.ToString("dd.MM.yyyy"),
                      item.DateClose.ToString("dd.MM.yyyy"),
                      item.Otm.ToString(),
-                     (item.DateClose - item.Date).Days.ToString());
+                     item.DaysOpz.ToString());
 
                 model.Add(task);
             }

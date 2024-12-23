@@ -41,13 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataConnection.cs" />
     <Compile Include="Models\ArhivModel.cs" />
     <Compile Include="Models\HolidayModel.cs" />
     <Compile Include="Models\IspModel.cs" />
     <Compile Include="Models\PretModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemModels\DataConnection.cs" />
+    <Compile Include="SystemModels\KofModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UASKI.Data\UASKI.Data.csproj">

@@ -60,7 +60,7 @@ namespace UASKI.Pages
                 foreach (var task in tasks)
                 {
                     var con = IspModel.GetByCode(task.IdCon);
-                    int opzDays = (task.DateClose - task.Date).Days;
+                    int opzDays = task.DaysOpz;
                     int opz = 0;
 
                     if (opzDays > 0)
@@ -90,7 +90,7 @@ namespace UASKI.Pages
 
                 form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
                    
-                var cof = SystemHelper.GetKofModel(isp, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
+                var cof = isp.GetKofModel(form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                 model = new List<DataGridRowModel>();
 

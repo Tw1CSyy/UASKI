@@ -8,8 +8,8 @@ using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
-using UASKI.ViewModels;
 using UASKI.Core.Models;
+using UASKI.Core.SystemModels;
 
 namespace UASKI.Pages
 {
@@ -41,11 +41,11 @@ namespace UASKI.Pages
         {
             var ispList = IspModel.GetList();
            
-            var result = new List<PrintPocViewModel>();
+            var result = new List<KofModel>();
 
             foreach (var isp in ispList.OrderBy(c => c.CodePodr))
             {
-                var item = SystemHelper.GetKofModel(isp, form.dateTimePicker12.Value, form.dateTimePicker13.Value);
+                var item = isp.GetKofModel(form.dateTimePicker12.Value, form.dateTimePicker13.Value);
                 result.Add(item);
             }
 

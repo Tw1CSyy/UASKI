@@ -44,7 +44,7 @@ namespace UASKI.Pages
            
             foreach (var item in taskList)
             {
-                var date = (DateTime.Today - item.Date).Days;
+                var date = item.DaysOpz;
 
                 if (date < 0)
                     date = 0;
@@ -59,7 +59,7 @@ namespace UASKI.Pages
 
             foreach (var item in arhivList)
             {
-                var date = (item.DateClose - item.Date).Days;
+                var date = item.DaysOpz;
 
                 if (date < 0)
                     date = 0;

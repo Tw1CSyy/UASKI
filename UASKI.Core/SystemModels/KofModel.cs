@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
-namespace UASKI.ViewModels
+namespace UASKI.Core.SystemModels
 {
-    public class PrintPocViewModel
+    public class KofModel
     {
         /// <summary>
         /// Инициалы исполнителя

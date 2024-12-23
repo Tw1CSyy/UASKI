@@ -24,9 +24,9 @@ namespace UASKI.Pages
             form.DataGridView2.ResizeDataGridView();
 
             form.monthCalendar1.SetSelectionRange(DateTime.Today, DateTime.Today);
-            form.monthCalendar1.Focus();
-
+            
             form.DataGridView2.d.ClearSelection();
+            form.monthCalendar1.Focus();
         }
 
         private void Select()

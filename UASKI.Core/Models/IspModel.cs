@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UASKI.Core.SystemModels;
 using UASKI.Data;
 using UASKI.Data.Entityes;
 
@@ -69,7 +70,7 @@ namespace UASKI.Core.Models
         /// Создает объект класса
         /// </summary>
         /// <param name="entity">Сущность сотрудника</param>
-        public IspModel(IspEntity entity)
+        internal IspModel(IspEntity entity)
         {
             Code = entity.Code;
             FirstName = entity.FirstName;
@@ -148,6 +149,78 @@ namespace UASKI.Core.Models
             return context.Delete(Get());
         }
 
+
+        /// <summary>
+        /// Расчитывает коофициент качества по списку задач
+        /// </summary>
+        /// <param name="tasks">Список архивных задач</param>
+        /// <param name="listPret">Список претензий и рецензий</param>
+        /// <returns></returns>
+        private double GetCof(List<ArhivModel> tasks, List<PretModel> listPret)
+        {
+            if (tasks.Count == 0)
+            {
+                return 0;
+            }
+
+            int countTask = 0, countPret = 0, countRez = 0, countOpz = 0, countCof = 0;
+
+            foreach (var task in tasks)
+            {
+                countTask += Convert.ToInt32(task.Code[0].ToString()) * task.Otm;
+
+                var prets = listPret.Where(c => c.IdTask == task.Id && c.Type == 1).ToList();
+                var rezs = listPret.Where(c => c.IdTask == task.Id && c.Type == 2).ToList();
+
+                countPret += prets.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+                countRez += rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+
+                if (task.DaysOpz != 0)
+                {
+                    countOpz += Convert.ToInt32(task.Code[0].ToString()) * task.DaysOpz;
+                }
+
+                countCof += Convert.ToInt32(task.Code[0].ToString()) + prets.Sum(c => Convert.ToInt32(c.Code[0].ToString())) + rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()));
+            }
+
+            double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
+            result = Math.Round(result, 2);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Расчитывает данные для коофициента качества для исполнителя
+        /// </summary>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <returns></returns>
+        public KofModel GetKofModel(DateTime dateFrom, DateTime dateTo)
+        {
+            var item = new KofModel();
+            item.Isp = InizByCode;
+
+            var tasks = ArhivModel.GetList().Where(c => c.IdIsp == Code).ToList();
+            var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
+            var tasksMonth = tasks.Where(c => c.DateClose.Month == dateFrom.Month && c.DateClose.Year == dateFrom.Year).ToList();
+
+            item.CountPeriod = tasksPediod.Count();
+            item.CountMonth = tasksMonth.Count();
+
+            item.CountOpzPeriod = tasksPediod.Count(c => c.DaysOpz != 0);
+            item.CountOpzMonth = tasksMonth.Count(c => c.DaysOpz != 0);
+
+            item.CountDayPeriod = tasksPediod.Sum(c => c.DaysOpz);
+            item.CountDayMonth = tasksMonth.Sum(c => c.DaysOpz);
+
+            var pretList = PretModel.GetList();
+
+            item.KofPeriod = GetCof(tasksPediod, pretList);
+            item.KofMonth = GetCof(tasksMonth, pretList);
+
+            return item;
+        }
+
         /// <summary>
         /// Возращает список пользователей
         /// </summary>
@@ -169,7 +242,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект класса</returns>
         public static IspModel GetByCode(int code)
         {
-            return new IspModel(context.IspFirstOrDefult(code));
+            return GetList().FirstOrDefault(c => c.Code == code);
         }
 
     }

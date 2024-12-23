@@ -66,6 +66,7 @@ namespace UASKI.Models
                 ClearPage();
 
             SystemData.This = this;
+
             form.tabControl1.SelectedIndex = Index;
 
             if (IsOpen)

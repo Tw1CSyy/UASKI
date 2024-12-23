@@ -43,12 +43,17 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Исполнитель
         /// </summary>
-        public IspModel Isp { get => IspModel.GetByCode(IdIsp); }
+        public IspModel Isp { get; private set; }
 
         /// <summary>
         /// Контроллер
         /// </summary>
-        public IspModel Con { get => IspModel.GetByCode(IdCon); }
+        public IspModel Con { get; private set; }
+
+        /// <summary>
+        /// Дней опазданий с учетом выходных и праздников
+        /// </summary>
+        public int DaysOpz { get; private set; }
 
         /// <summary>
         /// Создает экземпляр задачи
@@ -69,13 +74,17 @@ namespace UASKI.Core.Models
         /// Создает экземпляр задачи
         /// </summary>
         /// <param name="entity">Объект TaskEntity</param>
-        private TaskModel(TaskEntity entity)
+        internal TaskModel(TaskEntity entity , IspModel isp , IspModel con , int dayOpz)
         {
             Code = entity.Code;
             IdIsp = entity.IdIsp;
             IdCon = entity.IdCon;
             Date = entity.Date;
             Id = entity.Id;
+
+            Isp = isp;
+            Con = con;
+            DaysOpz = dayOpz;
         }
 
         /// <summary>
@@ -162,7 +171,7 @@ namespace UASKI.Core.Models
         /// <returns></returns>
         public static TaskModel GetById(int code)
         {
-            return new TaskModel(context.TaskFirstOrDefult(code));
+            return GetList().FirstOrDefault(c => c.Id == code);
         }
 
         /// <summary>
@@ -170,7 +179,34 @@ namespace UASKI.Core.Models
         /// </summary>
         public static List<TaskModel> GetList()
         {
-            return context.Tasks.Select(c => new TaskModel(c)).ToList();
+            var ispList = context.Isps;
+            var taskList = context.Tasks;
+            var holidayList = context.Holidays;
+            var result = new List<TaskModel>();
+
+            foreach (var task in taskList)
+            {
+                var isp = ispList.FirstOrDefault(c => c.Code == task.IdIsp);
+                var con = ispList.FirstOrDefault(c => c.Code == task.IdCon);
+                var days = 0;
+
+                for (DateTime date = task.Date; date < DateTime.Today;)
+                {
+                    if (holidayList.FirstOrDefault(c => c.Date == date) != null)
+                    {
+                        date = date.AddDays(1);
+                        continue;
+                    }
+
+                    days++;
+                    date = date.AddDays(1);
+                }
+
+                var item = new TaskModel(task, new IspModel(isp), new IspModel(con), days);
+                result.Add(item);
+            }
+
+            return result;
         }
 
         /// <summary>

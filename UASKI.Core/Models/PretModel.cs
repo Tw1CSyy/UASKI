@@ -107,7 +107,7 @@ namespace UASKI.Core.Models
         /// <param name="Id">Id</param>
         public static PretModel GetById(int Id)
         {
-            return new PretModel(context.PretFirstOrDefult(Id));
+            return GetList().FirstOrDefault(c => c.Id == Id);
         }
 
     }
