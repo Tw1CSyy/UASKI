@@ -110,10 +110,10 @@ namespace UASKI.Core.Models
         /// Изменяет задачу
         /// </summary>
         /// <returns>true - успешная операция</returns>
-        public bool Update()
+        public bool Update(int id)
         {
             var entity = Get();
-            return context.Update(entity, Id);
+            return context.Update(entity, id);
         }
 
         /// <summary>

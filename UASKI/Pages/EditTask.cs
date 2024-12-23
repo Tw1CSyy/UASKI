@@ -352,9 +352,9 @@ namespace UASKI.Pages
 
                     if (!IsArhiv)
                     {
-                        var code = TextBoxElement.New(form.textBox24, form.label51);
-                        var idIsp = TextBoxElement.New(form.textBox23, form.label53);
-                        var idCon = TextBoxElement.New(form.textBox27, form.label55);
+                        var code = TextBoxElement.New(form.textBox27, form.label55);
+                        var idIsp = TextBoxElement.New(form.textBox24, form.label51);
+                        var idCon = TextBoxElement.New(form.textBox23, form.label53);
                         var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
 
                         var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date, true);
@@ -366,7 +366,7 @@ namespace UASKI.Pages
                         }
 
                         var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value);
-                        result = task.Update();
+                        result = task.Update(Task.Id);
 
                         if (result == false)
                         {
