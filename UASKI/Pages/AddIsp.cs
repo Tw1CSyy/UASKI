@@ -159,7 +159,7 @@ namespace UASKI.Pages
                     
                     if(!result)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.Error();
                         return false;
                     }
 
@@ -168,17 +168,17 @@ namespace UASKI.Pages
 
                     if (!result)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                         return false;
                     }
 
                     ClearPage();
-                    ErrorHelper.StatusComlite();
+                    Ai.Comlite($"Новый сотрудник успешно добавлен с кодом {code.Value}");
                     Show();
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
             }
             else if (e.KeyCode == Keys.Escape)

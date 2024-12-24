@@ -179,24 +179,24 @@ namespace UASKI.Pages
 
                     if (!result)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.Error();
                         return false;
                     }
-                        
+
                     var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, Type);
                     result = item.Add();
 
                     if (!result)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                         return false;
                     }
 
-                    ErrorHelper.StatusComlite();
+                    Ai.Comlite($"Успешно добавлена претензия/рецензия с номером {code}");
                     Exit();
                 }
                 else
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
             }
             else if(e.KeyCode == Keys.Escape)
             {
@@ -229,7 +229,7 @@ namespace UASKI.Pages
 
                 }
                 else
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
 
             }
             else if(e.KeyCode == Keys.Escape)
@@ -258,7 +258,7 @@ namespace UASKI.Pages
 
                 }
                 else
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
             }
             else if(e.KeyCode == Keys.Escape)
             {

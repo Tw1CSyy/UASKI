@@ -184,7 +184,7 @@ namespace UASKI.Pages
                       
                     if(result == false)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.Error();
                         return false;
                     }
                         
@@ -193,17 +193,17 @@ namespace UASKI.Pages
 
                     if (result == false)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                         return false;
                     }
 
                     ClearPage();
-                    ErrorHelper.StatusComlite();
+                    Ai.Comlite($"Новая задача добавлена c кодом {code.Value}");
                     Show();
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
             }
             else if (e.KeyCode == Keys.Up)

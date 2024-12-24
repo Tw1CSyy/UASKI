@@ -120,17 +120,17 @@ namespace UASKI.Pages
                             break;
                     }
 
-                    if(!result)
+                    if (!result)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                         return false;
                     }
 
-                    ErrorHelper.StatusComlite();
+                    Ai.Comlite($"Успешное удаление: {form.DataGridView6.d.SelectedRows.Count}");
                     Show();
                 }
                 else
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
 
             }
 

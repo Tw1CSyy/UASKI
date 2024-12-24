@@ -361,7 +361,7 @@ namespace UASKI.Pages
 
                         if(result == false)
                         {
-                            ErrorHelper.StatusError();
+                            Ai.Error();
                             return false;
                         }
 
@@ -370,11 +370,11 @@ namespace UASKI.Pages
 
                         if (result == false)
                         {
-                            ErrorHelper.StatusError();
+                            Ai.AppError();
                             return false;
                         }
 
-                        ErrorHelper.StatusComlite();
+                        Ai.Comlite($"Задача с кодом {Task.Code} изменена");
                         Exit();
                     }    
                     else
@@ -390,7 +390,7 @@ namespace UASKI.Pages
 
                         if (result == false)
                         {
-                            ErrorHelper.StatusError();
+                            Ai.Error();
                             return false;
                         }
 
@@ -399,17 +399,17 @@ namespace UASKI.Pages
 
                         if (result == false)
                         {
-                            ErrorHelper.StatusError();
+                            Ai.AppError();
                             return false;
                         }
 
-                        ErrorHelper.StatusComlite();
+                        Ai.Comlite($"Архмвная задача с кодом {Arhiv.Code} изменена");
                         Exit();
                     }
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
             }
             else if (e.KeyCode == Keys.Left)
@@ -452,7 +452,7 @@ namespace UASKI.Pages
 
                         if(result == false)
                         {
-                            ErrorHelper.StatusError();
+                            Ai.Error();
                             return false;
                         }
 
@@ -460,11 +460,11 @@ namespace UASKI.Pages
 
                         if (result == false)
                         {
-                            ErrorHelper.StatusError();
+                            Ai.AppError();
                             return false;
                         }
 
-                        ErrorHelper.StatusComlite();
+                        Ai.Comlite($"Задача перемещена в архив с оценкой {otm.Value}");
                         Exit();
                     }
                     else
@@ -473,19 +473,19 @@ namespace UASKI.Pages
 
                         if(result)
                         {
-                            ErrorHelper.StatusComlite();
+                            Ai.Comlite($"Архивная задача была открыта c кодом {Arhiv.Code}");
                             Exit();
                         }
                         else
                         {
-                            ErrorHelper.StatusError();
+                            Ai.AppError();
                         }
                     }
 
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
 
                
@@ -523,17 +523,17 @@ namespace UASKI.Pages
 
                     if(result)
                     {
-                        ErrorHelper.StatusComlite();
+                        Ai.Comlite($"Задача с кодом {Task.Code}");
                         Exit();
                     }
                     else
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                     }
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
 
             }

@@ -231,7 +231,7 @@ namespace UASKI.Pages
 
                     if(result == false)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.Error();
                         return false;
                     }
 
@@ -240,16 +240,16 @@ namespace UASKI.Pages
 
                     if (result == false)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                         return false;
                     }
 
                     Exit();
-                    ErrorHelper.StatusComlite();
+                    Ai.Comlite($"Сотрудник с кодом {code.Value} изменен");
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
             }
             else if (e.KeyCode == Keys.Down)
@@ -288,17 +288,17 @@ namespace UASKI.Pages
 
                     if(result)
                     {
-                        ErrorHelper.StatusComlite();
+                        Ai.Comlite($"Сотрудник с кодом {Isp.Code} удален");
                         Exit();
                     }
                     else
                     {
-                        ErrorHelper.StatusError();
+                        Ai.AppError();
                     }
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
             }
             else if (e.KeyCode == Keys.Escape)

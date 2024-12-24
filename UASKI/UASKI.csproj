@@ -120,7 +120,6 @@
       <DependentUpon>IspForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ApplicationHelper.cs" />
-    <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\SystemHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Models\Components\DataGridViewComponent.cs" />

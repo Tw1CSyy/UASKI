@@ -3596,7 +3596,7 @@ namespace UASKI
             // 
             // AiTimer
             // 
-            this.AiTimer.Interval = 500;
+            this.AiTimer.Interval = 750;
             this.AiTimer.Tick += new System.EventHandler(this.AiTimer_Tick);
             // 
             // Gl_Form

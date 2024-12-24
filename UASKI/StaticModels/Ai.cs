@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -56,7 +57,7 @@ namespace UASKI.StaticModels
         /// <param name="text">Текст сообщения</param>
         public static void AddMessage(TypeNotice type , string text)
         {
-            string mes = "- " + text + $"{Environment.NewLine}";
+            string mes = text;
 
             var notice = new Notice(mes, type);
 
@@ -72,16 +73,22 @@ namespace UASKI.StaticModels
         public static void AddMessage(TypeNotice type, string text, string[] lines)
         {
             string message = string.Empty;
-            message += "- " + text + $"{Environment.NewLine}";
+            message += Formating(text);
 
             foreach (var line in lines)
             {
-                message += line + $"{Environment.NewLine}";
+                message += line;
             }
 
             var notice = new Notice(message, type);
             
             Orders.Add(notice);
+        }
+
+        private static string Formating(string text)
+        {
+            var message = "- " + text + $"{Environment.NewLine}";
+            return message;
         }
 
         /// <summary>
@@ -92,7 +99,7 @@ namespace UASKI.StaticModels
             if(Orders.Count > 0)
             {
                 var mes = Orders[0];
-                Text.Text += mes.Message;
+                Text.Text += Formating(mes.Message);
                 Orders.Remove(mes);
                 Text.BackColor = mes.Color;
                 Sleep = false;
@@ -106,7 +113,7 @@ namespace UASKI.StaticModels
         /// </summary>
         private static void Say(Notice mes)
         {
-            Text.Text += mes.Message;
+            Text.Text += Formating(mes.Message);
             Text.BackColor = mes.Color;
             Sleep = false;
             Text.SelectionStart = Text.Text.Length;
@@ -126,12 +133,11 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Показывает кастомное сообщение об ошибке
+        /// Показывает сообщение об ошибке в программе
         /// </summary>
-        /// <param name="text">Текст сообщения</param>
-        public static void Error(string text)
+        public static void AppError()
         {
-            var notice = new Notice(text, TypeNotice.Error);
+            var notice = new Notice("Ошибка при выполнении программы (от вас не зависящая)", TypeNotice.Error);
             Say(notice);
         }
 
@@ -142,6 +148,7 @@ namespace UASKI.StaticModels
         {
             var notice = new Notice("Нажмите еще раз для подтверждения" , TypeNotice.Warning);
             Say(notice);
+            SystemData.IsQuery = true;
         }
 
         /// <summary>

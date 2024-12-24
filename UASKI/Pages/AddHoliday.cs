@@ -94,7 +94,7 @@ namespace UASKI.Pages
 
                     if(!result)
                     {
-                        ErrorHelper.StatusError();
+                        Ai.Error();
                         return false;
                     }
 
@@ -110,7 +110,7 @@ namespace UASKI.Pages
                     if (result)
                     {
                         ClearPage();
-                        ErrorHelper.StatusComlite();
+                        Ai.Comlite("Празднечный день добавлен");
                         Show();
                     }
                     else
@@ -120,7 +120,7 @@ namespace UASKI.Pages
                 }
                 else
                 {
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
                 }
             }
             else if (e.KeyCode == Keys.Escape)

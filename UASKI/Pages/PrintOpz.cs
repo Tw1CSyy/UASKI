@@ -71,7 +71,7 @@ namespace UASKI.Pages
         {
             if (form.DataGridView8.d.Columns.Count == 0)
             {
-                ErrorHelper.StatusError();
+                Ai.Error();
             }
             else
             {
@@ -111,7 +111,7 @@ namespace UASKI.Pages
                     Print();
                 }
                 else
-                    ErrorHelper.StatusQuery();
+                    Ai.Query();
 
             }
 
