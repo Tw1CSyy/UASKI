@@ -18,12 +18,20 @@ namespace UASKI.Helpers
         /// <summary>
         /// Обработка настроек при запуске приложения
         /// </summary>
-        public static void Settings()
+        public static bool Settings()
         {
-            if (!File.Exists(SettingsPath))
-                CreateSettings(SettingsPath);
+            try
+            {
+                if (!File.Exists(SettingsPath))
+                    CreateSettings(SettingsPath);
 
-            LoadSettings(SettingsPath);
+                LoadSettings(SettingsPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -67,9 +75,16 @@ namespace UASKI.Helpers
             var name = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}_dump";
 
             if (File.Exists(Path.Combine(DumpSavePath, name)))
-                return true;
+                return false;
 
-            return CreateDump(Path.Combine(DumpSavePath, name));
+            try
+            {
+                return CreateDump(Path.Combine(DumpSavePath, name));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>

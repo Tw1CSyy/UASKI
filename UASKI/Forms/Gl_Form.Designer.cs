@@ -310,10 +310,11 @@ namespace UASKI
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.LabelStatus = new System.Windows.Forms.Label();
-            this.TimerStatus = new System.Windows.Forms.Timer(this.components);
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.textBox41 = new System.Windows.Forms.TextBox();
+            this.AiTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -383,6 +384,7 @@ namespace UASKI
             this.Menu_Step1.Name = "Menu_Step1";
             this.Menu_Step1.Size = new System.Drawing.Size(439, 148);
             this.Menu_Step1.TabIndex = 0;
+            this.Menu_Step1.Visible = false;
             this.Menu_Step1.SelectedIndexChanged += new System.EventHandler(this.Menu_Step1_SelectedIndexChanged);
             this.Menu_Step1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Menu_Step1_KeyDown);
             // 
@@ -398,6 +400,7 @@ namespace UASKI
             this.Menu_Step2.Name = "Menu_Step2";
             this.Menu_Step2.Size = new System.Drawing.Size(444, 148);
             this.Menu_Step2.TabIndex = 1;
+            this.Menu_Step2.Visible = false;
             this.Menu_Step2.Click += new System.EventHandler(this.Menu_Step2_Click);
             this.Menu_Step2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Menu_Step2_KeyDown);
             // 
@@ -3554,16 +3557,11 @@ namespace UASKI
             this.LabelStatus.Text = "Успешно";
             this.LabelStatus.Visible = false;
             // 
-            // TimerStatus
-            // 
-            this.TimerStatus.Interval = 1000;
-            this.TimerStatus.Tick += new System.EventHandler(this.TimerStatus_Tick);
-            // 
             // DateTimeLabel
             // 
             this.DateTimeLabel.AutoSize = true;
             this.DateTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DateTimeLabel.Location = new System.Drawing.Point(694, 731);
+            this.DateTimeLabel.Location = new System.Drawing.Point(1015, 731);
             this.DateTimeLabel.Name = "DateTimeLabel";
             this.DateTimeLabel.Size = new System.Drawing.Size(193, 25);
             this.DateTimeLabel.TabIndex = 6;
@@ -3584,11 +3582,29 @@ namespace UASKI
             this.printPreviewDialog.Name = "printPreviewDialog2";
             this.printPreviewDialog.Visible = false;
             // 
+            // textBox41
+            // 
+            this.textBox41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox41.Enabled = false;
+            this.textBox41.Font = new System.Drawing.Font("Segoe UI Symbol", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox41.Location = new System.Drawing.Point(893, 1);
+            this.textBox41.Multiline = true;
+            this.textBox41.Name = "textBox41";
+            this.textBox41.Size = new System.Drawing.Size(315, 721);
+            this.textBox41.TabIndex = 7;
+            this.textBox41.Text = "\r\n";
+            // 
+            // AiTimer
+            // 
+            this.AiTimer.Interval = 500;
+            this.AiTimer.Tick += new System.EventHandler(this.AiTimer_Tick);
+            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 758);
+            this.ClientSize = new System.Drawing.Size(1207, 758);
+            this.Controls.Add(this.textBox41);
             this.Controls.Add(this.DateTimeLabel);
             this.Controls.Add(this.LabelStatus);
             this.Controls.Add(this.tabControl1);
@@ -3734,7 +3750,6 @@ namespace UASKI
         public System.Windows.Forms.MonthCalendar monthCalendar1;
         public System.Windows.Forms.Label label17;
         public System.Windows.Forms.Label LabelStatus;
-        public System.Windows.Forms.Timer TimerStatus;
         public System.Windows.Forms.Label label22;
         public System.Windows.Forms.Label label21;
         public System.Windows.Forms.Label label20;
@@ -3965,6 +3980,8 @@ namespace UASKI
         private System.Windows.Forms.DataGridView dataGridView11;
         private System.Windows.Forms.DataGridView dataGridView12;
         private System.Windows.Forms.DataGridView dataGridView13;
+        public System.Windows.Forms.TextBox textBox41;
+        private System.Windows.Forms.Timer AiTimer;
     }
 }
 

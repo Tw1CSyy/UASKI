@@ -19,7 +19,6 @@ namespace UASKI.Helpers
             form.LabelStatus.Text = "Ой... Что то не так";
             form.LabelStatus.ForeColor = Color.Red;
             form.LabelStatus.Visible = true;
-            form.TimerStatus.Start();
             SystemData.IsQuery = false;
         }
 
@@ -34,7 +33,6 @@ namespace UASKI.Helpers
             form.LabelStatus.Text = "Все сделано!";
             form.LabelStatus.ForeColor = Color.Green;
             form.LabelStatus.Visible = true;
-            form.TimerStatus.Start();
             SystemData.IsQuery = false;
         }
 
@@ -50,7 +48,6 @@ namespace UASKI.Helpers
             form.LabelStatus.ForeColor = Color.OrangeRed;
             form.LabelStatus.Visible = true;
             SystemData.IsQuery = true;
-            form.TimerStatus.Start();
         }
 
         /// <summary>
@@ -60,7 +57,6 @@ namespace UASKI.Helpers
         {
             var form = SystemData.Form;
 
-            form.TimerStatus.Stop();
             form.LabelStatus.Visible = false;
             form.timerTick = 0;
         }
@@ -77,7 +73,6 @@ namespace UASKI.Helpers
             form.LabelStatus.Text = "Подключение установлено. Поработаем";
             form.LabelStatus.ForeColor = Color.Green;
             form.LabelStatus.Visible = true;
-            form.TimerStatus.Start();
         }
     }
 }

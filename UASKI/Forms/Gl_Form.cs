@@ -6,6 +6,7 @@ using UASKI.StaticModels;
 using UASKI.Models.Components;
 using UASKI.Core.Models;
 using UASKI.Core;
+using System.Threading;
 
 namespace UASKI
 {
@@ -21,7 +22,7 @@ namespace UASKI
         /// <summary>
         /// Стартовый метод
         /// </summary>
-        private void Start()
+        private bool Start()
         {
             DateTimeLabel.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
             TimeTimer.Start();
@@ -29,6 +30,7 @@ namespace UASKI
             // Инициализируем системные переменные
             ComponentIniz();
             SystemData.Init(this);
+            Ai.Iniz(textBox41);
             
             // Рисуем меню
             foreach (var item in SystemData.MenuItems.Select(c => c.Text).ToArray())
@@ -42,24 +44,49 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
+            Ai.AddMessage(Enums.TypeNotice.Default, "Привет");
+
+            // Запускаем таймер Ai
+            AiTimer.Start();
+
             // Создаем или загружаем файл настроек
-            ApplicationHelper.Settings();
+            if(ApplicationHelper.Settings())
+            {
+                Ai.AddMessage(Enums.TypeNotice.Default, "Файл настроек загружен");
+            }
+            else
+            {
+                Ai.AddMessage(Enums.TypeNotice.Error, "Ошибка при загрузке настроечного файла");
+                return false;
+            }
 
             // Открываем подключение
             var settings = SystemData.Settings;
             string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}";
             var connection = new DataConnection(connectionString);
 
-            if(connection.IsConnection)
+            if(!connection.IsConnection)
             {
-                ErrorHelper.StatusConnection();
-                ApplicationHelper.Dump();
+                Ai.AddMessage(Enums.TypeNotice.Error, "Ошибка при подключении к базе данных");
+                return false;
             }
+
+            Ai.AddMessage(Enums.TypeNotice.Default, "Подключение с базой получено");
+
+            if (ApplicationHelper.Dump())
+                Ai.AddMessage(Enums.TypeNotice.Default, "Резервная копия базы сделана");
+
+            Ai.AddMessage(Enums.TypeNotice.Default, "Включаю приложение. Удачной работы!");
+            Menu_Step1.Visible = Menu_Step2.Visible = true;
+
+            var count = TaskModel.GetList().Count(c => c.Date == DateTime.Today);
+
+            if(count != 0)
+                Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня должны закрыться карточки: {count}");
             else
-            {
-                Menu_Step1.Visible = Menu_Step2.Visible = false;
-                ErrorHelper.StatusError();
-            }
+                Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня нет карточек на закрытие");
+
+            return true;
         }
 
         #region Системное
@@ -80,20 +107,10 @@ namespace UASKI
             }
         }
 
-        // Таймер статуса
-        private void TimerStatus_Tick(object sender, EventArgs e)
+        // Таймер уведомлений Ai
+        private void AiTimer_Tick(object sender, EventArgs e)
         {
-            if (timerTick == 2)
-            {
-                TimerStatus.Stop();
-                LabelStatus.Visible = false;
-                timerTick = 0;
-                SystemData.IsQuery = false;
-            }
-            else
-            {
-                timerTick++;
-            }
+            Ai.Timer();
         }
 
         // Таймер времени
@@ -1099,5 +1116,7 @@ namespace UASKI
             textBox40_KeyDown(sender, key);
         }
         #endregion
+
+       
     }
 }
