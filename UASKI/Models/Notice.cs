@@ -31,6 +31,9 @@ namespace UASKI.Models
                 case TypeNotice.Comlite:
                     Color = Color.LightGreen;
                     break;
+                case TypeNotice.Warning:
+                    Color = Color.YellowGreen;
+                    break;
                 default:
                     break;
             }

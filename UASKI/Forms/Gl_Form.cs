@@ -86,7 +86,7 @@ namespace UASKI
             else
                 Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня нет карточек на закрытие");
 
-            if(DateTime.Today.DayOfWeek == DayOfWeek.Tuesday)
+            if(DateTime.Today.DayOfWeek == DayOfWeek.Monday)
             {
                 var dateList = ApplicationHelper.DeleteHoliday();
 

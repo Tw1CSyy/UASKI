@@ -10,6 +10,7 @@ namespace UASKI.Enums
     {
         Default = 0,
         Error = 1,
-        Comlite = 2
+        Comlite = 2,
+        Warning = 3
     }
 }

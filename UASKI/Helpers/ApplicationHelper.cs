@@ -144,7 +144,7 @@ namespace UASKI.Helpers
         /// <returns>Список удаленных дат</returns>
         public static DateTime[] DeleteHoliday()
         {
-            var dateList = HolidayModel.GetList().Where(c => c.Date < DateTime.Today);
+            var dateList = HolidayModel.GetList().Where(c => c.Date < DateTime.Today.AddMonths(-2));
            
             foreach (var item in dateList)
             {
@@ -163,7 +163,7 @@ namespace UASKI.Helpers
             var holidayList = HolidayModel.GetList();
             var result = new List<DateTime>();
 
-            for (DateTime date = DateTime.Today.AddDays(4); date < DateTime.Today.AddDays(25);)
+            for (DateTime date = DateTime.Today; date < DateTime.Today.AddMonths(2);)
             {
                 if (date.DayOfWeek != DayOfWeek.Sunday && date.DayOfWeek != DayOfWeek.Saturday)
                 {

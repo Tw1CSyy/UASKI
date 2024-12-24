@@ -159,6 +159,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticModels\Ai.cs" />
+    <Compile Include="StaticModels\AiLibrary.cs" />
     <Compile Include="StaticModels\AppSettings.cs" />
     <Compile Include="StaticModels\Pages.cs" />
     <Compile Include="StaticModels\SystemData.cs" />
