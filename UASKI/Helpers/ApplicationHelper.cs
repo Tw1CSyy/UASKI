@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using UASKI.Core.Models;
 using UASKI.StaticModels;
 
 namespace UASKI.Helpers
@@ -133,6 +136,56 @@ namespace UASKI.Helpers
                     return false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Удаляет прошедшие празднечные дни, если они есть
+        /// </summary>
+        /// <returns>Список удаленных дат</returns>
+        public static DateTime[] DeleteHoliday()
+        {
+            var dateList = HolidayModel.GetList().Where(c => c.Date < DateTime.Today);
+           
+            foreach (var item in dateList)
+            {
+                item.Delete();
+            }
+
+            return dateList.Select(c => c.Date).ToArray();
+        }
+
+        /// <summary>
+        /// Добавляет празднечные дни на будущие выходные
+        /// </summary>
+        /// <returns>Список добавленных дат</returns>
+        public static DateTime[] AddHoliday()
+        {
+            var holidayList = HolidayModel.GetList();
+            var result = new List<DateTime>();
+
+            for (DateTime date = DateTime.Today.AddDays(4); date < DateTime.Today.AddDays(25);)
+            {
+                if (date.DayOfWeek != DayOfWeek.Sunday && date.DayOfWeek != DayOfWeek.Saturday)
+                {
+                    date = date.AddDays(1);
+                    continue;
+                }
+
+                var holy = holidayList.FirstOrDefault(c => c.Date == date);
+
+                if (holy != null)
+                {
+                    date = date.AddDays(1);
+                    continue;
+                }
+
+                result.Add(date);
+                var model = new HolidayModel(date);
+                model.Add();
+                date = date.AddDays(1);
+            }
+
+            return result.ToArray();
         }
 
     }

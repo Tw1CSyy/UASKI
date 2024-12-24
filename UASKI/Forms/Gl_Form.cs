@@ -86,6 +86,23 @@ namespace UASKI
             else
                 Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня нет карточек на закрытие");
 
+            if(DateTime.Today.DayOfWeek == DayOfWeek.Tuesday)
+            {
+                var dateList = ApplicationHelper.DeleteHoliday();
+
+                if (dateList.Length > 0)
+                    Ai.AddMessage(Enums.TypeNotice.Default, "Удалены прошедшие даты: ", dateList.Select(c => c.Date.ToString("dd.MM.yyyy")).ToArray());
+                else
+                    Ai.AddMessage(Enums.TypeNotice.Default, $"Нет дат на удаление");
+
+                dateList = ApplicationHelper.AddHoliday();
+
+                if (dateList.Length > 0)
+                    Ai.AddMessage(Enums.TypeNotice.Default, "Добавлены новые даты: ", dateList.Select(c => c.Date.ToString("dd.MM.yyyy")).ToArray());
+                else
+                    Ai.AddMessage(Enums.TypeNotice.Default, $"Нет дат на добавление");
+            }
+
             return true;
         }
 

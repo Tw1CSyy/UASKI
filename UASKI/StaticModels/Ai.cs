@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Enums;
 using UASKI.Models;
+using static System.Windows.Forms.LinkLabel;
 
 namespace UASKI.StaticModels
 {
@@ -56,13 +57,14 @@ namespace UASKI.StaticModels
             Orders.Add(notice);
         }
 
-        public static void AddMessage(TypeNotice type, params string[] text)
+        public static void AddMessage(TypeNotice type, string text, string[] lines)
         {
             string message = string.Empty;
+            message += "- " + text + $"{Environment.NewLine}";
 
-            foreach (var line in text)
+            foreach (var line in lines)
             {
-                message += "- " + line + $"{Environment.NewLine}";
+                message += line + $"{Environment.NewLine}";
             }
 
             var notice = new Notice(message, type);

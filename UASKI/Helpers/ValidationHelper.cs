@@ -212,11 +212,11 @@ namespace UASKI.Helpers
 
             date.Dispose();
 
-            if (date.Date < DateTime.Today.Date)
-            {
-                date.Error("Мы из будущего?");
-                result = false;
-            }
+            //if (date.Date < DateTime.Today.Date)
+            //{
+            //    date.Error("Мы из будущего?");
+            //    result = false;
+            //}
 
             var holyList = HolidayModel.GetList();
 

@@ -98,7 +98,14 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    var holy = new HolidayModel(date.Date);
+                    foreach (var data in date.DateRange)
+                    {
+                        var holy = new HolidayModel(data.Date);
+                        result = holy.Add();
+
+                        if (!result)
+                            break;
+                    }
 
                     if (result)
                     {

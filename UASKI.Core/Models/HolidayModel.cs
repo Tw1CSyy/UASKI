@@ -52,6 +52,15 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
+        /// Добавляет празднечный день
+        /// </summary>
+        /// <returns></returns>
+        public bool Add()
+        {
+            return context.Add(Get());
+        }
+
+        /// <summary>
         /// Удаляет празднечные дни
         /// </summary>
         /// <returns>true - Успешная операция</returns>
