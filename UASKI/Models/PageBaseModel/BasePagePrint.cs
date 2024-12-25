@@ -40,7 +40,7 @@ namespace UASKI.Models
                 return false;
             }
 
-            var prewie = form.printPreviewDialog;
+            var prewie = new PrintPreviewDialog();
             prewie.Width = 1620;
             prewie.Height = 800;
             prewie.Document = document;

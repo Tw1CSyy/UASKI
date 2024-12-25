@@ -32,7 +32,7 @@ namespace UASKI.Models
                     Color = Color.LightGreen;
                     break;
                 case TypeNotice.Warning:
-                    Color = Color.YellowGreen;
+                    Color = Color.Yellow;
                     break;
                 default:
                     break;

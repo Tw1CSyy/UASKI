@@ -12,7 +12,7 @@ namespace UASKI.Models
         /// <summary>
         /// Индекс страницы
         /// </summary>
-        private int Index;
+        public int Index { get; private set; }
 
         /// <summary>
         /// Главная форма

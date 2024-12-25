@@ -14,5 +14,6 @@
         /// Элементы второго уровня списка
         /// </summary>
         public ItemMenuLevel2[] Items { get; set; }
+
     }
 }

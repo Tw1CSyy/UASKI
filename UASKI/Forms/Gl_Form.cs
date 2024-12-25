@@ -44,13 +44,10 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
-            Ai.AddMessage(Enums.TypeNotice.Default, "Привет");
-
-            // Запускаем таймер Ai
-            AiTimer.Start();
+            Ai.AddMessage(Enums.TypeNotice.Default, "Включаю приложение. Удачной работы!");
 
             // Создаем или загружаем файл настроек
-            if(ApplicationHelper.Settings())
+            if (ApplicationHelper.Settings())
             {
                 Ai.AddMessage(Enums.TypeNotice.Default, "Файл настроек загружен");
             }
@@ -76,17 +73,24 @@ namespace UASKI
             if (ApplicationHelper.Dump())
                 Ai.AddMessage(Enums.TypeNotice.Default, "Резервная копия базы сделана");
 
-            Ai.AddMessage(Enums.TypeNotice.Default, "Включаю приложение. Удачной работы!");
             Menu_Step1.Visible = Menu_Step2.Visible = true;
 
-            var count = TaskModel.GetList().Count(c => c.Date == DateTime.Today);
+            var tasks = TaskModel.GetList();
+            var count = tasks.Count(c => c.Date == DateTime.Today);
 
             if(count != 0)
                 Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня должны закрыться карточки: {count}");
             else
                 Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня нет карточек на закрытие");
 
-            if(DateTime.Today.DayOfWeek == DayOfWeek.Monday)
+            count = tasks.Count(c => c.Date < DateTime.Today);
+
+            if (count != 0)
+                Ai.AddMessage(Enums.TypeNotice.Default, $"Опаздывающих на текущий момент: {count}");
+            else
+                Ai.AddMessage(Enums.TypeNotice.Default, $"На текущий момент никто не опаздывает");
+
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
             {
                 var dateList = ApplicationHelper.DeleteHoliday();
 
@@ -103,6 +107,7 @@ namespace UASKI
                     Ai.AddMessage(Enums.TypeNotice.Default, $"Нет дат на добавление");
             }
 
+            Ai.AddMessage(Enums.TypeNotice.Default, $"Получить информацию о работе клавишах: CTRL + Ш");
             return true;
         }
 
@@ -122,12 +127,6 @@ namespace UASKI
                     Menu_Step2.Items.Add(item);
                 }
             }
-        }
-
-        // Таймер уведомлений Ai
-        private void AiTimer_Tick(object sender, EventArgs e)
-        {
-            Ai.Timer();
         }
 
         // Таймер времени
@@ -186,6 +185,16 @@ namespace UASKI
 
         #region Нажатия клавиш
 
+        private void Gl_Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                var result = Ai.KeyDown(e.KeyCode);
+
+                if (result)
+                    e.Handled = true;
+            }
+        }
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
             var form = this;
@@ -214,7 +223,7 @@ namespace UASKI
                 }
             }
         }
-        private void Menu_Step2_KeyDown(object sender, KeyEventArgs e)
+        public void Menu_Step2_KeyDown(object sender, KeyEventArgs e)
         {
             var form = this;
 
@@ -854,6 +863,37 @@ namespace UASKI
         {
             textBox36_TextChanged(sender, e);
         }
+        private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            if(!SystemData.IsClear)
+            {
+                if(dateTimePicker4.Value.DayOfWeek == DayOfWeek.Sunday || dateTimePicker4.Value.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    Ai.Warning("Предупреждение: Выбранная дата это выходной день");
+                }
+            }
+        }
+        private void dateTimePicker9_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker9.Value.DayOfWeek == DayOfWeek.Sunday || dateTimePicker9.Value.DayOfWeek == DayOfWeek.Saturday)
+            {
+                Ai.Warning("Предупреждение: Выбранная дата это выходной день");
+            }
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Value.DayOfWeek == DayOfWeek.Sunday || dateTimePicker1.Value.DayOfWeek == DayOfWeek.Saturday)
+            {
+                Ai.Warning("Предупреждение: Выбранная дата это выходной день");
+            }
+        }
+        private void dateTimePicker16_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker16.Value.DayOfWeek == DayOfWeek.Sunday || dateTimePicker16.Value.DayOfWeek == DayOfWeek.Saturday)
+            {
+                Ai.Warning("Предупреждение: Выбранная дата это выходной день");
+            }
+        }
         #endregion
 
         #region Обработка курсора
@@ -866,11 +906,6 @@ namespace UASKI
         {
             var key = new KeyEventArgs(SystemData.ActionKey);
             textBox4_KeyDown(sender, key);
-        }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button1_PreviewKeyDown(sender, key);
         }
         private void button14_Click(object sender, EventArgs e)
         {
@@ -891,46 +926,6 @@ namespace UASKI
         {
             var key = new KeyEventArgs(SystemData.ActionKey);
             dateTimePicker4_KeyDown(sender, key);
-        }
-        private void button10_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button10_PreviewKeyDown(sender, key);
-        }
-        private void button11_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button11_PreviewKeyDown(sender, key);
-        }
-        private void button12_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button12_PreviewKeyDown(sender, key);
-        }
-        private void button6_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button6_PreviewKeyDown(sender, key);
-        }
-        private void button7_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button7_PreviewKeyDown(sender, key);
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button5_PreviewKeyDown(sender, key);
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button4_PreviewKeyDown(sender, key);
-        }
-        private void button13_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button13_PreviewKeyDown(sender, key);
         }
         private void button19_Click(object sender, EventArgs e)
         {
@@ -1067,50 +1062,10 @@ namespace UASKI
             var key = new KeyEventArgs(SystemData.ActionKey);
             dateTimePicker14_KeyDown(sender, key);
         }
-        private void button34_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button34_PreviewKeyDown(sender, key);
-        }
-        private void button37_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button37_PreviewKeyDown(sender, key);
-        }
-        private void button38_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button38_PreviewKeyDown(sender, key);
-        }
-        private void button40_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button40_PreviewKeyDown(sender, key);
-        }
-        private void button42_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button42_PreviewKeyDown(sender, key);
-        }
         private void button49_Click(object sender, EventArgs e)
         {
             var key = new KeyEventArgs(SystemData.ActionKey);
             dateTimePicker16_KeyDown(sender, key);
-        }
-        private void button46_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button46_PreviewKeyDown(sender, key);
-        }
-        private void button45_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button45_PreviewKeyDown(sender, key);
-        }
-        private void button44_Click(object sender, EventArgs e)
-        {
-            var key = new PreviewKeyDownEventArgs(Keys.Enter);
-            button44_PreviewKeyDown(sender, key);
         }
         private void button53_Click(object sender, EventArgs e)
         {
@@ -1132,8 +1087,102 @@ namespace UASKI
             var key = new KeyEventArgs(Keys.Right);
             textBox40_KeyDown(sender, key);
         }
+        private void button13_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button13_PreviewKeyDown(sender, key);
+        }
+        private void button1_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button1_PreviewKeyDown(sender, key);
+        }
+        private void button5_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button5_PreviewKeyDown(sender, key);
+        }
+        private void button6_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button6_PreviewKeyDown(sender, key);
+        }
+        private void button7_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button7_PreviewKeyDown(sender, key);
+        }
+        private void button4_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button4_PreviewKeyDown(sender, key);
+        }
+        private void button10_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button10_PreviewKeyDown(sender, key);
+        }
+        private void button11_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button11_PreviewKeyDown(sender, key);
+        }
+        private void button12_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button12_PreviewKeyDown(sender, key);
+        }
+        private void button47_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button47_PreviewKeyDown(sender, key);
+        }
+        private void button48_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button48_PreviewKeyDown(sender, key);
+        }
+        private void button34_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button34_PreviewKeyDown(sender, key);
+        }
+        private void button37_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button37_PreviewKeyDown(sender, key);
+        }
+        private void button38_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button38_PreviewKeyDown(sender, key);
+        }
+        private void button40_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button40_PreviewKeyDown(sender, key);
+        }
+        private void button42_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button42_PreviewKeyDown(sender, key);
+        }
+        private void button46_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button46_PreviewKeyDown(sender, key);
+        }
+        private void button45_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button45_PreviewKeyDown(sender, key);
+        }
+        private void button44_MouseClick(object sender, MouseEventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button44_PreviewKeyDown(sender, key);
+        }
         #endregion
 
-       
     }
 }

@@ -5,6 +5,7 @@
     /// </summary>
     public class ItemMenuLevel2
     {
+        
         /// <summary>
         /// Текст пункта
         /// </summary>

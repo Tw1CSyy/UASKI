@@ -72,12 +72,6 @@ namespace UASKI.Helpers
                 result = false;
             }
 
-            if (date.Value.DayOfWeek == DayOfWeek.Sunday || date.Value.DayOfWeek == DayOfWeek.Saturday)
-            {
-                date.Error("В выходной никто работать не будет");
-                result = false;
-            }
-
             return result;
         }
 
@@ -186,18 +180,6 @@ namespace UASKI.Helpers
                 result = false;
             }
 
-            if (date.Value.DayOfWeek == DayOfWeek.Sunday || date.Value.DayOfWeek == DayOfWeek.Saturday)
-            {
-                date.Error("В выходной никто работать не будет");
-                result = false;
-            }
-
-            if (dateClose.Value.DayOfWeek == DayOfWeek.Sunday || dateClose.Value.DayOfWeek == DayOfWeek.Saturday)
-            {
-                dateClose.Error("В выходной никто работать не будет");
-                result = false;
-            }
-
             return result;
         }
 
@@ -211,12 +193,6 @@ namespace UASKI.Helpers
             var result = true;
 
             date.Dispose();
-
-            //if (date.Date < DateTime.Today.Date)
-            //{
-            //    date.Error("Мы из будущего?");
-            //    result = false;
-            //}
 
             var holyList = HolidayModel.GetList();
 

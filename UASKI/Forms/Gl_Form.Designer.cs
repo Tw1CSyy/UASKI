@@ -311,10 +311,8 @@ namespace UASKI
             this.panel4 = new System.Windows.Forms.Panel();
             this.LabelStatus = new System.Windows.Forms.Label();
             this.DateTimeLabel = new System.Windows.Forms.Label();
-            this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.textBox41 = new System.Windows.Forms.TextBox();
-            this.AiTimer = new System.Windows.Forms.Timer(this.components);
+            this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -977,7 +975,7 @@ namespace UASKI
             this.button13.TabIndex = 1;
             this.button13.Text = "Удалить";
             this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.button13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button13_MouseClick);
             this.button13.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button13_PreviewKeyDown);
             // 
             // dataGridView6
@@ -1264,6 +1262,7 @@ namespace UASKI
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(235, 29);
             this.dateTimePicker1.TabIndex = 22;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             this.dateTimePicker1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker1_KeyDown);
             // 
             // panel2
@@ -1286,7 +1285,7 @@ namespace UASKI
             this.button1.TabIndex = 0;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             this.button1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button1_PreviewKeyDown);
             // 
             // label11
@@ -1567,7 +1566,7 @@ namespace UASKI
             this.button4.TabIndex = 0;
             this.button4.Text = "Добавить контроллера/исполнителя";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
             this.button4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button4_PreviewKeyDown);
             // 
             // panel5
@@ -1812,7 +1811,7 @@ namespace UASKI
             this.button5.TabIndex = 2;
             this.button5.Text = "Добавить";
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button5_MouseClick);
             this.button5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button5_PreviewKeyDown);
             // 
             // dataGridView2
@@ -1874,7 +1873,7 @@ namespace UASKI
             this.button7.TabIndex = 1;
             this.button7.Text = "Удалить";
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button7_MouseClick);
             this.button7.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button7_PreviewKeyDown);
             // 
             // button6
@@ -1887,7 +1886,7 @@ namespace UASKI
             this.button6.TabIndex = 0;
             this.button6.Text = "Обновить";
             this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button6_MouseClick);
             this.button6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button6_PreviewKeyDown);
             // 
             // panel7
@@ -2153,6 +2152,7 @@ namespace UASKI
             this.dateTimePicker9.Name = "dateTimePicker9";
             this.dateTimePicker9.Size = new System.Drawing.Size(235, 29);
             this.dateTimePicker9.TabIndex = 33;
+            this.dateTimePicker9.ValueChanged += new System.EventHandler(this.dateTimePicker9_ValueChanged);
             this.dateTimePicker9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker9_KeyDown);
             // 
             // label38
@@ -2199,6 +2199,7 @@ namespace UASKI
             this.button48.TabIndex = 4;
             this.button48.Text = "Рецензия";
             this.button48.UseVisualStyleBackColor = false;
+            this.button48.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button48_MouseClick);
             this.button48.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button48_PreviewKeyDown);
             // 
             // button47
@@ -2211,6 +2212,7 @@ namespace UASKI
             this.button47.TabIndex = 3;
             this.button47.Text = "Претензия";
             this.button47.UseVisualStyleBackColor = false;
+            this.button47.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button47_MouseClick);
             this.button47.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button47_PreviewKeyDown);
             // 
             // button12
@@ -2223,7 +2225,7 @@ namespace UASKI
             this.button12.TabIndex = 2;
             this.button12.Text = "Удалить";
             this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button12_MouseClick);
             this.button12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button12_PreviewKeyDown);
             // 
             // button11
@@ -2236,7 +2238,7 @@ namespace UASKI
             this.button11.TabIndex = 1;
             this.button11.Text = "Закрыть";
             this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button11_MouseClick);
             this.button11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button11_PreviewKeyDown);
             // 
             // button10
@@ -2249,7 +2251,7 @@ namespace UASKI
             this.button10.TabIndex = 0;
             this.button10.Text = "Изменить";
             this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button10_MouseClick);
             this.button10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button10_PreviewKeyDown);
             // 
             // panel9
@@ -2360,6 +2362,7 @@ namespace UASKI
             this.dateTimePicker4.Name = "dateTimePicker4";
             this.dateTimePicker4.Size = new System.Drawing.Size(235, 29);
             this.dateTimePicker4.TabIndex = 26;
+            this.dateTimePicker4.ValueChanged += new System.EventHandler(this.dateTimePicker4_ValueChanged);
             this.dateTimePicker4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker4_KeyDown);
             // 
             // label41
@@ -2616,7 +2619,7 @@ namespace UASKI
             this.button34.TabIndex = 7;
             this.button34.Text = "Печать";
             this.button34.UseVisualStyleBackColor = false;
-            this.button34.Click += new System.EventHandler(this.button34_Click);
+            this.button34.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button34_MouseClick);
             this.button34.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button34_PreviewKeyDown);
             // 
             // dataGridView7
@@ -2717,7 +2720,7 @@ namespace UASKI
             this.button37.TabIndex = 12;
             this.button37.Text = "Печать";
             this.button37.UseVisualStyleBackColor = false;
-            this.button37.Click += new System.EventHandler(this.button37_Click);
+            this.button37.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button37_MouseClick);
             this.button37.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button37_PreviewKeyDown);
             // 
             // dataGridView8
@@ -2788,7 +2791,7 @@ namespace UASKI
             this.button38.TabIndex = 16;
             this.button38.Text = "Печать";
             this.button38.UseVisualStyleBackColor = false;
-            this.button38.Click += new System.EventHandler(this.button38_Click);
+            this.button38.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
             this.button38.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button38_PreviewKeyDown);
             // 
             // dataGridView9
@@ -2874,7 +2877,7 @@ namespace UASKI
             this.button40.TabIndex = 37;
             this.button40.Text = "Печать";
             this.button40.UseVisualStyleBackColor = false;
-            this.button40.Click += new System.EventHandler(this.button40_Click);
+            this.button40.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button40_MouseClick);
             this.button40.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button40_PreviewKeyDown);
             // 
             // dataGridView10
@@ -3067,7 +3070,7 @@ namespace UASKI
             this.button42.TabIndex = 45;
             this.button42.Text = "Печать";
             this.button42.UseVisualStyleBackColor = false;
-            this.button42.Click += new System.EventHandler(this.button42_Click);
+            this.button42.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button42_MouseClick);
             this.button42.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button42_PreviewKeyDown);
             // 
             // dataGridView11
@@ -3158,7 +3161,7 @@ namespace UASKI
             this.button44.TabIndex = 2;
             this.button44.Text = "Удалить";
             this.button44.UseVisualStyleBackColor = false;
-            this.button44.Click += new System.EventHandler(this.button44_Click);
+            this.button44.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button44_MouseClick);
             this.button44.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button44_PreviewKeyDown);
             // 
             // button45
@@ -3171,7 +3174,7 @@ namespace UASKI
             this.button45.TabIndex = 1;
             this.button45.Text = "Изменить";
             this.button45.UseVisualStyleBackColor = false;
-            this.button45.Click += new System.EventHandler(this.button45_Click);
+            this.button45.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button45_MouseClick);
             this.button45.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button45_PreviewKeyDown);
             // 
             // button46
@@ -3184,7 +3187,7 @@ namespace UASKI
             this.button46.TabIndex = 0;
             this.button46.Text = "Создать";
             this.button46.UseVisualStyleBackColor = false;
-            this.button46.Click += new System.EventHandler(this.button46_Click);
+            this.button46.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button46_MouseClick);
             this.button46.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button46_PreviewKeyDown);
             // 
             // panel10
@@ -3277,6 +3280,7 @@ namespace UASKI
             this.dateTimePicker16.Name = "dateTimePicker16";
             this.dateTimePicker16.Size = new System.Drawing.Size(235, 29);
             this.dateTimePicker16.TabIndex = 28;
+            this.dateTimePicker16.ValueChanged += new System.EventHandler(this.dateTimePicker16_ValueChanged);
             this.dateTimePicker16.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker16_KeyDown);
             // 
             // label90
@@ -3567,21 +3571,6 @@ namespace UASKI
             this.DateTimeLabel.TabIndex = 6;
             this.DateTimeLabel.Text = "18.10.2024 13:45:54";
             // 
-            // TimeTimer
-            // 
-            this.TimeTimer.Interval = 1000;
-            this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
-            // 
-            // printPreviewDialog
-            // 
-            this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog.Enabled = true;
-            this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
-            this.printPreviewDialog.Name = "printPreviewDialog2";
-            this.printPreviewDialog.Visible = false;
-            // 
             // textBox41
             // 
             this.textBox41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -3594,10 +3583,10 @@ namespace UASKI
             this.textBox41.TabIndex = 7;
             this.textBox41.Text = "\r\n";
             // 
-            // AiTimer
+            // TimeTimer
             // 
-            this.AiTimer.Interval = 750;
-            this.AiTimer.Tick += new System.EventHandler(this.AiTimer_Tick);
+            this.TimeTimer.Interval = 1000;
+            this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
             // Gl_Form
             // 
@@ -3618,6 +3607,7 @@ namespace UASKI
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " УАСКИ 2.1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -3779,7 +3769,6 @@ namespace UASKI
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label DateTimeLabel;
-        private System.Windows.Forms.Timer TimeTimer;
         public System.Windows.Forms.Button button7;
         public System.Windows.Forms.Button button6;
         public System.Windows.Forms.TabPage tabPage9;
@@ -3927,7 +3916,6 @@ namespace UASKI
         private System.Windows.Forms.Button button43;
         public System.Windows.Forms.TextBox textBox37;
         private System.Windows.Forms.Label label87;
-        public System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
         private System.Windows.Forms.TabPage tabPage15;
         public System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label label89;
@@ -3981,7 +3969,7 @@ namespace UASKI
         private System.Windows.Forms.DataGridView dataGridView12;
         private System.Windows.Forms.DataGridView dataGridView13;
         public System.Windows.Forms.TextBox textBox41;
-        private System.Windows.Forms.Timer AiTimer;
+        private System.Windows.Forms.Timer TimeTimer;
     }
 }
 

@@ -403,7 +403,7 @@ namespace UASKI.Pages
                             return false;
                         }
 
-                        Ai.Comlite($"Архмвная задача с кодом {Arhiv.Code} изменена");
+                        Ai.Comlite($"Архивная задача с кодом {Arhiv.Code} изменена");
                         Exit();
                     }
                 }
@@ -523,7 +523,7 @@ namespace UASKI.Pages
 
                     if(result)
                     {
-                        Ai.Comlite($"Задача с кодом {Task.Code}");
+                        Ai.Comlite($"Удалена задача с кодом {Task.Code}");
                         Exit();
                     }
                     else
