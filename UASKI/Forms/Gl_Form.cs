@@ -187,13 +187,10 @@ namespace UASKI
 
         private void Gl_Form_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control)
-            {
-                var result = Ai.KeyDown(e.KeyCode);
+            var result = Ai.KeyDown(e);
 
-                if (result)
-                    e.Handled = true;
-            }
+            if (result)
+                e.Handled = true;
         }
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {

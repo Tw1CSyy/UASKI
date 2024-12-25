@@ -81,6 +81,10 @@ namespace UASKI.Models.Pages
             FilterClose(form.IspDataGridView, form.panel12, form.textBox13, form.button19);
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
         #region Клавиши
         public void IspDataGridView_KeyDown(KeyEventArgs e)
         {

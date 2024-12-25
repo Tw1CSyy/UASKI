@@ -106,6 +106,10 @@ namespace UASKI.Pages
             FilterClose(form.DataGridView5, form.panel14, form.textBox32, form.button16);
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
         #region Клавиши
         public void dataGridView5_KeyDown(KeyEventArgs e)
         {

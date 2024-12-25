@@ -101,6 +101,10 @@ namespace UASKI.Pages
             form.Menu_Step2.Focus();
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
         #region Клавиши
         public void dataGridView12_KeyDown(KeyEventArgs e)
         {

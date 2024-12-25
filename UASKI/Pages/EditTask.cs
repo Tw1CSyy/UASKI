@@ -9,6 +9,7 @@ using UASKI.Core.Models;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace UASKI.Pages
 {
@@ -27,6 +28,7 @@ namespace UASKI.Pages
 
         private TaskModel Task;
         private ArhivModel Arhiv;
+        private List<int> Buffer;
 
         private string CodeTask;
         public bool IsArhiv { get; private set; }
@@ -91,6 +93,36 @@ namespace UASKI.Pages
             }
         }
 
+        public void Show(List<int> buffer)
+        {
+            if (buffer.Count == 0)
+                Exit();
+            else
+            {
+                Buffer = buffer;
+                Show(buffer[0], false, SystemData.Pages.SelectTask);
+                form.button10.Enabled = false;
+                form.textBox28.Text = "4";
+                form.button11.Enabled = true;
+                form.dateTimePicker9.Focus();
+            }
+            
+        }
+
+        public new void Exit()
+        {
+            if (Buffer != null && Buffer.Count != 0)
+            {
+                Buffer.RemoveAt(0);
+                Show(Buffer);
+            }
+            else
+            {
+                Ai.HistoryDown();
+            }
+                
+        }
+
         protected override void Clear()
         {
             form.textBox24.Clear();
@@ -139,6 +171,11 @@ namespace UASKI.Pages
                 }
 
             }
+        }
+
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
         }
 
         #region Клавиши

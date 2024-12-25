@@ -88,6 +88,10 @@ namespace UASKI.Pages
             SelectButton(form.button7, false);
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
 
         #region Клавиши
         public void textBox18_KeyDown(KeyEventArgs e)

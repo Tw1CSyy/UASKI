@@ -70,7 +70,10 @@ namespace UASKI.Pages
 
         }
 
-
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
         #region Клавиши
         public void dataGridView6_KeyDown(KeyEventArgs e)
         {

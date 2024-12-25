@@ -91,6 +91,10 @@ namespace UASKI.Pages
             SystemHelper.PrintDocument(model);
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
         #region Клавиши
 
         public void button37_PreviewKeyDown(PreviewKeyDownEventArgs e)

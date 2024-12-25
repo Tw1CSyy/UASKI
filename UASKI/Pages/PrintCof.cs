@@ -175,6 +175,10 @@ namespace UASKI.Pages
             form.label100.Visible = false;
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
         #region Клавиши
         public void textBox36_KeyDown(KeyEventArgs e)
         {

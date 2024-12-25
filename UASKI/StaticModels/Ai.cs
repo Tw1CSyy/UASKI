@@ -11,11 +11,14 @@ namespace UASKI.StaticModels
     public static class Ai
     {
         private readonly static List<Notice> Orders = new List<Notice>();
+        private readonly static List<int> Buffer = new List<int>();
+        private readonly static List<HistoryModel> History = new List<HistoryModel>();
+
         private static TextBox Text;
         private static bool Sleep = true;
         private static Color DefultColor;
         private static Timer Timer;
-
+        
         /// <summary>
         /// Инициализация программных переменных
         /// </summary>
@@ -201,9 +204,19 @@ namespace UASKI.StaticModels
         /// </summary>
         /// <param name="key">Клавиша</param>
         /// <returns>Обработана ли клавиша</returns>
-        public static bool KeyDown(Keys key)
+        public static bool KeyDown(KeyEventArgs key)
         {
-            switch (key)
+            if (!key.Control)
+                return false;
+
+            if (SystemData.This != null && SystemData.This.AiKeyDown(key))
+            {
+                return true;
+            }
+
+            var k = key.KeyCode;
+
+            switch (k)
             {
                 case Keys.Q:
                     Text.Clear();
@@ -224,6 +237,18 @@ namespace UASKI.StaticModels
                 case Keys.J:
                     SelectMenu(SystemData.Pages.SelectOpz);
                     return true;
+                case Keys.Oemcomma:
+                    if(Buffer.Count == 0)
+                    {
+                        var notice = new Notice("Буффер пустой" , TypeNotice.Error);
+                        Say(notice);
+                    }
+                    else
+                    {
+                        SystemData.Pages.EditTask.Init(false, true);
+                        SystemData.Pages.EditTask.Show(Buffer);
+                    }
+                    return true;
             }
 
             return false;
@@ -233,8 +258,12 @@ namespace UASKI.StaticModels
         /// Выбирает пункты меню, соответсвтвующие странице
         /// </summary>
         /// <param name="page">Целевая страница</param>
-        private static void SelectMenu(BasePage page)
+        /// <returns>true - страница найдена</returns>
+        public static bool SelectMenu(BasePage page)
         {
+            if (page == null)
+                return false;
+
             int lvl1 = -1, lvl2 = -1;
 
             bool IsReady = false;
@@ -259,17 +288,132 @@ namespace UASKI.StaticModels
             var form = SystemData.Form;
 
             if (lvl1 != -1)
-                form.Menu_Step1.SelectedIndex = lvl1;
-
-            if (lvl1 != -1)
             {
+                form.Menu_Step1.SelectedIndex = lvl1;
                 form.Menu_Step2.SelectedIndex = lvl2;
                 var e = new KeyEventArgs(Keys.Enter);
-                form.Menu_Step2_KeyDown(new object() , e);
+                form.Menu_Step2_KeyDown(new object(), e);
+                return true;
             }
-               
 
+            return false;
+        }
+
+        /// <summary>
+        /// Добавляет id в буффер
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <param name="code">Код для отображения в консоли</param>
+        public static void AddBuffer(int id , string code)
+        {
+            Buffer.Add(id);
+            var message = $"Задача с кодом {code} добавлена в буффер";
+            var notice = new Notice(message, TypeNotice.Default);
+            Say(notice);
+            notice = new Notice($"Записей в буфере: {Buffer.Count}", TypeNotice.Default);
+            Say(notice);
+        }
+
+        /// <summary>
+        /// Получает буффер
+        /// </summary>
+        public static List<int> GetBuffer()
+        {
+            return Buffer;
+        }
+
+        /// <summary>
+        /// Удаляет запись из буфера
+        /// </summary>
+        /// <param name="id">Id задачи</param>
+        /// <param name="code">Код для отображения в консоли</param>
+        public static void DeleteBuffer(int id , string code)
+        {
+            var item = Buffer.IndexOf(id);
+
+            if(item == -1)
+            {
+                var notice = new Notice("Запись не найдена в буфере", TypeNotice.Error);
+                Say(notice);
+            }
+            else
+            {
+                Buffer.RemoveAt(item);
+                var message = $"Задача с кодом {code} удаленна из буффера";
+                var notice = new Notice(message, TypeNotice.Default);
+                Say(notice);
+                notice = new Notice($"Записей в буфере: {Buffer.Count}", TypeNotice.Default);
+                Say(notice);
+            }
+        }
+
+        /// <summary>
+        /// Добавляет страницу в историю страниц
+        /// </summary>
+        /// <param name="page">Страница BasePage</param>
+        public static void AddHistoryModel(BasePage page)
+        {
+            var item = new HistoryModel(page);
+            History.Add(item);
+
+            foreach (var his in History)
+            {
+                his.IsSelect = false;
+            }
+
+            History[History.Count - 1].IsSelect = true;
+        }
+
+        /// <summary>
+        /// Перемещает на страницу назад
+        /// </summary>
+        /// <returns>true - успешная операция</returns>
+        public static bool HistoryDown()
+        {
+            var item = History.FirstOrDefault(c => c.IsSelect);
+
+            if (item == null)
+                return false;
+
+            var index = History.IndexOf(item);
+
+            if (index == 0)
+                return false;
+
+            item = History[index - 1];
             
+            if(!SelectMenu(item.Page))
+                item.Page.Init();
+
+            var notice = new Notice("Возвращаю назад" , TypeNotice.Default);
+            Say(notice);
+            return true;
+        }
+
+        /// <summary>
+        /// Перемещает на страницу вперед
+        /// </summary>
+        /// <returns>true - успешная операция</returns>
+        public static bool HistoryUp()
+        {
+            var item = History.FirstOrDefault(c => c.IsSelect);
+
+            if (item == null)
+                return false;
+
+            var index = History.IndexOf(item);
+
+            if (index == History.Count - 1)
+                return false;
+
+            item = History[index + 1];
+
+            if (!SelectMenu(item.Page))
+                item.Page.Init();
+
+            var notice = new Notice("Двигаю вперед", TypeNotice.Default);
+            Say(notice);
+            return true;
         }
     }
 }

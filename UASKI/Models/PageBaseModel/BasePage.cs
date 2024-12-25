@@ -40,6 +40,12 @@ namespace UASKI.Models
         protected abstract void Exit();
 
         /// <summary>
+        /// Обработка клавиш AI
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool AiKeyDown(KeyEventArgs key);
+
+        /// <summary>
         /// Отчистить страницу
         /// </summary>
         protected void ClearPage()
@@ -66,6 +72,7 @@ namespace UASKI.Models
                 ClearPage();
 
             SystemData.This = this;
+            Ai.AddHistoryModel(this);
 
             form.tabControl1.SelectedIndex = Index;
 

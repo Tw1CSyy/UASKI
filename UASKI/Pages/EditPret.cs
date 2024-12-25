@@ -87,6 +87,11 @@ namespace UASKI.Pages
             }
         }
 
+        public override bool AiKeyDown(KeyEventArgs key)
+        {
+            return false;
+        }
+
         #region Клавиши
         public void textBox38_KeyDown(KeyEventArgs e)
         {
