@@ -249,6 +249,12 @@ namespace UASKI.StaticModels
                         SystemData.Pages.EditTask.Show(Buffer);
                     }
                     return true;
+                case Keys.Z:
+                    HistoryDown();
+                    return true;
+                case Keys.Y:
+                    HistoryUp();
+                    return true;
             }
 
             return false;
@@ -353,15 +359,19 @@ namespace UASKI.StaticModels
         /// <param name="page">Страница BasePage</param>
         public static void AddHistoryModel(BasePage page)
         {
-            var item = new HistoryModel(page);
-            History.Add(item);
+            var item = History.FirstOrDefault(c => c.Page.Index == page.Index);
 
-            foreach (var his in History)
+            if (item == null)
             {
-                his.IsSelect = false;
-            }
+                item = new HistoryModel(page);
+                History.Add(item);
 
-            History[History.Count - 1].IsSelect = true;
+                foreach (var his in History)
+                {
+                    his.IsSelect = false;
+                }
+                History[History.Count - 1].IsSelect = true;
+            }
         }
 
         /// <summary>
@@ -380,11 +390,13 @@ namespace UASKI.StaticModels
             if (index == 0)
                 return false;
 
+            item.IsSelect = false;
             item = History[index - 1];
             
             if(!SelectMenu(item.Page))
                 item.Page.Init();
 
+            item.IsSelect = true;
             var notice = new Notice("Возвращаю назад" , TypeNotice.Default);
             Say(notice);
             return true;
@@ -406,11 +418,13 @@ namespace UASKI.StaticModels
             if (index == History.Count - 1)
                 return false;
 
+            item.IsSelect = false;
             item = History[index + 1];
 
             if (!SelectMenu(item.Page))
                 item.Page.Init();
 
+            item.IsSelect = true;
             var notice = new Notice("Двигаю вперед", TypeNotice.Default);
             Say(notice);
             return true;

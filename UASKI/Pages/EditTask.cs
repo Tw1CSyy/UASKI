@@ -116,9 +116,13 @@ namespace UASKI.Pages
                 Buffer.RemoveAt(0);
                 Show(Buffer);
             }
-            else
+            else if(Buffer != null)
             {
                 Ai.HistoryDown();
+            }
+            else
+            {
+                base.Exit();
             }
                 
         }

@@ -15,7 +15,7 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-
+            Ai.HistoryDown();
         }
 
         private int IdTask;
