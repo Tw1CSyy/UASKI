@@ -38,9 +38,13 @@
                     d.d.Rows[d.d.Rows.Count - 1].Selected = true;
                     SelectedIndex = d.d.Rows.Count - 1;
                 }
-                else
+                else if(d.d.Rows.Count != SelectedIndex)
                 {
                     d.d.Rows[SelectedIndex].Selected = true;
+                }
+                else 
+                {
+                    d.d.Rows[0].Selected = true;
                 }
 
                 if (!d.d.Rows[SelectedIndex].Displayed)

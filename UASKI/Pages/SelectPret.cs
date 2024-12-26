@@ -138,6 +138,7 @@ namespace UASKI.Pages
 
                     SystemData.Pages.EditPret.Init(false, false);
                     SystemData.Pages.EditPret.Show(Id, type, this);
+                    e.Handled = true;
                 }
             }
             else

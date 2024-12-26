@@ -309,10 +309,10 @@ namespace UASKI
             this.label98 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.LabelStatus = new System.Windows.Forms.Label();
             this.DateTimeLabel = new System.Windows.Forms.Label();
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.label54 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -3549,18 +3549,6 @@ namespace UASKI
             this.panel4.TabIndex = 4;
             this.panel4.Click += new System.EventHandler(this.panel4_Click);
             // 
-            // LabelStatus
-            // 
-            this.LabelStatus.AutoSize = true;
-            this.LabelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelStatus.ForeColor = System.Drawing.Color.LimeGreen;
-            this.LabelStatus.Location = new System.Drawing.Point(-3, 725);
-            this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(134, 31);
-            this.LabelStatus.TabIndex = 5;
-            this.LabelStatus.Text = "Успешно";
-            this.LabelStatus.Visible = false;
-            // 
             // DateTimeLabel
             // 
             this.DateTimeLabel.AutoSize = true;
@@ -3588,14 +3576,24 @@ namespace UASKI
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label54.Location = new System.Drawing.Point(3, 738);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(72, 17);
+            this.label54.TabIndex = 8;
+            this.label54.Text = "UASKI 2.2";
+            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1207, 758);
+            this.Controls.Add(this.label54);
             this.Controls.Add(this.textBox41);
             this.Controls.Add(this.DateTimeLabel);
-            this.Controls.Add(this.LabelStatus);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Menu_Step2);
             this.Controls.Add(this.Menu_Step1);
@@ -3606,7 +3604,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.1";
+            this.Text = " УАСКИ 2.2";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -3739,7 +3737,6 @@ namespace UASKI
         public System.Windows.Forms.Button button5;
         public System.Windows.Forms.MonthCalendar monthCalendar1;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.Label LabelStatus;
         public System.Windows.Forms.Label label22;
         public System.Windows.Forms.Label label21;
         public System.Windows.Forms.Label label20;
@@ -3970,6 +3967,7 @@ namespace UASKI
         private System.Windows.Forms.DataGridView dataGridView13;
         public System.Windows.Forms.TextBox textBox41;
         private System.Windows.Forms.Timer TimeTimer;
+        private System.Windows.Forms.Label label54;
     }
 }
 

@@ -135,12 +135,30 @@ namespace UASKI.Core.Models
         {
             var arhiv = new ArhivModel(this, dateClose, otm);
             var result = context.Add(arhiv.Get());
-            
+
             if (!result)
                 return false;
 
-            return context.Delete(Get());
+            var newId = ArhivModel.GetList().OrderByDescending(c => c.Id).First().Id;
+            var prets = PretModel.GetList().Where(c => c.IdTask == Id);
+           
+            var entity = Get();
 
+            result = context.Delete(Get());
+
+            if (!result)
+                return false;
+
+            foreach (var pret in prets)
+            {
+                var newPret = new PretModel(pret.Code, newId, pret.Date, pret.Otm, pret.Type);
+                result = newPret.Update(pret.Id);
+
+                if (!result)
+                    return false;
+            }
+
+            return result;
         }
 
         /// <summary>

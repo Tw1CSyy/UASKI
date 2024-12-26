@@ -152,7 +152,6 @@ namespace UASKI.Core.Models
             return context.Delete(Get());
         }
 
-
         /// <summary>
         /// Расчитывает коофициент качества по списку задач
         /// </summary>

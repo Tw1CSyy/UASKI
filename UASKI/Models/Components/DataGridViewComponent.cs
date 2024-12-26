@@ -152,14 +152,10 @@ namespace UASKI.Models.Components
 
                 for (int i = 0; i < line.Values.Length; i++)
                 {
-                    try
-                    {
-                        row[i] = line.Values[i];
-                    }
-                    catch (Exception)
-                    {
+                    if (line.Values[i].Length == 0)
                         row[i] = DBNull.Value;
-                    }
+                    else
+                        row[i] = line.Values[i];
                 }
 
                 table.Rows.Add(row);
