@@ -33,26 +33,34 @@
 
             if (d.d.Rows.Count > 0)
             {
-                if (d.d.Rows.Count < SelectedIndex)
+                try
                 {
-                    d.d.Rows[d.d.Rows.Count - 1].Selected = true;
-                    SelectedIndex = d.d.Rows.Count - 1;
+                    if (d.d.Rows.Count < SelectedIndex)
+                    {
+                        d.d.Rows[d.d.Rows.Count - 1].Selected = true;
+                        SelectedIndex = d.d.Rows.Count - 1;
+                    }
+                    else if (d.d.Rows.Count != SelectedIndex)
+                    {
+                        d.d.Rows[SelectedIndex].Selected = true;
+                    }
+                    else
+                    {
+                        d.d.Rows[0].Selected = true;
+                        SelectedIndex = 0;
+                    }
+
+                    if (!d.d.Rows[SelectedIndex].Displayed)
+                    {
+                        d.d.FirstDisplayedScrollingRowIndex = SelectedIndex - d.d.DisplayedRowCount(false) + 2;
+                    }
+
+                    SelectedIndex = 0;
                 }
-                else if(d.d.Rows.Count != SelectedIndex)
-                {
-                    d.d.Rows[SelectedIndex].Selected = true;
-                }
-                else 
+                catch (System.Exception)
                 {
                     d.d.Rows[0].Selected = true;
                 }
-
-                if (!d.d.Rows[SelectedIndex].Displayed)
-                {
-                    d.d.FirstDisplayedScrollingRowIndex = SelectedIndex - d.d.DisplayedRowCount(false) + 2;
-                }
-
-                SelectedIndex = 0;
             }
         }
     }

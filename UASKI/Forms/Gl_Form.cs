@@ -90,7 +90,7 @@ namespace UASKI
             else
                 Ai.AddMessage(Enums.TypeNotice.Default, $"На текущий момент никто не опаздывает");
 
-            if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Thursday)
             {
                 var dateList = ApplicationHelper.AddHoliday();
 
