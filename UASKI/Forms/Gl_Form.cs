@@ -92,14 +92,7 @@ namespace UASKI
 
             if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
             {
-                var dateList = ApplicationHelper.DeleteHoliday();
-
-                if (dateList.Length > 0)
-                    Ai.AddMessage(Enums.TypeNotice.Default, "Удалены прошедшие даты: ", dateList.Select(c => c.Date.ToString("dd.MM.yyyy")).ToArray());
-                else
-                    Ai.AddMessage(Enums.TypeNotice.Default, $"Нет дат на удаление");
-
-                dateList = ApplicationHelper.AddHoliday();
+                var dateList = ApplicationHelper.AddHoliday();
 
                 if (dateList.Length > 0)
                     Ai.AddMessage(Enums.TypeNotice.Default, "Добавлены новые даты: ", dateList.Select(c => c.Date.ToString("dd.MM.yyyy")).ToArray());

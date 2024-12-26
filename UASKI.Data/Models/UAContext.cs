@@ -235,6 +235,26 @@ namespace UASKI.Data
         }
 
         /// <summary>
+        /// Обновляет данные в таблице Pret
+        /// </summary>
+        /// <param name="pret">Объект entity</param>
+        /// <param name="Id">id</param>
+        /// <returns></returns>
+        public bool Update(PretEntity pret, int Id)
+        {
+
+            var query = $"UPDATE \"Pret\" SET " +
+                $"\"Code\" = '{pret.Code}' ," +
+                $"\"IdTask\" = '{pret.IdTask}' ," +
+                $"\"Date\" = '{pret.Date}' ," +
+                $"\"Otm\" = '{pret.Otm}' , " +
+                $"\"Type\" = '{pret.Type}'" +
+                $"WHERE \"Id\" = '{Id}'";
+
+            return DataModel.Complite(query);
+        }
+
+        /// <summary>
         /// Обновляет исполнителя
         /// </summary>
         /// <param name="isp">Модель исполнителя</param>

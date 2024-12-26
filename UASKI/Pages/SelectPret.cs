@@ -70,12 +70,13 @@ namespace UASKI.Pages
                 else
                     type = "Рецензия";
 
-                var item = new DataGridRowModel(type, pret.Code, pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
+                var item = new DataGridRowModel(pret.Id.ToString() , type, pret.Code, pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
                 model.Add(item);
             }
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("Id" , false),
                 new DataGridColumnModel("Тип"),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Дата" , typeof(DateTime)),
@@ -121,6 +122,23 @@ namespace UASKI.Pages
                 Exit();
                 SelectDataGridView(form.DataGridView12.d, false);
                 e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if(DataGridView.d.SelectedRows.Count > 0)
+                {
+                    var Id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
+                    var typeString = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
+                    int type = 0;
+
+                    if (typeString.Equals("Претензия"))
+                        type = 1;
+                    else
+                        type = 2;
+
+                    SystemData.Pages.EditPret.Init(false, false);
+                    SystemData.Pages.EditPret.Show(Id, type, this);
+                }
             }
             else
             {

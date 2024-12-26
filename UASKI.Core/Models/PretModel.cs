@@ -66,6 +66,7 @@ namespace UASKI.Core.Models
         /// <param name="entity">Сущность претензии/рецензии</param>
         public PretModel(PretEntity entity)
         {
+            Id = entity.Id;
             Code = entity.Code;
             IdTask = entity.IdTask;
             Date = entity.Date;
@@ -108,6 +109,25 @@ namespace UASKI.Core.Models
         public static PretModel GetById(int Id)
         {
             return GetList().FirstOrDefault(c => c.Id == Id);
+        }
+
+        /// <summary>
+        /// Обновляет претензию/рецензию
+        /// </summary>
+        /// <returns></returns>
+        public bool Update(int id)
+        {
+            var entity = Get();
+            return context.Update(entity , id);
+        }
+
+        /// <summary>
+        /// Удаляет претензию/рецензию
+        /// </summary>
+        /// <returns></returns>
+        public bool Delete()
+        {
+            return context.Delete(Get());
         }
 
     }

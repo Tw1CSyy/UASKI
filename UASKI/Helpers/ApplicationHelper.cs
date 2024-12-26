@@ -139,22 +139,6 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Удаляет прошедшие празднечные дни, если они есть
-        /// </summary>
-        /// <returns>Список удаленных дат</returns>
-        public static DateTime[] DeleteHoliday()
-        {
-            var dateList = HolidayModel.GetList().Where(c => c.Date < DateTime.Today.AddMonths(-2));
-           
-            foreach (var item in dateList)
-            {
-                item.Delete();
-            }
-
-            return dateList.Select(c => c.Date).ToArray();
-        }
-
-        /// <summary>
         /// Добавляет празднечные дни на будущие выходные
         /// </summary>
         /// <returns>Список добавленных дат</returns>
@@ -163,7 +147,7 @@ namespace UASKI.Helpers
             var holidayList = HolidayModel.GetList();
             var result = new List<DateTime>();
 
-            for (DateTime date = DateTime.Today; date < DateTime.Today.AddMonths(2);)
+            for (DateTime date = DateTime.Today; date < DateTime.Today.AddYears(1);)
             {
                 if (date.DayOfWeek != DayOfWeek.Sunday && date.DayOfWeek != DayOfWeek.Saturday)
                 {

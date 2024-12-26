@@ -3146,7 +3146,7 @@ namespace UASKI
             this.panel20.Controls.Add(this.button44);
             this.panel20.Controls.Add(this.button45);
             this.panel20.Controls.Add(this.button46);
-            this.panel20.Location = new System.Drawing.Point(563, 44);
+            this.panel20.Location = new System.Drawing.Point(629, 58);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(204, 208);
             this.panel20.TabIndex = 36;
@@ -3206,7 +3206,7 @@ namespace UASKI
             this.panel10.Controls.Add(this.label102);
             this.panel10.Location = new System.Drawing.Point(7, 13);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(550, 316);
+            this.panel10.Size = new System.Drawing.Size(603, 316);
             this.panel10.TabIndex = 2;
             // 
             // button49
@@ -3315,10 +3315,10 @@ namespace UASKI
             // label102
             // 
             this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Arial", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label102.Location = new System.Drawing.Point(3, 9);
             this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(304, 32);
+            this.label102.Size = new System.Drawing.Size(212, 24);
             this.label102.TabIndex = 2;
             this.label102.Text = "Претензия на задачу";
             // 

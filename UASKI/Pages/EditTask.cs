@@ -38,6 +38,12 @@ namespace UASKI.Pages
             Page = page;
             IsArhiv = isArhiv;
 
+            SelectButton(form.button10, false);
+            SelectButton(form.button11, false);
+            SelectButton(form.button12, false);
+            SelectButton(form.button47, false);
+            SelectButton(form.button48, false);
+
             var listUser = IspModel.GetList();
 
             if (!IsArhiv)
@@ -100,10 +106,15 @@ namespace UASKI.Pages
             else
             {
                 Buffer = buffer;
-                Show(buffer[0], false, SystemData.Pages.SelectTask);
-                form.button10.Enabled = false;
-                form.textBox28.Text = "4";
-                form.button11.Enabled = true;
+                form.textBox28.Clear();
+
+                var isArhiv = TaskModel.GetList().FirstOrDefault(c => c.Id == buffer[0]) == null;
+
+                if(isArhiv)
+                    Show(buffer[0], isArhiv, SystemData.Pages.SelectArhiv);
+                else
+                    Show(buffer[0], isArhiv, SystemData.Pages.SelectTask);
+
                 form.dateTimePicker9.Focus();
             }
             
@@ -115,10 +126,6 @@ namespace UASKI.Pages
             {
                 Buffer.RemoveAt(0);
                 Show(Buffer);
-            }
-            else if(Buffer != null)
-            {
-                Ai.HistoryDown();
             }
             else
             {

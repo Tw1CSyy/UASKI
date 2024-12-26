@@ -72,8 +72,7 @@ namespace UASKI.Models
                 ClearPage();
 
             SystemData.This = this;
-            Ai.AddHistoryModel(this);
-
+            
             form.tabControl1.SelectedIndex = Index;
 
             if (IsOpen)

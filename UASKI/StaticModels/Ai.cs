@@ -12,7 +12,6 @@ namespace UASKI.StaticModels
     {
         private readonly static List<Notice> Orders = new List<Notice>();
         private readonly static List<int> Buffer = new List<int>();
-        private readonly static List<HistoryModel> History = new List<HistoryModel>();
 
         private static TextBox Text;
         private static bool Sleep = true;
@@ -249,11 +248,10 @@ namespace UASKI.StaticModels
                         SystemData.Pages.EditTask.Show(Buffer);
                     }
                     return true;
-                case Keys.Z:
-                    HistoryDown();
-                    return true;
-                case Keys.Y:
-                    HistoryUp();
+                case Keys.OemPeriod:
+                    Buffer.Clear();
+                    var notice1 = new Notice("Буффер отчищен", TypeNotice.Comlite);
+                    Say(notice1);
                     return true;
             }
 
@@ -353,81 +351,5 @@ namespace UASKI.StaticModels
             }
         }
 
-        /// <summary>
-        /// Добавляет страницу в историю страниц
-        /// </summary>
-        /// <param name="page">Страница BasePage</param>
-        public static void AddHistoryModel(BasePage page)
-        {
-            var item = History.FirstOrDefault(c => c.Page.Index == page.Index);
-
-            if (item == null)
-            {
-                item = new HistoryModel(page);
-                History.Add(item);
-
-                foreach (var his in History)
-                {
-                    his.IsSelect = false;
-                }
-                History[History.Count - 1].IsSelect = true;
-            }
-        }
-
-        /// <summary>
-        /// Перемещает на страницу назад
-        /// </summary>
-        /// <returns>true - успешная операция</returns>
-        public static bool HistoryDown()
-        {
-            var item = History.FirstOrDefault(c => c.IsSelect);
-
-            if (item == null)
-                return false;
-
-            var index = History.IndexOf(item);
-
-            if (index == 0)
-                return false;
-
-            item.IsSelect = false;
-            item = History[index - 1];
-            
-            if(!SelectMenu(item.Page))
-                item.Page.Init();
-
-            item.IsSelect = true;
-            var notice = new Notice("Возвращаю назад" , TypeNotice.Default);
-            Say(notice);
-            return true;
-        }
-
-        /// <summary>
-        /// Перемещает на страницу вперед
-        /// </summary>
-        /// <returns>true - успешная операция</returns>
-        public static bool HistoryUp()
-        {
-            var item = History.FirstOrDefault(c => c.IsSelect);
-
-            if (item == null)
-                return false;
-
-            var index = History.IndexOf(item);
-
-            if (index == History.Count - 1)
-                return false;
-
-            item.IsSelect = false;
-            item = History[index + 1];
-
-            if (!SelectMenu(item.Page))
-                item.Page.Init();
-
-            item.IsSelect = true;
-            var notice = new Notice("Двигаю вперед", TypeNotice.Default);
-            Say(notice);
-            return true;
-        }
     }
 }

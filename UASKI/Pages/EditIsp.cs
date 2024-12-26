@@ -19,7 +19,7 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            Ai.HistoryDown();
+            
         }
 
         private IspModel Isp;

@@ -108,6 +108,24 @@ namespace UASKI.Pages
 
         public override bool AiKeyDown(KeyEventArgs key)
         {
+            if (key.Control)
+            {
+                if (key.KeyCode == Keys.C && DataGridView.d.SelectedRows.Count != 0)
+                {
+                    var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
+                    var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
+                    Ai.AddBuffer(id, code);
+                    return true;
+                }
+                else if (key.KeyCode == Keys.X && DataGridView.d.SelectedRows.Count != 0)
+                {
+                    var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
+                    var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
+                    Ai.DeleteBuffer(id, code);
+                    return true;
+                }
+            }
+
             return false;
         }
         #region Клавиши

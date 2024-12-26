@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using UASKI.Core.Models;
 using UASKI.Forms;
@@ -15,12 +16,13 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            Ai.HistoryDown();
+            
         }
 
         private int IdTask;
         private int Type;
         private bool IsArhiv;
+        private int IdPret;
 
         public void Show(int idTask , int type , BasePageSelect page , bool isArhiv , string codeTask)
         {
@@ -41,7 +43,44 @@ namespace UASKI.Pages
             form.button44.Enabled = false;
 
             SelectTextBox(form.textBox38);
+        }
+
+        public void Show(int idPret, int type, BasePageSelect page)
+        {
+            IdPret = idPret;
+            Type = type;
+            Page = page;
             
+            var pret = PretModel.GetById(idPret);
+            var task = TaskModel.GetById(pret.IdTask);
+
+            if(task != null)
+            {
+                if (type == 1)
+                    form.label102.Text = $"Претензия на задачу {task.Code}";
+                else if (type == 2)
+                    form.label102.Text = $"Рецензия на задачу {task.Code}";
+            }
+            else
+            {
+                var arhiv = ArhivModel.GetById(pret.IdTask);
+
+                if (type == 1)
+                    form.label102.Text = $"Претензия на архивную задачу {arhiv.Code}";
+                else if (type == 2)
+                    form.label102.Text = $"Рецензия на архивную задачу {arhiv.Code}";
+            }
+           
+
+            form.button46.Enabled = false;
+            form.button45.Enabled = true;
+            form.button44.Enabled = true;
+
+            form.textBox38.Text = pret.Code;
+            form.dateTimePicker16.Value = pret.Date;
+            form.textBox39.Text = pret.Otm.ToString();
+
+            SelectTextBox(form.textBox38);
         }
 
         protected override void Clear()
@@ -56,8 +95,15 @@ namespace UASKI.Pages
 
         protected new void Exit()
         {
-            SystemData.Pages.EditTask.Init(false);
-            SystemData.Pages.EditTask.Show(IdTask, IsArhiv, Page);
+            if(IdPret == 0)
+            {
+                SystemData.Pages.EditTask.Init(false);
+                SystemData.Pages.EditTask.Show(IdTask, IsArhiv, Page);
+            }
+            else
+            {
+                base.Exit();
+            }
         }
 
         private void SelectButton(int idButton = 0, bool Up = false)
@@ -197,7 +243,7 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    Ai.Comlite($"Успешно добавлена претензия/рецензия с номером {code}");
+                    Ai.Comlite($"Успешно добавлена претензия/рецензия с номером {code.Value}");
                     Exit();
                 }
                 else
@@ -212,7 +258,7 @@ namespace UASKI.Pages
             return true;
         }
 
-        public void button45_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button45_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Left)
             {
@@ -231,7 +277,29 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
+                    var code = TextBoxElement.New(form.textBox38, form.label92);
+                    var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
+                    var otm = TextBoxElement.New(form.textBox39, form.label94);
 
+                    var result = ValidationHelper.PretValidation(code, date, otm);
+
+                    if (!result)
+                    {
+                        Ai.Error();
+                        return false;
+                    }
+
+                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, Type);
+                    result = item.Update(IdPret);
+
+                    if (!result)
+                    {
+                        Ai.AppError();
+                        return false;
+                    }
+
+                    Ai.Comlite($"Успешно изменена претензия/рецензия с номером {code.Value}");
+                    Exit();
                 }
                 else
                     Ai.Query();
@@ -243,9 +311,10 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
-        public void button44_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        public bool button44_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Left)
             {
@@ -260,7 +329,18 @@ namespace UASKI.Pages
             {
                 if (SystemData.IsQuery)
                 {
+                    var entity = PretModel.GetById(IdPret);
+                    var result = entity.Delete();
 
+
+                    if (!result)
+                    {
+                        Ai.AppError();
+                        return false;
+                    }
+
+                    Ai.Comlite($"Успешно удалена претензия/рецензия с номером {entity.Code}");
+                    Exit();
                 }
                 else
                     Ai.Query();
@@ -271,6 +351,7 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
+            return true;
         }
 
         #endregion
