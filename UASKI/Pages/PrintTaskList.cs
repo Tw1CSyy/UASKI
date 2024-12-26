@@ -86,9 +86,9 @@ namespace UASKI.Pages
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Код задания"),
-                new DataGridColumnModel("Срок исполнения" , typeof(DateTime)),
+                new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Код контролера"),
-                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
+                new DataGridColumnModel("Дата закрытия"),
                 new DataGridColumnModel("Оценка" , typeof(int))
             };
 
