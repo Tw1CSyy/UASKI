@@ -84,6 +84,9 @@ namespace UASKI.Models.Components
         private bool DataGridViewSort(Keys key)
         {
             var index = SystemHelper.GetIntKeyDown(key);
+            if (d.SelectedRows.Count == 0)
+                return false;
+
             var id = d.SelectedRows[0].Index;
 
             if (d.Columns.Count < index || index == -1)

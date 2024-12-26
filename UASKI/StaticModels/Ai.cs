@@ -180,10 +180,15 @@ namespace UASKI.StaticModels
                 int lenth = current.Length;
                 int removeLenth = text.Length;
 
-                Text.Text = current.Remove(lenth - removeLenth - 1, removeLenth);
+                if (lenth - removeLenth - 1 >= 0)
+                {
+                    Text.Text = current.Remove(lenth - removeLenth - 1, removeLenth);
 
-                Text.SelectionStart = Text.Text.Length;
-                Text.ScrollToCaret();
+                    Text.SelectionStart = Text.Text.Length;
+                    Text.ScrollToCaret();
+                }
+                else
+                    Text.Clear();
             }
         }
 
