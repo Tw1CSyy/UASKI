@@ -175,7 +175,7 @@ namespace UASKI.StaticModels
         {
             var current = Text.Text;
 
-            if(current.EndsWith(text))
+            if(current.EndsWith(text)) 
             {
                 int lenth = current.Length;
                 int removeLenth = text.Length;
