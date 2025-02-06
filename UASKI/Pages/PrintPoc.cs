@@ -57,13 +57,19 @@ namespace UASKI.Pages
                 c.KofPeriod.ToString()
                 )).ToList();
 
+            foreach (var row in dataRowModels)
+            {
+                if (row.Values[4].Equals("0"))
+                    row.Values[4] = "-";
+            }
+
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Кол-во Выполненных Заданий" , typeof(int)),
                 new DataGridColumnModel("Кол-во Случаев Опзд" , typeof(int)),
                 new DataGridColumnModel("Кол-во Дней Опзд" , typeof(int)),
-                new DataGridColumnModel("Кооф" , typeof(float))
+                new DataGridColumnModel("Кооф")
             };
 
             form.DataGridView10.PullListInDataGridView(dataRowModels.ToArray(), columns);

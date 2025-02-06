@@ -83,6 +83,9 @@ namespace UASKI.Pages
                 result.Add(item);
             }
 
+            // Сортируем по дате
+            result = result.OrderBy(c => Convert.ToDateTime(c.Values[1])).ToList();
+
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Код задания"),
