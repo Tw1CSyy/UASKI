@@ -43,17 +43,17 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Исполнитель
         /// </summary>
-        public IspModel Isp { get; private set; }
+        public IspModel Isp { get => IspModel.GetByCode(IdIsp); }
 
         /// <summary>
         /// Контроллер
         /// </summary>
-        public IspModel Con { get; private set; }
+        public IspModel Con { get => IspModel.GetByCode(IdCon); }
 
         /// <summary>
         /// Дней опазданий с учетом выходных и праздников
         /// </summary>
-        public int DaysOpz { get; private set; }
+        public int DaysOpz { get => GetDaysOpz(); }
 
         /// <summary>
         /// Создает экземпляр задачи
@@ -74,17 +74,13 @@ namespace UASKI.Core.Models
         /// Создает экземпляр задачи
         /// </summary>
         /// <param name="entity">Объект TaskEntity</param>
-        internal TaskModel(TaskEntity entity , IspModel isp , IspModel con , int dayOpz)
+        internal TaskModel(TaskEntity entity)
         {
             Code = entity.Code;
             IdIsp = entity.IdIsp;
             IdCon = entity.IdCon;
             Date = entity.Date;
             Id = entity.Id;
-
-            Isp = isp;
-            Con = con;
-            DaysOpz = dayOpz;
         }
 
         /// <summary>
@@ -183,6 +179,26 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
+        /// Возвращает разницу в днях учитывая празднечные дни
+        /// </summary>
+        /// <returns></returns>
+        private int GetDaysOpz()
+        {
+            var holy = HolidayModel.GetList();
+            int result = 0;
+
+            for (DateTime i = Date; i <= DateTime.Today;)
+            {
+                if (holy.FirstOrDefault(c => c.Date == i) == null)
+                    result++;
+
+                i = i.AddDays(1);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Возращает задачу по Id
         /// </summary>
         /// <param name="code">Id задачи</param>
@@ -197,34 +213,7 @@ namespace UASKI.Core.Models
         /// </summary>
         public static List<TaskModel> GetList()
         {
-            var ispList = context.Isps;
-            var taskList = context.Tasks;
-            var holidayList = context.Holidays;
-            var result = new List<TaskModel>();
-
-            foreach (var task in taskList)
-            {
-                var isp = ispList.FirstOrDefault(c => c.Code == task.IdIsp);
-                var con = ispList.FirstOrDefault(c => c.Code == task.IdCon);
-                var days = 0;
-
-                for (DateTime date = task.Date; date < DateTime.Today;)
-                {
-                    if (holidayList.FirstOrDefault(c => c.Date == date) != null)
-                    {
-                        date = date.AddDays(1);
-                        continue;
-                    }
-
-                    days++;
-                    date = date.AddDays(1);
-                }
-
-                var item = new TaskModel(task, new IspModel(isp), new IspModel(con), days);
-                result.Add(item);
-            }
-
-            return result;
+            return context.Tasks.Select(c => new TaskModel(c)).ToList();
         }
 
         /// <summary>

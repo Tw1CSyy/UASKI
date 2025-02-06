@@ -202,6 +202,8 @@ namespace UASKI.Core.Models
             var item = new KofModel();
             item.Isp = InizByCode;
 
+            var contextTask = TaskModel.GetList().Where(c => c.IdIsp == Code).ToList();
+            
             var tasks = ArhivModel.GetList().Where(c => c.IdIsp == Code).ToList();
             var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
             var tasksMonth = tasks.Where(c => c.DateClose.Month == dateFrom.Month && c.DateClose.Year == dateFrom.Year).ToList();
@@ -209,11 +211,11 @@ namespace UASKI.Core.Models
             item.CountPeriod = tasksPediod.Count();
             item.CountMonth = tasksMonth.Count();
 
-            item.CountOpzPeriod = tasksPediod.Count(c => c.DaysOpz != 0);
-            item.CountOpzMonth = tasksMonth.Count(c => c.DaysOpz != 0);
+            item.CountOpzPeriod = tasksPediod.Count(c => c.DaysOpz != 0) + contextTask.Count(c => c.DaysOpz != 0);
+            item.CountOpzMonth = tasksMonth.Count(c => c.DaysOpz != 0) + contextTask.Count(c => c.DaysOpz != 0);
 
-            item.CountDayPeriod = tasksPediod.Sum(c => c.DaysOpz);
-            item.CountDayMonth = tasksMonth.Sum(c => c.DaysOpz);
+            item.CountDayPeriod = tasksPediod.Sum(c => c.DaysOpz) + contextTask.Sum(c => c.DaysOpz);
+            item.CountDayMonth = tasksMonth.Sum(c => c.DaysOpz) + contextTask.Sum(c => c.DaysOpz);
 
             var pretList = PretModel.GetList();
 

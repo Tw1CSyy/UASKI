@@ -52,17 +52,17 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Исполнитель
         /// </summary>
-        public IspModel Isp { get; private set; }
+        public IspModel Isp { get => IspModel.GetByCode(IdIsp); }
 
         /// <summary>
         /// Контроллер
         /// </summary>
-        public IspModel Con { get; private set; }
+        public IspModel Con { get => IspModel.GetByCode(IdCon); }
 
         /// <summary>
         /// Дней опазданий с учетом выходных и праздников
         /// </summary>
-        public int DaysOpz { get; private set; }
+        public int DaysOpz { get => GetDaysOpz(); }
 
         /// <summary>
         /// Создает объект класса
@@ -104,7 +104,7 @@ namespace UASKI.Core.Models
         /// Создает объект класса
         /// <param name="a">Сущность архивной задачи</param>
         /// </summary>
-        internal ArhivModel(ArhivEntity a, IspModel isp, IspModel con, int dayOpz)
+        internal ArhivModel(ArhivEntity a)
         {
             Code = a.Code;
             IdIsp = a.IdIsp;
@@ -113,10 +113,6 @@ namespace UASKI.Core.Models
             DateClose = a.DateClose;
             Otm = a.Otm;
             Id = a.Id;
-
-            Isp = isp;
-            Con = con;
-            DaysOpz = dayOpz;
         }
 
         /// <summary>
@@ -163,6 +159,26 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
+        /// Возвращает разницу в днях учитывая празднечные дни
+        /// </summary>
+        /// <returns></returns>
+        private int GetDaysOpz()
+        {
+            var holy = HolidayModel.GetList();
+            int result = 0;
+
+            for (DateTime i = Date; i <= DateClose;)
+            {
+                if (holy.FirstOrDefault(c => c.Date == i) == null)
+                    result++;
+
+                i = i.AddDays(1);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Обновление архива с предварительной валидацией
         /// </summary>
         /// <returns>true - успешное выполнение</returns>
@@ -199,34 +215,7 @@ namespace UASKI.Core.Models
         /// <returns>Список архивных задач</returns>
         public static List<ArhivModel> GetList()
         {
-            var ispList = context.Isps;
-            var taskList = context.Arhiv;
-            var holidayList = context.Holidays;
-            var result = new List<ArhivModel>();
-
-            foreach (var task in taskList)
-            {
-                var isp = ispList.FirstOrDefault(c => c.Code == task.IdIsp);
-                var con = ispList.FirstOrDefault(c => c.Code == task.IdCon);
-                var days = 0;
-
-                for (DateTime date = task.Date; date < task.DateClose;)
-                {
-                    if (holidayList.FirstOrDefault(c => c.Date == date) != null)
-                    {
-                        date = date.AddDays(1);
-                        continue;
-                    }
-
-                    days++;
-                    date = date.AddDays(1);
-                }
-
-                var item = new ArhivModel(task, new IspModel(isp), new IspModel(con), days);
-                result.Add(item);
-            }
-
-            return result;
+            return context.Arhiv.Select(c => new ArhivModel(c)).ToList();
         }
 
         /// <summary>
