@@ -3587,7 +3587,7 @@ namespace UASKI
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(72, 17);
             this.label54.TabIndex = 8;
-            this.label54.Text = "UASKI 2.2";
+            this.label54.Text = "UASKI 2.3";
             // 
             // monthCalendar2
             // 
@@ -3613,7 +3613,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.2";
+            this.Text = " УАСКИ 2.3";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

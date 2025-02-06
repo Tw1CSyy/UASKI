@@ -126,6 +126,35 @@ namespace UASKI
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
             DateTimeLabel.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+
+            if(DateTime.Now.Hour == 11 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 30)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "Скоро обед. Осталось чуть чуть");
+            }
+            else if (DateTime.Now.Hour == 16 && DateTime.Now.Minute == 10 && DateTime.Now.Second == 10)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "Скоро домой!!!");
+            }
+            else if(DateTime.Today.DayOfWeek == DayOfWeek.Friday && DateTime.Now.Hour == 14 && DateTime.Now.Minute == 23 && DateTime.Now.Second == 30)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "Завтра выходной! Удачи отдохнуть");
+            }
+            else if(DateTime.Now.Hour == 9 && DateTime.Now.Minute == 43 && DateTime.Now.Second == 10)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "И не лень тебе в такую рань работать");
+            }
+            else if (DateTime.Now.Hour == 11 && DateTime.Now.Minute == 13 && DateTime.Now.Second == 50)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "Вспомни про котиков и станет легче");
+            }
+            else if (DateTime.Now.Hour == 15 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 0)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "Домой через час, пора заканчивать");
+            }
+            else if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 0)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Comlite, "Пора выпить кофейка");
+            }
         }
 
         // Открываем страницы по меню
