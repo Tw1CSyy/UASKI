@@ -676,6 +676,15 @@ namespace UASKI
         {
             textBox32_TextChanged(sender, e);
         }
+        private void dataGridView6_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView6.SelectedRows.Count != 0)
+            {
+                var date = Convert.ToDateTime(dataGridView6.SelectedRows[0].Cells[1].Value);
+                monthCalendar2.SelectionStart = date;
+                monthCalendar2.SelectionEnd = date;
+            }
+        }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if(!SystemData.IsClear)

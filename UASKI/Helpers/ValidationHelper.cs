@@ -2,6 +2,7 @@
 using System.Linq;
 using UASKI.Core.Models;
 using UASKI.Models.Elements;
+using UASKI.StaticModels;
 
 namespace UASKI.Helpers
 {
@@ -69,6 +70,14 @@ namespace UASKI.Helpers
             if (!code.IsNull && !TaskModel.CheckCode(code.Value))
             {
                 code.Error("Код имеет не верный формат");
+                result = false;
+            }
+
+            var task = TaskModel.GetList().FirstOrDefault(c => c.Code.Equals(code.Value) && c.Date == date.Value && c.IdIsp == idIsp.Num);
+
+            if(task != null)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Error, "Данная запись уже существует");
                 result = false;
             }
 

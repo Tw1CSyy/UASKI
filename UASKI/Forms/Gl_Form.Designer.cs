@@ -313,6 +313,7 @@ namespace UASKI
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.label54 = new System.Windows.Forms.Label();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -957,6 +958,7 @@ namespace UASKI
             // tabPage10
             // 
             this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tabPage10.Controls.Add(this.monthCalendar2);
             this.tabPage10.Controls.Add(this.button13);
             this.tabPage10.Controls.Add(this.dataGridView6);
             this.tabPage10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -990,6 +992,7 @@ namespace UASKI
             this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView6.Size = new System.Drawing.Size(705, 543);
             this.dataGridView6.TabIndex = 0;
+            this.dataGridView6.SelectionChanged += new System.EventHandler(this.dataGridView6_SelectionChanged);
             this.dataGridView6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView6_KeyDown);
             // 
             // tabPage3
@@ -3586,6 +3589,12 @@ namespace UASKI
             this.label54.TabIndex = 8;
             this.label54.Text = "UASKI 2.2";
             // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(708, 248);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 2;
+            // 
             // Gl_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3968,6 +3977,7 @@ namespace UASKI
         public System.Windows.Forms.TextBox textBox41;
         private System.Windows.Forms.Timer TimeTimer;
         private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
     }
 }
 
