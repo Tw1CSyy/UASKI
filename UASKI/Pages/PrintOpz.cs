@@ -41,15 +41,16 @@ namespace UASKI.Pages
             var holy = HolidayModel.GetList();
             var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy) != 0).ToList();
             var result = new List<DataGridRowModel>();
+            var isps = IspModel.GetList();
 
             foreach (var item in list)
             {
                 var day = item.GetDaysOpz(holy);
 
                 var model = new DataGridRowModel(
-                    item.Isp.InizByCode,
+                    item.GetIsp(isps).InizByCode,
                     item.Code,
-                    item.Con.InizByCode,
+                    item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),
                     day.ToString());
 

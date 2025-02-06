@@ -41,16 +41,6 @@ namespace UASKI.Core.Models
         public int Id { get; private set; }
 
         /// <summary>
-        /// Исполнитель
-        /// </summary>
-        public IspModel Isp { get => IspModel.GetByCode(IdIsp); }
-
-        /// <summary>
-        /// Контроллер
-        /// </summary>
-        public IspModel Con { get => IspModel.GetByCode(IdCon); }
-
-        /// <summary>
         /// Создает экземпляр задачи
         /// </summary>
         /// <param name="code">Код задачи</param>
@@ -193,6 +183,26 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
+        /// Возвращает исполнителя
+        /// </summary>
+        /// <param name="list">Список исполнителей/котроллеров</param>
+        /// <returns></returns>
+        public IspModel GetIsp(List<IspModel> list)
+        {
+            return list.FirstOrDefault(c => c.Code == IdIsp);
+        }
+
+        /// <summary>
+        /// Возвращает исполнителя
+        /// </summary>
+        /// <param name="list">Список исполнителей/котроллеров</param>
+        /// <returns></returns>
+        public IspModel GetCon(List<IspModel> list)
+        {
+            return list.FirstOrDefault(c => c.Code == IdCon);
+        }
+
+        /// <summary>
         /// Возращает задачу по Id
         /// </summary>
         /// <param name="code">Id задачи</param>
@@ -237,5 +247,6 @@ namespace UASKI.Core.Models
 
             return true;
         }
+
     }
 }

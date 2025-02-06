@@ -27,12 +27,13 @@ namespace UASKI.Pages
         public void Select()
         {
             var list = TaskModel.GetList().Where(c => c.IdCon == Isp.Code || c.IdIsp == Isp.Code).ToList();
+            var isps = IspModel.GetList();
 
             var model = new List<DataGridRowModel>();
 
             foreach (var item in list.OrderBy(c => c.Date))
             {
-                var st = new DataGridRowModel(item.Code, item.Isp.InizByCode, item.Con.InizByCode, item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Code, item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 

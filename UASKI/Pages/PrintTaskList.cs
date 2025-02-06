@@ -44,6 +44,7 @@ namespace UASKI.Pages
             var dateFrom = form.dateTimePicker10.Value;
             var dateTo = form.dateTimePicker11.Value;
             var ispCode = form.textBox30.Text;
+            var isps = IspModel.GetList();
 
             var taskList = TaskModel.GetList()
                 .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
@@ -66,7 +67,7 @@ namespace UASKI.Pages
                 var item = new DataGridRowModel(
                     task.Code,
                     task.Date.ToString("dd.MM.yyyy"),
-                    task.Con.InizByCode);
+                    task.GetCon(isps).InizByCode);
 
                 result.Add(item);
             }
@@ -76,7 +77,7 @@ namespace UASKI.Pages
                 var item = new DataGridRowModel(
                     task.Code,
                     task.Date.ToString("dd.MM.yyyy"),
-                    task.Con.InizByCode,
+                    task.GetIsp(isps).InizByCode,
                     task.DateClose.ToString("dd.MM.yyyy"),
                     task.Otm.ToString());
 

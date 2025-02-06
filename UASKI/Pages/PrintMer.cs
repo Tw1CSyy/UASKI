@@ -42,6 +42,7 @@ namespace UASKI.Pages
             var arhivList = ArhivModel.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
             var result = new List<DataGridRowModel>();
             var holy = HolidayModel.GetList();
+            var isps = IspModel.GetList();
 
             foreach (var item in taskList)
             {
@@ -51,8 +52,8 @@ namespace UASKI.Pages
                     date = 0;
 
                 var model = new DataGridRowModel(item.Code,
-                    item.Isp.InizByCode,
-                    item.Con.InizByCode,
+                    item.GetIsp(isps).InizByCode,
+                    item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"), "", "", date.ToString());
 
                 result.Add(model);
@@ -66,8 +67,8 @@ namespace UASKI.Pages
                     date = 0;
 
                 var model = new DataGridRowModel(item.Code,
-                    item.Isp.InizByCode,
-                    item.Con.InizByCode,
+                    item.GetIsp(isps).InizByCode,
+                    item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),
                     item.DateClose.ToString("dd.MM.yyyy"),
                     item.Otm.ToString(),

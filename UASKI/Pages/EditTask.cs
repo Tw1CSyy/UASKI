@@ -49,10 +49,10 @@ namespace UASKI.Pages
             if (!IsArhiv)
             {
                 var task = TaskModel.GetById(id);
-                Task = task;
 
-                var usr1 = IspModel.GetByCode(task.IdIsp);
-                var usr2 = IspModel.GetByCode(task.IdCon);
+                var usr1 = task.GetIsp(listUser);
+                var usr2 = task.GetCon(listUser);
+                Task = task;
 
                 form.textBox26.Text = usr1.InizNotCode;
                 form.textBox21.Text = usr2.InizNotCode;
@@ -75,15 +75,18 @@ namespace UASKI.Pages
             {
                 var listArhiv = ArhivModel.GetList();
                 var arhiv = ArhivModel.GetById(id);
+                var usr1 = arhiv.GetIsp(listUser);
+                var usr2 = arhiv.GetCon(listUser);
+
                 Arhiv = arhiv;
 
-                form.textBox26.Text = arhiv.Isp.InizNotCode;
-                form.textBox21.Text = arhiv.Con.InizNotCode;
+                form.textBox26.Text = usr1.InizNotCode;
+                form.textBox21.Text = usr2.InizNotCode;
 
-                form.textBox24.Text = arhiv.Isp.Code.ToString();
-                form.textBox25.Text = arhiv.Isp.CodePodr.ToString();
-                form.textBox23.Text = arhiv.Con.Code.ToString();
-                form.textBox22.Text = arhiv.Con.CodePodr.ToString();
+                form.textBox24.Text = usr1.Code.ToString();
+                form.textBox25.Text = usr1.CodePodr.ToString();
+                form.textBox23.Text = usr2.Code.ToString();
+                form.textBox22.Text = usr2.CodePodr.ToString();
                 form.textBox27.Text = arhiv.Code;
                 form.dateTimePicker4.Value = arhiv.Date;
 

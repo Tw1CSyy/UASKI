@@ -50,6 +50,7 @@ namespace UASKI.Pages
 
             var model = new List<DataGridRowModel>();
             var holy = HolidayModel.GetList();
+            var isps = IspModel.GetList();
 
             var listTask = TaskModel
                 .GetList()
@@ -66,8 +67,8 @@ namespace UASKI.Pages
 
             foreach (var item in listTask.OrderBy(c => c.Date))
             {
-                var isp = item.Isp;
-                var con = item.Con;
+                var isp = item.GetIsp(isps);
+                var con = item.GetCon(isps);
 
                 if (isDate)
                 {
@@ -106,7 +107,7 @@ namespace UASKI.Pages
 
                 if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
                 {
-                    if (item.Isp.Code != Convert.ToInt32(isp1) && item.Con.Code != Convert.ToInt32(isp1))
+                    if (item.GetIsp(isps).Code != Convert.ToInt32(isp1) && item.GetCon(isps).Code != Convert.ToInt32(isp1))
                         continue;
                 }
 
@@ -118,8 +119,8 @@ namespace UASKI.Pages
 
                 var task = new DataGridRowModel(item.Id.ToString(),
                      item.Code,
-                     item.Isp.InizByCode,
-                     item.Con.InizByCode,
+                     item.GetIsp(isps).InizByCode,
+                     item.GetCon(isps).InizByCode,
                      item.Date.ToString("dd.MM.yyyy"),
                      item.DateClose.ToString("dd.MM.yyyy"),
                      item.Otm.ToString(),

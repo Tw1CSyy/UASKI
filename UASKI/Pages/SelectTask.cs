@@ -42,6 +42,7 @@ namespace UASKI.Pages
         public override void Select()
         {
             var list = TaskModel.GetList();
+            var isps = IspModel.GetList();
 
             if(form.textBox19.Text.Length > 0)
             {
@@ -51,7 +52,7 @@ namespace UASKI.Pages
             if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text , out int j))
             {
                 list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox29.Text) || c.IdCon == Convert.ToInt32(form.textBox29.Text) ||
-                c.Isp.CodePodr == Convert.ToInt32(form.textBox29.Text) || c.Con.CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
+                c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
             }
 
             if(form.checkBox2.Checked)
@@ -63,7 +64,7 @@ namespace UASKI.Pages
            
             foreach (var item in list.OrderBy(c => c.Date).ThenBy(c => c.Id))
             {
-                var st = new DataGridRowModel(item.Id.ToString(), item.Code, item.Isp.InizByCode, item.Con.InizByCode, item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Id.ToString(), item.Code, item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 

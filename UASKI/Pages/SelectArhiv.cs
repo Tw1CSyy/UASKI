@@ -43,6 +43,7 @@ namespace UASKI.Pages
         public override void Select()
         {
             var list = ArhivModel.GetList();
+            var isps = IspModel.GetList();
 
             if(form.textBox32.Text.Length > 0)
             {
@@ -52,7 +53,7 @@ namespace UASKI.Pages
             if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text , out int j))
             {
                 list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox31.Text) || c.IdCon == Convert.ToInt32(form.textBox31.Text) ||
-                c.Isp.CodePodr == Convert.ToInt32(form.textBox31.Text) || c.Con.CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
+                c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox31.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
             }
 
             if(form.checkBox1.Checked)
@@ -61,19 +62,16 @@ namespace UASKI.Pages
             }
 
             var model = new List<DataGridRowModel>();
-           
-            foreach (var item in list.OrderByDescending(c => c.DateClose).ThenBy(c => c.Id))
-            {
-                
-                var st = new DataGridRowModel(item.Id.ToString(),
-                    item.Code,
-                    item.Isp.InizByCode,
-                    item.Con.InizByCode,
-                    item.Date.ToString("dd.MM.yyyy"), item.DateClose.ToString("dd.MM.yyyy"),
-                    item.Otm.ToString());
-
-                model.Add(st);
-            }
+            model = list.OrderByDescending(c => c.DateClose).ThenBy(c => c.Id)
+                .Select(c => new DataGridRowModel(
+                    c.Id.ToString(),
+                    c.Code,
+                    c.GetIsp(isps).InizByCode,
+                    c.GetCon(isps).InizByCode,
+                    c.Date.ToString("dd.MM.yyyy"),
+                    c.DateClose.ToString("dd.MM.yyyy"),
+                    c.Otm.ToString()))
+                .ToList();
 
             var columns = new DataGridColumnModel[]
             {
