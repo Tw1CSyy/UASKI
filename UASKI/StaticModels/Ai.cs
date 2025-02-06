@@ -10,12 +10,10 @@ namespace UASKI.StaticModels
 {
     public static class Ai
     {
-        private readonly static List<Notice> Orders = new List<Notice>();
         private readonly static List<int> Buffer = new List<int>();
         public static TypeBuffer TypeBuffer = TypeBuffer.Null;
 
         private static TextBox Text;
-        private static bool Sleep = true;
         private static Color DefultColor;
         private static Timer Timer;
         
@@ -28,7 +26,7 @@ namespace UASKI.StaticModels
             Text = box;
             DefultColor = box.BackColor;
             Timer = new Timer();
-            Timer.Interval = 1;
+            Timer.Interval = 1000;
             Timer.Tick += NoticeTimer;
         }
 
@@ -38,25 +36,13 @@ namespace UASKI.StaticModels
         /// <returns></returns>
         public static void NoticeTimer(object sender , EventArgs e)
         {
-            if (!Sleep)
-            {
-                Text.BackColor = DefultColor;
-                SystemData.IsQuery = false;
-                Sleep = true;
-            }
-
-            if (Orders.Count > 0)
-            {
-                var mes = Orders.First();
-                Say(mes);
-                Orders.Remove(mes);
-            }
-            else
-                Timer.Stop();
+            Text.BackColor = DefultColor;
+            SystemData.IsQuery = false;
+            Timer.Stop();
         }
 
         /// <summary>
-        /// Добавляет сообщение в очередь
+        /// Добавляет сообщение
         /// </summary>
         /// <param name="type">Тип сообщения</param>
         /// <param name="text">Текст сообщения</param>
@@ -64,7 +50,13 @@ namespace UASKI.StaticModels
         {
             string mes = text;
             var notice = new Notice(mes, type);
-            Orders.Add(notice);
+
+            string message = Formating(mes);
+            RemoveTextExixt(message);
+            Text.Text += message;
+            Text.BackColor = notice.Color;
+            Text.SelectionStart = Text.Text.Length;
+            Text.ScrollToCaret();
             Timer.Start();
         }
 
@@ -108,21 +100,6 @@ namespace UASKI.StaticModels
         {
             var message = "- " + text + $"{Environment.NewLine}";
             return message;
-        }
-
-        /// <summary>
-        /// Показывает сообщение
-        /// </summary>
-        private static void Say(Notice mes)
-        {
-            string message = Formating(mes.Message);
-            RemoveTextExixt(message);
-            Text.Text += message;
-            Text.BackColor = mes.Color;
-            Sleep = false;
-            Text.SelectionStart = Text.Text.Length;
-            Text.ScrollToCaret();
-            Timer.Start();
         }
 
         /// <summary>
@@ -193,8 +170,7 @@ namespace UASKI.StaticModels
         public static void Warning(string text)
         {
             var mes = Formating(text);
-            var notice = new Notice(text, TypeNotice.Warning);
-            Say(notice);
+            AddMessage(TypeNotice.Warning , text);
         }
 
         /// <summary>
@@ -221,7 +197,7 @@ namespace UASKI.StaticModels
                     return true;
                 case Keys.I:
                     var message = Formating("Горячие клавиши:", AiLibrary.Instruction.ToArray());
-                    Say(new Notice(message , TypeNotice.Default));
+                    Ai.AddMessage(TypeNotice.Default , message);
                     return true;
                 case Keys.L:
                     SelectMenu(SystemData.Pages.AddTask);
@@ -238,8 +214,7 @@ namespace UASKI.StaticModels
                 case Keys.Oemcomma:
                     if(Buffer.Count == 0)
                     {
-                        var notice = new Notice("Буффер пустой" , TypeNotice.Error);
-                        Say(notice);
+                        AddMessage(TypeNotice.Error , "Буффер пустой");
                     }
                     else
                     {
@@ -250,8 +225,7 @@ namespace UASKI.StaticModels
                 case Keys.OemPeriod:
                     Buffer.Clear();
                     TypeBuffer = TypeBuffer.Null;
-                    var notice1 = new Notice("Буффер отчищен", TypeNotice.Comlite);
-                    Say(notice1);
+                    AddMessage(TypeNotice.Comlite , "Буффер отчищен");
                     return true;
             }
 
