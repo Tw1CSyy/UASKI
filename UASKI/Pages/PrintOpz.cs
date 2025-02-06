@@ -38,12 +38,13 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var list = TaskModel.GetList().Where(c => c.DaysOpz != 0).ToList();
+            var holy = HolidayModel.GetList();
+            var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy) != 0).ToList();
             var result = new List<DataGridRowModel>();
 
             foreach (var item in list)
             {
-                var day = item.DaysOpz;
+                var day = item.GetDaysOpz(holy);
 
                 var model = new DataGridRowModel(
                     item.Isp.InizByCode,

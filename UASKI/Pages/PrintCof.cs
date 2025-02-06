@@ -48,8 +48,10 @@ namespace UASKI.Pages
            if(form.textBox37.Text.Length != 0)
             {
                 var model = new List<DataGridRowModel>();
+                var isps = IspModel.GetList();
+                var holy = HolidayModel.GetList();
+                var isp = isps.FirstOrDefault(c => c.Code == Convert.ToInt32(form.textBox36.Text));
 
-                var isp = IspModel.GetByCode(Convert.ToInt32(form.textBox36.Text));
                 var tasks = ArhivModel.GetList()
                     .Where(c => c.IdIsp == isp.Code)
                     .Where(c => c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value)
@@ -59,8 +61,8 @@ namespace UASKI.Pages
 
                 foreach (var task in tasks)
                 {
-                    var con = IspModel.GetByCode(task.IdCon);
-                    int opzDays = task.DaysOpz;
+                    var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
+                    int opzDays = task.GetDaysOpz(holy);
                     int opz = 0;
 
                     if (opzDays > 0)
@@ -89,8 +91,10 @@ namespace UASKI.Pages
                 };
 
                 form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
-                   
-                var cof = isp.GetKofModel(form.dateTimePicker14.Value, form.dateTimePicker15.Value);
+                var contextTasks = TaskModel.GetList().Where(c => c.IdIsp == isp.Code).ToList();
+                var contextArhiv = ArhivModel.GetList().Where(c => c.IdIsp == isp.Code).ToList();
+                
+                var cof = SystemHelper.GetKofModel(form.dateTimePicker14.Value, form.dateTimePicker15.Value , isp , contextTasks , contextArhiv , holy);
 
                 model = new List<DataGridRowModel>();
 

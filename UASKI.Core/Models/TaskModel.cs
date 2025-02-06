@@ -51,11 +51,6 @@ namespace UASKI.Core.Models
         public IspModel Con { get => IspModel.GetByCode(IdCon); }
 
         /// <summary>
-        /// Дней опазданий с учетом выходных и праздников
-        /// </summary>
-        public int DaysOpz { get => GetDaysOpz(); }
-
-        /// <summary>
         /// Создает экземпляр задачи
         /// </summary>
         /// <param name="code">Код задачи</param>
@@ -182,14 +177,13 @@ namespace UASKI.Core.Models
         /// Возвращает разницу в днях учитывая празднечные дни
         /// </summary>
         /// <returns></returns>
-        private int GetDaysOpz()
+        public int GetDaysOpz(List<HolidayModel> list)
         {
-            var holy = HolidayModel.GetList();
             int result = 0;
 
-            for (DateTime i = Date; i <= DateTime.Today;)
+            for (DateTime i = Date; i < DateTime.Today;)
             {
-                if (holy.FirstOrDefault(c => c.Date == i) == null)
+                if (list.FirstOrDefault(c => c.Date == i) == null)
                     result++;
 
                 i = i.AddDays(1);

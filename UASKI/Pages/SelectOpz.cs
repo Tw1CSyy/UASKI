@@ -49,16 +49,17 @@ namespace UASKI.Pages
             var dateTo = form.dateTimePicker8.Value;
 
             var model = new List<DataGridRowModel>();
+            var holy = HolidayModel.GetList();
 
             var listTask = TaskModel
                 .GetList()
-                .Where(c => c.DaysOpz != 0)
+                .Where(c => c.GetDaysOpz(holy) != 0)
                 .OrderByDescending(c => c.Date)
                 .ThenBy(c => c.Id)
                 .ToList();
 
             var listArhiv = ArhivModel.GetList()
-                .Where(c => c.DaysOpz != 0)
+                .Where(c => c.GetDaysOpz(holy) != 0)
                 .OrderByDescending(c => c.Date)
                 .ThenBy(c => c.Id)
                 .ToList();
@@ -90,7 +91,7 @@ namespace UASKI.Pages
                      item.Code,
                      isp.InizByCode,
                      con.InizByCode,
-                     item.Date.ToString("dd.MM.yyyy"), "", "" , item.DaysOpz.ToString());
+                     item.Date.ToString("dd.MM.yyyy"), "", "" , item.GetDaysOpz(holy).ToString());
 
                 model.Add(task);
             }
@@ -122,7 +123,7 @@ namespace UASKI.Pages
                      item.Date.ToString("dd.MM.yyyy"),
                      item.DateClose.ToString("dd.MM.yyyy"),
                      item.Otm.ToString(),
-                     item.DaysOpz.ToString());
+                     item.GetDaysOpz(holy).ToString());
 
                 model.Add(task);
             }

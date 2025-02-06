@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using UASKI.Models;
 using System.Linq;
 using UASKI.Core.Models;
+using UASKI.Core.SystemModels;
 
 namespace UASKI.Helpers
 {
@@ -260,5 +261,75 @@ namespace UASKI.Helpers
             return headerY;
         }
 
+        /// <summary>
+        /// Расчитывает коофициент качества по списку задач
+        /// </summary>
+        /// <param name="tasks">Список архивных задач</param>
+        /// <param name="listPret">Список претензий и рецензий</param>
+        /// <returns></returns>
+        private static double GetCof(List<ArhivModel> tasks, List<PretModel> listPret , List<HolidayModel> holy)
+        {
+            if (tasks.Count == 0)
+            {
+                return 0;
+            }
+
+            int countTask = 0, countPret = 0, countRez = 0, countOpz = 0, countCof = 0;
+
+            foreach (var task in tasks)
+            {
+                countTask += Convert.ToInt32(task.Code[0].ToString()) * task.Otm;
+
+                var prets = listPret.Where(c => c.IdTask == task.Id && c.Type == 1).ToList();
+                var rezs = listPret.Where(c => c.IdTask == task.Id && c.Type == 2).ToList();
+
+                countPret += prets.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+                countRez += rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+
+                if (task.GetDaysOpz(holy) != 0)
+                {
+                    countOpz += Convert.ToInt32(task.Code[0].ToString()) * task.GetDaysOpz(holy);
+                }
+
+                countCof += Convert.ToInt32(task.Code[0].ToString()) + prets.Sum(c => Convert.ToInt32(c.Code[0].ToString())) + rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()));
+            }
+
+            double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
+            result = Math.Round(result, 2);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Расчитывает данные для коофициента качества для исполнителя
+        /// </summary>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <returns></returns>
+        public static KofModel GetKofModel(DateTime dateFrom, DateTime dateTo, IspModel isp , List<TaskModel> contextTask , List<ArhivModel> contextArhiv , List<HolidayModel> holy)
+        {
+            var item = new KofModel();
+            item.Isp = isp.InizByCode;
+
+            var tasks = contextArhiv;
+            var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
+            var tasksMonth = tasks.Where(c => c.DateClose.Month == dateFrom.Month && c.DateClose.Year == dateFrom.Year).ToList();
+
+            item.CountPeriod = tasksPediod.Count();
+            item.CountMonth = tasksMonth.Count();
+
+            item.CountOpzPeriod = tasksPediod.Count(c => c.GetDaysOpz(holy) != 0) + contextTask.Count(c => c.GetDaysOpz(holy) != 0);
+            item.CountOpzMonth = tasksMonth.Count(c => c.GetDaysOpz(holy) != 0) + contextTask.Count(c => c.GetDaysOpz(holy) != 0);
+
+            item.CountDayPeriod = tasksPediod.Sum(c => c.GetDaysOpz(holy)) + contextTask.Sum(c => c.GetDaysOpz(holy));
+            item.CountDayMonth = tasksMonth.Sum(c => c.GetDaysOpz(holy)) + contextTask.Sum(c => c.GetDaysOpz(holy));
+
+            var pretList = PretModel.GetList();
+
+            item.KofPeriod = GetCof(tasksPediod, pretList , holy);
+            item.KofMonth = GetCof(tasksMonth, pretList , holy);
+
+            return item;
+        }
     }
 }

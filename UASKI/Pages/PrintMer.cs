@@ -41,10 +41,11 @@ namespace UASKI.Pages
             var taskList = TaskModel.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
             var arhivList = ArhivModel.GetList().Where(c => c.Code.ToLower().Contains(form.textBox35.Text.ToLower())).ToList();
             var result = new List<DataGridRowModel>();
-           
+            var holy = HolidayModel.GetList();
+
             foreach (var item in taskList)
             {
-                var date = item.DaysOpz;
+                var date = item.GetDaysOpz(holy);
 
                 if (date < 0)
                     date = 0;
@@ -59,7 +60,7 @@ namespace UASKI.Pages
 
             foreach (var item in arhivList)
             {
-                var date = item.DaysOpz;
+                var date = item.GetDaysOpz(holy);
 
                 if (date < 0)
                     date = 0;

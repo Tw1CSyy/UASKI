@@ -40,12 +40,17 @@ namespace UASKI.Pages
         public override void Select()
         {
             var ispList = IspModel.GetList();
-           
+            var holy = HolidayModel.GetList();
             var result = new List<KofModel>();
+            var taskList = TaskModel.GetList();
+            var arhivList = ArhivModel.GetList();
 
             foreach (var isp in ispList.OrderBy(c => c.CodePodr))
             {
-                var item = isp.GetKofModel(form.dateTimePicker12.Value, form.dateTimePicker13.Value);
+                var tasks = taskList.Where(c => c.IdIsp == isp.Code).ToList();
+                var arhiv = arhivList.Where(c => c.IdIsp == isp.Code).ToList();
+
+                var item = SystemHelper.GetKofModel(form.dateTimePicker12.Value, form.dateTimePicker13.Value , isp , tasks , arhiv , holy);
                 result.Add(item);
             }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using UASKI.Core.SystemModels;
 using UASKI.Data;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
@@ -58,11 +60,6 @@ namespace UASKI.Core.Models
         /// Контроллер
         /// </summary>
         public IspModel Con { get => IspModel.GetByCode(IdCon); }
-
-        /// <summary>
-        /// Дней опазданий с учетом выходных и праздников
-        /// </summary>
-        public int DaysOpz { get => GetDaysOpz(); }
 
         /// <summary>
         /// Создает объект класса
@@ -162,14 +159,13 @@ namespace UASKI.Core.Models
         /// Возвращает разницу в днях учитывая празднечные дни
         /// </summary>
         /// <returns></returns>
-        private int GetDaysOpz()
+        public int GetDaysOpz(List<HolidayModel> list)
         {
-            var holy = HolidayModel.GetList();
             int result = 0;
 
-            for (DateTime i = Date; i <= DateClose;)
+            for (DateTime i = Date; i < DateClose;)
             {
-                if (holy.FirstOrDefault(c => c.Date == i) == null)
+                if (list.FirstOrDefault(c => c.Date == i) == null)
                     result++;
 
                 i = i.AddDays(1);
