@@ -267,7 +267,7 @@ namespace UASKI.Helpers
         /// <param name="tasks">Список архивных задач</param>
         /// <param name="listPret">Список претензий и рецензий</param>
         /// <returns></returns>
-        private static double GetCof(List<ArhivModel> tasks, List<PretModel> listPret , List<HolidayModel> holy)
+        private static double GetCof(List<ArhivModel> tasks, List<PretModel> listPret , List<HolidayModel> holy , List<TaskModel> contextTask)
         {
             if (tasks.Count == 0)
             {
@@ -275,6 +275,7 @@ namespace UASKI.Helpers
             }
 
             int countTask = 0, countPret = 0, countRez = 0, countOpz = 0, countCof = 0;
+            contextTask = contextTask.Where(c => c.GetDaysOpz(holy) != 0).ToList();
 
             foreach (var task in tasks)
             {
@@ -294,6 +295,11 @@ namespace UASKI.Helpers
                 countCof += Convert.ToInt32(task.Code[0].ToString()) + prets.Sum(c => Convert.ToInt32(c.Code[0].ToString())) + rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()));
             }
 
+            foreach (var t in contextTask)
+            {
+                countOpz += Convert.ToInt32(t.Code[0].ToString()) * t.GetDaysOpz(holy);
+            }
+
             double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
             result = Math.Round(result, 2);
 
@@ -310,6 +316,7 @@ namespace UASKI.Helpers
         {
             var item = new KofModel();
             item.Isp = isp.InizByCode;
+            contextTask = contextTask.Where(c => c.Date < dateTo).ToList();
 
             var tasks = contextArhiv;
             var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
@@ -326,8 +333,8 @@ namespace UASKI.Helpers
 
             var pretList = PretModel.GetList();
 
-            item.KofPeriod = GetCof(tasksPediod, pretList , holy);
-            item.KofMonth = GetCof(tasksMonth, pretList , holy);
+            item.KofPeriod = GetCof(tasksPediod, pretList , holy , contextTask);
+            item.KofMonth = GetCof(tasksMonth, pretList , holy , contextTask);
 
             return item;
         }
