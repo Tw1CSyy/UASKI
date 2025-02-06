@@ -24,7 +24,7 @@ namespace UASKI.Helpers
             idCon.Dispose();
             date.Dispose();
 
-            if (idIsp.IsNull)
+            if ((idIsp.IsNull && isUpdate) || (!isUpdate && idIsp.IsNull && (Ai.TypeBuffer != Enums.TypeBuffer.AddTask || Ai.GetBuffer().Count == 0)))
             {
                 idIsp.Error("Поле не заполнено");
                 result = false;
@@ -73,7 +73,7 @@ namespace UASKI.Helpers
                 result = false;
             }
 
-            var task = TaskModel.GetList().FirstOrDefault(c => c.Code.Equals(code.Value) && c.Date == date.Value && c.IdIsp == idIsp.Num);
+            var task = TaskModel.GetList().FirstOrDefault(c => c.Code.Equals(code.Value) && c.Date == date.Value.Date && c.IdIsp == idIsp.Num);
 
             if(task != null)
             {

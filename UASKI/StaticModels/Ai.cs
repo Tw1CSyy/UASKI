@@ -12,6 +12,7 @@ namespace UASKI.StaticModels
     {
         private readonly static List<Notice> Orders = new List<Notice>();
         private readonly static List<int> Buffer = new List<int>();
+        public static TypeBuffer TypeBuffer = TypeBuffer.Null;
 
         private static TextBox Text;
         private static bool Sleep = true;
@@ -27,7 +28,7 @@ namespace UASKI.StaticModels
             Text = box;
             DefultColor = box.BackColor;
             Timer = new Timer();
-            Timer.Interval = 500;
+            Timer.Interval = 1;
             Timer.Tick += NoticeTimer;
         }
 
@@ -62,9 +63,7 @@ namespace UASKI.StaticModels
         public static void AddMessage(TypeNotice type , string text)
         {
             string mes = text;
-
             var notice = new Notice(mes, type);
-
             Orders.Add(notice);
             Timer.Start();
         }
@@ -133,9 +132,7 @@ namespace UASKI.StaticModels
         {
             var rand = new Random();
             var mes = AiLibrary.ErrorText[rand.Next(0, AiLibrary.ErrorText.Count - 1)];
-
-            var notice = new Notice(mes, TypeNotice.Error);
-            Say(notice);
+            AddMessage(TypeNotice.Error, mes);
         }
 
         /// <summary>
@@ -143,8 +140,7 @@ namespace UASKI.StaticModels
         /// </summary>
         public static void AppError()
         {
-            var notice = new Notice("Ошибка при выполнении программы (от вас не зависящая)", TypeNotice.Error);
-            Say(notice);
+            AddMessage(TypeNotice.Error , "Ошибка при выполнении программы (от вас не зависящая)");
         }
 
         /// <summary>
@@ -152,8 +148,7 @@ namespace UASKI.StaticModels
         /// </summary>
         public static void Query()
         {
-            var notice = new Notice("Нажмите еще раз для подтверждения" , TypeNotice.Warning);
-            Say(notice);
+            AddMessage(TypeNotice.Warning, "Нажмите еще раз для подтверждения");
             SystemData.IsQuery = true;
         }
 
@@ -163,8 +158,7 @@ namespace UASKI.StaticModels
         /// <param name="text">Текст сообщения</param>
         public static void Comlite(string text)
         {
-            var notice = new Notice(text, TypeNotice.Comlite);
-            Say(notice);
+           AddMessage(TypeNotice.Comlite, text);
         }
 
         /// <summary>
@@ -255,6 +249,7 @@ namespace UASKI.StaticModels
                     return true;
                 case Keys.OemPeriod:
                     Buffer.Clear();
+                    TypeBuffer = TypeBuffer.Null;
                     var notice1 = new Notice("Буффер отчищен", TypeNotice.Comlite);
                     Say(notice1);
                     return true;
@@ -312,15 +307,22 @@ namespace UASKI.StaticModels
         /// Добавляет id в буффер
         /// </summary>
         /// <param name="id">Id</param>
-        /// <param name="code">Код для отображения в консоли</param>
-        public static void AddBuffer(int id , string code)
+        /// <param name="text">Text для отображения в консоли</param>
+        public static void AddBuffer(int id , string text)
         {
-            Buffer.Add(id);
-            var message = $"Задача с кодом {code} добавлена в буффер";
-            var notice = new Notice(message, TypeNotice.Default);
-            Say(notice);
-            notice = new Notice($"Записей в буфере: {Buffer.Count}", TypeNotice.Default);
-            Say(notice);
+            
+
+            if(Buffer.Any(c => c == id))
+            {
+                AddMessage(TypeNotice.Error, "Данная запись уже есть в буфере");
+            }
+            else
+            {
+                Buffer.Add(id);
+                AddMessage(TypeNotice.Default, text);
+                AddMessage(TypeNotice.Default, $"Записей в буфере: {Buffer.Count}");
+            }
+            
         }
 
         /// <summary>
@@ -335,24 +337,20 @@ namespace UASKI.StaticModels
         /// Удаляет запись из буфера
         /// </summary>
         /// <param name="id">Id задачи</param>
-        /// <param name="code">Код для отображения в консоли</param>
-        public static void DeleteBuffer(int id , string code)
+        /// <param name="text">Text для отображения в консоли</param>
+        public static void DeleteBuffer(int id , string text)
         {
             var item = Buffer.IndexOf(id);
 
             if(item == -1)
             {
-                var notice = new Notice("Запись не найдена в буфере", TypeNotice.Error);
-                Say(notice);
+                AddMessage(TypeNotice.Error, "Запись не найдена в буфере");
             }
             else
             {
                 Buffer.RemoveAt(item);
-                var message = $"Задача с кодом {code} удаленна из буффера";
-                var notice = new Notice(message, TypeNotice.Default);
-                Say(notice);
-                notice = new Notice($"Записей в буфере: {Buffer.Count}", TypeNotice.Default);
-                Say(notice);
+                AddMessage(TypeNotice.Default, text);
+                AddMessage(TypeNotice.Default, $"Записей в буфере: {Buffer.Count}");
             }
         }
 

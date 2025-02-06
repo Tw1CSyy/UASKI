@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using UASKI.Core.Models;
 using UASKI.Forms;
@@ -49,6 +52,20 @@ namespace UASKI.Pages
         public override bool AiKeyDown(KeyEventArgs key)
         {
             return false;
+        }
+
+        private bool Add(string code , int idIsp , int idCon , DateTime date)
+        {
+            var model = new TaskModel(code , idIsp , idCon , date);
+            var result = model.Add();
+
+            if (result == false)
+            {
+                Ai.AppError();
+                return false;
+            }
+
+            return true;
         }
 
         #region Клавиши
@@ -174,6 +191,7 @@ namespace UASKI.Pages
             }
         }
 
+
         public bool button1_KeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -192,18 +210,36 @@ namespace UASKI.Pages
                         Ai.Error();
                         return false;
                     }
-                        
-                    var model = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value);
-                    result = model.Add();
-
-                    if (result == false)
+                    
+                    if(Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
                     {
-                        Ai.AppError();
-                        return false;
+                        foreach (var item in Ai.GetBuffer())
+                        {
+                            if(!Add(code.Value , item , idCon.Num , date.Value))
+                            {
+                                Ai.AppError();
+                                return false;
+                            }
+                        }
+
+                        Ai.Comlite($"Новые задачи ({Ai.GetBuffer().Count}) добавлены");
+                        Ai.GetBuffer().Clear();
+                        Ai.TypeBuffer = Enums.TypeBuffer.Null;
+
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер пустой");
+                    }
+                    else
+                    {
+                        if (!Add(code.Value, idIsp.Num, idCon.Num, date.Value))
+                        {
+                            Ai.AppError();
+                            return false;
+                        }
+
+                        Ai.Comlite($"Новая задача добавлена c кодом {code.Value}");
                     }
 
                     ClearPage();
-                    Ai.Comlite($"Новая задача добавлена c кодом {code.Value}");
                     Show();
                 }
                 else

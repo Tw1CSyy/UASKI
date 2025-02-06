@@ -112,14 +112,22 @@ namespace UASKI.Pages
                 {
                     var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
                     var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
-                    Ai.AddBuffer(id, code);
+
+                    if (Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
+                    {
+                        Ai.GetBuffer().Clear();
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер отчищен");
+                    }
+
+                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в буффер");
+                    Ai.TypeBuffer = Enums.TypeBuffer.Task;
                     return true;
                 }
                 else if (key.KeyCode == Keys.X && DataGridView.d.SelectedRows.Count != 0)
                 {
                     var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
                     var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
-                    Ai.DeleteBuffer(id, code);
+                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из буффера");
                     return true;
                 }
             }

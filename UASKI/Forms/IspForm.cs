@@ -4,6 +4,9 @@ using System.Windows.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
 using UASKI.Core.Models;
+using System;
+using UASKI.StaticModels;
+using System.Drawing;
 
 namespace UASKI.Forms
 {
@@ -20,13 +23,14 @@ namespace UASKI.Forms
         /// <param name="t1">Фамилия</param>
         /// <param name="t2">Подразделение</param>
         /// <param name="t3">Таб Номер</param>
-        public IspForm(TextBox t1 , TextBox t2 , TextBox t3 )
+        public IspForm(TextBox t1 , TextBox t2 , TextBox t3)
         {
             InitializeComponent();
 
             this.t1 = t1;
             this.t2 = t2;
             this.t3 = t3;
+            this.Location = new Point(SystemData.Form.Location.X - 126 , SystemData.Form.Location.Y + 1);
 
             DataGridView = new DataGridViewComponent(dataGridView1);
             Start();
@@ -66,12 +70,41 @@ namespace UASKI.Forms
 
             DataGridView.d.Focus();
         }
+        public bool AiKeyDown(KeyEventArgs key)
+        {
+            if (key.Control)
+            {
+                if (key.KeyCode == Keys.C && DataGridView.d.SelectedRows.Count != 0)
+                {
+                    var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
+                   
+                    if (Ai.TypeBuffer == Enums.TypeBuffer.Task)
+                    {
+                        Ai.GetBuffer().Clear();
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер отчищен");
+                    }
+
+                    Ai.AddBuffer(id, $"Исполнитель с кодом {id} добавлен в буффер");
+                    Ai.TypeBuffer = Enums.TypeBuffer.AddTask;
+                    return true;
+                }
+                else if (key.KeyCode == Keys.X && DataGridView.d.SelectedRows.Count != 0)
+                {
+                    var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
+                    Ai.DeleteBuffer(id, $"Исполнитель с кодом {id} удален из буффера");
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             var form = this;
 
-            if (e.KeyCode == Keys.Escape)
+            if (AiKeyDown(e)) { }
+            else if (e.KeyCode == Keys.Escape)
             {
                 form.Dispose();
             }
@@ -106,5 +139,6 @@ namespace UASKI.Forms
             var key = new KeyEventArgs(Keys.Enter);
             dataGridView1_KeyDown(sender, key);
         }
+
     }
 }
