@@ -202,7 +202,12 @@ namespace UASKI.Core.Models
         /// <returns></returns>
         public IspModel GetIsp(List<IspModel> list)
         {
-            return list.FirstOrDefault(c => c.Code == IdIsp);
+            var item = list.FirstOrDefault(c => c.Code == IdIsp);
+
+            if (item != null)
+                return item;
+            else
+                return new IspModel(0 , "0", "0", "0", 0);
         }
 
         /// <summary>
@@ -212,7 +217,12 @@ namespace UASKI.Core.Models
         /// <returns></returns>
         public IspModel GetCon(List<IspModel> list)
         {
-            return list.FirstOrDefault(c => c.Code == IdCon);
+            var item = list.FirstOrDefault(c => c.Code == IdCon);
+
+            if (item != null)
+                return item;
+            else
+                return new IspModel(0, "0", "0", "0", 0);
         }
 
         /// <summary>

@@ -319,8 +319,8 @@ namespace UASKI.Helpers
             contextTask = contextTask.Where(c => c.Date < dateTo).ToList();
 
             var tasks = contextArhiv;
-            var tasksPediod = tasks.Where(c => c.DateClose.Date >= dateFrom && c.DateClose.Date <= dateTo).ToList();
-            var tasksMonth = tasks.Where(c => c.DateClose.Month == dateFrom.Month && c.DateClose.Year == dateFrom.Year).ToList();
+            var tasksPediod = tasks.Where(c => c.Date.Date >= dateFrom && c.Date.Date <= dateTo).ToList();
+            var tasksMonth = tasks.Where(c => c.Date.Month == dateFrom.Month && c.Date.Year == dateFrom.Year).ToList();
 
             item.CountPeriod = tasksPediod.Count();
             item.CountMonth = tasksMonth.Count();
