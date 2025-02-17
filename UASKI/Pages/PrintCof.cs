@@ -103,7 +103,7 @@ namespace UASKI.Pages
                     cof.CountPeriod.ToString(),
                     cof.CountOpzPeriod.ToString(),
                     cof.CountDayPeriod.ToString(),
-                    cof.KofPeriod.ToString()
+                    cof.KofPeriodString
                     );
 
                 model.Add(item);
@@ -113,7 +113,7 @@ namespace UASKI.Pages
                     cof.CountMonth.ToString(),
                     cof.CountOpzMonth.ToString(),
                     cof.CountDayMonth.ToString(),
-                    cof.KofMonth.ToString()
+                    cof.KofMonthString
                     );
 
                 model.Add(item);

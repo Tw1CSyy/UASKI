@@ -59,16 +59,8 @@ namespace UASKI.Pages
                 c.CountPeriod.ToString(),
                 c.CountOpzPeriod.ToString(),
                 c.CountDayPeriod.ToString(),
-                c.KofPeriod.ToString()
+                c.KofPeriodString
                 )).ToList();
-
-            foreach (var row in dataRowModels)
-            {
-                if (row.Values[4].Equals("0"))
-                    row.Values[4] = "-";
-                else if (double.TryParse(row.Values[4] , out double i) && Convert.ToDouble(row.Values[4]) < 0)
-                    row.Values[4] = "0";
-            }
 
             var columns = new DataGridColumnModel[]
             {

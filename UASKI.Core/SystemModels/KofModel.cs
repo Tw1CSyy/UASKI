@@ -52,5 +52,43 @@ namespace UASKI.Core.SystemModels
         /// Коэффициент качества за месяц
         /// </summary>
         public double KofMonth { get; set; }
+        
+        /// <summary>
+        /// Строка коф. за период
+        /// </summary>
+        public string KofPeriodString { get => GetKofPeriod(); }
+
+        /// <summary>
+        /// Строка коф. за месяц
+        /// </summary>
+        public string KofMonthString { get => GetKofMonth(); }
+
+        /// <summary>
+        /// Возвращает коф. за период в строковом виде
+        /// </summary>
+        /// <returns></returns>
+        private string GetKofPeriod()
+        {
+            if (KofPeriod < 0)
+                return "0";
+            else if (KofPeriod == 0 && CountPeriod == 0)
+                return "-";
+            else
+                return KofPeriod.ToString();
+        }
+
+        /// <summary>
+        /// Возвращает коф. за месяц в строковом виде
+        /// </summary>
+        /// <returns></returns>
+        private string GetKofMonth()
+        {
+            if (KofMonth < 0)
+                return "0";
+            else if (KofMonth == 0 && CountMonth == 0)
+                return "-";
+            else
+                return KofMonth.ToString();
+        }
     }
 }
