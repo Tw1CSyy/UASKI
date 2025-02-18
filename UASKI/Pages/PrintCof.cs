@@ -157,13 +157,18 @@ namespace UASKI.Pages
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
             var font = new Font("Arial", 10);
+            var isp = IspModel.GetByCode(Convert.ToInt32(form.textBox36.Text));
+
+            string otdelString = "Отдел(цех) " + isp.CodePodr.ToString();
+            string nameString = form.textBox37.Text;
+
             string header1 = $"Справка о составляющих коэффициента качества";
             string header2 = $"C {form.dateTimePicker14.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker15.Value.ToString("dd.MM.yyyy")}";
             string header3 = form.label99.Text;
             string header4 = form.label100.Text;
 
-            var model = new PrintModel(font, e, form.DataGridView11.d, header1, header2);
-            var model2 = new PrintModel(font, e, form.DataGridView13.d, header3, header4);
+            var model = new PrintModel(font, e, form.DataGridView11.d, otdelString , header1, nameString , header2);
+            var model2 = new PrintModel(font, e, form.DataGridView13.d, otdelString , header3, header4);
             var y = SystemHelper.PrintDocument(model);
             SystemHelper.PrintDocument(model2 , y);
         }

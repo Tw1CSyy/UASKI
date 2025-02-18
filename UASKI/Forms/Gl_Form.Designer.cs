@@ -84,6 +84,7 @@ namespace UASKI
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.button13 = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -313,7 +314,6 @@ namespace UASKI
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.label54 = new System.Windows.Forms.Label();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -967,6 +967,12 @@ namespace UASKI
             this.tabPage10.Size = new System.Drawing.Size(881, 543);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Просмотр праздн";
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(708, 248);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 2;
             // 
             // button13
             // 
@@ -3585,15 +3591,9 @@ namespace UASKI
             this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label54.Location = new System.Drawing.Point(3, 738);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(72, 17);
+            this.label54.Size = new System.Drawing.Size(80, 17);
             this.label54.TabIndex = 8;
-            this.label54.Text = "UASKI 2.3";
-            // 
-            // monthCalendar2
-            // 
-            this.monthCalendar2.Location = new System.Drawing.Point(708, 248);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 2;
+            this.label54.Text = "UASKI 2.31";
             // 
             // Gl_Form
             // 
@@ -3613,7 +3613,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.3";
+            this.Text = " УАСКИ 2.31";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
