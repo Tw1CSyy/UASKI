@@ -176,6 +176,68 @@ namespace UASKI.Core.Models
             return GetList().FirstOrDefault(c => c.Code == code);
         }
 
+        /// <summary>
+        /// Расчитывает коофициент качества по списку задач
+        /// </summary>
+        /// <param name="tasks">Список архивных задач</param>
+        /// <param name="listPret">Список претензий и рецензий</param>
+        /// <returns></returns>
+        private double GetCof(List<ArhivModel> tasks, List<PretModel> listPret, List<HolidayModel> holy, List<TaskModel> contextTask)
+        {
+            if (tasks.Count == 0)
+            {
+                return 0;
+            }
+
+            int countTask = 0, countPret = 0, countRez = 0, countOpz = 0, countCof = 0;
+           
+            foreach (var task in tasks)
+            {
+                countTask += Convert.ToInt32(task.Code[0].ToString()) * task.Otm;
+
+                var prets = listPret.Where(c => c.IdTask == task.Id && c.Type == 1).ToList();
+                var rezs = listPret.Where(c => c.IdTask == task.Id && c.Type == 2).ToList();
+
+                countPret += prets.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+                countRez += rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
+
+                if (task.GetDaysOpz(holy) != 0)
+                {
+                    countOpz += Convert.ToInt32(task.Code[0].ToString()) * task.GetDaysOpz(holy);
+                }
+
+                countCof += Convert.ToInt32(task.Code[0].ToString()) + prets.Sum(c => Convert.ToInt32(c.Code[0].ToString())) + rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()));
+            }
+
+            foreach (var t in contextTask)
+            {
+                countOpz += Convert.ToInt32(t.Code[0].ToString()) * t.GetDaysOpz(holy);
+            }
+
+            double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
+            result = Math.Round(result, 2);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Расчитывает данные для коофициента качества для исполнителя
+        /// </summary>
+        /// <param name="dateFrom">Дата от</param>
+        /// <param name="dateTo">Дата до</param>
+        /// <returns></returns>
+        public KofModel GetKofModel(List<TaskModel> contextTask, List<ArhivModel> contextArhiv, List<HolidayModel> holy , List<PretModel> prets)
+        {
+            var item = new KofModel();
+
+            item.Isp = InizByCode;
+            item.Count = contextArhiv.Count() + contextTask.Count;
+            item.CountOpz = contextArhiv.Count(c => c.GetDaysOpz(holy) != 0) + contextTask.Count(c => c.GetDaysOpz(holy) != 0);
+            item.CountDay = contextArhiv.Sum(c => c.GetDaysOpz(holy)) + contextTask.Sum(c => c.GetDaysOpz(holy));
+            item.Kof = GetCof(contextArhiv, prets, holy, contextTask);
+
+            return item;
+        }
     }
 
 }

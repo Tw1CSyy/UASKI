@@ -44,31 +44,39 @@ namespace UASKI.Pages
             var result = new List<KofModel>();
             var taskList = TaskModel.GetList();
             var arhivList = ArhivModel.GetList();
+            var pretList = PretModel.GetList();
 
             foreach (var isp in ispList.OrderBy(c => c.CodePodr))
             {
-                var tasks = taskList.Where(c => c.IdIsp == isp.Code).ToList();
-                var arhiv = arhivList.Where(c => c.IdIsp == isp.Code).ToList();
+                var tasks = taskList
+                    .Where(c => c.IdIsp == isp.Code)
+                    .Where(c => c.GetDaysOpz(holy) > 0)
+                    .ToList();
+                var arhiv = arhivList
+                    .Where(c => c.IdIsp == isp.Code)
+                     .Where(c => (c.DateClose < c.Date && c.DateClose >= form.dateTimePicker12.Value && c.DateClose <= form.dateTimePicker13.Value) ||
+                    (c.DateClose >= c.Date && c.Date >= form.dateTimePicker12.Value && c.Date <= form.dateTimePicker13.Value))
+                    .ToList();
 
-                var item = SystemHelper.GetKofModel(form.dateTimePicker12.Value, form.dateTimePicker13.Value , isp , tasks , arhiv , holy);
+                var item = isp.GetKofModel(tasks , arhiv , holy , pretList);
                 result.Add(item);
             }
 
             var dataRowModels = result.Select(c => new DataGridRowModel(
                 c.Isp,
-                c.CountPeriod.ToString(),
-                c.CountOpzPeriod.ToString(),
-                c.CountDayPeriod.ToString(),
-                c.KofPeriodString
+                c.Count.ToString(),
+                c.CountOpz.ToString(),
+                c.CountDay.ToString(),
+                c.KofString
                 )).ToList();
 
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("Кол-во Выполненных Заданий" , typeof(int)),
-                new DataGridColumnModel("Кол-во Случаев Опзд" , typeof(int)),
-                new DataGridColumnModel("Кол-во Дней Опзд" , typeof(int)),
-                new DataGridColumnModel("Кооф")
+                new DataGridColumnModel("Кол-во выполненных заданий" , typeof(int)),
+                new DataGridColumnModel("Кол-во случаев опозданий" , typeof(int)),
+                new DataGridColumnModel("Кол-во дней опозданий" , typeof(int)),
+                new DataGridColumnModel("Коэффициент")
             };
 
             form.DataGridView10.PullListInDataGridView(dataRowModels.ToArray(), columns);

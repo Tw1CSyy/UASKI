@@ -26,7 +26,7 @@ namespace UASKI.Core.Models
         public int IdIsp { get; private set; }
 
         /// <summary>
-        /// Идентификатор контроллера
+        /// Идентификатор контролера
         /// </summary>
         public int IdCon { get; private set; }
 

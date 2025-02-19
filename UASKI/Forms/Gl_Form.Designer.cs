@@ -1573,7 +1573,7 @@ namespace UASKI
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(260, 54);
             this.button4.TabIndex = 0;
-            this.button4.Text = "Добавить контроллера/исполнителя";
+            this.button4.Text = "Добавить контролера/исполнителя";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
             this.button4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button4_PreviewKeyDown);
@@ -3593,7 +3593,7 @@ namespace UASKI
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(80, 17);
             this.label54.TabIndex = 8;
-            this.label54.Text = "UASKI 2.31";
+            this.label54.Text = "UASKI 2.32";
             // 
             // Gl_Form
             // 
@@ -3613,7 +3613,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.31";
+            this.Text = " УАСКИ 2.32";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

@@ -765,20 +765,24 @@ namespace UASKI
         {
             if (!SystemData.IsClear)
             {
-                if (textBox20.Text.Length == 0 && textBox30.Text.Length >= 4)
+                if (textBox30.Text.Length > 0)
                 {
                     int code;
 
                     if (int.TryParse(textBox30.Text, out code))
                     {
-                        var isp = IspModel.GetByCode(code);
+                        var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == code);
 
                         if (isp != null)
                             textBox20.Text = isp.InizNotCode;
+                        else
+                            textBox20.Clear();
                     }
+                    else
+                        textBox20.Clear();
                 }
 
-                if (textBox30.Text.Length >= 4)
+                if (textBox30.Text.Length > 0)
                 {
                     SystemData.Pages.PrintTaskList.Select();
                 }
@@ -859,20 +863,24 @@ namespace UASKI
         {
             if (!SystemData.IsClear)
             {
-                if (textBox37.Text.Length == 0 && textBox36.Text.Length >= 4)
+                if (textBox36.Text.Length > 0)
                 {
                     int code;
 
                     if (int.TryParse(textBox36.Text, out code))
                     {
-                        var isp = IspModel.GetByCode(code);
+                        var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == code);
 
                         if (isp != null)
                             textBox37.Text = isp.InizNotCode;
+                        else
+                            textBox37.Clear();
                     }
+                    else
+                        textBox37.Clear();
                 }
 
-                if (textBox36.Text.Length >= 4)
+                if (textBox36.Text.Length > 0)
                 {
                     SystemData.Pages.PrintCof.Select();
                 }

@@ -45,21 +45,29 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-           if(form.textBox37.Text.Length != 0)
+            if (form.textBox37.Text.Length != 0)
             {
-                var model = new List<DataGridRowModel>();
                 var isps = IspModel.GetList();
+                var isp = isps.FirstOrDefault(c => c.CodePodr == Convert.ToInt32(form.textBox36.Text));
+                var model = new List<DataGridRowModel>();
                 var holy = HolidayModel.GetList();
-                var isp = isps.FirstOrDefault(c => c.Code == Convert.ToInt32(form.textBox36.Text));
+                var arhivContext = ArhivModel.GetList();
 
-                var tasks = ArhivModel.GetList()
+                var arhivTasks = new List<ArhivModel>();
+                var tasks = new List<TaskModel>();
+
+                arhivTasks = arhivContext
+                       .Where(c => c.IdIsp == isp.Code)
+                       .Where(c => (c.DateClose < c.Date && c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value) ||
+                       (c.DateClose >= c.Date && c.Date >= form.dateTimePicker14.Value && c.Date <= form.dateTimePicker15.Value))
+                       .ToList();
+
+                tasks = TaskModel.GetList()
                     .Where(c => c.IdIsp == isp.Code)
-                    .Where(c => c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value)
+                    .Where(c => c.GetDaysOpz(holy) > 0)
                     .ToList();
 
-                var item = new DataGridRowModel();
-
-                foreach (var task in tasks)
+                foreach (var task in arhivTasks)
                 {
                     var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
                     int opzDays = task.GetDaysOpz(holy);
@@ -68,12 +76,29 @@ namespace UASKI.Pages
                     if (opzDays > 0)
                         opz = opzDays;
 
-                    item = new DataGridRowModel(
+                    var item = new DataGridRowModel(
                         task.Code,
                         task.Date.ToString("dd.MM.yyyy"),
                         con.InizByCode,
                         task.DateClose.ToString("dd.MM.yyyy"),
                         task.Otm.ToString(),
+                        opz.ToString()
+                    );
+
+                    model.Add(item);
+                }
+
+                foreach (var task in tasks)
+                {
+                    var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
+                    int opz = task.GetDaysOpz(holy);
+
+                    var item = new DataGridRowModel(
+                        task.Code,
+                        task.Date.ToString("dd.MM.yyyy"),
+                        con.InizByCode,
+                        string.Empty,
+                        string.Empty,
                         opz.ToString()
                         );
 
@@ -84,59 +109,82 @@ namespace UASKI.Pages
                 {
                     new DataGridColumnModel("Код"),
                     new DataGridColumnModel("Срок"),
-                    new DataGridColumnModel("Котроллер"),
+                    new DataGridColumnModel("Контролер"),
                     new DataGridColumnModel("Дата выполнения"),
                     new DataGridColumnModel("Оценка" , typeof(int)),
-                    new DataGridColumnModel("Опзд" , typeof(int)),
+                    new DataGridColumnModel("Кол-во опозданий" , typeof(int)),
                 };
 
                 form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
-                var contextTasks = TaskModel.GetList().Where(c => c.IdIsp == isp.Code).ToList();
-                var contextArhiv = ArhivModel.GetList().Where(c => c.IdIsp == isp.Code).ToList();
-                
-                var cof = SystemHelper.GetKofModel(form.dateTimePicker14.Value, form.dateTimePicker15.Value , isp , contextTasks , contextArhiv , holy);
 
-                model = new List<DataGridRowModel>();
-
-                item = new DataGridRowModel(
-                    "За период",
-                    cof.CountPeriod.ToString(),
-                    cof.CountOpzPeriod.ToString(),
-                    cof.CountDayPeriod.ToString(),
-                    cof.KofPeriodString
-                    );
-
-                model.Add(item);
-
-                item = new DataGridRowModel(
-                    "За месяц",
-                    cof.CountMonth.ToString(),
-                    cof.CountOpzMonth.ToString(),
-                    cof.CountDayMonth.ToString(),
-                    cof.KofMonthString
-                    );
-
-                model.Add(item);
-
-                columns = new DataGridColumnModel[]
+                if (isp != null)
                 {
-                    new DataGridColumnModel("#"),
-                    new DataGridColumnModel("Заданий"),
-                    new DataGridColumnModel("Случ.опзд"),
-                    new DataGridColumnModel("К-во Дн.опзд"),
-                    new DataGridColumnModel("Качество")
-                };
+                    var arhivTasksMonth = arhivContext
+                       .Where(c => c.IdIsp == isp.Code)
+                       .Where(c => (c.DateClose < c.Date && c.DateClose.Month == form.dateTimePicker14.Value.Month && c.DateClose.Year == form.dateTimePicker14.Value.Year)
+                       || (c.DateClose >= c.Date && c.Date.Month == form.dateTimePicker14.Value.Month && c.Date.Year == form.dateTimePicker14.Value.Year))
+                       .ToList();
 
-                form.DataGridView13.PullListInDataGridView(model.ToArray(), columns);
+                    var pretList = PretModel.GetList();
+                    var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList);
+                    var cof2 = isp.GetKofModel(tasks, arhivTasksMonth, holy, pretList);
 
-                form.DataGridView13.d.Visible = true;
-                form.label99.Visible = true;
-                form.label100.Visible = true;
+                    model = new List<DataGridRowModel>();
 
-                form.label99.Text = $"Уважаемый товарищ {isp.InizNotCode}";
+                    var item1 = new DataGridRowModel(
+                         "За период",
+                         cof1.Count.ToString(),
+                         cof1.CountOpz.ToString(),
+                         cof1.CountDay.ToString(),
+                         cof1.KofString
+                    );
+
+                    model.Add(item1);
+
+                    item1 = new DataGridRowModel(
+                        "За месяц",
+                        cof2.Count.ToString(),
+                        cof2.CountOpz.ToString(),
+                        cof2.CountDay.ToString(),
+                        cof2.KofString
+                    );
+
+                    model.Add(item1);
+
+                    columns = new DataGridColumnModel[]
+                    {
+                        new DataGridColumnModel("#"),
+                        new DataGridColumnModel("Заданий"),
+                        new DataGridColumnModel("Кол-во случаев опозданий"),
+                        new DataGridColumnModel("Кол-во дней опозданий"),
+                        new DataGridColumnModel("Коэффициент")
+                    };
+
+                    form.DataGridView13.PullListInDataGridView(model.ToArray(), columns);
+
+                    form.DataGridView13.d.Visible = true;
+                    form.label99.Visible = true;
+                    form.label100.Visible = true;
+
+                    form.label99.Text = $"Уважаемый товарищ {isp.InizNotCode}";
+                }
+                else
+                {
+                    form.DataGridView13.d.Visible = false;
+                    form.label99.Visible = false;
+                    form.label100.Visible = false;
+                }
+
                 form.DataGridView11.d.ClearSelection();
                 form.DataGridView13.d.ClearSelection();
-           }
+            }
+            else
+            {
+                form.DataGridView11.d.DataSource = false;
+                form.DataGridView13.d.Visible = false;
+                form.label99.Visible = false;
+                form.label100.Visible = false;
+            }
         }
 
         protected override void Print()
@@ -208,7 +256,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
-                var f = new IspForm(form.textBox37, new TextBox(), form.textBox36);
+                var f = new IspForm(form.textBox37, form.textBox36, new TextBox());
                 f.Show();
                 e.Handled = true;
             }

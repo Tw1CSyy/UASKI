@@ -14,81 +14,43 @@ namespace UASKI.Core.SystemModels
         public string Isp { get; set; }
 
         /// <summary>
-        /// Количество заданий за выбраный период
+        /// Количество заданий
         /// </summary>
-        public int CountPeriod { get; set; }
+        public int Count{ get; set; }
 
         /// <summary>
-        /// Количество заданий за месяц
+        /// Количество опазданий
         /// </summary>
-        public int CountMonth { get; set; }
+        public int CountOpz { get; set; }
 
         /// <summary>
-        /// Количество опазданий за выбраный период
+        /// Количество дней опазданий
         /// </summary>
-        public int CountOpzPeriod { get; set; }
+        public int CountDay { get; set; }
 
         /// <summary>
-        /// Количество опазданий за месяц
+        /// Коэффициент качества
         /// </summary>
-        public int CountOpzMonth { get; set; }
+        public double Kof { get; set; }
 
         /// <summary>
-        /// Количество дней опазданий за выбранный период
+        /// Строка Коэффициент качества
         /// </summary>
-        public int CountDayPeriod { get; set; }
-
-        /// <summary>
-        /// Количество дней опазданий за месяц
-        /// </summary>
-        public int CountDayMonth { get; set; }
-
-        /// <summary>
-        /// Коэффициент качества за выбранный период
-        /// </summary>
-        public double KofPeriod { get; set; }
-
-        /// <summary>
-        /// Коэффициент качества за месяц
-        /// </summary>
-        public double KofMonth { get; set; }
-        
-        /// <summary>
-        /// Строка коф. за период
-        /// </summary>
-        public string KofPeriodString { get => GetKofPeriod(); }
-
-        /// <summary>
-        /// Строка коф. за месяц
-        /// </summary>
-        public string KofMonthString { get => GetKofMonth(); }
+        public string KofString { get => GetKof(); }
 
         /// <summary>
         /// Возвращает коф. за период в строковом виде
         /// </summary>
         /// <returns></returns>
-        private string GetKofPeriod()
+        private string GetKof()
         {
-            if (KofPeriod < 0)
+            if (Kof < 0)
                 return "0";
-            else if (KofPeriod == 0 && CountPeriod == 0)
+            else if (Kof == 0 && Count == 0)
                 return "-";
             else
-                return KofPeriod.ToString();
+                return Kof.ToString();
         }
 
-        /// <summary>
-        /// Возвращает коф. за месяц в строковом виде
-        /// </summary>
-        /// <returns></returns>
-        private string GetKofMonth()
-        {
-            if (KofMonth < 0)
-                return "0";
-            else if (KofMonth == 0 && CountMonth == 0)
-                return "-";
-            else
-                return KofMonth.ToString();
-        }
     }
 }

@@ -46,20 +46,27 @@ namespace UASKI.Pages
             var ispCode = form.textBox30.Text;
             var isps = IspModel.GetList();
 
-            var taskList = TaskModel.GetList()
-                .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
-                .ToList();
-
-            var arhivList = ArhivModel.GetList()
-                .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
-            .ToList();
+            var taskList = new List<TaskModel>();
+            var arhivList = new List<ArhivModel>();
 
             if (int.TryParse(ispCode, out int id))
             {
-                taskList = taskList.Where(c => c.IdIsp == id).ToList();
-                arhivList = arhivList.Where(c => c.IdIsp == id).ToList();
-            }
+                var isp = isps.FirstOrDefault(c => c.CodePodr == id);
 
+                if(isp != null)
+                {
+                    taskList = TaskModel.GetList()
+                        .Where(c => c.IdIsp == isp.Code)
+                        .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
+                        .ToList();
+
+                    arhivList = ArhivModel.GetList()
+                        .Where(c => c.IdIsp == isp.Code)
+                        .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
+                        .ToList();
+                }
+                
+            }
             var result = new List<DataGridRowModel>();
            
             foreach (var task in taskList)
@@ -117,6 +124,7 @@ namespace UASKI.Pages
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
             var font = new Font("Arial", 10);
+           
             string header1 = $"Перечень заданий с {form.dateTimePicker10.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker11.Value.ToString("dd.MM.yyyy")}";
             string header2 = $"Исполнитель {form.textBox30.Text} {form.textBox20.Text}";
 
@@ -221,7 +229,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
-                var f = new IspForm(form.textBox20 , new TextBox() , form.textBox30);
+                var f = new IspForm(form.textBox20 , form.textBox30 , new TextBox());
                 f.Show();
                 e.Handled = true;
             }

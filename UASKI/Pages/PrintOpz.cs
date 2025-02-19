@@ -61,7 +61,7 @@ namespace UASKI.Pages
             {
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Код задания"),
-                new DataGridColumnModel("Код котролера"),
+                new DataGridColumnModel("Код контролера"),
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Дней опозданий" , typeof(int))
             };
