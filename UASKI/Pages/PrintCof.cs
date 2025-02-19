@@ -205,7 +205,7 @@ namespace UASKI.Pages
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
             var font = new Font("Arial", 10);
-            var isp = IspModel.GetByCode(Convert.ToInt32(form.textBox36.Text));
+            var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == Convert.ToInt32(form.textBox36.Text));
 
             string otdelString = "Отдел(цех) " + isp.CodePodr.ToString();
             string nameString = form.textBox37.Text;
