@@ -183,8 +183,10 @@ namespace UASKI.Core.Models
         /// <param name="listPret">Список претензий из базы</param>
         /// <param name="holy">Список выходных из базы</param>
         /// <param name="contextTask">Список задач отфильтровнный по опазданию и IdIsp</param>
+        /// <param name="dateFrom">Дата с которой считаем</param>
+        /// <param name="dateTo">Дата до которой считаем</param>
         /// <returns></returns>
-        private double GetCof(List<ArhivModel> tasks, List<PretModel> listPret, List<HolidayModel> holy, List<TaskModel> contextTask)
+        private double GetCof(List<ArhivModel> tasks, List<PretModel> listPret, List<HolidayModel> holy, List<TaskModel> contextTask , DateTime dateFrom , DateTime dateTo)
         {
             if (tasks.Count == 0)
             {
@@ -203,9 +205,9 @@ namespace UASKI.Core.Models
                 countPret += prets.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
                 countRez += rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()) * c.Otm);
 
-                if (task.GetDaysOpz(holy) != 0)
+                if (task.GetDaysOpz(holy, dateFrom, dateTo) != 0)
                 {
-                    countOpz += Convert.ToInt32(task.Code[0].ToString()) * task.GetDaysOpz(holy);
+                    countOpz += Convert.ToInt32(task.Code[0].ToString()) * task.GetDaysOpz(holy, dateFrom, dateTo);
                 }
 
                 countCof += Convert.ToInt32(task.Code[0].ToString()) + prets.Sum(c => Convert.ToInt32(c.Code[0].ToString())) + rezs.Sum(c => Convert.ToInt32(c.Code[0].ToString()));
@@ -213,7 +215,7 @@ namespace UASKI.Core.Models
 
             foreach (var t in contextTask)
             {
-                countOpz += Convert.ToInt32(t.Code[0].ToString()) * t.GetDaysOpz(holy);
+                countOpz += Convert.ToInt32(t.Code[0].ToString()) * t.GetDaysOpz(holy, dateFrom, dateTo);
             }
 
             double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
@@ -225,20 +227,33 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Расчитывает данные для коофициента качества для исполнителя
         /// </summary>
-        /// <param name="contextTask">Список задач отфильтровнный по опазданию и IdIsp</param>
-        /// <param name="contextArhiv">Список архивных задач, отфильтрованный по дате и IspId</param>
+        /// <param name="contextTask">Список задач из базы</param>
+        /// <param name="contextArhiv">Список архивных задач из базы</param>
         /// <param name="holy">Список выходных из базы</param>
         /// <param name="prets">Список претензий из базы</param>
+        /// <param name="dateFrom">Дата с которой считаем</param>
+        /// <param name="dateTo">Дата до которой считаем</param>
         /// <returns></returns>
-        public KofModel GetKofModel(List<TaskModel> contextTask, List<ArhivModel> contextArhiv, List<HolidayModel> holy , List<PretModel> prets)
+        public KofModel GetKofModel(List<TaskModel> contextTask, List<ArhivModel> contextArhiv, List<HolidayModel> holy , List<PretModel> prets , DateTime dateFrom , DateTime dateTo)
         {
             var item = new KofModel();
 
+            var tasks = contextTask
+                   .Where(c => c.IdIsp == Code)
+                   .Where(c => c.Date < DateTime.Today)
+                   .Where(c => c.GetDaysOpz(holy, dateFrom , dateTo) > 0)
+                   .ToList();
+
+            var arhiv = contextArhiv
+                .Where(c => c.IdIsp == Code)
+                .Where(c => (c.DateClose >= dateFrom && c.DateClose <= dateTo) || (c.Date >= dateFrom && c.Date <= dateTo && c.GetDaysOpz(holy , dateFrom , dateTo) > 0))
+                .ToList();
+
             item.Isp = InizByCode;
-            item.Count = contextArhiv.Count() + contextTask.Count;
-            item.CountOpz = contextArhiv.Count(c => c.GetDaysOpz(holy) != 0) + contextTask.Count(c => c.GetDaysOpz(holy) != 0);
-            item.CountDay = contextArhiv.Sum(c => c.GetDaysOpz(holy)) + contextTask.Sum(c => c.GetDaysOpz(holy));
-            item.Kof = GetCof(contextArhiv, prets, holy, contextTask);
+            item.Count = arhiv.Count() + tasks.Count;
+            item.CountOpz = arhiv.Count(c => c.GetDaysOpz(holy , dateFrom , dateTo) != 0) + tasks.Count(c => c.GetDaysOpz(holy, dateFrom, dateTo) != 0);
+            item.CountDay = arhiv.Sum(c => c.GetDaysOpz(holy, dateFrom , dateTo)) + tasks.Sum(c => c.GetDaysOpz(holy , dateFrom, dateTo));
+            item.Kof = GetCof(arhiv, prets, holy, tasks , dateFrom , dateTo);
 
             return item;
         }

@@ -60,19 +60,19 @@ namespace UASKI.Pages
 
                     arhivTasks = arhivContext
                            .Where(c => c.IdIsp == isp.Code)
-                           .Where(c => (c.DateClose < c.Date && c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value) ||
-                           (c.DateClose >= c.Date && c.Date >= form.dateTimePicker14.Value && c.Date <= form.dateTimePicker15.Value))
+                           .Where(c => (c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value) || (c.Date >= form.dateTimePicker14.Value && c.Date <= form.dateTimePicker15.Value && c.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value) > 0))
                            .ToList();
 
                     tasks = TaskModel.GetList()
                         .Where(c => c.IdIsp == isp.Code)
-                        .Where(c => c.GetDaysOpz(holy) > 0)
+                        .Where(c => c.Date < DateTime.Today)
+                        .Where(c => c.GetDaysOpz(holy, form.dateTimePicker14.Value , form.dateTimePicker15.Value) > 0)
                         .ToList();
 
                     foreach (var task in arhivTasks)
                     {
                         var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
-                        int opzDays = task.GetDaysOpz(holy);
+                        int opzDays = task.GetDaysOpz(holy , form.dateTimePicker14.Value , form.dateTimePicker15.Value);
                         int opz = 0;
 
                         if (opzDays > 0)
@@ -93,7 +93,7 @@ namespace UASKI.Pages
                     foreach (var task in tasks)
                     {
                         var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
-                        int opz = task.GetDaysOpz(holy);
+                        int opz = task.GetDaysOpz(holy , form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                         var item = new DataGridRowModel(
                             task.Code,
@@ -126,8 +126,8 @@ namespace UASKI.Pages
                        .ToList();
 
                     var pretList = PretModel.GetList();
-                    var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList);
-                    var cof2 = isp.GetKofModel(tasks, arhivTasksMonth, holy, pretList);
+                    var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList, form.dateTimePicker14.Value , form.dateTimePicker15.Value);
+                    var cof2 = isp.GetKofModel(tasks, arhivTasksMonth, holy, pretList, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                     model = new List<DataGridRowModel>();
 
@@ -385,13 +385,6 @@ namespace UASKI.Pages
             {
                 form.dateTimePicker14.Focus();
                 SelectDataGridView(form.DataGridView11.d , false);
-                e.Handled = true;
-            }
-            else if ((e.KeyCode == Keys.Down
-                && form.DataGridView11.d.SelectedRows.Count != 0
-                && form.DataGridView11.d.SelectedRows[0].Index == form.DataGridView11.d.Rows.Count - 1))
-            {
-                SelectDataGridView(form.DataGridView13.d);
                 e.Handled = true;
             }
             else

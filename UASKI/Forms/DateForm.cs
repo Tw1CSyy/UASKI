@@ -16,10 +16,8 @@ namespace UASKI.Forms
 {
     public partial class DateForm : Form
     {
-        private static DateTimePicker pic;
-        private static DateTimePicker pic2;
-
-        private bool IsTwo = false;
+        private DateTimePicker pic;
+        private DateTimePicker pic2;
 
         public DateForm(DateTimePicker p)
         {
@@ -27,8 +25,7 @@ namespace UASKI.Forms
             pic = p;
             monthCalendar1.SelectionStart = p.Value.Date;
             monthCalendar1.SelectionEnd = p.Value.Date;
-            IsTwo = false;
-
+           
             monthCalendar1.MaxSelectionCount = 1;
             monthCalendar1.Focus();
         }
@@ -39,7 +36,6 @@ namespace UASKI.Forms
             pic = p1;
             pic2 = p2;
             monthCalendar1.MaxSelectionCount = 365;
-            IsTwo = true;
             monthCalendar1.SelectionStart = p1.Value;
             monthCalendar1.SelectionEnd = p1.Value;
             monthCalendar1.Focus();
@@ -56,22 +52,9 @@ namespace UASKI.Forms
             }
         }
 
-        private void GetTwo()
-        {
-            var start = monthCalendar1.SelectionStart;
-            var value = monthCalendar1.SelectionEnd;
-            var date = GetDate(textBox1.Text, value);
-             
-            if (date != DateTime.MinValue)
-            {
-                monthCalendar1.SelectionStart = start;
-                monthCalendar1.SelectionEnd = date.Date;
-            }
-        }
-
         private void Data()
         {
-            if (pic2.Value.Date != monthCalendar1.SelectionRange.End.Date)
+            if (pic2 != null && pic2.Value.Date != monthCalendar1.SelectionRange.End.Date)
             {
                 SystemData.IsClear = true;
                 pic.Value = monthCalendar1.SelectionRange.Start.Date;
@@ -81,10 +64,6 @@ namespace UASKI.Forms
             else
             {
                 pic.Value = monthCalendar1.SelectionRange.Start.Date;
-
-                SystemData.IsClear = true;
-                pic2.Value = monthCalendar1.SelectionRange.End.Date;
-                SystemData.IsClear = false;
             }
         }
 
@@ -97,13 +76,7 @@ namespace UASKI.Forms
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(!IsTwo)
-                    pic.Value = monthCalendar1.SelectionStart.Date;
-                else
-                {
-                    Data();
-                   
-                }
+                Data();
                 Dispose();
 
             }
@@ -117,21 +90,16 @@ namespace UASKI.Forms
                         monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 10);
                         break;
                     case Keys.D2:
-                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 11);
+                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 10);
                         monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 20);
                         break;
                     case Keys.D3:
-                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 21);
+                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 20);
                         monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 1).AddMonths(1).AddDays(-1);
                         break;
                 }
 
-                if (!IsTwo)
-                    pic.Value = monthCalendar1.SelectionStart.Date;
-                else
-                {
-                    Data();
-                }
+                Data();
                 Dispose();
             }
             else
@@ -161,10 +129,7 @@ namespace UASKI.Forms
             }
             else
             {
-                if (IsTwo)
-                    GetTwo();
-                else
-                    GetOne();
+                GetOne();
             }
         }
 
@@ -183,6 +148,9 @@ namespace UASKI.Forms
                 if (text.Length == 2)
                 {
                     var day = Convert.ToInt32(text);
+
+                    if (day > new DateTime(dateFrom.Year, dateFrom.Month + 1, 1).AddDays(-1).Day)
+                        day = new DateTime(dateFrom.Year, dateFrom.Month + 1, 1).AddDays(-1).Day;
                     date = new DateTime(dateFrom.Year, dateFrom.Month, day);
                     return date;
                 }
@@ -190,11 +158,20 @@ namespace UASKI.Forms
                 if (text.Length == 4)
                 {
                     string value = string.Empty;
+                    value += text[0];
+                    value += text[1];
+                    var day = Convert.ToInt32(value);
+
+                    value = string.Empty;
                     value += text[2];
                     value += text[3];
 
                     var month = Convert.ToInt32(value);
-                    date = new DateTime(dateFrom.Year, month, dateFrom.Day);
+
+                    if (day > new DateTime(dateFrom.Year, month + 1, 1).AddDays(-1).Day)
+                        day = new DateTime(dateFrom.Year, month + 1, 1).AddDays(-1).Day;
+
+                    date = new DateTime(dateFrom.Year, month, day);
                     return date;
                 }
 
@@ -212,7 +189,7 @@ namespace UASKI.Forms
             }
             catch (Exception)
             {
-                return DateTime.MinValue;
+                return dateFrom;
             }
 
             return DateTime.MinValue;

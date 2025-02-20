@@ -146,8 +146,9 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
-        /// Возвращает разницу в днях учитывая празднечные дни
+        /// Высчитывает дни опаздания на месяц по задаче, учитывая выходные дни
         /// </summary>
+        /// <param name="list">Список дней из базы</param>
         /// <returns></returns>
         public int GetDaysOpz(List<HolidayModel> list)
         {
@@ -155,6 +156,35 @@ namespace UASKI.Core.Models
 
             for (DateTime i = Date; i < DateClose;)
             {
+                if (list.FirstOrDefault(c => c.Date == i) == null)
+                    result++;
+
+                i = i.AddDays(1);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Высчитывает дни опаздания на месяц по задаче, учитывая выходные дни
+        /// </summary>
+        /// <param name="list">Список дней из базы</param>
+        /// <param name="dateFrom">Дата с которой считаем</param>
+        /// <param name="dateTo">Дата до которой считаем</param>
+        /// <returns></returns>
+        public int GetDaysOpz(List<HolidayModel> list, DateTime dateFrom , DateTime dateTo)
+        {
+            int result = 0;
+
+            for (DateTime i = Date; i < DateClose;)
+            {
+                if (i < dateFrom || i > dateTo)
+                {
+                    i = i.AddDays(1);
+                    continue;
+                }
+                    
+
                 if (list.FirstOrDefault(c => c.Date == i) == null)
                     result++;
 

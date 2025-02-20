@@ -48,17 +48,7 @@ namespace UASKI.Pages
 
             foreach (var isp in ispList.OrderBy(c => c.CodePodr))
             {
-                var tasks = taskList
-                    .Where(c => c.IdIsp == isp.Code)
-                    .Where(c => c.GetDaysOpz(holy) > 0)
-                    .ToList();
-                var arhiv = arhivList
-                    .Where(c => c.IdIsp == isp.Code)
-                     .Where(c => (c.DateClose < c.Date && c.DateClose >= form.dateTimePicker12.Value && c.DateClose <= form.dateTimePicker13.Value) ||
-                    (c.DateClose >= c.Date && c.Date >= form.dateTimePicker12.Value && c.Date <= form.dateTimePicker13.Value))
-                    .ToList();
-
-                var item = isp.GetKofModel(tasks , arhiv , holy , pretList);
+                var item = isp.GetKofModel(taskList , arhivList , holy , pretList , form.dateTimePicker12.Value , form.dateTimePicker13.Value);
                 result.Add(item);
             }
 
