@@ -69,7 +69,13 @@ namespace UASKI.StaticModels
         public static void AddMessage(TypeNotice type, string text, string[] lines)
         {
             var message = Formating(text, lines);
-            AddMessage(type, message);
+
+            foreach (var line in message)
+            {
+                AddMessage(type, line);
+            }
+
+            Text.ScrollToCaret();
         }
 
         /// <summary>
@@ -78,17 +84,11 @@ namespace UASKI.StaticModels
         /// <param name="text">Заголовок</param>
         /// <param name="lines">Список строк</param>
         /// <returns>Отформатированый текст</returns>
-        public static string Formating(string text, string[] lines)
+        public static string[] Formating(string text, string[] lines)
         {
-            string message = string.Empty;
-            message += text + Environment.NewLine;
-
-            foreach (var line in lines)
-            {
-                message += line + Environment.NewLine;
-            }
-
-            return message;
+            var result = new List<string> { text };
+            result.AddRange(lines);
+            return result.ToArray();
         }
 
         /// <summary>
@@ -197,7 +197,11 @@ namespace UASKI.StaticModels
                     return true;
                 case Keys.I:
                     var message = Formating("Горячие клавиши:", AiLibrary.Instruction.ToArray());
-                    Ai.AddMessage(TypeNotice.Default , message);
+
+                    foreach (var line in message)
+                    {
+                        Ai.AddMessage(TypeNotice.Default, line);
+                    }
                     return true;
                 case Keys.L:
                     SelectMenu(SystemData.Pages.AddTask);

@@ -50,6 +50,7 @@ namespace UASKI
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button20 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.label62 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -60,7 +61,6 @@ namespace UASKI
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label63 = new System.Windows.Forms.Label();
             this.textBox29 = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
             this.textBox19 = new System.Windows.Forms.TextBox();
@@ -91,6 +91,7 @@ namespace UASKI
             this.button22 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.label63 = new System.Windows.Forms.Label();
             this.button26 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -101,7 +102,6 @@ namespace UASKI
             this.label67 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label69 = new System.Windows.Forms.Label();
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
             this.label71 = new System.Windows.Forms.Label();
@@ -123,9 +123,7 @@ namespace UASKI
             this.button2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -314,6 +312,8 @@ namespace UASKI
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
             this.label54 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -564,11 +564,11 @@ namespace UASKI
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel13.Controls.Add(this.label62);
             this.panel13.Controls.Add(this.button24);
             this.panel13.Controls.Add(this.button21);
             this.panel13.Controls.Add(this.panel16);
             this.panel13.Controls.Add(this.checkBox2);
-            this.panel13.Controls.Add(this.label63);
             this.panel13.Controls.Add(this.textBox29);
             this.panel13.Controls.Add(this.label59);
             this.panel13.Controls.Add(this.textBox19);
@@ -577,6 +577,16 @@ namespace UASKI
             this.panel13.Size = new System.Drawing.Size(246, 542);
             this.panel13.TabIndex = 2;
             this.panel13.Visible = false;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label62.Location = new System.Drawing.Point(3, 80);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(220, 17);
+            this.label62.TabIndex = 30;
+            this.label62.Text = "Код сотрудника/подразделения";
             // 
             // button24
             // 
@@ -689,16 +699,6 @@ namespace UASKI
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             this.checkBox2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox2_PreviewKeyDown);
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label63.Location = new System.Drawing.Point(3, 77);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(131, 20);
-            this.label63.TabIndex = 11;
-            this.label63.Text = "Код сотрудника";
             // 
             // textBox29
             // 
@@ -903,12 +903,12 @@ namespace UASKI
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label39.Location = new System.Drawing.Point(1, 79);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(131, 20);
+            this.label39.Size = new System.Drawing.Size(220, 17);
             this.label39.TabIndex = 11;
-            this.label39.Text = "Код сотрудника";
+            this.label39.Text = "Код сотрудника/подразделения";
             // 
             // textBox31
             // 
@@ -1044,11 +1044,11 @@ namespace UASKI
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel17.Controls.Add(this.label63);
             this.panel17.Controls.Add(this.button26);
             this.panel17.Controls.Add(this.button23);
             this.panel17.Controls.Add(this.panel18);
             this.panel17.Controls.Add(this.checkBox3);
-            this.panel17.Controls.Add(this.label69);
             this.panel17.Controls.Add(this.textBox33);
             this.panel17.Controls.Add(this.textBox34);
             this.panel17.Controls.Add(this.label71);
@@ -1057,6 +1057,16 @@ namespace UASKI
             this.panel17.Size = new System.Drawing.Size(246, 542);
             this.panel17.TabIndex = 6;
             this.panel17.Visible = false;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label63.Location = new System.Drawing.Point(4, 80);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(220, 17);
+            this.label63.TabIndex = 31;
+            this.label63.Text = "Код сотрудника/подразделения";
             // 
             // button26
             // 
@@ -1169,16 +1179,6 @@ namespace UASKI
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             this.checkBox3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox3_PreviewKeyDown);
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label69.Location = new System.Drawing.Point(3, 77);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(131, 20);
-            this.label69.TabIndex = 11;
-            this.label69.Text = "Код сотрудника";
             // 
             // textBox33
             // 
@@ -1339,15 +1339,15 @@ namespace UASKI
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.textBox6);
             this.panel1.Controls.Add(this.label5);
@@ -1425,17 +1425,8 @@ namespace UASKI
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(182, 26);
             this.textBox4.TabIndex = 13;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(223, 188);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(161, 26);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Подразделение";
             // 
             // textBox5
             // 
@@ -1445,16 +1436,6 @@ namespace UASKI
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(182, 26);
             this.textBox5.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(15, 188);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 26);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Фамилия";
             // 
             // label9
             // 
@@ -1498,7 +1479,7 @@ namespace UASKI
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(223, 57);
+            this.label4.Location = new System.Drawing.Point(15, 57);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 26);
             this.label4.TabIndex = 5;
@@ -1517,7 +1498,7 @@ namespace UASKI
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 57);
+            this.label3.Location = new System.Drawing.Point(223, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 26);
             this.label3.TabIndex = 3;
@@ -1542,6 +1523,7 @@ namespace UASKI
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(182, 26);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // tabPage6
@@ -2444,13 +2426,14 @@ namespace UASKI
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new System.Drawing.Size(182, 26);
             this.textBox21.TabIndex = 13;
+            this.textBox21.TextChanged += new System.EventHandler(this.textBox21_TextChanged);
             this.textBox21.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox21_KeyDown);
             // 
             // label44
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(223, 188);
+            this.label44.Location = new System.Drawing.Point(18, 188);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(161, 26);
             this.label44.TabIndex = 12;
@@ -2469,7 +2452,7 @@ namespace UASKI
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(15, 188);
+            this.label45.Location = new System.Drawing.Point(228, 188);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(97, 26);
             this.label45.TabIndex = 10;
@@ -2517,7 +2500,7 @@ namespace UASKI
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(223, 57);
+            this.label48.Location = new System.Drawing.Point(15, 57);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(161, 26);
             this.label48.TabIndex = 5;
@@ -2536,7 +2519,7 @@ namespace UASKI
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(15, 57);
+            this.label49.Location = new System.Drawing.Point(228, 57);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(97, 26);
             this.label49.TabIndex = 3;
@@ -2561,6 +2544,7 @@ namespace UASKI
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new System.Drawing.Size(182, 26);
             this.textBox26.TabIndex = 0;
+            this.textBox26.TextChanged += new System.EventHandler(this.textBox26_TextChanged);
             this.textBox26.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox26_KeyDown);
             // 
             // tabPage8
@@ -3571,11 +3555,13 @@ namespace UASKI
             // textBox41
             // 
             this.textBox41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox41.Enabled = false;
             this.textBox41.Font = new System.Drawing.Font("Segoe UI Symbol", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox41.Location = new System.Drawing.Point(893, 1);
             this.textBox41.Multiline = true;
             this.textBox41.Name = "textBox41";
+            this.textBox41.ReadOnly = true;
+            this.textBox41.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox41.Size = new System.Drawing.Size(315, 721);
             this.textBox41.TabIndex = 7;
             this.textBox41.Text = "\r\n";
@@ -3593,7 +3579,27 @@ namespace UASKI
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(80, 17);
             this.label54.TabIndex = 8;
-            this.label54.Text = "UASKI 2.32";
+            this.label54.Text = "UASKI 2.33";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(15, 188);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(161, 26);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Подразделение";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Uighur", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(223, 188);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 26);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Фамилия";
             // 
             // Gl_Form
             // 
@@ -3613,7 +3619,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.32";
+            this.Text = " УАСКИ 2.33";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -3711,9 +3717,7 @@ namespace UASKI
         public System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label7;
         public System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         public System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label5;
@@ -3824,7 +3828,6 @@ namespace UASKI
         private System.Windows.Forms.Label label59;
         public System.Windows.Forms.TextBox textBox19;
         public System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.Label label63;
         public System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label39;
         public System.Windows.Forms.TextBox textBox31;
@@ -3844,7 +3847,6 @@ namespace UASKI
         public System.Windows.Forms.CheckBox checkBox2;
         public System.Windows.Forms.Panel panel17;
         public System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Label label69;
         public System.Windows.Forms.TextBox textBox33;
         public System.Windows.Forms.TextBox textBox34;
         private System.Windows.Forms.Label label71;
@@ -3978,6 +3980,10 @@ namespace UASKI
         private System.Windows.Forms.Timer TimeTimer;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

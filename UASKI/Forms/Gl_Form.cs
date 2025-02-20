@@ -930,6 +930,99 @@ namespace UASKI
                 Ai.Warning("Предупреждение: Выбранная дата это выходной день");
             }
         }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length != 0 && textBox3.Text.Length == 0 && int.TryParse(textBox1.Text, out int podr))
+            {
+                var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
+
+                if (isp != null)
+                {
+                    textBox3.Text = isp.Code.ToString();
+                    textBox2.Text = isp.InizNotCode;
+
+                }
+                else
+                {
+                    textBox3.Clear();
+                    textBox2.Clear();
+                }
+            }
+            else
+            {
+                textBox3.Clear();
+                textBox2.Clear();
+            }
+        }
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox4.Text.Length != 0 && textBox6.Text.Length == 0 && int.TryParse(textBox4.Text, out int podr))
+            {
+                var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
+
+                if (isp != null)
+                {
+                    textBox6.Text = isp.Code.ToString();
+                    textBox5.Text = isp.InizNotCode;
+                }
+                else
+                {
+                    textBox5.Clear();
+                    textBox6.Clear();
+                }
+            }
+            else
+            {
+                textBox5.Clear();
+                textBox6.Clear();
+            }
+        }
+        private void textBox26_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox26.Text, out int podr))
+            {
+                var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
+
+                if (isp != null)
+                {
+                    textBox24.Text = isp.Code.ToString();
+                    textBox25.Text = isp.InizNotCode;
+                }
+                else
+                {
+                    textBox25.Clear();
+                    textBox24.Clear();
+                }
+            }
+            else
+            {
+                textBox25.Clear();
+                textBox24.Clear();
+            }
+        }
+        private void textBox21_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox21.Text, out int podr))
+            {
+                var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
+
+                if (isp != null)
+                {
+                    textBox22.Text = isp.InizNotCode;
+                    textBox23.Text = isp.Code.ToString();
+                }
+                else
+                {
+                    textBox22.Clear();
+                    textBox23.Clear();
+                }
+            }
+            else
+            {
+                textBox22.Clear();
+                textBox23.Clear();
+            }
+        }
         #endregion
 
         #region Обработка курсора
@@ -1218,6 +1311,7 @@ namespace UASKI
             var key = new PreviewKeyDownEventArgs(Keys.Enter);
             button44_PreviewKeyDown(sender, key);
         }
+
         #endregion
 
     }

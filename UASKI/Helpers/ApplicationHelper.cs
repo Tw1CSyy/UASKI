@@ -146,12 +146,16 @@ namespace UASKI.Helpers
         {
             var holidayList = HolidayModel.GetList();
             var result = new List<DateTime>();
+            int countNullDate = 0;
 
-            for (DateTime date = DateTime.Today; date < DateTime.Today.AddYears(1);)
+            for (DateTime date = DateTime.Today.AddYears(3); date > DateTime.Today;)
             {
+                if (countNullDate == 10)
+                    break;
+
                 if (date.DayOfWeek != DayOfWeek.Sunday && date.DayOfWeek != DayOfWeek.Saturday)
                 {
-                    date = date.AddDays(1);
+                    date = date.AddDays(-1);
                     continue;
                 }
 
@@ -159,14 +163,15 @@ namespace UASKI.Helpers
 
                 if (holy != null)
                 {
-                    date = date.AddDays(1);
+                    date = date.AddDays(-1);
+                    countNullDate++;
                     continue;
                 }
 
                 result.Add(date);
                 var model = new HolidayModel(date);
                 model.Add();
-                date = date.AddDays(1);
+                date = date.AddDays(-1);
             }
 
             return result.ToArray();

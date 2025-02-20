@@ -73,24 +73,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Down)
             {
-                if (form.textBox1.Text.Length != 0 && form.textBox3.Text.Length == 0)
-                {
-                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Equals(form.textBox1.Text.ToLower()));
-
-                    if (isp != null)
-                    {
-                        form.textBox2.Text = isp.CodePodr.ToString();
-                        form.textBox3.Text = isp.Code.ToString();
-                        form.textBox1.Text = isp.InizByCode;
-                    }
-
-                    SelectTextBox(form.textBox4);
-                }
-                else
-                {
-                    SelectTextBox(form.textBox4);
-                }
-
+                SelectTextBox(form.textBox4);
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Enter)
@@ -100,15 +83,8 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var form1 = new IspForm(form.textBox1, form.textBox2, form.textBox3);
+                var form1 = new IspForm(form.textBox2, form.textBox1, form.textBox3);
                 form1.Show();
-                e.Handled = true;
-            }
-            else if(e.KeyCode == Keys.Back)
-            {
-                form.textBox1.Clear();
-                form.textBox2.Clear();
-                form.textBox3.Clear();
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Escape)
@@ -122,24 +98,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Down)
             {
-                if (form.textBox4.Text.Length != 0 && form.textBox6.Text.Length == 0)
-                {
-                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Equals(form.textBox4.Text.ToLower()));
-
-                    if (isp != null)
-                    {
-                        form.textBox5.Text = isp.CodePodr.ToString();
-                        form.textBox6.Text = isp.Code.ToString();
-                        form.textBox4.Text = isp.InizByCode;
-                    }
-
-                    SelectTextBox(form.textBox7);
-                }
-                else
-                {
-                    SelectTextBox(form.textBox7);
-                }
-
+                SelectTextBox(form.textBox7);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Enter)
@@ -149,20 +108,13 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var form1 = new IspForm(form.textBox4, form.textBox5, form.textBox6);
+                var form1 = new IspForm(form.textBox5, form.textBox4, form.textBox6);
                 form1.Show();
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
             {
                 SelectTextBox(form.textBox1);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Back)
-            {
-                form.textBox4.Clear();
-                form.textBox5.Clear();
-                form.textBox6.Clear();
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
@@ -190,7 +142,6 @@ namespace UASKI.Pages
                 e.Handled = true;
             }
         }
-
 
         public bool button1_KeyDown(PreviewKeyDownEventArgs e)
         {

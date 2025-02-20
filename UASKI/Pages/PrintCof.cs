@@ -49,76 +49,76 @@ namespace UASKI.Pages
             {
                 var isps = IspModel.GetList();
                 var isp = isps.FirstOrDefault(c => c.CodePodr == Convert.ToInt32(form.textBox36.Text));
-                var model = new List<DataGridRowModel>();
-                var holy = HolidayModel.GetList();
-                var arhivContext = ArhivModel.GetList();
-
-                var arhivTasks = new List<ArhivModel>();
-                var tasks = new List<TaskModel>();
-
-                arhivTasks = arhivContext
-                       .Where(c => c.IdIsp == isp.Code)
-                       .Where(c => (c.DateClose < c.Date && c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value) ||
-                       (c.DateClose >= c.Date && c.Date >= form.dateTimePicker14.Value && c.Date <= form.dateTimePicker15.Value))
-                       .ToList();
-
-                tasks = TaskModel.GetList()
-                    .Where(c => c.IdIsp == isp.Code)
-                    .Where(c => c.GetDaysOpz(holy) > 0)
-                    .ToList();
-
-                foreach (var task in arhivTasks)
-                {
-                    var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
-                    int opzDays = task.GetDaysOpz(holy);
-                    int opz = 0;
-
-                    if (opzDays > 0)
-                        opz = opzDays;
-
-                    var item = new DataGridRowModel(
-                        task.Code,
-                        task.Date.ToString("dd.MM.yyyy"),
-                        con.InizByCode,
-                        task.DateClose.ToString("dd.MM.yyyy"),
-                        task.Otm.ToString(),
-                        opz.ToString()
-                    );
-
-                    model.Add(item);
-                }
-
-                foreach (var task in tasks)
-                {
-                    var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
-                    int opz = task.GetDaysOpz(holy);
-
-                    var item = new DataGridRowModel(
-                        task.Code,
-                        task.Date.ToString("dd.MM.yyyy"),
-                        con.InizByCode,
-                        string.Empty,
-                        string.Empty,
-                        opz.ToString()
-                        );
-
-                    model.Add(item);
-                }
-
-                var columns = new DataGridColumnModel[]
-                {
-                    new DataGridColumnModel("Код"),
-                    new DataGridColumnModel("Срок"),
-                    new DataGridColumnModel("Контролер"),
-                    new DataGridColumnModel("Дата выполнения"),
-                    new DataGridColumnModel("Оценка" , typeof(int)),
-                    new DataGridColumnModel("Кол-во опозданий" , typeof(int)),
-                };
-
-                form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
-
+                
                 if (isp != null)
                 {
+                    var model = new List<DataGridRowModel>();
+                    var holy = HolidayModel.GetList();
+                    var arhivContext = ArhivModel.GetList();
+                    var arhivTasks = new List<ArhivModel>();
+                    var tasks = new List<TaskModel>();
+
+                    arhivTasks = arhivContext
+                           .Where(c => c.IdIsp == isp.Code)
+                           .Where(c => (c.DateClose < c.Date && c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value) ||
+                           (c.DateClose >= c.Date && c.Date >= form.dateTimePicker14.Value && c.Date <= form.dateTimePicker15.Value))
+                           .ToList();
+
+                    tasks = TaskModel.GetList()
+                        .Where(c => c.IdIsp == isp.Code)
+                        .Where(c => c.GetDaysOpz(holy) > 0)
+                        .ToList();
+
+                    foreach (var task in arhivTasks)
+                    {
+                        var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
+                        int opzDays = task.GetDaysOpz(holy);
+                        int opz = 0;
+
+                        if (opzDays > 0)
+                            opz = opzDays;
+
+                        var item = new DataGridRowModel(
+                            task.Code,
+                            task.Date.ToString("dd.MM.yyyy"),
+                            con.InizByCode,
+                            task.DateClose.ToString("dd.MM.yyyy"),
+                            task.Otm.ToString(),
+                            opz.ToString()
+                        );
+
+                        model.Add(item);
+                    }
+
+                    foreach (var task in tasks)
+                    {
+                        var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
+                        int opz = task.GetDaysOpz(holy);
+
+                        var item = new DataGridRowModel(
+                            task.Code,
+                            task.Date.ToString("dd.MM.yyyy"),
+                            con.InizByCode,
+                            string.Empty,
+                            string.Empty,
+                            opz.ToString()
+                            );
+
+                        model.Add(item);
+                    }
+
+                    var columns = new DataGridColumnModel[]
+                    {
+                        new DataGridColumnModel("Код"),
+                        new DataGridColumnModel("Срок"),
+                        new DataGridColumnModel("Контролер"),
+                        new DataGridColumnModel("Дата выполнения"),
+                        new DataGridColumnModel("Оценка" , typeof(int)),
+                        new DataGridColumnModel("Кол-во опозданий" , typeof(int)),
+                    };
+
+                    form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
+
                     var arhivTasksMonth = arhivContext
                        .Where(c => c.IdIsp == isp.Code)
                        .Where(c => (c.DateClose < c.Date && c.DateClose.Month == form.dateTimePicker14.Value.Month && c.DateClose.Year == form.dateTimePicker14.Value.Year)

@@ -53,7 +53,7 @@ namespace UASKI.Pages
             {
                 var isp = isps.FirstOrDefault(c => c.CodePodr == id);
 
-                if(isp != null)
+                if (isp != null)
                 {
                     taskList = TaskModel.GetList()
                         .Where(c => c.IdIsp == isp.Code)
@@ -65,8 +65,12 @@ namespace UASKI.Pages
                         .Where(c => c.Date >= dateFrom && c.Date <= dateTo.Date)
                         .ToList();
                 }
-                
+                else
+                    form.DataGridView7.d.DataSource = null;
             }
+            else
+                form.DataGridView7.d.DataSource = null;
+
             var result = new List<DataGridRowModel>();
            
             foreach (var task in taskList)
@@ -91,19 +95,22 @@ namespace UASKI.Pages
                 result.Add(item);
             }
 
-            // Сортируем по дате
-            result = result.OrderBy(c => Convert.ToDateTime(c.Values[1])).ToList();
-
-            var columns = new DataGridColumnModel[]
+            if(result.Count > 0)
             {
+                // Сортируем по дате
+                result = result.OrderBy(c => Convert.ToDateTime(c.Values[1])).ToList();
+
+                var columns = new DataGridColumnModel[]
+                {
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Код контролера"),
                 new DataGridColumnModel("Дата закрытия"),
                 new DataGridColumnModel("Оценка" , typeof(int))
-            };
+                };
 
-            form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);
+                form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);
+            }
         }
 
         protected override void Print()

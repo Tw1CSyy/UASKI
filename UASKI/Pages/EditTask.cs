@@ -54,13 +54,13 @@ namespace UASKI.Pages
                 var usr2 = task.GetCon(listUser);
                 Task = task;
 
-                form.textBox26.Text = usr1.InizNotCode;
-                form.textBox21.Text = usr2.InizNotCode;
+                form.textBox25.Text = usr1.InizNotCode;
+                form.textBox22.Text = usr2.InizNotCode;
 
                 form.textBox24.Text = usr1.Code.ToString();
-                form.textBox25.Text = usr1.CodePodr.ToString();
+                form.textBox26.Text = usr1.CodePodr.ToString();
                 form.textBox23.Text = usr2.Code.ToString();
-                form.textBox22.Text = usr2.CodePodr.ToString();
+                form.textBox21.Text = usr2.CodePodr.ToString();
                 form.textBox27.Text = CodeTask = task.Code;
                 form.dateTimePicker4.Value = task.Date;
 
@@ -80,13 +80,13 @@ namespace UASKI.Pages
 
                 Arhiv = arhiv;
 
-                form.textBox26.Text = usr1.InizNotCode;
-                form.textBox21.Text = usr2.InizNotCode;
+                form.textBox25.Text = usr1.InizNotCode;
+                form.textBox22.Text = usr2.InizNotCode;
 
                 form.textBox24.Text = usr1.Code.ToString();
-                form.textBox25.Text = usr1.CodePodr.ToString();
+                form.textBox26.Text = usr1.CodePodr.ToString();
                 form.textBox23.Text = usr2.Code.ToString();
-                form.textBox22.Text = usr2.CodePodr.ToString();
+                form.textBox21.Text = usr2.CodePodr.ToString();
                 form.textBox27.Text = arhiv.Code;
                 form.dateTimePicker4.Value = arhiv.Date;
 
@@ -198,29 +198,12 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                if (form.textBox25.Text.Length == 0 && form.textBox24.Text.Length == 0)
-                {
-                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Contains(form.textBox26.Text.ToLower()));
-
-                    if (isp != null)
-                    {
-                        form.textBox25.Text = isp.CodePodr.ToString();
-                        form.textBox24.Text = isp.Code.ToString();
-                        form.textBox26.Text = isp.InizNotCode;
-                    }
-
-                    SelectTextBox(form.textBox21);
-                }
-                else
-                {
-                    SelectTextBox(form.textBox21);
-                }
-
+                SelectTextBox(form.textBox21);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var ispForm = new IspForm(form.textBox26, form.textBox25, form.textBox24);
+                var ispForm = new IspForm(form.textBox25, form.textBox26, form.textBox24);
                 ispForm.Show();
                 e.Handled = true;
             }
@@ -234,42 +217,18 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if (e.KeyCode == Keys.Back)
-            {
-                form.textBox26.Clear();
-                form.textBox25.Clear();
-                form.textBox24.Clear();
-                e.Handled = true;
-            }
         }
 
         public void textBox21_KeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                if (form.textBox22.Text.Length == 0 && form.textBox23.Text.Length == 0)
-                {
-                    var isp = IspModel.GetList().FirstOrDefault(c => c.FirstName.ToLower().Equals(form.textBox21.Text.ToLower()));
-
-                    if (isp != null)
-                    {
-                        form.textBox22.Text = isp.CodePodr.ToString();
-                        form.textBox23.Text = isp.Code.ToString();
-                        form.textBox21.Text = isp.InizNotCode;
-                    }
-
-                    SelectTextBox(form.textBox27);
-                }
-                else
-                {
-                    SelectTextBox(form.textBox27);
-                }
-
+                SelectTextBox(form.textBox27);
                 e.Handled = true;
             }
             else if (e.KeyCode == SystemData.ActionKey)
             {
-                var ispForm = new IspForm(form.textBox21, form.textBox22, form.textBox23);
+                var ispForm = new IspForm(form.textBox22, form.textBox21, form.textBox23);
                 ispForm.Show();
                 e.Handled = true;
             }
@@ -286,13 +245,6 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Up)
             {
                 SelectTextBox(form.textBox26);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Back)
-            {
-                form.textBox21.Clear();
-                form.textBox22.Clear();
-                form.textBox23.Clear();
                 e.Handled = true;
             }
         }

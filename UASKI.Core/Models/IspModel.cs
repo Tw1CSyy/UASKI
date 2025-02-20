@@ -177,10 +177,12 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
-        /// Расчитывает коофициент качества по списку задач
+        /// Расчитывает коэфициент качества по списку задач
         /// </summary>
-        /// <param name="tasks">Список архивных задач</param>
-        /// <param name="listPret">Список претензий и рецензий</param>
+        /// <param name="tasks">Список архивных задач, отфильтрованный по дате и IspId</param>
+        /// <param name="listPret">Список претензий из базы</param>
+        /// <param name="holy">Список выходных из базы</param>
+        /// <param name="contextTask">Список задач отфильтровнный по опазданию и IdIsp</param>
         /// <returns></returns>
         private double GetCof(List<ArhivModel> tasks, List<PretModel> listPret, List<HolidayModel> holy, List<TaskModel> contextTask)
         {
@@ -223,8 +225,10 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Расчитывает данные для коофициента качества для исполнителя
         /// </summary>
-        /// <param name="dateFrom">Дата от</param>
-        /// <param name="dateTo">Дата до</param>
+        /// <param name="contextTask">Список задач отфильтровнный по опазданию и IdIsp</param>
+        /// <param name="contextArhiv">Список архивных задач, отфильтрованный по дате и IspId</param>
+        /// <param name="holy">Список выходных из базы</param>
+        /// <param name="prets">Список претензий из базы</param>
         /// <returns></returns>
         public KofModel GetKofModel(List<TaskModel> contextTask, List<ArhivModel> contextArhiv, List<HolidayModel> holy , List<PretModel> prets)
         {
