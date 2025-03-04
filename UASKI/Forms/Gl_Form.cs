@@ -932,7 +932,7 @@ namespace UASKI
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length != 0 && textBox3.Text.Length == 0 && int.TryParse(textBox1.Text, out int podr))
+            if (textBox1.Text.Length != 0 && int.TryParse(textBox1.Text, out int podr) && !SystemData.IsClear)
             {
                 var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
 
@@ -956,7 +956,7 @@ namespace UASKI
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (textBox4.Text.Length != 0 && textBox6.Text.Length == 0 && int.TryParse(textBox4.Text, out int podr))
+            if (textBox4.Text.Length != 0 && int.TryParse(textBox4.Text, out int podr) && !SystemData.IsClear)
             {
                 var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
 

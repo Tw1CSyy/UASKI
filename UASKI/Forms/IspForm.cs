@@ -117,7 +117,7 @@ namespace UASKI.Forms
                     t1.Text = row[0].Cells[1].Value.ToString() + " " + row[0].Cells[2].Value.ToString()[0] + ". " + row[0].Cells[3].Value.ToString()[0] + ".";
                     t2.Text = row[0].Cells[4].Value.ToString();
                     t3.Text = row[0].Cells[0].Value.ToString();
-
+                   
                     form.Dispose();
                     t3.Focus();
                     t3.SelectionStart = t3.Text.Length;

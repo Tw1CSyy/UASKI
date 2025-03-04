@@ -95,22 +95,19 @@ namespace UASKI.Pages
                 result.Add(item);
             }
 
-            if(result.Count > 0)
-            {
-                // Сортируем по дате
-                result = result.OrderBy(c => Convert.ToDateTime(c.Values[1])).ToList();
+            // Сортируем по дате
+            result = result.OrderBy(c => Convert.ToDateTime(c.Values[1])).ToList();
 
-                var columns = new DataGridColumnModel[]
-                {
+            var columns = new DataGridColumnModel[]
+            {
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Код контролера"),
                 new DataGridColumnModel("Дата закрытия"),
                 new DataGridColumnModel("Оценка" , typeof(int))
-                };
+            };
 
-                form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);
-            }
+            form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);
         }
 
         protected override void Print()

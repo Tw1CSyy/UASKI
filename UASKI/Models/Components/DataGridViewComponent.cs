@@ -140,6 +140,16 @@ namespace UASKI.Models.Components
                 }
             }
 
+            var listWithCol = new List<int>();
+
+            if(d.Columns.Count > 0)
+            {
+                foreach (DataGridViewColumn item in d.Columns)
+                {
+                    listWithCol.Add(item.Width);
+                }
+            }
+
             d.DataSource = null;
 
             var table = new DataTable();
@@ -171,7 +181,15 @@ namespace UASKI.Models.Components
                 d.Columns[i].Visible = columns[i].Visible;
             }
 
-            ResizeDataGridView();
+            if(listWithCol.Count == 0)
+                ResizeDataGridView();
+            else
+            {
+                for(int i = 0; i < listWithCol.Count; i++)
+                {
+                    d.Columns[i].Width = listWithCol[i];
+                }
+            }
 
             if (selected != -1 && d.Rows.Count > 0)
             {

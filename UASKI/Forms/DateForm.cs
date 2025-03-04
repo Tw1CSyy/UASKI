@@ -80,28 +80,6 @@ namespace UASKI.Forms
                 Dispose();
 
             }
-
-            if(e.Control && (e.KeyCode == Keys.D1 || e.KeyCode == Keys.D2 || e.KeyCode == Keys.D3))
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.D1:
-                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 1);
-                        monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 10);
-                        break;
-                    case Keys.D2:
-                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 10);
-                        monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 20);
-                        break;
-                    case Keys.D3:
-                        monthCalendar1.SelectionStart = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 20);
-                        monthCalendar1.SelectionEnd = new DateTime(monthCalendar1.SelectionStart.Year, monthCalendar1.SelectionStart.Month, 1).AddMonths(1).AddDays(-1);
-                        break;
-                }
-
-                Data();
-                Dispose();
-            }
             else
             {
                 string symbol = SystemHelper.GetIntKeyDown(e.KeyCode).ToString();
@@ -149,8 +127,11 @@ namespace UASKI.Forms
                 {
                     var day = Convert.ToInt32(text);
 
-                    if (day > new DateTime(dateFrom.Year, dateFrom.Month + 1, 1).AddDays(-1).Day)
+                    if (dateFrom.Month != 12 && day > new DateTime(dateFrom.Year, dateFrom.Month + 1, 1).AddDays(-1).Day)
                         day = new DateTime(dateFrom.Year, dateFrom.Month + 1, 1).AddDays(-1).Day;
+                    else if(dateFrom.Month == 12 && day > new DateTime(dateFrom.Year + 1, 1, 1).AddDays(-1).Day)
+                        day = new DateTime(dateFrom.Year + 1, 1, 1).AddDays(-1).Day;
+
                     date = new DateTime(dateFrom.Year, dateFrom.Month, day);
                     return date;
                 }
@@ -168,8 +149,10 @@ namespace UASKI.Forms
 
                     var month = Convert.ToInt32(value);
 
-                    if (day > new DateTime(dateFrom.Year, month + 1, 1).AddDays(-1).Day)
+                    if (month != 12 && day > new DateTime(dateFrom.Year, month + 1, 1).AddDays(-1).Day)
                         day = new DateTime(dateFrom.Year, month + 1, 1).AddDays(-1).Day;
+                    else if(month == 12 && day > new DateTime(dateFrom.Year + 1, 1, 1).AddDays(-1).Day)
+                        day = new DateTime(dateFrom.Year + 1, 1, 1).AddDays(-1).Day;
 
                     date = new DateTime(dateFrom.Year, month, day);
                     return date;
