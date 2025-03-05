@@ -133,7 +133,8 @@ namespace UASKI.Pages
             string header2 = $"Исполнитель {form.textBox30.Text} {form.textBox20.Text}";
 
             var model = new PrintModel(font, e, form.DataGridView7.d, header1, header2);
-            SystemHelper.PrintDocument(model);
+            SystemHelper.PrintDocument(model , FirstPage);
+            FirstPage = false;
         }
 
         public override bool AiKeyDown(KeyEventArgs key)

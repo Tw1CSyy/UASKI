@@ -3614,9 +3614,10 @@ namespace UASKI
             this.Controls.Add(this.Menu_Step1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " УАСКИ 2.34";

@@ -9,6 +9,11 @@ namespace UASKI.Models
         public BasePagePrint(int index) : base(index) { }
 
         /// <summary>
+        /// Печатается первая страница
+        /// </summary>
+        protected bool FirstPage = true;
+
+        /// <summary>
         /// Вывести данные в DataGridView
         /// </summary>
         public abstract void Select();
@@ -36,11 +41,10 @@ namespace UASKI.Models
             printDialog.Document = document;
 
             if (printDialog.ShowDialog() != DialogResult.OK)
-            {
                 return false;
-            }
 
             document.Print();
+            FirstPage = true;
             return true;
         }
     }

@@ -96,7 +96,8 @@ namespace UASKI.Pages
             string header2 = $"C {form.dateTimePicker12.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker13.Value.ToString("dd.MM.yyyy")}";
 
             var model = new PrintModel(font, e, form.DataGridView10.d, header1, header2);
-            SystemHelper.PrintDocument(model);
+            SystemHelper.PrintDocument(model , FirstPage);
+            FirstPage = false;
         }
 
         public override bool AiKeyDown(KeyEventArgs key)

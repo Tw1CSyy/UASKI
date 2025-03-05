@@ -71,10 +71,9 @@
             this.Controls.Add(this.button23);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.monthCalendar1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DateForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

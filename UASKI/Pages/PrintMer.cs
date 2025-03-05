@@ -116,7 +116,8 @@ namespace UASKI.Pages
             string header3 = $"На {DateTime.Today.ToString("dd.MM.yyyy")}";
 
             var model = new PrintModel(font, e, form.DataGridView9.d, header1, header2 , header3);
-            SystemHelper.PrintDocument(model);
+            SystemHelper.PrintDocument(model , FirstPage);
+            FirstPage = false;
         }
 
         public override bool AiKeyDown(KeyEventArgs key)

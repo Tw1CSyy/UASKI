@@ -9,6 +9,7 @@ using UASKI.Models;
 using UASKI.StaticModels;
 using System.Drawing;
 using UASKI.Core.Models;
+using System.Xml.Linq;
 
 namespace UASKI.Pages
 {
@@ -114,7 +115,7 @@ namespace UASKI.Pages
                         new DataGridColumnModel("Контролер"),
                         new DataGridColumnModel("Дата выполнения"),
                         new DataGridColumnModel("Оценка" , typeof(int)),
-                        new DataGridColumnModel("Кол-во опозданий" , typeof(int)),
+                        new DataGridColumnModel("Кол-во дней опозданий" , typeof(int)),
                     };
 
                     form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
@@ -198,7 +199,16 @@ namespace UASKI.Pages
                 var printDocument = new PrintDocument();
                 printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
                 printDocument.DefaultPageSettings.Landscape = true;
-                GetPrint(printDocument);
+                
+                if (GetPrint(printDocument))
+                {
+                    var printDocument2 = new PrintDocument();
+                    printDocument2.PrintPage += new PrintPageEventHandler(PrintPage2);
+                    printDocument2.DefaultPageSettings.Landscape = true;
+                    printDocument2.Print();
+                    FirstPage = true;
+                }
+
             }
         }
 
@@ -212,13 +222,25 @@ namespace UASKI.Pages
 
             string header1 = $"Справка о составляющих коэффициента качества";
             string header2 = $"C {form.dateTimePicker14.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker15.Value.ToString("dd.MM.yyyy")}";
+            
+            var model = new PrintModel(font, e, form.DataGridView11.d, otdelString , header1, nameString , header2);
+            SystemHelper.PrintDocument(model , FirstPage);
+            FirstPage = false;
+        }
+
+        protected void PrintPage2(object sender , PrintPageEventArgs e)
+        {
+            var font = new Font("Arial", 10);
+            var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == Convert.ToInt32(form.textBox36.Text));
+
+            string otdelString = "Отдел(цех) " + isp.CodePodr.ToString();
+            string nameString = form.textBox37.Text;
+
             string header3 = form.label99.Text;
             string header4 = form.label100.Text;
 
-            var model = new PrintModel(font, e, form.DataGridView11.d, otdelString , header1, nameString , header2);
-            var model2 = new PrintModel(font, e, form.DataGridView13.d, otdelString , header3, header4);
-            var y = SystemHelper.PrintDocument(model);
-            SystemHelper.PrintDocument(model2 , y);
+            var model = new PrintModel(font, e, form.DataGridView13.d, otdelString, header3, header4);
+            SystemHelper.PrintDocument(model , true);
         }
 
         public void ClearTime()
@@ -236,6 +258,7 @@ namespace UASKI.Pages
         {
             return false;
         }
+
         #region Клавиши
         public void textBox36_KeyDown(KeyEventArgs e)
         {

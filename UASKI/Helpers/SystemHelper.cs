@@ -193,11 +193,10 @@ namespace UASKI.Helpers
         /// Формирует документ для печати
         /// </summary>
         /// <param name="model">Модель печати</param>
-        /// <param name="YPosition">Позиция по y</param>
-        /// <returns>Конечную позицию по y</returns>
-        public static float PrintDocument(PrintModel model , float YPosition = 5f)
+        /// <returns></returns>
+        public static void PrintDocument(PrintModel model , bool PrintHeader)
         {
-            float headerY = YPosition;
+            float headerY = 5f;
 
             // Вытаскиваем аргументы из модели
             var e = model.Argument;
@@ -205,26 +204,34 @@ namespace UASKI.Helpers
             var d = model.DataGridView;
 
             // Инициализируем переменные для работы
-            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
+            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics) + 2;
             int count = 0;
             int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
 
             // Инициализируем переменные для заголовков
             var headerFont = new Font("Arial", 16, FontStyle.Bold);
+            float yPosition = 5f;
 
-            // Выводим заголовки
-            foreach (var header in model.Headers)
+            if(PrintHeader)
             {
-                SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
-                float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
+                // Выводим заголовки
+                foreach (var header in model.Headers)
+                {
+                    SizeF headerSize = e.Graphics.MeasureString(header, headerFont);
+                    float headerX = (e.PageBounds.Width - headerSize.Width) / 2;
 
-                e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
-                headerY += headerSize.Height + 10;
+                    e.Graphics.DrawString(header, headerFont, Brushes.Black, headerX, headerY);
+                    headerY += headerSize.Height + 10;
+                }
+
+                // Расчитываем следующую строку
+                yPosition = headerY + headerFont.Size;
             }
-
-            // Расчитываем следующую строку
-            float yPosition = headerY + headerFont.Size;
-
+            else
+            {
+                linesPerPage += 5;
+            }
+            
             // Печать заголовков таблицы
             foreach (DataGridViewColumn column in d.Columns)
             {
@@ -256,9 +263,8 @@ namespace UASKI.Helpers
                 count++;
                 
             }
+
             e.HasMorePages = d.Rows[d.Rows.Count - 1].Tag == null;
-            headerY = yPosition + 30;
-            return headerY;
         }
 
     }
