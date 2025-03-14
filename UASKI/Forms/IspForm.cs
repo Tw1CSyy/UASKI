@@ -30,7 +30,16 @@ namespace UASKI.Forms
             this.t1 = t1;
             this.t2 = t2;
             this.t3 = t3;
-            
+           
+            if(SystemData.Form.Location.X > 0)
+            {
+                this.Location = new Point(SystemData.Form.Location.X - 126, SystemData.Form.Location.Y + 1);
+            }
+            else
+            {
+                this.StartPosition = FormStartPosition.CenterScreen;
+            }
+
             DataGridView = new DataGridViewComponent(dataGridView1);
             Start();
         }
