@@ -35,7 +35,7 @@ namespace UASKI.Models
         protected void FilterOpen(DataGridViewComponent d , Panel p , TextBox t , Button but)
         {
             d.d.Location = new System.Drawing.Point(247, 0);
-            d.d.Size = new System.Drawing.Size(634, 560);
+            d.d.Size = new System.Drawing.Size(form.tabControl1.Width - 255, form.tabControl1.Height - 9);
             p.Visible = true;
             SelectTextBox(t);
             but.Visible = false;
@@ -51,7 +51,7 @@ namespace UASKI.Models
         protected void FilterClose(DataGridViewComponent d , Panel p , TextBox t , Button but)
         {
             d.d.Location = new System.Drawing.Point(20, 0);
-            d.d.Size = new System.Drawing.Size(861, 560);
+            d.d.Size = new System.Drawing.Size(form.tabControl1.Width - 28, form.tabControl1.Height - 9);
             p.Visible = false;
             d.d.Focus();
             but.Visible = true;
