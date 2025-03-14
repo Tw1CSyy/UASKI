@@ -26,10 +26,10 @@ namespace UASKI
         private bool Start()
         {
             TimeTimer.Start();
-            this.WindowState = FormWindowState.Maximized;
-
+            
             // Инициализируем системные переменные
             ComponentIniz();
+            ResizeEl();
             SystemData.Init(this);
             Ai.Iniz(textBox41);
             
@@ -166,18 +166,24 @@ namespace UASKI
                 el.Page.Init();
         }
 
-        private void Gl_Form_Resize(object sender, EventArgs e)
+        // Подстраиваем размер компонентов под расмер формы
+        private void ResizeEl()
         {
             // Основное и главная страница
             textBox41.Location = new System.Drawing.Point(this.Width - textBox41.Width - 15, textBox41.Location.Y);
             textBox41.Height = this.Height - 40;
-            Menu_Step1.Width = Menu_Step2.Width = (this.Width - textBox41.Width - 15) / 2;
+            Menu_Step1.Width = Menu_Step2.Width = panel3.Width = panel4.Width = (this.Width - textBox41.Width - 15) / 2;
             Menu_Step2.Location = new System.Drawing.Point(Menu_Step1.Width + Menu_Step1.Location.X, Menu_Step2.Location.Y);
+            panel3.Location = Menu_Step2.Location;
             tabControl1.Width = this.Width - 334;
             tabControl1.Height = this.Height - 192;
             pictureBox1.Location = new System.Drawing.Point((tabControl1.Width / 2) - (pictureBox1.Width / 2), (tabControl1.Height / 2) - (pictureBox1.Height / 2));
 
             // Просмотр
+
+            ispDataGridView.Width = dataGridView3.Width = dataGridView1.Width = dataGridView5.Width = dataGridView12.Width = tabControl1.Width;
+            ispDataGridView.Height = dataGridView3.Height = dataGridView1.Height = dataGridView5.Height = dataGridView12.Height = tabControl1.Height - 22;
+
             dataGridView6.Width = tabControl1.Width - 184;
             dataGridView6.Height = tabControl1.Height - 26;
             button13.Location = new System.Drawing.Point(tabControl1.Width - 178, button13.Location.Y);
@@ -186,24 +192,25 @@ namespace UASKI
             // Редактирование
             dataGridView4.Width = tabControl1.Width - 11;
             dataGridView4.Height = tabControl1.Height - 365;
-
+            
             //Печатные
             panel23.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel23.Width / 2), panel23.Location.Y);
             dataGridView7.Width = tabControl1.Width - 8;
             dataGridView7.Height = tabControl1.Height - 110;
-
+            
             panel24.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel24.Width / 2), panel24.Location.Y);
             dataGridView8.Width = tabControl1.Width - 8;
             dataGridView8.Height = tabControl1.Height - 110;
-
+            
             panel25.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel25.Width / 2), panel25.Location.Y);
             dataGridView9.Width = tabControl1.Width - 8;
             dataGridView9.Height = tabControl1.Height - 124;
+            DataGridView9.ResizeDataGridView();
 
             panel26.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel26.Width / 2), panel26.Location.Y);
             dataGridView10.Width = tabControl1.Width - 8;
             dataGridView10.Height = tabControl1.Height - 110;
-
+            
             panel27.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel27.Width / 2), panel27.Location.Y);
             dataGridView11.Width = tabControl1.Width - 8;
             dataGridView11.Height = tabControl1.Height - 322;
@@ -211,6 +218,20 @@ namespace UASKI
             dataGridView13.Width = tabControl1.Width - 8;
             dataGridView13.Location = new System.Drawing.Point(dataGridView13.Location.X, panel28.Location.Y + panel28.Height + 5);
 
+            IspDataGridView.ResizeDataGridView();
+            DataGridView1.ResizeDataGridView();
+            DataGridView2.ResizeDataGridView();
+            DataGridView3.ResizeDataGridView();
+            DataGridView4.ResizeDataGridView();
+            DataGridView5.ResizeDataGridView();
+            DataGridView6.ResizeDataGridView();
+            DataGridView7.ResizeDataGridView();
+            DataGridView8.ResizeDataGridView();
+            DataGridView9.ResizeDataGridView();
+            DataGridView10.ResizeDataGridView();
+            DataGridView11.ResizeDataGridView();
+            DataGridView12.ResizeDataGridView();
+            DataGridView13.ResizeDataGridView();
         }
         #endregion
 
@@ -692,6 +713,10 @@ namespace UASKI
         #endregion
 
         #region Обработка
+        private void Gl_Form_Resize(object sender, EventArgs e)
+        {
+            ResizeEl();
+        }
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             if (monthCalendar1.SelectionRange.Start.Date == monthCalendar1.SelectionRange.End.Date)
