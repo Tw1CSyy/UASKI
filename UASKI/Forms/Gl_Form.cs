@@ -292,6 +292,10 @@ namespace UASKI
             Menu_Step1.Enabled = true;
             Menu_Step2.Enabled = false;
         }
+        private void dateTimePicker19_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintOpz.dateTimePicker19_KeyDown(e);
+        }
         private void IspDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.SelectIsp.IspDataGridView_KeyDown(e);
@@ -796,6 +800,11 @@ namespace UASKI
         private void dateTimePicker10_ValueChanged(object sender, EventArgs e)
         {
             textBox30_TextChanged(sender , e);
+        }
+        private void dateTimePicker19_ValueChanged(object sender, EventArgs e)
+        {
+            if(!SystemData.IsClear)
+                SystemData.Pages.PrintOpz.Select();
         }
         private void dateTimePicker11_ValueChanged(object sender, EventArgs e)
         {

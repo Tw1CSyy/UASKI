@@ -36,7 +36,6 @@ namespace UASKI.Models
         {
             d.d.Location = new System.Drawing.Point(247, 0);
             d.d.Size = new System.Drawing.Size(634, 560);
-            d.ResizeDataGridView();
             p.Visible = true;
             SelectTextBox(t);
             but.Visible = false;
@@ -53,7 +52,6 @@ namespace UASKI.Models
         {
             d.d.Location = new System.Drawing.Point(20, 0);
             d.d.Size = new System.Drawing.Size(861, 560);
-            d.ResizeDataGridView();
             p.Visible = false;
             d.d.Focus();
             but.Visible = true;

@@ -8,6 +8,7 @@ using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
 using UASKI.Core.Models;
+using UASKI.Forms;
 
 namespace UASKI.Pages
 {
@@ -18,9 +19,9 @@ namespace UASKI.Pages
         protected override void Show()
         {
             Select();
-            SelectButton(form.button37);
+            SelectButton(form.button37 , false);
             SelectDataGridView(form.DataGridView8.d, false);
-            form.label77.Text = "На " + DateTime.Today.ToString("dd.MM.yyyy");
+            form.dateTimePicker19.Focus();
         }
 
         protected override void Clear()
@@ -39,13 +40,13 @@ namespace UASKI.Pages
         public override void Select()
         {
             var holy = HolidayModel.GetList();
-            var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy) != 0).ToList();
+            var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy , DateTime.MinValue , form.dateTimePicker19.Value.Date) != 0).ToList();
             var result = new List<DataGridRowModel>();
             var isps = IspModel.GetList();
 
             foreach (var item in list)
             {
-                var day = item.GetDaysOpz(holy);
+                var day = item.GetDaysOpz(holy , DateTime.MinValue , form.dateTimePicker19.Value.Date);
 
                 var model = new DataGridRowModel(
                     item.GetIsp(isps).InizByCode,
@@ -83,11 +84,12 @@ namespace UASKI.Pages
                 GetPrint(printDocument);
             }
         }
+
         protected override void PrintPage(object sender, PrintPageEventArgs e)
         {
             var font = new Font("Arial", 10);
             string header1 = $"Не выполнили задание в срок";
-            string header2 = $"На {DateTime.Today.ToString("dd.MM.yyyy")}";
+            string header2 = $"На {form.dateTimePicker19.Value.ToString("dd.MM.yyyy")}";
 
             var model = new PrintModel(font, e, form.DataGridView8.d, header1, header2);
             SystemHelper.PrintDocument(model , FirstPage);
@@ -100,6 +102,26 @@ namespace UASKI.Pages
         }
         #region Клавиши
 
+        public void dateTimePicker19_KeyDown(KeyEventArgs e)
+        {
+            if(e.KeyCode == SystemData.ActionKey)
+            {
+                var form1 = new DateForm(form.dateTimePicker19);
+                form1.Show();
+            }
+            else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+            {
+                form.DataGridView8.d.Focus();
+            }
+            else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
+            {
+                Exit();
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                SelectButton(form.button37);
+            }
+        }
         public void button37_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Down)
@@ -120,6 +142,10 @@ namespace UASKI.Pages
                 else
                     Ai.Query();
 
+            }
+            else if(e.KeyCode == Keys.Left)
+            {
+                form.dateTimePicker19.Focus();
             }
 
             e.IsInputKey = true;

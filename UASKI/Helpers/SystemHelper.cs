@@ -209,7 +209,7 @@ namespace UASKI.Helpers
             int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
 
             // Инициализируем переменные для заголовков
-            var headerFont = new Font("Arial", 16, FontStyle.Bold);
+            var headerFont = new Font("Arial", 14, FontStyle.Bold);
             float yPosition = 5f;
 
             if(PrintHeader)
