@@ -219,7 +219,8 @@ namespace UASKI.Core.Models
             }
 
             double result = (countTask + countPret + countRez - 0.2 * countOpz) / (5 * countCof);
-            result = Math.Round(result, 2);
+            result = Math.Floor(result * 100) / 100;
+           //result = Math.Round(result, 2);
 
             return result;
         }
