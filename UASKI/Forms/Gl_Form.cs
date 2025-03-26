@@ -49,6 +49,7 @@ namespace UASKI
 
             Ai.AddWaitMessage(Enums.TypeNotice.Default, "Включаю приложение. Удачной работы!");
             Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Текущее время: {DateTime.Now.ToString("HH:mm:ss")}");
+
             // Создаем или загружаем файл настроек
             if (!ApplicationHelper.Settings())
             {
@@ -67,13 +68,6 @@ namespace UASKI
             }
 
             Ai.AddWaitMessage(Enums.TypeNotice.Default, "Подключение с базой получено");
-
-
-            // Создаем бекап
-            if(!ApplicationHelper.Dump())
-            {
-                return false;
-            }
 
             // Удаляем старые бекапы
             if(!ApplicationHelper.RemoveDump())

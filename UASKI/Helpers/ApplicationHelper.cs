@@ -7,6 +7,7 @@ using System.Linq;
 using UASKI.Core.Models;
 using UASKI.StaticModels;
 using UASKI.Enums;
+using System.Windows.Forms;
 
 namespace UASKI.Helpers
 {
@@ -83,12 +84,14 @@ namespace UASKI.Helpers
 
             if(!Directory.Exists(DumpSavePath))
             {
-                Ai.AddWaitMessage(TypeNotice.Error, "Папки для сохранения копии данных не существует");
+                MessageBox.Show("Папки для сохранения копии данных не существует", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (File.Exists(Path.Combine(DumpSavePath, name)))
-                return true;
+            {
+                File.Delete(Path.Combine(DumpSavePath, name));
+            }
 
             try
             {
@@ -96,7 +99,7 @@ namespace UASKI.Helpers
             }
             catch (Exception)
             {
-                Ai.AddWaitMessage(TypeNotice.Error, "Системная ошибка при создании копии данных");
+                MessageBox.Show("Системная ошибка при создании копии данных", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -156,7 +159,7 @@ namespace UASKI.Helpers
 
             if(!File.Exists(DumpUtilePath))
             {
-                Ai.AddWaitMessage(TypeNotice.Error, "Утилита для создании копии данных не найдена");
+                MessageBox.Show("Утилита для создании копии данных не найдена", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -188,19 +191,18 @@ namespace UASKI.Helpers
 
                     if (proces.ExitCode == 0)
                     {
-                        Ai.AddWaitMessage(TypeNotice.Default, "Копия данных создана");
                         return true;
                     } 
                     else
                     {
-                        Ai.AddWaitMessage(TypeNotice.Error, "Ошибка при создании копии данных");
+                        MessageBox.Show("Ошибка при создании копии данных", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                         
                 }
                 catch (Exception)
                 {
-                    Ai.AddWaitMessage(TypeNotice.Error, "Системная ошибка при создании копии данных");
+                    MessageBox.Show("Системная ошибка при создании копии данных", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Environment.SetEnvironmentVariable("PGPASSWORD", null);
                     return false;
                 }

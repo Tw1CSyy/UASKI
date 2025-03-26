@@ -1,5 +1,8 @@
-﻿using UASKI.Core;
+﻿using System.Windows.Forms;
+
+using UASKI.Core;
 using UASKI.Models;
+using UASKI.StaticModels;
 
 namespace UASKI
 {
@@ -16,13 +19,15 @@ namespace UASKI
         /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
+            DataConnection.Close();
+            Helpers.ApplicationHelper.Dump();
+
             if (disposing && (components != null))
             {
                 components.Dispose();
                
             }
             base.Dispose(disposing);
-            DataConnection.Close();
         }
 
         #region Код, автоматически созданный конструктором форм Windows
