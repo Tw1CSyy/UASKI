@@ -3655,7 +3655,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.35";
+            this.Text = " УАСКИ 2.36";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.Resize += new System.EventHandler(this.Gl_Form_Resize);
             this.tabControl1.ResumeLayout(false);

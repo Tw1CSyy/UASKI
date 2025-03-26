@@ -8,6 +8,8 @@ using UASKI.Core.Models;
 using UASKI.Core;
 using System.Threading;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using UASKI.Core.SystemModels;
 
 namespace UASKI
 {
@@ -81,6 +83,8 @@ namespace UASKI
             // Собираем статистику
             var tasks = TaskModel.GetList();
             var arhiv = ArhivModel.GetList();
+            var holys = HolidayModel.GetList();
+            var prets = PretModel.GetList();
 
             var count = tasks.Count(c => c.Date == DateTime.Today);
 
@@ -96,13 +100,40 @@ namespace UASKI
             else
                 Ai.AddWaitMessage(Enums.TypeNotice.Default, $"На текущий момент никто не опаздывает");
 
+            // Коэф. качества за месяц
+            var kofs = new List<KofModel>();
+
+            foreach (var isp in IspModel.GetList())
+            {
+                var item = isp.GetKofModel(tasks, arhiv, holys, prets, new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1), DateTime.Today);
+
+                if (item.Kof == 0)
+                    continue;
+
+                if (item.Kof < 0)
+                    item.Kof = 0;
+
+                kofs.Add(item);
+            }
+
+            
+            var kofsGroup = kofs
+                .GroupBy(c => c.Kof)
+                .OrderByDescending(c => c.Key);
+
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, "Показатели работы:");
+
+            foreach (var item in kofsGroup)
+            {
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, $"{item.Key.ToString()} - {item.Count()}");
+            }
+
             // Если сегодня понедельник - создаем даты
             if (DateTime.Today.DayOfWeek == DayOfWeek.Wednesday)
             {
                 ApplicationHelper.AddHoliday();
             }
 
-            var holys = HolidayModel.GetList();
             var minDate = holys.Min(c => c.Date).Date;
             var maxDate = holys.Max(c => c.Date).Date;
             Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Праздничные дни в диапазоне: {minDate.ToString("dd.MM.yyyy")} - {maxDate.ToString("dd.MM.yyyy")}");

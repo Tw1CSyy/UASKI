@@ -48,7 +48,7 @@ namespace UASKI.StaticModels
             Timer.Tick += NoticeTimer;
 
             WaitTimer = new Timer();
-            WaitTimer.Interval = 300;
+            WaitTimer.Interval = 200;
             WaitTimer.Tick += WaitTimerTick;
         }
 
