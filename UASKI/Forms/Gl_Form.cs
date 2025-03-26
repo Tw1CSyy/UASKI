@@ -45,16 +45,11 @@ namespace UASKI
             tabControl1.ItemSize = new System.Drawing.Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
-            Ai.AddMessage(Enums.TypeNotice.Default, "Включаю приложение. Удачной работы!");
-
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, "Включаю приложение. Удачной работы!");
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Текущее время: {DateTime.Now.ToString("HH:mm:ss")}");
             // Создаем или загружаем файл настроек
-            if (ApplicationHelper.Settings())
+            if (!ApplicationHelper.Settings())
             {
-                Ai.AddMessage(Enums.TypeNotice.Default, "Файл настроек загружен");
-            }
-            else
-            {
-                Ai.AddMessage(Enums.TypeNotice.Error, "Ошибка при загрузке настроечного файла");
                 return false;
             }
 
@@ -65,43 +60,58 @@ namespace UASKI
 
             if(!connection.IsConnection)
             {
-                Ai.AddMessage(Enums.TypeNotice.Error, "Ошибка при подключении к базе данных");
+                Ai.AddWaitMessage(Enums.TypeNotice.Error, "Ошибка при подключении к базе данных");
                 return false;
             }
 
-            Ai.AddMessage(Enums.TypeNotice.Default, "Подключение с базой получено");
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, "Подключение с базой получено");
 
-            if (ApplicationHelper.Dump())
-                Ai.AddMessage(Enums.TypeNotice.Default, "Резервная копия базы сделана");
+            // Создаем бекап
+            if(!ApplicationHelper.Dump())
+            {
+                return false;
+            }
 
-            Menu_Step1.Visible = Menu_Step2.Visible = true;
+            // Удаляем старые бекапы
+            if(!ApplicationHelper.RemoveDump())
+            {
+                return false;
+            }
 
+            // Собираем статистику
             var tasks = TaskModel.GetList();
+            var arhiv = ArhivModel.GetList();
+
             var count = tasks.Count(c => c.Date == DateTime.Today);
 
             if(count != 0)
-                Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня должны закрыться карточки: {count}");
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Сегодня должны закрыться карточки: {count}");
             else
-                Ai.AddMessage(Enums.TypeNotice.Default, $"Сегодня нет карточек на закрытие");
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Сегодня нет карточек на закрытие");
 
             count = tasks.Count(c => c.Date < DateTime.Today);
 
             if (count != 0)
-                Ai.AddMessage(Enums.TypeNotice.Default, $"Опаздывающих на текущий момент: {count}");
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Опаздывающих на текущий момент: {count}");
             else
-                Ai.AddMessage(Enums.TypeNotice.Default, $"На текущий момент никто не опаздывает");
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, $"На текущий момент никто не опаздывает");
 
-            if (DateTime.Today.DayOfWeek == DayOfWeek.Thursday)
+            // Если сегодня понедельник - создаем даты
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Wednesday)
             {
-                var dateList = ApplicationHelper.AddHoliday();
-
-                if (dateList.Length > 0)
-                    Ai.AddMessage(Enums.TypeNotice.Default, "Добавлены новые даты: ", dateList.Select(c => c.Date.ToString("dd.MM.yyyy")).ToArray());
-                else
-                    Ai.AddMessage(Enums.TypeNotice.Default, $"Нет дат на добавление");
+                ApplicationHelper.AddHoliday();
             }
 
-            Ai.AddMessage(Enums.TypeNotice.Default, $"Получить информацию о работе клавишах: CTRL + Ш");
+            var holys = HolidayModel.GetList();
+            var minDate = holys.Min(c => c.Date).Date;
+            var maxDate = holys.Max(c => c.Date).Date;
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Праздничные дни в диапазоне: {minDate.ToString("dd.MM.yyyy")} - {maxDate.ToString("dd.MM.yyyy")}");
+
+            var countTodayClose = arhiv.Count(c => c.DateClose == DateTime.Today);
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Сегодня закрыто карточек: {countTodayClose}");
+
+            Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Получить информацию о работе клавишах: CTRL + Ш");
+            Menu_Step1.Visible = Menu_Step2.Visible = true;
             return true;
         }
 
@@ -275,10 +285,13 @@ namespace UASKI
 
         private void Gl_Form_KeyDown(object sender, KeyEventArgs e)
         {
-            var result = Ai.KeyDown(e);
+            if(Menu_Step1.Visible && Menu_Step2.Visible)
+            {
+                var result = Ai.KeyDown(e);
 
-            if (result)
-                e.Handled = true;
+                if (result)
+                    e.Handled = true;
+            }
         }
         private void Menu_Step1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1391,8 +1404,8 @@ namespace UASKI
             button44_PreviewKeyDown(sender, key);
         }
 
+
         #endregion
 
-        
     }
 }

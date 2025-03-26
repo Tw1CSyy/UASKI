@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using UASKI.Core.Models;
 using UASKI.StaticModels;
+using UASKI.Enums;
 
 namespace UASKI.Helpers
 {
@@ -16,7 +17,8 @@ namespace UASKI.Helpers
     {
         private static readonly string SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
         private static readonly string DumpUtilePath = @"C:\Program Files\PostgreSQL\16\bin\pg_dump.exe";
-        private static readonly string DumpSavePath = @"C:\Program Files\PostgreSQL\16\bin\BAK";
+        private static readonly string DumpSavePath = @"Z:\otdel\OUKS\UASKI_SOFT_BAK";
+        private const int TIME_BACKUP = 3;
 
         /// <summary>
         /// Обработка настроек при запуске приложения
@@ -29,10 +31,12 @@ namespace UASKI.Helpers
                     CreateSettings(SettingsPath);
 
                 LoadSettings(SettingsPath);
+                Ai.AddWaitMessage(TypeNotice.Default, "Настройки загружены");
                 return true;
             }
             catch (Exception)
             {
+                Ai.AddWaitMessage(TypeNotice.Error, "Системная ошибка при создании настроек");
                 return false;
             }
         }
@@ -77,8 +81,14 @@ namespace UASKI.Helpers
         {
             var name = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}_dump";
 
-            if (File.Exists(Path.Combine(DumpSavePath, name)))
+            if(!Directory.Exists(DumpSavePath))
+            {
+                Ai.AddWaitMessage(TypeNotice.Error, "Папки для сохранения копии данных не существует");
                 return false;
+            }
+
+            if (File.Exists(Path.Combine(DumpSavePath, name)))
+                return true;
 
             try
             {
@@ -86,6 +96,51 @@ namespace UASKI.Helpers
             }
             catch (Exception)
             {
+                Ai.AddWaitMessage(TypeNotice.Error, "Системная ошибка при создании копии данных");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Удаляет старые дампы
+        /// </summary>
+        /// <returns>true - успешная операция</returns>
+        public static bool RemoveDump()
+        {
+            if (!Directory.Exists(DumpSavePath))
+            {
+                Ai.AddWaitMessage(TypeNotice.Error, "Папки для сохранения копии данных не существует");
+                return false;
+            }
+
+            try
+            {
+                var files = Directory.GetFiles(DumpSavePath);
+
+                if (files.Count() == 0)
+                    return false;
+
+                int count = 0;
+
+                foreach (var file in files)
+                {
+                    var fileInfo = new FileInfo(file);
+
+                    if (fileInfo.CreationTime.Date <= DateTime.Today.AddDays(TIME_BACKUP * -1))
+                    {
+                        count++;
+                        fileInfo.Delete();
+                    }
+                }
+
+                if(count > 0)
+                    Ai.AddWaitMessage(TypeNotice.Default, "Удалены старые копии данных: " + count.ToString());
+
+                return true;
+            }
+            catch (Exception)
+            {
+                Ai.AddWaitMessage(TypeNotice.Error, "Системная ошибка при удалении старых копий данных");
                 return false;
             }
         }
@@ -98,6 +153,12 @@ namespace UASKI.Helpers
         private static bool CreateDump(string nameDump)
         {
             var settings = SystemData.Settings;
+
+            if(!File.Exists(DumpUtilePath))
+            {
+                Ai.AddWaitMessage(TypeNotice.Error, "Утилита для создании копии данных не найдена");
+                return false;
+            }
 
             var process = new ProcessStartInfo()
             {
@@ -126,12 +187,20 @@ namespace UASKI.Helpers
                     Environment.SetEnvironmentVariable("PGPASSWORD", null);
 
                     if (proces.ExitCode == 0)
+                    {
+                        Ai.AddWaitMessage(TypeNotice.Default, "Копия данных создана");
                         return true;
+                    } 
                     else
+                    {
+                        Ai.AddWaitMessage(TypeNotice.Error, "Ошибка при создании копии данных");
                         return false;
+                    }
+                        
                 }
                 catch (Exception)
                 {
+                    Ai.AddWaitMessage(TypeNotice.Error, "Системная ошибка при создании копии данных");
                     Environment.SetEnvironmentVariable("PGPASSWORD", null);
                     return false;
                 }
@@ -141,16 +210,15 @@ namespace UASKI.Helpers
         /// <summary>
         /// Добавляет празднечные дни на будущие выходные
         /// </summary>
-        /// <returns>Список добавленных дат</returns>
-        public static DateTime[] AddHoliday()
+        public static void AddHoliday()
         {
             var holidayList = HolidayModel.GetList();
-            var result = new List<DateTime>();
+            var result = 0;
             int countNullDate = 0;
 
             for (DateTime date = DateTime.Today.AddYears(3); date > DateTime.Today;)
             {
-                if (countNullDate == 10)
+                if (countNullDate == 30)
                     break;
 
                 if (date.DayOfWeek != DayOfWeek.Sunday && date.DayOfWeek != DayOfWeek.Saturday)
@@ -168,13 +236,15 @@ namespace UASKI.Helpers
                     continue;
                 }
 
-                result.Add(date);
+                result++;
                 var model = new HolidayModel(date);
                 model.Add();
                 date = date.AddDays(-1);
             }
 
-            return result.ToArray();
+            if (result > 0)
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, "Добавлены новые даты: " + result.ToString());
+
         }
 
     }

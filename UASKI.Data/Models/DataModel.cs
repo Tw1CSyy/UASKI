@@ -13,7 +13,16 @@ namespace UASKI
         /// Объект подключения
         /// </summary>
         private static NpgsqlConnection Connection { get; set; }
-        
+
+        /// <summary>
+        /// Открыто ли подключение
+        /// </summary>
+        public static bool IsOpened { get; private set; } = false;
+
+        /// <summary>
+        /// Создает объект подключения
+        /// </summary>
+        /// <param name="connectionString">Строка подлкючения</param>
         public static void CreateConnection(string connectionString)
         {
             Connection = new NpgsqlConnection(connectionString);
@@ -24,7 +33,11 @@ namespace UASKI
         /// </summary>
         public static void Open()
         {
-            Connection.Open();
+            if(!IsOpened)
+            {
+                Connection.Open();
+                IsOpened = true;
+            }
         }
 
         /// <summary>
@@ -32,7 +45,11 @@ namespace UASKI
         /// </summary>
         public static void Close()
         {
-            Connection.Close();
+            if (IsOpened)
+            {
+                Connection.Close();
+                IsOpened = false;
+            }
         }
 
         /// <summary>

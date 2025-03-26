@@ -10,12 +10,30 @@ namespace UASKI.StaticModels
 {
     public static class Ai
     {
+        /// <summary>
+        /// Буфер для хранения Id скопированных данных
+        /// </summary>
         private readonly static List<int> Buffer = new List<int>();
+
+        /// <summary>
+        /// В каком состоянии сейчас находится буфер
+        /// </summary>
         public static TypeBuffer TypeBuffer = TypeBuffer.Null;
+
+        /// <summary>
+        /// Список очереди сообщений на отправку
+        /// </summary>
+        public static List<Notice> WaitMessageBufer { get; private set; } = new List<Notice>();
+
+        /// <summary>
+        /// Активен ли таймер
+        /// </summary>
+        public static bool IsTimerStart = false;
 
         private static TextBox Text;
         private static Color DefultColor;
         private static Timer Timer;
+        private static Timer WaitTimer;
         
         /// <summary>
         /// Инициализация программных переменных
@@ -28,6 +46,10 @@ namespace UASKI.StaticModels
             Timer = new Timer();
             Timer.Interval = 1000;
             Timer.Tick += NoticeTimer;
+
+            WaitTimer = new Timer();
+            WaitTimer.Interval = 300;
+            WaitTimer.Tick += WaitTimerTick;
         }
 
         /// <summary>
@@ -39,6 +61,22 @@ namespace UASKI.StaticModels
             Text.BackColor = DefultColor;
             SystemData.IsQuery = false;
             Timer.Stop();
+        }
+
+        /// <summary>
+        /// Таймер для показа очереди сообщений
+        /// </summary>
+        public static void WaitTimerTick(object sender , EventArgs e)
+        {
+            var item = WaitMessageBufer.FirstOrDefault();
+            AddMessage(item.Type, item.Message);
+            WaitMessageBufer.RemoveAt(0);
+
+            if (WaitMessageBufer.Count == 0)
+            {
+                IsTimerStart = false;
+                WaitTimer.Stop();
+            }
         }
 
         /// <summary>
@@ -61,21 +99,20 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Добавляет сообщение в очередь
+        /// Добавляет сообщение в бочередь на отправку
         /// </summary>
         /// <param name="type">Тип сообщения</param>
         /// <param name="text">Текст сообщения</param>
-        /// <param name="lines">Текст сообщения</param>
-        public static void AddMessage(TypeNotice type, string text, string[] lines)
+        public static void AddWaitMessage(TypeNotice type, string text)
         {
-            var message = Formating(text, lines);
+            var notice = new Notice(text, type);
+            WaitMessageBufer.Add(notice);
 
-            foreach (var line in message)
+            if(!IsTimerStart)
             {
-                AddMessage(type, line);
+                IsTimerStart = true;
+                WaitTimer.Start();
             }
-
-            Text.ScrollToCaret();
         }
 
         /// <summary>
