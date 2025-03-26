@@ -68,6 +68,7 @@ namespace UASKI
 
             Ai.AddWaitMessage(Enums.TypeNotice.Default, "Подключение с базой получено");
 
+
             // Создаем бекап
             if(!ApplicationHelper.Dump())
             {
