@@ -19,7 +19,7 @@ namespace UASKI.Helpers
         private static readonly string SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
         private static readonly string DumpUtilePath = @"C:\Program Files\PostgreSQL\16\bin\pg_dump.exe";
         private static readonly string DumpSavePath = @"Z:\otdel\OUKS\UASKI_SOFT_BAK";
-        private const int TIME_BACKUP = 5;
+        private const int DAYS_BACKUP = 5;
 
         /// <summary>
         /// Обработка настроек при запуске приложения
@@ -80,17 +80,12 @@ namespace UASKI.Helpers
         /// <returns>true - успешная операция</returns>
         public static bool Dump()
         {
-            var name = $"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}_dump";
+            var name = $"{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}_dump";
 
             if(!Directory.Exists(DumpSavePath))
             {
-                MessageBox.Show("Папки для сохранения копии данных не существует", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Ai.AddMessage(TypeNotice.Error, "Папки для сохранения копии данных не существует");
                 return false;
-            }
-
-            if (File.Exists(Path.Combine(DumpSavePath, name)))
-            {
-                File.Delete(Path.Combine(DumpSavePath, name));
             }
 
             try
@@ -99,7 +94,7 @@ namespace UASKI.Helpers
             }
             catch (Exception)
             {
-                MessageBox.Show("Системная ошибка при создании копии данных", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Ai.AddMessage(TypeNotice.Error, "Системная ошибка при создании копии данных");
                 return false;
             }
         }
@@ -129,7 +124,7 @@ namespace UASKI.Helpers
                 {
                     var fileInfo = new FileInfo(file);
 
-                    if (fileInfo.CreationTime.Date <= DateTime.Today.AddDays(TIME_BACKUP * -1))
+                    if (fileInfo.CreationTime.Date <= DateTime.Today.AddDays(DAYS_BACKUP * -1))
                     {
                         count++;
                         fileInfo.Delete();
@@ -159,7 +154,7 @@ namespace UASKI.Helpers
 
             if(!File.Exists(DumpUtilePath))
             {
-                MessageBox.Show("Утилита для создании копии данных не найдена", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Ai.AddMessage(TypeNotice.Error, "Утилита для создании копии данных не найдена");
                 return false;
             }
 
@@ -195,14 +190,14 @@ namespace UASKI.Helpers
                     } 
                     else
                     {
-                        MessageBox.Show("Ошибка при создании копии данных", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Ai.AddMessage(TypeNotice.Error, "Ошибка при создании копии данных");
                         return false;
                     }
                         
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Системная ошибка при создании копии данных", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Ai.AddMessage(TypeNotice.Error, "Системная ошибка при создании копии данных");
                     Environment.SetEnvironmentVariable("PGPASSWORD", null);
                     return false;
                 }

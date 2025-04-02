@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Enums;
+using UASKI.Helpers;
 using UASKI.Models;
 
 namespace UASKI.StaticModels
@@ -267,6 +268,10 @@ namespace UASKI.StaticModels
                     Buffer.Clear();
                     TypeBuffer = TypeBuffer.Null;
                     AddMessage(TypeNotice.Comlite , "Буффер отчищен");
+                    return true;
+                case Keys.S:
+                    if (ApplicationHelper.Dump())
+                        Ai.AddMessage(Enums.TypeNotice.Comlite, "Создана копия данных");
                     return true;
             }
 

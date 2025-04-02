@@ -20,8 +20,7 @@ namespace UASKI
         protected override void Dispose(bool disposing)
         {
             DataConnection.Close();
-            Helpers.ApplicationHelper.Dump();
-
+           
             if (disposing && (components != null))
             {
                 components.Dispose();

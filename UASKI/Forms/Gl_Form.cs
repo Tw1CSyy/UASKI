@@ -75,6 +75,11 @@ namespace UASKI
                 return false;
             }
 
+            if (!ApplicationHelper.Dump())
+                return false;
+            else
+                Ai.AddWaitMessage(Enums.TypeNotice.Default, "Копия данных создана");
+
             // Собираем статистику
             var tasks = TaskModel.GetList();
             var arhiv = ArhivModel.GetList();
@@ -97,7 +102,7 @@ namespace UASKI
 
             // Коэф. качества за месяц
             var kofs = new List<KofModel>();
-
+             
             foreach (var isp in IspModel.GetList())
             {
                 var item = isp.GetKofModel(tasks, arhiv, holys, prets, new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1), DateTime.Today);
@@ -162,6 +167,12 @@ namespace UASKI
         // Таймер времени
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
+            if(DateTime.Now.Minute == 0 && DateTime.Now.Second == 0)
+            {
+                if (ApplicationHelper.Dump())
+                    Ai.AddMessage(Enums.TypeNotice.Comlite, "Создана копия данных");
+            }
+
             if(DateTime.Now.Hour == 11 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 30)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Скоро обед. Осталось чуть чуть");
@@ -214,7 +225,6 @@ namespace UASKI
             tabControl1.Width = this.Width - 334;
             tabControl1.Height = this.Height - 192;
             pictureBox1.Location = new System.Drawing.Point((tabControl1.Width / 2) - (pictureBox1.Width / 2), (tabControl1.Height / 2) - (pictureBox1.Height / 2));
-
             // Просмотр
 
             ispDataGridView.Width = dataGridView3.Width = dataGridView1.Width = dataGridView5.Width = dataGridView12.Width = tabControl1.Width;
