@@ -40,7 +40,32 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var model = new List<DataGridRowModel>();
+            var arhiv = ArhivModel.GetList().Where(c => c.IsDouble).ToList();
+            var isps = IspModel.GetList();
+
+            if(form.textBox44.Text.Length > 0)
+            {
+                arhiv = arhiv.Where(c => c.Code.ToLower().Contains(form.textBox44.Text.ToLower())).ToList();
+            }
+
+            if(form.checkBox9.Checked)
+            {
+                arhiv = arhiv.Where(c => c.DateClose >= form.dateTimePicker22.Value && c.DateClose <= form.dateTimePicker23.Value).ToList();
+            }
+
+            var model = arhiv.OrderBy(c => c.Date).ThenBy(c => c.Id)
+                .GroupBy(g => new { g.Code, g.IdCon })
+                .Select(g => new DataGridRowModel(g.Key.Code, g.Key.IdCon.ToString(), g.Count().ToString()))
+                .ToList();
+
+            for(int i = 0; i < model.Count; i++)
+            {
+                var id = Convert.ToInt32(model[i].Values[1]);
+                var con = isps.FirstOrDefault(c => c.Code == id);
+
+                if (con != null)
+                    model[i].Values[1] = con.InizByCode;
+            }
 
             var columns = new DataGridColumnModel[]
             {
@@ -50,6 +75,7 @@ namespace UASKI.Pages
             };
 
             form.DataGridView15.PullListInDataGridView(model.ToArray(), columns);
+            Ai.AddMessage(Enums.TypeNotice.Default, $"Количество: {model.Count}");
         }
 
         protected override void FilterOpen()

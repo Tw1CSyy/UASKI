@@ -235,7 +235,6 @@ namespace UASKI
             this.panel23 = new System.Windows.Forms.Panel();
             this.textBox30 = new System.Windows.Forms.TextBox();
             this.button36 = new System.Windows.Forms.Button();
-            this.button35 = new System.Windows.Forms.Button();
             this.button34 = new System.Windows.Forms.Button();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.label76 = new System.Windows.Forms.Label();
@@ -263,7 +262,6 @@ namespace UASKI
             this.panel26 = new System.Windows.Forms.Panel();
             this.button40 = new System.Windows.Forms.Button();
             this.label83 = new System.Windows.Forms.Label();
-            this.button39 = new System.Windows.Forms.Button();
             this.label81 = new System.Windows.Forms.Label();
             this.dateTimePicker12 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker13 = new System.Windows.Forms.DateTimePicker();
@@ -278,7 +276,6 @@ namespace UASKI
             this.label87 = new System.Windows.Forms.Label();
             this.label86 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
-            this.button41 = new System.Windows.Forms.Button();
             this.button42 = new System.Windows.Forms.Button();
             this.label85 = new System.Windows.Forms.Label();
             this.dateTimePicker14 = new System.Windows.Forms.DateTimePicker();
@@ -292,7 +289,6 @@ namespace UASKI
             this.button45 = new System.Windows.Forms.Button();
             this.button46 = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.button49 = new System.Windows.Forms.Button();
             this.label94 = new System.Windows.Forms.Label();
             this.label93 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
@@ -311,8 +307,6 @@ namespace UASKI
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.button51 = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
-            this.button52 = new System.Windows.Forms.Button();
-            this.button53 = new System.Windows.Forms.Button();
             this.dateTimePicker17 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker18 = new System.Windows.Forms.DateTimePicker();
             this.label95 = new System.Windows.Forms.Label();
@@ -324,7 +318,6 @@ namespace UASKI
             this.panel29 = new System.Windows.Forms.Panel();
             this.textBox42 = new System.Windows.Forms.TextBox();
             this.button50 = new System.Windows.Forms.Button();
-            this.button55 = new System.Windows.Forms.Button();
             this.button56 = new System.Windows.Forms.Button();
             this.textBox43 = new System.Windows.Forms.TextBox();
             this.label54 = new System.Windows.Forms.Label();
@@ -352,6 +345,8 @@ namespace UASKI
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.button52 = new System.Windows.Forms.Button();
+            this.button53 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -2660,7 +2655,6 @@ namespace UASKI
             // 
             this.panel23.Controls.Add(this.textBox30);
             this.panel23.Controls.Add(this.button36);
-            this.panel23.Controls.Add(this.button35);
             this.panel23.Controls.Add(this.button34);
             this.panel23.Controls.Add(this.textBox20);
             this.panel23.Controls.Add(this.label76);
@@ -2694,18 +2688,6 @@ namespace UASKI
             this.button36.Text = "^";
             this.button36.UseVisualStyleBackColor = false;
             this.button36.Click += new System.EventHandler(this.button36_Click);
-            // 
-            // button35
-            // 
-            this.button35.BackColor = System.Drawing.Color.White;
-            this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button35.Location = new System.Drawing.Point(623, 7);
-            this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(21, 29);
-            this.button35.TabIndex = 31;
-            this.button35.Text = "^";
-            this.button35.UseVisualStyleBackColor = false;
-            this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
             // button34
             // 
@@ -2982,7 +2964,6 @@ namespace UASKI
             // 
             this.panel26.Controls.Add(this.button40);
             this.panel26.Controls.Add(this.label83);
-            this.panel26.Controls.Add(this.button39);
             this.panel26.Controls.Add(this.label81);
             this.panel26.Controls.Add(this.dateTimePicker12);
             this.panel26.Controls.Add(this.dateTimePicker13);
@@ -3014,18 +2995,6 @@ namespace UASKI
             this.label83.Size = new System.Drawing.Size(30, 29);
             this.label83.TabIndex = 39;
             this.label83.Text = "С";
-            // 
-            // button39
-            // 
-            this.button39.BackColor = System.Drawing.Color.White;
-            this.button39.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button39.Location = new System.Drawing.Point(523, 39);
-            this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(21, 29);
-            this.button39.TabIndex = 38;
-            this.button39.Text = "^";
-            this.button39.UseVisualStyleBackColor = false;
-            this.button39.Click += new System.EventHandler(this.button39_Click);
             // 
             // label81
             // 
@@ -3119,7 +3088,6 @@ namespace UASKI
             this.panel27.Controls.Add(this.label87);
             this.panel27.Controls.Add(this.label86);
             this.panel27.Controls.Add(this.label84);
-            this.panel27.Controls.Add(this.button41);
             this.panel27.Controls.Add(this.button42);
             this.panel27.Controls.Add(this.label85);
             this.panel27.Controls.Add(this.dateTimePicker14);
@@ -3189,18 +3157,6 @@ namespace UASKI
             this.label84.Size = new System.Drawing.Size(30, 29);
             this.label84.TabIndex = 47;
             this.label84.Text = "С";
-            // 
-            // button41
-            // 
-            this.button41.BackColor = System.Drawing.Color.White;
-            this.button41.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button41.Location = new System.Drawing.Point(500, 72);
-            this.button41.Name = "button41";
-            this.button41.Size = new System.Drawing.Size(21, 29);
-            this.button41.TabIndex = 46;
-            this.button41.Text = "^";
-            this.button41.UseVisualStyleBackColor = false;
-            this.button41.Click += new System.EventHandler(this.button41_Click);
             // 
             // button42
             // 
@@ -3342,7 +3298,6 @@ namespace UASKI
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.Silver;
-            this.panel10.Controls.Add(this.button49);
             this.panel10.Controls.Add(this.label94);
             this.panel10.Controls.Add(this.label93);
             this.panel10.Controls.Add(this.label92);
@@ -3357,18 +3312,6 @@ namespace UASKI
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(603, 316);
             this.panel10.TabIndex = 2;
-            // 
-            // button49
-            // 
-            this.button49.BackColor = System.Drawing.Color.White;
-            this.button49.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button49.Location = new System.Drawing.Point(274, 168);
-            this.button49.Name = "button49";
-            this.button49.Size = new System.Drawing.Size(19, 26);
-            this.button49.TabIndex = 34;
-            this.button49.Text = "^";
-            this.button49.UseVisualStyleBackColor = false;
-            this.button49.Click += new System.EventHandler(this.button49_Click);
             // 
             // label94
             // 
@@ -3576,30 +3519,6 @@ namespace UASKI
             this.panel22.Size = new System.Drawing.Size(241, 129);
             this.panel22.TabIndex = 14;
             // 
-            // button52
-            // 
-            this.button52.BackColor = System.Drawing.Color.White;
-            this.button52.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button52.Location = new System.Drawing.Point(222, 79);
-            this.button52.Name = "button52";
-            this.button52.Size = new System.Drawing.Size(19, 26);
-            this.button52.TabIndex = 31;
-            this.button52.Text = "^";
-            this.button52.UseVisualStyleBackColor = false;
-            this.button52.Click += new System.EventHandler(this.button52_Click);
-            // 
-            // button53
-            // 
-            this.button53.BackColor = System.Drawing.Color.White;
-            this.button53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button53.Location = new System.Drawing.Point(222, 27);
-            this.button53.Name = "button53";
-            this.button53.Size = new System.Drawing.Size(19, 26);
-            this.button53.TabIndex = 30;
-            this.button53.Text = "^";
-            this.button53.UseVisualStyleBackColor = false;
-            this.button53.Click += new System.EventHandler(this.button53_Click);
-            // 
             // dateTimePicker17
             // 
             this.dateTimePicker17.Location = new System.Drawing.Point(5, 27);
@@ -3686,7 +3605,6 @@ namespace UASKI
             // 
             this.panel29.Controls.Add(this.textBox42);
             this.panel29.Controls.Add(this.button50);
-            this.panel29.Controls.Add(this.button55);
             this.panel29.Controls.Add(this.button56);
             this.panel29.Controls.Add(this.textBox43);
             this.panel29.Controls.Add(this.label54);
@@ -3719,17 +3637,7 @@ namespace UASKI
             this.button50.TabIndex = 32;
             this.button50.Text = "^";
             this.button50.UseVisualStyleBackColor = false;
-            // 
-            // button55
-            // 
-            this.button55.BackColor = System.Drawing.Color.White;
-            this.button55.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button55.Location = new System.Drawing.Point(620, 7);
-            this.button55.Name = "button55";
-            this.button55.Size = new System.Drawing.Size(21, 29);
-            this.button55.TabIndex = 31;
-            this.button55.Text = "^";
-            this.button55.UseVisualStyleBackColor = false;
+            this.button50.Click += new System.EventHandler(this.button50_Click);
             // 
             // button56
             // 
@@ -3840,6 +3748,7 @@ namespace UASKI
             this.button57.TabIndex = 31;
             this.button57.Text = "<";
             this.button57.UseVisualStyleBackColor = false;
+            this.button57.Click += new System.EventHandler(this.button57_Click);
             // 
             // dataGridView15
             // 
@@ -3879,6 +3788,7 @@ namespace UASKI
             this.button59.TabIndex = 29;
             this.button59.Text = ">";
             this.button59.UseVisualStyleBackColor = false;
+            this.button59.Click += new System.EventHandler(this.button59_Click);
             // 
             // panel31
             // 
@@ -3904,6 +3814,7 @@ namespace UASKI
             this.button60.TabIndex = 31;
             this.button60.Text = "^";
             this.button60.UseVisualStyleBackColor = false;
+            this.button60.Click += new System.EventHandler(this.button60_Click);
             // 
             // button61
             // 
@@ -3915,23 +3826,26 @@ namespace UASKI
             this.button61.TabIndex = 30;
             this.button61.Text = "^";
             this.button61.UseVisualStyleBackColor = false;
+            this.button61.Click += new System.EventHandler(this.button61_Click);
             // 
             // dateTimePicker22
             // 
-            this.dateTimePicker22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker22.Location = new System.Drawing.Point(5, 27);
             this.dateTimePicker22.Name = "dateTimePicker22";
-            this.dateTimePicker22.Size = new System.Drawing.Size(214, 23);
+            this.dateTimePicker22.Size = new System.Drawing.Size(214, 26);
             this.dateTimePicker22.TabIndex = 5;
+            this.dateTimePicker22.ValueChanged += new System.EventHandler(this.dateTimePicker22_ValueChanged);
             this.dateTimePicker22.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker22_KeyDown);
             // 
             // dateTimePicker23
             // 
-            this.dateTimePicker23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker23.Location = new System.Drawing.Point(5, 79);
             this.dateTimePicker23.Name = "dateTimePicker23";
-            this.dateTimePicker23.Size = new System.Drawing.Size(214, 23);
+            this.dateTimePicker23.Size = new System.Drawing.Size(214, 26);
             this.dateTimePicker23.TabIndex = 4;
+            this.dateTimePicker23.ValueChanged += new System.EventHandler(this.dateTimePicker23_ValueChanged);
             this.dateTimePicker23.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker23_KeyDown);
             // 
             // label88
@@ -3963,6 +3877,7 @@ namespace UASKI
             this.checkBox9.TabIndex = 12;
             this.checkBox9.Text = "Учитывать дату срока";
             this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
             this.checkBox9.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox9_PreviewKeyDown);
             // 
             // textBox44
@@ -3972,6 +3887,7 @@ namespace UASKI
             this.textBox44.Name = "textBox44";
             this.textBox44.Size = new System.Drawing.Size(235, 26);
             this.textBox44.TabIndex = 10;
+            this.textBox44.TextChanged += new System.EventHandler(this.textBox44_TextChanged);
             this.textBox44.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox44_KeyDown);
             // 
             // label101
@@ -4018,6 +3934,30 @@ namespace UASKI
             // 
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
+            // 
+            // button52
+            // 
+            this.button52.BackColor = System.Drawing.Color.White;
+            this.button52.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button52.Location = new System.Drawing.Point(222, 79);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(19, 26);
+            this.button52.TabIndex = 31;
+            this.button52.Text = "^";
+            this.button52.UseVisualStyleBackColor = false;
+            this.button52.Click += new System.EventHandler(this.button52_Click);
+            // 
+            // button53
+            // 
+            this.button53.BackColor = System.Drawing.Color.White;
+            this.button53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button53.Location = new System.Drawing.Point(222, 27);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(19, 26);
+            this.button53.TabIndex = 30;
+            this.button53.Text = "^";
+            this.button53.UseVisualStyleBackColor = false;
+            this.button53.Click += new System.EventHandler(this.button53_Click);
             // 
             // Gl_Form
             // 
@@ -4323,7 +4263,6 @@ namespace UASKI
         private System.Windows.Forms.Label label75;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.Button button36;
-        private System.Windows.Forms.Button button35;
         public System.Windows.Forms.DateTimePicker dateTimePicker11;
         public System.Windows.Forms.DateTimePicker dateTimePicker10;
         public System.Windows.Forms.TextBox textBox20;
@@ -4339,7 +4278,6 @@ namespace UASKI
         public System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.Button button39;
         public System.Windows.Forms.Button button40;
         private System.Windows.Forms.Label label81;
         public System.Windows.Forms.DateTimePicker dateTimePicker12;
@@ -4348,7 +4286,6 @@ namespace UASKI
         private System.Windows.Forms.Label label83;
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.Button button41;
         public System.Windows.Forms.Button button42;
         private System.Windows.Forms.Label label85;
         public System.Windows.Forms.DateTimePicker dateTimePicker14;
@@ -4376,13 +4313,10 @@ namespace UASKI
         public System.Windows.Forms.Label label102;
         public System.Windows.Forms.Button button48;
         public System.Windows.Forms.Button button47;
-        private System.Windows.Forms.Button button49;
         private System.Windows.Forms.TabPage tabPage16;
         public System.Windows.Forms.Panel panel21;
         public System.Windows.Forms.Button button51;
         public System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.Button button52;
-        private System.Windows.Forms.Button button53;
         public System.Windows.Forms.DateTimePicker dateTimePicker17;
         public System.Windows.Forms.DateTimePicker dateTimePicker18;
         private System.Windows.Forms.Label label95;
@@ -4427,7 +4361,6 @@ namespace UASKI
         private Panel panel29;
         public TextBox textBox42;
         private Button button50;
-        private Button button55;
         public Button button56;
         public TextBox textBox43;
         private Label label54;
@@ -4453,6 +4386,8 @@ namespace UASKI
         public CheckBox checkBox9;
         public TextBox textBox44;
         private Label label101;
+        private Button button52;
+        private Button button53;
     }
 }
 

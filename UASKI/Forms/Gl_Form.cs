@@ -1234,6 +1234,24 @@ namespace UASKI
             if (!SystemData.IsClear)
                 SystemData.Pages.PrintPlan.Select();
         }
+        private void textBox44_TextChanged(object sender, EventArgs e)
+        {
+            if(!SystemData.IsClear)
+                SystemData.Pages.SelectDTasks.Select();
+        }
+        private void checkBox9_CheckedChanged(object sender, EventArgs e)
+        {
+            panel31.Visible = checkBox9.Checked;
+            textBox44_TextChanged(sender, e);
+        }
+        private void dateTimePicker22_ValueChanged(object sender, EventArgs e)
+        {
+            textBox44_TextChanged(sender, e);
+        }
+        private void dateTimePicker23_ValueChanged(object sender, EventArgs e)
+        {
+            textBox44_TextChanged(sender, e);
+        }
         #endregion
 
         #region Обработка курсора
@@ -1377,35 +1395,15 @@ namespace UASKI
             var key = new KeyEventArgs(SystemData.ActionKey);
             dateTimePicker8_KeyDown(sender, key);
         }
-        private void button35_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            dateTimePicker10_KeyDown(sender, key);
-        }
         private void button36_Click(object sender, EventArgs e)
         {
             var key = new KeyEventArgs(SystemData.ActionKey);
             textBox30_KeyDown(sender, key);
         }
-        private void button39_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            dateTimePicker12_KeyDown(sender, key);
-        }
         private void button43_Click(object sender, EventArgs e)
         {
             var key = new KeyEventArgs(SystemData.ActionKey);
             textBox36_KeyDown(sender, key);
-        }
-        private void button41_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            dateTimePicker14_KeyDown(sender, key);
-        }
-        private void button49_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            dateTimePicker16_KeyDown(sender, key);
         }
         private void button53_Click(object sender, EventArgs e)
         {
@@ -1523,12 +1521,36 @@ namespace UASKI
             button44_PreviewKeyDown(sender, key);
         }
 
-
-
-
-
-
         #endregion
 
+        private void button57_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            dataGridView15_KeyDown(sender, key);
+        }
+
+        private void button59_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox44_KeyDown(sender, key);
+        }
+
+        private void button61_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker22_KeyDown(sender, key);
+        }
+
+        private void button60_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker23_KeyDown(sender, key);
+        }
+
+        private void button50_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox42_KeyDown(sender, key);
+        }
     }
 }
