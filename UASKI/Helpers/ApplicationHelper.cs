@@ -17,10 +17,7 @@ namespace UASKI.Helpers
     public static class ApplicationHelper
     {
         private static readonly string SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UASKI_Settings.json");
-        private static readonly string DumpUtilePath = @"C:\Program Files\PostgreSQL\16\bin\pg_dump.exe";
-        private static readonly string DumpSavePath = @"Z:\otdel\OUKS\UASKI_SOFT_BAK";
-        private const int DAYS_BACKUP = 5;
-
+      
         /// <summary>
         /// Обработка настроек при запуске приложения
         /// </summary>
