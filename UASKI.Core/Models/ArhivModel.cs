@@ -264,6 +264,18 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
+        /// Возвращает строку кода задания с обозначением
+        /// </summary>
+        /// <returns></returns>
+        public string GetCode()
+        {
+            if (IsDouble)
+                return "(Д) " + Code;
+            else
+                return Code;
+        }
+
+        /// <summary>
         /// Возращает список архива
         /// </summary> 
         /// <returns>Список архивных задач</returns>

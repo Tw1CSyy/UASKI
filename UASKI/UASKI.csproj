@@ -152,6 +152,7 @@
     <Compile Include="Pages\PrintPoc.cs" />
     <Compile Include="Pages\PrintTaskList.cs" />
     <Compile Include="Pages\SelectArhiv.cs" />
+    <Compile Include="Pages\SelectDTasks.cs" />
     <Compile Include="Pages\SelectHoliday.cs" />
     <Compile Include="Pages\SelectIsp.cs" />
     <Compile Include="Pages\SelectOpz.cs" />

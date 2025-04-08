@@ -64,7 +64,7 @@ namespace UASKI.Pages
             model = list.OrderByDescending(c => c.DateClose).ThenBy(c => c.Id)
                 .Select(c => new DataGridRowModel(
                     c.Id.ToString(),
-                    c.Code,
+                    c.GetCode(),
                     c.GetIsp(isps).InizByCode,
                     c.GetCon(isps).InizByCode,
                     c.Date.ToString("dd.MM.yyyy"),

@@ -80,7 +80,7 @@ namespace UASKI.Pages
                             opz = opzDays;
 
                         var item = new DataGridRowModel(
-                            task.Code,
+                            task.GetCode(),
                             task.Date.ToString("dd.MM.yyyy"),
                             con.InizByCode,
                             task.DateClose.ToString("dd.MM.yyyy"),
@@ -97,7 +97,7 @@ namespace UASKI.Pages
                         int opz = task.GetDaysOpz(holy , form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                         var item = new DataGridRowModel(
-                            task.Code,
+                            task.GetCode(),
                             task.Date.ToString("dd.MM.yyyy"),
                             con.InizByCode,
                             string.Empty,

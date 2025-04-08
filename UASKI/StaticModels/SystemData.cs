@@ -97,6 +97,11 @@ namespace UASKI.StaticModels
                        {
                            Text = "Просмотр Претензий/Рецензий",
                            Page = Pages.SelectPret
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Двусторонних",
+                           Page = Pages.SelectDTasks
                        }
                    }
                },

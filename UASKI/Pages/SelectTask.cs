@@ -63,7 +63,7 @@ namespace UASKI.Pages
            
             foreach (var item in list.OrderBy(c => c.Date).ThenBy(c => c.Id))
             {
-                var st = new DataGridRowModel(item.Id.ToString(), item.Code, item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy"));
+                var st = new DataGridRowModel(item.Id.ToString(), item.GetCode(), item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);
             }
 

@@ -55,7 +55,7 @@ namespace UASKI.Pages
                 .OrderBy(c => c.Date);
 
             var model = tasks.Select(c => new DataGridRowModel(
-                c.Code, c.Date.ToString("dd.MM.yyyy"), c.GetCon(isps).InizByCode, c.GetDaysOpz(holy).ToString()));
+                c.GetCode(), c.Date.ToString("dd.MM.yyyy"), c.GetCon(isps).InizByCode, c.GetDaysOpz(holy).ToString()));
 
             var columns = new DataGridColumnModel[]
             {

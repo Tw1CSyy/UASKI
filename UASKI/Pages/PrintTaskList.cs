@@ -76,7 +76,7 @@ namespace UASKI.Pages
             foreach (var task in taskList)
             {
                 var item = new DataGridRowModel(
-                    task.Code,
+                    task.GetCode(),
                     task.Date.ToString("dd.MM.yyyy"),
                     task.GetCon(isps).InizByCode);
 
@@ -86,7 +86,7 @@ namespace UASKI.Pages
             foreach (var task in arhivList)
             {
                 var item = new DataGridRowModel(
-                    task.Code,
+                    task.GetCode(),
                     task.Date.ToString("dd.MM.yyyy"),
                     task.GetCon(isps).InizByCode,
                     task.DateClose.ToString("dd.MM.yyyy"),

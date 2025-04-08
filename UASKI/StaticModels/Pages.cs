@@ -26,5 +26,6 @@ namespace UASKI.StaticModels
         public readonly EditPret EditPret = new EditPret(16);
         public readonly SelectPret SelectPret = new SelectPret(17);
         public readonly PrintPlan PrintPlan = new PrintPlan(18);
+        public readonly SelectDTasks SelectDTasks = new SelectDTasks(19);
     }
 }

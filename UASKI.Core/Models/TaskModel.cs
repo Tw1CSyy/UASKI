@@ -18,7 +18,7 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Код задания
         /// </summary>
-        public string Code { get; private set; }
+        public string Code { get;  private set; }
 
         /// <summary>
         /// Идентификатор исполнителя
@@ -250,6 +250,17 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
+        /// Возвращает строку кода задания с обозначением
+        /// </summary>
+        /// <returns></returns>
+        public string GetCode()
+        {
+            if (IsDouble)
+                return "(Д) " + Code; 
+            else
+                return Code;
+        }
+        /// <summary>
         /// Возращает задачу по Id
         /// </summary>
         /// <param name="code">Id задачи</param>
@@ -294,6 +305,7 @@ namespace UASKI.Core.Models
 
             return true;
         }
+
 
     }
 }

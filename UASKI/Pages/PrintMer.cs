@@ -51,7 +51,7 @@ namespace UASKI.Pages
                 if (date < 0)
                     date = 0;
 
-                var model = new DataGridRowModel(item.Code,
+                var model = new DataGridRowModel(item.GetCode(),
                     item.GetIsp(isps).InizByCode,
                     item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"), "", "", date.ToString());
@@ -66,7 +66,7 @@ namespace UASKI.Pages
                 if (date < 0)
                     date = 0;
 
-                var model = new DataGridRowModel(item.Code,
+                var model = new DataGridRowModel(item.GetCode(),
                     item.GetIsp(isps).InizByCode,
                     item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),

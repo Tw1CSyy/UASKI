@@ -51,7 +51,7 @@ namespace UASKI.Pages
 
                 var model = new DataGridRowModel(
                     item.GetIsp(isps).InizByCode,
-                    item.Code,
+                    item.GetCode(),
                     item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),
                     day.ToString());

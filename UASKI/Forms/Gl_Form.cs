@@ -210,8 +210,8 @@ namespace UASKI
             pictureBox1.Location = new System.Drawing.Point((tabControl1.Width / 2) - (pictureBox1.Width / 2), (tabControl1.Height / 2) - (pictureBox1.Height / 2));
             // Просмотр
 
-            ispDataGridView.Width = dataGridView3.Width = dataGridView1.Width = dataGridView5.Width = dataGridView12.Width = tabControl1.Width;
-            ispDataGridView.Height = dataGridView3.Height = dataGridView1.Height = dataGridView5.Height = dataGridView12.Height = tabControl1.Height - 22;
+            ispDataGridView.Width = dataGridView3.Width = dataGridView1.Width = dataGridView5.Width = dataGridView12.Width = dataGridView15.Width = tabControl1.Width;
+            ispDataGridView.Height = dataGridView3.Height = dataGridView1.Height = dataGridView5.Height = dataGridView12.Height = dataGridView15.Height = tabControl1.Height - 22;
 
             dataGridView6.Width = tabControl1.Width - 184;
             dataGridView6.Height = tabControl1.Height - 26;
@@ -289,6 +289,7 @@ namespace UASKI
             DataGridView13 = new DataGridViewComponent(dataGridView13);
             DataGridView12 = new DataGridViewComponent(dataGridView12);
             DataGridView14 = new DataGridViewComponent(dataGridView14);
+            DataGridView15 = new DataGridViewComponent(dataGridView15);
         }
 
         public DataGridViewComponent IspDataGridView { get; private set; }
@@ -306,6 +307,7 @@ namespace UASKI
         public DataGridViewComponent DataGridView13 { get; private set; }
         public DataGridViewComponent DataGridView12 { get; private set; }
         public DataGridViewComponent DataGridView14 { get; private set; }
+        public DataGridViewComponent DataGridView15 { get; private set; }
         #endregion
 
         #region Нажатия клавиш
@@ -777,6 +779,26 @@ namespace UASKI
         private void checkBox7_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             SystemData.Pages.EditTask.checkBox7_PreviewKeyDown(e);
+        }
+        private void dataGridView15_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectDTasks.dataGridView15_KeyDown(e);
+        }
+        private void textBox44_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectDTasks.textBox44_KeyDown(e);
+        }
+        private void checkBox9_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectDTasks.checkBox9_PreviewKeyDown(e);
+        }
+        private void dateTimePicker22_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectDTasks.dateTimePicker22_KeyDown(e);
+        }
+        private void dateTimePicker23_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.SelectDTasks.dateTimePicker23_KeyDown(e);
         }
         #endregion
 
@@ -1504,8 +1526,9 @@ namespace UASKI
 
 
 
+
+
         #endregion
 
-        
     }
 }
