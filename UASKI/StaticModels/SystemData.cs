@@ -134,6 +134,11 @@ namespace UASKI.StaticModels
                        },
                        new ItemMenuLevel2
                        {
+                           Text = "Перечень планов",
+                           Page = Pages.PrintPlan
+                       },
+                       new ItemMenuLevel2
+                       {
                            Text = "Невыполненные задания",
                            Page = Pages.PrintOpz
                        },

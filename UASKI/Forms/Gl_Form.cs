@@ -96,7 +96,7 @@ namespace UASKI
             {
                 var item = isp.GetKofModel(tasks, arhiv, holys, prets, new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1), DateTime.Today);
 
-                if (item.Kof == 0)
+                if (item.Kof <= 0 && item.Count == 0)
                     continue;
 
                 if (item.Kof < 0)
@@ -239,7 +239,11 @@ namespace UASKI
             panel26.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel26.Width / 2), panel26.Location.Y);
             dataGridView10.Width = tabControl1.Width - 8;
             dataGridView10.Height = tabControl1.Height - 110;
-            
+
+            panel29.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel26.Width / 2), panel26.Location.Y);
+            dataGridView14.Width = tabControl1.Width - 8;
+            dataGridView14.Height = tabControl1.Height - 110;
+
             panel27.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel27.Width / 2), panel27.Location.Y);
             dataGridView11.Width = tabControl1.Width - 8;
             dataGridView11.Height = tabControl1.Height - 322;
@@ -261,6 +265,8 @@ namespace UASKI
             DataGridView11.ResizeDataGridView();
             DataGridView12.ResizeDataGridView();
             DataGridView13.ResizeDataGridView();
+            DataGridView14.ResizeDataGridView();
+
         }
         #endregion
 
@@ -282,6 +288,7 @@ namespace UASKI
             DataGridView11 = new DataGridViewComponent(dataGridView11);
             DataGridView13 = new DataGridViewComponent(dataGridView13);
             DataGridView12 = new DataGridViewComponent(dataGridView12);
+            DataGridView14 = new DataGridViewComponent(dataGridView14);
         }
 
         public DataGridViewComponent IspDataGridView { get; private set; }
@@ -298,6 +305,7 @@ namespace UASKI
         public DataGridViewComponent DataGridView11 { get; private set; }
         public DataGridViewComponent DataGridView13 { get; private set; }
         public DataGridViewComponent DataGridView12 { get; private set; }
+        public DataGridViewComponent DataGridView14 { get; private set; }
         #endregion
 
         #region Нажатия клавиш
@@ -742,6 +750,26 @@ namespace UASKI
         {
             SystemData.Pages.PrintCof.dataGridView13_KeyDown(e);
         }
+        private void dateTimePicker20_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPlan.dateTimePicker20_KeyDown(e);
+        }
+        private void dateTimePicker21_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPlan.dateTimePicker21_KeyDown(e);
+        }
+        private void textBox42_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPlan.textBox42_KeyDown(e);
+        }
+        private void button56_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.PrintPlan.button56_PreviewKeyDown(e);
+        }
+        private void dataGridView14_KeyDown(object sender, KeyEventArgs e)
+        {
+            SystemData.Pages.PrintPlan.dataGridView14_KeyDown(e);
+        }
         #endregion
 
         #region Обработка
@@ -1134,6 +1162,48 @@ namespace UASKI
                 textBox23.Clear();
             }
         }
+        private void textBox42_TextChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+            {
+                if (textBox42.Text.Length > 0)
+                {
+                    int code;
+
+                    if (int.TryParse(textBox42.Text, out code))
+                    {
+                        var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == code);
+
+                        if (isp != null)
+                            textBox43.Text = isp.InizNotCode;
+                        else
+                            textBox43.Clear();
+                    }
+                    else
+                        textBox43.Clear();
+                }
+
+                if (textBox42.Text.Length > 0)
+                {
+                    SystemData.Pages.PrintPlan.Select();
+                }
+                else
+                {
+                    dataGridView14.DataSource = null;
+                    textBox43.Clear();
+                }
+            }
+        }
+        private void dateTimePicker20_ValueChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+                SystemData.Pages.PrintPlan.Select();
+        }
+        private void dateTimePicker21_ValueChanged(object sender, EventArgs e)
+        {
+            if (!SystemData.IsClear)
+                SystemData.Pages.PrintPlan.Select();
+        }
         #endregion
 
         #region Обработка курсора
@@ -1422,6 +1492,8 @@ namespace UASKI
             var key = new PreviewKeyDownEventArgs(Keys.Enter);
             button44_PreviewKeyDown(sender, key);
         }
+
+
 
 
         #endregion
