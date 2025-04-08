@@ -86,6 +86,7 @@ namespace UASKI.Pages
                 printDocument.DefaultPageSettings.Landscape = true;
                 printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
                 GetPrint(printDocument);
+                form.DataGridView10.ClearTag();
             }
         }
 

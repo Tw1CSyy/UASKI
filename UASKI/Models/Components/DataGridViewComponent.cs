@@ -234,5 +234,16 @@ namespace UASKI.Models.Components
             }
         }
 
+        /// <summary>
+        /// Отчищает тег всех строк
+        /// </summary>
+        public void ClearTag()
+        {
+            for(int i = 0; i < d.Rows.Count; i++)
+            {
+                d.Rows[i].Tag = null;
+            }
+        }
+
     }
 }

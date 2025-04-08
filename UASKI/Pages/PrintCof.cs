@@ -209,6 +209,8 @@ namespace UASKI.Pages
                     FirstPage = true;
                 }
 
+                form.DataGridView11.ClearTag();
+                form.DataGridView13.ClearTag();
             }
         }
 

@@ -9,6 +9,7 @@ using UASKI.Models;
 using UASKI.StaticModels;
 using UASKI.Core.Models;
 using UASKI.Forms;
+using System.ComponentModel;
 
 namespace UASKI.Pages
 {
@@ -82,6 +83,7 @@ namespace UASKI.Pages
                 printDocument.DefaultPageSettings.Landscape = true;
                 printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
                 GetPrint(printDocument);
+                form.DataGridView8.ClearTag();
             }
         }
 
