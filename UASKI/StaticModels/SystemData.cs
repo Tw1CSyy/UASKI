@@ -70,7 +70,7 @@ namespace UASKI.StaticModels
                    {
                        new ItemMenuLevel2
                        {
-                           Text = "Просмотр Исполнителя-контролера",
+                           Text = "Просмотр Исполнителя-Контролёра",
                            Page = Pages.SelectIsp
                        },
                        new ItemMenuLevel2
@@ -112,7 +112,7 @@ namespace UASKI.StaticModels
                        },
                        new ItemMenuLevel2
                        {
-                           Text = "Добавление Исполнителей-Контролеров",
+                           Text = "Добавление Исполнителей-Контролёров",
                            Page = Pages.AddIsp
                        },
                        new ItemMenuLevel2

@@ -41,7 +41,7 @@ namespace UASKI.Pages
             {
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("контролер"),
+                new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок" , typeof(DateTime))
             };
 

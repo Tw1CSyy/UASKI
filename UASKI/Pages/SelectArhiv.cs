@@ -77,7 +77,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Id" , typeof(string) , false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("контролер"),
+                new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок" , typeof(DateTime)),
                 new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
                 new DataGridColumnModel("Оценка" , typeof(int))

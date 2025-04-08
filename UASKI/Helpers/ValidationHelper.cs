@@ -12,7 +12,7 @@ namespace UASKI.Helpers
         /// Валидация задачи
         /// </summary>
         /// <param name="idIsp">Элемент номер исполнителя</param>
-        /// <param name="idCon">Элемент номер контролера</param>
+        /// <param name="idCon">Элемент номер Контролёра</param>
         /// <param name="date">Элемент срок исполнения</param>
         /// <returns>true - успешное выполнение</returns>
         public static bool TaskValidation(TextBoxElement code, TextBoxElement idIsp, TextBoxElement idCon, DateTimeElement date, bool isUpdate = false)
@@ -111,7 +111,7 @@ namespace UASKI.Helpers
         /// Валидация Архива
         /// </summary>
         /// <param name="idIsp">Элемент номер исполнителя</param>
-        /// <param name="idCon">Элемент номер контролера</param>
+        /// <param name="idCon">Элемент номер Контролёра</param>
         /// <param name="date">Элемент срок исполнения</param>
         /// <param name="dateClose">Элемент дата закрытия</param>
         /// <param name="Otm">Элемент оценка</param>
