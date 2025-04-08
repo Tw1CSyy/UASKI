@@ -69,6 +69,7 @@ namespace UASKI.Pages
                 form.button11.Enabled = false;
                 form.button12.Enabled = true;
                 form.label72.Visible = false;
+                form.checkBox7.Checked = task.IsDouble;
                 SelectTextBox(form.textBox26);
             }
             else
@@ -94,7 +95,7 @@ namespace UASKI.Pages
                 form.button10.Enabled = true;
                 form.button11.Enabled = true;
                 form.button12.Enabled = false;
-
+                form.checkBox7.Checked = arhiv.IsDouble;
                 form.textBox28.Text = arhiv.Otm.ToString();
                 form.dateTimePicker9.Value = arhiv.DateClose.Date;
                 form.label72.Visible = true;
@@ -339,6 +340,10 @@ namespace UASKI.Pages
                 form.dateTimePicker9.Focus();
                 e.Handled = true;
             }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SelectCheckBox(form.checkBox7, true);
+            }
 
         }
 
@@ -369,7 +374,7 @@ namespace UASKI.Pages
                             return false;
                         }
 
-                        var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value);
+                        var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value , form.checkBox7.Checked);
                         result = task.Update(Task.Id);
 
                         if (result == false)
@@ -398,7 +403,7 @@ namespace UASKI.Pages
                             return false;
                         }
 
-                        var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num , Arhiv.Id);
+                        var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num , Arhiv.Id, form.checkBox7.Checked);
                         result = arhiv.Update();
 
                         if (result == false)
@@ -644,6 +649,34 @@ namespace UASKI.Pages
 
             e.IsInputKey = true;
         }
-        #endregion
+
+        public void checkBox7_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                form.checkBox7.Checked = !form.checkBox7.Checked;
+                e.IsInputKey = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SelectTextBox(form.textBox28);
+                SelectCheckBox(form.checkBox7, false);
+                e.IsInputKey = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                SelectCheckBox(form.checkBox7, false);
+                Exit();
+                e.IsInputKey = true;
+            }
+            else if(e.KeyCode == Keys.Right)
+            {
+                SelectButton(form.button10);
+                SelectCheckBox(form.checkBox7, false);
+            }
+        }
     }
+        #endregion
 }
+
+

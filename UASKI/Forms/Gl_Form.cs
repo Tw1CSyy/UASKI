@@ -446,6 +446,10 @@ namespace UASKI
         {
             SystemData.Pages.AddIsp.textBox12_KeyDown(e);
         }
+        private void checkBox8_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.AddTask.checkBox8_PreviewKeyDown(e);
+        }
         private void button4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             SystemData.Pages.AddIsp.button4_PreviewKeyDown(e);
@@ -769,6 +773,10 @@ namespace UASKI
         private void dataGridView14_KeyDown(object sender, KeyEventArgs e)
         {
             SystemData.Pages.PrintPlan.dataGridView14_KeyDown(e);
+        }
+        private void checkBox7_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.EditTask.checkBox7_PreviewKeyDown(e);
         }
         #endregion
 
@@ -1498,5 +1506,6 @@ namespace UASKI
 
         #endregion
 
+        
     }
 }

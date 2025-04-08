@@ -34,18 +34,25 @@ namespace UASKI.Data.Entityes
         public int Id { get; private set; }
 
         /// <summary>
+        /// Двухстороняя задача
+        /// </summary>
+        public bool IsDouble { get; private set; }
+
+        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="code">Код</param>
         /// <param name="idIsp">Идентификатор исполнителя</param>
         /// <param name="idCon">Идентификатор котроллера</param>
         /// <param name="date">Дата срока</param>
-        public TaskEntity(string code, int idIsp, int idCon, DateTime date)
+        /// <param name="isDouble">Двухстороняя задача</param>
+        public TaskEntity(string code, int idIsp, int idCon, DateTime date, bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
+            IsDouble = isDouble;
         }
 
         /// <summary>
@@ -56,13 +63,15 @@ namespace UASKI.Data.Entityes
         /// <param name="idCon">Идентификатор котроллера</param>
         /// <param name="date">Дата срока</param>
         /// <param name="id">Идентификатор задачи</param>
-        public TaskEntity(string code, int idIsp, int idCon, DateTime date , int id)
+        /// <param name="isDouble">Двухстороняя задача</param>
+        public TaskEntity(string code, int idIsp, int idCon, DateTime date , int id, bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
             Id = id;
+            IsDouble = isDouble;
         }
 
     }

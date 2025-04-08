@@ -39,6 +39,7 @@ namespace UASKI.Pages
             form.label24.Visible = false;
             form.label25.Visible = false;
             form.label26.Visible = false;
+            SelectCheckBox(form.checkBox8 , false);
 
             SelectButton(form.button1, false);
         }
@@ -54,9 +55,9 @@ namespace UASKI.Pages
             return false;
         }
 
-        private bool Add(string code , int idIsp , int idCon , DateTime date)
+        private bool Add(string code , int idIsp , int idCon , DateTime date , bool isDouble)
         {
-            var model = new TaskModel(code , idIsp , idCon , date);
+            var model = new TaskModel(code , idIsp , idCon , date , isDouble);
             var result = model.Add();
 
             if (result == false)
@@ -166,7 +167,7 @@ namespace UASKI.Pages
                     {
                         foreach (var item in Ai.GetBuffer())
                         {
-                            if(!Add(code.Value , item , idCon.Num , date.Value))
+                            if(!Add(code.Value , item , idCon.Num , date.Value , form.checkBox8.Checked))
                             {
                                 Ai.AppError();
                                 return false;
@@ -181,7 +182,7 @@ namespace UASKI.Pages
                     }
                     else
                     {
-                        if (!Add(code.Value, idIsp.Num, idCon.Num, date.Value))
+                        if (!Add(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox8.Checked))
                         {
                             Ai.AppError();
                             return false;
@@ -201,6 +202,11 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Up)
             {
                 SelectTextBox(form.textBox4);
+                SelectButton(form.button1, false);
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                SelectCheckBox(form.checkBox8);
                 SelectButton(form.button1, false);
             }
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Escape)
@@ -247,6 +253,27 @@ namespace UASKI.Pages
             {
                 e.Handled = true;
                 Exit();
+            }
+        }
+
+        public void checkBox8_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                form.checkBox8.Checked = !form.checkBox8.Checked;
+                e.IsInputKey = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SelectButton(form.button1, true);
+                SelectCheckBox(form.checkBox8, false);
+                e.IsInputKey = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                SelectCheckBox(form.checkBox8, false);
+                Exit();
+                e.IsInputKey = true;
             }
         }
         #endregion

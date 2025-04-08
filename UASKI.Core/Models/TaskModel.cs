@@ -41,18 +41,25 @@ namespace UASKI.Core.Models
         public int Id { get; private set; }
 
         /// <summary>
+        /// Двухстороняя задача
+        /// </summary>
+        public bool IsDouble { get; private set; }
+
+        /// <summary>
         /// Создает экземпляр задачи
         /// </summary>
         /// <param name="code">Код задачи</param>
         /// <param name="idIsp">Код исполнителя</param>
         /// <param name="idCon">Код котроллера</param>
         /// <param name="date">Дата срока</param>
-        public TaskModel(string code, int idIsp, int idCon, DateTime date)
+        /// <param name="isDouble">Двухстороняя задача</param>
+        public TaskModel(string code, int idIsp, int idCon, DateTime date, bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
+            IsDouble = isDouble;
         }
 
         /// <summary>
@@ -66,6 +73,7 @@ namespace UASKI.Core.Models
             IdCon = entity.IdCon;
             Date = entity.Date;
             Id = entity.Id;
+            IsDouble = entity.IsDouble;
         }
 
         /// <summary>
@@ -74,7 +82,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект TaskEntity</returns>
         private TaskEntity Get()
         {
-            return new TaskEntity(Code, IdIsp, IdCon, Date , Id);
+            return new TaskEntity(Code, IdIsp, IdCon, Date , Id  , IsDouble);
         }
 
         /// <summary>

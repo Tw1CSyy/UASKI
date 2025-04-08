@@ -75,7 +75,7 @@ namespace UASKI.Helpers
 
             var task = TaskModel.GetList().FirstOrDefault(c => c.Code.Equals(code.Value) && c.Date == date.Value.Date && c.IdIsp == idIsp.Num);
 
-            if(task != null)
+            if(task != null && !isUpdate)
             {
                 Ai.AddMessage(Enums.TypeNotice.Error, "Данная запись уже существует");
                 result = false;

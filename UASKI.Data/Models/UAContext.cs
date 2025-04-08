@@ -65,7 +65,8 @@ namespace UASKI.Data
                     Convert.ToInt32(reader.GetValue(1)),
                     Convert.ToInt32(reader.GetValue(2)),
                     Convert.ToDateTime(reader.GetValue(3)),
-                    Convert.ToInt32(reader.GetValue(4))
+                    Convert.ToInt32(reader.GetValue(4)),
+                    Convert.ToBoolean(reader.GetValue(5))
                 );
 
                 result.Add(item);
@@ -125,7 +126,8 @@ namespace UASKI.Data
                     Convert.ToDateTime(reader.GetValue(3)),
                     Convert.ToDateTime(reader.GetValue(4)),
                     Convert.ToInt32(reader.GetValue(5)),
-                    Convert.ToInt32(reader.GetValue(6))
+                    Convert.ToInt32(reader.GetValue(6)),
+                    Convert.ToBoolean(reader.GetValue(7))
                 );
 
                 result.Add(item);
@@ -188,8 +190,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
-            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\")" +
-                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}')";
+            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"IsDouble\")" +
+                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.IsDouble}')";
 
             return DataModel.Complite(query);
 
@@ -215,8 +217,8 @@ namespace UASKI.Data
         /// <returns></returns>
         public bool Add(ArhivEntity entity)
         {
-            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\") " +
-               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}')";
+            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\" , \"IsDouble\") " +
+               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}' , '{entity.IsDouble}')";
 
             return DataModel.Complite(query);
         }
@@ -282,11 +284,11 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Update(TaskEntity task , int Id)
         {
-            
             var query = $"UPDATE \"Tasks\" SET " +
                 $"\"Cod\" = '{task.Code}' ," +
                 $"\"IdIsp\" = '{task.IdIsp}' ," +
                 $"\"IdKon\" = '{task.IdCon}' ," +
+                $"\"IsDouble\" = '{task.IsDouble}' ," +
                 $"\"Date\" = '{task.Date}' " +
                 $"WHERE \"Id\" = '{Id}'";
 
@@ -320,6 +322,7 @@ namespace UASKI.Data
                 $"\"IdKon\" = '{task.IdCon}' ," +
                 $"\"Date\" = '{task.Date}' , " +
                 $"\"DateClose\" = '{task.DateClose}' ," +
+                $"\"IsDouble\" = '{task.IsDouble}' ," +
                 $"\"Otm\" = '{task.Otm}'" +
                 $"WHERE \"Id\" = '{Id}'";
 

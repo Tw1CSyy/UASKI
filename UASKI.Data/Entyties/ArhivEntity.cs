@@ -43,6 +43,11 @@ namespace UASKI.Data.Entyties
         public int Id { get; private set; }
 
         /// <summary>
+        /// Двухстороняя задача
+        /// </summary>
+        public bool IsDouble { get; private set; }
+
+        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="code">Код</param>
@@ -50,7 +55,8 @@ namespace UASKI.Data.Entyties
         /// <param name="idCon">Идентификатор котроллера</param>
         /// <param name="date">Дата срока</param>
         /// <param name="id">Идентификатор задачи</param>
-        public ArhivEntity(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm , int id)
+        /// <param name="isDouble">Двухстороняя задача</param>
+        public ArhivEntity(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm , int id , bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;
@@ -59,6 +65,7 @@ namespace UASKI.Data.Entyties
             DateClose = dateClose;
             Otm = otm;
             Id = id;
+            IsDouble = isDouble;
         }
 
     }

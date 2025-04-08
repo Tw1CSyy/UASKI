@@ -131,6 +131,7 @@ namespace UASKI
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
@@ -189,6 +190,7 @@ namespace UASKI
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Tasks = new System.Windows.Forms.TabPage();
             this.panel19 = new System.Windows.Forms.Panel();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.label57 = new System.Windows.Forms.Label();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
@@ -1477,6 +1479,7 @@ namespace UASKI
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.Controls.Add(this.checkBox8);
             this.panel2.Controls.Add(this.button14);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label26);
@@ -1489,6 +1492,17 @@ namespace UASKI
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(858, 138);
             this.panel2.TabIndex = 21;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(599, 81);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(136, 24);
+            this.checkBox8.TabIndex = 39;
+            this.checkBox8.Text = "Двусторонний";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox8.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox8_PreviewKeyDown);
             // 
             // button14
             // 
@@ -2132,6 +2146,7 @@ namespace UASKI
             // panel19
             // 
             this.panel19.BackColor = System.Drawing.Color.Silver;
+            this.panel19.Controls.Add(this.checkBox7);
             this.panel19.Controls.Add(this.label57);
             this.panel19.Controls.Add(this.textBox28);
             this.panel19.Controls.Add(this.label52);
@@ -2141,8 +2156,19 @@ namespace UASKI
             this.panel19.Controls.Add(this.label40);
             this.panel19.Location = new System.Drawing.Point(184, 365);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(455, 103);
+            this.panel19.Size = new System.Drawing.Size(455, 127);
             this.panel19.TabIndex = 35;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(316, 100);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(136, 24);
+            this.checkBox7.TabIndex = 38;
+            this.checkBox7.Text = "Двусторонний";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox7_PreviewKeyDown);
             // 
             // label57
             // 
@@ -2150,7 +2176,7 @@ namespace UASKI
             this.label57.ForeColor = System.Drawing.Color.Red;
             this.label57.Location = new System.Drawing.Point(294, 66);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(145, 37);
+            this.label57.Size = new System.Drawing.Size(145, 31);
             this.label57.TabIndex = 37;
             this.label57.Text = "Ошибка";
             this.label57.Visible = false;
@@ -4218,6 +4244,8 @@ namespace UASKI
         public DateTimePicker dateTimePicker21;
         private Label label70;
         private DataGridView dataGridView14;
+        public CheckBox checkBox7;
+        public CheckBox checkBox8;
     }
 }
 

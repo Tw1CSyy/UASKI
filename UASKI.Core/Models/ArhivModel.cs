@@ -52,6 +52,11 @@ namespace UASKI.Core.Models
         public int Id { get; private set; }
 
         /// <summary>
+        /// Двухстороняя задача
+        /// </summary>
+        public bool IsDouble { get; private set; }
+
+        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="task">Модель задачи</param>
@@ -76,7 +81,8 @@ namespace UASKI.Core.Models
         /// <param name="date">Дата срока</param>
         /// <param name="dateClose">Дата закрытия</param>
         /// <param name="otm">Оценка</param>
-        public ArhivModel(string code , int idIsp , int idCon , DateTime date , DateTime dateClose , int otm , int id)
+        /// <param name="isDouble">Двухстороняя задача</param>
+        public ArhivModel(string code , int idIsp , int idCon , DateTime date , DateTime dateClose , int otm , int id , bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;
@@ -85,6 +91,7 @@ namespace UASKI.Core.Models
             DateClose = dateClose;
             Otm = otm;
             Id = id;
+            IsDouble = isDouble;
         }
 
         /// <summary>
@@ -100,6 +107,7 @@ namespace UASKI.Core.Models
             DateClose = a.DateClose;
             Otm = a.Otm;
             Id = a.Id;
+            IsDouble = a.IsDouble;
         }
 
         /// <summary>
@@ -108,7 +116,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект ArhivEntity</returns>
         public ArhivEntity Get()
         {
-            return new ArhivEntity(Code, IdIsp, IdCon, Date, DateClose, Otm, Id);
+            return new ArhivEntity(Code, IdIsp, IdCon, Date, DateClose, Otm, Id , IsDouble);
         }
 
         /// <summary>
@@ -117,7 +125,7 @@ namespace UASKI.Core.Models
         /// <returns>true - Успешное выполнение</returns>
         public bool Open()
         {
-            var task = new TaskEntity(Code, IdIsp, IdCon, Date, Id);
+            var task = new TaskEntity(Code, IdIsp, IdCon, Date, Id, IsDouble);
 
             var result = context.Add(task);
 
