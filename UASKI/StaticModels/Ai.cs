@@ -269,10 +269,6 @@ namespace UASKI.StaticModels
                     TypeBuffer = TypeBuffer.Null;
                     AddMessage(TypeNotice.Comlite , "Буффер отчищен");
                     return true;
-                case Keys.S:
-                    if (ApplicationHelper.Dump())
-                        Ai.AddMessage(Enums.TypeNotice.Comlite, "Создана копия данных");
-                    return true;
             }
 
             return false;

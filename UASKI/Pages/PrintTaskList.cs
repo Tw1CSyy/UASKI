@@ -88,7 +88,7 @@ namespace UASKI.Pages
                 var item = new DataGridRowModel(
                     task.Code,
                     task.Date.ToString("dd.MM.yyyy"),
-                    task.GetIsp(isps).InizByCode,
+                    task.GetCon(isps).InizByCode,
                     task.DateClose.ToString("dd.MM.yyyy"),
                     task.Otm.ToString());
 
@@ -269,7 +269,7 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Down)
             {
                 if(SelectDataGridView(form.DataGridView7.d))
-                SelectButton(form.button34, false);
+                     SelectButton(form.button34, false);
             }
             else if(e.KeyCode == Keys.Enter)
             {

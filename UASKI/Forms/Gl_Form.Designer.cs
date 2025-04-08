@@ -598,9 +598,9 @@ namespace UASKI
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label62.Location = new System.Drawing.Point(3, 80);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(220, 17);
+            this.label62.Size = new System.Drawing.Size(140, 17);
             this.label62.TabIndex = 30;
-            this.label62.Text = "Код сотрудника/подразделения";
+            this.label62.Text = "Код подразделения";
             // 
             // button24
             // 
@@ -920,9 +920,9 @@ namespace UASKI
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label39.Location = new System.Drawing.Point(1, 79);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(220, 17);
+            this.label39.Size = new System.Drawing.Size(140, 17);
             this.label39.TabIndex = 11;
-            this.label39.Text = "Код сотрудника/подразделения";
+            this.label39.Text = "Код подразделения";
             // 
             // textBox31
             // 
@@ -1078,9 +1078,9 @@ namespace UASKI
             this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label63.Location = new System.Drawing.Point(4, 80);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(220, 17);
+            this.label63.Size = new System.Drawing.Size(140, 17);
             this.label63.TabIndex = 31;
-            this.label63.Text = "Код сотрудника/подразделения";
+            this.label63.Text = "Код подразделения";
             // 
             // button26
             // 

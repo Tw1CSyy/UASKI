@@ -51,8 +51,7 @@ namespace UASKI.Pages
 
             if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text , out int j))
             {
-                list = list.Where(c => c.IdIsp == Convert.ToInt32(form.textBox29.Text) || c.IdCon == Convert.ToInt32(form.textBox29.Text) ||
-                c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
+                list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
             }
 
             if(form.checkBox2.Checked)
@@ -192,7 +191,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
-                var f = new IspForm(new TextBox(), new TextBox(), form.textBox29);
+                var f = new IspForm(new TextBox(), form.textBox29 , new TextBox());
                 f.Show();
                 e.Handled = true;
             }

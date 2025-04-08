@@ -69,17 +69,6 @@ namespace UASKI
 
             Ai.AddWaitMessage(Enums.TypeNotice.Default, "Подключение с базой получено");
 
-            // Удаляем старые бекапы
-            if(!ApplicationHelper.RemoveDump())
-            {
-                return false;
-            }
-
-            if (!ApplicationHelper.Dump())
-                return false;
-            else
-                Ai.AddWaitMessage(Enums.TypeNotice.Default, "Копия данных создана");
-
             // Собираем статистику
             var tasks = TaskModel.GetList();
             var arhiv = ArhivModel.GetList();
@@ -167,12 +156,6 @@ namespace UASKI
         // Таймер времени
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.Minute == 0 && DateTime.Now.Second == 0)
-            {
-                if (ApplicationHelper.Dump())
-                    Ai.AddMessage(Enums.TypeNotice.Comlite, "Создана копия данных");
-            }
-
             if(DateTime.Now.Hour == 11 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 30)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Скоро обед. Осталось чуть чуть");

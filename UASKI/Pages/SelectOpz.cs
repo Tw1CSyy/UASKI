@@ -54,80 +54,43 @@ namespace UASKI.Pages
 
             var listTask = TaskModel
                 .GetList()
-                .Where(c => c.GetDaysOpz(holy) != 0)
-                .OrderByDescending(c => c.Date)
-                .ThenBy(c => c.Id)
-                .ToList();
+                .Where(c => c.GetDaysOpz(holy) != 0);
 
             var listArhiv = ArhivModel.GetList()
-                .Where(c => c.GetDaysOpz(holy) != 0)
-                .OrderByDescending(c => c.Date)
+                .Where(c => c.GetDaysOpz(holy) != 0);
+
+            if(!string.IsNullOrEmpty(search))
+            {
+                listTask = listTask.Where(c => c.Code.ToLower().Contains(search.ToLower()));
+                listArhiv = listArhiv.Where(c => c.Code.ToLower().Contains(search.ToLower()));
+            }
+
+            if(!string.IsNullOrEmpty(isp1) && int.TryParse(isp1 , out int id))
+            {
+                listTask = listTask.Where(c => c.GetIsp(isps).CodePodr == id);
+                listArhiv = listArhiv.Where(c => c.GetIsp(isps).CodePodr == id);
+            }
+
+            if(isDate)
+            {
+                listTask = listTask.Where(c => c.Date >= dateFrom && c.Date <= dateTo);
+                listArhiv = listArhiv.Where(c => c.Date >= dateFrom && c.Date <= dateTo);
+            }
+
+            var taskModel = listTask
+                .OrderBy(c => c.Date)
                 .ThenBy(c => c.Id)
+                .Select(c => new DataGridRowModel(c.Id.ToString() , c.Code, c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), "", "", c.GetDaysOpz(holy).ToString()))
                 .ToList();
 
-            foreach (var item in listTask.OrderBy(c => c.Date))
-            {
-                var isp = item.GetIsp(isps);
-                var con = item.GetCon(isps);
+            var arhivModel = listArhiv
+                .OrderBy(c => c.Date)
+                .ThenBy(c => c.Id)
+                .Select(c => new DataGridRowModel(c.Id.ToString() , c.Code, c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), c.DateClose.ToString("dd.MM.yyyy") , c.Otm.ToString(), c.GetDaysOpz(holy).ToString()))
+                .ToList();
 
-                if (isDate)
-                {
-                    if (item.Date.Date < dateFrom.Date || item.Date.Date > dateTo.Date)
-                        continue;
-                }
-
-                if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
-                {
-                    if (isp.Code != Convert.ToInt32(isp1) && con.Code != Convert.ToInt32(isp1) && isp.CodePodr != Convert.ToInt32(isp1) && con.CodePodr != Convert.ToInt32(isp1))
-                        continue;
-                }
-
-                if (!string.IsNullOrEmpty(search))
-                {
-                    if (!item.Code.ToLower().Contains(search.ToLower()))
-                        continue;
-                }
-
-                var task = new DataGridRowModel(item.Id.ToString(),
-                     item.Code,
-                     isp.InizByCode,
-                     con.InizByCode,
-                     item.Date.ToString("dd.MM.yyyy"), "", "" , item.GetDaysOpz(holy).ToString());
-
-                model.Add(task);
-            }
-
-            foreach (var item in listArhiv)
-            {
-                if (isDate)
-                {
-                    if (item.DateClose.Date < dateFrom.Date || item.DateClose.Date > dateTo.Date)
-                        continue;
-                }
-
-                if (!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int i))
-                {
-                    if (item.GetIsp(isps).Code != Convert.ToInt32(isp1) && item.GetCon(isps).Code != Convert.ToInt32(isp1))
-                        continue;
-                }
-
-                if (!string.IsNullOrEmpty(search))
-                {
-                    if (!item.Code.ToLower().Contains(search.ToLower()))
-                        continue;
-                }
-
-                var task = new DataGridRowModel(item.Id.ToString(),
-                     item.Code,
-                     item.GetIsp(isps).InizByCode,
-                     item.GetCon(isps).InizByCode,
-                     item.Date.ToString("dd.MM.yyyy"),
-                     item.DateClose.ToString("dd.MM.yyyy"),
-                     item.Otm.ToString(),
-                     item.GetDaysOpz(holy).ToString());
-
-                model.Add(task);
-            }
+            model.AddRange(taskModel);
+            model.AddRange(arhivModel);
 
             var columns = new DataGridColumnModel[]
             {
@@ -262,7 +225,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == SystemData.ActionKey)
             {
-                var f = new IspForm(new TextBox() , new TextBox() , form.textBox34);
+                var f = new IspForm(new TextBox(), form.textBox34, new TextBox());
                 f.Show();
                 e.Handled = true;
             }
