@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
-using System.Drawing;
-using UASKI.Core.Models;
-using System.Xml.Linq;
 
 namespace UASKI.Pages
 {

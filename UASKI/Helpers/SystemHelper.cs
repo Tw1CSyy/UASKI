@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using UASKI.Models;
-using System.Linq;
-using UASKI.Core.Models;
-using UASKI.Core.SystemModels;
 
 namespace UASKI.Helpers
 {

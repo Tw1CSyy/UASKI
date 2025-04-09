@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using UASKI.Core.SystemModels;
 using UASKI.Data;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;

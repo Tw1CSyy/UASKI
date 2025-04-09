@@ -1,15 +1,13 @@
-﻿ using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
-using UASKI.StaticModels;
 using UASKI.Models.Elements;
-using System;
-using UASKI.Core.Models;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Linq;
-using System.Collections.Generic;
+using UASKI.StaticModels;
 
 namespace UASKI.Pages
 {

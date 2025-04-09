@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using UASKI.Core.Models;
 using UASKI.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
 using UASKI.StaticModels;
-using UASKI.Core.Models;
 
 namespace UASKI.Pages
 {

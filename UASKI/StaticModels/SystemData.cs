@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using UASKI.Models;
 
-
 namespace UASKI.StaticModels
 {
     /// <summary>

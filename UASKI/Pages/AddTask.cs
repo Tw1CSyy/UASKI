@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 using UASKI.Core.Models;
 using UASKI.Forms;
