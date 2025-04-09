@@ -1405,6 +1405,31 @@ namespace UASKI
             var key = new KeyEventArgs(SystemData.ActionKey);
             textBox36_KeyDown(sender, key);
         }
+        private void button57_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Left);
+            dataGridView15_KeyDown(sender, key);
+        }
+        private void button59_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Right);
+            textBox44_KeyDown(sender, key);
+        }
+        private void button61_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker22_KeyDown(sender, key);
+        }
+        private void button60_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            dateTimePicker23_KeyDown(sender, key);
+        }
+        private void button50_Click(object sender, EventArgs e)
+        {
+            var key = new KeyEventArgs(SystemData.ActionKey);
+            textBox42_KeyDown(sender, key);
+        }
         private void button53_Click(object sender, EventArgs e)
         {
             var key = new KeyEventArgs(SystemData.ActionKey);
@@ -1523,34 +1548,5 @@ namespace UASKI
 
         #endregion
 
-        private void button57_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(Keys.Left);
-            dataGridView15_KeyDown(sender, key);
-        }
-
-        private void button59_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(Keys.Right);
-            textBox44_KeyDown(sender, key);
-        }
-
-        private void button61_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            dateTimePicker22_KeyDown(sender, key);
-        }
-
-        private void button60_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            dateTimePicker23_KeyDown(sender, key);
-        }
-
-        private void button50_Click(object sender, EventArgs e)
-        {
-            var key = new KeyEventArgs(SystemData.ActionKey);
-            textBox42_KeyDown(sender, key);
-        }
     }
 }
