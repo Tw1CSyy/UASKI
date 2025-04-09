@@ -58,7 +58,7 @@ namespace UASKI
 
             // Открываем подключение
             var settings = SystemData.Settings;
-            string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}";
+            string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}; SSL Mode=Require;";
             var connection = new DataConnection(connectionString);
 
             if(!connection.IsConnection)

@@ -54,8 +54,8 @@ namespace UASKI.Pages
             }
 
             var model = arhiv.OrderBy(c => c.Date).ThenBy(c => c.Id)
-                .GroupBy(g => new { g.Code, g.IdCon })
-                .Select(g => new DataGridRowModel(g.Key.Code, g.Key.IdCon.ToString(), g.Count().ToString()))
+                .GroupBy(g => new { g.CodeByD, g.IdCon })
+                .Select(g => new DataGridRowModel(g.Key.CodeByD, g.Key.IdCon.ToString(), g.Count().ToString()))
                 .ToList();
 
             for(int i = 0; i < model.Count; i++)

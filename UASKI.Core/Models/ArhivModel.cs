@@ -57,6 +57,11 @@ namespace UASKI.Core.Models
         public bool IsDouble { get; private set; }
 
         /// <summary>
+        /// Код без 5 последних знаков
+        /// </summary>
+        public string CodeByD { get => Code.Remove(Code.Length - 6, 5); }
+
+        /// <summary>
         /// Создает объект класса
         /// </summary>
         /// <param name="task">Модель задачи</param>
