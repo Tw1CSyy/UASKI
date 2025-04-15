@@ -1290,6 +1290,11 @@ namespace UASKI
             var key = new KeyEventArgs(Ai.ActionKey);
             textBox4_KeyDown(sender, key);
         }
+        private void button56_Click(object sender, EventArgs e)
+        {
+            var key = new PreviewKeyDownEventArgs(Keys.Enter);
+            button56_PreviewKeyDown(sender, key);
+        }
         private void button14_Click(object sender, EventArgs e)
         {
             var key = new KeyEventArgs(Ai.ActionKey);

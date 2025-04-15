@@ -567,14 +567,11 @@ namespace UASKI.StaticModels
         /// <param name="page">Страница</param>
         public static void AddHostoryPage(BasePage page)
         {
-            if(page.Type != TypePage.Edit)
-            {
-                PageHistory.Add(page);
+            PageHistory.Add(page);
 
-                if (PageHistory.Count >= MAX_HISTORY_PAGE_COUNT)
-                {
-                    PageHistory.RemoveAt(0);
-                }
+            if (PageHistory.Count >= MAX_HISTORY_PAGE_COUNT)
+            {
+                PageHistory.RemoveAt(0);
             }
         }
 
@@ -587,13 +584,31 @@ namespace UASKI.StaticModels
             if (PageHistory.Count < 2)
                 return false;
 
-            var page = PageHistory[PageHistory.Count - 2];
+            int j = PageHistory.Count - 2;
+            BasePage page = null;
+
+            do
+            {
+                if (PageHistory[j].Type != TypePage.Edit)
+                {
+                    page = PageHistory[j];
+                    break;
+                }
+                else
+                {
+                    j--;
+                }
+
+            } while (j >= 0);
+
             PageHistory = PageHistory.Where(c => c.Index != page.Index).ToList();
-            PageHistory.RemoveAt(PageHistory.Count - 1);
+            
+            if(PageHistory.Count > 0)
+                PageHistory.RemoveAt(PageHistory.Count - 1);
 
             if (page.DataGridView == null)
             {
-                page.Init();
+                page.Init(true , false);
             }
             else
             {

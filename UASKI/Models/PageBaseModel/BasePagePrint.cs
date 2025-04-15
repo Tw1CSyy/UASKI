@@ -9,7 +9,7 @@ namespace UASKI.Models
 {
     public abstract class BasePagePrint : BasePage
     {
-        public BasePagePrint(int index, TypePage type) : base(index, type) { }
+        public BasePagePrint(int index, TypePage type, DataGridViewComponent dataGridView) : base(index, type, dataGridView) { }
 
         /// <summary>
         /// Печатается первая страница

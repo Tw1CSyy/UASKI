@@ -80,9 +80,7 @@ namespace UASKI.Models
 
             if (Ai.This != null && Ai.This.Index != this.Index && IsClear)
                 Ai.This.ClearPage();
-            else if(Ai.This == null)
-                ClearPage();
-
+            
             Ai.AddHostoryPage(this);
             
             form.tabControl1.SelectedIndex = Index;

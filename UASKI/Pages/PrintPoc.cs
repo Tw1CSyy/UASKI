@@ -16,7 +16,7 @@ namespace UASKI.Pages
 {
     public class PrintPoc : BasePagePrint
     {
-        public PrintPoc(int index, TypePage type) : base(index, type) { }
+        public PrintPoc(int index, TypePage type) : base(index, type, Ai.Form.DataGridView10) { }
 
         protected override void Show()
         {

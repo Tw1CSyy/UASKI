@@ -201,7 +201,15 @@ namespace UASKI.Helpers
             // Инициализируем переменные для работы
             float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics) + 2;
             int count = 0;
-            int with = (int)Math.Ceiling((double)(e.PageBounds.Width / d.Columns.Count));
+            int countColumnsVisible = 0;
+
+            for(int i = 0; i < d.ColumnCount; i++)
+            {
+                if (d.Columns[i].Visible)
+                    countColumnsVisible++;
+            }
+
+            int with = (int)Math.Ceiling((double)(e.PageBounds.Width / countColumnsVisible));
 
             // Инициализируем переменные для заголовков
             var headerFont = new Font("Arial", 14, FontStyle.Bold);
@@ -226,11 +234,17 @@ namespace UASKI.Helpers
             {
                 linesPerPage += 5;
             }
-            
+
             // Печать заголовков таблицы
+            int index = 0;
+
             foreach (DataGridViewColumn column in d.Columns)
             {
-                e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, column.Index * with + 15, yPosition);
+                if (!column.Visible)
+                    continue;
+
+                e.Graphics.DrawString(column.HeaderText, font, Brushes.Black, index * with + 15, yPosition);
+                index++;
             }
 
             yPosition += font.GetHeight(e.Graphics);
@@ -247,12 +261,17 @@ namespace UASKI.Helpers
                     linesPerPage++;
                     continue;
                 }
-                    
-                for (int i = 0; i < row.Cells.Count; i++)
-                {
-                    e.Graphics.DrawString(row.Cells[i].Value.ToString(), font, Brushes.Black, i * with + 15, yPosition);
-                }
 
+                int j = 0;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (!cell.Visible)
+                        continue;
+
+                    e.Graphics.DrawString(cell.Value.ToString(), font, Brushes.Black, j++ * with + 15, yPosition);
+                }
+                
                 yPosition += font.GetHeight(e.Graphics);
                 d.Rows[count].Tag = false;
                 count++;

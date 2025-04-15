@@ -14,7 +14,7 @@ namespace UASKI.Pages
 {
     public class PrintMer : BasePagePrint
     {
-        public PrintMer(int index, TypePage type) : base(index, type) { }
+        public PrintMer(int index, TypePage type) : base(index, type, Ai.Form.DataGridView9) { }
 
         protected override void Show()
         {

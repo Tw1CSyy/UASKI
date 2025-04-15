@@ -54,6 +54,7 @@ namespace UASKI
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button20 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.label62 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@ namespace UASKI
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.button16 = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.button25 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -95,6 +97,7 @@ namespace UASKI
             this.button22 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.label63 = new System.Windows.Forms.Label();
             this.button26 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -347,9 +350,6 @@ namespace UASKI
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -483,7 +483,7 @@ namespace UASKI
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -629,6 +629,18 @@ namespace UASKI
             this.panel13.Size = new System.Drawing.Size(246, 542);
             this.panel13.TabIndex = 2;
             this.panel13.Visible = false;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(6, 148);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(136, 24);
+            this.checkBox10.TabIndex = 31;
+            this.checkBox10.Text = "Двусторонние";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            this.checkBox10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox10_PreviewKeyDown);
             // 
             // label62
             // 
@@ -840,6 +852,18 @@ namespace UASKI
             this.panel14.Size = new System.Drawing.Size(246, 542);
             this.panel14.TabIndex = 4;
             this.panel14.Visible = false;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(6, 148);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(136, 24);
+            this.checkBox11.TabIndex = 32;
+            this.checkBox11.Text = "Двусторонние";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
+            this.checkBox11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox11_PreviewKeyDown);
             // 
             // button25
             // 
@@ -1111,6 +1135,18 @@ namespace UASKI
             this.panel17.Size = new System.Drawing.Size(246, 542);
             this.panel17.TabIndex = 6;
             this.panel17.Visible = false;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(6, 149);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(136, 24);
+            this.checkBox12.TabIndex = 33;
+            this.checkBox12.Text = "Двусторонние";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
+            this.checkBox12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox12_PreviewKeyDown);
             // 
             // label63
             // 
@@ -2788,6 +2824,7 @@ namespace UASKI
             this.tabPage11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage11.Controls.Add(this.dataGridView8);
             this.tabPage11.Controls.Add(this.panel24);
+            this.tabPage11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Size = new System.Drawing.Size(881, 543);
@@ -2867,6 +2904,7 @@ namespace UASKI
             this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage12.Controls.Add(this.dataGridView9);
             this.tabPage12.Controls.Add(this.panel25);
+            this.tabPage12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Size = new System.Drawing.Size(881, 543);
@@ -2946,6 +2984,7 @@ namespace UASKI
             this.tabPage13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage13.Controls.Add(this.dataGridView10);
             this.tabPage13.Controls.Add(this.panel26);
+            this.tabPage13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Size = new System.Drawing.Size(881, 543);
@@ -3051,6 +3090,7 @@ namespace UASKI
             this.tabPage14.Controls.Add(this.dataGridView11);
             this.tabPage14.Controls.Add(this.panel27);
             this.tabPage14.Controls.Add(this.panel28);
+            this.tabPage14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Size = new System.Drawing.Size(881, 543);
@@ -3245,6 +3285,7 @@ namespace UASKI
             this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage15.Controls.Add(this.panel20);
             this.tabPage15.Controls.Add(this.panel10);
+            this.tabPage15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Size = new System.Drawing.Size(881, 543);
@@ -3680,6 +3721,7 @@ namespace UASKI
             this.button56.TabIndex = 7;
             this.button56.Text = "Печать";
             this.button56.UseVisualStyleBackColor = false;
+            this.button56.Click += new System.EventHandler(this.button56_Click);
             this.button56.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.button56_PreviewKeyDown);
             // 
             // textBox43
@@ -3967,42 +4009,6 @@ namespace UASKI
             // 
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(6, 148);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(136, 24);
-            this.checkBox10.TabIndex = 31;
-            this.checkBox10.Text = "Двусторонние";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
-            this.checkBox10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox10_PreviewKeyDown);
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(6, 148);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(136, 24);
-            this.checkBox11.TabIndex = 32;
-            this.checkBox11.Text = "Двусторонние";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
-            this.checkBox11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox11_PreviewKeyDown);
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(6, 149);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(136, 24);
-            this.checkBox12.TabIndex = 33;
-            this.checkBox12.Text = "Двусторонние";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
-            this.checkBox12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox12_PreviewKeyDown);
             // 
             // Gl_Form
             // 

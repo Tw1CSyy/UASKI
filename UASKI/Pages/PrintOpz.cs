@@ -15,14 +15,18 @@ namespace UASKI.Pages
 {
     public class PrintOpz : BasePagePrint
     {
-        public PrintOpz(int index, TypePage type) : base(index, type) { }
+        public PrintOpz(int index, TypePage type) : base(index, type, Ai.Form.DataGridView8) { }
        
         protected override void Show()
         {
+            if (form.DataGridView8.d.Rows.Count > 0)
+                form.DataGridView8.d.Focus();
+            else
+                form.dateTimePicker19.Focus();
+
             Select();
             SelectButton(form.button37, false);
             SelectDataGridView(form.DataGridView8.d, false);
-            form.dateTimePicker19.Focus();
         }
 
         protected override void Clear()
@@ -50,6 +54,7 @@ namespace UASKI.Pages
                 var day = item.GetDaysOpz(holy, DateTime.MinValue, form.dateTimePicker19.Value.Date);
 
                 var model = new DataGridRowModel(
+                    item.Id.ToString(),
                     item.GetIsp(isps).InizByCode,
                     item.GetCode(),
                     item.GetCon(isps).InizByCode,
@@ -61,6 +66,7 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("" , false),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Контролёр"),
@@ -166,6 +172,13 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Escape)
             {
                 Exit();
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter && form.DataGridView8.d.SelectedRows.Count != 0)
+            {
+                var id = Convert.ToInt32(form.DataGridView8.d.SelectedRows[0].Cells[0].Value);
+                Ai.Pages.EditTask.Init(false, false);
+                Ai.Pages.EditTask.Show(id, false);
                 e.Handled = true;
             }
             else

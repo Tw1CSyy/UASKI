@@ -15,14 +15,18 @@ namespace UASKI.Pages
 {
     public class PrintCof : BasePagePrint
     {
-        public PrintCof(int index, TypePage type) : base(index, type) { }
+        public PrintCof(int index, TypePage type) : base(index, type, Ai.Form.DataGridView11) { }
 
         protected override void Show()
         {
            SelectTextBox(form.textBox36);
             form.dateTimePicker14.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker15.Value = DateTime.Today;
-            form.textBox36.Focus();
+
+            if (form.DataGridView11.d.Rows.Count > 0)
+                form.DataGridView11.d.Focus();
+            else
+                form.textBox36.Focus();
         }
 
         protected override void Clear()
@@ -80,6 +84,7 @@ namespace UASKI.Pages
                             opz = opzDays;
 
                         var item = new DataGridRowModel(
+                            task.Id.ToString(),
                             task.GetCode(),
                             task.Date.ToString("dd.MM.yyyy"),
                             con.InizByCode,
@@ -97,6 +102,7 @@ namespace UASKI.Pages
                         int opz = task.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                         var item = new DataGridRowModel(
+                            task.Id.ToString(),
                             task.GetCode(),
                             task.Date.ToString("dd.MM.yyyy"),
                             con.InizByCode,
@@ -110,6 +116,7 @@ namespace UASKI.Pages
 
                     var columns = new DataGridColumnModel[]
                     {
+                        new DataGridColumnModel("" , false),
                         new DataGridColumnModel("Код"),
                         new DataGridColumnModel("Срок"),
                         new DataGridColumnModel("Контролёр"),
@@ -410,6 +417,14 @@ namespace UASKI.Pages
             {
                 form.dateTimePicker14.Focus();
                 SelectDataGridView(form.DataGridView11.d, false);
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter && form.DataGridView11.d.SelectedRows.Count != 0)
+            {
+                var id = Convert.ToInt32(form.DataGridView11.d.SelectedRows[0].Cells[0].Value);
+                var isArhiv = form.DataGridView11.d.SelectedRows[0].Cells[6].Value != null;
+                Ai.Pages.EditTask.Init(false, false);
+                Ai.Pages.EditTask.Show(id, isArhiv);
                 e.Handled = true;
             }
             else

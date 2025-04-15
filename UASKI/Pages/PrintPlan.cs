@@ -14,13 +14,17 @@ namespace UASKI.Pages
 {
     public class PrintPlan : BasePagePrint
     {
-        public PrintPlan(int index, TypePage type) : base(index, type) { }
+        public PrintPlan(int index, TypePage type) : base(index, type, Ai.Form.DataGridView14) { }
 
         protected override void Show()
         {
             form.dateTimePicker20.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker21.Value = DateTime.Today;
-            form.dateTimePicker20.Focus();
+            
+            if(form.DataGridView14.d.Rows.Count > 0)
+                form.DataGridView14.d.Focus();
+            else
+                form.dateTimePicker20.Focus();
         }
 
         protected override void Clear()
@@ -51,10 +55,11 @@ namespace UASKI.Pages
                 .OrderBy(c => c.Date);
 
             var model = tasks.Select(c => new DataGridRowModel(
-                c.GetCode(), c.Date.ToString("dd.MM.yyyy"), c.GetCon(isps).InizByCode, c.GetDaysOpz(holy).ToString()));
+                c.Id.ToString() , c.GetCode(), c.Date.ToString("dd.MM.yyyy"), c.GetCon(isps).InizByCode, c.GetDaysOpz(holy).ToString()));
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("" , false),
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Контролёр"),
@@ -257,6 +262,13 @@ namespace UASKI.Pages
                 SelectDataGridView(form.DataGridView14.d, false);
                 e.Handled = true;
             }
+            else if(e.KeyCode == Keys.Enter && form.DataGridView14.d.SelectedRows.Count != 0)
+            {
+                var id = Convert.ToInt32(form.DataGridView14.d.SelectedRows[0].Cells[0].Value);
+                Ai.Pages.EditTask.Init(false, false);
+                Ai.Pages.EditTask.Show(id, false);
+                e.Handled = true;
+            }    
             else
             {
                 form.DataGridView14.KeyDown(e);

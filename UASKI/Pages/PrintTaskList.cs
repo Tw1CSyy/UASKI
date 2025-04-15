@@ -15,14 +15,18 @@ namespace UASKI.Pages
 {
     public class PrintTaskList : BasePagePrint
     {
-        public PrintTaskList(int index, TypePage type) : base(index, type) { }
+        public PrintTaskList(int index, TypePage type) : base(index, type, Ai.Form.DataGridView7) { }
        
         protected override void Show()
         {
             form.dateTimePicker10.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker11.Value = DateTime.Today;
-            form.dateTimePicker10.Focus();
             
+            if(form.DataGridView7.d.Rows.Count != 0)
+                form.DataGridView7.d.Focus();
+            else
+                form.dateTimePicker10.Focus();
+
         }
 
         protected override void Clear()
@@ -77,6 +81,7 @@ namespace UASKI.Pages
             foreach (var task in taskList)
             {
                 var item = new DataGridRowModel(
+                    task.Id.ToString(),
                     task.GetCode(),
                     task.Date.ToString("dd.MM.yyyy"),
                     task.GetCon(isps).InizByCode);
@@ -87,6 +92,7 @@ namespace UASKI.Pages
             foreach (var task in arhivList)
             {
                 var item = new DataGridRowModel(
+                    task.Id.ToString(),
                     task.GetCode(),
                     task.Date.ToString("dd.MM.yyyy"),
                     task.GetCon(isps).InizByCode,
@@ -97,10 +103,11 @@ namespace UASKI.Pages
             }
 
             // Сортируем по дате
-            result = result.OrderBy(c => Convert.ToDateTime(c.Values[1])).ToList();
+            result = result.OrderBy(c => Convert.ToDateTime(c.Values[2])).ThenBy(c => Convert.ToInt32(c.Values[0])).ToList();
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("" , false),
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Контролёр"),
@@ -302,6 +309,14 @@ namespace UASKI.Pages
             {
                 SelectButton(form.button34);
                 SelectDataGridView(form.DataGridView7.d, false);
+                e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter && form.DataGridView7.d.SelectedRows.Count > 0)
+            {
+                var id = Convert.ToInt32(form.DataGridView7.d.SelectedRows[0].Cells[0].Value);
+                bool isArhiv = form.DataGridView7.d.SelectedRows[0].Cells[5].Value != null;
+                Ai.Pages.EditTask.Init(false, false);
+                Ai.Pages.EditTask.Show(id, isArhiv);
                 e.Handled = true;
             }
             else
