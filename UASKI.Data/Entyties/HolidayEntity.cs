@@ -22,7 +22,7 @@ namespace UASKI.Data.Entityes
         /// </summary>
         /// <param name="id">Идентификатор</param>
         /// <param name="date">Дата</param>
-        public HolidayEntity(int id , DateTime date)
+        public HolidayEntity(int id, DateTime date)
         {
             Id = id;
             Date = date;

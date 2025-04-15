@@ -48,7 +48,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
-                new DataGridColumnModel("Срок" , typeof(DateTime))
+                new DataGridColumnModel("Срок", typeof(DateTime))
             };
 
             form.DataGridView4.PullListInDataGridView(model.ToArray(), columns);
@@ -237,7 +237,7 @@ namespace UASKI.Pages
                     var code = TextBoxElement.New(form.textBox15, form.label29);
                     var podr = TextBoxElement.New(form.textBox14, form.label28);
 
-                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr , true);
+                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr, true);
 
                     if(result == false)
                     {

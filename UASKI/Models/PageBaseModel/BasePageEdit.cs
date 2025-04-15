@@ -7,6 +7,6 @@ namespace UASKI.Models
     /// </summary>
     public abstract class BasePageEdit : BasePage
     {
-        public BasePageEdit(int index , TypePage type) : base(index , type) { }
+        public BasePageEdit(int index, TypePage type) : base(index, type) { }
     }
 }

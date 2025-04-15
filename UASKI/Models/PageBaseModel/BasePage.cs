@@ -37,7 +37,7 @@ namespace UASKI.Models
         protected abstract void Show();
 
         /// <summary>
-        /// Отчистить страницу
+        /// Очистить страницу
         /// </summary>
         protected abstract void Clear();
 
@@ -58,7 +58,7 @@ namespace UASKI.Models
         public abstract bool AiKeyDown(KeyEventArgs key);
 
         /// <summary>
-        /// Отчистить страницу
+        /// Очистить страницу
         /// </summary>
         protected void ClearPage()
         {
@@ -73,7 +73,7 @@ namespace UASKI.Models
         /// </summary>
         /// <param name="IsOpen">false - не открывать автоматически</param>
         /// <param name="IsClear">false - не отчищать предыдущую страницу</param>
-        public void Init(bool IsOpen = true , bool IsClear = true)
+        public void Init(bool IsOpen = true, bool IsClear = true)
         {
             var form = Ai.Form;
             form.Menu_Step2.Enabled = false;
@@ -102,7 +102,7 @@ namespace UASKI.Models
         /// </summary>
         /// <param name="index">Индекс страницы в tabControl</param>
         /// <param name="d">Компонент DataGridView страницы, если есть</param>
-        public BasePage(int index , TypePage type , DataGridViewComponent d = null)
+        public BasePage(int index, TypePage type, DataGridViewComponent d = null)
         {
             Index = index;
             DataGridView = d;

@@ -29,7 +29,7 @@ namespace UASKI.Pages
         private bool IsArhiv;
         private int IdPret;
 
-        public void Show(int idTask , int type , bool isArhiv , string codeTask)
+        public void Show(int idTask, int type, bool isArhiv, string codeTask)
         {
             IdTask = idTask;
             typ = type;

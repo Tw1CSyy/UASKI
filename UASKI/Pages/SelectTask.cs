@@ -16,7 +16,7 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectTask : BasePageSelect
     {
-        public SelectTask(int index , TypePage type) : base(index , type, Ai.Form.DataGridView3) { }
+        public SelectTask(int index, TypePage type) : base(index, type, Ai.Form.DataGridView3) { }
        
         protected override void Show()
         {
@@ -50,7 +50,7 @@ namespace UASKI.Pages
                 list = list.Where(c => c.Code.ToLower().Contains(form.textBox19.Text.ToLower())).ToList();
             }
 
-            if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text , out int j))
+            if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text, out int j))
             {
                 list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
             }
@@ -75,11 +75,11 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Id" , false),
+                new DataGridColumnModel("Id", false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
-                new DataGridColumnModel("Срок" , typeof(DateTime)),
+                new DataGridColumnModel("Срок", typeof(DateTime)),
             };
 
             form.DataGridView3.PullListInDataGridView(model.ToArray(), columns);
@@ -113,10 +113,10 @@ namespace UASKI.Pages
                     if (Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
                     {
                         Ai.GetBuffer().Clear();
-                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер отчищен");
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буфер отчищен");
                     }
 
-                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в буффер");
+                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в Буфер");
                     Ai.TypeBuffer = Enums.TypeBuffer.Task;
                     return true;
                 }
@@ -124,7 +124,7 @@ namespace UASKI.Pages
                 {
                     var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
                     var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
-                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из буффера");
+                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из Буфера");
                     return true;
                 }
             }
@@ -145,7 +145,7 @@ namespace UASKI.Pages
             {
                 var id = Convert.ToInt32(form.DataGridView3.d.SelectedRows[0].Cells[0].Value);
 
-                Ai.Pages.EditTask.Init(false , false);
+                Ai.Pages.EditTask.Init(false, false);
                 Ai.Pages.EditTask.Show(id, false);
                 e.Handled = true;
             }
@@ -197,7 +197,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Ai.ActionKey)
             {
-                var f = new IspForm(new TextBox(), form.textBox29 , new TextBox());
+                var f = new IspForm(new TextBox(), form.textBox29, new TextBox());
                 f.Show();
                 e.Handled = true;
             }

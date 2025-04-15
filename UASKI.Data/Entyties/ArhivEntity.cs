@@ -56,7 +56,7 @@ namespace UASKI.Data.Entyties
         /// <param name="date">Дата срока</param>
         /// <param name="id">Идентификатор задачи</param>
         /// <param name="isDouble">Двухстороняя задача</param>
-        public ArhivEntity(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm , int id , bool isDouble)
+        public ArhivEntity(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm, int id, bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;

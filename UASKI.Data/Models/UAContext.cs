@@ -177,8 +177,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(IspEntity entity)
         {
-            var query = $"INSERT INTO \"Isp\" (\"Code\" , \"FirstName\" , \"Name\" , \"LastName\" , \"CodePodr\" ) " +
-                $"VALUES ('{entity.Code}' , '{entity.FirstName}' , '{entity.Name}' , '{entity.LastName}' , '{entity.CodePodr}')";
+            var query = $"INSERT INTO \"Isp\" (\"Code\", \"FirstName\", \"Name\", \"LastName\", \"CodePodr\" ) " +
+                $"VALUES ('{entity.Code}', '{entity.FirstName}', '{entity.Name}', '{entity.LastName}', '{entity.CodePodr}')";
 
             return DataModel.Complite(query);
         }
@@ -190,8 +190,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
-            var query = $"INSERT INTO \"Tasks\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"IsDouble\")" +
-                $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.IsDouble}')";
+            var query = $"INSERT INTO \"Tasks\" (\"Cod\", \"IdIsp\", \"IdKon\", \"Date\", \"IsDouble\")" +
+                $"VALUES ('{entity.Code}', '{entity.IdIsp}', '{entity.IdCon}', '{entity.Date.Date}', '{entity.IsDouble}')";
 
             return DataModel.Complite(query);
 
@@ -217,8 +217,8 @@ namespace UASKI.Data
         /// <returns></returns>
         public bool Add(ArhivEntity entity)
         {
-            var query = $"INSERT INTO \"Arhiv\" (\"Cod\" , \"IdIsp\" , \"IdKon\" , \"Date\" , \"DateClose\" , \"Otm\" , \"IsDouble\") " +
-               $"VALUES ('{entity.Code}' , '{entity.IdIsp}' , '{entity.IdCon}' , '{entity.Date.Date}' , '{entity.DateClose}' , '{entity.Otm}' , '{entity.IsDouble}')";
+            var query = $"INSERT INTO \"Arhiv\" (\"Cod\", \"IdIsp\", \"IdKon\", \"Date\", \"DateClose\", \"Otm\", \"IsDouble\") " +
+               $"VALUES ('{entity.Code}', '{entity.IdIsp}', '{entity.IdCon}', '{entity.Date.Date}', '{entity.DateClose}', '{entity.Otm}', '{entity.IsDouble}')";
 
             return DataModel.Complite(query);
         }
@@ -230,8 +230,8 @@ namespace UASKI.Data
         /// <returns></returns>
         public bool Add(PretEntity entity)
         {
-            var query = $"INSERT INTO \"Pret\" (\"Code\" , \"IdTask\" , \"Date\" , \"Otm\" , \"Type\") " +
-               $"VALUES ('{entity.Code}' , '{entity.IdTask}' , '{entity.Date}' , '{entity.Otm}' , '{entity.Type}')";
+            var query = $"INSERT INTO \"Pret\" (\"Code\", \"IdTask\", \"Date\", \"Otm\", \"Type\") " +
+               $"VALUES ('{entity.Code}', '{entity.IdTask}', '{entity.Date}', '{entity.Otm}', '{entity.Type}')";
 
             return DataModel.Complite(query);
         }
@@ -246,10 +246,10 @@ namespace UASKI.Data
         {
 
             var query = $"UPDATE \"Pret\" SET " +
-                $"\"Code\" = '{pret.Code}' ," +
-                $"\"IdTask\" = '{pret.IdTask}' ," +
-                $"\"Date\" = '{pret.Date}' ," +
-                $"\"Otm\" = '{pret.Otm}' , " +
+                $"\"Code\" = '{pret.Code}'," +
+                $"\"IdTask\" = '{pret.IdTask}'," +
+                $"\"Date\" = '{pret.Date}'," +
+                $"\"Otm\" = '{pret.Otm}', " +
                 $"\"Type\" = '{pret.Type}'" +
                 $"WHERE \"Id\" = '{Id}'";
 
@@ -262,14 +262,14 @@ namespace UASKI.Data
         /// <param name="isp">Модель исполнителя</param>
         /// <param name="code">Код исполнителя</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(IspEntity isp , int code)
+        public bool Update(IspEntity isp, int code)
         {
             
             var query = $"UPDATE \"Isp\" SET " +
                 $"\"Code\" = '{isp.Code}', " +
-                $"\"FirstName\" = '{isp.FirstName}' ," +
-                $"\"Name\" = '{isp.Name}' ," +
-                $"\"LastName\" = '{isp.LastName}' ," +
+                $"\"FirstName\" = '{isp.FirstName}'," +
+                $"\"Name\" = '{isp.Name}'," +
+                $"\"LastName\" = '{isp.LastName}'," +
                 $"\"CodePodr\" = '{isp.CodePodr}'" +
                 $"WHERE \"Code\" = '{code}'";
 
@@ -282,13 +282,13 @@ namespace UASKI.Data
         /// <param name="task">Модель задачи</param>
         /// <param name="Id">Id задачи</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Update(TaskEntity task , int Id)
+        public bool Update(TaskEntity task, int Id)
         {
             var query = $"UPDATE \"Tasks\" SET " +
-                $"\"Cod\" = '{task.Code}' ," +
-                $"\"IdIsp\" = '{task.IdIsp}' ," +
-                $"\"IdKon\" = '{task.IdCon}' ," +
-                $"\"IsDouble\" = '{task.IsDouble}' ," +
+                $"\"Cod\" = '{task.Code}'," +
+                $"\"IdIsp\" = '{task.IdIsp}'," +
+                $"\"IdKon\" = '{task.IdCon}'," +
+                $"\"IsDouble\" = '{task.IsDouble}'," +
                 $"\"Date\" = '{task.Date}' " +
                 $"WHERE \"Id\" = '{Id}'";
 
@@ -317,12 +317,12 @@ namespace UASKI.Data
         {
             
             var query = $"UPDATE \"Arhiv\" SET " +
-                $"\"Cod\" = '{task.Code}' ," +
-                $"\"IdIsp\" = '{task.IdIsp}' ," +
-                $"\"IdKon\" = '{task.IdCon}' ," +
-                $"\"Date\" = '{task.Date}' , " +
-                $"\"DateClose\" = '{task.DateClose}' ," +
-                $"\"IsDouble\" = '{task.IsDouble}' ," +
+                $"\"Cod\" = '{task.Code}'," +
+                $"\"IdIsp\" = '{task.IdIsp}'," +
+                $"\"IdKon\" = '{task.IdCon}'," +
+                $"\"Date\" = '{task.Date}', " +
+                $"\"DateClose\" = '{task.DateClose}'," +
+                $"\"IsDouble\" = '{task.IsDouble}'," +
                 $"\"Otm\" = '{task.Otm}'" +
                 $"WHERE \"Id\" = '{Id}'";
 

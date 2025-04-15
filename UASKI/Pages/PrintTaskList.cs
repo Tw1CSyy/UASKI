@@ -15,7 +15,7 @@ namespace UASKI.Pages
 {
     public class PrintTaskList : BasePagePrint
     {
-        public PrintTaskList(int index , TypePage type) : base(index , type) { }
+        public PrintTaskList(int index, TypePage type) : base(index, type) { }
        
         protected override void Show()
         {
@@ -105,7 +105,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Дата закрытия"),
-                new DataGridColumnModel("Оценка" , typeof(int))
+                new DataGridColumnModel("Оценка", typeof(int))
             };
 
             form.DataGridView7.PullListInDataGridView(result.ToArray(), columns);
@@ -135,7 +135,7 @@ namespace UASKI.Pages
             string header2 = $"Исполнитель {form.textBox30.Text} {form.textBox20.Text}";
 
             var model = new PrintModel(font, e, form.DataGridView7.d, header1, header2);
-            SystemHelper.PrintDocument(model , FirstPage);
+            SystemHelper.PrintDocument(model, FirstPage);
             FirstPage = false;
         }
 
@@ -236,7 +236,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Ai.ActionKey)
             {
-                var f = new IspForm(form.textBox20 , form.textBox30 , new TextBox());
+                var f = new IspForm(form.textBox20, form.textBox30, new TextBox());
                 f.Show();
                 e.Handled = true;
             }

@@ -64,7 +64,7 @@ namespace UASKI.Data.Entityes
         /// <param name="date">Дата срока</param>
         /// <param name="id">Идентификатор задачи</param>
         /// <param name="isDouble">Двухстороняя задача</param>
-        public TaskEntity(string code, int idIsp, int idCon, DateTime date , int id, bool isDouble)
+        public TaskEntity(string code, int idIsp, int idCon, DateTime date, int id, bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;

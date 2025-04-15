@@ -45,7 +45,7 @@ namespace UASKI.Pages
         private string CodeTask;
         public bool IsArhiv { get; private set; }
 
-        public void Show(int id , bool isArhiv)
+        public void Show(int id, bool isArhiv)
         {
             IsArhiv = isArhiv;
 
@@ -158,9 +158,9 @@ namespace UASKI.Pages
             SelectButton(form.button48, false);
         }
 
-        private void SelectButton(int idButton = 0 , bool Up = false)
+        private void SelectButton(int idButton = 0, bool Up = false)
         {
-            var list = new Button[] { form.button10, form.button11, form.button12 , form.button47 , form.button48 };
+            var list = new Button[] { form.button10, form.button11, form.button12, form.button47, form.button48 };
             int index = idButton - 1;
 
             while (true)
@@ -348,7 +348,7 @@ namespace UASKI.Pages
             
             if (e.KeyCode == Keys.Down)
             {
-                SelectButton(1 , false);
+                SelectButton(1, false);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -370,7 +370,7 @@ namespace UASKI.Pages
                             return false;
                         }
 
-                        var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value , form.checkBox7.Checked);
+                        var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox7.Checked);
                         result = task.Update(Task.Id);
 
                         if (result == false)
@@ -391,7 +391,7 @@ namespace UASKI.Pages
                         var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
                         var otm = TextBoxElement.New(form.textBox28, form.label57);
 
-                        var result = ValidationHelper.ArhivValidation(code , idIsp , idCon , date , dateClose , otm);
+                        var result = ValidationHelper.ArhivValidation(code, idIsp, idCon, date, dateClose, otm);
 
                         if (result == false)
                         {
@@ -399,7 +399,7 @@ namespace UASKI.Pages
                             return false;
                         }
 
-                        var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num , Arhiv.Id, form.checkBox7.Checked);
+                        var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num, Arhiv.Id, form.checkBox7.Checked);
                         result = arhiv.Update();
 
                         if (result == false)
@@ -436,11 +436,11 @@ namespace UASKI.Pages
             
             if (e.KeyCode == Keys.Up)
             {
-                SelectButton(2 , true);
+                SelectButton(2, true);
             }
             else if (e.KeyCode == Keys.Down)
             {
-                SelectButton(2 , false);
+                SelectButton(2, false);
                
             }
             else if (e.KeyCode == Keys.Enter)
@@ -513,7 +513,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Up)
             {
-                SelectButton(3 , true);
+                SelectButton(3, true);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -600,7 +600,7 @@ namespace UASKI.Pages
                 else
                     id = Arhiv.Id;
 
-                Ai.Pages.EditPret.Show(id, 1, IsArhiv , CodeTask);
+                Ai.Pages.EditPret.Show(id, 1, IsArhiv, CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -631,7 +631,7 @@ namespace UASKI.Pages
                     id = Arhiv.Id;
 
                 Ai.Pages.EditPret.Init(false);
-                Ai.Pages.EditPret.Show(id, 2, IsArhiv , CodeTask);
+                Ai.Pages.EditPret.Show(id, 2, IsArhiv, CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {

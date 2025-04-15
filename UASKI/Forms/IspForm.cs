@@ -23,7 +23,7 @@ namespace UASKI.Forms
         /// <param name="t1">Фамилия</param>
         /// <param name="t2">Подразделение</param>
         /// <param name="t3">Таб Номер</param>
-        public IspForm(TextBox t1 , TextBox t2 , TextBox t3)
+        public IspForm(TextBox t1, TextBox t2, TextBox t3)
         {
             InitializeComponent();
 
@@ -67,11 +67,11 @@ namespace UASKI.Forms
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Код" , typeof(int)),
+                new DataGridColumnModel("Код", typeof(int)),
                 new DataGridColumnModel("Фамилия"),
                 new DataGridColumnModel("Имя"),
                 new DataGridColumnModel("Отчество"),
-                new DataGridColumnModel("Подразделение" , typeof(int))
+                new DataGridColumnModel("Подразделение", typeof(int))
             };
 
             DataGridView.PullListInDataGridView(result.ToArray(), columns);
@@ -89,17 +89,17 @@ namespace UASKI.Forms
                     if (Ai.TypeBuffer == Enums.TypeBuffer.Task)
                     {
                         Ai.GetBuffer().Clear();
-                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер отчищен");
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буфер отчищен");
                     }
 
-                    Ai.AddBuffer(id, $"Исполнитель с кодом {id} добавлен в буффер");
+                    Ai.AddBuffer(id, $"Исполнитель с кодом {id} добавлен в Буфер");
                     Ai.TypeBuffer = Enums.TypeBuffer.AddTask;
                     return true;
                 }
                 else if (key.KeyCode == Keys.X && DataGridView.d.SelectedRows.Count != 0)
                 {
                     var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
-                    Ai.DeleteBuffer(id, $"Исполнитель с кодом {id} удален из буффера");
+                    Ai.DeleteBuffer(id, $"Исполнитель с кодом {id} удален из Буфера");
                     return true;
                 }
             }

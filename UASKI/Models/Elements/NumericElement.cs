@@ -22,7 +22,7 @@ namespace UASKI.Models.Elements
         /// </summary>
         /// <param name="num">NumericUpDown</param>
         /// <param name="label">Label ошибки</param>
-        private NumericElement(NumericUpDown num , Label label)
+        private NumericElement(NumericUpDown num, Label label)
         {
             NumericUpDown = num;
             ErrorLabel = label;

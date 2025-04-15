@@ -32,7 +32,7 @@ namespace UASKI.Models
         /// <summary>
         /// Создает модель класса
         /// </summary>
-        public PrintModel(Font font , PrintPageEventArgs e , DataGridView d, params string[] ars)
+        public PrintModel(Font font, PrintPageEventArgs e, DataGridView d, params string[] ars)
         {
             Font = font;
             Argument = e;

@@ -18,7 +18,7 @@ namespace UASKI.Models.Components
             d = dataGridView;
         }
 
-        public void KeyDown(KeyEventArgs e , TextBox textBox = null)
+        public void KeyDown(KeyEventArgs e, TextBox textBox = null)
         {
             if(e.KeyCode == Keys.Up)
             {
@@ -153,7 +153,7 @@ namespace UASKI.Models.Components
 
             foreach (var item in columns)
             {
-                table.Columns.Add(item.Name , item.Type);
+                table.Columns.Add(item.Name, item.Type);
             }
 
             foreach (var line in values)

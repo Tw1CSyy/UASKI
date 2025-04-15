@@ -9,7 +9,7 @@ namespace UASKI.Models
         public TypeNotice Type { get; private set; }
         public Color Color { get; private set; }
 
-        public Notice(string mes , TypeNotice type)
+        public Notice(string mes, TypeNotice type)
         {
             Message = mes;
             Type = type;

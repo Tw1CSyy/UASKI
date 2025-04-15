@@ -7,7 +7,7 @@ namespace UASKI.Models
 {
     public abstract class BasePageSelect : BasePage
     {
-        public BasePageSelect(int index , TypePage type, DataGridViewComponent dataGridView) : base(index ,type , dataGridView) { }
+        public BasePageSelect(int index, TypePage type, DataGridViewComponent dataGridView) : base(index,type, dataGridView) { }
 
         /// <summary>
         /// Выводит данные в DataGridView
@@ -31,7 +31,7 @@ namespace UASKI.Models
         /// <param name="p">Panel фильтров</param>
         /// <param name="t">Первый TextBox для фокуса</param>
         /// <param name="but">Кнопка открытия панели</param>
-        protected void FilterOpen(DataGridViewComponent d , Panel p , TextBox t , Button but)
+        protected void FilterOpen(DataGridViewComponent d, Panel p, TextBox t, Button but)
         {
             d.d.Location = new System.Drawing.Point(247, 0);
             d.d.Size = new System.Drawing.Size(form.tabControl1.Width - 255, form.tabControl1.Height - 9);
@@ -47,7 +47,7 @@ namespace UASKI.Models
         /// <param name="p">Panel фильтров</param>
         /// <param name="t">Первый TextBox для фокуса</param>
         /// <param name="but">Кнопка открытия панели</param>
-        protected void FilterClose(DataGridViewComponent d , Panel p , TextBox t , Button but)
+        protected void FilterClose(DataGridViewComponent d, Panel p, TextBox t, Button but)
         {
             d.d.Location = new System.Drawing.Point(20, 0);
             d.d.Size = new System.Drawing.Size(form.tabControl1.Width - 28, form.tabControl1.Height - 9);

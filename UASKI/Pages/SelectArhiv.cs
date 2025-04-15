@@ -16,7 +16,7 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectArhiv : BasePageSelect
     {
-        public SelectArhiv(int index , TypePage type) : base(index, type , Ai.Form.DataGridView5) { }
+        public SelectArhiv(int index, TypePage type) : base(index, type, Ai.Form.DataGridView5) { }
 
         protected override void Show()
         {
@@ -51,7 +51,7 @@ namespace UASKI.Pages
                 list = list.Where(c => c.Code.ToLower().Contains(form.textBox32.Text.ToLower())).ToList();
             }
 
-            if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text , out int j))
+            if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text, out int j))
             {
                 list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox31.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
             }
@@ -80,13 +80,13 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Id" , typeof(string) , false),
+                new DataGridColumnModel("Id", typeof(string), false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
-                new DataGridColumnModel("Срок" , typeof(DateTime)),
-                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
-                new DataGridColumnModel("Оценка" , typeof(int))
+                new DataGridColumnModel("Срок", typeof(DateTime)),
+                new DataGridColumnModel("Дата закрытия", typeof(DateTime)),
+                new DataGridColumnModel("Оценка", typeof(int))
             };
 
             form.DataGridView5.PullListInDataGridView(model.ToArray(), columns);
@@ -121,10 +121,10 @@ namespace UASKI.Pages
                     if (Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
                     {
                         Ai.GetBuffer().Clear();
-                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер отчищен");
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буфер отчищен");
                     }
 
-                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в буффер");
+                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в Буфер");
                     Ai.TypeBuffer = Enums.TypeBuffer.Task;
                     return true;
                 }
@@ -132,7 +132,7 @@ namespace UASKI.Pages
                 {
                     var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
                     var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
-                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из буффера");
+                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из Буфера");
                     return true;
                 }
             }
@@ -153,7 +153,7 @@ namespace UASKI.Pages
             {
                 var id = Convert.ToInt32(form.DataGridView5.d.SelectedRows[0].Cells[0].Value);
 
-                Ai.Pages.EditTask.Init(false , false);
+                Ai.Pages.EditTask.Init(false, false);
                 Ai.Pages.EditTask.Show(id, true);
                 e.Handled = true;
             }
@@ -247,7 +247,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Down && form.panel15.Visible)
             {
                 form.dateTimePicker2.Focus();
-                SelectCheckBox(form.checkBox1 , false);
+                SelectCheckBox(form.checkBox1, false);
             }
             else if (e.KeyCode == Keys.Up)
             {

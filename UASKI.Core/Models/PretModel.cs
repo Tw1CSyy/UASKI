@@ -118,7 +118,7 @@ namespace UASKI.Core.Models
         public bool Update(int id)
         {
             var entity = Get();
-            return context.Update(entity , id);
+            return context.Update(entity, id);
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace UASKI.Pages
         protected override void Show()
         {
             Select();
-            SelectButton(form.button37 , false);
+            SelectButton(form.button37, false);
             SelectDataGridView(form.DataGridView8.d, false);
             form.dateTimePicker19.Focus();
         }
@@ -41,13 +41,13 @@ namespace UASKI.Pages
         public override void Select()
         {
             var holy = HolidayModel.GetList();
-            var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy , DateTime.MinValue , form.dateTimePicker19.Value.Date) != 0).ToList();
+            var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy, DateTime.MinValue, form.dateTimePicker19.Value.Date) != 0).ToList();
             var result = new List<DataGridRowModel>();
             var isps = IspModel.GetList();
 
             foreach (var item in list)
             {
-                var day = item.GetDaysOpz(holy , DateTime.MinValue , form.dateTimePicker19.Value.Date);
+                var day = item.GetDaysOpz(holy, DateTime.MinValue, form.dateTimePicker19.Value.Date);
 
                 var model = new DataGridRowModel(
                     item.GetIsp(isps).InizByCode,
@@ -65,7 +65,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок исполнения"),
-                new DataGridColumnModel("Дней опозданий" , typeof(int))
+                new DataGridColumnModel("Дней опозданий", typeof(int))
             };
 
             form.DataGridView8.PullListInDataGridView(result.ToArray(), columns);
@@ -94,7 +94,7 @@ namespace UASKI.Pages
             string header2 = $"На {form.dateTimePicker19.Value.ToString("dd.MM.yyyy")}";
 
             var model = new PrintModel(font, e, form.DataGridView8.d, header1, header2);
-            SystemHelper.PrintDocument(model , FirstPage);
+            SystemHelper.PrintDocument(model, FirstPage);
             FirstPage = false;
         }
 

@@ -85,8 +85,8 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок"),
                 new DataGridColumnModel("Дата закрытия"),
-                new DataGridColumnModel("Оценка" , typeof(int)),
-                new DataGridColumnModel("Дни опоздания" , typeof(int))
+                new DataGridColumnModel("Оценка", typeof(int)),
+                new DataGridColumnModel("Дни опоздания", typeof(int))
             };
 
             form.DataGridView9.PullListInDataGridView(result.ToArray(), columns);
@@ -117,8 +117,8 @@ namespace UASKI.Pages
             string header2 = $"{form.textBox35.Text}";
             string header3 = $"На {DateTime.Today.ToString("dd.MM.yyyy")}";
 
-            var model = new PrintModel(font, e, form.DataGridView9.d, header1, header2 , header3);
-            SystemHelper.PrintDocument(model , FirstPage);
+            var model = new PrintModel(font, e, form.DataGridView9.d, header1, header2, header3);
+            SystemHelper.PrintDocument(model, FirstPage);
             FirstPage = false;
         }
 

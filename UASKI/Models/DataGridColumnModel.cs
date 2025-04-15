@@ -24,7 +24,7 @@ namespace UASKI.Models
         /// </summary>
         /// <param name="name">Название колонки</param>
         /// <param name="visible">Видни ли колонка</param>
-        public DataGridColumnModel(string name , Type type , bool visible = true)
+        public DataGridColumnModel(string name, Type type, bool visible = true)
         {
             Name = name;
             Visible = visible;

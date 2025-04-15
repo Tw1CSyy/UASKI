@@ -15,7 +15,7 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectHoliday : BasePageSelect
     {
-        public SelectHoliday(int index , TypePage type) : base(index, type, Ai.Form.DataGridView6) { }
+        public SelectHoliday(int index, TypePage type) : base(index, type, Ai.Form.DataGridView6) { }
 
         protected override void Show()
         {
@@ -43,8 +43,8 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Номер"  , typeof(int), false),
-                new DataGridColumnModel("Дата" , typeof(DateTime))
+                new DataGridColumnModel("Номер" , typeof(int), false),
+                new DataGridColumnModel("Дата", typeof(DateTime))
             };
 
             form.DataGridView6.PullListInDataGridView(result.ToArray(), columns);

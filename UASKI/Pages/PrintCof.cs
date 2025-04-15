@@ -67,13 +67,13 @@ namespace UASKI.Pages
                     tasks = TaskModel.GetList()
                         .Where(c => c.IdIsp == isp.Code)
                         .Where(c => c.Date < DateTime.Today)
-                        .Where(c => c.GetDaysOpz(holy, form.dateTimePicker14.Value , form.dateTimePicker15.Value) > 0)
+                        .Where(c => c.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value) > 0)
                         .ToList();
 
                     foreach (var task in arhivTasks)
                     {
                         var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
-                        int opzDays = task.GetDaysOpz(holy , form.dateTimePicker14.Value , form.dateTimePicker15.Value);
+                        int opzDays = task.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
                         int opz = 0;
 
                         if (opzDays > 0)
@@ -94,7 +94,7 @@ namespace UASKI.Pages
                     foreach (var task in tasks)
                     {
                         var con = isps.FirstOrDefault(c => c.Code == task.IdCon);
-                        int opz = task.GetDaysOpz(holy , form.dateTimePicker14.Value, form.dateTimePicker15.Value);
+                        int opz = task.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                         var item = new DataGridRowModel(
                             task.GetCode(),
@@ -114,8 +114,8 @@ namespace UASKI.Pages
                         new DataGridColumnModel("Срок"),
                         new DataGridColumnModel("Контролёр"),
                         new DataGridColumnModel("Дата выполнения"),
-                        new DataGridColumnModel("Оценка" , typeof(int)),
-                        new DataGridColumnModel("Кол-во дней опозданий" , typeof(int)),
+                        new DataGridColumnModel("Оценка", typeof(int)),
+                        new DataGridColumnModel("Кол-во дней опозданий", typeof(int)),
                     };
 
                     form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
@@ -127,7 +127,7 @@ namespace UASKI.Pages
                        .ToList();
 
                     var pretList = PretModel.GetList();
-                    var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList, form.dateTimePicker14.Value , form.dateTimePicker15.Value);
+                    var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
                     var cof2 = isp.GetKofModel(tasks, arhivTasksMonth, holy, pretList, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
 
                     model = new List<DataGridRowModel>();
@@ -225,12 +225,12 @@ namespace UASKI.Pages
             string header1 = $"Справка о составляющих коэффициента качества";
             string header2 = $"C {form.dateTimePicker14.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker15.Value.ToString("dd.MM.yyyy")}";
             
-            var model = new PrintModel(font, e, form.DataGridView11.d, otdelString , header1, nameString , header2);
-            SystemHelper.PrintDocument(model , FirstPage);
+            var model = new PrintModel(font, e, form.DataGridView11.d, otdelString, header1, nameString, header2);
+            SystemHelper.PrintDocument(model, FirstPage);
             FirstPage = false;
         }
 
-        protected void PrintPage2(object sender , PrintPageEventArgs e)
+        protected void PrintPage2(object sender, PrintPageEventArgs e)
         {
             var font = new Font("Arial", 10);
             var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == Convert.ToInt32(form.textBox36.Text));
@@ -242,7 +242,7 @@ namespace UASKI.Pages
             string header4 = form.label100.Text;
 
             var model = new PrintModel(font, e, form.DataGridView13.d, otdelString, header3, header4);
-            SystemHelper.PrintDocument(model , true);
+            SystemHelper.PrintDocument(model, true);
         }
 
         public void ClearTime()
@@ -375,7 +375,7 @@ namespace UASKI.Pages
             if(e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
                 Exit();
-                SelectButton(form.button42 , false);
+                SelectButton(form.button42, false);
             }
             else if(e.KeyCode == Keys.Left)
             {
@@ -409,7 +409,7 @@ namespace UASKI.Pages
                 || e.KeyCode == Keys.Escape)
             {
                 form.dateTimePicker14.Focus();
-                SelectDataGridView(form.DataGridView11.d , false);
+                SelectDataGridView(form.DataGridView11.d, false);
                 e.Handled = true;
             }
             else

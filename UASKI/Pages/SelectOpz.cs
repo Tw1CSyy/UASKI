@@ -16,7 +16,7 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectOpz : BasePageSelect
     {
-        public SelectOpz(int index , TypePage type) : base(index, type, Ai.Form.DataGridView1) { }
+        public SelectOpz(int index, TypePage type) : base(index, type, Ai.Form.DataGridView1) { }
       
         protected override void Show()
         {
@@ -66,7 +66,7 @@ namespace UASKI.Pages
                 listArhiv = listArhiv.Where(c => c.Code.ToLower().Contains(search.ToLower()));
             }
 
-            if(!string.IsNullOrEmpty(isp1) && int.TryParse(isp1 , out int id))
+            if(!string.IsNullOrEmpty(isp1) && int.TryParse(isp1, out int id))
             {
                 listTask = listTask.Where(c => c.GetIsp(isps).CodePodr == id);
                 listArhiv = listArhiv.Where(c => c.GetIsp(isps).CodePodr == id);
@@ -87,13 +87,13 @@ namespace UASKI.Pages
             var taskModel = listTask
                 .OrderBy(c => c.Date)
                 .ThenBy(c => c.Id)
-                .Select(c => new DataGridRowModel(c.Id.ToString() , c.GetCode(), c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), "", "", c.GetDaysOpz(holy).ToString()))
+                .Select(c => new DataGridRowModel(c.Id.ToString(), c.GetCode(), c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), "", "", c.GetDaysOpz(holy).ToString()))
                 .ToList();
 
             var arhivModel = listArhiv
                 .OrderBy(c => c.Date)
                 .ThenBy(c => c.Id)
-                .Select(c => new DataGridRowModel(c.Id.ToString() , c.GetCode(), c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), c.DateClose.ToString("dd.MM.yyyy") , c.Otm.ToString(), c.GetDaysOpz(holy).ToString()))
+                .Select(c => new DataGridRowModel(c.Id.ToString(), c.GetCode(), c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), c.DateClose.ToString("dd.MM.yyyy"), c.Otm.ToString(), c.GetDaysOpz(holy).ToString()))
                 .ToList();
 
             model.AddRange(taskModel);
@@ -101,14 +101,14 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Id" , false),
+                new DataGridColumnModel("Id", false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Котролёр"),
-                new DataGridColumnModel("Срок" , typeof(DateTime)),
-                new DataGridColumnModel("Дата закрытия" , typeof(DateTime)),
-                new DataGridColumnModel("Оценка" , typeof(int)),
-                new DataGridColumnModel("Дней опозданий" , typeof(int))
+                new DataGridColumnModel("Срок", typeof(DateTime)),
+                new DataGridColumnModel("Дата закрытия", typeof(DateTime)),
+                new DataGridColumnModel("Оценка", typeof(int)),
+                new DataGridColumnModel("Дней опозданий", typeof(int))
             };
 
             form.DataGridView1.PullListInDataGridView(model.ToArray(), columns);
@@ -143,10 +143,10 @@ namespace UASKI.Pages
                     if (Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
                     {
                         Ai.GetBuffer().Clear();
-                        Ai.AddMessage(Enums.TypeNotice.Default, "Буффер отчищен");
+                        Ai.AddMessage(Enums.TypeNotice.Default, "Буфер отчищен");
                     }
 
-                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в буффер");
+                    Ai.AddBuffer(id, $"Задача с кодом {code} добавлена в Буфер");
                     Ai.TypeBuffer = Enums.TypeBuffer.Task;
                     return true;
                 }
@@ -154,7 +154,7 @@ namespace UASKI.Pages
                 {
                     var id = Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value);
                     var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
-                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из буффера");
+                    Ai.DeleteBuffer(id, $"Задача с кодом {code} удаленна из Буфера");
                     return true;
                 }
             }
@@ -183,7 +183,7 @@ namespace UASKI.Pages
                     int id = Convert.ToInt32(d.SelectedRows[0].Cells[0].Value);
 
                     var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
-                    Ai.Pages.EditTask.Init(false , false);
+                    Ai.Pages.EditTask.Init(false, false);
                     Ai.Pages.EditTask.Show(id, IsArhiv);
                 }
 

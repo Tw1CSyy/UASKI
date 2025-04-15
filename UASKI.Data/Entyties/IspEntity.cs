@@ -38,7 +38,7 @@
         /// <param name="name">Имя</param>
         /// <param name="lastName">Отчество</param>
         /// <param name="codePodr">Код подразделения</param>
-        public IspEntity(int code , string firstName , string name , string lastName , int codePodr)
+        public IspEntity(int code, string firstName, string name, string lastName, int codePodr)
         {
             Code = code;
             FirstName = firstName;

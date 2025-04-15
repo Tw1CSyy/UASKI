@@ -160,7 +160,7 @@ namespace UASKI.Pages
                     var code = TextBoxElement.New(form.textBox11, form.label21);
                     var podr = TextBoxElement.New(form.textBox12, form.label22);
 
-                    var result = ValidationHelper.IspValidation(firstName , name , lastName , code , podr);
+                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr);
                     
                     if(!result)
                     {

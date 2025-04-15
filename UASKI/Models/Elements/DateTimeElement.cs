@@ -23,7 +23,7 @@ namespace UASKI.Models.Elements
         /// </summary>
         /// <param name="date">DateTimePicker</param>
         /// <param name="label">Label ошибки</param>
-        private DateTimeElement(DateTimePicker date , Label label)
+        private DateTimeElement(DateTimePicker date, Label label)
         {
             DateTimePicker = date;
             ErrorLabel = label;

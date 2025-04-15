@@ -175,7 +175,7 @@ namespace UASKI.StaticModels
                },
                new ItemMenuLevel1
                {
-                   Text = "Добавление" ,
+                   Text = "Добавление",
                    Items = new ItemMenuLevel2[]
                    {
                        new ItemMenuLevel2
@@ -239,7 +239,7 @@ namespace UASKI.StaticModels
         /// Таймер для показа уведомлений Ai
         /// </summary>
         /// <returns></returns>
-        public static void NoticeTimer(object sender , EventArgs e)
+        public static void NoticeTimer(object sender, EventArgs e)
         {
             Text.BackColor = DefultColor;
             IsQuery = false;
@@ -249,7 +249,7 @@ namespace UASKI.StaticModels
         /// <summary>
         /// Таймер для показа очереди сообщений
         /// </summary>
-        public static void WaitTimerTick(object sender , EventArgs e)
+        public static void WaitTimerTick(object sender, EventArgs e)
         {
             var item = WaitMessageBufer.FirstOrDefault();
             AddMessage(item.Type, item.Message);
@@ -267,7 +267,7 @@ namespace UASKI.StaticModels
         /// </summary>
         /// <param name="type">Тип сообщения</param>
         /// <param name="text">Текст сообщения</param>
-        public static void AddMessage(TypeNotice type , string text)
+        public static void AddMessage(TypeNotice type, string text)
         {
             string mes = text;
             var notice = new Notice(mes, type);
@@ -337,7 +337,7 @@ namespace UASKI.StaticModels
         /// </summary>
         public static void AppError()
         {
-            AddMessage(TypeNotice.Error , "Ошибка при выполнении программы (от вас не зависящая)");
+            AddMessage(TypeNotice.Error, "Ошибка при выполнении программы (от вас не зависящая)");
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace UASKI.StaticModels
         public static void Warning(string text)
         {
             var mes = Formating(text);
-            AddMessage(TypeNotice.Warning , text);
+            AddMessage(TypeNotice.Warning, text);
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace UASKI.StaticModels
                 case Keys.Oemcomma:
                     if(Buffer.Count == 0)
                     {
-                        AddMessage(TypeNotice.Error , "Буффер пустой");
+                        AddMessage(TypeNotice.Error, "Буфер пустой");
                     }
                     else
                     {
@@ -453,7 +453,7 @@ namespace UASKI.StaticModels
                 case Keys.OemPeriod:
                     Buffer.Clear();
                     TypeBuffer = TypeBuffer.Null;
-                    AddMessage(TypeNotice.Comlite , "Буффер отчищен");
+                    AddMessage(TypeNotice.Comlite, "Буфер отчищен");
                     return true;
                 case Keys.Z:
                     OpenLastPage();
@@ -511,11 +511,11 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Добавляет id в буффер
+        /// Добавляет id в Буфер
         /// </summary>
         /// <param name="id">Id</param>
         /// <param name="text">Text для отображения в консоли</param>
-        public static void AddBuffer(int id , string text)
+        public static void AddBuffer(int id, string text)
         {
             
 
@@ -533,7 +533,7 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Получает буффер
+        /// Получает Буфер
         /// </summary>
         public static List<int> GetBuffer()
         {
@@ -545,7 +545,7 @@ namespace UASKI.StaticModels
         /// </summary>
         /// <param name="id">Id задачи</param>
         /// <param name="text">Text для отображения в консоли</param>
-        public static void DeleteBuffer(int id , string text)
+        public static void DeleteBuffer(int id, string text)
         {
             var item = Buffer.IndexOf(id);
 

@@ -279,7 +279,7 @@ namespace UASKI.Helpers
         /// <param name="code">Элемент код сотрудника</param>
         /// <param name="podr">Элемент код подразделения сотрудника</param>
         /// <returns>true - успешная операция</returns>
-        public static bool IspValidation(TextBoxElement firstName, TextBoxElement name, TextBoxElement lastName, TextBoxElement code, TextBoxElement podr , bool IsUpdate = false)
+        public static bool IspValidation(TextBoxElement firstName, TextBoxElement name, TextBoxElement lastName, TextBoxElement code, TextBoxElement podr, bool IsUpdate = false)
         {
             var result = true;
 

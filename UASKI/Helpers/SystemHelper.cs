@@ -135,7 +135,7 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="textBox">текстБокс</param>
         /// <param name="key">Нажатая клавиша</param>
-        public static bool CharInTextBox(TextBox textBox , Keys key)
+        public static bool CharInTextBox(TextBox textBox, Keys key)
         {
             var sim = GetCharKeyDown(key);
 
@@ -174,7 +174,7 @@ namespace UASKI.Helpers
         {
             var h = GetCharKeyDown(keys).ToString();
 
-            if(int.TryParse(h , out int i))
+            if(int.TryParse(h, out int i))
             {
                 return i;
             }
@@ -189,7 +189,7 @@ namespace UASKI.Helpers
         /// </summary>
         /// <param name="model">Модель печати</param>
         /// <returns></returns>
-        public static void PrintDocument(PrintModel model , bool PrintHeader)
+        public static void PrintDocument(PrintModel model, bool PrintHeader)
         {
             float headerY = 5f;
 

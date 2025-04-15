@@ -49,7 +49,7 @@ namespace UASKI.Pages
 
             foreach (var isp in ispList.OrderBy(c => c.CodePodr))
             {
-                var item = isp.GetKofModel(taskList , arhivList , holy , pretList , form.dateTimePicker12.Value , form.dateTimePicker13.Value);
+                var item = isp.GetKofModel(taskList, arhivList, holy, pretList, form.dateTimePicker12.Value, form.dateTimePicker13.Value);
                 result.Add(item);
             }
 
@@ -64,9 +64,9 @@ namespace UASKI.Pages
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("Кол-во выполненных заданий" , typeof(int)),
-                new DataGridColumnModel("Кол-во случаев опозданий" , typeof(int)),
-                new DataGridColumnModel("Кол-во дней опозданий" , typeof(int)),
+                new DataGridColumnModel("Кол-во выполненных заданий", typeof(int)),
+                new DataGridColumnModel("Кол-во случаев опозданий", typeof(int)),
+                new DataGridColumnModel("Кол-во дней опозданий", typeof(int)),
                 new DataGridColumnModel("Коэффициент")
             };
 
@@ -98,7 +98,7 @@ namespace UASKI.Pages
             string header2 = $"C {form.dateTimePicker12.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker13.Value.ToString("dd.MM.yyyy")}";
 
             var model = new PrintModel(font, e, form.DataGridView10.d, header1, header2);
-            SystemHelper.PrintDocument(model , FirstPage);
+            SystemHelper.PrintDocument(model, FirstPage);
             FirstPage = false;
         }
 

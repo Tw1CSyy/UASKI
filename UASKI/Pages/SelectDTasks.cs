@@ -12,7 +12,7 @@ namespace UASKI.Pages
 {
     public class SelectDTasks : BasePageSelect
     {
-        public SelectDTasks(int index , TypePage type) : base(index, type , Ai.Form.DataGridView15) { }
+        public SelectDTasks(int index, TypePage type) : base(index, type, Ai.Form.DataGridView15) { }
 
         protected override void Show()
         {
@@ -65,10 +65,10 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("" , false),
+                new DataGridColumnModel("", false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Контролёр"),
-                new DataGridColumnModel("Кол-Во")
+                new DataGridColumnModel("Кол-во")
             };
 
             form.DataGridView15.PullListInDataGridView(model.ToArray(), columns);

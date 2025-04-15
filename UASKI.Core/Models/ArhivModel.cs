@@ -65,7 +65,7 @@ namespace UASKI.Core.Models
         /// <param name="task">Модель задачи</param>
         /// <param name="dateClose">Дата закрытия</param>
         /// <param name="otm">Оценка</param>
-        public ArhivModel(TaskModel task , DateTime dateClose , int otm)
+        public ArhivModel(TaskModel task, DateTime dateClose, int otm)
         {
             Code = task.Code;
             IdIsp = task.IdIsp;
@@ -86,7 +86,7 @@ namespace UASKI.Core.Models
         /// <param name="dateClose">Дата закрытия</param>
         /// <param name="otm">Оценка</param>
         /// <param name="isDouble">Двухстороняя задача</param>
-        public ArhivModel(string code , int idIsp , int idCon , DateTime date , DateTime dateClose , int otm , int id , bool isDouble)
+        public ArhivModel(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm, int id, bool isDouble)
         {
             Code = code;
             IdIsp = idIsp;
@@ -120,7 +120,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект ArhivEntity</returns>
         public ArhivEntity Get()
         {
-            return new ArhivEntity(Code, IdIsp, IdCon, Date, DateClose, Otm, Id , IsDouble);
+            return new ArhivEntity(Code, IdIsp, IdCon, Date, DateClose, Otm, Id, IsDouble);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace UASKI.Core.Models
         /// <param name="dateFrom">Дата с которой считаем</param>
         /// <param name="dateTo">Дата до которой считаем</param>
         /// <returns></returns>
-        public int GetDaysOpz(List<HolidayModel> list, DateTime dateFrom , DateTime dateTo)
+        public int GetDaysOpz(List<HolidayModel> list, DateTime dateFrom, DateTime dateTo)
         {
             int result = 0;
 
@@ -249,7 +249,7 @@ namespace UASKI.Core.Models
             if (item != null)
                 return item;
             else
-                return new IspModel(0 , "0", "0", "0", 0);
+                return new IspModel(0, "0", "0", "0", 0);
         }
 
         /// <summary>

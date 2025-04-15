@@ -72,7 +72,7 @@ namespace UASKI.Models.Elements
         /// </summary>
         /// <param name="text">TextBox</param>
         /// <param name="label">Label ошибки</param>
-        private TextBoxElement(TextBox text , Label label)
+        private TextBoxElement(TextBox text, Label label)
         {
             TextBox = text;
             ErrorLabel = label;

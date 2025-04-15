@@ -388,7 +388,7 @@ namespace UASKI
             if(Menu_Step2.SelectedIndex != -1)
             {
                 var r = new KeyEventArgs(Keys.Enter);
-                Menu_Step2_KeyDown(sender , r);
+                Menu_Step2_KeyDown(sender, r);
             }
         }
         private void panel3_Click(object sender, EventArgs e)
@@ -972,7 +972,7 @@ namespace UASKI
         }
         private void dateTimePicker10_ValueChanged(object sender, EventArgs e)
         {
-            textBox30_TextChanged(sender , e);
+            textBox30_TextChanged(sender, e);
         }
         private void dateTimePicker19_ValueChanged(object sender, EventArgs e)
         {

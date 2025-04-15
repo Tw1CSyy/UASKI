@@ -14,7 +14,7 @@ namespace UASKI.Models.Pages
     /// </summary>
     public class SelectIsp : BasePageSelect
     {
-        public SelectIsp(int index , TypePage type) : base(index, type, Ai.Form.IspDataGridView) { }
+        public SelectIsp(int index, TypePage type) : base(index, type, Ai.Form.IspDataGridView) { }
 
         protected override void Show()
         {
@@ -61,17 +61,17 @@ namespace UASKI.Models.Pages
 
             foreach (var item in model.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName))
             {
-                var d = new DataGridRowModel(item.Code.ToString(), item.FirstName, item.Name, item.LastName, item.CodePodr.ToString() , item.GetKofModel(tasks , arhiv , holy , prets, date1 , date2).KofString);
+                var d = new DataGridRowModel(item.Code.ToString(), item.FirstName, item.Name, item.LastName, item.CodePodr.ToString(), item.GetKofModel(tasks, arhiv, holy, prets, date1, date2).KofString);
                 result.Add(d);
             }
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Таб номер" , typeof(int)),
+                new DataGridColumnModel("Таб номер", typeof(int)),
                 new DataGridColumnModel("Фамилия"),
                 new DataGridColumnModel("Имя"),
                 new DataGridColumnModel("Отчество"),
-                new DataGridColumnModel("Код подразделения" , typeof(int)),
+                new DataGridColumnModel("Код подразделения", typeof(int)),
                 new DataGridColumnModel("Коэффициент")
             };
 
@@ -106,7 +106,7 @@ namespace UASKI.Models.Pages
                 if (form.IspDataGridView.d.SelectedRows.Count > 0)
                 {
                     var code = Convert.ToInt32(form.IspDataGridView.d.SelectedRows[0].Cells[0].Value);
-                    Ai.Pages.EditIsp.Init(false , false);
+                    Ai.Pages.EditIsp.Init(false, false);
                     Ai.Pages.EditIsp.Show(code);
                 }
 
@@ -123,7 +123,7 @@ namespace UASKI.Models.Pages
             }
             else
             {
-                form.IspDataGridView.KeyDown(e , form.textBox13);
+                form.IspDataGridView.KeyDown(e, form.textBox13);
             }
 
         }

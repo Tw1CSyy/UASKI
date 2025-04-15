@@ -80,7 +80,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект TaskEntity</returns>
         private TaskEntity Get()
         {
-            return new TaskEntity(Code, IdIsp, IdCon, Date , Id  , IsDouble);
+            return new TaskEntity(Code, IdIsp, IdCon, Date, Id , IsDouble);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace UASKI.Core.Models
         /// <param name="oldCode">Старый код</param>
         /// <param name="newCode">Новый код</param>
         /// <returns>true - Успешная операция</returns>
-        public bool EditCodeIsp(int oldCode , int newCode)
+        public bool EditCodeIsp(int oldCode, int newCode)
         {
             if(IdIsp == oldCode)
             {
@@ -166,7 +166,7 @@ namespace UASKI.Core.Models
                 IdCon = newCode;
             }
 
-            return context.Update(Get() , Id);
+            return context.Update(Get(), Id);
         }
 
         /// <summary>

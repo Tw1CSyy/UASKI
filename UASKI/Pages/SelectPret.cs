@@ -70,17 +70,17 @@ namespace UASKI.Pages
                 else
                     type = "Рецензия";
 
-                var item = new DataGridRowModel(pret.Id.ToString() , type, pret.Code, pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
+                var item = new DataGridRowModel(pret.Id.ToString(), type, pret.Code, pret.Date.ToString("dd.MM.yyyy"), pret.Otm.ToString());
                 model.Add(item);
             }
 
             var columns = new DataGridColumnModel[]
             {
-                new DataGridColumnModel("Id" , false),
+                new DataGridColumnModel("Id", false),
                 new DataGridColumnModel("Тип"),
                 new DataGridColumnModel("Код"),
-                new DataGridColumnModel("Дата" , typeof(DateTime)),
-                new DataGridColumnModel("Оценка" , typeof(int))
+                new DataGridColumnModel("Дата", typeof(DateTime)),
+                new DataGridColumnModel("Оценка", typeof(int))
             };
 
             form.DataGridView12.PullListInDataGridView(model.ToArray(), columns);
@@ -216,7 +216,7 @@ namespace UASKI.Pages
             if (e.KeyCode == Keys.Down)
             {
                 form.dateTimePicker17.Focus();
-                SelectCheckBox(form.checkBox4 , false);
+                SelectCheckBox(form.checkBox4, false);
             }
             else if (e.KeyCode == Keys.Up)
             {

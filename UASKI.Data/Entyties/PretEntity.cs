@@ -47,7 +47,7 @@ namespace UASKI.Data.Entyties
         /// <param name="date">Дата претензии/рецензии</param>
         /// <param name="otm">Оценка претензии/рецензии</param>
         /// <param name="type">Тип  1 - претензия  2 - рецензия</param>
-        public PretEntity(int id , string code , int idTask , DateTime date , int otm , int type)
+        public PretEntity(int id, string code, int idTask, DateTime date, int otm, int type)
         {
             Id = id;
             Code = code;
