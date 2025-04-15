@@ -29,7 +29,7 @@ namespace UASKI.Models
         /// <summary>
         /// Отчищена ли форма
         /// </summary>
-        protected bool IsCleared = true;
+        public bool IsCleared = true;
 
         /// <summary>
         /// Загрузить данные на страницу

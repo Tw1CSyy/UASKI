@@ -51,20 +51,21 @@ namespace UASKI.Pages
 
             var model = arhiv.OrderBy(c => c.Date).ThenBy(c => c.Id)
                 .GroupBy(g => new { g.CodeByD, g.IdCon })
-                .Select(g => new DataGridRowModel(g.Key.CodeByD, g.Key.IdCon.ToString(), g.Count().ToString()))
+                .Select(g => new DataGridRowModel(g.Key.IdCon.ToString(), g.Key.CodeByD, g.Key.IdCon.ToString(), g.Count().ToString()))
                 .ToList();
 
             for(int i = 0; i < model.Count; i++)
             {
-                var id = Convert.ToInt32(model[i].Values[1]);
+                var id = Convert.ToInt32(model[i].Values[2]);
                 var con = isps.FirstOrDefault(c => c.Code == id);
 
                 if (con != null)
-                    model[i].Values[1] = con.InizByCode;
+                    model[i].Values[2] = con.InizByCode;
             }
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("" , false),
                 new DataGridColumnModel("Код"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Кол-Во")
@@ -108,6 +109,25 @@ namespace UASKI.Pages
                 Exit();
                 form.DataGridView15.d.ClearSelection();
                 e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                if(DataGridView.d.SelectedRows.Count > 0)
+                {
+                    Ai.IsClear = true;
+                    form.textBox32.Text = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
+                    form.checkBox11.Checked = true;
+                    var con = IspModel.GetByCode(Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value));
+                    form.textBox31.Text = con.CodePodr.ToString();
+                    form.dateTimePicker2.Value = form.dateTimePicker22.Value;
+                    form.dateTimePicker3.Value = form.dateTimePicker23.Value;
+                    form.checkBox1.Checked = form.panel15.Visible = form.checkBox9.Checked;
+                    Ai.IsClear = false;
+                   
+                    Ai.Pages.SelectArhiv.IsCleared = false;
+                    Ai.Pages.SelectArhiv.Init(true, false);
+                    Ai.SelectMenu(Ai.Pages.SelectArhiv);
+                }
             }
             else
             {

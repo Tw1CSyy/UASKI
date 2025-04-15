@@ -425,15 +425,19 @@ namespace UASKI.StaticModels
                     return true;
                 case Keys.L:
                     SelectMenu(Pages.AddTask);
+                    Pages.AddTask.Init();
                     return true;
                 case Keys.P:
                     SelectMenu(Pages.SelectTask);
+                    Pages.SelectTask.Init();
                     return true;
                 case Keys.F:
                     SelectMenu(Pages.SelectArhiv);
+                    Pages.SelectArhiv.Init();
                     return true;
                 case Keys.J:
                     SelectMenu(Pages.SelectOpz);
+                    Pages.SelectOpz.Init();
                     return true;
                 case Keys.Oemcomma:
                     if(Buffer.Count == 0)
@@ -460,10 +464,10 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Выбирает пункты меню, соответсвтвующие странице
+        /// Выбирает пункты меню, соответсвтвующие странице. Страницу не открывает
         /// </summary>
         /// <param name="page">Целевая страница</param>
-        /// <returns>true - страница найдена</returns>
+        /// <returns>true - страница найдена. Иначе false</returns>
         public static bool SelectMenu(BasePage page)
         {
             if (page == null)
@@ -494,10 +498,12 @@ namespace UASKI.StaticModels
 
             if (lvl1 != -1)
             {
+                IsClear = true;
                 form.Menu_Step1.SelectedIndex = lvl1;
                 form.Menu_Step2.SelectedIndex = lvl2;
                 var e = new KeyEventArgs(Keys.Enter);
                 form.Menu_Step2_KeyDown(new object(), e);
+                IsClear = false;
                 return true;
             }
 
@@ -582,8 +588,10 @@ namespace UASKI.StaticModels
                 return false;
 
             var page = PageHistory[PageHistory.Count - 2];
+            PageHistory = PageHistory.Where(c => c.Index != page.Index).ToList();
+            PageHistory.RemoveAt(PageHistory.Count - 1);
 
-            if(page.DataGridView == null)
+            if (page.DataGridView == null)
             {
                 page.Init();
             }

@@ -27,9 +27,9 @@ namespace UASKI.Pages
                 form.panel15.Visible = true;
                 form.checkBox1.Checked = true;
                 form.checkBox11.Checked = false;
-                FilterClose();
             }
-            
+
+            FilterClose();
             Select();
             form.DataGridView5.d.Focus();
         }

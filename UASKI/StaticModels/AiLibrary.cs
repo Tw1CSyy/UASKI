@@ -17,6 +17,7 @@ namespace UASKI.StaticModels
         public static readonly List<string> Instruction = new List<string>
         {
             "Отчистить сообщения: Ctrl + Й",
+            "Вернуться назад: Ctrl + Я",
             "Добавление задачи: Ctrl + Д",
             "Просмотр задач: Ctrl + З",
             "Просмотр архива: Ctrl + А",

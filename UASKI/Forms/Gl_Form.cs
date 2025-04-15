@@ -192,7 +192,7 @@ namespace UASKI
             var elem = Ai.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
             var el = elem.Items.FirstOrDefault(c => c.Text.Equals(Menu_Step2.SelectedItem.ToString()));
 
-            if (el.Page != null)
+            if (el.Page != null && !Ai.IsClear)
                 el.Page.Init();
         }
 
@@ -369,6 +369,7 @@ namespace UASKI
             }
             else if (e.KeyCode == Keys.Enter)
             {
+                Menu_Step1.Enabled = false;
                 Open();
             }
             else
