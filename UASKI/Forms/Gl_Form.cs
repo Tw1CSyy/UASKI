@@ -720,6 +720,18 @@ namespace UASKI
         {
             SystemData.Pages.EditPret.button45_PreviewKeyDown(e);
         }
+        private void checkBox10_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectTask.checkBox10_PreviewKeyDown(e);
+        }
+        private void checkBox11_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectArhiv.checkBox11_PreviewKeyDown(e);
+        }
+        private void checkBox12_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            SystemData.Pages.SelectOpz.checkBox12_PreviewKeyDown(e);
+        }
         private void button44_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             SystemData.Pages.EditPret.button44_PreviewKeyDown(e);
@@ -1005,6 +1017,18 @@ namespace UASKI
         {
             textBox40_TextChanged(sender, e);
             panel22.Visible = checkBox4.Checked;
+        }
+        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox19_TextChanged_1(sender, e);
+        }
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox32_TextChanged(sender, e);
+        }
+        private void checkBox12_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox33_TextChanged(sender, e);
         }
         private void dateTimePicker17_ValueChanged(object sender, EventArgs e)
         {

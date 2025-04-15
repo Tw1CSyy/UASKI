@@ -22,7 +22,7 @@ namespace UASKI.Pages
         {
             if(this.IsCleared)
             {
-                form.panel16.Visible = form.checkBox2.Checked = false;
+                form.panel16.Visible = form.checkBox2.Checked = form.checkBox10.Checked = false;
                 form.dateTimePicker5.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 form.dateTimePicker6.Value = DateTime.Today;
                 FilterClose();
@@ -34,6 +34,7 @@ namespace UASKI.Pages
 
         protected override void Clear()
         {
+            form.panel16.Visible = form.checkBox2.Checked = form.checkBox10.Checked = false;
             form.textBox19.Clear();
             form.textBox29.Clear();
             form.DataGridView3.d.DataSource = null;
@@ -52,6 +53,11 @@ namespace UASKI.Pages
             if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text , out int j))
             {
                 list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
+            }
+
+            if(form.checkBox10.Checked)
+            {
+                list = list.Where(c => c.IsDouble == true).ToList();
             }
 
             if(form.checkBox2.Checked)
@@ -181,7 +187,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SelectCheckBox(form.checkBox2);
+                SelectCheckBox(form.checkBox10);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Up)
@@ -197,6 +203,31 @@ namespace UASKI.Pages
             }
         }
 
+        public void checkBox10_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                form.checkBox10.Checked = !form.checkBox10.Checked;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SelectCheckBox(form.checkBox2);
+                SelectCheckBox(form.checkBox10, false);
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SelectTextBox(form.textBox29);
+                SelectCheckBox(form.checkBox10, false);
+            }
+            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+                SelectCheckBox(form.checkBox10, false);
+            }
+
+            e.IsInputKey = true;
+        }
+
         public void checkBox2_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -210,7 +241,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Up)
             {
-                SelectTextBox(form.textBox29);
+                SelectCheckBox(form.checkBox10);
                 SelectCheckBox(form.checkBox2, false);
             }
             else if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
@@ -220,7 +251,6 @@ namespace UASKI.Pages
             }
 
             e.IsInputKey = true;
-
         }
 
         public void dateTimePicker5_KeyDown(KeyEventArgs e)

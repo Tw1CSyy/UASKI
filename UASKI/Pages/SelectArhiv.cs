@@ -26,6 +26,7 @@ namespace UASKI.Pages
                 form.dateTimePicker3.Value = DateTime.Today;
                 form.panel15.Visible = true;
                 form.checkBox1.Checked = true;
+                form.checkBox11.Checked = false;
                 FilterClose();
             }
             
@@ -53,6 +54,11 @@ namespace UASKI.Pages
             if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text , out int j))
             {
                 list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox31.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
+            }
+
+            if(form.checkBox11.Checked)
+            {
+                list = list.Where(c => c.IsDouble == true).ToList();
             }
 
             if(form.checkBox1.Checked)
@@ -184,7 +190,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
             {
-                SelectCheckBox(form.checkBox1);
+                SelectCheckBox(form.checkBox11);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Right)
@@ -205,6 +211,32 @@ namespace UASKI.Pages
             }
         }
 
+        public void checkBox11_PreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                form.checkBox11.Checked = !form.checkBox11.Checked;
+
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SelectCheckBox(form.checkBox1, true);
+                SelectCheckBox(form.checkBox11, false);
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                SelectTextBox(form.textBox31);
+                SelectCheckBox(form.checkBox11, false);
+            }
+            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)
+            {
+                FilterClose();
+                SelectCheckBox(form.checkBox11, false);
+            }
+
+            e.IsInputKey = true;
+        }
+
         public void checkBox1_PreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -219,7 +251,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Up)
             {
-                SelectTextBox(form.textBox31);
+                SelectCheckBox(form.checkBox11);
                 SelectCheckBox(form.checkBox1, false);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Escape)

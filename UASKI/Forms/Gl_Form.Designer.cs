@@ -347,6 +347,9 @@ namespace UASKI
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -612,6 +615,7 @@ namespace UASKI
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel13.Controls.Add(this.checkBox10);
             this.panel13.Controls.Add(this.label62);
             this.panel13.Controls.Add(this.button24);
             this.panel13.Controls.Add(this.button21);
@@ -669,7 +673,7 @@ namespace UASKI
             this.panel16.Controls.Add(this.dateTimePicker6);
             this.panel16.Controls.Add(this.label60);
             this.panel16.Controls.Add(this.label61);
-            this.panel16.Location = new System.Drawing.Point(4, 179);
+            this.panel16.Location = new System.Drawing.Point(4, 208);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(241, 129);
             this.panel16.TabIndex = 15;
@@ -739,7 +743,7 @@ namespace UASKI
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 149);
+            this.checkBox2.Location = new System.Drawing.Point(7, 178);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(199, 24);
             this.checkBox2.TabIndex = 14;
@@ -822,6 +826,7 @@ namespace UASKI
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel14.Controls.Add(this.checkBox11);
             this.panel14.Controls.Add(this.button25);
             this.panel14.Controls.Add(this.button17);
             this.panel14.Controls.Add(this.panel15);
@@ -869,7 +874,7 @@ namespace UASKI
             this.panel15.Controls.Add(this.dateTimePicker3);
             this.panel15.Controls.Add(this.label65);
             this.panel15.Controls.Add(this.label64);
-            this.panel15.Location = new System.Drawing.Point(2, 188);
+            this.panel15.Location = new System.Drawing.Point(2, 208);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(241, 129);
             this.panel15.TabIndex = 13;
@@ -939,7 +944,7 @@ namespace UASKI
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(5, 158);
+            this.checkBox1.Location = new System.Drawing.Point(7, 178);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(228, 24);
             this.checkBox1.TabIndex = 12;
@@ -1092,6 +1097,7 @@ namespace UASKI
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel17.Controls.Add(this.checkBox12);
             this.panel17.Controls.Add(this.label63);
             this.panel17.Controls.Add(this.button26);
             this.panel17.Controls.Add(this.button23);
@@ -1149,7 +1155,7 @@ namespace UASKI
             this.panel18.Controls.Add(this.dateTimePicker8);
             this.panel18.Controls.Add(this.label67);
             this.panel18.Controls.Add(this.label68);
-            this.panel18.Location = new System.Drawing.Point(2, 177);
+            this.panel18.Location = new System.Drawing.Point(2, 209);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(241, 129);
             this.panel18.TabIndex = 14;
@@ -1219,7 +1225,7 @@ namespace UASKI
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 147);
+            this.checkBox3.Location = new System.Drawing.Point(6, 179);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(199, 24);
             this.checkBox3.TabIndex = 12;
@@ -3755,6 +3761,7 @@ namespace UASKI
             this.tabPage18.Controls.Add(this.button57);
             this.tabPage18.Controls.Add(this.dataGridView15);
             this.tabPage18.Controls.Add(this.panel30);
+            this.tabPage18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage18.Location = new System.Drawing.Point(4, 22);
             this.tabPage18.Name = "tabPage18";
             this.tabPage18.Size = new System.Drawing.Size(881, 543);
@@ -3959,6 +3966,42 @@ namespace UASKI
             // 
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(6, 148);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(136, 24);
+            this.checkBox10.TabIndex = 31;
+            this.checkBox10.Text = "Двусторонние";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            this.checkBox10.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox10_PreviewKeyDown);
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(6, 148);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(136, 24);
+            this.checkBox11.TabIndex = 32;
+            this.checkBox11.Text = "Двусторонние";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
+            this.checkBox11.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox11_PreviewKeyDown);
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(6, 149);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(136, 24);
+            this.checkBox12.TabIndex = 33;
+            this.checkBox12.Text = "Двусторонние";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
+            this.checkBox12.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox12_PreviewKeyDown);
             // 
             // Gl_Form
             // 
@@ -4389,6 +4432,9 @@ namespace UASKI
         private Label label101;
         private Button button52;
         private Button button53;
+        public CheckBox checkBox10;
+        public CheckBox checkBox11;
+        public CheckBox checkBox12;
     }
 }
 
