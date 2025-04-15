@@ -57,7 +57,7 @@ namespace UASKI.Core.Models
         /// <summary>
         /// Код без 5 последних знаков
         /// </summary>
-        public string CodeByD { get => Code.Remove(Code.Length - 6, 5); }
+        public string CodeByD { get => Code.Remove(Code.Length - 5, 5); }
 
         /// <summary>
         /// Создает объект класса
@@ -73,6 +73,7 @@ namespace UASKI.Core.Models
             Date = task.Date;
             DateClose = dateClose;
             Otm = otm;
+            IsDouble = task.IsDouble;
         }
 
         /// <summary>

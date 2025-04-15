@@ -307,6 +307,8 @@ namespace UASKI
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.button51 = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
+            this.button52 = new System.Windows.Forms.Button();
+            this.button53 = new System.Windows.Forms.Button();
             this.dateTimePicker17 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker18 = new System.Windows.Forms.DateTimePicker();
             this.label95 = new System.Windows.Forms.Label();
@@ -345,8 +347,6 @@ namespace UASKI
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox41 = new System.Windows.Forms.TextBox();
             this.TimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.button52 = new System.Windows.Forms.Button();
-            this.button53 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -3519,6 +3519,30 @@ namespace UASKI
             this.panel22.Size = new System.Drawing.Size(241, 129);
             this.panel22.TabIndex = 14;
             // 
+            // button52
+            // 
+            this.button52.BackColor = System.Drawing.Color.White;
+            this.button52.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button52.Location = new System.Drawing.Point(222, 79);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(19, 26);
+            this.button52.TabIndex = 31;
+            this.button52.Text = "^";
+            this.button52.UseVisualStyleBackColor = false;
+            this.button52.Click += new System.EventHandler(this.button52_Click);
+            // 
+            // button53
+            // 
+            this.button53.BackColor = System.Drawing.Color.White;
+            this.button53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button53.Location = new System.Drawing.Point(222, 27);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(19, 26);
+            this.button53.TabIndex = 30;
+            this.button53.Text = "^";
+            this.button53.UseVisualStyleBackColor = false;
+            this.button53.Click += new System.EventHandler(this.button53_Click);
+            // 
             // dateTimePicker17
             // 
             this.dateTimePicker17.Location = new System.Drawing.Point(5, 27);
@@ -3871,11 +3895,12 @@ namespace UASKI
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
+            this.checkBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox9.Location = new System.Drawing.Point(7, 76);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(139, 17);
+            this.checkBox9.Size = new System.Drawing.Size(228, 24);
             this.checkBox9.TabIndex = 12;
-            this.checkBox9.Text = "Учитывать дату срока";
+            this.checkBox9.Text = "Учитывать дату закрытия";
             this.checkBox9.UseVisualStyleBackColor = true;
             this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
             this.checkBox9.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.checkBox9_PreviewKeyDown);
@@ -3934,30 +3959,6 @@ namespace UASKI
             // 
             this.TimeTimer.Interval = 1000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
-            // 
-            // button52
-            // 
-            this.button52.BackColor = System.Drawing.Color.White;
-            this.button52.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button52.Location = new System.Drawing.Point(222, 79);
-            this.button52.Name = "button52";
-            this.button52.Size = new System.Drawing.Size(19, 26);
-            this.button52.TabIndex = 31;
-            this.button52.Text = "^";
-            this.button52.UseVisualStyleBackColor = false;
-            this.button52.Click += new System.EventHandler(this.button52_Click);
-            // 
-            // button53
-            // 
-            this.button53.BackColor = System.Drawing.Color.White;
-            this.button53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button53.Location = new System.Drawing.Point(222, 27);
-            this.button53.Name = "button53";
-            this.button53.Size = new System.Drawing.Size(19, 26);
-            this.button53.TabIndex = 30;
-            this.button53.Text = "^";
-            this.button53.UseVisualStyleBackColor = false;
-            this.button53.Click += new System.EventHandler(this.button53_Click);
             // 
             // Gl_Form
             // 

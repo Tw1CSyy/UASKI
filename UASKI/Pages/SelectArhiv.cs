@@ -57,7 +57,7 @@ namespace UASKI.Pages
 
             if(form.checkBox1.Checked)
             {
-                list = list.Where(c => c.Date >= form.dateTimePicker2.Value && c.Date <= form.dateTimePicker3.Value).ToList();
+                list = list.Where(c => c.DateClose >= form.dateTimePicker2.Value && c.DateClose <= form.dateTimePicker3.Value).ToList();
             }
 
             var model = new List<DataGridRowModel>();
@@ -133,6 +133,7 @@ namespace UASKI.Pages
 
             return false;
         }
+
         #region Клавиши
         public void dataGridView5_KeyDown(KeyEventArgs e)
         {
