@@ -35,7 +35,7 @@ namespace UASKI.Models
         /// <returns></returns>
         protected bool GetPrint(PrintDocument document)
         {
-            var form = SystemData.Form;
+            var form = Ai.Form;
 
             var printDialog = new PrintDialog();
             printDialog.Document = document;

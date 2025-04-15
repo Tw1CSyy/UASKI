@@ -30,9 +30,64 @@ namespace UASKI.StaticModels
         /// </summary>
         public static bool IsTimerStart = false;
 
+        /// <summary>
+        /// Список элементов меню на главной странице
+        /// </summary>
+        public static List<ItemMenuLevel1> MenuItems { get; private set; }
+
+        /// <summary>
+        /// Главная форма приложения
+        /// </summary>
+        public static Gl_Form Form { get; private set; }
+
+        /// <summary>
+        /// Требуется ли подтверждение операции
+        /// </summary>
+        public static bool IsQuery { get; set; }
+
+        /// <summary>
+        /// Производится ли отчистка элементов
+        /// </summary>
+        public static bool IsClear { get; set; }
+
+        /// <summary>
+        /// Жаркая главиша
+        /// </summary>
+        public static readonly Keys ActionKey = Keys.F2;
+
+        /// <summary>
+        /// Страницы приложения
+        /// </summary>
+        public static Pages Pages { get; private set; }
+
+        /// <summary>
+        /// Текущая страница
+        /// </summary>
+        public static BasePage This { get; set; }
+
+        /// <summary>
+        /// Настройки приложения
+        /// </summary>
+        public static AppSettings Settings { get; set; }
+
+        /// <summary>
+        /// Текстовое поле для вывода
+        /// </summary>
         private static TextBox Text;
+
+        /// <summary>
+        /// Цвет для обычных уведомлений
+        /// </summary>
         private static Color DefultColor;
+
+        /// <summary>
+        /// Таймер для отчистки цвета после уведомления
+        /// </summary>
         private static Timer Timer;
+
+        /// <summary>
+        /// Таймер для очереди сообщений
+        /// </summary>
         private static Timer WaitTimer;
         
         /// <summary>
@@ -53,13 +108,130 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
+        /// Инициализация данных
+        /// </summary>
+        /// <param name="form">Главная форма приложения для инициализации</param>
+        public static void Init(Gl_Form form)
+        {
+            Form = form;
+            Pages = new Pages();
+            IsQuery = false;
+            IsClear = false;
+
+            MenuItems = new List<ItemMenuLevel1>
+            {
+               new ItemMenuLevel1
+               {
+                   Text = "Просмотр",
+                   Items = new ItemMenuLevel2[]
+                   {
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Исполнителя-Контролёра",
+                           Page = Pages.SelectIsp
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Планов",
+                           Page = Pages.SelectTask
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Архива",
+                           Page = Pages.SelectArhiv
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Праздничных Дней",
+                           Page = Pages.SelectHoliday
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Опозданий",
+                           Page = Pages.SelectOpz
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Претензий/Рецензий",
+                           Page = Pages.SelectPret
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Просмотр Двусторонних",
+                           Page = Pages.SelectDTasks
+                       }
+                   }
+               },
+               new ItemMenuLevel1
+               {
+                   Text = "Добавление" ,
+                   Items = new ItemMenuLevel2[]
+                   {
+                       new ItemMenuLevel2
+                       {
+                           Text = "Добавление Новых Карточек",
+                           Page = Pages.AddTask
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Добавление Исполнителей-Контролёров",
+                           Page = Pages.AddIsp
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Добавление Празднечных Дней",
+                           Page = Pages.AddHoliday
+                       }
+                   }
+               },
+               new ItemMenuLevel1
+               {
+                   Text = "Печатные формы",
+                   Items = new ItemMenuLevel2[]
+                   {
+                       new ItemMenuLevel2
+                       {
+                           Text = "Перечень заданий на месяц",
+                           Page = Pages.PrintTaskList
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Перечень планов",
+                           Page = Pages.PrintPlan
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Невыполненные задания",
+                           Page = Pages.PrintOpz
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Состояние выполнения мероприятия",
+                           Page = Pages.PrintMer
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Текущие значения показателей работы",
+                           Page = Pages.PrintPoc
+                       },
+                       new ItemMenuLevel2
+                       {
+                           Text = "Составление коэффициента качества",
+                           Page = Pages.PrintCof
+                       }
+                   }
+               },
+            };
+        }
+
+        /// <summary>
         /// Таймер для показа уведомлений Ai
         /// </summary>
         /// <returns></returns>
         public static void NoticeTimer(object sender , EventArgs e)
         {
             Text.BackColor = DefultColor;
-            SystemData.IsQuery = false;
+            IsQuery = false;
             Timer.Stop();
         }
 
@@ -163,7 +335,7 @@ namespace UASKI.StaticModels
         public static void Query()
         {
             AddMessage(TypeNotice.Warning, "Нажмите еще раз для подтверждения");
-            SystemData.IsQuery = true;
+            IsQuery = true;
         }
 
         /// <summary>
@@ -220,7 +392,7 @@ namespace UASKI.StaticModels
             if (!key.Control)
                 return false;
 
-            if (SystemData.This != null && SystemData.This.AiKeyDown(key))
+            if (This != null && This.AiKeyDown(key))
             {
                 return true;
             }
@@ -241,16 +413,16 @@ namespace UASKI.StaticModels
                     }
                     return true;
                 case Keys.L:
-                    SelectMenu(SystemData.Pages.AddTask);
+                    SelectMenu(Pages.AddTask);
                     return true;
                 case Keys.P:
-                    SelectMenu(SystemData.Pages.SelectTask);
+                    SelectMenu(Pages.SelectTask);
                     return true;
                 case Keys.F:
-                    SelectMenu(SystemData.Pages.SelectArhiv);
+                    SelectMenu(Pages.SelectArhiv);
                     return true;
                 case Keys.J:
-                    SelectMenu(SystemData.Pages.SelectOpz);
+                    SelectMenu(Pages.SelectOpz);
                     return true;
                 case Keys.Oemcomma:
                     if(Buffer.Count == 0)
@@ -259,8 +431,8 @@ namespace UASKI.StaticModels
                     }
                     else
                     {
-                        SystemData.Pages.EditTask.Init(false, true);
-                        SystemData.Pages.EditTask.Show(Buffer);
+                        Pages.EditTask.Init(false, true);
+                        Pages.EditTask.Show(Buffer);
                     }
                     return true;
                 case Keys.OemPeriod:
@@ -287,11 +459,11 @@ namespace UASKI.StaticModels
 
             bool IsReady = false;
 
-            for(int i = 0; i < SystemData.MenuItems.Count; i++)
+            for(int i = 0; i < MenuItems.Count; i++)
             {
-                for(int j = 0; j < SystemData.MenuItems[i].Items.Count(); j++)
+                for(int j = 0; j < MenuItems[i].Items.Count(); j++)
                 {
-                    if (SystemData.MenuItems[i].Items[j].Page.Index == page.Index)
+                    if (MenuItems[i].Items[j].Page.Index == page.Index)
                     {
                         lvl1 = i;
                         lvl2 = j;
@@ -304,7 +476,7 @@ namespace UASKI.StaticModels
                     break;
             }
 
-            var form = SystemData.Form;
+            var form = Form;
 
             if (lvl1 != -1)
             {

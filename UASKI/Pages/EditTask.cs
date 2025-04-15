@@ -113,9 +113,9 @@ namespace UASKI.Pages
                 var isArhiv = TaskModel.GetList().FirstOrDefault(c => c.Id == buffer[0]) == null;
 
                 if(isArhiv)
-                    Show(buffer[0], isArhiv, SystemData.Pages.SelectArhiv);
+                    Show(buffer[0], isArhiv, Ai.Pages.SelectArhiv);
                 else
-                    Show(buffer[0], isArhiv, SystemData.Pages.SelectTask);
+                    Show(buffer[0], isArhiv, Ai.Pages.SelectTask);
 
                 form.dateTimePicker9.Focus();
             }
@@ -200,7 +200,7 @@ namespace UASKI.Pages
                 SelectTextBox(form.textBox21);
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var ispForm = new IspForm(form.textBox25, form.textBox26, form.textBox24);
                 ispForm.Show();
@@ -225,7 +225,7 @@ namespace UASKI.Pages
                 SelectTextBox(form.textBox27);
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var ispForm = new IspForm(form.textBox22, form.textBox21, form.textBox23);
                 ispForm.Show();
@@ -308,7 +308,7 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var date = new DateForm(form.dateTimePicker4);
                 date.Show();
@@ -354,7 +354,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(SystemData.IsQuery)
+                if(Ai.IsQuery)
                 {
 
                     if (!IsArhiv)
@@ -447,7 +447,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(SystemData.IsQuery)
+                if(Ai.IsQuery)
                 {
                     
                     if (!IsArhiv)
@@ -524,7 +524,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var result = Task.Delete();
 
@@ -573,7 +573,7 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if(e.KeyCode == SystemData.ActionKey)
+            else if(e.KeyCode == Ai.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker9);
                 f.Show();
@@ -594,7 +594,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                SystemData.Pages.EditPret.Init(false);
+                Ai.Pages.EditPret.Init(false);
                 int id = 0;
 
                 if (Task != null)
@@ -602,7 +602,7 @@ namespace UASKI.Pages
                 else
                     id = Arhiv.Id;
 
-                SystemData.Pages.EditPret.Show(id, 1, Page, IsArhiv , CodeTask);
+                Ai.Pages.EditPret.Show(id, 1, Page, IsArhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -632,8 +632,8 @@ namespace UASKI.Pages
                 else
                     id = Arhiv.Id;
 
-                SystemData.Pages.EditPret.Init(false);
-                SystemData.Pages.EditPret.Show(id, 2, Page, IsArhiv , CodeTask);
+                Ai.Pages.EditPret.Init(false);
+                Ai.Pages.EditPret.Show(id, 2, Page, IsArhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {

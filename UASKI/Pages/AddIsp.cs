@@ -151,7 +151,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var firstName = TextBoxElement.New(form.textBox8, form.label18);
                     var name = TextBoxElement.New(form.textBox9, form.label19);

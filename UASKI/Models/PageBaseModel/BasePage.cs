@@ -17,7 +17,7 @@ namespace UASKI.Models
         /// <summary>
         /// Главная форма
         /// </summary>
-        protected Gl_Form form { get => SystemData.Form; }
+        protected Gl_Form form { get => Ai.Form; }
 
         /// <summary>
         /// Отчищена ли форма
@@ -50,9 +50,9 @@ namespace UASKI.Models
         /// </summary>
         protected void ClearPage()
         {
-            SystemData.IsClear = true;
+            Ai.IsClear = true;
             Clear();
-            SystemData.IsClear = false;
+            Ai.IsClear = false;
             IsCleared = true;
         }
 
@@ -63,23 +63,23 @@ namespace UASKI.Models
         /// <param name="IsClear">false - не отчищать предыдущую страницу</param>
         public void Init(bool IsOpen = true , bool IsClear = true)
         {
-            var form = SystemData.Form;
+            var form = Ai.Form;
             form.Menu_Step2.Enabled = false;
 
-            if (SystemData.This != null && SystemData.This.Index != this.Index && IsClear)
-                SystemData.This.ClearPage();
-            else if(SystemData.This == null)
+            if (Ai.This != null && Ai.This.Index != this.Index && IsClear)
+                Ai.This.ClearPage();
+            else if(Ai.This == null)
                 ClearPage();
-
-            SystemData.This = this;
+             
+            Ai.This = this;
             
             form.tabControl1.SelectedIndex = Index;
 
             if (IsOpen)
             {
-                SystemData.IsClear = true;
+                Ai.IsClear = true;
                 Show();
-                SystemData.IsClear = false;
+                Ai.IsClear = false;
             }
 
             IsCleared = false;

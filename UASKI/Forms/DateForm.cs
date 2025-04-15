@@ -56,9 +56,9 @@ namespace UASKI.Forms
         {
             if (pic2 != null && pic2.Value.Date != monthCalendar1.SelectionRange.End.Date)
             {
-                SystemData.IsClear = true;
+                Ai.IsClear = true;
                 pic.Value = monthCalendar1.SelectionRange.Start.Date;
-                SystemData.IsClear = false;
+                Ai.IsClear = false;
                 pic2.Value = monthCalendar1.SelectionRange.End.Date;
             }
             else

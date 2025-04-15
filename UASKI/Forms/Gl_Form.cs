@@ -32,11 +32,11 @@ namespace UASKI
             // Инициализируем системные переменные
             ComponentIniz();
             ResizeEl();
-            SystemData.Init(this);
+            Ai.Init(this);
             Ai.Iniz(textBox41);
             
             // Рисуем меню
-            foreach (var item in SystemData.MenuItems.Select(c => c.Text).ToArray())
+            foreach (var item in Ai.MenuItems.Select(c => c.Text).ToArray())
                 Menu_Step1.Items.Add(item);
 
             Menu_Step1.SelectedIndex = 0;
@@ -57,7 +57,7 @@ namespace UASKI
             }
 
             // Открываем подключение
-            var settings = SystemData.Settings;
+            var settings = Ai.Settings;
             string connectionString = $"Host={settings.Host};UserName={settings.User};Password={settings.Password};Database={settings.DateBase};Port={settings.Port}; SSL Mode=Require;";
             var connection = new DataConnection(connectionString);
 
@@ -143,7 +143,7 @@ namespace UASKI
             if (Menu_Step1.SelectedIndex != -1)
             {
                 var text = Menu_Step1.Items[Menu_Step1.SelectedIndex].ToString();
-                var items = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(text));
+                var items = Ai.MenuItems.FirstOrDefault(c => c.Text.Equals(text));
                 Menu_Step2.Items.Clear();
 
                 foreach (var item in items.Items.Select(c => c.Text).ToArray())
@@ -189,7 +189,7 @@ namespace UASKI
         // Открываем страницы по меню
         private void Open()
         {
-            var elem = SystemData.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
+            var elem = Ai.MenuItems.FirstOrDefault(c => c.Text.Equals(Menu_Step1.SelectedItem.ToString()));
             var el = elem.Items.FirstOrDefault(c => c.Text.Equals(Menu_Step2.SelectedItem.ToString()));
 
             if (el.Page != null)
@@ -402,415 +402,415 @@ namespace UASKI
         }
         private void dateTimePicker19_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintOpz.dateTimePicker19_KeyDown(e);
+            Ai.Pages.PrintOpz.dateTimePicker19_KeyDown(e);
         }
         private void IspDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectIsp.IspDataGridView_KeyDown(e);
+            Ai.Pages.SelectIsp.IspDataGridView_KeyDown(e);
         }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddTask.textBox1_KeyDown(e);
+            Ai.Pages.AddTask.textBox1_KeyDown(e);
         }
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddTask.textBox4_KeyDown(e);
+            Ai.Pages.AddTask.textBox4_KeyDown(e);
         }
         private void textBox7_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddTask.textBox7_KeyDown(e);
+            Ai.Pages.AddTask.textBox7_KeyDown(e);
         }
         private void button1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.AddTask.button1_KeyDown(e);
+            Ai.Pages.AddTask.button1_KeyDown(e);
         }
         private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddTask.dateTimePicker1_KeyDown(e);
+            Ai.Pages.AddTask.dateTimePicker1_KeyDown(e);
         }
         private void textBox8_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddIsp.textBox8_KeyDown(e);
+            Ai.Pages.AddIsp.textBox8_KeyDown(e);
         }
         private void textBox9_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddIsp.textBox9_KeyDown(e);
+            Ai.Pages.AddIsp.textBox9_KeyDown(e);
         }
         private void textBox10_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddIsp.textBox10_KeyDown(e);
+            Ai.Pages.AddIsp.textBox10_KeyDown(e);
         }
         private void textBox11_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddIsp.textBox11_KeyDown(e);
+            Ai.Pages.AddIsp.textBox11_KeyDown(e);
         }
         private void textBox12_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddIsp.textBox12_KeyDown(e);
+            Ai.Pages.AddIsp.textBox12_KeyDown(e);
         }
         private void checkBox8_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.AddTask.checkBox8_PreviewKeyDown(e);
+            Ai.Pages.AddTask.checkBox8_PreviewKeyDown(e);
         }
         private void button4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.AddIsp.button4_PreviewKeyDown(e);
+            Ai.Pages.AddIsp.button4_PreviewKeyDown(e);
         }
         private void monthCalendar1_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.AddHoliday.monthCalendar1_KeyDown(e);
+            Ai.Pages.AddHoliday.monthCalendar1_KeyDown(e);
         }
         private void button5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.AddHoliday.button5_PreviewKeyDown(e);
+            Ai.Pages.AddHoliday.button5_PreviewKeyDown(e);
         }
         private void textBox18_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditIsp.textBox18_KeyDown(e);
+            Ai.Pages.EditIsp.textBox18_KeyDown(e);
         }
         private void textBox17_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditIsp.textBox17_KeyDown(e);
+            Ai.Pages.EditIsp.textBox17_KeyDown(e);
         }
         private void textBox16_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditIsp.textBox16_KeyDown(e);
+            Ai.Pages.EditIsp.textBox16_KeyDown(e);
         }
         private void textBox15_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditIsp.textBox15_KeyDown(e);
+            Ai.Pages.EditIsp.textBox15_KeyDown(e);
         }
         private void textBox14_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditIsp.textBox14_KeyDown(e);
+            Ai.Pages.EditIsp.textBox14_KeyDown(e);
         }
         private void button6_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditIsp.button6_KeyDown(e);
+            Ai.Pages.EditIsp.button6_KeyDown(e);
         }
         private void button7_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditIsp.button7_KeyDown(e);
+            Ai.Pages.EditIsp.button7_KeyDown(e);
         }
         private void dataGridView3_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectTask.dataGridView3_KeyDown(e);
+            Ai.Pages.SelectTask.dataGridView3_KeyDown(e);
         }
         private void dataGridView4_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditIsp.dataGridView4_KeyDown(e);
+            Ai.Pages.EditIsp.dataGridView4_KeyDown(e);
         }
         private void textBox26_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditTask.textBox26_KeyDown(e);
+            Ai.Pages.EditTask.textBox26_KeyDown(e);
         }
         private void textBox21_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditTask.textBox21_KeyDown(e);
+            Ai.Pages.EditTask.textBox21_KeyDown(e);
         }
         private void textBox27_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditTask.textBox27_KeyDown(e);
+            Ai.Pages.EditTask.textBox27_KeyDown(e);
         }
         private void dateTimePicker4_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditTask.dateTimePicker4_KeyDown(e);
+            Ai.Pages.EditTask.dateTimePicker4_KeyDown(e);
         }
         private void textBox28_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditTask.textBox28_KeyDown(e);
+            Ai.Pages.EditTask.textBox28_KeyDown(e);
         }
         private void button10_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditTask.button10_PreviewKeyDown(e);
+            Ai.Pages.EditTask.button10_PreviewKeyDown(e);
         }
         private void button11_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditTask.button11_PreviewKeyDown(e);
+            Ai.Pages.EditTask.button11_PreviewKeyDown(e);
         }
         private void button12_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditTask.button12_PreviewKeyDown(e);
+            Ai.Pages.EditTask.button12_PreviewKeyDown(e);
         }
         private void textBox13_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectIsp.textBox13_KeyDown(e);
+            Ai.Pages.SelectIsp.textBox13_KeyDown(e);
         }
         private void textBox19_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectTask.textBox19_KeyDown(e);
+            Ai.Pages.SelectTask.textBox19_KeyDown(e);
         }
         private void textBox29_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectTask.textBox29_KeyDown(e);
+            Ai.Pages.SelectTask.textBox29_KeyDown(e);
         }
         private void textBox32_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.textBox32_KeyDown(e);
+            Ai.Pages.SelectArhiv.textBox32_KeyDown(e);
         }
         private void dateTimePicker3_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.dateTimePicker3_KeyDown(e);
+            Ai.Pages.SelectArhiv.dateTimePicker3_KeyDown(e);
         }
         private void dateTimePicker2_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.dateTimePicker2_KeyDown(e);
+            Ai.Pages.SelectArhiv.dateTimePicker2_KeyDown(e);
         }
         private void textBox31_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.textBox31_KeyDown(e);
+            Ai.Pages.SelectArhiv.textBox31_KeyDown(e);
         }
         private void checkBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.checkBox1_PreviewKeyDown(e);
+            Ai.Pages.SelectArhiv.checkBox1_PreviewKeyDown(e);
         }
         private void dataGridView5_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.dataGridView5_KeyDown(e);
+            Ai.Pages.SelectArhiv.dataGridView5_KeyDown(e);
         }
         private void checkBox2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectTask.checkBox2_PreviewKeyDown(e);
+            Ai.Pages.SelectTask.checkBox2_PreviewKeyDown(e);
         }
         private void dateTimePicker5_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectTask.dateTimePicker5_KeyDown(e);
+            Ai.Pages.SelectTask.dateTimePicker5_KeyDown(e);
         }
         private void dateTimePicker6_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectTask.dateTimePicker6_KeyDown(e);
+            Ai.Pages.SelectTask.dateTimePicker6_KeyDown(e);
         }
         private void dataGridView1_KeyDown_1(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectOpz.dataGridView1_KeyDown_1(e);
+            Ai.Pages.SelectOpz.dataGridView1_KeyDown_1(e);
         }
         private void textBox33_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectOpz.textBox33_KeyDown(e);
+            Ai.Pages.SelectOpz.textBox33_KeyDown(e);
         }
         private void textBox34_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectOpz.textBox34_KeyDown(e);
+            Ai.Pages.SelectOpz.textBox34_KeyDown(e);
         }
         private void checkBox3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectOpz.checkBox3_PreviewKeyDown(e);
+            Ai.Pages.SelectOpz.checkBox3_PreviewKeyDown(e);
         }
         private void dateTimePicker7_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectOpz.dateTimePicker7_KeyDown(e);
+            Ai.Pages.SelectOpz.dateTimePicker7_KeyDown(e);
         }
         private void dateTimePicker8_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectOpz.dateTimePicker8_KeyDown(e);
+            Ai.Pages.SelectOpz.dateTimePicker8_KeyDown(e);
         }
         private void dataGridView6_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectHoliday.dataGridView6_KeyDown(e);
+            Ai.Pages.SelectHoliday.dataGridView6_KeyDown(e);
         }
         private void button13_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectHoliday.button13_PreviewKeyDown(e);
+            Ai.Pages.SelectHoliday.button13_PreviewKeyDown(e);
         }
         private void dateTimePicker9_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditTask.dateTimePicker9_KeyDown(e);
+            Ai.Pages.EditTask.dateTimePicker9_KeyDown(e);
         }
         private void dateTimePicker10_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintTaskList.dateTimePicker10_KeyDown(e);
+            Ai.Pages.PrintTaskList.dateTimePicker10_KeyDown(e);
         }
         private void dateTimePicker11_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintTaskList.dateTimePicker11_KeyDown(e);
+            Ai.Pages.PrintTaskList.dateTimePicker11_KeyDown(e);
         }
         private void textBox30_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintTaskList.textBox30_KeyDown(e);
+            Ai.Pages.PrintTaskList.textBox30_KeyDown(e);
         }
         private void button34_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintTaskList.button34_PreviewKeyDown(e);
+            Ai.Pages.PrintTaskList.button34_PreviewKeyDown(e);
         }
         private void dataGridView7_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintTaskList.dataGridView7_KeyDown(e);
+            Ai.Pages.PrintTaskList.dataGridView7_KeyDown(e);
         }
         private void button37_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintOpz.button37_PreviewKeyDown(e);
+            Ai.Pages.PrintOpz.button37_PreviewKeyDown(e);
         }
         private void dataGridView8_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintOpz.dataGridView8_KeyDown(e);
+            Ai.Pages.PrintOpz.dataGridView8_KeyDown(e);
         }
         private void textBox35_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintMer.textBox35_KeyDown(e);
+            Ai.Pages.PrintMer.textBox35_KeyDown(e);
         }
         private void dataGridView9_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintMer.dataGridView9_KeyDown(e);
+            Ai.Pages.PrintMer.dataGridView9_KeyDown(e);
         }
         private void button38_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintMer.button38_PreviewKeyDown(e);
+            Ai.Pages.PrintMer.button38_PreviewKeyDown(e);
         }
         private void dateTimePicker12_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPoc.dateTimePicker12_KeyDown(e);
+            Ai.Pages.PrintPoc.dateTimePicker12_KeyDown(e);
         }
         private void dateTimePicker13_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPoc.dateTimePicker13_KeyDown(e);
+            Ai.Pages.PrintPoc.dateTimePicker13_KeyDown(e);
         }
         private void button40_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintPoc.button40_PreviewKeyDown(e);
+            Ai.Pages.PrintPoc.button40_PreviewKeyDown(e);
         }
         private void dataGridView10_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPoc.dataGridView10_KeyDown(e);
+            Ai.Pages.PrintPoc.dataGridView10_KeyDown(e);
         }
         private void textBox36_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintCof.textBox36_KeyDown(e);
+            Ai.Pages.PrintCof.textBox36_KeyDown(e);
         }
         private void dateTimePicker14_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintCof.dateTimePicker14_KeyDown(e);
+            Ai.Pages.PrintCof.dateTimePicker14_KeyDown(e);
         }
         private void dateTimePicker15_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintCof.dateTimePicker15_KeyDown(e);
+            Ai.Pages.PrintCof.dateTimePicker15_KeyDown(e);
         }
         private void button42_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintCof.button42_PreviewKeyDown(e);
+            Ai.Pages.PrintCof.button42_PreviewKeyDown(e);
         }
         private void dataGridView11_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintCof.dataGridView11_KeyDown(e);
+            Ai.Pages.PrintCof.dataGridView11_KeyDown(e);
         }
         private void button47_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditTask.button47_PreviewKeyDown(e);
+            Ai.Pages.EditTask.button47_PreviewKeyDown(e);
         }
         private void button48_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditTask.button48_PreviewKeyDown(e);
+            Ai.Pages.EditTask.button48_PreviewKeyDown(e);
         }
         private void textBox38_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditPret.textBox38_KeyDown(e);
+            Ai.Pages.EditPret.textBox38_KeyDown(e);
         }
         private void dateTimePicker16_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditPret.dateTimePicker16_KeyDown(e);
+            Ai.Pages.EditPret.dateTimePicker16_KeyDown(e);
         }
         private void textBox39_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.EditPret.textBox39_KeyDown(e);
+            Ai.Pages.EditPret.textBox39_KeyDown(e);
         }
         private void button46_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditPret.button46_PreviewKeyDown(e);
+            Ai.Pages.EditPret.button46_PreviewKeyDown(e);
         }
         private void button45_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditPret.button45_PreviewKeyDown(e);
+            Ai.Pages.EditPret.button45_PreviewKeyDown(e);
         }
         private void checkBox10_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectTask.checkBox10_PreviewKeyDown(e);
+            Ai.Pages.SelectTask.checkBox10_PreviewKeyDown(e);
         }
         private void checkBox11_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectArhiv.checkBox11_PreviewKeyDown(e);
+            Ai.Pages.SelectArhiv.checkBox11_PreviewKeyDown(e);
         }
         private void checkBox12_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectOpz.checkBox12_PreviewKeyDown(e);
+            Ai.Pages.SelectOpz.checkBox12_PreviewKeyDown(e);
         }
         private void button44_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditPret.button44_PreviewKeyDown(e);
+            Ai.Pages.EditPret.button44_PreviewKeyDown(e);
         }
         private void dataGridView12_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectPret.dataGridView12_KeyDown(e);
+            Ai.Pages.SelectPret.dataGridView12_KeyDown(e);
         }
         private void textBox40_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectPret.textBox40_KeyDown(e);
+            Ai.Pages.SelectPret.textBox40_KeyDown(e);
         }
         private void checkBox5_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectPret.checkBox5_PreviewKeyDown(e);
+            Ai.Pages.SelectPret.checkBox5_PreviewKeyDown(e);
         }
         private void checkBox6_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectPret.checkBox6_PreviewKeyDown(e);
+            Ai.Pages.SelectPret.checkBox6_PreviewKeyDown(e);
         }
         private void checkBox4_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectPret.checkBox4_PreviewKeyDown(e);
+            Ai.Pages.SelectPret.checkBox4_PreviewKeyDown(e);
         }
         private void dateTimePicker17_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectPret.dateTimePicker17_KeyDown(e);
+            Ai.Pages.SelectPret.dateTimePicker17_KeyDown(e);
         }
         private void dateTimePicker18_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectPret.dateTimePicker18_KeyDown(e);
+            Ai.Pages.SelectPret.dateTimePicker18_KeyDown(e);
         }
         private void dataGridView13_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintCof.dataGridView13_KeyDown(e);
+            Ai.Pages.PrintCof.dataGridView13_KeyDown(e);
         }
         private void dateTimePicker20_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPlan.dateTimePicker20_KeyDown(e);
+            Ai.Pages.PrintPlan.dateTimePicker20_KeyDown(e);
         }
         private void dateTimePicker21_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPlan.dateTimePicker21_KeyDown(e);
+            Ai.Pages.PrintPlan.dateTimePicker21_KeyDown(e);
         }
         private void textBox42_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPlan.textBox42_KeyDown(e);
+            Ai.Pages.PrintPlan.textBox42_KeyDown(e);
         }
         private void button56_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.PrintPlan.button56_PreviewKeyDown(e);
+            Ai.Pages.PrintPlan.button56_PreviewKeyDown(e);
         }
         private void dataGridView14_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.PrintPlan.dataGridView14_KeyDown(e);
+            Ai.Pages.PrintPlan.dataGridView14_KeyDown(e);
         }
         private void checkBox7_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.EditTask.checkBox7_PreviewKeyDown(e);
+            Ai.Pages.EditTask.checkBox7_PreviewKeyDown(e);
         }
         private void dataGridView15_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectDTasks.dataGridView15_KeyDown(e);
+            Ai.Pages.SelectDTasks.dataGridView15_KeyDown(e);
         }
         private void textBox44_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectDTasks.textBox44_KeyDown(e);
+            Ai.Pages.SelectDTasks.textBox44_KeyDown(e);
         }
         private void checkBox9_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            SystemData.Pages.SelectDTasks.checkBox9_PreviewKeyDown(e);
+            Ai.Pages.SelectDTasks.checkBox9_PreviewKeyDown(e);
         }
         private void dateTimePicker22_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectDTasks.dateTimePicker22_KeyDown(e);
+            Ai.Pages.SelectDTasks.dateTimePicker22_KeyDown(e);
         }
         private void dateTimePicker23_KeyDown(object sender, KeyEventArgs e)
         {
-            SystemData.Pages.SelectDTasks.dateTimePicker23_KeyDown(e);
+            Ai.Pages.SelectDTasks.dateTimePicker23_KeyDown(e);
         }
         #endregion
 
@@ -833,21 +833,21 @@ namespace UASKI
         }
         private void textBox28_TextChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
-            button11.Enabled = (!SystemData.Pages.EditTask.IsArhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i)) || SystemData.Pages.EditTask.IsArhiv;
+            if(!Ai.IsClear)
+            button11.Enabled = (!Ai.Pages.EditTask.IsArhiv && textBox28.Text.Length > 0 && int.TryParse(textBox28.Text, out int i)) || Ai.Pages.EditTask.IsArhiv;
         }
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
-                SystemData.Pages.SelectIsp.Select();
+                Ai.Pages.SelectIsp.Select();
             }
         }
         private void textBox19_TextChanged_1(object sender, EventArgs e)
         {
-           if(!SystemData.IsClear)
+           if(!Ai.IsClear)
            {
-                SystemData.Pages.SelectTask.Select();
+                Ai.Pages.SelectTask.Select();
            }
         }
         private void textBox29_TextChanged(object sender, EventArgs e)
@@ -856,9 +856,9 @@ namespace UASKI
         }
         private void textBox32_TextChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
+            if (!Ai.IsClear)
             {
-                SystemData.Pages.SelectArhiv.Select();
+                Ai.Pages.SelectArhiv.Select();
             }
         }
         private void textBox31_TextChanged(object sender, EventArgs e)
@@ -867,7 +867,7 @@ namespace UASKI
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
                 textBox32_TextChanged(sender, e);
                 panel15.Visible = checkBox1.Checked;
@@ -892,7 +892,7 @@ namespace UASKI
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
                 textBox19_TextChanged_1(sender, e);
                 panel16.Visible = checkBox2.Checked;
@@ -908,9 +908,9 @@ namespace UASKI
         }
         private void textBox33_TextChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
-                SystemData.Pages.SelectOpz.Select();
+                Ai.Pages.SelectOpz.Select();
             }
         }
         private void textBox34_TextChanged(object sender, EventArgs e)
@@ -923,7 +923,7 @@ namespace UASKI
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
                 textBox33_TextChanged(sender, e);
                 panel18.Visible = checkBox3.Checked;
@@ -939,7 +939,7 @@ namespace UASKI
         }
         private void textBox30_TextChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
+            if (!Ai.IsClear)
             {
                 if (textBox30.Text.Length > 0)
                 {
@@ -960,7 +960,7 @@ namespace UASKI
 
                 if (textBox30.Text.Length > 0)
                 {
-                    SystemData.Pages.PrintTaskList.Select();
+                    Ai.Pages.PrintTaskList.Select();
                 }
                 else
                 {
@@ -975,8 +975,8 @@ namespace UASKI
         }
         private void dateTimePicker19_ValueChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
-                SystemData.Pages.PrintOpz.Select();
+            if(!Ai.IsClear)
+                Ai.Pages.PrintOpz.Select();
         }
         private void dateTimePicker11_ValueChanged(object sender, EventArgs e)
         {
@@ -984,11 +984,11 @@ namespace UASKI
         }
         private void textBox35_TextChanged_1(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
                 if(textBox35.Text.Length >= 8)
                 {
-                    SystemData.Pages.PrintMer.Select();
+                    Ai.Pages.PrintMer.Select();
                 }
                 else
                 {
@@ -998,8 +998,8 @@ namespace UASKI
         }
         private void textBox40_TextChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
-                SystemData.Pages.SelectPret.Select();
+            if (!Ai.IsClear)
+                Ai.Pages.SelectPret.Select();
         }
         private void textBox41_TextChanged(object sender, EventArgs e)
         {
@@ -1040,21 +1040,21 @@ namespace UASKI
         }
         private void dateTimePicker12_ValueChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
+            if (!Ai.IsClear)
             {
-                SystemData.Pages.PrintPoc.Select();
+                Ai.Pages.PrintPoc.Select();
             }
         }
         private void dateTimePicker13_ValueChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
+            if (!Ai.IsClear)
             {
-                SystemData.Pages.PrintPoc.Select();
+                Ai.Pages.PrintPoc.Select();
             }
         }
         private void textBox36_TextChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
+            if (!Ai.IsClear)
             {
                 if (textBox36.Text.Length > 0)
                 {
@@ -1075,11 +1075,11 @@ namespace UASKI
 
                 if (textBox36.Text.Length > 0)
                 {
-                    SystemData.Pages.PrintCof.Select();
+                    Ai.Pages.PrintCof.Select();
                 }
                 else
                 {
-                    SystemData.Pages.PrintCof.ClearTime();
+                    Ai.Pages.PrintCof.ClearTime();
                 }
             }
 
@@ -1094,7 +1094,7 @@ namespace UASKI
         }
         private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
+            if(!Ai.IsClear)
             {
                 if(dateTimePicker4.Value.DayOfWeek == DayOfWeek.Sunday || dateTimePicker4.Value.DayOfWeek == DayOfWeek.Saturday)
                 {
@@ -1125,7 +1125,7 @@ namespace UASKI
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length != 0 && int.TryParse(textBox1.Text, out int podr) && !SystemData.IsClear)
+            if (textBox1.Text.Length != 0 && int.TryParse(textBox1.Text, out int podr) && !Ai.IsClear)
             {
                 var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
 
@@ -1149,7 +1149,7 @@ namespace UASKI
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (textBox4.Text.Length != 0 && int.TryParse(textBox4.Text, out int podr) && !SystemData.IsClear)
+            if (textBox4.Text.Length != 0 && int.TryParse(textBox4.Text, out int podr) && !Ai.IsClear)
             {
                 var isp = IspModel.GetList().FirstOrDefault(c => c.CodePodr == podr);
 
@@ -1218,7 +1218,7 @@ namespace UASKI
         }
         private void textBox42_TextChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
+            if (!Ai.IsClear)
             {
                 if (textBox42.Text.Length > 0)
                 {
@@ -1239,7 +1239,7 @@ namespace UASKI
 
                 if (textBox42.Text.Length > 0)
                 {
-                    SystemData.Pages.PrintPlan.Select();
+                    Ai.Pages.PrintPlan.Select();
                 }
                 else
                 {
@@ -1250,18 +1250,18 @@ namespace UASKI
         }
         private void dateTimePicker20_ValueChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
-                SystemData.Pages.PrintPlan.Select();
+            if (!Ai.IsClear)
+                Ai.Pages.PrintPlan.Select();
         }
         private void dateTimePicker21_ValueChanged(object sender, EventArgs e)
         {
-            if (!SystemData.IsClear)
-                SystemData.Pages.PrintPlan.Select();
+            if (!Ai.IsClear)
+                Ai.Pages.PrintPlan.Select();
         }
         private void textBox44_TextChanged(object sender, EventArgs e)
         {
-            if(!SystemData.IsClear)
-                SystemData.Pages.SelectDTasks.Select();
+            if(!Ai.IsClear)
+                Ai.Pages.SelectDTasks.Select();
         }
         private void checkBox9_CheckedChanged(object sender, EventArgs e)
         {
@@ -1281,32 +1281,32 @@ namespace UASKI
         #region Обработка курсора
         private void button2_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox1_KeyDown(sender, key);
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox4_KeyDown(sender, key);
         }
         private void button14_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker1_KeyDown(sender, key);
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox26_KeyDown(sender, key);
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox21_KeyDown(sender, key);
         }
         private void button15_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker4_KeyDown(sender, key);
         }
         private void button19_Click(object sender, EventArgs e)
@@ -1351,17 +1351,17 @@ namespace UASKI
         }
         private void button24_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox29_KeyDown(sender, key);
         }
         private void button25_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox31_KeyDown(sender, key);
         }
         private void button26_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox34_KeyDown(sender, key);
         }
         private void IspDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1376,7 +1376,7 @@ namespace UASKI
         }
         private void button27_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker9_KeyDown(sender, key);
         }
         private void dataGridView5_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1391,42 +1391,42 @@ namespace UASKI
         }
         private void button28_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker5_KeyDown(sender, key);
         }
         private void button29_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker6_KeyDown(sender, key);
         }
         private void button30_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker2_KeyDown(sender, key);
         }
         private void button31_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker3_KeyDown(sender, key);
         }
         private void button32_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker7_KeyDown(sender, key);
         }
         private void button33_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker8_KeyDown(sender, key);
         }
         private void button36_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox30_KeyDown(sender, key);
         }
         private void button43_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox36_KeyDown(sender, key);
         }
         private void button57_Click(object sender, EventArgs e)
@@ -1441,27 +1441,27 @@ namespace UASKI
         }
         private void button61_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker22_KeyDown(sender, key);
         }
         private void button60_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker23_KeyDown(sender, key);
         }
         private void button50_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             textBox42_KeyDown(sender, key);
         }
         private void button53_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker17_KeyDown(sender, key);
         }
         private void button52_Click(object sender, EventArgs e)
         {
-            var key = new KeyEventArgs(SystemData.ActionKey);
+            var key = new KeyEventArgs(Ai.ActionKey);
             dateTimePicker18_KeyDown(sender, key);
         }
         private void button54_Click(object sender, EventArgs e)

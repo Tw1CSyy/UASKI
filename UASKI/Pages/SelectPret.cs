@@ -136,8 +136,8 @@ namespace UASKI.Pages
                     else
                         type = 2;
 
-                    SystemData.Pages.EditPret.Init(false, false);
-                    SystemData.Pages.EditPret.Show(Id, type, this);
+                    Ai.Pages.EditPret.Init(false, false);
+                    Ai.Pages.EditPret.Show(Id, type, this);
                     e.Handled = true;
                 }
             }
@@ -250,7 +250,7 @@ namespace UASKI.Pages
             {
                 FilterClose();
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -278,7 +278,7 @@ namespace UASKI.Pages
             {
                 FilterClose();
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {

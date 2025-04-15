@@ -183,8 +183,8 @@ namespace UASKI.Pages
                     int id = Convert.ToInt32(d.SelectedRows[0].Cells[0].Value);
 
                     var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
-                    SystemData.Pages.EditTask.Init(false , false);
-                    SystemData.Pages.EditTask.Show(id, IsArhiv , this);
+                    Ai.Pages.EditTask.Init(false , false);
+                    Ai.Pages.EditTask.Show(id, IsArhiv , this);
                 }
 
                 e.Handled = true;
@@ -230,7 +230,7 @@ namespace UASKI.Pages
                 SelectTextBox(form.textBox33);
                 e.Handled = true;
             }
-            else if(e.KeyCode == SystemData.ActionKey)
+            else if(e.KeyCode == Ai.ActionKey)
             {
                 var f = new IspForm(new TextBox(), form.textBox34, new TextBox());
                 f.Show();
@@ -299,7 +299,7 @@ namespace UASKI.Pages
             {
                 SelectCheckBox(form.checkBox3);
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -325,7 +325,7 @@ namespace UASKI.Pages
             {
                 form.dateTimePicker7.Focus();
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {

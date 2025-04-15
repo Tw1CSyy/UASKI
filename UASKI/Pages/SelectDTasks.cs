@@ -98,7 +98,7 @@ namespace UASKI.Pages
         #region Клавиши
         public void dataGridView15_KeyDown(KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Left || e.KeyCode == SystemData.ActionKey)
+            if(e.KeyCode == Keys.Left || e.KeyCode == Ai.ActionKey)
             {
                 FilterOpen();
                 e.Handled = true;
@@ -168,7 +168,7 @@ namespace UASKI.Pages
             {
                 FilterClose();
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -195,7 +195,7 @@ namespace UASKI.Pages
             {
                 FilterClose();
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {

@@ -96,8 +96,8 @@ namespace UASKI.Pages
         {
             if(IdPret == 0)
             {
-                SystemData.Pages.EditTask.Init(false);
-                SystemData.Pages.EditTask.Show(IdTask, IsArhiv, Page);
+                Ai.Pages.EditTask.Init(false);
+                Ai.Pages.EditTask.Show(IdTask, IsArhiv, Page);
             }
             else
             {
@@ -174,7 +174,7 @@ namespace UASKI.Pages
                 SelectButton();
                 e.Handled = true;
             }
-            else if(e.KeyCode == SystemData.ActionKey)
+            else if(e.KeyCode == Ai.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker16);
                 f.Show();
@@ -219,7 +219,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var code = TextBoxElement.New(form.textBox38, form.label92);
                     var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
@@ -274,7 +274,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var code = TextBoxElement.New(form.textBox38, form.label92);
                     var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
@@ -326,7 +326,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var entity = PretModel.GetById(IdPret);
                     var result = entity.Delete();

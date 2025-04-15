@@ -113,7 +113,7 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -147,7 +147,7 @@ namespace UASKI.Pages
                 SelectButton(form.button56);
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -186,7 +186,7 @@ namespace UASKI.Pages
                 SelectButton(form.button56);
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var f = new IspForm(form.textBox43, form.textBox42, new TextBox());
                 f.Show();
@@ -227,7 +227,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     Print();
                 }

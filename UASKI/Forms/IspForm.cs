@@ -31,9 +31,9 @@ namespace UASKI.Forms
             this.t2 = t2;
             this.t3 = t3;
            
-            if(SystemData.Form.Location.X > 0)
+            if(Ai.Form.Location.X > 0)
             {
-                this.Location = new Point(SystemData.Form.Location.X - 126, SystemData.Form.Location.Y + 1);
+                this.Location = new Point(Ai.Form.Location.X - 126, Ai.Form.Location.Y + 1);
             }
             else
             {

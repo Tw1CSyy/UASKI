@@ -107,7 +107,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var list = HolidayModel.GetList();
                     var result = true;

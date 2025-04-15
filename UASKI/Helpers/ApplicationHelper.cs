@@ -64,7 +64,7 @@ namespace UASKI.Helpers
             if (File.Exists(filePath))
             {
                 var json = File.ReadAllText(filePath);
-                SystemData.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
+                Ai.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
             }
         }
 

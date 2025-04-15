@@ -99,8 +99,8 @@ namespace UASKI.Models.Pages
                 if (form.IspDataGridView.d.SelectedRows.Count > 0)
                 {
                     var code = Convert.ToInt32(form.IspDataGridView.d.SelectedRows[0].Cells[0].Value);
-                    SystemData.Pages.EditIsp.Init(false , false);
-                    SystemData.Pages.EditIsp.Show(code , this);
+                    Ai.Pages.EditIsp.Init(false , false);
+                    Ai.Pages.EditIsp.Show(code , this);
                 }
 
                 e.Handled = true;

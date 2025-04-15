@@ -105,7 +105,7 @@ namespace UASKI.Pages
 
         public void dateTimePicker19_KeyDown(KeyEventArgs e)
         {
-            if(e.KeyCode == SystemData.ActionKey)
+            if(e.KeyCode == Ai.ActionKey)
             {
                 var form1 = new DateForm(form.dateTimePicker19);
                 form1.Show();
@@ -136,7 +136,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     Print();
                 }

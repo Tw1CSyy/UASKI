@@ -52,7 +52,7 @@ namespace UASKI.Pages
         {
             Page = page;
 
-            var form = SystemData.Form;
+            var form = Ai.Form;
             var isp = IspModel.GetByCode(code);
 
             Isp = isp;
@@ -224,7 +224,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var firstName = TextBoxElement.New(form.textBox18, form.label32);
                     var name = TextBoxElement.New(form.textBox17, form.label31);
@@ -287,7 +287,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var result = Isp.Delete();
 

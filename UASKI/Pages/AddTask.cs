@@ -79,7 +79,7 @@ namespace UASKI.Pages
                 SelectButton(form.button1, true);
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var form1 = new IspForm(form.textBox2, form.textBox1, form.textBox3);
                 form1.Show();
@@ -104,7 +104,7 @@ namespace UASKI.Pages
                 SelectButton(form.button1, true);
                 e.Handled = true;
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var form1 = new IspForm(form.textBox5, form.textBox4, form.textBox6);
                 form1.Show();
@@ -145,7 +145,7 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     var code = TextBoxElement.New(form.textBox7, form.label25);
                     var idIsp = TextBoxElement.New(form.textBox3, form.label23);
@@ -240,7 +240,7 @@ namespace UASKI.Pages
                 e.Handled = true;
                 SelectTextBox(form.textBox4);
             }
-            else if (e.KeyCode == SystemData.ActionKey)
+            else if (e.KeyCode == Ai.ActionKey)
             {
                 var f = new DateForm(form.dateTimePicker1);
                 f.Show();

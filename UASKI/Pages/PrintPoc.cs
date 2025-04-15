@@ -123,7 +123,7 @@ namespace UASKI.Pages
                 SelectDataGridView(form.DataGridView10.d);
                 e.Handled = true;
             }
-            else if(e.KeyCode == SystemData.ActionKey)
+            else if(e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -152,7 +152,7 @@ namespace UASKI.Pages
                 Exit();
                 e.Handled = true;
             }
-            else if(e.KeyCode == SystemData.ActionKey)
+            else if(e.KeyCode == Ai.ActionKey)
             {
                 if (e.Control)
                 {
@@ -199,7 +199,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (SystemData.IsQuery)
+                if (Ai.IsQuery)
                 {
                     Print();
                 }
