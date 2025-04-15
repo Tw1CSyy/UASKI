@@ -52,10 +52,16 @@ namespace UASKI.Models.Pages
                 .ToList();
 
             var result = new List<DataGridRowModel>();
+            var tasks = TaskModel.GetList();
+            var arhiv = ArhivModel.GetList();
+            var holy = HolidayModel.GetList();
+            var prets = PretModel.GetList();
+            var date1 = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            var date2 = DateTime.Today;
 
             foreach (var item in model.OrderBy(c => c.FirstName).ThenBy(c => c.Name).ThenBy(c => c.LastName))
             {
-                var d = new DataGridRowModel(item.Code.ToString(), item.FirstName, item.Name, item.LastName, item.CodePodr.ToString());
+                var d = new DataGridRowModel(item.Code.ToString(), item.FirstName, item.Name, item.LastName, item.CodePodr.ToString() , item.GetKofModel(tasks , arhiv , holy , prets, date1 , date2).KofString);
                 result.Add(d);
             }
 
@@ -65,7 +71,8 @@ namespace UASKI.Models.Pages
                 new DataGridColumnModel("Фамилия"),
                 new DataGridColumnModel("Имя"),
                 new DataGridColumnModel("Отчество"),
-                new DataGridColumnModel("Код подразделения" , typeof(int))
+                new DataGridColumnModel("Код подразделения" , typeof(int)),
+                new DataGridColumnModel("Коэффициент")
             };
 
             form.IspDataGridView.PullListInDataGridView(result.ToArray(), columns);
