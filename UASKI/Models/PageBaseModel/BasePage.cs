@@ -70,8 +70,8 @@ namespace UASKI.Models
                 Ai.This.ClearPage();
             else if(Ai.This == null)
                 ClearPage();
-             
-            Ai.This = this;
+
+            Ai.AddHostoryPage(this);
             
             form.tabControl1.SelectedIndex = Index;
 

@@ -11,6 +11,11 @@ namespace UASKI.StaticModels
     public static class Ai
     {
         /// <summary>
+        /// Максимальное хранимое число истории страниц
+        /// </summary>
+        private const int MAX_HISTORY_PAGE_COUNT = 50;
+
+        /// <summary>
         /// Буфер для хранения Id скопированных данных
         /// </summary>
         private readonly static List<int> Buffer = new List<int>();
@@ -61,9 +66,14 @@ namespace UASKI.StaticModels
         public static Pages Pages { get; private set; }
 
         /// <summary>
-        /// Текущая страница
+        /// История страниц
         /// </summary>
-        public static BasePage This { get; set; }
+        public static List<BasePage> PageHistory { get; private set; }
+
+        /// <summary>
+        /// Последняя страница в истории или null
+        /// </summary>
+        public static BasePage This { get => PageHistory.DefaultIfEmpty().Last(); }
 
         /// <summary>
         /// Настройки приложения
@@ -97,6 +107,7 @@ namespace UASKI.StaticModels
         public static void Iniz(TextBox box)
         {
             Text = box;
+            PageHistory = new List<BasePage>();
             DefultColor = box.BackColor;
             Timer = new Timer();
             Timer.Interval = 1000;
@@ -541,5 +552,19 @@ namespace UASKI.StaticModels
             }
         }
 
+        /// <summary>
+        /// Добавляет 
+        /// </summary>
+        /// <param name="page"></param>
+        
+        public static void AddHostoryPage(BasePage page)
+        {
+            PageHistory.Add(page);
+
+            if(PageHistory.Count >= MAX_HISTORY_PAGE_COUNT)
+            {
+                PageHistory.RemoveAt(0);
+            }
+        }
     }
 }
