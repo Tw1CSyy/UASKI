@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
@@ -15,12 +16,11 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectTask : BasePageSelect
     {
-        public SelectTask(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.DataGridView3; protected set => throw new NotImplementedException(); }
-
+        public SelectTask(int index , TypePage type) : base(index , type, Ai.Form.DataGridView3) { }
+       
         protected override void Show()
         {
-            if(this.IsCleared)
+            if (this.IsCleared)
             {
                 form.panel16.Visible = form.checkBox2.Checked = form.checkBox10.Checked = false;
                 form.dateTimePicker5.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
@@ -146,7 +146,7 @@ namespace UASKI.Pages
                 var id = Convert.ToInt32(form.DataGridView3.d.SelectedRows[0].Cells[0].Value);
 
                 Ai.Pages.EditTask.Init(false , false);
-                Ai.Pages.EditTask.Show(id, false , this);
+                Ai.Pages.EditTask.Show(id, false);
                 e.Handled = true;
             }
             else if(e.KeyCode == Ai.ActionKey || e.KeyCode == Keys.Left)

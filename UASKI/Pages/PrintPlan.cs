@@ -8,12 +8,13 @@ using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
+using UASKI.Enums;
 
 namespace UASKI.Pages
 {
     public class PrintPlan : BasePagePrint
     {
-        public PrintPlan(int index) : base(index) { }
+        public PrintPlan(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {

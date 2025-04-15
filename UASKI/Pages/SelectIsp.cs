@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Models.Components;
 using UASKI.StaticModels;
 
@@ -13,12 +14,11 @@ namespace UASKI.Models.Pages
     /// </summary>
     public class SelectIsp : BasePageSelect
     {
-        public SelectIsp(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.IspDataGridView; protected set => throw new NotImplementedException(); }
+        public SelectIsp(int index , TypePage type) : base(index, type, Ai.Form.IspDataGridView) { }
 
         protected override void Show()
         {
-            if(this.IsCleared)
+            if (this.IsCleared)
             {
                 FilterClose();
             }
@@ -100,7 +100,7 @@ namespace UASKI.Models.Pages
                 {
                     var code = Convert.ToInt32(form.IspDataGridView.d.SelectedRows[0].Cells[0].Value);
                     Ai.Pages.EditIsp.Init(false , false);
-                    Ai.Pages.EditIsp.Show(code , this);
+                    Ai.Pages.EditIsp.Show(code);
                 }
 
                 e.Handled = true;

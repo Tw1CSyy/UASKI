@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
@@ -15,8 +16,7 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectArhiv : BasePageSelect
     {
-        public SelectArhiv(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.DataGridView5; protected set => throw new NotImplementedException(); }
+        public SelectArhiv(int index , TypePage type) : base(index, type , Ai.Form.DataGridView5) { }
 
         protected override void Show()
         {
@@ -154,7 +154,7 @@ namespace UASKI.Pages
                 var id = Convert.ToInt32(form.DataGridView5.d.SelectedRows[0].Cells[0].Value);
 
                 Ai.Pages.EditTask.Init(false , false);
-                Ai.Pages.EditTask.Show(id, true , this);
+                Ai.Pages.EditTask.Show(id, true);
                 e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)

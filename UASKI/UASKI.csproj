@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Enums\TypeBuffer.cs" />
     <Compile Include="Enums\TypeNotice.cs" />
+    <Compile Include="Enums\TypePage.cs" />
     <Compile Include="Forms\DateForm.cs">
       <SubType>Form</SubType>
     </Compile>

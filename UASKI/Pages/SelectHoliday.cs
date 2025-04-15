@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Models;
 using UASKI.Models.Components;
 using UASKI.StaticModels;
@@ -14,8 +15,7 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectHoliday : BasePageSelect
     {
-        public SelectHoliday(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.DataGridView6; protected set => throw new NotImplementedException(); }
+        public SelectHoliday(int index , TypePage type) : base(index, type, Ai.Form.DataGridView6) { }
 
         protected override void Show()
         {

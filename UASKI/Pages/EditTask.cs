@@ -8,6 +8,7 @@ using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
 using UASKI.StaticModels;
+using UASKI.Enums;
 
 namespace UASKI.Pages
 {
@@ -17,11 +18,24 @@ namespace UASKI.Pages
     public class EditTask : BasePageEdit
     {
 
-        public EditTask(int index) : base(index) { }
+        public EditTask(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {
 
+        }
+
+        protected override void Exit()
+        {
+            if (Buffer != null && Buffer.Count != 0)
+            {
+                Buffer.RemoveAt(0);
+                Show(Buffer);
+            }
+            else
+            {
+                Ai.OpenLastPage();
+            }
         }
 
         private TaskModel Task;
@@ -31,9 +45,8 @@ namespace UASKI.Pages
         private string CodeTask;
         public bool IsArhiv { get; private set; }
 
-        public void Show(int id , bool isArhiv , BasePageSelect page)
+        public void Show(int id , bool isArhiv)
         {
-            Page = page;
             IsArhiv = isArhiv;
 
             SelectButton(form.button10, false);
@@ -113,28 +126,13 @@ namespace UASKI.Pages
                 var isArhiv = TaskModel.GetList().FirstOrDefault(c => c.Id == buffer[0]) == null;
 
                 if(isArhiv)
-                    Show(buffer[0], isArhiv, Ai.Pages.SelectArhiv);
+                    Show(buffer[0], isArhiv);
                 else
-                    Show(buffer[0], isArhiv, Ai.Pages.SelectTask);
+                    Show(buffer[0], isArhiv);
 
                 form.dateTimePicker9.Focus();
             }
             
-        }
-
-        public new void Exit()
-        {
-            if (Buffer != null && Buffer.Count != 0)
-            {
-                Buffer.RemoveAt(0);
-                Show(Buffer);
-            }
-            else
-            {
-                
-                base.Exit();
-            }
-                
         }
 
         protected override void Clear()
@@ -602,7 +600,7 @@ namespace UASKI.Pages
                 else
                     id = Arhiv.Id;
 
-                Ai.Pages.EditPret.Show(id, 1, Page, IsArhiv , CodeTask);
+                Ai.Pages.EditPret.Show(id, 1, IsArhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -633,7 +631,7 @@ namespace UASKI.Pages
                     id = Arhiv.Id;
 
                 Ai.Pages.EditPret.Init(false);
-                Ai.Pages.EditPret.Show(id, 2, Page, IsArhiv , CodeTask);
+                Ai.Pages.EditPret.Show(id, 2, IsArhiv , CodeTask);
             }
             else if (e.KeyCode == Keys.Left)
             {

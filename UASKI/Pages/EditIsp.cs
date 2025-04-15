@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
@@ -15,11 +16,16 @@ namespace UASKI.Pages
     /// </summary>
     public class EditIsp : BasePageEdit
     {
-        public EditIsp(int index) : base(index) { }
+        public EditIsp(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {
             
+        }
+
+        protected override void Exit()
+        {
+            Ai.OpenLastPage();
         }
 
         private IspModel Isp;
@@ -48,10 +54,9 @@ namespace UASKI.Pages
             form.DataGridView4.PullListInDataGridView(model.ToArray(), columns);
         }
 
-        public void Show(int code , BasePageSelect page)
+        public void Show(int code)
         {
-            Page = page;
-
+           
             var form = Ai.Form;
             var isp = IspModel.GetByCode(code);
 

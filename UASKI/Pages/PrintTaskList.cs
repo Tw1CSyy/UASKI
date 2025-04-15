@@ -5,6 +5,7 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
@@ -14,7 +15,7 @@ namespace UASKI.Pages
 {
     public class PrintTaskList : BasePagePrint
     {
-        public PrintTaskList(int index) : base(index) { }
+        public PrintTaskList(int index , TypePage type) : base(index , type) { }
        
         protected override void Show()
         {

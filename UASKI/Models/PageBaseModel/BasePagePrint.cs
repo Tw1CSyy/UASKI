@@ -1,12 +1,15 @@
 ﻿using System.Drawing.Printing;
 using System.Windows.Forms;
+
+using UASKI.Enums;
+using UASKI.Models.Components;
 using UASKI.StaticModels;
 
 namespace UASKI.Models
 {
     public abstract class BasePagePrint : BasePage
     {
-        public BasePagePrint(int index) : base(index) { }
+        public BasePagePrint(int index, TypePage type) : base(index, type) { }
 
         /// <summary>
         /// Печатается первая страница

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
@@ -14,7 +15,7 @@ namespace UASKI.Pages
     /// </summary>
     public class AddTask : BasePage
     {
-        public AddTask(int index) : base(index) { }
+        public AddTask(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {

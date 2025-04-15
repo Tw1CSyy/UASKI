@@ -9,12 +9,13 @@ using UASKI.Forms;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
+using UASKI.Enums;
 
 namespace UASKI.Pages
 {
     public class PrintOpz : BasePagePrint
     {
-        public PrintOpz(int index) : base(index) { }
+        public PrintOpz(int index, TypePage type) : base(index, type) { }
        
         protected override void Show()
         {

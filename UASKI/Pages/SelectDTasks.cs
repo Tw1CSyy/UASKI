@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
@@ -11,8 +12,7 @@ namespace UASKI.Pages
 {
     public class SelectDTasks : BasePageSelect
     {
-        public SelectDTasks(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.DataGridView15; protected set => throw new NotImplementedException(); }
+        public SelectDTasks(int index , TypePage type) : base(index, type , Ai.Form.DataGridView15) { }
 
         protected override void Show()
         {

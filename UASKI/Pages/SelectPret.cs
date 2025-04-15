@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
@@ -12,8 +13,7 @@ namespace UASKI.Pages
 {
     public class SelectPret : BasePageSelect
     {
-        public SelectPret(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.DataGridView12; protected set => throw new NotImplementedException(); }
+        public SelectPret(int index, TypePage type) : base(index, type, Ai.Form.DataGridView12) { }
 
         protected override void Show()
         {
@@ -137,7 +137,7 @@ namespace UASKI.Pages
                         type = 2;
 
                     Ai.Pages.EditPret.Init(false, false);
-                    Ai.Pages.EditPret.Show(Id, type, this);
+                    Ai.Pages.EditPret.Show(Id, type);
                     e.Handled = true;
                 }
             }

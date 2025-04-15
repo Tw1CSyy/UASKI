@@ -1,13 +1,13 @@
 ﻿using System.Windows.Forms;
+
+using UASKI.Enums;
 using UASKI.Models.Components;
 
 namespace UASKI.Models
 {
     public abstract class BasePageSelect : BasePage
     {
-        public BasePageSelect(int index) : base(index) { }
-
-        public abstract DataGridViewComponent DataGridView { get; protected set; }
+        public BasePageSelect(int index , TypePage type, DataGridViewComponent dataGridView) : base(index ,type , dataGridView) { }
 
         /// <summary>
         /// Выводит данные в DataGridView

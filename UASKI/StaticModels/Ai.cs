@@ -68,7 +68,7 @@ namespace UASKI.StaticModels
         /// <summary>
         /// История страниц
         /// </summary>
-        public static List<BasePage> PageHistory { get; private set; }
+        private static List<BasePage> PageHistory { get; set; }
 
         /// <summary>
         /// Последняя страница в истории или null
@@ -451,6 +451,9 @@ namespace UASKI.StaticModels
                     TypeBuffer = TypeBuffer.Null;
                     AddMessage(TypeNotice.Comlite , "Буффер отчищен");
                     return true;
+                case Keys.Z:
+                    OpenLastPage();
+                    return true;
             }
 
             return false;
@@ -553,18 +556,44 @@ namespace UASKI.StaticModels
         }
 
         /// <summary>
-        /// Добавляет 
+        /// Добавляет страницу в историю
         /// </summary>
-        /// <param name="page"></param>
-        
+        /// <param name="page">Страница</param>
         public static void AddHostoryPage(BasePage page)
         {
-            PageHistory.Add(page);
-
-            if(PageHistory.Count >= MAX_HISTORY_PAGE_COUNT)
+            if(page.Type != TypePage.Edit)
             {
-                PageHistory.RemoveAt(0);
+                PageHistory.Add(page);
+
+                if (PageHistory.Count >= MAX_HISTORY_PAGE_COUNT)
+                {
+                    PageHistory.RemoveAt(0);
+                }
             }
+        }
+
+        /// <summary>
+        /// Открывает предыдущую страницу из истории
+        /// </summary>
+        /// <returns></returns>
+        public static bool OpenLastPage()
+        {
+            if (PageHistory.Count < 2)
+                return false;
+
+            var page = PageHistory[PageHistory.Count - 2];
+
+            if(page.DataGridView == null)
+            {
+                page.Init();
+            }
+            else
+            {
+                page.ExitToDataGrid();
+            }
+
+            SelectMenu(page);
+            return true;
         }
     }
 }

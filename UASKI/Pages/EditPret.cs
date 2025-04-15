@@ -6,28 +6,33 @@ using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
 using UASKI.StaticModels;
+using UASKI.Enums;
 
 namespace UASKI.Pages
 {
     public class EditPret : BasePageEdit
     {
-        public EditPret(int index) : base(index) { }
+        public EditPret(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {
             
         }
 
+        protected override void Exit()
+        {
+            Ai.OpenLastPage();
+        }
+
         private int IdTask;
-        private int Type;
+        private int typ;
         private bool IsArhiv;
         private int IdPret;
 
-        public void Show(int idTask , int type , BasePageSelect page , bool isArhiv , string codeTask)
+        public void Show(int idTask , int type , bool isArhiv , string codeTask)
         {
             IdTask = idTask;
-            Type = type;
-            Page = page;
+            typ = type;
             IsArhiv = isArhiv;
 
             form.dateTimePicker16.Value = DateTime.Today;
@@ -44,11 +49,10 @@ namespace UASKI.Pages
             SelectTextBox(form.textBox38);
         }
 
-        public void Show(int idPret, int type, BasePageSelect page)
+        public void Show(int idPret, int type)
         {
             IdPret = idPret;
-            Type = type;
-            Page = page;
+            typ = type;
             
             var pret = PretModel.GetById(idPret);
             var task = TaskModel.GetById(pret.IdTask);
@@ -90,19 +94,6 @@ namespace UASKI.Pages
             SelectButton(form.button44, false);
             SelectButton(form.button45, false);
             SelectButton(form.button46, false);
-        }
-
-        protected new void Exit()
-        {
-            if(IdPret == 0)
-            {
-                Ai.Pages.EditTask.Init(false);
-                Ai.Pages.EditTask.Show(IdTask, IsArhiv, Page);
-            }
-            else
-            {
-                base.Exit();
-            }
         }
 
         private void SelectButton(int idButton = 0, bool Up = false)
@@ -233,7 +224,7 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, Type);
+                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, typ);
                     result = item.Add();
 
                     if (!result)
@@ -288,7 +279,7 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, Type);
+                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, typ);
                     result = item.Update(IdPret);
 
                     if (!result)

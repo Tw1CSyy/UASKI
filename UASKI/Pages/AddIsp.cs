@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
@@ -12,7 +13,7 @@ namespace UASKI.Pages
     /// </summary>
     public class AddIsp : BasePage
     {
-        public AddIsp(int index) : base(index) { }
+        public AddIsp(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {

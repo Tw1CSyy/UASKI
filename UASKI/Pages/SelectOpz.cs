@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Forms;
 using UASKI.Models;
 using UASKI.Models.Components;
@@ -15,9 +16,8 @@ namespace UASKI.Pages
     /// </summary>
     public class SelectOpz : BasePageSelect
     {
-        public SelectOpz(int index) : base(index) { }
-        public override DataGridViewComponent DataGridView { get => form.DataGridView1; protected set => throw new NotImplementedException(); }
-
+        public SelectOpz(int index , TypePage type) : base(index, type, Ai.Form.DataGridView1) { }
+      
         protected override void Show()
         {
             if(this.IsCleared)
@@ -184,7 +184,7 @@ namespace UASKI.Pages
 
                     var IsArhiv = d.SelectedRows[0].Cells[5].Value != null && !string.IsNullOrEmpty(d.SelectedRows[0].Cells[5].Value.ToString());
                     Ai.Pages.EditTask.Init(false , false);
-                    Ai.Pages.EditTask.Show(id, IsArhiv , this);
+                    Ai.Pages.EditTask.Show(id, IsArhiv);
                 }
 
                 e.Handled = true;

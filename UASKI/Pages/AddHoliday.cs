@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using UASKI.Core.Models;
+using UASKI.Enums;
 using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.Models.Elements;
@@ -14,7 +15,7 @@ namespace UASKI.Pages
     /// </summary>
     public class AddHoliday : BasePage
     {
-        public AddHoliday(int index) : base(index) { }
+        public AddHoliday(int index, TypePage type) : base(index, type) { }
 
         protected override void Show()
         {

@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using UASKI.Enums;
+using UASKI.Models.Components;
 using UASKI.StaticModels;
 
 namespace UASKI.Models
@@ -13,6 +15,11 @@ namespace UASKI.Models
         /// Индекс страницы
         /// </summary>
         public int Index { get; private set; }
+
+        /// <summary>
+        /// Тип страницы
+        /// </summary>
+        public TypePage Type { get; private set; }
 
         /// <summary>
         /// Главная форма
@@ -33,6 +40,11 @@ namespace UASKI.Models
         /// Отчистить страницу
         /// </summary>
         protected abstract void Clear();
+
+        /// <summary>
+        /// DataGridView на странице или null
+        /// </summary>
+        public DataGridViewComponent DataGridView { get; protected set; }
 
         /// <summary>
         /// Выход с страницы
@@ -88,10 +100,13 @@ namespace UASKI.Models
         /// <summary>
         /// Базовый конструктор для объявления объекта страницы
         /// </summary>
-        /// <param name="index"></param>
-        public BasePage(int index)
+        /// <param name="index">Индекс страницы в tabControl</param>
+        /// <param name="d">Компонент DataGridView страницы, если есть</param>
+        public BasePage(int index , TypePage type , DataGridViewComponent d = null)
         {
             Index = index;
+            DataGridView = d;
+            Type = type;
         }
 
         /// <summary>
@@ -165,5 +180,59 @@ namespace UASKI.Models
             }
         }
 
+        /// <summary>
+        /// Открывает страницу с DataGridView, и подстраивает DataGridView под прошлый результат
+        /// </summary>
+        /// <returns>false - Страница не имеет DataGridView. Иначе true</returns>
+        public bool ExitToDataGrid()
+        {
+            var d = DataGridView;
+
+            if (d == null)
+                return false;
+
+            var SelectedIndex = 0;
+
+            if (d.d.SelectedRows.Count > 0 && d.d.SelectedRows[0].Index != 0)
+            {
+                SelectedIndex = d.d.SelectedRows[0].Index;
+            }
+
+            Init();
+
+            if (d.d.Rows.Count > 0)
+            {
+                try
+                {
+                    if (d.d.Rows.Count < SelectedIndex)
+                    {
+                        d.d.Rows[d.d.Rows.Count - 1].Selected = true;
+                        SelectedIndex = d.d.Rows.Count - 1;
+                    }
+                    else if (d.d.Rows.Count != SelectedIndex)
+                    {
+                        d.d.Rows[SelectedIndex].Selected = true;
+                    }
+                    else
+                    {
+                        d.d.Rows[0].Selected = true;
+                        SelectedIndex = 0;
+                    }
+
+                    if (!d.d.Rows[SelectedIndex].Displayed)
+                    {
+                        d.d.FirstDisplayedScrollingRowIndex = SelectedIndex - d.d.DisplayedRowCount(false) + 2;
+                    }
+
+                    SelectedIndex = 0;
+                }
+                catch (System.Exception)
+                {
+                    d.d.Rows[0].Selected = true;
+                }
+            }
+
+            return true;
+        }
     }
 }
