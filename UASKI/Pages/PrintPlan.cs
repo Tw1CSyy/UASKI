@@ -241,13 +241,7 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
-                {
-                    Print();
-                }
-                else
-                    Ai.Query();
-
+                Print();
             }
 
             e.IsInputKey = true;

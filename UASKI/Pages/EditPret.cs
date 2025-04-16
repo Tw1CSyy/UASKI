@@ -210,34 +210,29 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var code = TextBoxElement.New(form.textBox38, form.label92);
+                var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
+                var otm = TextBoxElement.New(form.textBox39, form.label94);
+
+                var result = ValidationHelper.PretValidation(code, date, otm);
+
+                if (!result)
                 {
-                    var code = TextBoxElement.New(form.textBox38, form.label92);
-                    var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
-                    var otm = TextBoxElement.New(form.textBox39, form.label94);
-
-                    var result = ValidationHelper.PretValidation(code, date, otm);
-
-                    if (!result)
-                    {
-                        Ai.Error();
-                        return false;
-                    }
-
-                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, typ);
-                    result = item.Add();
-
-                    if (!result)
-                    {
-                        Ai.AppError();
-                        return false;
-                    }
-
-                    Ai.Comlite($"Успешно добавлена претензия/рецензия с номером {code.Value}");
-                    Exit();
+                    Ai.Error();
+                    return false;
                 }
-                else
-                    Ai.Query();
+
+                var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, typ);
+                result = item.Add();
+
+                if (!result)
+                {
+                    Ai.AppError();
+                    return false;
+                }
+
+                Ai.Comlite($"Успешно добавлена претензия/рецензия с номером {code.Value}");
+                Exit();
             }
             else if(e.KeyCode == Keys.Escape)
             {
@@ -265,34 +260,29 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var code = TextBoxElement.New(form.textBox38, form.label92);
+                var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
+                var otm = TextBoxElement.New(form.textBox39, form.label94);
+
+                var result = ValidationHelper.PretValidation(code, date, otm);
+
+                if (!result)
                 {
-                    var code = TextBoxElement.New(form.textBox38, form.label92);
-                    var date = DateTimeElement.New(form.dateTimePicker16, form.label93);
-                    var otm = TextBoxElement.New(form.textBox39, form.label94);
-
-                    var result = ValidationHelper.PretValidation(code, date, otm);
-
-                    if (!result)
-                    {
-                        Ai.Error();
-                        return false;
-                    }
-
-                    var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, typ);
-                    result = item.Update(IdPret);
-
-                    if (!result)
-                    {
-                        Ai.AppError();
-                        return false;
-                    }
-
-                    Ai.Comlite($"Успешно изменена претензия/рецензия с номером {code.Value}");
-                    Exit();
+                    Ai.Error();
+                    return false;
                 }
-                else
-                    Ai.Query();
+
+                var item = new PretModel(code.Value, IdTask, date.Value, otm.Num, typ);
+                result = item.Update(IdPret);
+
+                if (!result)
+                {
+                    Ai.AppError();
+                    return false;
+                }
+
+                Ai.Comlite($"Успешно изменена претензия/рецензия с номером {code.Value}");
+                Exit();
 
             }
             else if(e.KeyCode == Keys.Escape)
@@ -317,23 +307,18 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var entity = PretModel.GetById(IdPret);
+                var result = entity.Delete();
+
+
+                if (!result)
                 {
-                    var entity = PretModel.GetById(IdPret);
-                    var result = entity.Delete();
-
-
-                    if (!result)
-                    {
-                        Ai.AppError();
-                        return false;
-                    }
-
-                    Ai.Comlite($"Успешно удалена претензия/рецензия с номером {entity.Code}");
-                    Exit();
+                    Ai.AppError();
+                    return false;
                 }
-                else
-                    Ai.Query();
+
+                Ai.Comlite($"Успешно удалена претензия/рецензия с номером {entity.Code}");
+                Exit();
             }
             else if(e.KeyCode == Keys.Escape)
             {

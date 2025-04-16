@@ -3994,7 +3994,7 @@ namespace UASKI
             // textBox41
             // 
             this.textBox41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox41.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox41.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox41.ForeColor = System.Drawing.Color.Black;
             this.textBox41.Location = new System.Drawing.Point(893, 1);
             this.textBox41.Multiline = true;

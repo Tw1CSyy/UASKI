@@ -92,41 +92,34 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var date = MonthElement.New(form.monthCalendar1, form.label27);
+
+                var result = ValidationHelper.HolidayValidation(date);
+
+                if (!result)
                 {
-                    var date = MonthElement.New(form.monthCalendar1, form.label27);
+                    Ai.Error();
+                    return false;
+                }
 
-                    var result = ValidationHelper.HolidayValidation(date);
+                foreach (var data in date.DateRange)
+                {
+                    var holy = new HolidayModel(data.Date);
+                    result = holy.Add();
 
-                    if(!result)
-                    {
-                        Ai.Error();
-                        return false;
-                    }
+                    if (!result)
+                        break;
+                }
 
-                    foreach (var data in date.DateRange)
-                    {
-                        var holy = new HolidayModel(data.Date);
-                        result = holy.Add();
-
-                        if (!result)
-                            break;
-                    }
-
-                    if (result)
-                    {
-                        ClearPage();
-                        Ai.Comlite("Празднечный день добавлен");
-                        Show();
-                    }
-                    else
-                    {
-                        
-                    }
+                if (result)
+                {
+                    ClearPage();
+                    Ai.Comlite("Празднечный день добавлен");
+                    Show();
                 }
                 else
                 {
-                    Ai.Query();
+
                 }
             }
             else if (e.KeyCode == Keys.Escape)

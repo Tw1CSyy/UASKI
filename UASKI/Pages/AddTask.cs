@@ -146,56 +146,49 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var code = TextBoxElement.New(form.textBox7, form.label25);
+                var idIsp = TextBoxElement.New(form.textBox3, form.label23);
+                var idCon = TextBoxElement.New(form.textBox6, form.label24);
+                var date = DateTimeElement.New(form.dateTimePicker1, form.label26);
+
+                var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date);
+
+                if (result == false)
                 {
-                    var code = TextBoxElement.New(form.textBox7, form.label25);
-                    var idIsp = TextBoxElement.New(form.textBox3, form.label23);
-                    var idCon = TextBoxElement.New(form.textBox6, form.label24);
-                    var date = DateTimeElement.New(form.dateTimePicker1, form.label26);
+                    Ai.Error();
+                    return false;
+                }
 
-                    var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date);
-                      
-                    if(result == false)
+                if (Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
+                {
+                    foreach (var item in Ai.GetBuffer())
                     {
-                        Ai.Error();
-                        return false;
-                    }
-                    
-                    if(Ai.TypeBuffer == Enums.TypeBuffer.AddTask)
-                    {
-                        foreach (var item in Ai.GetBuffer())
-                        {
-                            if(!Add(code.Value, item, idCon.Num, date.Value, form.checkBox8.Checked))
-                            {
-                                Ai.AppError();
-                                return false;
-                            }
-                        }
-
-                        Ai.Comlite($"Новые задачи ({Ai.GetBuffer().Count}) добавлены");
-                        Ai.GetBuffer().Clear();
-                        Ai.TypeBuffer = Enums.TypeBuffer.Null;
-
-                        Ai.AddMessage(Enums.TypeNotice.Default, "Буфер пустой");
-                    }
-                    else
-                    {
-                        if (!Add(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox8.Checked))
+                        if (!Add(code.Value, item, idCon.Num, date.Value, form.checkBox8.Checked))
                         {
                             Ai.AppError();
                             return false;
                         }
-
-                        Ai.Comlite($"Новая задача добавлена c кодом {code.Value}");
                     }
 
-                    ClearPage();
-                    Show();
+                    Ai.Comlite($"Новые задачи ({Ai.GetBuffer().Count}) добавлены");
+                    Ai.GetBuffer().Clear();
+                    Ai.TypeBuffer = Enums.TypeBuffer.Null;
+
+                    Ai.AddMessage(Enums.TypeNotice.Default, "Буфер пустой");
                 }
                 else
                 {
-                    Ai.Query();
+                    if (!Add(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox8.Checked))
+                    {
+                        Ai.AppError();
+                        return false;
+                    }
+
+                    Ai.Comlite($"Новая задача добавлена c кодом {code.Value}");
                 }
+
+                ClearPage();
+                Show();
             }
             else if (e.KeyCode == Keys.Up)
             {

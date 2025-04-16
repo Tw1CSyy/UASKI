@@ -107,33 +107,27 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var list = HolidayModel.GetList();
+                var result = true;
+
+                foreach (DataGridViewRow item in form.DataGridView6.d.SelectedRows)
                 {
-                    var list = HolidayModel.GetList();
-                    var result = true;
-
-                    foreach (DataGridViewRow item in form.DataGridView6.d.SelectedRows)
-                    {
-                        var id = Convert.ToInt32(item.Cells[0].Value);
-                        var holy = list.FirstOrDefault(c => c.Id == id);
-                        result = holy.Delete();
-
-                        if (!result)
-                            break;
-                    }
+                    var id = Convert.ToInt32(item.Cells[0].Value);
+                    var holy = list.FirstOrDefault(c => c.Id == id);
+                    result = holy.Delete();
 
                     if (!result)
-                    {
-                        Ai.AppError();
-                        return false;
-                    }
-
-                    Ai.Comlite($"Успешное удаление: {form.DataGridView6.d.SelectedRows.Count}");
-                    Show();
+                        break;
                 }
-                else
-                    Ai.Query();
 
+                if (!result)
+                {
+                    Ai.AppError();
+                    return false;
+                }
+
+                Ai.Comlite($"Успешное удаление: {form.DataGridView6.d.SelectedRows.Count}");
+                Show();
             }
 
             e.IsInputKey = true;

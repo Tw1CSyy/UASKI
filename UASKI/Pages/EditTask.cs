@@ -352,69 +352,61 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(Ai.IsQuery)
+                if (!IsArhiv)
                 {
+                    var code = TextBoxElement.New(form.textBox27, form.label55);
+                    var idIsp = TextBoxElement.New(form.textBox24, form.label51);
+                    var idCon = TextBoxElement.New(form.textBox23, form.label53);
+                    var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
 
-                    if (!IsArhiv)
+                    var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date, true);
+
+                    if (result == false)
                     {
-                        var code = TextBoxElement.New(form.textBox27, form.label55);
-                        var idIsp = TextBoxElement.New(form.textBox24, form.label51);
-                        var idCon = TextBoxElement.New(form.textBox23, form.label53);
-                        var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
-
-                        var result = ValidationHelper.TaskValidation(code, idIsp, idCon, date, true);
-
-                        if(result == false)
-                        {
-                            Ai.Error();
-                            return false;
-                        }
-
-                        var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox7.Checked);
-                        result = task.Update(Task.Id);
-
-                        if (result == false)
-                        {
-                            Ai.AppError();
-                            return false;
-                        }
-
-                        Ai.Comlite($"Задача с кодом {Task.Code} изменена");
-                        Exit();
-                    }    
-                    else
-                    {
-                        var code = TextBoxElement.New(form.textBox27, form.label55);
-                        var idIsp = TextBoxElement.New(form.textBox24, form.label51);
-                        var idCon = TextBoxElement.New(form.textBox23, form.label53);
-                        var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
-                        var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
-                        var otm = TextBoxElement.New(form.textBox28, form.label57);
-
-                        var result = ValidationHelper.ArhivValidation(code, idIsp, idCon, date, dateClose, otm);
-
-                        if (result == false)
-                        {
-                            Ai.Error();
-                            return false;
-                        }
-
-                        var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num, Arhiv.Id, form.checkBox7.Checked);
-                        result = arhiv.Update();
-
-                        if (result == false)
-                        {
-                            Ai.AppError();
-                            return false;
-                        }
-
-                        Ai.Comlite($"Архивная задача с кодом {Arhiv.Code} изменена");
-                        Exit();
+                        Ai.Error();
+                        return false;
                     }
+
+                    var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox7.Checked);
+                    result = task.Update(Task.Id);
+
+                    if (result == false)
+                    {
+                        Ai.AppError();
+                        return false;
+                    }
+
+                    Ai.Comlite($"Задача с кодом {Task.Code} изменена");
+                    Exit();
                 }
                 else
                 {
-                    Ai.Query();
+                    var code = TextBoxElement.New(form.textBox27, form.label55);
+                    var idIsp = TextBoxElement.New(form.textBox24, form.label51);
+                    var idCon = TextBoxElement.New(form.textBox23, form.label53);
+                    var date = DateTimeElement.New(form.dateTimePicker4, form.label56);
+                    var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
+                    var otm = TextBoxElement.New(form.textBox28, form.label57);
+
+                    var result = ValidationHelper.ArhivValidation(code, idIsp, idCon, date, dateClose, otm);
+
+                    if (result == false)
+                    {
+                        Ai.Error();
+                        return false;
+                    }
+
+                    var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num, Arhiv.Id, form.checkBox7.Checked);
+                    result = arhiv.Update();
+
+                    if (result == false)
+                    {
+                        Ai.AppError();
+                        return false;
+                    }
+
+                    Ai.Comlite($"Архивная задача с кодом {Arhiv.Code} изменена");
+                    Exit();
                 }
             }
             else if (e.KeyCode == Keys.Left)
@@ -445,55 +437,45 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if(Ai.IsQuery)
+                if (!IsArhiv)
                 {
-                    
-                    if (!IsArhiv)
+                    var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
+                    var otm = TextBoxElement.New(form.textBox28, form.label57);
+
+                    var result = ValidationHelper.CloseTaskValidation(otm, dateClose);
+
+                    if (result == false)
                     {
-                        var dateClose = DateTimeElement.New(form.dateTimePicker9, form.label38);
-                        var otm = TextBoxElement.New(form.textBox28, form.label57);
+                        Ai.Error();
+                        return false;
+                    }
 
-                        var result = ValidationHelper.CloseTaskValidation(otm, dateClose);
+                    result = Task.Close(otm.Num, dateClose.Value);
 
-                        if(result == false)
-                        {
-                            Ai.Error();
-                            return false;
-                        }
+                    if (result == false)
+                    {
+                        Ai.AppError();
+                        return false;
+                    }
 
-                        result = Task.Close(otm.Num, dateClose.Value);
+                    Ai.Comlite($"Задача перемещена в архив с оценкой {otm.Value}");
+                    Exit();
+                }
+                else
+                {
+                    var result = Arhiv.Open();
 
-                        if (result == false)
-                        {
-                            Ai.AppError();
-                            return false;
-                        }
-
-                        Ai.Comlite($"Задача перемещена в архив с оценкой {otm.Value}");
+                    if (result)
+                    {
+                        Ai.Comlite($"Архивная задача была открыта c кодом {Arhiv.Code}");
                         Exit();
                     }
                     else
                     {
-                        var result = Arhiv.Open();
-
-                        if(result)
-                        {
-                            Ai.Comlite($"Архивная задача была открыта c кодом {Arhiv.Code}");
-                            Exit();
-                        }
-                        else
-                        {
-                            Ai.AppError();
-                        }
+                        Ai.AppError();
                     }
-
-                }
-                else
-                {
-                    Ai.Query();
                 }
 
-               
             }
             else if (e.KeyCode == Keys.Left)
             {
@@ -522,23 +504,16 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
-                {
-                    var result = Task.Delete();
+                var result = Task.Delete();
 
-                    if(result)
-                    {
-                        Ai.Comlite($"Удалена задача с кодом {Task.Code}");
-                        Exit();
-                    }
-                    else
-                    {
-                        Ai.AppError();
-                    }
+                if (result)
+                {
+                    Ai.Comlite($"Удалена задача с кодом {Task.Code}");
+                    Exit();
                 }
                 else
                 {
-                    Ai.Query();
+                    Ai.AppError();
                 }
 
             }

@@ -152,39 +152,32 @@ namespace UASKI.Pages
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var firstName = TextBoxElement.New(form.textBox8, form.label18);
+                var name = TextBoxElement.New(form.textBox9, form.label19);
+                var lastName = TextBoxElement.New(form.textBox10, form.label20);
+                var code = TextBoxElement.New(form.textBox11, form.label21);
+                var podr = TextBoxElement.New(form.textBox12, form.label22);
+
+                var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr);
+
+                if (!result)
                 {
-                    var firstName = TextBoxElement.New(form.textBox8, form.label18);
-                    var name = TextBoxElement.New(form.textBox9, form.label19);
-                    var lastName = TextBoxElement.New(form.textBox10, form.label20);
-                    var code = TextBoxElement.New(form.textBox11, form.label21);
-                    var podr = TextBoxElement.New(form.textBox12, form.label22);
-
-                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr);
-                    
-                    if(!result)
-                    {
-                        Ai.Error();
-                        return false;
-                    }
-
-                    var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
-                    result = isp.Add();
-
-                    if (!result)
-                    {
-                        Ai.AppError();
-                        return false;
-                    }
-
-                    ClearPage();
-                    Ai.Comlite($"Новый сотрудник успешно добавлен с кодом {code.Value}");
-                    Show();
+                    Ai.Error();
+                    return false;
                 }
-                else
+
+                var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
+                result = isp.Add();
+
+                if (!result)
                 {
-                    Ai.Query();
+                    Ai.AppError();
+                    return false;
                 }
+
+                ClearPage();
+                Ai.Comlite($"Новый сотрудник успешно добавлен с кодом {code.Value}");
+                Show();
             }
             else if (e.KeyCode == Keys.Escape)
             {

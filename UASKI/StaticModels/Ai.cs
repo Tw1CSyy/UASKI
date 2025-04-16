@@ -46,11 +46,6 @@ namespace UASKI.StaticModels
         public static Gl_Form Form { get; private set; }
 
         /// <summary>
-        /// Требуется ли подтверждение операции
-        /// </summary>
-        public static bool IsQuery { get; set; }
-
-        /// <summary>
         /// Производится ли отчистка элементов
         /// </summary>
         public static bool IsClear { get; set; }
@@ -126,7 +121,6 @@ namespace UASKI.StaticModels
         {
             Form = form;
             Pages = new Pages();
-            IsQuery = false;
             IsClear = false;
 
             MenuItems = new List<ItemMenuLevel1>
@@ -242,7 +236,6 @@ namespace UASKI.StaticModels
         public static void NoticeTimer(object sender, EventArgs e)
         {
             Text.BackColor = DefultColor;
-            IsQuery = false;
             Timer.Stop();
         }
 
@@ -318,7 +311,7 @@ namespace UASKI.StaticModels
         /// <returns>Отформатированную строку</returns>
         private static string Formating(string text)
         {
-            var message = "- " + text + $"{Environment.NewLine}";
+            var message = "=> " + text + $"{Environment.NewLine}";
             return message;
         }
 
@@ -338,15 +331,6 @@ namespace UASKI.StaticModels
         public static void AppError()
         {
             AddMessage(TypeNotice.Error, "Ошибка при выполнении программы (от вас не зависящая)");
-        }
-
-        /// <summary>
-        /// Показывает просьбу подтвердить операцию
-        /// </summary>
-        public static void Query()
-        {
-            AddMessage(TypeNotice.Warning, "Нажмите еще раз для подтверждения");
-            IsQuery = true;
         }
 
         /// <summary>

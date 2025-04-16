@@ -229,38 +229,31 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
+                var firstName = TextBoxElement.New(form.textBox18, form.label32);
+                var name = TextBoxElement.New(form.textBox17, form.label31);
+                var lastName = TextBoxElement.New(form.textBox16, form.label30);
+                var code = TextBoxElement.New(form.textBox15, form.label29);
+                var podr = TextBoxElement.New(form.textBox14, form.label28);
+
+                var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr, true);
+
+                if (result == false)
                 {
-                    var firstName = TextBoxElement.New(form.textBox18, form.label32);
-                    var name = TextBoxElement.New(form.textBox17, form.label31);
-                    var lastName = TextBoxElement.New(form.textBox16, form.label30);
-                    var code = TextBoxElement.New(form.textBox15, form.label29);
-                    var podr = TextBoxElement.New(form.textBox14, form.label28);
-
-                    var result = ValidationHelper.IspValidation(firstName, name, lastName, code, podr, true);
-
-                    if(result == false)
-                    {
-                        Ai.Error();
-                        return false;
-                    }
-
-                    var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
-                    result = isp.Update(Isp.Code);
-
-                    if (result == false)
-                    {
-                        Ai.AppError();
-                        return false;
-                    }
-
-                    Exit();
-                    Ai.Comlite($"Сотрудник с кодом {code.Value} изменен");
+                    Ai.Error();
+                    return false;
                 }
-                else
+
+                var isp = new IspModel(code.Num, firstName.Value, name.Value, lastName.Value, podr.Num);
+                result = isp.Update(Isp.Code);
+
+                if (result == false)
                 {
-                    Ai.Query();
+                    Ai.AppError();
+                    return false;
                 }
+
+                Exit();
+                Ai.Comlite($"Сотрудник с кодом {code.Value} изменен");
             }
             else if (e.KeyCode == Keys.Down)
             {
@@ -292,23 +285,16 @@ namespace UASKI.Pages
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                if (Ai.IsQuery)
-                {
-                    var result = Isp.Delete();
+                var result = Isp.Delete();
 
-                    if(result)
-                    {
-                        Ai.Comlite($"Сотрудник с кодом {Isp.Code} удален");
-                        Exit();
-                    }
-                    else
-                    {
-                        Ai.AppError();
-                    }
+                if (result)
+                {
+                    Ai.Comlite($"Сотрудник с кодом {Isp.Code} удален");
+                    Exit();
                 }
                 else
                 {
-                    Ai.Query();
+                    Ai.AppError();
                 }
             }
             else if (e.KeyCode == Keys.Escape)
