@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 
 using UASKI.Core;
+using UASKI.Helpers;
 using UASKI.Models;
 using UASKI.StaticModels;
 
@@ -20,7 +21,8 @@ namespace UASKI
         protected override void Dispose(bool disposing)
         {
             DataConnection.Close();
-           
+            ApplicationHelper.CreateSettings();
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -4007,7 +4009,7 @@ namespace UASKI
             // 
             // TimeTimer
             // 
-            this.TimeTimer.Interval = 1000;
+            this.TimeTimer.Interval = 60000;
             this.TimeTimer.Tick += new System.EventHandler(this.TimeTimer_Tick);
             // 
             // Gl_Form
@@ -4026,7 +4028,7 @@ namespace UASKI
             this.KeyPreview = true;
             this.Name = "Gl_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " УАСКИ 2.4";
+            this.Text = " УАСКИ 2.5";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gl_Form_KeyDown);
             this.Resize += new System.EventHandler(this.Gl_Form_Resize);
             this.tabControl1.ResumeLayout(false);

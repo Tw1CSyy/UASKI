@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using UASKI.Enums;
 using UASKI.Models;
 
+using static System.Net.Mime.MediaTypeNames;
+
 namespace UASKI.StaticModels
 {
     public static class Ai
@@ -245,7 +247,14 @@ namespace UASKI.StaticModels
         public static void WaitTimerTick(object sender, EventArgs e)
         {
             var item = WaitMessageBufer.FirstOrDefault();
-            AddMessage(item.Type, item.Message);
+            
+            string message = Formating(item.Message);
+            RemoveTextExixt(message);
+            Text.Text += message;
+            Text.BackColor = item.Color;
+            Text.SelectionStart = Text.Text.Length;
+            Text.ScrollToCaret();
+            Timer.Start();
             WaitMessageBufer.RemoveAt(0);
 
             if (WaitMessageBufer.Count == 0)
@@ -262,16 +271,23 @@ namespace UASKI.StaticModels
         /// <param name="text">Текст сообщения</param>
         public static void AddMessage(TypeNotice type, string text)
         {
-            string mes = text;
-            var notice = new Notice(mes, type);
+            if(WaitMessageBufer.Count > 0)
+            {
+                AddWaitMessage(type, text);
+            }
+            else
+            {
+                string mes = text;
+                var notice = new Notice(mes, type);
 
-            string message = Formating(mes);
-            RemoveTextExixt(message);
-            Text.Text += message;
-            Text.BackColor = notice.Color;
-            Text.SelectionStart = Text.Text.Length;
-            Text.ScrollToCaret();
-            Timer.Start();
+                string message = Formating(mes);
+                RemoveTextExixt(message);
+                Text.Text += message;
+                Text.BackColor = notice.Color;
+                Text.SelectionStart = Text.Text.Length;
+                Text.ScrollToCaret();
+                Timer.Start();
+            }
         }
 
         /// <summary>
@@ -442,6 +458,13 @@ namespace UASKI.StaticModels
                 case Keys.Z:
                     OpenLastPage();
                     return true;
+                case Keys.H:
+                    Ai.AddMessage(Enums.TypeNotice.Default, "Статистика за текущий день:");
+                    Ai.AddMessage(Enums.TypeNotice.Default, $"Добавлено карт: {Ai.Settings.CountAdd}");
+                    Ai.AddMessage(Enums.TypeNotice.Default, $"Закрыто карт: {Ai.Settings.CountClose}");
+                    Ai.AddMessage(Enums.TypeNotice.Default, $"Распечатано: {Ai.Settings.CountPrint}");
+                    return true;
+
             }
 
             return false;

@@ -107,6 +107,7 @@ namespace UASKI.Pages
                 printDocument.DefaultPageSettings.Landscape = true;
                 GetPrint(printDocument);
                 form.DataGridView9.ClearTag();
+                Ai.Settings.CountPrint++;
             }
         }
 

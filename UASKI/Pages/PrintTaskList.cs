@@ -136,6 +136,7 @@ namespace UASKI.Pages
                 printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
                 GetPrint(printDocument);
                 form.DataGridView7.ClearTag();
+                Ai.Settings.CountPrint++;
             }
         }
 

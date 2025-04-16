@@ -23,7 +23,7 @@ namespace UASKI.Helpers
             try
             {
                 if (!File.Exists(SettingsPath))
-                    CreateSettings(SettingsPath);
+                    CreateDefultSettings(SettingsPath);
 
                 LoadSettings(SettingsPath);
                 Ai.AddWaitMessage(TypeNotice.Default, "Настройки загружены");
@@ -37,10 +37,10 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Создает файл настроек
+        /// Создает базовый файл настроек 
         /// </summary>
         /// <param name="filePath">Путь до каталога</param>
-        private static void CreateSettings(string filePath)
+        private static void CreateDefultSettings(string filePath)
         {
             var defult = new AppSettings
             {
@@ -48,11 +48,25 @@ namespace UASKI.Helpers
                 Password = "password",
                 Host = "localhost",
                 Port = "5432",
-                DateBase = "UASKI"
+                DateBase = "Uaski",
+                CountAdd = 0,
+                CountClose = 0,
+                CountPrint = 0,
+                DateUpdate = DateTime.Today
             };
 
             var json = JsonConvert.SerializeObject(defult, Formatting.Indented);
             File.WriteAllText(filePath, json);
+        }
+
+        /// <summary>
+        /// Сохраняет текущий файл настроек
+        /// </summary>
+        public static void CreateSettings()
+        {
+            Ai.Settings.DateUpdate = DateTime.Today;
+            var json = JsonConvert.SerializeObject(Ai.Settings, Formatting.Indented);
+            File.WriteAllText(SettingsPath, json);
         }
 
         /// <summary>
@@ -65,6 +79,11 @@ namespace UASKI.Helpers
             {
                 var json = File.ReadAllText(filePath);
                 Ai.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
+
+                if(Ai.Settings.DateUpdate < DateTime.Today)
+                {
+                    Ai.Settings.CountAdd = Ai.Settings.CountClose = Ai.Settings.CountPrint = 0;
+                }
             }
         }
 

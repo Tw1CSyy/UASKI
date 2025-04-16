@@ -223,6 +223,7 @@ namespace UASKI.Pages
 
                 form.DataGridView11.ClearTag();
                 form.DataGridView13.ClearTag();
+                Ai.Settings.CountPrint++;
             }
         }
 

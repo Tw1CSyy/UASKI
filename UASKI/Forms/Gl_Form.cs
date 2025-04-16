@@ -128,9 +128,6 @@ namespace UASKI
             var maxDate = holys.Max(c => c.Date).Date;
             Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Праздничные дни в диапазоне: {minDate.ToString("dd.MM.yyyy")} - {maxDate.ToString("dd.MM.yyyy")}");
 
-            var countTodayClose = arhiv.Count(c => c.DateClose == DateTime.Today);
-            Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Сегодня закрыто карточек: {countTodayClose}");
-
             Ai.AddWaitMessage(Enums.TypeNotice.Default, $"Получить информацию о работе клавишах: CTRL + Ш");
             Menu_Step1.Visible = Menu_Step2.Visible = true;
             return true;
@@ -157,31 +154,39 @@ namespace UASKI
         // Таймер времени
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.Hour == 11 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 30)
+            if(DateTime.Now.Minute == 0)
+            {
+                Ai.AddMessage(Enums.TypeNotice.Default, "Статистика за текущий день:");
+                Ai.AddMessage(Enums.TypeNotice.Default, $"Добавлено карт: {Ai.Settings.CountAdd}");
+                Ai.AddMessage(Enums.TypeNotice.Default, $"Закрыто карт: {Ai.Settings.CountClose}");
+                Ai.AddMessage(Enums.TypeNotice.Default, $"Распечатано: {Ai.Settings.CountPrint}");
+            }
+
+            if(DateTime.Now.Hour == 11 && DateTime.Now.Minute == 30)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Скоро обед. Осталось чуть чуть");
             }
-            else if (DateTime.Now.Hour == 16 && DateTime.Now.Minute == 10 && DateTime.Now.Second == 10)
+            else if (DateTime.Now.Hour == 16 && DateTime.Now.Minute == 10)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Скоро домой!!!");
             }
-            else if(DateTime.Today.DayOfWeek == DayOfWeek.Friday && DateTime.Now.Hour == 14 && DateTime.Now.Minute == 23 && DateTime.Now.Second == 30)
+            else if(DateTime.Today.DayOfWeek == DayOfWeek.Friday && DateTime.Now.Hour == 14 && DateTime.Now.Minute == 23)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Завтра выходной! Удачи отдохнуть");
             }
-            else if(DateTime.Now.Hour == 9 && DateTime.Now.Minute == 43 && DateTime.Now.Second == 10)
+            else if(DateTime.Now.Hour == 9 && DateTime.Now.Minute == 43)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "И не лень тебе в такую рань работать");
             }
-            else if (DateTime.Now.Hour == 11 && DateTime.Now.Minute == 13 && DateTime.Now.Second == 50)
+            else if (DateTime.Now.Hour == 11 && DateTime.Now.Minute == 13)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Вспомни про котиков и станет легче");
             }
-            else if (DateTime.Now.Hour == 15 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 0)
+            else if (DateTime.Now.Hour == 15 && DateTime.Now.Minute == 30)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Домой через час, пора заканчивать");
             }
-            else if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 30 && DateTime.Now.Second == 0)
+            else if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 30)
             {
                 Ai.AddMessage(Enums.TypeNotice.Comlite, "Пора выпить кофейка");
             }
@@ -1252,18 +1257,16 @@ namespace UASKI
         }
         private void dateTimePicker20_ValueChanged(object sender, EventArgs e)
         {
-            if (!Ai.IsClear)
+            if (!Ai.IsClear && textBox43.Text.Length > 0)
                 Ai.Pages.PrintPlan.Select();
         }
         private void dateTimePicker21_ValueChanged(object sender, EventArgs e)
         {
-            if (!Ai.IsClear)
-                Ai.Pages.PrintPlan.Select();
+            dateTimePicker20_ValueChanged(sender, e);
         }
         private void textBox44_TextChanged(object sender, EventArgs e)
         {
-            if(!Ai.IsClear)
-                Ai.Pages.SelectDTasks.Select();
+            dateTimePicker20_ValueChanged(sender, e);
         }
         private void checkBox9_CheckedChanged(object sender, EventArgs e)
         {

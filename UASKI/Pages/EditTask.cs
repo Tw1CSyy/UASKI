@@ -74,14 +74,14 @@ namespace UASKI.Pages
                 form.textBox21.Text = usr2.CodePodr.ToString();
                 form.textBox27.Text = CodeTask = task.Code;
                 form.dateTimePicker4.Value = task.Date;
+                form.textBox28.Text = "4";
 
                 form.button11.Text = "Закрыть";
                 form.button10.Enabled = true;
-                form.button11.Enabled = false;
                 form.button12.Enabled = true;
                 form.label72.Visible = false;
                 form.checkBox7.Checked = task.IsDouble;
-                SelectTextBox(form.textBox26);
+                form.dateTimePicker9.Focus();
             }
             else
             {
@@ -110,7 +110,7 @@ namespace UASKI.Pages
                 form.textBox28.Text = arhiv.Otm.ToString();
                 form.dateTimePicker9.Value = arhiv.DateClose.Date;
                 form.label72.Visible = true;
-                SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox27);
             }
         }
 
@@ -412,7 +412,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Left)
             {
                 SelectButton(form.button10, false);
-                SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox27);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -458,7 +458,8 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    Ai.Comlite($"Задача перемещена в архив с оценкой {otm.Value}");
+                    Ai.Comlite($"Задача перемещена в архив с оценкой {otm.Value} и кодом {Task.Code}");
+                    Ai.Settings.CountClose++;
                     Exit();
                 }
                 else
@@ -480,7 +481,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Left)
             {
                 SelectButton(form.button11, false);
-                SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox27);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -500,7 +501,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Left)
             {
                 SelectButton(form.button12, false);
-                SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox27);
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -580,7 +581,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Left)
             {
                 SelectButton(form.button47, false);
-                SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox27);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -611,7 +612,7 @@ namespace UASKI.Pages
             else if (e.KeyCode == Keys.Left)
             {
                 SelectButton(form.button48, false);
-                SelectTextBox(form.textBox26);
+                SelectTextBox(form.textBox27);
             }
             else if (e.KeyCode == Keys.Escape)
             {

@@ -25,14 +25,6 @@ namespace UASKI.Pages
 
         protected override void Clear()
         {
-            //form.textBox1.Clear();
-            //form.textBox2.Clear();
-            //form.textBox3.Clear();
-            //form.textBox4.Clear();
-            //form.textBox5.Clear();
-            //form.textBox6.Clear();
-            //form.textBox7.Clear();
-
             form.label23.Visible = false;
             form.label24.Visible = false;
             form.label25.Visible = false;
@@ -63,7 +55,10 @@ namespace UASKI.Pages
                 Ai.AppError();
                 return false;
             }
-
+            else
+            {
+                Ai.Settings.CountAdd++;
+            }
             return true;
         }
 

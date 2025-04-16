@@ -278,7 +278,8 @@ namespace UASKI.Helpers
                 
             }
 
-            e.HasMorePages = d.Rows[d.Rows.Count - 1].Tag == null;
+            if(d.Rows.Count - 1 > -1)
+                e.HasMorePages = d.Rows[d.Rows.Count - 1].Tag == null;
         }
 
     }
