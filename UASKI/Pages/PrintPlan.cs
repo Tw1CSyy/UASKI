@@ -56,10 +56,11 @@ namespace UASKI.Pages
             var dateFrom = form.dateTimePicker20.Value;
             var dateTo = form.dateTimePicker21.Value;
             var isps = IspModel.GetList();
+            var isp = isps.FirstOrDefault(c => c.CodePodr == codePodr);
             var holy = HolidayModel.GetList();
 
             var tasks = TaskModel.GetList()
-                .Where(c => c.GetIsp(isps).CodePodr == codePodr && c.Date >= dateFrom && c.Date <= dateTo)
+                .Where(c => c.IdIsp == isp.Code && c.Date >= dateFrom && c.Date <= dateTo)
                 .OrderBy(c => c.Date);
 
             var model = tasks.Select(c => new DataGridRowModel(
