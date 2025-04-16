@@ -39,6 +39,7 @@ namespace UASKI
             foreach (var item in Ai.MenuItems.Select(c => c.Text).ToArray())
                 Menu_Step1.Items.Add(item);
 
+            textBox41.Clear();
             Menu_Step1.SelectedIndex = 0;
             Menu_Step1.Focus();
 

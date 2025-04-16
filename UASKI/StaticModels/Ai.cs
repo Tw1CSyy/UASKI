@@ -163,13 +163,13 @@ namespace UASKI.StaticModels
                        },
                        new ItemMenuLevel2
                        {
-                           Text = "Просмотр Претензий/Рецензий",
-                           Page = Pages.SelectPret
+                           Text = "Просмотр Двусторонних",
+                           Page = Pages.SelectDTasks
                        },
                        new ItemMenuLevel2
                        {
-                           Text = "Просмотр Двусторонних",
-                           Page = Pages.SelectDTasks
+                           Text = "Просмотр Претензий/Рецензий",
+                           Page = Pages.SelectPret
                        }
                    }
                },
@@ -603,9 +603,6 @@ namespace UASKI.StaticModels
 
             PageHistory = PageHistory.Where(c => c.Index != page.Index).ToList();
             
-            if(PageHistory.Count > 0)
-                PageHistory.RemoveAt(PageHistory.Count - 1);
-
             if (page.DataGridView == null)
             {
                 page.Init(true , false);
@@ -614,6 +611,9 @@ namespace UASKI.StaticModels
             {
                 page.ExitToDataGrid();
             }
+
+            if (PageHistory.Count > 1)
+                PageHistory.RemoveAt(PageHistory.Count - 2);
 
             SelectMenu(page);
             return true;

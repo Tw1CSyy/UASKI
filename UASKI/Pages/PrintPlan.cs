@@ -18,10 +18,18 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            form.dateTimePicker20.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            form.dateTimePicker21.Value = DateTime.Today;
-            
-            if(form.DataGridView14.d.Rows.Count > 0)
+            if(IsCleared)
+            {
+                form.dateTimePicker20.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                form.dateTimePicker21.Value = DateTime.Today;
+            }
+
+            if (form.textBox42.Text.Length > 0 && form.textBox43.Text.Length > 0)
+            {
+                Select();
+            }
+
+            if (form.DataGridView14.d.Rows.Count > 0)
                 form.DataGridView14.d.Focus();
             else
                 form.dateTimePicker20.Focus();

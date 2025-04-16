@@ -21,8 +21,13 @@ namespace UASKI.Pages
         {
             form.dateTimePicker10.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             form.dateTimePicker11.Value = DateTime.Today;
-            
-            if(form.DataGridView7.d.Rows.Count != 0)
+
+            if (form.textBox20.Text.Length > 0 && form.textBox30.Text.Length > 0)
+            {
+                Select();
+            }
+
+            if (form.DataGridView7.d.Rows.Count != 0)
                 form.DataGridView7.d.Focus();
             else
                 form.dateTimePicker10.Focus();
@@ -314,7 +319,7 @@ namespace UASKI.Pages
             else if(e.KeyCode == Keys.Enter && form.DataGridView7.d.SelectedRows.Count > 0)
             {
                 var id = Convert.ToInt32(form.DataGridView7.d.SelectedRows[0].Cells[0].Value);
-                bool isArhiv = form.DataGridView7.d.SelectedRows[0].Cells[5].Value != null;
+                bool isArhiv = form.DataGridView7.d.SelectedRows[0].Cells[5].Value.ToString().Length > 0;
                 Ai.Pages.EditTask.Init(false, false);
                 Ai.Pages.EditTask.Show(id, isArhiv);
                 e.Handled = true;

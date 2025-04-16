@@ -2316,6 +2316,22 @@
         RU5ErkJggg==
 </value>
   </data>
+  <data name="textBox41.Text" xml:space="preserve">
+    <value>- Включаю приложение. Удачной работы!
+- Текущее время: 09:09:23
+- Настройки загружены
+- Подключение с базой получено
+- Сегодня нет карточек на закрытие
+- Опаздывающих на текущий момент: 2
+- Показатели работы:
+- 0,8 - 39
+- 0,77 - 2
+- 0,76 - 2
+- 0,7 - 1
+- Праздничные дни в диапазоне: 01.12.2024 - 16.04.2028
+- Сегодня закрыто карточек: 2
+- Получить информацию о работе клавишах: CTRL + Ш</value>
+  </data>
   <metadata name="TimeTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>25, 15</value>
   </metadata>

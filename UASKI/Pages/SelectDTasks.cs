@@ -127,6 +127,7 @@ namespace UASKI.Pages
                     Ai.Pages.SelectArhiv.IsCleared = false;
                     Ai.Pages.SelectArhiv.Init(true, false);
                     Ai.SelectMenu(Ai.Pages.SelectArhiv);
+                    e.Handled = true;
                 }
             }
             else

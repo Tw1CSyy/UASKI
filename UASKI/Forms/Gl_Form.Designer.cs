@@ -3994,16 +3994,16 @@ namespace UASKI
             // textBox41
             // 
             this.textBox41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox41.Font = new System.Drawing.Font("Segoe UI Symbol", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox41.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox41.ForeColor = System.Drawing.Color.Black;
             this.textBox41.Location = new System.Drawing.Point(893, 1);
             this.textBox41.Multiline = true;
             this.textBox41.Name = "textBox41";
             this.textBox41.ReadOnly = true;
             this.textBox41.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox41.Size = new System.Drawing.Size(315, 721);
+            this.textBox41.Size = new System.Drawing.Size(359, 721);
             this.textBox41.TabIndex = 7;
-            this.textBox41.Text = "\r\n";
+            this.textBox41.Text = resources.GetString("textBox41.Text");
             // 
             // TimeTimer
             // 
@@ -4014,7 +4014,7 @@ namespace UASKI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1207, 722);
+            this.ClientSize = new System.Drawing.Size(1252, 722);
             this.Controls.Add(this.textBox41);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Menu_Step2);
