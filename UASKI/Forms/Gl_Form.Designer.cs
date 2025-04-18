@@ -479,7 +479,7 @@ namespace UASKI
             this.tabControl1.Location = new System.Drawing.Point(2, 153);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(889, 569);
+            this.tabControl1.Size = new System.Drawing.Size(886, 569);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -514,7 +514,7 @@ namespace UASKI
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(881, 543);
+            this.tabPage2.Size = new System.Drawing.Size(878, 543);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Просмотр Исп-Кон";
             // 

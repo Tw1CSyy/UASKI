@@ -223,7 +223,7 @@ namespace UASKI.Models.Components
                     count++;
             }
 
-            var with = (int)Math.Floor((double)d.Width / (double)count);
+            var with = (int)Math.Floor((double)d.Width / (double)count) - 3;
 
             for (int i = 0; i < d.Columns.Count; i++)
             {

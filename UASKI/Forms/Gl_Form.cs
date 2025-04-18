@@ -31,7 +31,6 @@ namespace UASKI
             
             // Инициализируем системные переменные
             ComponentIniz();
-            ResizeEl();
             Ai.Init(this);
             Ai.Iniz(textBox41);
             
@@ -39,6 +38,7 @@ namespace UASKI
             foreach (var item in Ai.MenuItems.Select(c => c.Text).ToArray())
                 Menu_Step1.Items.Add(item);
 
+            ResizeEl();
             textBox41.Clear();
             Menu_Step1.SelectedIndex = 0;
             Menu_Step1.Focus();
@@ -211,12 +211,12 @@ namespace UASKI
             Menu_Step1.Width = Menu_Step2.Width = panel3.Width = panel4.Width = (this.Width - textBox41.Width - 15) / 2;
             Menu_Step2.Location = new System.Drawing.Point(Menu_Step1.Width + Menu_Step1.Location.X, Menu_Step2.Location.Y);
             panel3.Location = Menu_Step2.Location;
-            tabControl1.Width = this.Width - 334;
+            tabControl1.Width = this.Width - 375;
             tabControl1.Height = this.Height - 192;
             pictureBox1.Location = new System.Drawing.Point((tabControl1.Width / 2) - (pictureBox1.Width / 2), (tabControl1.Height / 2) - (pictureBox1.Height / 2));
             // Просмотр
 
-            ispDataGridView.Width = dataGridView3.Width = dataGridView1.Width = dataGridView5.Width = dataGridView12.Width = dataGridView15.Width = tabControl1.Width;
+            ispDataGridView.Width = dataGridView3.Width = dataGridView1.Width = dataGridView5.Width = dataGridView12.Width = dataGridView15.Width = tabControl1.Width - 27;
             ispDataGridView.Height = dataGridView3.Height = dataGridView1.Height = dataGridView5.Height = dataGridView12.Height = dataGridView15.Height = tabControl1.Height - 22;
 
             dataGridView6.Width = tabControl1.Width - 184;
