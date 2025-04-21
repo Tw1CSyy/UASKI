@@ -11,7 +11,7 @@ namespace UASKI.Core.Models
     /// </summary>
     public class TaskModel
     {
-        private static UAContext context = new UAContext();
+        private static UAContext context = DataConnection.Context;
 
         /// <summary>
         /// Код задания

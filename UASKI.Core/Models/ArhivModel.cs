@@ -12,7 +12,7 @@ namespace UASKI.Core.Models
     /// </summary>
     public class ArhivModel
     {
-        private readonly static UAContext context = new UAContext();
+        private readonly static UAContext context = DataConnection.Context;
 
         /// <summary>
         /// Код задания

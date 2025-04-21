@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
 using Npgsql;
 using UASKI.Data.Entityes;
 using UASKI.Data.Entyties;
@@ -8,12 +11,57 @@ namespace UASKI.Data
 {
     public class UAContext
     {
-        public List<IspEntity> Isps { get => SelectIsp(); }
-        public List<TaskEntity> Tasks { get => SelectTasks(); }
-        public List<HolidayEntity> Holidays { get => SelectHolidays(); }
-        public List<ArhivEntity> Arhiv { get => SelectArhiv(); }
-        public List<PretEntity> Prets { get => SelectPret(); }
+        private CancellationTokenSource _token;
+        public static DataModel Connection { get; set; }
+        public static DataModel ListenConnection { get; set; }
+        private bool IsUpdateData { get; set; } = false;
 
+        public List<IspEntity> Isps { get; private set; }
+        public List<TaskEntity> Tasks { get; private set; }
+        public List<HolidayEntity> Holidays { get; private set; }
+        public List<ArhivEntity> Arhiv { get; private set; }
+        public List<PretEntity> Prets { get; private set; }
+
+        public UAContext()
+        {
+            Isps = SelectIsp();
+            Tasks = SelectTasks();
+            Holidays = SelectHolidays();
+            Arhiv = SelectArhiv();
+            Prets = SelectPret();
+
+            using (var cmd = new NpgsqlCommand("LISTEN tasks_channel;", ListenConnection.Get()))
+            {
+                cmd.ExecuteNonQuery();
+                _token = new CancellationTokenSource();
+                Task.Run(() => ListenForNotifications(_token.Token));
+            }
+        }
+
+        private async Task ListenForNotifications(CancellationToken token)
+        {
+            ListenConnection.Get().Notification += (sender, e) =>
+            {
+                if(!IsUpdateData)
+                {
+                    switch (e.Channel)
+                    {
+                        case "tasks_channel":
+                            Tasks = SelectTasks();
+                            break;
+
+                    }
+                }
+
+                IsUpdateData = false;
+            };
+
+            while (true)
+            {
+                await ListenConnection.Get().WaitAsync(token);
+
+            }
+        }
 
         /// <summary>
         /// Выборка из таблицы Isp
@@ -24,7 +72,7 @@ namespace UASKI.Data
             var result = new List<IspEntity>();
             var query = $"SELECT * FROM \"Isp\"";
 
-            var command = new NpgsqlCommand(query, DataModel.Get());
+            var command = new NpgsqlCommand(query,Connection.Get());
             var reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -54,7 +102,7 @@ namespace UASKI.Data
             var result = new List<TaskEntity>();
             var query = "SELECT * FROM \"Tasks\"";
 
-            var command = new NpgsqlCommand(query, DataModel.Get());
+            var command = new NpgsqlCommand(query,Connection.Get());
             var reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -86,7 +134,7 @@ namespace UASKI.Data
             var result = new List<HolidayEntity>();
             var query = "SELECT * FROM \"Holidays\"";
 
-            var command = new NpgsqlCommand(query, DataModel.Get());
+            var command = new NpgsqlCommand(query,Connection.Get());
             var reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -113,7 +161,7 @@ namespace UASKI.Data
             var result = new List<ArhivEntity>();
             var query = "SELECT * FROM \"Arhiv\"";
 
-            var command = new NpgsqlCommand(query, DataModel.Get());
+            var command = new NpgsqlCommand(query,Connection.Get());
             var reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -147,7 +195,7 @@ namespace UASKI.Data
             var result = new List<PretEntity>();
             var query = "SELECT * FROM \"Pret\"";
 
-            var command = new NpgsqlCommand(query, DataModel.Get());
+            var command = new NpgsqlCommand(query,Connection.Get());
             var reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -177,10 +225,11 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(IspEntity entity)
         {
+            IsUpdateData = true;
             var query = $"INSERT INTO \"Isp\" (\"Code\", \"FirstName\", \"Name\", \"LastName\", \"CodePodr\" ) " +
                 $"VALUES ('{entity.Code}', '{entity.FirstName}', '{entity.Name}', '{entity.LastName}', '{entity.CodePodr}')";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -190,10 +239,11 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(TaskEntity entity)
         {
+            IsUpdateData = true;
             var query = $"INSERT INTO \"Tasks\" (\"Cod\", \"IdIsp\", \"IdKon\", \"Date\", \"IsDouble\")" +
                 $"VALUES ('{entity.Code}', '{entity.IdIsp}', '{entity.IdCon}', '{entity.Date.Date}', '{entity.IsDouble}')";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
 
         }
 
@@ -204,10 +254,11 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Add(HolidayEntity entity)
         {
+            IsUpdateData = true;
             var query = $"INSERT INTO \"Holidays\" (\"Date\") " +
                 $"VALUES ('{entity.Date.Date}')";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -217,10 +268,11 @@ namespace UASKI.Data
         /// <returns></returns>
         public bool Add(ArhivEntity entity)
         {
+            IsUpdateData = true;
             var query = $"INSERT INTO \"Arhiv\" (\"Cod\", \"IdIsp\", \"IdKon\", \"Date\", \"DateClose\", \"Otm\", \"IsDouble\") " +
                $"VALUES ('{entity.Code}', '{entity.IdIsp}', '{entity.IdCon}', '{entity.Date.Date}', '{entity.DateClose}', '{entity.Otm}', '{entity.IsDouble}')";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -230,10 +282,11 @@ namespace UASKI.Data
         /// <returns></returns>
         public bool Add(PretEntity entity)
         {
+            IsUpdateData = true;
             var query = $"INSERT INTO \"Pret\" (\"Code\", \"IdTask\", \"Date\", \"Otm\", \"Type\") " +
                $"VALUES ('{entity.Code}', '{entity.IdTask}', '{entity.Date}', '{entity.Otm}', '{entity.Type}')";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -244,6 +297,7 @@ namespace UASKI.Data
         /// <returns></returns>
         public bool Update(PretEntity pret, int Id)
         {
+            IsUpdateData = true;
 
             var query = $"UPDATE \"Pret\" SET " +
                 $"\"Code\" = '{pret.Code}'," +
@@ -253,7 +307,7 @@ namespace UASKI.Data
                 $"\"Type\" = '{pret.Type}'" +
                 $"WHERE \"Id\" = '{Id}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -264,7 +318,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Update(IspEntity isp, int code)
         {
-            
+            IsUpdateData = true;
+
             var query = $"UPDATE \"Isp\" SET " +
                 $"\"Code\" = '{isp.Code}', " +
                 $"\"FirstName\" = '{isp.FirstName}'," +
@@ -273,7 +328,7 @@ namespace UASKI.Data
                 $"\"CodePodr\" = '{isp.CodePodr}'" +
                 $"WHERE \"Code\" = '{code}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -284,6 +339,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Update(TaskEntity task, int Id)
         {
+            IsUpdateData = true;
+
             var query = $"UPDATE \"Tasks\" SET " +
                 $"\"Cod\" = '{task.Code}'," +
                 $"\"IdIsp\" = '{task.IdIsp}'," +
@@ -291,8 +348,8 @@ namespace UASKI.Data
                 $"\"IsDouble\" = '{task.IsDouble}'," +
                 $"\"Date\" = '{task.Date}' " +
                 $"WHERE \"Id\" = '{Id}'";
-
-            return DataModel.Complite(query);
+            
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -302,9 +359,9 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Update(HolidayEntity holiday)
         {
+            IsUpdateData = true;
             var query = $"UPDATE \"Holidays\" SET \"Date\" = '{holiday.Date}' WHERE \"Id\" = '{holiday.Id}'";
-
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -315,7 +372,8 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Update(ArhivEntity task, int Id)
         {
-            
+            IsUpdateData = true;
+
             var query = $"UPDATE \"Arhiv\" SET " +
                 $"\"Cod\" = '{task.Code}'," +
                 $"\"IdIsp\" = '{task.IdIsp}'," +
@@ -326,7 +384,7 @@ namespace UASKI.Data
                 $"\"Otm\" = '{task.Otm}'" +
                 $"WHERE \"Id\" = '{Id}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -336,9 +394,10 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(IspEntity entity)
         {
+            IsUpdateData = true;
             var query = $"DELETE FROM \"Isp\" WHERE \"Code\" = '{entity.Code}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -348,9 +407,10 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(TaskEntity entity)
         {
+            IsUpdateData = true;
             var query = $"DELETE FROM \"Tasks\" WHERE \"Id\" = '{entity.Id}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -360,9 +420,10 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(ArhivEntity entity)
         {
+            IsUpdateData = true;
             var query = $"DELETE FROM \"Arhiv\" WHERE \"Id\" = '{entity.Id}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -372,9 +433,10 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(HolidayEntity entity)
         {
+            IsUpdateData = true;
             var query = $"DELETE FROM \"Holidays\" WHERE \"Id\" = '{entity.Id}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
 
         /// <summary>
@@ -384,9 +446,10 @@ namespace UASKI.Data
         /// <returns>Положительный или отрицательный ответ</returns>
         public bool Delete(PretEntity entity)
         {
+            IsUpdateData = true;
             var query = $"DELETE FROM \"Pret\" WHERE \"Id\" = '{entity.Id}'";
 
-            return DataModel.Complite(query);
+            return Connection.Complite(query);
         }
     }
 }

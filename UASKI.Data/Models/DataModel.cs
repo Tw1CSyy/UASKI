@@ -1,36 +1,38 @@
-﻿using Npgsql;
+﻿using System.Dynamic;
+
+using Npgsql;
 
 namespace UASKI
 {
     /// <summary>
     /// Класс для подключения к БД
     /// </summary>
-    public static class DataModel
+    public class DataModel
     {
-        
-        /// <summary>
-        /// Объект подключения
-        /// </summary>
-        private static NpgsqlConnection Connection { get; set; }
-
-        /// <summary>
-        /// Открыто ли подключение
-        /// </summary>
-        public static bool IsOpened { get; private set; } = false;
 
         /// <summary>
         /// Создает объект подключения
         /// </summary>
         /// <param name="connectionString">Строка подлкючения</param>
-        public static void CreateConnection(string connectionString)
+        public DataModel(string connectionString)
         {
             Connection = new NpgsqlConnection(connectionString);
         }
 
         /// <summary>
+        /// Объект подключения
+        /// </summary>
+        private NpgsqlConnection Connection { get; set; }
+
+        /// <summary>
+        /// Открыто ли подключение
+        /// </summary>
+        public bool IsOpened { get; private set; } = false;
+
+        /// <summary>
         /// Открывает подключение
         /// </summary>
-        public static void Open()
+        public void Open()
         {
             if(!IsOpened)
             {
@@ -42,7 +44,7 @@ namespace UASKI
         /// <summary>
         /// Закрывает подключение
         /// </summary>
-        public static void Close()
+        public void Close()
         {
             if (IsOpened)
             {
@@ -54,7 +56,7 @@ namespace UASKI
         /// <summary>
         /// Возвращает подключение
         /// </summary>
-        public static NpgsqlConnection Get()
+        public NpgsqlConnection Get()
         {
             return Connection;
         }
@@ -64,7 +66,7 @@ namespace UASKI
         /// </summary>
         /// <param name="query">Строка запроса Sql</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public static bool Complite(string query)
+        public bool Complite(string query)
         {
             var command = new NpgsqlCommand(query, Get());
             return command.ExecuteNonQuery() == 1;

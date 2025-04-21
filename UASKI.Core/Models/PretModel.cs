@@ -11,7 +11,7 @@ namespace UASKI.Core.Models
     /// </summary>
     public class PretModel
     {
-        private readonly static UAContext context = new UAContext();
+        private readonly static UAContext context = DataConnection.Context;
 
         /// <summary>
         /// Идентификатор претензии/рецензии

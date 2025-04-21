@@ -1,5 +1,7 @@
 ﻿using System;
 
+using UASKI.Data;
+
 namespace UASKI.Core
 {
     public class DataConnection
@@ -10,6 +12,11 @@ namespace UASKI.Core
         public bool IsConnection { get; private set; }
 
         /// <summary>
+        /// Модель базы
+        /// </summary>
+        internal static UAContext Context { get; private set; }
+       
+        /// <summary>
         /// Создает объект класса, создает и открывает подключение
         /// </summary>
         /// <param name="connectionString">Строка подключения</param>
@@ -17,9 +24,12 @@ namespace UASKI.Core
         {
             try
             {
-                DataModel.CreateConnection(connectionString);
-                DataModel.Open();
+                UAContext.Connection = new DataModel(connectionString);
+                UAContext.ListenConnection = new DataModel(connectionString);
+                UAContext.Connection.Open();
+                UAContext.ListenConnection.Open();
                 IsConnection = true;
+                Context = new UAContext();
             }
             catch (Exception)
             {
@@ -34,7 +44,9 @@ namespace UASKI.Core
         {
             try
             {
-                DataModel.Close();
+                UAContext.Connection.Close();
+                UAContext.ListenConnection.Close();
+                
             }
             catch (Exception)
             {

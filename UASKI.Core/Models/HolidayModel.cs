@@ -11,7 +11,7 @@ namespace UASKI.Core.Models
     /// </summary>
     public class HolidayModel
     {
-        private readonly static UAContext context = new UAContext();
+        private readonly static UAContext context = DataConnection.Context;
 
         /// <summary>
         /// Идентификатор праздника

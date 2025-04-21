@@ -12,7 +12,7 @@ namespace UASKI.Core.Models
     /// </summary>
     public class IspModel
     {
-        private static readonly UAContext context = new UAContext();
+        private static readonly UAContext context = DataConnection.Context;
 
         /// <summary>
         /// Код сотрудника
