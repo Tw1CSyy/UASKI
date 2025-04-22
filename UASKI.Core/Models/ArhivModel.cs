@@ -86,7 +86,7 @@ namespace UASKI.Core.Models
         /// <param name="dateClose">Дата закрытия</param>
         /// <param name="otm">Оценка</param>
         /// <param name="isDouble">Двухстороняя задача</param>
-        public ArhivModel(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm, int id, bool isDouble)
+        public ArhivModel(string code, int idIsp, int idCon, DateTime date, DateTime dateClose, int otm, bool isDouble, int id = 0)
         {
             Code = code;
             IdIsp = idIsp;

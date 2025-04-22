@@ -16,6 +16,8 @@ namespace UASKI.Models.Components
         public DataGridViewComponent(DataGridView dataGridView)
         {
             d = dataGridView;
+            d.ScrollBars = ScrollBars.Vertical;
+            ResizeDataGridView();
         }
 
         public void KeyDown(KeyEventArgs e, TextBox textBox = null)
@@ -81,12 +83,13 @@ namespace UASKI.Models.Components
         private bool DataGridViewSort(Keys key)
         {
             var index = SystemHelper.GetIntKeyDown(key);
+            
             if (d.SelectedRows.Count == 0)
                 return false;
 
             var id = d.SelectedRows[0].Index;
 
-            if (d.Columns.Count < index || index == -1)
+            if (d.Columns.Count < index || index <= 0)
             {
                 return false;
             }
@@ -212,23 +215,9 @@ namespace UASKI.Models.Components
         /// <summary>
         /// Устанавливает размер колонок в DataGrid по ширине
         /// </summary>
-        /// <param name="d">DataGirdView</param>
         public void ResizeDataGridView()
         {
-            var count = 0;
-
-            for (int i = 0; i < d.Columns.Count; i++)
-            {
-                if (d.Columns[i].Visible)
-                    count++;
-            }
-
-            var with = (int)Math.Floor((double)d.Width / (double)count) - 3;
-
-            for (int i = 0; i < d.Columns.Count; i++)
-            {
-                d.Columns[i].Width = with;
-            }
+            d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         /// <summary>

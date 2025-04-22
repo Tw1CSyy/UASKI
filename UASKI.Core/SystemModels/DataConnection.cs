@@ -53,5 +53,13 @@ namespace UASKI.Core
 
             }
         }
+
+        /// <summary>
+        /// Обновляет данные в Context
+        /// </summary>
+        public static void UploadContext()
+        {
+            Context.UploadContext();
+        }
     }
 }

@@ -230,7 +230,7 @@ namespace UASKI
             
             //Печатные
             panel23.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel23.Width / 2), panel23.Location.Y);
-            dataGridView7.Width = tabControl1.Width - 8;
+            dataGridView7.Width = tabControl1.Width - 10;
             dataGridView7.Height = tabControl1.Height - 110;
             
             panel24.Location = new System.Drawing.Point((tabControl1.Width / 2) - (panel24.Width / 2), panel24.Location.Y);

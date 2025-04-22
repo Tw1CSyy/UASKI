@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Dynamic;
 
 using Npgsql;
 
@@ -70,6 +71,26 @@ namespace UASKI
         {
             var command = new NpgsqlCommand(query, Get());
             return command.ExecuteNonQuery() == 1;
+        }
+
+        /// <summary>
+        /// Возвращает максимальное id в таблице
+        /// </summary>
+        /// <param name="tableName">Название таблицы</param>
+        /// <returns>int или 0</returns>
+        public int GetMaxId(string tableName)
+        {
+            var command = new NpgsqlCommand($"SELECT MAX(\"Id\") FROM \"{tableName}\"", Get());
+            var reader = command.ExecuteReader();
+            int result = 0;
+
+            while (reader.Read())
+            {
+                result = Convert.ToInt32(reader.GetValue(0));
+            }
+
+            reader.Close();
+            return result;
         }
     }
 }

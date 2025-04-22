@@ -489,7 +489,7 @@ namespace UASKI
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(881, 543);
+            this.tabPage1.Size = new System.Drawing.Size(878, 543);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Главная";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -497,9 +497,9 @@ namespace UASKI
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(28, 58);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 43);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(826, 412);
+            this.pictureBox1.Size = new System.Drawing.Size(848, 427);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -598,7 +598,7 @@ namespace UASKI
             this.tabPage4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(881, 543);
+            this.tabPage4.Size = new System.Drawing.Size(878, 543);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Просмотр задач";
             // 
@@ -821,7 +821,7 @@ namespace UASKI
             this.tabPage9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(881, 543);
+            this.tabPage9.Size = new System.Drawing.Size(878, 543);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Просмотр Архива";
             // 
@@ -1043,7 +1043,7 @@ namespace UASKI
             this.tabPage10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(881, 543);
+            this.tabPage10.Size = new System.Drawing.Size(878, 543);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Просмотр праздн";
             // 
@@ -1089,7 +1089,7 @@ namespace UASKI
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(881, 543);
+            this.tabPage3.Size = new System.Drawing.Size(878, 543);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Просмотр опзд";
             // 
@@ -1311,7 +1311,7 @@ namespace UASKI
             this.tabPage5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(881, 543);
+            this.tabPage5.Size = new System.Drawing.Size(878, 543);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Добавление задачи";
             // 
@@ -1658,7 +1658,7 @@ namespace UASKI
             this.tabPage6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(881, 543);
+            this.tabPage6.Size = new System.Drawing.Size(878, 543);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Добавление Исп-Кон";
             // 
@@ -1880,7 +1880,7 @@ namespace UASKI
             this.tabPage7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(881, 543);
+            this.tabPage7.Size = new System.Drawing.Size(878, 543);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Добавление празн";
             // 
@@ -1950,7 +1950,7 @@ namespace UASKI
             this.IspCon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.IspCon.Location = new System.Drawing.Point(4, 22);
             this.IspCon.Name = "IspCon";
-            this.IspCon.Size = new System.Drawing.Size(881, 543);
+            this.IspCon.Size = new System.Drawing.Size(878, 543);
             this.IspCon.TabIndex = 7;
             this.IspCon.Text = "Исп-Кон";
             // 
@@ -2198,7 +2198,7 @@ namespace UASKI
             this.Tasks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Tasks.Location = new System.Drawing.Point(4, 22);
             this.Tasks.Name = "Tasks";
-            this.Tasks.Size = new System.Drawing.Size(881, 543);
+            this.Tasks.Size = new System.Drawing.Size(878, 543);
             this.Tasks.TabIndex = 10;
             this.Tasks.Text = "Задачи";
             // 
@@ -2691,7 +2691,7 @@ namespace UASKI
             this.tabPage8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(881, 543);
+            this.tabPage8.Size = new System.Drawing.Size(878, 543);
             this.tabPage8.TabIndex = 11;
             this.tabPage8.Text = "Печать списка";
             // 
@@ -2829,7 +2829,7 @@ namespace UASKI
             this.tabPage11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(881, 543);
+            this.tabPage11.Size = new System.Drawing.Size(878, 543);
             this.tabPage11.TabIndex = 12;
             this.tabPage11.Text = "Печать опазданий";
             // 
@@ -2909,7 +2909,7 @@ namespace UASKI
             this.tabPage12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(881, 543);
+            this.tabPage12.Size = new System.Drawing.Size(878, 543);
             this.tabPage12.TabIndex = 13;
             this.tabPage12.Text = "Печать мероприятия";
             // 
@@ -2989,7 +2989,7 @@ namespace UASKI
             this.tabPage13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(881, 543);
+            this.tabPage13.Size = new System.Drawing.Size(878, 543);
             this.tabPage13.TabIndex = 14;
             this.tabPage13.Text = "Печать показатели";
             // 
@@ -3095,7 +3095,7 @@ namespace UASKI
             this.tabPage14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(881, 543);
+            this.tabPage14.Size = new System.Drawing.Size(878, 543);
             this.tabPage14.TabIndex = 15;
             this.tabPage14.Text = "Печать кооф";
             // 
@@ -3290,7 +3290,7 @@ namespace UASKI
             this.tabPage15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(881, 543);
+            this.tabPage15.Size = new System.Drawing.Size(878, 543);
             this.tabPage15.TabIndex = 16;
             this.tabPage15.Text = "Претензии";
             // 
@@ -3471,7 +3471,7 @@ namespace UASKI
             this.tabPage16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage16.Location = new System.Drawing.Point(4, 22);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(881, 543);
+            this.tabPage16.Size = new System.Drawing.Size(878, 543);
             this.tabPage16.TabIndex = 17;
             this.tabPage16.Text = "Просм. претензий";
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -3671,7 +3671,7 @@ namespace UASKI
             this.tabPage17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage17.Location = new System.Drawing.Point(4, 22);
             this.tabPage17.Name = "tabPage17";
-            this.tabPage17.Size = new System.Drawing.Size(881, 543);
+            this.tabPage17.Size = new System.Drawing.Size(878, 543);
             this.tabPage17.TabIndex = 18;
             this.tabPage17.Text = "Печать планов";
             // 
@@ -3809,7 +3809,7 @@ namespace UASKI
             this.tabPage18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage18.Location = new System.Drawing.Point(4, 22);
             this.tabPage18.Name = "tabPage18";
-            this.tabPage18.Size = new System.Drawing.Size(881, 543);
+            this.tabPage18.Size = new System.Drawing.Size(878, 543);
             this.tabPage18.TabIndex = 19;
             this.tabPage18.Text = "Просмотр д";
             this.tabPage18.UseVisualStyleBackColor = true;

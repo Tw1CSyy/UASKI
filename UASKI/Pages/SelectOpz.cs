@@ -23,10 +23,8 @@ namespace UASKI.Pages
             if(this.IsCleared)
             {
                 FilterClose();
-                form.checkBox3.Checked = true;
                 form.dateTimePicker7.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 form.dateTimePicker8.Value = DateTime.Today;
-                form.panel18.Visible = true;
                 form.checkBox12.Checked = false;
             }
 
@@ -39,6 +37,8 @@ namespace UASKI.Pages
             form.DataGridView1.d.DataSource = null;
             form.textBox33.Clear();
             form.textBox34.Clear();
+            form.panel18.Visible = false;
+            form.checkBox3.Checked = false;
         }
 
         public override void Select()

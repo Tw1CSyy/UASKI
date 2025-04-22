@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,15 +23,14 @@ namespace UASKI.Data
         public List<ArhivEntity> Arhiv { get; private set; }
         public List<PretEntity> Prets { get; private set; }
 
+        /// <summary>
+        /// Создает объект класса
+        /// </summary>
         public UAContext()
         {
-            Isps = SelectIsp();
-            Tasks = SelectTasks();
-            Holidays = SelectHolidays();
-            Arhiv = SelectArhiv();
-            Prets = SelectPret();
+            UploadContext();
 
-            using (var cmd = new NpgsqlCommand("LISTEN tasks_channel;", ListenConnection.Get()))
+            using (var cmd = new NpgsqlCommand("LISTEN tasks_channel;LISTEN arhiv_channel;LISTEN isps_channel;LISTEN pret_channel;LISTEN holy_channel;", ListenConnection.Get()))
             {
                 cmd.ExecuteNonQuery();
                 _token = new CancellationTokenSource();
@@ -38,6 +38,23 @@ namespace UASKI.Data
             }
         }
 
+        /// <summary>
+        /// Обновляет данные в Context
+        /// </summary>
+        public void UploadContext()
+        {
+            Isps = SelectIsp();
+            Tasks = SelectTasks();
+            Holidays = SelectHolidays();
+            Arhiv = SelectArhiv();
+            Prets = SelectPret();
+        }
+
+        /// <summary>
+        /// Настраивает слежку за тригерами
+        /// </summary>
+        /// <param name="token">Токен ассихроности</param>
+        /// <returns></returns>
         private async Task ListenForNotifications(CancellationToken token)
         {
             ListenConnection.Get().Notification += (sender, e) =>
@@ -48,6 +65,18 @@ namespace UASKI.Data
                     {
                         case "tasks_channel":
                             Tasks = SelectTasks();
+                            break;
+                        case "arhiv_channel":
+                            Arhiv = SelectArhiv();
+                            break;
+                        case "holy_channel":
+                            Holidays = SelectHolidays();
+                            break;
+                        case "pret_channel":
+                            Prets = SelectPret();
+                            break;
+                        case "isps_channel":
+                            Isps = SelectIsp();
                             break;
 
                     }
@@ -229,7 +258,16 @@ namespace UASKI.Data
             var query = $"INSERT INTO \"Isp\" (\"Code\", \"FirstName\", \"Name\", \"LastName\", \"CodePodr\" ) " +
                 $"VALUES ('{entity.Code}', '{entity.FirstName}', '{entity.Name}', '{entity.LastName}', '{entity.CodePodr}')";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var id = GetMaxIdIsp();
+            var newEntity = new IspEntity(id, entity.FirstName, entity.Name, entity.LastName, entity.CodePodr);
+            Isps.Add(newEntity);
+            return result;
+            
         }
 
         /// <summary>
@@ -243,8 +281,16 @@ namespace UASKI.Data
             var query = $"INSERT INTO \"Tasks\" (\"Cod\", \"IdIsp\", \"IdKon\", \"Date\", \"IsDouble\")" +
                 $"VALUES ('{entity.Code}', '{entity.IdIsp}', '{entity.IdCon}', '{entity.Date.Date}', '{entity.IsDouble}')";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
 
+            if (result == false)
+                return false;
+
+            var id = GetMaxIdTasks();
+            var newEntity = new TaskEntity(entity.Code, entity.IdIsp, entity.IdCon, entity.Date, id , entity.IsDouble);
+            Tasks.Add(newEntity);
+            return result;
+            
         }
 
         /// <summary>
@@ -258,7 +304,15 @@ namespace UASKI.Data
             var query = $"INSERT INTO \"Holidays\" (\"Date\") " +
                 $"VALUES ('{entity.Date.Date}')";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var id = GetMaxIdHoliday();
+            var newEntity = new HolidayEntity(id, entity.Date);
+            Holidays.Add(newEntity);
+            return result;
         }
 
         /// <summary>
@@ -272,7 +326,16 @@ namespace UASKI.Data
             var query = $"INSERT INTO \"Arhiv\" (\"Cod\", \"IdIsp\", \"IdKon\", \"Date\", \"DateClose\", \"Otm\", \"IsDouble\") " +
                $"VALUES ('{entity.Code}', '{entity.IdIsp}', '{entity.IdCon}', '{entity.Date.Date}', '{entity.DateClose}', '{entity.Otm}', '{entity.IsDouble}')";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var id = GetMaxIdArhiv();
+            var newEntity = new ArhivEntity(entity.Code, entity.IdIsp, entity.IdCon, entity.Date, entity.DateClose, entity.Otm, id, entity.IsDouble);
+            Arhiv.Add(newEntity);
+            return result;
+            
         }
 
         /// <summary>
@@ -286,7 +349,15 @@ namespace UASKI.Data
             var query = $"INSERT INTO \"Pret\" (\"Code\", \"IdTask\", \"Date\", \"Otm\", \"Type\") " +
                $"VALUES ('{entity.Code}', '{entity.IdTask}', '{entity.Date}', '{entity.Otm}', '{entity.Type}')";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var id = GetMaxIdPret();
+            var newEntity = new PretEntity(id, entity.Code, entity.IdTask, entity.Date, entity.Otm, entity.Type);
+            Prets.Add(newEntity);
+            return result;
         }
 
         /// <summary>
@@ -307,7 +378,15 @@ namespace UASKI.Data
                 $"\"Type\" = '{pret.Type}'" +
                 $"WHERE \"Id\" = '{Id}'";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var en = Prets.First(c => c.Id == Id);
+            Prets.Remove(en);
+            Prets.Add(pret);
+            return result;
         }
 
         /// <summary>
@@ -328,7 +407,15 @@ namespace UASKI.Data
                 $"\"CodePodr\" = '{isp.CodePodr}'" +
                 $"WHERE \"Code\" = '{code}'";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var en = Isps.First(c => c.Code == code);
+            Isps.Remove(en);
+            Isps.Add(isp);
+            return result;
         }
 
         /// <summary>
@@ -348,8 +435,16 @@ namespace UASKI.Data
                 $"\"IsDouble\" = '{task.IsDouble}'," +
                 $"\"Date\" = '{task.Date}' " +
                 $"WHERE \"Id\" = '{Id}'";
-            
-            return Connection.Complite(query);
+
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var en = Tasks.First(c => c.Id == Id);
+            Tasks.Remove(en);
+            Tasks.Add(task);
+            return result;
         }
 
         /// <summary>
@@ -361,7 +456,15 @@ namespace UASKI.Data
         {
             IsUpdateData = true;
             var query = $"UPDATE \"Holidays\" SET \"Date\" = '{holiday.Date}' WHERE \"Id\" = '{holiday.Id}'";
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var en = Holidays.First(c => c.Id == holiday.Id);
+            Holidays.Remove(en);
+            Holidays.Add(holiday);
+            return result;
         }
 
         /// <summary>
@@ -384,7 +487,15 @@ namespace UASKI.Data
                 $"\"Otm\" = '{task.Otm}'" +
                 $"WHERE \"Id\" = '{Id}'";
 
-            return Connection.Complite(query);
+            var result = Connection.Complite(query);
+
+            if (result == false)
+                return false;
+
+            var en = Arhiv.First(c => c.Id == Id);
+            Arhiv.Remove(en);
+            Arhiv.Add(task);
+            return result;
         }
 
         /// <summary>
@@ -396,8 +507,14 @@ namespace UASKI.Data
         {
             IsUpdateData = true;
             var query = $"DELETE FROM \"Isp\" WHERE \"Code\" = '{entity.Code}'";
+            var result = Connection.Complite(query);
 
-            return Connection.Complite(query);
+            if (result == false)
+                return false;
+
+            var element = Isps.First(c => c.Code == entity.Code);
+            Isps.Remove(element);
+            return result;
         }
 
         /// <summary>
@@ -409,8 +526,14 @@ namespace UASKI.Data
         {
             IsUpdateData = true;
             var query = $"DELETE FROM \"Tasks\" WHERE \"Id\" = '{entity.Id}'";
+            var result = Connection.Complite(query);
 
-            return Connection.Complite(query);
+            if (result == false)
+                return false;
+
+            var element = Tasks.First(c => c.Id == entity.Id);
+            Tasks.Remove(element);
+            return result;
         }
 
         /// <summary>
@@ -422,8 +545,14 @@ namespace UASKI.Data
         {
             IsUpdateData = true;
             var query = $"DELETE FROM \"Arhiv\" WHERE \"Id\" = '{entity.Id}'";
+            var result = Connection.Complite(query);
 
-            return Connection.Complite(query);
+            if (result == false)
+                return false;
+
+            var element = Arhiv.First(c => c.Id == entity.Id);
+            Arhiv.Remove(element);
+            return result;
         }
 
         /// <summary>
@@ -435,8 +564,14 @@ namespace UASKI.Data
         {
             IsUpdateData = true;
             var query = $"DELETE FROM \"Holidays\" WHERE \"Id\" = '{entity.Id}'";
+            var result = Connection.Complite(query);
 
-            return Connection.Complite(query);
+            if (result == false)
+                return false;
+
+            var element = Holidays.First(c => c.Id == entity.Id);
+            Holidays.Remove(element);
+            return result;
         }
 
         /// <summary>
@@ -448,8 +583,69 @@ namespace UASKI.Data
         {
             IsUpdateData = true;
             var query = $"DELETE FROM \"Pret\" WHERE \"Id\" = '{entity.Id}'";
+            var result = Connection.Complite(query);
 
-            return Connection.Complite(query);
+            if (result == false)
+                return false;
+
+            var element = Prets.First(c => c.Id == entity.Id);
+            Prets.Remove(element);
+            return result;
+        }
+
+        /// <summary>
+        /// Возвращает максимальный Id в таблице Isp
+        /// </summary>
+        /// <returns>Max Id или 0</returns>
+        public int GetMaxIdIsp()
+        {
+            var command = new NpgsqlCommand($"SELECT MAX(\"Code\") FROM \"Isp\"", Connection.Get());
+            var reader = command.ExecuteReader();
+            int result = 0;
+
+            while (reader.Read())
+            {
+                result = Convert.ToInt32(reader.GetValue(0));
+            }
+
+            reader.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Возвращает максимальный Id в таблице Tasks
+        /// </summary>
+        /// <returns>Max Id или 0</returns>
+        public int GetMaxIdTasks()
+        {
+            return Connection.GetMaxId("Tasks");
+        }
+
+        /// <summary>
+        /// Возвращает максимальный Id в таблице Arhiv
+        /// </summary>
+        /// <returns>Max Id или 0</returns>
+        public int GetMaxIdArhiv()
+        {
+            return Connection.GetMaxId("Arhiv");
+        }
+
+        /// <summary>
+        /// Возвращает максимальный Id в таблице Holidays
+        /// </summary>
+        /// <returns>Max Id или 0</returns>
+        public int GetMaxIdHoliday()
+        {
+            return Connection.GetMaxId("Holidays");
+        }
+
+        /// <summary>
+        /// Возвращает максимальный Id в таблице Pret
+        /// </summary>
+        /// <returns>Max Id или 0</returns>
+        public int GetMaxIdPret()
+        {
+            return Connection.GetMaxId("Pret");
         }
     }
 }

@@ -24,8 +24,8 @@ namespace UASKI.Pages
             {
                 form.dateTimePicker2.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 form.dateTimePicker3.Value = DateTime.Today;
-                form.panel15.Visible = true;
-                form.checkBox1.Checked = true;
+                form.panel15.Visible = false;
+                form.checkBox1.Checked = false;
                 form.checkBox11.Checked = false;
             }
 
@@ -38,6 +38,8 @@ namespace UASKI.Pages
         {
             form.textBox31.Clear();
             form.textBox32.Clear();
+            form.panel15.Visible = false;
+            form.checkBox1.Checked = false;
             form.DataGridView5.d.DataSource = null;
         }
 

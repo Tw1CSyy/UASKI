@@ -61,56 +61,68 @@ namespace UASKI.Pages
             {
                 var task = TaskModel.GetById(id);
 
-                var usr1 = task.GetIsp(listUser);
-                var usr2 = task.GetCon(listUser);
-                Task = task;
+                if (task == null)
+                    Exit();
+                else
+                {
+                    var usr1 = task.GetIsp(listUser);
+                    var usr2 = task.GetCon(listUser);
+                    Task = task;
 
-                form.textBox25.Text = usr1.InizNotCode;
-                form.textBox22.Text = usr2.InizNotCode;
+                    form.textBox25.Text = usr1.InizNotCode;
+                    form.textBox22.Text = usr2.InizNotCode;
 
-                form.textBox24.Text = usr1.Code.ToString();
-                form.textBox26.Text = usr1.CodePodr.ToString();
-                form.textBox23.Text = usr2.Code.ToString();
-                form.textBox21.Text = usr2.CodePodr.ToString();
-                form.textBox27.Text = CodeTask = task.Code;
-                form.dateTimePicker4.Value = task.Date;
-                form.textBox28.Text = "4";
-
-                form.button11.Text = "Закрыть";
-                form.button10.Enabled = true;
-                form.button12.Enabled = true;
-                form.label72.Visible = false;
-                form.checkBox7.Checked = task.IsDouble;
-                form.dateTimePicker9.Focus();
+                    form.textBox24.Text = usr1.Code.ToString();
+                    form.textBox26.Text = usr1.CodePodr.ToString();
+                    form.textBox23.Text = usr2.Code.ToString();
+                    form.textBox21.Text = usr2.CodePodr.ToString();
+                    form.textBox27.Text = CodeTask = task.Code;
+                    form.dateTimePicker4.Value = task.Date;
+                    
+                    form.button11.Text = "Закрыть";
+                    form.button10.Enabled = true;
+                    form.button12.Enabled = true;
+                    form.label72.Visible = false;
+                    form.checkBox7.Checked = task.IsDouble;
+                    form.dateTimePicker9.Focus();
+                }
+               
             }
             else
             {
                 var listArhiv = ArhivModel.GetList();
                 var arhiv = ArhivModel.GetById(id);
-                var usr1 = arhiv.GetIsp(listUser);
-                var usr2 = arhiv.GetCon(listUser);
 
-                Arhiv = arhiv;
+                if (arhiv == null)
+                    Exit();
+                else
+                {
+                    var usr1 = arhiv.GetIsp(listUser);
+                    var usr2 = arhiv.GetCon(listUser);
 
-                form.textBox25.Text = usr1.InizNotCode;
-                form.textBox22.Text = usr2.InizNotCode;
+                    Arhiv = arhiv;
 
-                form.textBox24.Text = usr1.Code.ToString();
-                form.textBox26.Text = usr1.CodePodr.ToString();
-                form.textBox23.Text = usr2.Code.ToString();
-                form.textBox21.Text = usr2.CodePodr.ToString();
-                form.textBox27.Text = arhiv.Code;
-                form.dateTimePicker4.Value = arhiv.Date;
+                    form.textBox25.Text = usr1.InizNotCode;
+                    form.textBox22.Text = usr2.InizNotCode;
 
-                form.button11.Text = "Открыть";
-                form.button10.Enabled = true;
-                form.button11.Enabled = true;
-                form.button12.Enabled = false;
-                form.checkBox7.Checked = arhiv.IsDouble;
-                form.textBox28.Text = arhiv.Otm.ToString();
-                form.dateTimePicker9.Value = arhiv.DateClose.Date;
-                form.label72.Visible = true;
-                SelectTextBox(form.textBox27);
+                    form.textBox24.Text = usr1.Code.ToString();
+                    form.textBox26.Text = usr1.CodePodr.ToString();
+                    form.textBox23.Text = usr2.Code.ToString();
+                    form.textBox21.Text = usr2.CodePodr.ToString();
+                    form.textBox27.Text = arhiv.Code;
+                    form.dateTimePicker4.Value = arhiv.Date;
+
+                    form.button11.Text = "Открыть";
+                    form.button10.Enabled = true;
+                    form.button11.Enabled = true;
+                    form.button12.Enabled = false;
+                    form.checkBox7.Checked = arhiv.IsDouble;
+                    form.textBox28.Text = arhiv.Otm.ToString();
+                    form.dateTimePicker9.Value = arhiv.DateClose.Date;
+                    form.label72.Visible = true;
+                    SelectTextBox(form.textBox27);
+                }
+                
             }
         }
 
@@ -124,12 +136,7 @@ namespace UASKI.Pages
                 form.textBox28.Clear();
 
                 var isArhiv = TaskModel.GetList().FirstOrDefault(c => c.Id == buffer[0]) == null;
-
-                if(isArhiv)
-                    Show(buffer[0], isArhiv);
-                else
-                    Show(buffer[0], isArhiv);
-
+                Show(buffer[0], isArhiv);
                 form.dateTimePicker9.Focus();
             }
             
@@ -367,7 +374,7 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox7.Checked);
+                    var task = new TaskModel(code.Value, idIsp.Num, idCon.Num, date.Value, form.checkBox7.Checked, Task.Id);
                     result = task.Update(Task.Id);
 
                     if (result == false)
@@ -396,7 +403,7 @@ namespace UASKI.Pages
                         return false;
                     }
 
-                    var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num, Arhiv.Id, form.checkBox7.Checked);
+                    var arhiv = new ArhivModel(code.Value, idIsp.Num, idCon.Num, date.Value, dateClose.Value, otm.Num, form.checkBox7.Checked, Arhiv.Id);
                     result = arhiv.Update();
 
                     if (result == false)

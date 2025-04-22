@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+
+using UASKI.Core;
 using UASKI.Enums;
 using UASKI.Models;
 
@@ -463,6 +465,16 @@ namespace UASKI.StaticModels
                     Ai.AddMessage(Enums.TypeNotice.Default, $"Добавлено карт: {Ai.Settings.CountAdd}");
                     Ai.AddMessage(Enums.TypeNotice.Default, $"Закрыто карт: {Ai.Settings.CountClose}");
                     Ai.AddMessage(Enums.TypeNotice.Default, $"Распечатано: {Ai.Settings.CountPrint}");
+                    return true;
+                case Keys.F5:
+                    DataConnection.UploadContext();
+                    Ai.AddMessage(TypeNotice.Comlite, "База сихронизированна");
+
+                    if(This != null)
+                    {
+                        This.Init();
+                    }
+
                     return true;
 
             }

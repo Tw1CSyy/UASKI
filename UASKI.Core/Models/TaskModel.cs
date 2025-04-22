@@ -51,13 +51,15 @@ namespace UASKI.Core.Models
         /// <param name="idCon">Код котроллера</param>
         /// <param name="date">Дата срока</param>
         /// <param name="isDouble">Двухстороняя задача</param>
-        public TaskModel(string code, int idIsp, int idCon, DateTime date, bool isDouble)
+        /// <param name="id">Id</param>
+        public TaskModel(string code, int idIsp, int idCon, DateTime date, bool isDouble , int id = 0)
         {
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
             Date = date;
             IsDouble = isDouble;
+            Id = id;
         }
 
         /// <summary>
@@ -129,8 +131,6 @@ namespace UASKI.Core.Models
             var newId = ArhivModel.GetList().OrderByDescending(c => c.Id).First().Id;
             var prets = PretModel.GetList().Where(c => c.IdTask == Id);
            
-            var entity = Get();
-
             result = context.Delete(Get());
 
             if (!result)
