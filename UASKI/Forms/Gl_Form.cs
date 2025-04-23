@@ -1266,7 +1266,8 @@ namespace UASKI
         }
         private void textBox44_TextChanged(object sender, EventArgs e)
         {
-            dateTimePicker20_ValueChanged(sender, e);
+            if (!Ai.IsClear)
+                Ai.Pages.SelectDTasks.Select();
         }
         private void checkBox9_CheckedChanged(object sender, EventArgs e)
         {
