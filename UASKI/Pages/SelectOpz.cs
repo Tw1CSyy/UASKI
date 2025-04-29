@@ -93,7 +93,7 @@ namespace UASKI.Pages
                 .ToList();
 
             var arhivModel = listArhiv
-                .OrderBy(c => c.Date)
+                .OrderByDescending(c => c.Date)
                 .ThenBy(c => c.GetIsp(isps).CodePodr)
                 .ThenBy(c => c.GetCon(isps).CodePodr)
                 .ThenBy(c => c.Id)

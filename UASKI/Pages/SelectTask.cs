@@ -52,7 +52,7 @@ namespace UASKI.Pages
 
             if(form.textBox29.Text.Length > 0 && int.TryParse(form.textBox29.Text, out int j))
             {
-                list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text) || c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
+                list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox29.Text)).ToList();
             }
 
             if(form.checkBox10.Checked)
