@@ -19,9 +19,13 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-           SelectTextBox(form.textBox36);
-            form.dateTimePicker14.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            form.dateTimePicker15.Value = DateTime.Today;
+            SelectTextBox(form.textBox36);
+            
+            if(IsCleared)
+            {
+                form.dateTimePicker14.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                form.dateTimePicker15.Value = DateTime.Today;
+            }
 
             if (form.textBox36.Text.Length > 0 && form.textBox37.Text.Length > 0)
             {

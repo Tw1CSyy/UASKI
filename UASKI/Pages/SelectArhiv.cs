@@ -69,7 +69,10 @@ namespace UASKI.Pages
             }
 
             var model = new List<DataGridRowModel>();
-            model = list.OrderByDescending(c => c.DateClose).ThenBy(c => c.Id)
+            model = list.OrderByDescending(c => c.DateClose)
+                .ThenBy(c => c.GetIsp(isps).CodePodr)
+                .ThenBy(c => c.GetCon(isps).CodePodr)
+                .ThenBy(c => c.Id)
                 .Select(c => new DataGridRowModel(
                     c.Id.ToString(),
                     c.GetCode(),

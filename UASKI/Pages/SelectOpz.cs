@@ -86,12 +86,16 @@ namespace UASKI.Pages
 
             var taskModel = listTask
                 .OrderBy(c => c.Date)
+                .ThenBy(c => c.GetIsp(isps).CodePodr)
+                .ThenBy(c => c.GetCon(isps).CodePodr)
                 .ThenBy(c => c.Id)
                 .Select(c => new DataGridRowModel(c.Id.ToString(), c.GetCode(), c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), "", "", c.GetDaysOpz(holy).ToString()))
                 .ToList();
 
             var arhivModel = listArhiv
                 .OrderBy(c => c.Date)
+                .ThenBy(c => c.GetIsp(isps).CodePodr)
+                .ThenBy(c => c.GetCon(isps).CodePodr)
                 .ThenBy(c => c.Id)
                 .Select(c => new DataGridRowModel(c.Id.ToString(), c.GetCode(), c.GetIsp(isps).InizByCode, c.GetCon(isps).InizByCode, c.Date.ToString("dd.MM.yyyy"), c.DateClose.ToString("dd.MM.yyyy"), c.Otm.ToString(), c.GetDaysOpz(holy).ToString()))
                 .ToList();

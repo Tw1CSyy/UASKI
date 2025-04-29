@@ -20,10 +20,15 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            form.dateTimePicker12.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            form.dateTimePicker13.Value = DateTime.Today;
-            form.dateTimePicker12.Focus();
-            Select();
+            if (IsCleared)
+            {
+                form.dateTimePicker12.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                form.dateTimePicker13.Value = DateTime.Today;
+                Select();
+                form.dateTimePicker12.Focus();
+            }
+            else
+                form.DataGridView10.d.Focus();
         }
 
         protected override void Clear()
@@ -54,6 +59,7 @@ namespace UASKI.Pages
             }
 
             var dataRowModels = result.Select(c => new DataGridRowModel(
+                c.CodePodrIsp.ToString(),
                 c.Isp,
                 c.Count.ToString(),
                 c.CountOpz.ToString(),
@@ -63,6 +69,7 @@ namespace UASKI.Pages
 
             var columns = new DataGridColumnModel[]
             {
+                new DataGridColumnModel("id" , false),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Кол-во выполненных заданий", typeof(int)),
                 new DataGridColumnModel("Кол-во случаев опозданий", typeof(int)),
@@ -217,6 +224,20 @@ namespace UASKI.Pages
                 form.dateTimePicker12.Focus();
                 SelectDataGridView(form.DataGridView10.d, false);
                 e.Handled = true;
+            }
+            else if(e.KeyCode == Keys.Enter && form.DataGridView10.d.SelectedRows.Count > 0)
+            {
+                var podr = Convert.ToInt32(form.DataGridView10.d.SelectedRows[0].Cells[0].Value);
+                Ai.IsClear = true;
+                form.dateTimePicker14.Value = form.dateTimePicker12.Value;
+                form.dateTimePicker15.Value = form.dateTimePicker13.Value;
+                Ai.IsClear = false;
+                form.textBox36.Text = podr.ToString();
+                Ai.Pages.PrintCof.IsCleared = false;
+                Ai.Pages.PrintCof.Init(true, false);
+                Ai.SelectMenu(Ai.Pages.PrintCof);
+                e.Handled = true;
+
             }
             else
             {

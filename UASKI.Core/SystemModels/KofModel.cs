@@ -3,6 +3,11 @@
     public class KofModel
     {
         /// <summary>
+        /// Код подразделения исполнителя
+        /// </summary>
+        public int CodePodrIsp { get; set; }
+
+        /// <summary>
         /// Инициалы исполнителя
         /// </summary>
         public string Isp { get; set; }

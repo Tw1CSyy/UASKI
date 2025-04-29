@@ -67,7 +67,11 @@ namespace UASKI.Pages
 
             var model = new List<DataGridRowModel>();
            
-            foreach (var item in list.OrderBy(c => c.Date).ThenBy(c => c.Id))
+            foreach (var item in list
+                .OrderBy(c => c.Date)
+                .ThenBy(c => c.GetIsp(isps).CodePodr)
+                .ThenBy(c => c.GetCon(isps).CodePodr)
+                .ThenBy(c => c.Id))
             {
                 var st = new DataGridRowModel(item.Id.ToString(), item.GetCode(), item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy"));
                 model.Add(st);

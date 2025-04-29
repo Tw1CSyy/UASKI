@@ -251,6 +251,7 @@ namespace UASKI.Core.Models
                 .ToList();
 
             item.Isp = InizByCode;
+            item.CodePodrIsp = CodePodr;
             item.Count = arhiv.Count() + tasks.Count;
             item.CountOpz = arhiv.Count(c => c.GetDaysOpz(holy, dateFrom, dateTo) != 0) + tasks.Count(c => c.GetDaysOpz(holy, dateFrom, dateTo) != 0);
             item.CountDay = arhiv.Sum(c => c.GetDaysOpz(holy, dateFrom, dateTo)) + tasks.Sum(c => c.GetDaysOpz(holy, dateFrom, dateTo));

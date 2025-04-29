@@ -17,12 +17,16 @@ namespace UASKI.Pages
 
         protected override void Show()
         {
-            form.checkBox4.Checked = false;
-            form.panel22.Visible = false;
-            FilterClose();
-            form.dateTimePicker17.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            form.dateTimePicker18.Value = DateTime.Today;
-            form.checkBox5.Checked = form.checkBox6.Checked = true;
+            if(IsCleared)
+            {
+                form.checkBox4.Checked = false;
+                form.panel22.Visible = false;
+                FilterClose();
+                form.dateTimePicker17.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                form.dateTimePicker18.Value = DateTime.Today;
+                form.checkBox5.Checked = form.checkBox6.Checked = true;
+            }
+
             Select();
             form.DataGridView12.d.Focus();
         }
