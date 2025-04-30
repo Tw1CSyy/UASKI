@@ -1244,7 +1244,7 @@ namespace UASKI
                         textBox43.Clear();
                 }
 
-                if (textBox42.Text.Length > 0)
+                if (textBox43.Text.Length > 0)
                 {
                     Ai.Pages.PrintPlan.Select();
                 }
