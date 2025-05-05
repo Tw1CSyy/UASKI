@@ -323,7 +323,7 @@ namespace UASKI
             if(Menu_Step1.Visible && Menu_Step2.Visible)
             {
                 var result = Ai.KeyDown(e);
-
+                 
                 if (result)
                     e.Handled = true;
             }

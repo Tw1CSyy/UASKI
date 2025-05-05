@@ -42,12 +42,6 @@ namespace UASKI.Helpers
                 result = false;
             }
 
-            if (!isUpdate && date.Value < DateTime.Today)
-            {
-                date.Error("Мы из будущего?");
-                result = false;
-            }
-
             var holidayList = HolidayModel.GetList();
 
             if (HolidayModel.CheckDay(date.Value, holidayList))
@@ -153,7 +147,7 @@ namespace UASKI.Helpers
 
             if (!Otm.IsNumber || (Convert.ToInt32(Otm.Value) < 1 && Convert.ToInt32(Otm.Value) > 5))
             {
-                Otm.Error("По 5ти бальной системе пожайлусто");
+                Otm.Error("По 5ти бальной системе будте добры");
                 result = false;
             }
 

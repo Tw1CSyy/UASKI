@@ -115,17 +115,17 @@ namespace UASKI.Pages
                 if(DataGridView.d.SelectedRows.Count > 0)
                 {
                     Ai.IsClear = true;
-                    form.textBox32.Text = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
-                    form.checkBox11.Checked = true;
+                    var code = DataGridView.d.SelectedRows[0].Cells[1].Value.ToString();
                     var con = IspModel.GetByCode(Convert.ToInt32(DataGridView.d.SelectedRows[0].Cells[0].Value));
-                    form.textBox31.Text = con.CodePodr.ToString();
-                    form.dateTimePicker2.Value = form.dateTimePicker22.Value;
-                    form.dateTimePicker3.Value = form.dateTimePicker23.Value;
-                    form.checkBox1.Checked = form.panel15.Visible = form.checkBox9.Checked;
+                    
+                    var dateFrom = form.dateTimePicker22.Value;
+                    var dateTo = form.dateTimePicker23.Value;
+                    var isDate = form.checkBox9.Checked;
                     Ai.IsClear = false;
                    
                     Ai.Pages.SelectArhiv.IsCleared = false;
-                    Ai.Pages.SelectArhiv.Init(true, false);
+                    Ai.Pages.SelectArhiv.Init(false, false);
+                    Ai.Pages.SelectArhiv.Show(code, con.CodePodr, dateFrom, dateTo, isDate);
                     Ai.SelectMenu(Ai.Pages.SelectArhiv);
                     e.Handled = true;
                 }

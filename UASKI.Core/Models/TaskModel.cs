@@ -200,7 +200,14 @@ namespace UASKI.Core.Models
         {
             int result = 0;
 
-            for (DateTime i = Date; i <= DateTime.Today;)
+            var date = DateTime.Today;
+
+            if(dateTo > DateTime.Today)
+            {
+                date = dateTo;
+            }
+
+            for (DateTime i = Date; i <= date;)
             {
                 if (i < dateFrom || i > dateTo)
                 {

@@ -18,6 +18,8 @@ namespace UASKI.Pages
     {
         public SelectArhiv(int index, TypePage type) : base(index, type, Ai.Form.DataGridView5) { }
 
+        private bool IsDShow = false;
+
         protected override void Show()
         {
             if(this.IsCleared)
@@ -34,6 +36,22 @@ namespace UASKI.Pages
             form.DataGridView5.d.Focus();
         }
 
+        public void Show(string code , int codeCon, DateTime dateFrom , DateTime dateTo , bool IsDate)
+        {
+            form.dateTimePicker2.Value = dateFrom;
+            form.dateTimePicker3.Value = dateTo;
+            form.panel15.Visible = IsDate;
+            form.checkBox1.Checked = IsDate;
+            form.checkBox11.Checked = true;
+            form.textBox32.Text = code;
+            form.textBox31.Text = codeCon.ToString();
+
+            FilterClose();
+            IsDShow = true;
+            Select();
+            IsDShow = false;
+            form.DataGridView5.d.Focus();
+        }
         protected override void Clear()
         {
             form.textBox31.Clear();
@@ -55,7 +73,14 @@ namespace UASKI.Pages
 
             if(form.textBox31.Text.Length > 0 && int.TryParse(form.textBox31.Text, out int j))
             {
-                list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
+                if(!IsDShow)
+                {
+                    list = list.Where(c => c.GetIsp(isps).CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
+                }
+                else
+                {
+                    list = list.Where(c => c.GetCon(isps).CodePodr == Convert.ToInt32(form.textBox31.Text)).ToList();
+                }
             }
 
             if(form.checkBox11.Checked)
