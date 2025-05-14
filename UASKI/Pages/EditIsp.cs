@@ -313,16 +313,7 @@ namespace UASKI.Pages
 
         public void dataGridView4_KeyDown(KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Up
-                && form.DataGridView4.d.SelectedRows.Count != 0
-                && form.DataGridView4.d.SelectedRows[0].Index == 0))
-            {
-
-                SelectDataGridView(form.DataGridView4.d, false);
-                SelectTextBox(form.textBox15);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 SelectDataGridView(form.DataGridView4.d, false);
                 Exit();

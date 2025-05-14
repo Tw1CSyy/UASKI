@@ -120,7 +120,7 @@ namespace UASKI.Pages
             }
             else if(e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
             {
-                form.DataGridView8.d.Focus();
+                SelectDataGridView(form.DataGridView8.d);
             }
             else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up)
             {
@@ -156,17 +156,10 @@ namespace UASKI.Pages
 
         public void dataGridView8_KeyDown(KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Up
-                && form.DataGridView8.d.SelectedRows.Count != 0
-                && form.DataGridView8.d.SelectedRows[0].Index == 0))
+            if(e.KeyCode == Keys.Escape)
             {
-                SelectButton(form.button37);
+                form.dateTimePicker19.Focus();
                 SelectDataGridView(form.DataGridView8.d, false);
-                e.Handled = true;
-            }
-            else if(e.KeyCode == Keys.Escape)
-            {
-                Exit();
                 e.Handled = true;
             }
             else if(e.KeyCode == Keys.Enter && form.DataGridView8.d.SelectedRows.Count != 0)

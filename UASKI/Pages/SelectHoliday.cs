@@ -80,10 +80,7 @@ namespace UASKI.Pages
             {
                 SelectButton(form.button13);
             }
-            else if ((e.KeyCode == Keys.Up
-               && form.DataGridView6.d.SelectedRows.Count != 0
-               && form.DataGridView6.d.SelectedRows[0].Index == 0)
-               || e.KeyCode == Keys.Escape)
+            else if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 e.Handled = true;

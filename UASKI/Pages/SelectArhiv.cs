@@ -29,6 +29,7 @@ namespace UASKI.Pages
                 form.panel15.Visible = false;
                 form.checkBox1.Checked = false;
                 form.checkBox11.Checked = false;
+                IsDShow = false;
             }
 
             FilterClose();
@@ -49,7 +50,6 @@ namespace UASKI.Pages
             FilterClose();
             IsDShow = true;
             Select();
-            IsDShow = false;
             form.DataGridView5.d.Focus();
         }
         protected override void Clear()

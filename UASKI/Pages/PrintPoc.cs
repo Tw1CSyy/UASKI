@@ -216,10 +216,7 @@ namespace UASKI.Pages
 
         public void dataGridView10_KeyDown(KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Up
-                && form.DataGridView10.d.SelectedRows.Count != 0
-                && form.DataGridView10.d.SelectedRows[0].Index == 0)
-                || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 form.dateTimePicker12.Focus();
                 SelectDataGridView(form.DataGridView10.d, false);

@@ -156,14 +156,6 @@ namespace UASKI.Pages
                 SelectDataGridView(form.DataGridView9.d, false);
                 e.Handled = true;
             }
-            else if ((e.KeyCode == Keys.Up
-                && form.DataGridView9.d.SelectedRows.Count != 0
-                && form.DataGridView9.d.SelectedRows[0].Index == 0))
-            {
-                SelectTextBox(form.textBox35);
-                e.Handled = true;
-                SelectDataGridView(form.DataGridView9.d, false);
-            }
             else
             {
                 form.DataGridView9.KeyDown(e);

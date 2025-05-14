@@ -414,10 +414,7 @@ namespace UASKI.Pages
 
         public void dataGridView11_KeyDown(KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Up
-                && form.DataGridView11.d.SelectedRows.Count != 0
-                && form.DataGridView11.d.SelectedRows[0].Index == 0)
-                || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 form.dateTimePicker14.Focus();
                 SelectDataGridView(form.DataGridView11.d, false);
@@ -440,10 +437,7 @@ namespace UASKI.Pages
 
         public void dataGridView13_KeyDown(KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Up
-               && form.DataGridView13.d.SelectedRows.Count != 0
-               && form.DataGridView13.d.SelectedRows[0].Index == 0)
-               || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 SelectDataGridView(form.DataGridView11.d);
                 SelectDataGridView(form.DataGridView13.d, false);

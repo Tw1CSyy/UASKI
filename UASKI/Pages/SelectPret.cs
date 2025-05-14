@@ -118,10 +118,7 @@ namespace UASKI.Pages
                 FilterOpen();
                 e.Handled = true;
             }
-            if ((e.KeyCode == Keys.Up
-                && form.DataGridView12.d.SelectedRows.Count != 0
-                && form.DataGridView12.d.SelectedRows[0].Index == 0)
-                || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 Exit();
                 SelectDataGridView(form.DataGridView12.d, false);
