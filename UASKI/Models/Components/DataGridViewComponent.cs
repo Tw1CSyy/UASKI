@@ -68,7 +68,7 @@ namespace UASKI.Models.Components
                 var index = d.SelectedRows[0].Index;
                 d.Rows[index + 1].Selected = true;
 
-                if (d.DisplayedRowCount(true) <= index + 2 && d.DisplayedRowCount(true) + d.FirstDisplayedScrollingRowIndex > index)
+                if (d.DisplayedRowCount(true) <= index + 2 && d.DisplayedRowCount(true) + d.FirstDisplayedScrollingRowIndex == index + 2)
                 {
                     d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex + 1;
                 }
