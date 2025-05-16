@@ -71,7 +71,7 @@ namespace UASKI.Core.Models
             IdIsp = task.IdIsp;
             IdCon = task.IdCon;
             Date = task.Date;
-            DateClose = dateClose;
+            DateClose = dateClose.Date;
             Otm = otm;
             IsDouble = task.IsDouble;
         }
@@ -91,8 +91,8 @@ namespace UASKI.Core.Models
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
-            Date = date;
-            DateClose = dateClose;
+            Date = date.Date;
+            DateClose = dateClose.Date;
             Otm = otm;
             Id = id;
             IsDouble = isDouble;
@@ -107,8 +107,8 @@ namespace UASKI.Core.Models
             Code = a.Code;
             IdIsp = a.IdIsp;
             IdCon = a.IdCon;
-            Date = a.Date;
-            DateClose = a.DateClose;
+            Date = a.Date.Date;
+            DateClose = a.DateClose.Date;
             Otm = a.Otm;
             Id = a.Id;
             IsDouble = a.IsDouble;
@@ -120,7 +120,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект ArhivEntity</returns>
         public ArhivEntity Get()
         {
-            return new ArhivEntity(Code, IdIsp, IdCon, Date, DateClose, Otm, Id, IsDouble);
+            return new ArhivEntity(Code, IdIsp, IdCon, Date.Date, DateClose.Date, Otm, Id, IsDouble);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace UASKI.Core.Models
         /// <returns>true - Успешное выполнение</returns>
         public bool Open()
         {
-            var task = new TaskEntity(Code, IdIsp, IdCon, Date, Id, IsDouble);
+            var task = new TaskEntity(Code, IdIsp, IdCon, Date.Date, Id, IsDouble);
 
             var result = context.Add(task);
 
@@ -188,7 +188,7 @@ namespace UASKI.Core.Models
         {
             int result = 0;
 
-            for (DateTime i = Date; i < DateClose;)
+            for (DateTime i = Date.Date; i < DateClose;)
             {
                 if (i < dateFrom || i > dateTo)
                 {

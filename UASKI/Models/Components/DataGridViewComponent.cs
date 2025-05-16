@@ -51,7 +51,7 @@ namespace UASKI.Models.Components
                 var index = d.SelectedRows[0].Index;
                 d.Rows[index - 1].Selected = true;
 
-                if (d.FirstDisplayedScrollingRowIndex + 1 >= d.SelectedRows[0].Index && d.FirstDisplayedScrollingRowIndex != 0)
+                if (d.FirstDisplayedScrollingRowIndex >= d.SelectedRows[0].Index && d.FirstDisplayedScrollingRowIndex != 0)
                 {
                     d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex - 1;
                 }
@@ -68,7 +68,7 @@ namespace UASKI.Models.Components
                 var index = d.SelectedRows[0].Index;
                 d.Rows[index + 1].Selected = true;
 
-                if (d.DisplayedRowCount(true) <= index + 2)
+                if (d.DisplayedRowCount(true) <= index + 2 && d.DisplayedRowCount(true) + d.FirstDisplayedScrollingRowIndex > index)
                 {
                     d.FirstDisplayedScrollingRowIndex = d.FirstDisplayedScrollingRowIndex + 1;
                 }

@@ -57,7 +57,7 @@ namespace UASKI.Core.Models
             Code = code;
             IdIsp = idIsp;
             IdCon = idCon;
-            Date = date;
+            Date = date.Date;
             IsDouble = isDouble;
             Id = id;
         }
@@ -71,7 +71,7 @@ namespace UASKI.Core.Models
             Code = entity.Code;
             IdIsp = entity.IdIsp;
             IdCon = entity.IdCon;
-            Date = entity.Date;
+            Date = entity.Date.Date;
             Id = entity.Id;
             IsDouble = entity.IsDouble;
         }
@@ -82,7 +82,7 @@ namespace UASKI.Core.Models
         /// <returns>Объект TaskEntity</returns>
         private TaskEntity Get()
         {
-            return new TaskEntity(Code, IdIsp, IdCon, Date, Id , IsDouble);
+            return new TaskEntity(Code, IdIsp, IdCon, Date.Date, Id , IsDouble);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace UASKI.Core.Models
         /// <returns>Положительный или отрицательный результат</returns>
         public bool Close(int otm, DateTime dateClose)
         {
-            var arhiv = new ArhivModel(this, dateClose, otm);
+            var arhiv = new ArhivModel(this, dateClose.Date, otm);
             var result = context.Add(arhiv.Get());
 
             if (!result)

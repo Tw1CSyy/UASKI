@@ -151,7 +151,7 @@ namespace UASKI.Pages
         public void dataGridView9_KeyDown(KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Escape)
-            {6
+            {
                 SelectTextBox(form.textBox35);
                 SelectDataGridView(form.DataGridView9.d, false);
                 e.Handled = true;
