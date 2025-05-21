@@ -106,13 +106,13 @@ namespace UASKI.Pages
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Id", false),
-                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Код" , true , DataGridViewAutoSizeColumnMode.AllCells),
                 new DataGridColumnModel("Исполнитель"),
-                new DataGridColumnModel("Котролёр"),
+                new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок", typeof(DateTime)),
                 new DataGridColumnModel("Дата закрытия", typeof(DateTime)),
-                new DataGridColumnModel("Оценка", typeof(int)),
-                new DataGridColumnModel("Дней опозданий", typeof(int))
+                new DataGridColumnModel("Оценка", typeof(int) , true , DataGridViewAutoSizeColumnMode.ColumnHeader),
+                new DataGridColumnModel("ДО", typeof(int) , true , DataGridViewAutoSizeColumnMode.AllCellsExceptHeader)
             };
 
             form.DataGridView1.PullListInDataGridView(model.ToArray(), columns);

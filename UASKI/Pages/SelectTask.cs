@@ -66,24 +66,32 @@ namespace UASKI.Pages
             }
 
             var model = new List<DataGridRowModel>();
-           
+            var holy = HolidayModel.GetList();
+
             foreach (var item in list
                 .OrderBy(c => c.Date)
                 .ThenBy(c => c.GetIsp(isps).CodePodr)
                 .ThenBy(c => c.GetCon(isps).CodePodr)
                 .ThenBy(c => c.Id))
             {
-                var st = new DataGridRowModel(item.Id.ToString(), item.GetCode(), item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy"));
+                int days = item.GetDaysOpz(holy);
+                string daysOpz = string.Empty;
+
+                if (days != 0)
+                    daysOpz = days.ToString();
+
+                var st = new DataGridRowModel(item.Id.ToString(), item.GetCode(), item.GetIsp(isps).InizByCode, item.GetCon(isps).InizByCode, item.Date.ToString("dd.MM.yyyy") , daysOpz);
                 model.Add(st);
             }
 
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Id", false),
-                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Код" , true, DataGridViewAutoSizeColumnMode.AllCells),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок", typeof(DateTime)),
+                new DataGridColumnModel("ДО", true, DataGridViewAutoSizeColumnMode.AllCellsExceptHeader)
             };
 
             form.DataGridView3.PullListInDataGridView(model.ToArray(), columns);

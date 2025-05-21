@@ -94,29 +94,46 @@ namespace UASKI.Pages
             }
 
             var model = new List<DataGridRowModel>();
-            model = list.OrderByDescending(c => c.DateClose)
+
+            list = list.OrderByDescending(c => c.DateClose)
                 .ThenBy(c => c.GetIsp(isps).CodePodr)
                 .ThenBy(c => c.GetCon(isps).CodePodr)
                 .ThenBy(c => c.Id)
-                .Select(c => new DataGridRowModel(
+                .ToList();
+
+            var holy = HolidayModel.GetList();
+
+            foreach (var c in list)
+            {
+                var days = c.GetDaysOpz(holy);
+                var daysOpz = string.Empty;
+
+                if (days != 0)
+                    daysOpz = days.ToString();
+
+                var item = new DataGridRowModel(
                     c.Id.ToString(),
                     c.GetCode(),
                     c.GetIsp(isps).InizByCode,
                     c.GetCon(isps).InizByCode,
                     c.Date.ToString("dd.MM.yyyy"),
                     c.DateClose.ToString("dd.MM.yyyy"),
-                    c.Otm.ToString()))
-                .ToList();
+                    c.Otm.ToString(),
+                    daysOpz);
+
+                model.Add(item);
+            }
 
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Id", typeof(string), false),
-                new DataGridColumnModel("Код"),
+                new DataGridColumnModel("Код" , true , DataGridViewAutoSizeColumnMode.AllCells),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок", typeof(DateTime)),
                 new DataGridColumnModel("Дата закрытия", typeof(DateTime)),
-                new DataGridColumnModel("Оценка", typeof(int))
+                new DataGridColumnModel("Оценка", typeof(int), true , DataGridViewAutoSizeColumnMode.ColumnHeader),
+                new DataGridColumnModel("ДО" , true, DataGridViewAutoSizeColumnMode.AllCellsExceptHeader)
             };
 
             form.DataGridView5.PullListInDataGridView(model.ToArray(), columns);

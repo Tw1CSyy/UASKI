@@ -52,30 +52,33 @@ namespace UASKI.Pages
 
         public override void Select()
         {
-            var codePodr = Convert.ToInt32(form.textBox42.Text);
-            var dateFrom = form.dateTimePicker20.Value;
-            var dateTo = form.dateTimePicker21.Value;
-            var isps = IspModel.GetList();
-            var isp = isps.FirstOrDefault(c => c.CodePodr == codePodr);
-            var holy = HolidayModel.GetList();
-
-            var tasks = TaskModel.GetList()
-                .Where(c => c.IdIsp == isp. Code && c.Date >= dateFrom && c.Date <= dateTo)
-                .OrderBy(c => c.Date);
-
-            var model = tasks.Select(c => new DataGridRowModel(
-                c.Id.ToString() , c.GetCode(), c.Date.ToString("dd.MM.yyyy"), c.GetCon(isps).InizByCode, c.GetDaysOpz(holy).ToString()));
-
-            var columns = new DataGridColumnModel[]
+            if(form.textBox42.Text.Length > 0)
             {
+                var codePodr = Convert.ToInt32(form.textBox42.Text);
+                var dateFrom = form.dateTimePicker20.Value;
+                var dateTo = form.dateTimePicker21.Value;
+                var isps = IspModel.GetList();
+                var isp = isps.FirstOrDefault(c => c.CodePodr == codePodr);
+                var holy = HolidayModel.GetList();
+
+                var tasks = TaskModel.GetList()
+                    .Where(c => c.IdIsp == isp.Code && c.Date >= dateFrom && c.Date <= dateTo)
+                    .OrderBy(c => c.Date);
+
+                var model = tasks.Select(c => new DataGridRowModel(
+                    c.Id.ToString(), c.GetCode(), c.Date.ToString("dd.MM.yyyy"), c.GetCon(isps).InizByCode, c.GetDaysOpz(holy).ToString()));
+
+                var columns = new DataGridColumnModel[]
+                {
                 new DataGridColumnModel("" , false),
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Срок исполнения"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Дней опозданий", typeof(int))
-            };
+                };
 
-            form.DataGridView14.PullListInDataGridView(model.ToArray(), columns);
+                form.DataGridView14.PullListInDataGridView(model.ToArray(), columns);
+            }
         }
 
         protected override void Print()

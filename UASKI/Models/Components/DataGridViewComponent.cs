@@ -179,6 +179,7 @@ namespace UASKI.Models.Components
             for (int i = 0; i < d.Columns.Count; i++)
             {
                 d.Columns[i].Visible = columns[i].Visible;
+                d.Columns[i].AutoSizeMode = columns[i].Mode;
             }
 
             if(listWithCol.Count == 0)
@@ -210,6 +211,8 @@ namespace UASKI.Models.Components
                 else
                     d.Sort(d.Columns[columnSort], System.ComponentModel.ListSortDirection.Descending);
             }
+
+
         }
 
         /// <summary>
