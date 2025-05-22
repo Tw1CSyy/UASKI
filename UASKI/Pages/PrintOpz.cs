@@ -45,9 +45,18 @@ namespace UASKI.Pages
         public override void Select()
         {
             var holy = HolidayModel.GetList();
-            var list = TaskModel.GetList().Where(c => c.GetDaysOpz(holy, DateTime.MinValue, form.dateTimePicker19.Value.Date) != 0).ToList();
+            var list = TaskModel
+                .GetList()
+                .Where(c => c.GetDaysOpz(holy, DateTime.MinValue, form.dateTimePicker19.Value.Date) != 0)
+                .ToList();
+
             var result = new List<DataGridRowModel>();
             var isps = IspModel.GetList();
+            var listArhiv = ArhivModel
+                .GetList()
+                .Where(c => c.Date <= form.dateTimePicker19.Value.Date)
+                .Where(c => c.DateClose > form.dateTimePicker19.Value.Date)
+                .ToList();
 
             foreach (var item in list)
             {
@@ -59,6 +68,26 @@ namespace UASKI.Pages
                     item.GetCode(),
                     item.GetCon(isps).InizByCode,
                     item.Date.ToString("dd.MM.yyyy"),
+                    string.Empty,
+                    day.ToString());
+
+                result.Add(model);
+            }
+
+            foreach (var item in listArhiv)
+            {
+                var day = item.GetDaysOpz(holy, DateTime.MinValue, form.dateTimePicker19.Value.Date);
+
+                if (day <= 0)
+                    continue;
+
+                var model = new DataGridRowModel(
+                    item.Id.ToString(),
+                    item.GetIsp(isps).InizByCode,
+                    item.GetCode(),
+                    item.GetCon(isps).InizByCode,
+                    item.Date.ToString("dd.MM.yyyy"),
+                    item.DateClose.ToString("dd.MM.yyyy"),
                     day.ToString());
 
                 result.Add(model);
@@ -71,6 +100,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Код задания"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок исполнения"),
+                new DataGridColumnModel("Дата закрытия"),
                 new DataGridColumnModel("Дней опозданий", typeof(int))
             };
 

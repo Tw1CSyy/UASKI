@@ -127,11 +127,14 @@ namespace UASKI.Models.Components
         {
             int selected = -1;
             int columnSort = -1;
+            int firstDisplayIndex = -1;
+
             SortOrder sort = SortOrder.None;
 
             if (d.Rows.Count > 0 && d.SelectedRows.Count > 0)
             {
                 selected = d.SelectedRows[0].Index;
+                firstDisplayIndex = d.FirstDisplayedScrollingRowIndex;
 
                 if (d.SortedColumn != null)
                 {
@@ -195,9 +198,17 @@ namespace UASKI.Models.Components
             if (selected != -1 && d.Rows.Count > 0)
             {
                 if (d.Rows.Count > selected)
+                {
                     d.Rows[selected].Selected = true;
+                    d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
+                }
+                    
                 else if (selected != 0)
+                {
                     d.Rows[d.Rows.Count - 1].Selected = true;
+                    d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
+                }
+                    
             }
             else if (d.Rows.Count > 0)
             {
@@ -220,7 +231,7 @@ namespace UASKI.Models.Components
         /// </summary>
         public void ResizeDataGridView()
         {
-            d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+           // d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         /// <summary>

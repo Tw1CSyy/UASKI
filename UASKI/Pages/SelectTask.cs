@@ -91,7 +91,7 @@ namespace UASKI.Pages
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок", typeof(DateTime)),
-                new DataGridColumnModel("ДО", true, DataGridViewAutoSizeColumnMode.AllCellsExceptHeader)
+                new DataGridColumnModel("ДО", true, DataGridViewAutoSizeColumnMode.ColumnHeader)
             };
 
             form.DataGridView3.PullListInDataGridView(model.ToArray(), columns);

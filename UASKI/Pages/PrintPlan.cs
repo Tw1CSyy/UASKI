@@ -62,7 +62,7 @@ namespace UASKI.Pages
                 var holy = HolidayModel.GetList();
 
                 var tasks = TaskModel.GetList()
-                    .Where(c => c.IdIsp == isp.Code && c.Date >= dateFrom && c.Date <= dateTo)
+                    .Where(c => c.IdIsp == isp.Code && ((c.Date >= dateFrom && c.Date <= dateTo) || c.Date < dateFrom))
                     .OrderBy(c => c.Date);
 
                 var model = tasks.Select(c => new DataGridRowModel(
