@@ -24,6 +24,8 @@ namespace UASKI.Pages
             else
                 form.dateTimePicker19.Focus();
 
+            form.dateTimePicker19.Value = DateTime.Today;
+
             Select();
             SelectButton(form.button37, false);
             SelectDataGridView(form.DataGridView8.d, false);

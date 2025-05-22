@@ -21,6 +21,11 @@ namespace UASKI.Models
         public Type Type { get; private set; }
 
         /// <summary>
+        /// Сколько масимально символов может быть строка для определенния ее ширины
+        /// </summary>
+        public int MaxSymbolsByWidth { get; private set; } = 0;
+
+        /// <summary>
         /// Мод заполнения колонки
         /// </summary>
         public DataGridViewAutoSizeColumnMode Mode { get; private set; } = DataGridViewAutoSizeColumnMode.Fill;
@@ -52,5 +57,19 @@ namespace UASKI.Models
             Type = typeof(string);
             Mode = mode;
         }
+
+        /// <summary>
+        /// Создает объект класса
+        /// </summary>
+        /// <param name="name">Название колонки</param>
+        /// <param name="maxSymbolsByWidth">Сколько масимально символов может быть строка для определенния ее ширины</param>
+        public DataGridColumnModel(string name, int maxSymbolsByWidth)
+        {
+            Name = name;
+            MaxSymbolsByWidth = maxSymbolsByWidth;
+            Type = typeof(string);
+            Visible = true;
+        }
+
     }
 }

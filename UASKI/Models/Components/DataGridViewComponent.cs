@@ -182,7 +182,19 @@ namespace UASKI.Models.Components
             for (int i = 0; i < d.Columns.Count; i++)
             {
                 d.Columns[i].Visible = columns[i].Visible;
-                d.Columns[i].AutoSizeMode = columns[i].Mode;
+
+                if(columns[i].MaxSymbolsByWidth != 0)
+                {
+                    var font = d.Font;
+                    var symbol = ".";
+                    var Width = TextRenderer.MeasureText(symbol, font).Width;
+                    d.Columns[i].Width = Width * columns[i].MaxSymbolsByWidth;
+                    d.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                }
+                else
+                {
+                    d.Columns[i].AutoSizeMode = columns[i].Mode;
+                }
             }
 
             if(listWithCol.Count == 0)
@@ -231,7 +243,7 @@ namespace UASKI.Models.Components
         /// </summary>
         public void ResizeDataGridView()
         {
-           // d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+           d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         /// <summary>

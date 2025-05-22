@@ -87,7 +87,7 @@ namespace UASKI.Pages
             var columns = new DataGridColumnModel[]
             {
                 new DataGridColumnModel("Id", false),
-                new DataGridColumnModel("Код" , true, DataGridViewAutoSizeColumnMode.AllCells),
+                new DataGridColumnModel("Код" , 13),
                 new DataGridColumnModel("Исполнитель"),
                 new DataGridColumnModel("Контролёр"),
                 new DataGridColumnModel("Срок", typeof(DateTime)),
