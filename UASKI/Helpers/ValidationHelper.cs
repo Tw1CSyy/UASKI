@@ -187,7 +187,7 @@ namespace UASKI.Helpers
         }
 
         /// <summary>
-        /// Валидация празднечных дней
+        /// Валидация праздничных дней
         /// </summary>
         /// <param name="date">Дата</param>
         /// <returns>true - успешная операция</returns>

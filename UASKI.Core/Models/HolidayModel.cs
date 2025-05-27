@@ -72,7 +72,7 @@ namespace UASKI.Core.Models
         }
 
         /// <summary>
-        /// Возращает список празднечных дней
+        /// Возращает список праздничных дней
         /// </summary>
         /// <returns></returns>
         public static List<HolidayModel> GetList()
@@ -84,7 +84,7 @@ namespace UASKI.Core.Models
         /// Проверяет дату на праздничный день
         /// </summary>
         /// <param name="date">Дата для проверки</param>
-        /// <param name="list">Список празднечных дней</param>
+        /// <param name="list">Список праздничных дней</param>
         /// <returns>Положительный или отрицательный результат</returns>
         public static bool CheckDay(DateTime date, List<HolidayModel> list)
         {

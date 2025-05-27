@@ -188,7 +188,7 @@ namespace UASKI.StaticModels
                        },
                        new ItemMenuLevel2
                        {
-                           Text = "Добавление Празднечных Дней",
+                           Text = "Добавление Праздничных Дней",
                            Page = Pages.AddHoliday
                        }
                    }

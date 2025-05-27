@@ -214,13 +214,14 @@ namespace UASKI.Models.Components
                     d.Rows[selected].Selected = true;
                     d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
                 }
-                    
                 else if (selected != 0)
                 {
                     d.Rows[d.Rows.Count - 1].Selected = true;
-                    d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
                 }
-                    
+
+                if(d.Rows.Count > firstDisplayIndex)
+                    d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
+
             }
             else if (d.Rows.Count > 0)
             {
