@@ -15,7 +15,7 @@ namespace UASKI.Forms
         private TextBox t1;
         private TextBox t2;
         private TextBox t3;
-
+       
         private DataGridViewComponent DataGridView;
         /// <summary>
         /// Начальная настройка
@@ -41,6 +41,7 @@ namespace UASKI.Forms
             }
 
             DataGridView = new DataGridViewComponent(dataGridView1);
+            dataGridView1.Focus();
             Start();
         }
 
@@ -144,9 +145,13 @@ namespace UASKI.Forms
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             var key = new KeyEventArgs(Keys.Enter);
             dataGridView1_KeyDown(sender, key);
         }
-
     }
 }

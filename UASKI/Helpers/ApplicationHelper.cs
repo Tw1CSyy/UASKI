@@ -80,7 +80,7 @@ namespace UASKI.Helpers
                 var json = File.ReadAllText(filePath);
                 Ai.Settings = JsonConvert.DeserializeObject<AppSettings>(json);
 
-                if(Ai.Settings.DateUpdate < DateTime.Today)
+                if(Ai.Settings.DateUpdate.Date != DateTime.Today)
                 {
                     Ai.Settings.CountAdd = Ai.Settings.CountClose = Ai.Settings.CountPrint = 0;
                 }

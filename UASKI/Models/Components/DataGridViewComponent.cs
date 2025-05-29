@@ -219,8 +219,14 @@ namespace UASKI.Models.Components
                     d.Rows[d.Rows.Count - 1].Selected = true;
                 }
 
-                if(d.Rows.Count > firstDisplayIndex)
-                    d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
+                if(d.Rows.Count > firstDisplayIndex && firstDisplayIndex >= 0)
+                {
+                    try
+                    {
+                        d.FirstDisplayedScrollingRowIndex = firstDisplayIndex;
+                    }
+                    catch (Exception) { }
+                }
 
             }
             else if (d.Rows.Count > 0)

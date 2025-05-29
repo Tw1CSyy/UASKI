@@ -136,11 +136,12 @@ namespace UASKI.Pages
 
                     form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
 
+                    var dateForm = new DateTime(form.dateTimePicker14.Value.Year, form.dateTimePicker14.Value.Month, 1);
+                    var dateTo = new DateTime(form.dateTimePicker14.Value.Year, form.dateTimePicker14.Value.Month + 1, 1).AddDays(-1);
                     var arhivTasksMonth = arhivContext
-                       .Where(c => c.IdIsp == isp.Code)
-                       .Where(c => (c.DateClose < c.Date && c.DateClose.Month == form.dateTimePicker14.Value.Month && c.DateClose.Year == form.dateTimePicker14.Value.Year)
-                       || (c.DateClose >= c.Date && c.Date.Month == form.dateTimePicker14.Value.Month && c.Date.Year == form.dateTimePicker14.Value.Year))
-                       .ToList();
+                           .Where(c => c.IdIsp == isp.Code)
+                           .Where(c => (c.DateClose >= dateForm && c.DateClose <= dateTo) || (c.Date >= dateForm && c.Date <= dateTo && c.GetDaysOpz(holy, dateForm, dateTo) > 0))
+                           .ToList();
 
                     var pretList = PretModel.GetList();
                     var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
