@@ -68,11 +68,10 @@ namespace UASKI.Pages
                 {
                     var model = new List<DataGridRowModel>();
                     var holy = HolidayModel.GetList();
-                    var arhivContext = ArhivModel.GetList();
                     var arhivTasks = new List<ArhivModel>();
                     var tasks = new List<TaskModel>();
 
-                    arhivTasks = arhivContext
+                    arhivTasks = ArhivModel.GetList()
                            .Where(c => c.IdIsp == isp.Code)
                            .Where(c => (c.DateClose >= form.dateTimePicker14.Value && c.DateClose <= form.dateTimePicker15.Value) || (c.Date >= form.dateTimePicker14.Value && c.Date <= form.dateTimePicker15.Value && c.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value) > 0))
                            .ToList();
@@ -136,21 +135,12 @@ namespace UASKI.Pages
 
                     form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
 
-                    var dateForm = new DateTime(form.dateTimePicker14.Value.Year, form.dateTimePicker14.Value.Month, 1);
-                    var dateTo = new DateTime(form.dateTimePicker14.Value.Year, form.dateTimePicker14.Value.Month + 1, 1).AddDays(-1);
-                    var arhivTasksMonth = arhivContext
-                           .Where(c => c.IdIsp == isp.Code)
-                           .Where(c => (c.DateClose >= dateForm && c.DateClose <= dateTo) || (c.Date >= dateForm && c.Date <= dateTo && c.GetDaysOpz(holy, dateForm, dateTo) > 0))
-                           .ToList();
-
                     var pretList = PretModel.GetList();
                     var cof1 = isp.GetKofModel(tasks, arhivTasks, holy, pretList, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
-                    var cof2 = isp.GetKofModel(tasks, arhivTasksMonth, holy, pretList, form.dateTimePicker14.Value, form.dateTimePicker15.Value);
-
+                   
                     model = new List<DataGridRowModel>();
 
                     var item1 = new DataGridRowModel(
-                         "За период",
                          cof1.Count.ToString(),
                          cof1.CountOpz.ToString(),
                          cof1.CountDay.ToString(),
@@ -159,19 +149,8 @@ namespace UASKI.Pages
 
                     model.Add(item1);
 
-                    item1 = new DataGridRowModel(
-                        "За месяц",
-                        cof2.Count.ToString(),
-                        cof2.CountOpz.ToString(),
-                        cof2.CountDay.ToString(),
-                        cof2.KofString
-                    );
-
-                    model.Add(item1);
-
                     columns = new DataGridColumnModel[]
                     {
-                        new DataGridColumnModel("#"),
                         new DataGridColumnModel("Заданий"),
                         new DataGridColumnModel("Кол-во случаев опозданий"),
                         new DataGridColumnModel("Кол-во дней опозданий"),
@@ -257,9 +236,10 @@ namespace UASKI.Pages
             string nameString = form.textBox37.Text;
 
             string header3 = form.label99.Text;
-            string header4 = form.label100.Text;
+            string header4 = $"С {form.dateTimePicker14.Value.ToString("dd.MM.yyyy")} по {form.dateTimePicker15.Value.ToString("dd.MM.yyyy")}";
+            string header5 = form.label100.Text;
 
-            var model = new PrintModel(font, e, form.DataGridView13.d, otdelString, header3, header4);
+            var model = new PrintModel(font, e, form.DataGridView13.d, otdelString, header3, header5 , header4);
             SystemHelper.PrintDocument(model, true);
         }
 
