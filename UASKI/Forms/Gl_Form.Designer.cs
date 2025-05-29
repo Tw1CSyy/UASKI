@@ -2819,6 +2819,7 @@ namespace UASKI
             this.dataGridView7.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView7.Size = new System.Drawing.Size(881, 459);
             this.dataGridView7.TabIndex = 6;
+            this.dataGridView7.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView7_CellDoubleClick);
             this.dataGridView7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView7_KeyDown);
             // 
             // tabPage11
@@ -2845,6 +2846,7 @@ namespace UASKI
             this.dataGridView8.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView8.Size = new System.Drawing.Size(881, 459);
             this.dataGridView8.TabIndex = 11;
+            this.dataGridView8.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView8_CellDoubleClick);
             this.dataGridView8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView8_KeyDown);
             // 
             // panel24
@@ -3005,6 +3007,7 @@ namespace UASKI
             this.dataGridView10.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView10.Size = new System.Drawing.Size(881, 459);
             this.dataGridView10.TabIndex = 36;
+            this.dataGridView10.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView10_CellDoubleClick);
             this.dataGridView10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView10_KeyDown);
             // 
             // panel26
@@ -3126,6 +3129,7 @@ namespace UASKI
             this.dataGridView11.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView11.Size = new System.Drawing.Size(881, 247);
             this.dataGridView11.TabIndex = 44;
+            this.dataGridView11.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView11_CellDoubleClick);
             this.dataGridView11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView11_KeyDown);
             // 
             // panel27
@@ -3799,6 +3803,7 @@ namespace UASKI
             this.dataGridView14.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView14.Size = new System.Drawing.Size(881, 459);
             this.dataGridView14.TabIndex = 35;
+            this.dataGridView14.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView14_CellDoubleClick);
             this.dataGridView14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView14_KeyDown);
             // 
             // tabPage18

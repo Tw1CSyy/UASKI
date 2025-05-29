@@ -1580,7 +1580,31 @@ namespace UASKI
             var key = new PreviewKeyDownEventArgs(Keys.Enter);
             button44_PreviewKeyDown(sender, key);
         }
-
+        private void dataGridView7_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView7_KeyDown(sender, key);
+        }
+        private void dataGridView8_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView8_KeyDown(sender, key);
+        }
+        private void dataGridView10_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView10_KeyDown(sender, key);
+        }
+        private void dataGridView11_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView11_KeyDown(sender, key);
+        }
+        private void dataGridView14_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var key = new KeyEventArgs(Keys.Enter);
+            dataGridView14_KeyDown(sender, key);
+        }
         #endregion
 
     }
