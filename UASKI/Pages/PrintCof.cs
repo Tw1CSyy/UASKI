@@ -130,7 +130,7 @@ namespace UASKI.Pages
                         new DataGridColumnModel("Контролёр"),
                         new DataGridColumnModel("Дата выполнения"),
                         new DataGridColumnModel("Оценка", typeof(int)),
-                        new DataGridColumnModel("Кол-во дней опозданий", typeof(int)),
+                        new DataGridColumnModel("Дней опозданий", typeof(int)),
                     };
 
                     form.DataGridView11.PullListInDataGridView(model.ToArray(), columns);
