@@ -241,7 +241,7 @@ namespace UASKI.Core.Models
 
             var tasks = contextTask
                    .Where(c => c.IdIsp == Code)
-                   .Where(c => c.Date < DateTime.Today)
+                   .Where(c => c.Date < dateTo)
                    .Where(c => c.GetDaysOpz(holy, dateFrom, dateTo) > 0)
                    .ToList();
 
