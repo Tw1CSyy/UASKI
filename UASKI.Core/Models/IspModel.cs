@@ -247,13 +247,13 @@ namespace UASKI.Core.Models
 
             var arhiv = contextArhiv
                 .Where(c => c.IdIsp == Code)
-                .Where(c => (c.DateClose >= dateFrom && c.DateClose <= dateTo) || (c.Date >= dateFrom && c.Date <= dateTo))
-                .Where(c => c.GetDaysOpz(holy, dateFrom, dateTo) > 0)
+                .Where(c => (c.DateClose >= dateFrom && c.DateClose <= dateTo) 
+                || (c.Date >= dateFrom && c.Date <= dateTo && c.GetDaysOpz(holy, dateFrom, dateTo) > 0))
                 .ToList();
 
             item.Isp = InizByCode;
             item.CodePodrIsp = CodePodr;
-            item.Count = arhiv.Count() + tasks.Count;
+            item.Count = arhiv.Count() + tasks.Count();
             item.CountOpz = arhiv.Count(c => c.GetDaysOpz(holy, dateFrom, dateTo) != 0) + tasks.Count(c => c.GetDaysOpz(holy, dateFrom, dateTo) != 0);
             item.CountDay = arhiv.Sum(c => c.GetDaysOpz(holy, dateFrom, dateTo)) + tasks.Sum(c => c.GetDaysOpz(holy, dateFrom, dateTo));
             item.Kof = GetCof(arhiv, prets, holy, tasks, dateFrom, dateTo);

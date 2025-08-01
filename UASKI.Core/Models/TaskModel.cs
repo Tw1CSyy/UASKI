@@ -178,7 +178,7 @@ namespace UASKI.Core.Models
         {
             int result = 0;
 
-            for (DateTime i = Date; i < DateTime.Today;)
+            for (DateTime i = Date; i <= DateTime.Today;)
             {
                 if (list.FirstOrDefault(c => c.Date == i) == null)
                     result++;
