@@ -199,7 +199,7 @@ namespace UASKI.Helpers
             var d = model.DataGridView;
 
             // Инициализируем переменные для работы
-            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics) + 2;
+            float linesPerPage = e.MarginBounds.Height / font.GetHeight(e.Graphics);
             int count = 0;
             int countColumnsVisible = 0;
 
@@ -251,7 +251,7 @@ namespace UASKI.Helpers
             yPosition += font.GetHeight(e.Graphics);
 
             // Печать строк
-            while (count < linesPerPage && count < d.Rows.Count)
+            while (count < linesPerPage - 4 && count < d.Rows.Count)
             {
                 DataGridViewRow row = d.Rows[count];
 

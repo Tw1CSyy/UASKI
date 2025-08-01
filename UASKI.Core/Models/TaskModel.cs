@@ -200,16 +200,12 @@ namespace UASKI.Core.Models
         {
             int result = 0;
 
-            var date = DateTime.Today;
+            if(dateFrom == dateTo)
+                return result;
 
-            if(dateTo > DateTime.Today)
+            for (DateTime i = Date; i <= dateTo;)
             {
-                date = dateTo;
-            }
-
-            for (DateTime i = Date; i <= date;)
-            {
-                if (i < dateFrom || i > dateTo)
+                if (i < dateFrom)
                 {
                     i = i.AddDays(1);
                     continue;

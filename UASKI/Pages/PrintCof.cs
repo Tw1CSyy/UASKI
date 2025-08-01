@@ -78,7 +78,7 @@ namespace UASKI.Pages
 
                     tasks = TaskModel.GetList()
                         .Where(c => c.IdIsp == isp.Code)
-                        .Where(c => c.Date < DateTime.Today)
+                        .Where(c => c.Date <= form.dateTimePicker15.Value)
                         .Where(c => c.GetDaysOpz(holy, form.dateTimePicker14.Value, form.dateTimePicker15.Value) > 0)
                         .ToList();
 

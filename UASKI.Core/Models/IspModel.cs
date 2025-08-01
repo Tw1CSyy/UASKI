@@ -241,13 +241,14 @@ namespace UASKI.Core.Models
 
             var tasks = contextTask
                    .Where(c => c.IdIsp == Code)
-                   .Where(c => c.Date < dateTo)
+                   .Where(c => c.Date <= dateTo)
                    .Where(c => c.GetDaysOpz(holy, dateFrom, dateTo) > 0)
                    .ToList();
 
             var arhiv = contextArhiv
                 .Where(c => c.IdIsp == Code)
-                .Where(c => (c.DateClose >= dateFrom && c.DateClose <= dateTo) || (c.Date >= dateFrom && c.Date <= dateTo && c.GetDaysOpz(holy, dateFrom, dateTo) > 0))
+                .Where(c => (c.DateClose >= dateFrom && c.DateClose <= dateTo) || (c.Date >= dateFrom && c.Date <= dateTo))
+                .Where(c => c.GetDaysOpz(holy, dateFrom, dateTo) > 0)
                 .ToList();
 
             item.Isp = InizByCode;
