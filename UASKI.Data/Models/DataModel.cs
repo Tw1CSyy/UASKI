@@ -93,18 +93,33 @@ namespace UASKI
         /// </summary>
         /// <param name="tableName">Название таблицы</param>
         /// <returns>int или 0</returns>
-        public int GetMaxId(string tableName)
+        public int GetMaxId(string tableName, int count = 1)
         {
             var command = new NpgsqlCommand($"SELECT MAX(\"Id\") FROM \"{tableName}\"", Get());
-            var reader = command.ExecuteReader();
             int result = 0;
 
-            while (reader.Read())
+            try
             {
-                result = Convert.ToInt32(reader.GetValue(0));
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result = Convert.ToInt32(reader.GetValue(0));
+                }
+
+                reader.Close();
+            }
+            catch (Exception)
+            {
+                if (count == 10)
+                    throw;
+
+                Close();
+                Open();
+                count++;
+                return GetMaxId(tableName, count);
             }
 
-            reader.Close();
             return result;
         }
     }
