@@ -67,10 +67,25 @@ namespace UASKI
         /// </summary>
         /// <param name="query">Строка запроса Sql</param>
         /// <returns>Положительный или отрицательный ответ</returns>
-        public bool Complite(string query)
+        public bool Complite(string query , int count = 1)
         {
             var command = new NpgsqlCommand(query, Get());
-            return command.ExecuteNonQuery() == 1;
+
+            try
+            {
+                var result = command.ExecuteNonQuery();
+                return result == 1;
+            }
+            catch (Exception)
+            {
+                if (count == 10)
+                    throw;
+
+                Close();
+                Open();
+                count++;
+                return Complite(query, count);
+            }
         }
 
         /// <summary>

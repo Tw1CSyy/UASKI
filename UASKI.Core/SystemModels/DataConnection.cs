@@ -55,6 +55,15 @@ namespace UASKI.Core
         }
 
         /// <summary>
+        /// Открывает подключения
+        /// </summary>
+        public static void Open()
+        {
+            UAContext.Connection.Close();
+            UAContext.Connection.Open();
+        }
+
+        /// <summary>
         /// Обновляет данные в Context
         /// </summary>
         public static void UploadContext()

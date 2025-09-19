@@ -8,8 +8,6 @@ using UASKI.Core;
 using UASKI.Enums;
 using UASKI.Models;
 
-using static System.Net.Mime.MediaTypeNames;
-
 namespace UASKI.StaticModels
 {
     public static class Ai
@@ -467,8 +465,9 @@ namespace UASKI.StaticModels
                     Ai.AddMessage(Enums.TypeNotice.Default, $"Распечатано: {Ai.Settings.CountPrint}");
                     return true;
                 case Keys.F5:
+                    DataConnection.Open();
                     DataConnection.UploadContext();
-                    Ai.AddMessage(TypeNotice.Comlite, "База сихронизированна");
+                    Ai.AddMessage(TypeNotice.Comlite, "База сихронизирована");
 
                     if(This != null)
                     {
