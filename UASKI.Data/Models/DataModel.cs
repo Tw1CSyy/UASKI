@@ -97,10 +97,11 @@ namespace UASKI
         {
             var command = new NpgsqlCommand($"SELECT MAX(\"Id\") FROM \"{tableName}\"", Get());
             int result = 0;
+            NpgsqlDataReader reader = null;
 
             try
             {
-                var reader = command.ExecuteReader();
+                reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -113,6 +114,9 @@ namespace UASKI
             {
                 if (count == 10)
                     throw;
+
+                if(reader != null)
+                    reader.Close();
 
                 Close();
                 Open();
