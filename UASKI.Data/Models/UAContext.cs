@@ -119,7 +119,7 @@ namespace UASKI.Data
         /// <summary>
         /// Выборка из таблицы Tasks
         /// </summary>
-        /// <returns>Коллекцию объектов</returns>
+        /// <returns>Коллекцию объектов</returns> 
         private List<TaskEntity> SelectTasks()
         {
             var result = new List<TaskEntity>();
